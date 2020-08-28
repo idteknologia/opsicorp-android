@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/btn_filter"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ic_filter"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_filter_grey">
+            </ImageView>
+            <TextView
+                android:layout_marginLeft="6dp"
+                android:id="@+id/tv_filter"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:text="Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
+            android:layout_width="1dp"
+            android:layout_height="29dp"></LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorPrimary"
+            android:layout_width="1dp"
+            android:layout_height="29dp"></LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/btn_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ic_short"
+                android:layout_gravity="center"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_sort_grey"></ImageView>
+            <TextView
+                android:layout_marginLeft="6dp"
+                android:layout_gravity="center"
+                android:id="@+id/tv_sort"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:text="Sort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
+            android:id="@+id/btn_change_date"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ic_change_date"
+                android:src="@drawable/ic_transparant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></ImageView>
+            <TextView
+                android:id="@+id/tv_change_date"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:text="Change date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

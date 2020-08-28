@@ -1,0 +1,657 @@
+<resources>
+    <string name="app_name">Opsicorp</string>
+
+    <string name="SENDER_ID">370202765925</string>
+    <string name="notifications_admin_channel_name">Shirohige</string>
+    <string name="notifications_admin_channel_description">Shiro Firebase PushNotification</string>
+
+    <string name="label_title">Contoh tulisan indo.</string>
+    <string name="settings">Setelan</string>
+    <string name="main">Utama</string>
+    <string name="language">Bahasa</string>
+    <string name="system_language">System Language (default)</string>
+    <string name="bahasa_indonesia">Bahasa Indonesia</string>
+    <string name="used_language">Bahasa Indonesia</string>
+    <string name="english">English</string>
+
+    <string name="opsicorp_url">Alamat Opsicorp</string>
+    <string name="address_info">Alamat ini digunakan untuk login</string>
+    <string name="total_tripplan">Total Trip Plan</string>
+    <string name="travel_expense_detail">Detil Travel Expense</string>
+
+    <string name="applying_language">Menerapkan berubahan bahasa . . .</string>
+    <string name="upcoming_trip">Trip Anda</string>
+    <string name="special_promo">Promo Spesial</string>
+
+    <string name="find_flights">Find Flights</string>
+    <string name="search_flights">Search Flight</string>
+    <string name="round_trip">Round Trip</string>
+    <string name="one_way">One Way</string>
+    <string name="not_comply">Not Comply</string>
+    <string name="conflict">Conflict</string>
+    <string name="continue_">Continue</string>
+
+    <string name="airlines">Airlines</string>
+    <string name="airlines_preferences">Airlines Preferences</string>
+    <string name="no_preference">No Preference</string>
+
+    <string name="help">Help</string>
+    <string name="string_help_text"> The permission is missing.\n\nTo grant this permission click on Settings, then Permissions and turn the permission on.\n\nThen click back twice to return to the app</string>
+    <string name="quit">Exit App</string>
+    <string name="string_choose_image_">Select Image to Upload</string>
+    <string name="string_unable_to_pick_image">Unable to Pickup Image</string>
+    <string name="string_unable_to_load_image">Unable to Load Image</string>
+    <string name="string_reselect">Click on Image to Reselect</string>
+
+    <string name="opsicorp_splash">Opsicorp Splash</string>
+    <string name="contact_information">Contact Information</string>
+    <string name="contact_information_caps">CONTACT INFORMATION</string>
+    <string name="attachment_files_">Attachment Files : </string>
+    <string name="add_attachment">Tambah Attachment</string>
+    <string name="pdf_file">File PDF</string>
+    <string name="image_file">File Gambar</string>
+
+    <string name="departure_date">Departure Date</string>
+    <string name="return_date">Return Date</string>
+    <string name="reset_your_password">Reset Your Password</string>
+
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="i_agree">I Agree</string>
+    <string name="say_hello">Hi </string>
+
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+
+    <string name="reason_code">Reason Code</string>
+    <string name="reject">Reject</string>
+    <string name="reject_all">Reject All</string>
+    <string name="approve">Approve</string>
+    <string name="approve_all">Approve All</string>
+
+    <string name="this_month">This Month</string>
+    <string name="last_week">Last Week</string>
+    <string name="last_month">Last Month</string>
+
+    <string name="rejected">Rejected</string>
+    <string name="approved">Approved</string>
+    <string name="partially_rejected">Partially Rejected</string>
+    <string name="partially_approved">Partially Approved</string>
+    <string name="list_of_your_approval">List of your Approval</string>
+    <string name="see_all">See All</string>
+
+    <string name="time_limit">Time Limit</string>
+
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="passengers">Passengers</string>
+    <string name="select_payment">Select Payment</string>
+    <string name="checkout">Checkout</string>
+
+    <string name="flights">Flights</string>
+    <string name="flights_summary">Flights Summary</string>
+    <string name="trains">Trains</string>
+    <string name="trains_summary">Trains Summary</string>
+    <string name="hotel_summary">Hotel Summary</string>
+    <string name="hotels">Hotels</string>
+    <string name="train">Train</string>
+
+    <string name="string_title_please_wait">Please wait for a while...</string>
+
+    <string name="trip_participant">Trip Participant</string>
+    <string name="trip_items">Trip Items</string>
+
+    <string name="confirmation">Konfirmasi</string>
+    <string name="are_u_sure">Apakah Anda yakin?</string>
+    <string name="confirm_logout">Anda yakin untuk logout?</string>
+    <string name="no_logout">Tidak</string>
+    <string name="yes_logout">Iya</string>
+
+    <string name="do_u_want_to_approve_all">Do you confirm to approve all item?</string>
+
+    <string name="participant">Participant</string>
+    <string name="participant_status">Participant Status</string>
+    <string name="allowance">Allowance</string>
+    <string name="trip_plan_status">Trip Plan Status</string>
+    <string name="trip_plan">Trip Plan</string>
+    <string name="approval">Approval</string>
+    <string name="trip_code">Trip Code</string>
+    <string name="created_date">Created Date</string>
+    <string name="created_by">Created By</string>
+    <string name="expire_in">Expires in</string>
+    <string name="detail">Detail</string>
+    <string name="detail_information">Detail Information</string>
+    <string name="detail_tripplan">Detail Trip Plan</string>
+    <string name="detail_tripitem">Detail Trip Item</string>
+    <string name="detail_participant">Detail Participant</string>
+
+    <string name="add_trip_item">Tambah Trip Item</string>
+
+    <string name="book">Book</string>
+    <string name="book_now">Book Now</string>
+    <string name="go_to_dashboard">Go To Dashboard</string>
+    <string name="submit">Submit</string>
+    <string name="do_u_want_submit_tp">Do you want to Submit Trip Plan ?</string>
+    <string name="add_more_cart">Add more cart</string>
+    <string name="submited">Submited</string>
+
+    <string name="what_is_your_purpose">What is your purpose</string>
+    <string name="purpose">Tujuan</string>
+    <string name="create_tripplan">Buat Trip Plan</string>
+    <string name="select_accomodation">Pilih Akomodasi</string>
+    <string name="select_all">Pilih Semua</string>
+    <string name="select_for_accomodation">Pilih Akomodasi</string>
+    <string name="select_your_purpose">Pilih Tujuan Anda</string>
+    <string name="select_your_budget">Pilih Budget</string>
+    <string name="select_budget">Pilih Budget</string>
+    <string name="select_cost_center">Pilih Cost Center</string>
+    <string name="choose_your_reason_code">Pilih reason code</string>
+    <string name="budget">Budget</string>
+    <string name="approver">Approver</string>
+    <string name="cost_center">Cost Center</string>
+    <string name="notes">Catatan</string>
+    <string name="create_now">Buat Sekarang</string>
+    <string name="sorry">Maaf</string>
+    <string name="please_upload_your_doc">Mohon upload dokumen Anda</string>
+    <string name="please_fill_event_name">Mohon isi nama event</string>
+
+    <string name="departing_flights_found">Departing Flights Found</string>
+    <string name="returning_flights_found">Returning Flights Found</string>
+
+
+    <string name="select_departing_flight">Select Departing Flight</string>
+    <string name="select_returning_flight">Select Returning Flight</string>
+    <string name="detail_departing_flight">Detail Departing Flight</string>
+    <string name="detail_returning_flight">Detail Returning Flight</string>
+
+    <string name="my_transaction">My Transaction</string>
+    <string name="personal_information">Informasi Pribadi</string>
+    <string name="location">Location</string>
+    <string name="faq_help">FAQ &amp; Help</string>
+
+    <string name="business_trip">Bisnis</string>
+    <string name="personal_trip">Perjalanan Pribadi</string>
+    <string name="choose_your_trip">Pilih Perjalanan Anda</string>
+    <string name="family_time">Family Time</string>
+    <string name="upcoming_flights">Upcoming Flights</string>
+    <string name="show_more">Show More</string>
+    <string name="show_detail">Show Detail</string>
+    <string name="hide_detail">Hide Detail</string>
+
+    <string name="start_updates">START LOCATION UPDATES</string>
+    <string name="stop_updates">STOP LOCATION UPDATES</string>
+    <string name="get_last_location">GET LAST LOCATION</string>
+
+    <string name="filter_by">Filter by</string>
+    <string name="filter">Filter</string>
+    <string name="download_itinerary">Download Itinerary</string>
+    <string name="sort">Sort</string>
+    <string name="change_date">Change Date</string>
+    <string name="change_flight">Change Flight</string>
+
+    <string name="sort_by">Sort By</string>
+    <string name="close">Close</string>
+    <string name="lowest_price">Lowest Price</string>
+    <string name="earliest_departure">Earliest Departure</string>
+    <string name="latest_departure">Latest Departure</string>
+    <string name="shortest_duration">Shortest Duration</string>
+
+    <string name="credit_card">Credit Card</string>
+    <string name="transfer">Transfer</string>
+    <string name="mandiri_clickpay">Mandiri ClickPay</string>
+
+
+    <string name="sign_in">Sign In</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="please_complete_the_data">Please complete the data for easy access booking</string>
+    <!-- <string name="completed_info">* This information of your phone number can be changed in Profile</string> -->
+
+    <!--Identity-->
+    <string name="id_toolbar_title">Identity Information</string>
+    <string name="id_toolbar_desc"></string>
+    <string name="id_title_buyer">Buyer Identity</string>
+    <string name="id_title_traveler">Traveler Identity</string>
+    <string name="id_title_adult_traveler">Adult 12 Years Above</string>
+    <string name="id_firstname_hint">First Name &amp; Middle Name </string>
+    <string name="id_lastname_hint">Last Name</string>
+    <string name="id_phone_hint">Phone Number</string>
+    <string name="id_firstname_hint_req">First Name &amp; Middle Name *)</string>
+    <string name="id_lastname_hint_req">Last Name *)</string>
+    <string name="id_phone_hint_req">Mobile Number *)</string>
+    <string name="id_email_hint">Email Address</string>
+    <string name="id_password_hint">Password</string>
+    <string name="id_nationality">Nationality</string>
+    <string name="info_phone_number">This information of your phone number can be charge in Profile</string>
+
+    <string name="id_pax_title">Title </string>
+    <string name="id_pax_passport_number">Passport Number</string>
+    <string name="id_pax_country_issue">Country Issue</string>
+    <string name="id_pax_passport_expired">Passport Expired Date</string>
+    <string name="id_pax_citizen">Citizen </string>
+    <string name="id_pax_birth_date">Birth Date</string>
+    <string name="id_pax_date_of_day">DD</string>
+    <string name="id_pax_month">MM</string>
+    <string name="id_pax_year">YY</string>
+    <string name="id_firstname_helper">Same with your ID / Passport</string>
+    <string name="id_lastname_helper">Same with your ID / Passport</string>
+    <string name="id_phone_helper">Example: +62111122233367</string>
+    <string name="id_email_helper">Example: myemail@example.com</string>
+    <string name="id_book_now_button">Book Now</string>
+    <string name="id_error_required">This field is required</string>
+    <string name="id_error_email_format">Please enter valid email address</string>
+    <string name="id_loader_stage_1">Processing ...</string>
+    <string name="id_loader_stage_2">Book Flight ...</string>
+    <string name="id_loader_stage_3">Retrive Another Flight ...</string>
+    <string name="id_unavail_title">Retry Booking</string>
+    <string name="id_unavail_info">Your selected flight is not available anymore.</string>
+    <string name="id_unavail_ask">Do you want to change with this flight?</string>
+    <string name="id_unavail_continue">Yes, Continue</string>
+    <string name="id_unavail_back">Back to Search Page</string>
+    <string name="id_same_with_buyer">Same with Buyer Identity</string>
+
+
+    <!--  Facebook App Key -->
+    <string name="facebook_app_id" translatable="false"> your_facebook_app_id </string>
+
+    <!--  Google App Key -->
+    <string name="google_api_app_id" translatable="false"> your_google_app_id </string>
+
+
+    <!--  Main Strings -->
+    <string name="actionSearch"> SEARCH </string>
+    <string name="actionLanguage"> LANGUAGE </string>
+
+    <string name="actionHome"> HOME </string>
+    <string name="actionCategory"> CATEGORY </string>
+    <string name="actionCategories"> CATEGORIES </string>
+    <string name="actionShop"> SHOP </string>
+    <string name="actionCart"> MY CART </string>
+    <string name="actionOrders"> MY ORDERS </string>
+    <string name="actionAccount"> MY ACCOUNT </string>
+    <string name="actionAddresses"> MY ADDRESSES </string>
+    <string name="actionFavourites"> MY FAVORITES </string>
+    <string name="actionSettings"> SETTINGS </string>
+    <string name="actionNews"> NEWS </string>
+    <string name="actionIntro"> INTRO </string>
+    <string name="actionAbout"> ABOUT US </string>
+    <string name="actionContactUs"> CONTACT US </string>
+    <string name="actionShareApp"> SHARE APP </string>
+    <string name="actionRateApp"> RATE APP </string>
+    <string name="actionLogin"> LOGIN </string>
+    <string name="actionLogout"> LOGOUT </string>
+
+    <string name="homeStyle1"> HOME 1 </string>
+    <string name="homeStyle2"> HOME 2 </string>
+    <string name="homeStyle3"> HOME 3 </string>
+    <string name="homeStyle4"> HOME 4 </string>
+    <string name="homeStyle5"> HOME 5 </string>
+    <string name="categoryStyle1"> CATEGORY 1 </string>
+    <string name="categoryStyle2"> CATEGORY 2 </string>
+    <string name="categoryStyle3"> CATEGORY 3 </string>
+    <string name="categoryStyle4"> CATEGORY 4 </string>
+    <string name="categoryStyle5"> CATEGORY 5 </string>
+    <string name="categoryStyle6"> CATEGORY 6 </string>
+
+    <string name="Newest"> NEWEST </string>
+    <string name="topSeller"> TOP SELLER </string>
+    <string name="superDeals"> SUPER DEALS </string>
+    <string name="mostLiked"> MOST LIKED </string>
+
+    <string name="all"> All </string>
+    <string name="newest"> Newest </string>
+    <string name="top_seller"> Top Seller </string>
+    <string name="super_deals"> Deals </string>
+    <string name="most_liked"> Most Liked </string>
+    <string name="recentlyViewed"> Recently Viewed </string>
+
+    <string name="news_all"> All News </string>
+    <string name="news_categories"> News Categories </string>
+    <string name="news_description"> News Description </string>
+
+
+    <!--  Other Strings -->
+    <string name="tour_event">Tur </string>
+    <string name="tour">Tour</string>
+    <string name="manage_trip">Kelola Trip</string>
+    <string name="home">Awal</string>
+    <string name="profile">Profil</string>
+    <string name="ok"> OK </string>
+    <string name="and"> dan </string>
+    <string name="NEW"> NEW </string>
+    <string name="OFF"> OFF </string>
+    <string name="save">Save</string>
+    <string name="send"> Send </string>
+    <string name="next">Berikutnya</string>
+    <string name="skip"> Skip </string>
+    <string name="grant"> Grant </string>
+    <string name="title"> Title </string>
+    <string name="start"> Start </string>
+    <string name="retry"> Ulangi </string>
+    <string name="apply"> Terapkan </string>
+    <string name="search">Pencarian </string>
+    <string name="clear"> Clear </string>
+    <string name="login"> Login </string>
+    <string name="signup"> Daftar </string>
+
+    <string name="yourtrip_hasbeen_released">Your trip code has been released, \n
+Please add your trip item for Approval."
+            </string>
+
+    <string name="welcome"> Selamat Datang </string>
+    <string name="explore"> Explore </string>
+
+    <string name="reset">Reset</string>
+    <string name="cancel">Batal</string>
+    <string name="sync_status">Sync Status</string>
+
+    <string name="register"> Daftar </string>
+    <string name="drawerOpen"> DrawerOpen </string>
+    <string name="drawerClose"> DrawerClose </string>
+
+    <string name="view"> View </string>
+    <string name="date"> Date </string>
+    <string name="cart"> Cart </string>
+    <string name="product"> Product </string>
+    <string name="products"> Products </string>
+    <string name="category"> Category </string>
+    <string name="categories"> Categories </string>
+    <string name="final_price"> Final Price </string>
+    <string name="total_price"> Total Price </string>
+    <string name="total_used">Total Used</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="total_hotel_amount">Total Hotel Amount</string>
+    <string name="total_flight_amount_">Total Flight Amount</string>
+    <string name="total_train_amount">Total Train Amount</string>
+    <string name="total_duration">Total Duration</string>
+    <string name="available">Available</string>
+    <string name="product_price"> Product Price </string>
+    <string name="checkout_price"> Checkout Price </string>
+    <string name="product_title"> Product Title </string>
+    <string name="view_product"> View Product </string>
+    <string name="quantity"> Quantity </string>
+    <string name="description"> Description </string>
+    <string name="attributes"> Attributes </string>
+    <string name="attribute_name"> Attribute Name </string>
+    <string name="product_description"> Product Description </string>
+
+    <string name="likes"> Likes </string>
+    <string name="google_login"> Google Login </string>
+    <string name="facebook_login"> Facebook Login </string>
+    <string name="in_stock"> In Stock </string>
+    <string name="outOfStock"> Out of Stock </string>
+    <string name="addToCart"> Add to Cart </string>
+    <string name="removeProduct"> Remove Product </string>
+    <string name="removeFromCart"> Remove from Cart </string>
+    <string name="save_address"> Save Address </string>
+    <string name="save_changes"> Save Changes </string>
+    <string name="reset_filters"> Reset Filters </string>
+    <string name="order_now"> Order Now </string>
+    <string name="continue_shopping"> Continue Shopping </string>
+    <string name="proceed_checkout"> Proceed Checkout </string>
+
+    <string name="order"> Order </string>
+    <string name="order_id"> Order ID </string>
+    <string name="order_status"> Order Status </string>
+    <string name="order_date"> Order Date </string>
+    <string name="order_address"> Order Address </string>
+    <string name="order_details"> Order Details </string>
+    <string name="order_confirmed"> Order Confirmed </string>
+    <string name="order_notes"> Order Notes </string>
+    <string name="order_comments"> Order Comments </string>
+    <string name="no_of_products"> No. of Products </string>
+
+    <string name="tax"> Tax </string>
+    <string name="shipping"> Shipping </string>
+    <string name="discount"> Discount </string>
+    <string name="subtotal"> Subtotal </string>
+    <string name="total"> Total </string>
+    <string name="coupon"> Coupon </string>
+    <string name="coupon_code"> Coupon Code </string>
+    <string name="coupon_amount"> Coupon Amount </string>
+    <string name="coupon_discount"> Coupon Discount </string>
+    <string name="coupon_type"> Coupon Type </string>
+    <string name="sample_coupons"> Sample Coupon Codes </string>
+    <string name="payment_method"> Payment Method </string>
+    <string name="payment_details"> Payment Details </string>
+    <string name="card_number"> Card Number </string>
+    <string name="expiry_month"> Expiry Month </string>
+    <string name="expiry_year"> Expiry Year </string>
+    <string name="card_expiry"> Card Expiry </string>
+    <string name="card_cvv"> Card CVV </string>
+    <string name="payPal"> PayPal </string>
+    <string name="billing_address"> Billing Address </string>
+    <string name="shipping_address"> Shipping Address </string>
+    <string name="shipping_method"> Shipping Method </string>
+
+
+    <!--  Form Strings -->
+    <string name="full_name"> Full Name </string>
+    <string name="first_name"> First Name </string>
+    <string name="last_name"> Last Name </string>
+    <string name="email">  Email </string>
+    <string name="email_address"> Email Address </string>
+    <string name="dob"> Date of Birth </string>
+    <string name="gender"> Gender </string>
+    <string name="male"> Male </string>
+    <string name="female"> Female </string>
+    <string name="fax"> Fax </string>
+    <string name="mobile"> Mobile </string>
+    <string name="contact_no"> Contact No </string>
+    <string name="address"> Address </string>
+    <string name="country"> Country </string>
+    <string name="zone"> Zone </string>
+    <string name="state"> State </string>
+    <string name="city"> City </string>
+    <string name="post_code"> Post Code </string>
+    <string name="suburb"> Suburb </string>
+    <string name="password"> Password </string>
+    <string name="confirm_password"> Confirm Password </string>
+    <string name="new_password"> New Password </string>
+    <string name="current_password"> Current Password </string>
+    <string name="new_address"> New Address </string>
+    <string name="update_address"> Update Address </string>
+    <string name="edit_profile"> Edit Profile </string>
+    <string name="subscribe_newsletter"> Subscribe Newsletter </string>
+
+    <string name="confirm_your_information">Confirm Your Information</string>
+    <string name="departure_flight">DEPARTURE FLIGHT</string>
+    <string name="return_flight">RETURN FLIGHT</string>
+    <string name="important_flight_info">Important Flight Info</string>
+    <string name="flight_info">Flight Info</string>
+    <string name="facilities">Facilities</string>
+
+    <string name="total_price_for_1_pax">Total price for 1 pax</string>
+    <string name="total_to_be_paid">TOTAL TO BE PAID</string>
+    <string name="total_purchase_orders">Total Purchase orders:</string>
+    <string name="including_of_all_fares">Including of all fares, taxes &amp; fees</string>
+    <string name="btn_continue_to_cart">Continue to Cart</string>
+
+    <string name="msg_error_unable_select_profile_pic">Unable to set image. Please try again!</string>
+    <string name="lbl_set_profile_photo">Set image file</string>
+    <string name="lbl_take_camera_picture">Take a picture</string>
+    <string name="lbl_choose_from_gallery">Choose from gallery</string>
+    <string name="toast_image_intent_null">Image picker option is missing!</string>
+
+    <string name="dialog_permission_title">Grant Permissions</string>
+    <string name="dialog_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
+    <string name="go_to_settings">GOTO SETTINGS</string>
+
+    <!--  Messages Strings -->
+    <string name="thank_you"> Thank You </string>
+    <string name="add_coupon"> Add Coupon? </string>
+    <string name="your_message"> Your Message </string>
+    <string name="empty_cart"> Your Cart is Empty </string>
+    <string name="record_not_found"> No Record Found </string>
+    <string name="item_added_to_cart"> Item Added to Cart </string>
+    <string name="item_removed_from_cart"> Removed from Cart </string>
+    <string name="something_went_wrong"> Something went Wrong! </string>
+    <string name="added_to_favourites"> Added to Favourites </string>
+    <string name="removed_from_favourites"> Removed from Favourites </string>
+    <string name="not_a_member"> Not a Member? </string>
+    <string name="login_or_signup"> Login &amp; Register </string>
+    <string name="login_or_create_account"> Please Login or create Account </string>
+    <string name="thank_you_for_shopping"> Thank You for shopping with us! </string>
+    <string name="coupon_removes_other_coupons"> This coupon may remove all other coupons! </string>
+
+    <string name="forgot_password"> I\'ve forgotten my password? </string>
+    <string name="already_have_account"> Already have an account? </string>
+    <string name="search_product_by_name"> Type Something to Search </string>
+    <string name="type_origin_city"> Type Origin City</string>
+    <string name="type_destination_city"> Type Destination City</string>
+    <string name="type_destination_country"> Type Destination Country</string>
+    <string name="type_nationality"> Type Nationality</string>
+    <string name="default_shipping"> Default Shipping Address </string>
+    <string name="select_payment_method"> Select Payment Method </string>
+
+    <string name="rebook">Rebook</string>
+    <string name="destination">Tujuan</string>
+    <string name="nationality">Nationality</string>
+    <string name="dialog_lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever make a type specimen book.</string>
+    <string name="must_update">Silahkan update ke versi terbaru.</string>
+
+    <string name="search_hotel">Search Hotel</string>
+
+    <string name="processing"> Processing... </string>
+    <string name="please_wait"> Please Wait... </string>
+    <string name="please_wait2">Please Wait</string>
+    <string name="its_just_second">It just a second</string>
+    <string name="invalid_address"> Invalid Address </string>
+    <string name="no_internet"> Internet Connection is not Available </string>
+
+    <string name="permission_rejected"> Permission not Granted! </string>
+    <string name="permission_camera_storage"> Need Camera and Storage Permissions! </string>
+    <string name="permission_camera_storage_needed"> This app needs camera and storage permissions to take pictures from the gallery or with the camera. </string>
+
+    <string name="rate_now"> Rate It! </string>
+    <string name="not_now"> Not Now </string>
+    <string name="rate_app_msg"> If you enjoy using this app, it would be great to take a moment to rate it. </string>
+
+
+    <!--  Errors Message Strings -->
+    <string name="name">Name </string>
+
+    <string name="enter_name"> Enter Your Name </string>
+    <string name="enter_city"> Enter Your City </string>
+    <string name="enter_address"> Enter Your Address </string>
+    <string name="enter_message"> Enter Your Message </string>
+    <string name="select_zone"> Select Your Zone </string>
+    <string name="select_country"> Select Your Country </string>
+    <string name="invalid_first_name"> Invalid First Name </string>
+    <string name="invalid_last_name"> Invalid Last Name </string>
+    <string name="invalid_email"> Invalid Email Address </string>
+    <string name="invalid_password"> Invalid Password </string>
+    <string name="invalid_contact"> Invalid Contact No. </string>
+    <string name="invalid_post_code"> Invalid Postal Code </string>
+    <string name="invalid_credit_card"> Invalid Credit Card Number </string>
+    <string name="invalid_card_cvv"> Invalid Card CVV </string>
+    <string name="expired_card"> Card has been Expired </string>
+    <string name="invalid_payment_token"> Invalid Payment Token </string>
+    <string name="select_card_expiry"> Select your Card Expiry Date </string>
+    <string name="unexpected_response"> Unexpected Server Response </string>
+    <string name="cannot_get_payment_methods"> Error Getting Payment Methods </string>
+    <string name="cannot_initialize_braintree"> Error initializing Braintree Fragment </string>
+
+
+    <!--  Coupon Error Strings -->
+    <string name="coupon_expired"> Coupon is expired! </string>
+    <string name="coupon_applied"> Coupon already applied! </string>
+    <string name="coupon_cannot_be_applied"> Coupon cannot be applied! </string>
+    <string name="coupon_used_by_you"> You have already used this Coupon! </string>
+    <string name="coupon_used_by_all"> Coupon has been used by limited users! </string>
+    <string name="coupon_is_not_for_you"> You are not applicable to use this Coupon! </string>
+    <string name="coupon_cannot_used_with_existing"> Coupon cannot be used with existing Coupon! </string>
+    <string name="coupon_is_not_for_sale_items"> Coupon cannot be used on sale items! </string>
+    <string name="coupon_is_not_for_these_products"> Coupon is not valid for these products! </string>
+    <string name="coupon_is_not_for_these_categories"> Coupon is not valid for these category of products! </string>
+    <string name="coupon_is_not_for_excluded_products"> Coupon cannot be used on excluded products! </string>
+    <string name="coupon_is_not_for_excluded_categories"> Coupon cannot be used on excluded categories! </string>
+    <string name="coupon_max_amount_is_less_than_order_total"> Cart total does not meet the maximum amount for Coupon! </string>
+    <string name="coupon_min_amount_is_greater_than_order_total"> Cart total does not meet the minimum amount for Coupon! </string>
+
+
+    <!--  App Intro Slides Strings -->
+    <string name="slide_1_title"> Home Page </string>
+    <string name="slide_2_title"> Category Page </string>
+    <string name="slide_3_title"> Shop Page </string>
+    <string name="slide_4_title"> Cart Page </string>
+    <string name="slide_5_title"> Order Page </string>
+    <string name="slide_1_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_2_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_3_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_4_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+    <string name="slide_5_desc"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt </string>
+
+
+    <!--  App Settings Strings -->
+    <string name="select_language"> Pilih Bahasa </string>
+    <string name="official_web"> Official Website </string>
+    <string name="share_app"> Share App </string>
+    <string name="rate_app"> Rate App </string>
+    <string name="privacy_policy">Kebijakan Privasi</string>
+    <string name="refund_policy"> Refund Policy </string>
+    <string name="service_terms"> Terms of Service </string>
+    <string name="ad_banner"> Banner Ad </string>
+    <string name="ad_interstitial"> Interstitial Ad </string>
+
+    <string name="push_notification"> Push Notifications </string>
+    <string name="local_notification"> Local Notifications </string>
+    <string name="cart_button_toggle"> Cart Button on Card </string>
+
+
+    <string name="app_terms_services">
+        Creating an account means you\'re okay with our
+    </string>
+
+
+    <string-array name="sortBy_array">
+        <item> Newest </item>
+        <item> A - Z </item>
+        <item> Z - A </item>
+        <item> Price : High - Low </item>
+        <item> Price : Low - High </item>
+        <item> Top Seller </item>
+        <item> Special Deals </item>
+        <item> Most Liked </item>
+    </string-array>
+
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </string>
+    <string name="title_corporation">Corporate Travel Management System</string>
+    <string name="footer_splash_screen">powered by</string>
+    <string name="footer_splash_screen_2">opsicorp</string>
+    <string name="please_complete_the_data_for_easy_access_booking">Please complete the data for easy access booking</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="no_preferance">No Preference</string>
+    <string name="checkIn">Check-In Date</string>
+    <string name="duration">Duration</string>
+    <string name="filer_hotel"><![CDATA[Filters (Stars & Price)]]></string>
+    <string name="string_fire_rules">1. APPLICATION AND OTHER CONDITIONS RULE - 008/2000 UNLESS OTHERWISE SPECIFIED INSTANT PURCHASE ONE WAY ECONOMY CLASS FARE APPLICATION AREA THESE FARES APPLY WITHIN AREA 3. CLASS OF SERVICE THESE FARES APPLY FOR ECONOMY CLASS SERVICE. TYPES OF TRANSPORTATION THIS RULE GOVERNS ONE-WAY FARES. FARES GOVERNED BY THIS RULE CAN BE USED TO CREATE ONE-WAY/ROUND-TRIP/CIRCLE-TRIP/OPEN-JAW JOURNEYS. \n \n 2. FLIGHT APPLICATION UNLESS OTHERWISE SPECIFIED THE FARE COMPONENT MUST BE ON ONE OR MORE OF THE FOLLOWING ANY TR FLIGHT. \n \n 3. ADVANCE RES/TICKETING UNLESS OTHERWISE SPECIFIED OPEN RETURNS NOT PERMITTED. WAITLIST NOT PERMITTED. TICKETING MUST BE COMPLETED WITHIN 24 HOURS AFTER RESERVATIONS ARE MADE OR AT LEAST 4 HOURS BEFORE DEPARTURE WHICHEVER IS EARLIER. NOTE - THE AUTO TICKETING TIME LIMIT APPLIES TO YOUR PNR.FAILURE TO COMPLY WITH THE TICKETING TIME LIMIT WILL RESULT IN CANCELLATION OF THE RESERVATION. OR - RESERVATIONS ARE REQUIRED AT LEAST 4 HOURS BEFORE DEPARTURE. OPEN RETURNS NOT PERMITTED. RESERVATIONS AND TICKETING MUST BE COMPLETED AT THE SAME TIME. WAITLIST NOT PERMITTED. NOTE - THE</string>
+
+
+    <string name="et_search_filter_approval">Search by Trip code, Event, Participant</string>
+    <string name="waiting_for_approval">Waiting for Approval</string>
+
+    <string name="sorry_selected_singel_select_in_date_picker">Maaf</string>
+    <string name="warning_selected_singel_select_in_date_picker">Tolong pilih dua tanggal</string>
+    <string name="warning_selected_next_date">Tanggal akhir tidak boleh melebihi tanggal trip plan</string>
+
+    <string name="sorry_selected_singel_select_in_date_picker2">Maaf</string>
+    <string name="warning_selected_singel_select_in_date_picker2">Tolong pilih satu tanggal</string>
+
+
+    <string name="manage_transport">Kelola Tranport Anda</string>
+    <string name="title_manage_trip">Kelola Perjalanan</string>
+    <string name="descrip_title_manange_trip">Silakan tambahkan item perjalanan Anda untuk Persetujuan</string>
+    <string name="et_search_manage_trip">Ketik Kode perjalanan atau nama acara</string>
+    <string name="draft">Draf</string>
+    <string name="completed">Lengkap</string>
+</resources>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:id="@+id/nested_view"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/image_success">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoBold"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Congratulation" />
+                <TextView
+                    android:paddingTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#91929e"
+                    style="@style/RobotoRegular"
+                    android:letterSpacing="0.07"
+                    android:lineSpacingExtra="8sp"
+                    android:text="Your Trip Code has been Created." />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="260dp">
+
+            <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/ticketView"
+                app:ticketCornerType="rounded"
+                app:ticketOrientation="horizontal"
+                app:ticketScallopRadius="14dp"
+                app:ticketShowBorder="false"
+                app:ticketScallopPositionPercent="56"
+                app:ticketShowDivider="true"
+                app:ticketDividerType="dash"
+                app:ticketDividerPadding="0dp"
+                app:ticketElevation="14dp"/>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:paddingLeft="30dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_status"
+                            android:layout_marginTop="20dp"
+                            android:textColor="@color/white"
+                            android:background="@drawable/rounded_approval_gray"
+                            android:textSize="10sp"
+                            style="@style/RobotoMedium"
+                            android:text="Draft"
+                            android:gravity="center"
+                            android:paddingRight="10sp"
+                            android:paddingLeft="10sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="16dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#91929e"
+                            android:gravity="center_horizontal"
+                            android:text="Trip Code:"
+                            android:layout_marginTop="5dp"
+                            style="@style/RobotoRegular"/>
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:src="@drawable/ic_content_copy">
+                            </ImageView>
+
+                            <TextView
+                                android:id="@+id/tv_tripcode"
+                                style="@style/RobotoBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:gravity="center_horizontal"
+                                android:text="TP201802080003"
+                                android:textColor="#24253d"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_created_date"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:gravity="center_horizontal"
+                            android:lineSpacingExtra="1sp"
+                            android:text="Created Date : 8 Feb 2019 09:46"
+                            android:textColor="#939396"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_expired_date"
+                            android:visibility="gone"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:letterSpacing="0.04"
+                            android:text="1 days left to expired"
+                            android:textColor="#eb0011"
+                            android:textSize="10sp" />
+
+                        <TextView
+                            android:id="@+id/tv_purpose"
+                            style="@style/RobotoBold"
+                            android:textColor="#009688"
+                            android:layout_marginTop="57dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:gravity="center_horizontal"
+                            android:text="IBM Workshop " />
+
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_point_gps"
+                                android:layout_width="14dp"
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:id="@+id/tv_destination"
+                                style="@style/RobotoRegular"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="normal"
+                                android:text="Yogyakarta"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="7dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_date_depart"
+                                android:layout_width="14dp"
+                                android:layout_height="10dp" />
+
+                            <TextView
+                                android:id="@+id/tv_start_date"
+                                style="@style/RobotoMedium"
+                                android:layout_marginLeft="6dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="bold"
+                                android:textColor="#24253d"
+                                android:text="Thu, 31 MAR"
+                                />
+
+                            <ImageView
+                                android:layout_marginLeft="15dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_date_return"
+                                android:layout_width="15dp"
+                                android:layout_height="11dp" />
+
+                            <TextView
+                                android:id="@+id/tv_end_date"
+                                style="@style/RobotoMedium"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="bold"
+                                android:textColor="#24253d"
+                                android:text="Sun, 27 MAR" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/image_barcode"
+                        android:layout_marginTop="20dp"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="22dp"></ImageView>
+
+                </RelativeLayout>
+
+
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <TextView
+            style="@style/RobotoBold"
+            android:layout_marginLeft="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            android:text="Tips today"/>
+
+        <ImageView
+            android:src="@drawable/image_loading_finish"
+            android:layout_marginLeft="34dp"
+            android:layout_width="35dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="7dp"></ImageView>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="34dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="1.  " />
+            <TextView
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="You can add trip item later in Manage Trip menu, Expired in 1 day and will be deleted." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="34dp"
+            android:layout_marginLeft="34dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="2.  " />
+            <TextView
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="You can share QRcode with same Company Policy only, as a Booker." />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginRight="34dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="34dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="3.  " />
+            <TextView
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#24253d"
+                android:text="You will get The Best Price for All Trip item, match with your Travel Policy, Budget and Availability." />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginBottom="30dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_marginTop="160dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:onClick="laterListener"
+                android:id="@+id/line_btn_later"
+                android:background="@drawable/rounded_button_corner_yellow"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="4sp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:onClick="laterListener"
+                    android:id="@+id/btn_later"
+                    android:textColor="#24253d"
+                    android:textSize="14sp"
+                    style="@style/RobotoMedium"
+                    android:text="Later"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:onClick="addTripPlaneListener"
+                android:id="@+id/line_add_trip_item"
+                android:background="@drawable/rounded_button_yellow"
+                android:layout_marginLeft="4dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:onClick="addTripPlaneListener"
+                    android:id="@+id/btn_add_trip_item"
+                    android:textColor="#24253d"
+                    android:textSize="16sp"
+                    style="@style/RobotoMedium"
+                    android:text="Add Trip Item"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

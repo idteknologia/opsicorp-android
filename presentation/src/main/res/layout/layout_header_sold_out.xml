@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingTop="14dp"
+    android:paddingBottom="14dp"
+    android:paddingLeft="37dp"
+    android:paddingRight="14dp"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        style="@style/RobotoBold"
+        android:textColor="#24253d"
+        android:text="All tickets sold out ?" />
+
+    <TextView
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        style="@style/RobotoRegular"
+        android:text="No Worries, let&apos;s try other transportation options!" />
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:id="@+id/lay_btn"
+        android:background="@drawable/rounded_button_yellow"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="71dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/RobotoMedium"
+            android:id="@+id/tv_button"
+            android:textSize="12dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="3dp"
+            android:textColor="#24253D"
+            android:text="Flights"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</LinearLayout>

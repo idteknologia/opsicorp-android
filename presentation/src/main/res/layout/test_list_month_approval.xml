@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.opsigo.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_filter_approval">
+        </com.opsigo.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval>
+
+    </FrameLayout>
+
+
+
+    <RelativeLayout
+        android:layout_marginBottom="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/line_waiting_for_approval"
+                android:background="@drawable/ic_waiting_bg"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="144dp">
+
+<!--                <com.opsigo.opsicorp.module.item_custom.dasboard_approval.CountAnimationTextView-->
+<!--                    android:id="@+id/tv_waiting_for_approval"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="54sp"-->
+<!--                    style="@style/RobotoBold"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#ffffff"-->
+<!--                    android:text="0" />-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17.2sp"
+                    style="@style/RobotoBold"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:text="@string/waiting_for_approval" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="13dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/line_total_rejected"
+                    android:background="@drawable/ic_rejected_bg"
+                    android:orientation="vertical"
+                    android:gravity="center|start"
+                    android:layout_marginRight="6.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="146dp">
+
+<!--                    <com.opsigo.opsicorp.module.item_custom.dasboard_approval.CountAnimationTextView-->
+<!--                        android:id="@+id/tv_total_rejected"-->
+<!--                        android:layout_marginLeft="16dp"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="38dp"-->
+<!--                        style="@style/RobotoBold"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:text="0" />-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        style="@style/RobotoBold"
+                        android:textColor="#ffffff"
+                        android:textSize="14.2sp"
+                        android:textStyle="bold"
+                        android:text="@string/rejected" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line_total_approved"
+                    android:background="@drawable/ic_approved_bg"
+                    android:orientation="vertical"
+                    android:gravity="center|end"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="6.5dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="146dp">
+
+<!--                    <com.opsigo.opsicorp.module.item_custom.dasboard_approval.CountAnimationTextView-->
+<!--                        android:id="@+id/tv_total_approved"-->
+<!--                        android:layout_marginRight="17dp"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="38dp"-->
+<!--                        style="@style/RobotoBold"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:text="0" />-->
+
+                    <TextView
+                        android:layout_marginRight="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.2sp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="@string/approved" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginBottom="13dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/line_total_partially_rejected"
+                    android:background="@drawable/ic_partially_rejected_bg"
+                    android:orientation="vertical"
+                    android:gravity="center|end"
+                    android:layout_marginRight="6.5dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="146dp">
+
+<!--                    <com.opsigo.opsicorp.module.item_custom.dasboard_approval.CountAnimationTextView-->
+<!--                        android:id="@+id/tv_total_partially_rejected"-->
+<!--                        android:layout_marginRight="16dp"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:textSize="38dp"-->
+<!--                        style="@style/RobotoBold"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#ffffff"-->
+<!--                        android:text="0" />-->
+
+                    <TextView
+                        android:layout_marginRight="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.2sp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="@string/partially_rejected" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lien_total_partially_approved"
+                    android:background="@drawable/ic_partially_approved_bg"
+                    android:orientation="vertical"
+                    android:gravity="center|start"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="6.5dp"
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="146dp">
+
+                    <com.opsigo.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
+                        android:id="@+id/tv_total_partially_approved"
+                        android:layout_marginLeft="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="38dp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="0" />
+
+                    <TextView
+                        android:layout_marginLeft="17dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.2sp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="@string/partially_approved" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="43dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="68dp">
+
+                <LinearLayout
+                    android:id="@+id/line_list_approval"
+                    android:gravity="center"
+                    android:background="@drawable/half_rounded_list_approval"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+
+                    <com.opsigo.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
+                        android:id="@+id/tv_list_approval"
+                        android:layout_marginRight="11dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="911"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12.4sp"
+                        style="@style/RobotoBold"
+                        android:textStyle="bold"
+                        android:textColor="#ffffff"
+                        android:text="@string/list_of_your_approval"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lay_see_all"
+                    android:background="@drawable/half_rounded_see_all"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/btn_see_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="19dp"
+                        android:layout_marginRight="18dp"
+                        style="@style/RobotoBold"
+                        android:gravity="end"
+                        android:text="@string/see_all"
+                        android:textColor="#ffffff"
+                        android:textSize="12.4sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <!--
+        <android.support.v7.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:emplaoyId="@+emplaoyId/rv_waiting_approval"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <com.opssigo.opsicorp.module.item_custom.empty_view.EmptyView
+            android:layout_width="match_parent"
+            android:emplaoyId="@+emplaoyId/empty_view"
+            android:layout_height="match_parent"></com.opssigo.opsicorp.module.item_custom.empty_view.EmptyView>
+        -->
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="@drawable/rounded_blue_stroke_50_persen"
+        android:layout_marginRight="18dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_marginLeft="29dp"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="14dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_tower"
+                android:layout_marginRight="5dp"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#212121"
+                android:id="@+id/tv_layover_left"
+                android:text="Layover: 1h 35m" />
+
+            <LinearLayout
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:background="@drawable/rounded_button_dark_gray"></LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_name_airport_layover_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#888888"
+                android:text="Adi Sutjipto Airport" />
+
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="60dp"
+        android:background="@android:color/white">
+    </LinearLayout>
+
+
+</RelativeLayout>

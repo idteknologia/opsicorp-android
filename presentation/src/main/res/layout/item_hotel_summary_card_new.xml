@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/line_item_vertical_hotel"
+            android:layout_width="2dp"
+            android:layout_height="407dp"
+            android:background="#91929e"
+            android:layout_marginLeft="34dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="3dp">
+
+            <LinearLayout
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_status_hotel_cart"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="Reserved"
+                            android:textColor="#2b9a8e"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:layout_marginTop="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="9sp"
+                            android:textColor="#91929e"
+                            android:lineSpacingExtra="9sp"
+                            style="@style/RobotoRegular"
+                            android:text="Booking Code (PNR)" />
+
+                        <TextView
+                            android:maxLength="10"
+                            android:id="@+id/tv_pnr_hotel_cart"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:gravity="end"
+                            android:text="AW5CR34RGTP"
+                            android:textColor="#24253d"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="1dp"
+                            android:layout_height="54dp"
+                            android:background="#f5f5f5"></LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_date_booking_hotel_cart"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="end"
+                            android:text="SUN, 27 Apr 2019"
+                            android:textColor="#91929e"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/tv_image_hotel_cart"
+                    android:layout_width="match_parent"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="11dp"
+                    android:scaleType="center"
+                    android:src="@drawable/background_slider"></ImageView>
+
+                <TextView
+                    android:id="@+id/tv_name_hotel_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pondok Gajah Homestay"
+                    android:textColor="#24253d"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_type_hotel_cart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_green_stroke_50_persen"
+                        android:gravity="center_horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="5dp"
+                        android:text="Apartments"
+                        android:textColor="#2b9a8e"
+                        android:textSize="9sp" />
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_marginLeft="4dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp" />
+                        <ImageView
+                            android:layout_marginLeft="4dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp" />
+                        <ImageView
+                            android:layout_marginLeft="4dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp" />
+                        <ImageView
+                            android:layout_marginLeft="4dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp" />
+                        <ImageView
+                            android:layout_marginLeft="4dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_description_hotel_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="54dp"
+                    android:lineSpacingExtra="6sp"
+                    android:text="Jalan Ringroad Selatan, Tamantirto, Kasihan, Kasihan, Yogyakarta, Yogyakarta Province, Indonesia, 55133"
+                    android:textColor="#91929e"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="#91929e"
+                    android:layout_marginTop="12dp"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#00776a"
+                            android:text="Total Price"
+                            style="@style/RobotoBold"/>
+
+                        <TextView
+                            android:id="@+id/tv_prize_hotel_cart"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="IDR 100.695.800"
+                            android:textColor="#24253d"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="#d0021b"
+                            android:text="Not Comply"
+                            style="@style/RobotoBold"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="1dp"
+                            android:layout_height="54dp"
+                            android:background="#f5f5f5"></LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/btn_detail_hotel"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="31dp"
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="#f19c00"
+                            android:gravity="end"
+                            android:text="Detail"
+                            style="@style/RobotoBold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/line_bottom_hotel"
+        android:orientation="vertical"></LinearLayout>
+
+</LinearLayout>

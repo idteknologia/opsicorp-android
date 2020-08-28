@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_gravity="right"
+                android:src="@drawable/ic_combined_shape_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginTop="86dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvTest"
+                    android:layout_marginTop="0dp"
+                    android:text="@string/opsicorp_url"
+                    android:textSize="22sp"
+                    android:layout_marginBottom="40dp"
+                    android:textColor="@color/colorBlueTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--TextInput for Entering Password-->
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textSize="17sp"
+                        android:textColor="#939396"
+                        android:text="https://"
+                        style="@style/RobotoRegular"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"/>
+
+<!--                    <EditText-->
+<!--                        style="@style/RobotoRegular"-->
+<!--                        android:hint="Your_email@company.com"-->
+<!--                        android:emplaoyId="@+emplaoyId/et_url"-->
+<!--                        android:text="opsigo"-->
+<!--                        android:inputType="textMultiLine"-->
+<!--                        android:layout_marginBottom="10dp"-->
+<!--                        android:textSize="@dimen/font_edittext"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:paddingBottom="18dp"/>-->
+
+                    <EditText
+                        android:focusable="true"
+                        android:focusedByDefault="true"
+                        android:focusableInTouchMode="true"
+                        android:background="@android:color/white"
+                        android:singleLine="true"
+                        android:id ="@+id/et_url"
+                        style="@style/RobotoBold"
+                        android:layout_width ="wrap_content"
+                        android:layout_height ="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:textSize="17sp"
+                        android:textColor="#24253d"
+                        android:textColorHint="#24253d"
+                        android:hint="opsigo"
+                        android:scrollHorizontally="false" />
+
+                    <TextView
+                        android:textSize="17sp"
+                        android:textColor="#939396"
+                        android:text=".opsicorp.com"
+                        style="@style/RobotoRegular"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:textAlignment="textStart"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#3324253d"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="15dp"></LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="50dp"
+                    android:textSize="14sp"
+                    android:textColor="#009688"
+                    android:text="@string/address_info"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <!--TextView to Display Text When Enter anything in any TextInputEditText-->
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/display"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="italic" />
+
+
+                <LinearLayout
+                    android:id="@+id/btnNext"
+                    android:background="@drawable/rounded_button_yellow"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
+
+                    <TextView
+                        style="@style/RobotoMedium"
+                        android:id="@+id/tvSignIn"
+                        android:textSize="17sp"
+                        android:textColor="#24253D"
+                        android:text="@string/next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/btnForgotPassword"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/forgot_your_password"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layTester"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnJajang"
+                        android:visibility="visible"
+                        android:text="jajang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnKul"
+                        android:visibility="visible"
+                        android:text="kul"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnAkzirhp"
+                        android:visibility="visible"
+                        android:text="akzirhp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnBoboinas"
+                        android:visibility="visible"
+                        android:text="boboinas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnBadriah"
+                        android:visibility="visible"
+                        android:text="badriah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnFurqon"
+                        android:visibility="visible"
+                        android:text="furqon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnSueb"
+                        android:visibility="visible"
+                        android:text="sueb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btnFitkar"
+                        android:visibility="visible"
+                        android:text="fitkar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_loader"
+            android:visibility="gone"
+            android:gravity="center"
+            android:background="@color/white_transparent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:text="@string/please_wait2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/its_just_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.cunoraz.gifview.library.GifView
+                    android:id="@+id/gif1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    custom:gif="@mipmap/ellipsis" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    android:padding="0dp"
+    android:id="@+id/layPurpose"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:singleLine="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:paddingTop="17dp"
+        android:paddingBottom="15dp"
+        android:id="@+id/tv_country"
+        android:textColor="#24253D"
+        android:textSize="17sp"
+        style="@style/RobotoLight"
+        android:gravity="center_horizontal"
+        android:text="Perjalanan Dinas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/gray_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+
+
+</LinearLayout>

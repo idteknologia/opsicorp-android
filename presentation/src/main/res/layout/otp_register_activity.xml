@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btn_back"
+                android:src="@drawable/ic_back"></ImageView>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_marginTop="90dp"
+                android:layout_width="100dp"
+                android:layout_height="53dp"
+                android:src="@drawable/ic_travel_aja" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="9sp"
+                android:text="Please input verification code from email"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="25dp"
+                style="@style/RobotoRegular"/>
+
+            <TextView
+                android:id="@+id/tvTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="19dp"
+                android:text="Enter your code"
+                android:layout_gravity="center"
+                android:textColor="@color/colorBlueTitle"
+                android:textSize="22sp" />
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+                <EditText
+                    android:id="@+id/editText3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+                <EditText
+                    android:id="@+id/editText4"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+                <EditText
+                    android:id="@+id/editText5"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+                <EditText
+                    android:id="@+id/editText6"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/rounded_button_corner_red"/>
+
+            </LinearLayout>
+
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/btn_next"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="140dp"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_loader"
+            android:visibility="gone"
+            android:gravity="center"
+            android:background="@color/white_transparent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:text="@string/please_wait2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/its_just_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.cunoraz.gifview.library.GifView
+                    android:id="@+id/gif1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    custom:gif="@mipmap/ellipsis" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

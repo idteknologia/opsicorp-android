@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/line_cart"
+            android:layout_alignParentRight="true"
+            android:layout_width="69dp"
+            android:layout_height="78dp"
+            android:src="@drawable/combined_shape">
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/blink_image"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="12dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/oval_orange"></ImageView>
+
+        <ImageView
+            android:id="@+id/img_cart"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="21dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/cart_home"
+            android:layout_width="22dp"
+            android:layout_height="22dp">
+        </ImageView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_greeting"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="Hi, Dwi Wahyudi"
+            android:textSize="18dp"
+            style="@style/RobotoRegular"
+            android:textColor="#24253d"
+            android:layout_width="match_parent"
+            android:layout_marginRight="80dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/choose_your_trip"
+            android:textSize="14sp"
+            style="@style/RobotoMedium"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_bisnis_trip"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/bisnis_home"
+                    android:layout_width="51dp"
+                    android:layout_height="51dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_flight"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/flight_home"
+                    android:layout_width="44.6dp"
+                    android:layout_height="44.6dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_train"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/train_home"
+                    android:layout_width="44.6dp"
+                    android:layout_height="44.6dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_hotel"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/hotel_home"
+                    android:layout_width="44.6dp"
+                    android:layout_height="44.6dp"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:id="@+id/img_tour"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tour_event"
+                    android:layout_width="44.6dp"
+                    android:layout_height="44.6dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                style="@style/RobotoMedium"
+                android:textColor="#24253d"
+                android:textSize="13dp"
+                android:text="@string/business_trip"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+<!--            f19c00-->
+            <TextView
+                android:gravity="center"
+                style="@style/RobotoRegular"
+                android:textColor="#939396"
+                android:textSize="13dp"
+                android:text="@string/flights"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                style="@style/RobotoRegular"
+                android:textColor="#939396"
+                android:textSize="13dp"
+                android:text="@string/train"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                style="@style/RobotoRegular"
+                android:textColor="#939396"
+                android:textSize="13dp"
+                android:text="@string/hotels"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                style="@style/RobotoRegular"
+                android:textColor="#939396"
+                android:textSize="13dp"
+                android:text="@string/tour_event"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

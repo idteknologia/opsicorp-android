@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_line"></LinearLayout>
+
+    <RelativeLayout
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+        <TextView
+            android:id="@+id/title_prize_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price / Room / Nights starts from"
+            android:textSize="12dp"
+            android:textColor="#939396"
+            style="@style/RobotoRegular">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_prize_hotel"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/title_prize_bottom"
+            android:textSize="20dp"
+            style="@style/RobotoMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IDR 100.180.000"
+            android:textColor="@color/colorBlueTitle">
+        </TextView>
+
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/tv_prize_hotel"
+            android:id="@+id/title_prize_bottom1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total include VAT"
+            android:textSize="12dp"
+            android:textColor="#939396"
+            style="@style/RobotoRegular">
+        </TextView>
+
+
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tv_available_room"
+            android:layout_alignParentRight="true"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:text="No available room"
+            android:textColor="#eb0011"
+            android:textSize="12dp"
+            style="@style/RobotoMedium">
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/btn_next_step"
+            android:layout_marginTop="9dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tv_available_room"
+            android:layout_width="137dp"
+            android:layout_height="37dp"
+            android:text="On Request"
+            android:background="@drawable/rounded_button_yellow"
+            android:gravity="center">
+        </TextView>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

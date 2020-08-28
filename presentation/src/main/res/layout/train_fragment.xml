@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
+            android:layout_width="match_parent"
+            android:id="@+id/top_button"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content">
+        </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/line_depart"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/departure_train"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/layStartDate"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="@string/from"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:text="Surabaya-SUB"
+                                android:id="@+id/tv_from"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginRight="57dp"
+                            android:layout_below="@+id/layStartDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/line_depart"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/arrived_train"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_to"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="@string/to"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:text="Jakarta-CGK"
+                                android:id="@+id/tv_to"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_to"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
+                android:id="@+id/btn_switch"
+                android:layout_marginRight="28dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth>
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/departure_date"
+                    android:layout_width="@dimen/icon_edittext"
+                    android:layout_height="@dimen/icon_edittext" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_deaprture_date"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="@string/departure_date"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/tv_departur_date"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_deaprture_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"></LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_return_date"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/arrived_date"
+                    android:layout_width="@dimen/icon_edittext"
+                    android:layout_height="@dimen/icon_edittext" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_end_date"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="@string/return_date"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+                            android:id="@+id/tv_end_date"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_end_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"></LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_below="@+id/line_depart"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/lay_parent_passager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_marginBottom="10dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/passenger"
+                    android:layout_width="@dimen/icon_edittext"
+                    android:layout_height="@dimen/icon_edittext" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_passanger"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="@string/passengers"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textColor="@color/colorTextHint"
+                            android:textColorHint="@color/colorTextHint"
+                            android:hint="1 Adults"
+                            android:onClick="getDateWithCalendar"
+                            android:id="@+id/tv_passanger"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_passanger"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"></LinearLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginBottom="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_next">
+        </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

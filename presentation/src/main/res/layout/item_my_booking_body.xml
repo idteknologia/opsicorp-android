@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#f6f8f8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="3dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="27dp">
+                <TextView
+                    android:id="@+id/tv_id_booking"
+                    android:textColor="#b2bbc6"
+                    android:textSize="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp"
+                    style="@style/RobotoRegular"
+                    android:text="Booking ID: 34536515661"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_total_prize"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IDR 4.000.000"
+                    android:textColor="#24253d"
+                    android:textSize="12dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="5dp"
+                    style="@style/RobotoMedium">
+                </TextView>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:background="#f6f8f8"
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/ic_icon_transport"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_fligh_up">
+                </ImageView>
+
+                <TextView
+                    android:visibility="gone"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trans Luxury Bandung"
+                    android:textSize="14dp"
+                    android:layout_toEndOf="@+id/ic_icon_transport"
+                    android:textColor="#24253d"
+                    android:layout_toRightOf="@+id/ic_icon_transport">
+                </TextView>
+
+
+               <LinearLayout
+                   android:layout_toEndOf="@+id/ic_icon_transport"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="10dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_toRightOf="@+id/ic_icon_transport">
+                   <TextView
+                       android:id="@+id/tv_departure_city"
+                       style="@style/RobotoRegular"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Bandung"
+                       android:textSize="14dp"
+                       android:textColor="#24253d">
+                   </TextView>
+
+                   <ImageView
+                       android:layout_marginTop="1dp"
+                       android:layout_gravity="center"
+                       android:src="@drawable/ic_arrow_my_booking_list"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:layout_width="13dp"
+                       android:layout_height="9dp"
+                       android:id="@+id/ic_arrow">
+                   </ImageView>
+
+                   <TextView
+                       android:id="@+id/tv_arrival_city"
+                       style="@style/RobotoRegular"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Surabaya"
+                       android:textSize="14dp"
+                       android:textColor="#24253d">
+                   </TextView>
+
+
+               </LinearLayout>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="28dp">
+                <TextView
+                    android:id="@+id/status_payment"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="9dp"
+                    style="@style/RobotoRegular"
+                    android:text="Purchase Successful"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+
+                <ImageView
+                    android:id="@+id/btn_menu_lis_my_booking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_setting_dot_tree_gray">
+
+                </ImageView>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/line_bottom"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

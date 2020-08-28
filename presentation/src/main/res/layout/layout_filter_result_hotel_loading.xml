@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#f6f8f8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        app:shimmer_auto_start="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmer_view_container">
+
+        <android.support.v7.widget.CardView
+            android:layout_marginBottom="2dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="5dp"
+            android:background="@android:color/white"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardPreventCornerOverlap="false">
+
+            <LinearLayout
+                android:background="?android:attr/selectableItemBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:src="#dddddd"
+                    android:layout_width="99dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/img_hotel">
+                </ImageView>
+                <LinearLayout
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="13dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_name_hotel"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Trans Luxury Bandung"
+                        android:textColor="#dddddd"
+                        android:background="#dddddd">
+
+                    </TextView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:background="#dddddd"
+                        android:layout_marginTop="7dp">
+
+                        <TextView
+                            android:id="@+id/tv_type_hotel"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hotels"
+                            android:textColor="#dddddd"
+                            android:textSize="8dp"></TextView>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:background="#dddddd"
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal"
+                        android:layout_width="140dp"
+                        android:layout_height="10dp">
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="6dp">
+                        <ImageView
+                            android:layout_width="9dp"
+                            android:layout_height="match_parent"
+                            android:src="#dddddd">
+                        </ImageView>
+
+                        <TextView
+                            android:background="#dddddd"
+                            android:id="@+id/tv_city"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:text="Cibangkong, Bandung"
+                            android:textColor="#dddddd"
+                            android:textSize="12dp">
+
+                        </TextView>
+                    </LinearLayout>
+
+                    <TextView
+                        android:background="#dddddd"
+                        android:id="@+id/tv_available"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="4 Room(s) available"
+                        android:textColor="#dddddd"
+                        android:textSize="12dp"></TextView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp">
+                        <TextView
+                            android:background="#dddddd"
+                            android:id="@+id/tv_prize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#dddddd"
+                            android:textSize="14dp"
+                            style="@style/RobotoBold"
+                            android:text="IDR 1.275.000">
+                        </TextView>
+
+                        <TextView
+                            android:layout_toEndOf="@+id/tv_prize"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:textSize="10dp"
+                            android:background="#dddddd"
+                            android:text="/room/night"
+                            android:textColor="#dddddd"
+                            style="@style/RobotoRegular"
+                            android:layout_toRightOf="@+id/tv_prize">
+                        </TextView>
+
+                        <ImageView
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="#dddddd"></ImageView>
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/parentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/layScroll"
+            android:fillViewport="true"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/layInfo">
+
+            <LinearLayout
+                android:visibility="visible"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/toolbarView">
+                </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+
+                <LinearLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <RelativeLayout
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:background="@drawable/rounded_button_dark_gray_light"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/step_one_logo"
+                            android:background="@drawable/rounded_button_dark_gray"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="2"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:id="@+id/label_create_tripplan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_toEndOf="@+id/step_one_logo"
+                            android:text="@string/select_budget"
+                            android:textColor="#24253D"
+                            android:textSize="12sp"
+                            android:layout_toRightOf="@+id/step_one_logo" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:background="#d8d8d8"></LinearLayout>
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/step_two_logo"
+                            android:background="@drawable/rounded_button_dark_gray_night"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp">
+                            <TextView
+                                android:layout_centerInParent="true"
+                                android:textSize="15sp"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/step_two_logo"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="5dp"
+                            android:id="@+id/label_select_budget"
+                            android:text="@string/manage_transport"
+                            android:textColor="#24253D"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/step_two_logo" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:visibility="invisible"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_width="20dp"
+                            android:layout_height="3dp"
+                            android:background="#d8d8d8"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:visibility="invisible"
+                        android:padding="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/step_tree_logo"
+                            android:background="@drawable/rounded_button_dark_gray_night"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginBottom="1dp"
+                                android:text="3"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/step_tree_logo"
+                            android:textSize="12sp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="5dp"
+                            android:text="select"
+                            android:textColor="#24253D"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/step_tree_logo" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textColor="#91929e"
+                            android:textSize="16sp"
+                            android:text="Status"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#91929e"
+                            android:text=":"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#24253d"
+                            android:text="New"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textColor="#91929e"
+                            android:textSize="16sp"
+                            android:text="Purpose"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#91929e"
+                            android:text=":"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tv_purpose"
+                            android:textSize="16sp"
+                            android:textColor="#24253d"
+                            android:text="Meeting"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textColor="#91929e"
+                            android:textSize="16sp"
+                            android:text="Destination"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#91929e"
+                            android:text=":"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tv_destination"
+                            android:textSize="16sp"
+                            android:textColor="#24253d"
+                            android:text="Yogayakarta"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textColor="#91929e"
+                            android:textSize="16sp"
+                            android:text="Start Date"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#91929e"
+                            android:text=":"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"/>
+                        <TextView
+                            android:id="@+id/tv_start_date"
+                            android:textSize="16sp"
+                            android:textColor="#24253d"
+                            android:text="Thu, 31 Mar 2018"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:textColor="#91929e"
+                            android:textSize="16sp"
+                            android:text="End data"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"/>
+                        <TextView
+                            android:textSize="16sp"
+                            android:textColor="#91929e"
+                            android:text=":"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.1"/>
+
+                        <TextView
+                            android:id="@+id/tv_date_end"
+                            android:textSize="16sp"
+                            android:textColor="#24253d"
+                            android:text="Thu, 31 Mar 2018"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                    
+
+                </LinearLayout>
+                
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:onClick="copyListener"
+                    android:layout_marginBottom="9dp"
+                    android:background="@drawable/rounded_button_gray_detail_trip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginRight="28dp">
+
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="63dp">
+                        <TextView
+                            android:onClick="copyListener"
+                            android:text="Trip Code"
+                            style="@style/RobotoRegular"
+                            android:textColor="#00776a"
+                            android:textSize="13.4sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:onClick="copyListener"
+                            android:id="@+id/tv_trip_code"
+                            android:layout_marginTop="5dp"
+                            android:text="TP201802080003"
+                            android:textSize="17.2sp"
+                            style="@style/RobotoRegular"
+                            android:textColor="#00776a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:onClick="copyListener"
+                        android:src="@drawable/ic_content_copy"
+                        android:layout_alignParentRight="true"
+                        android:layout_margin="8dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/tv_date_create_trip_plane"
+                    android:layout_marginTop="31dp"
+                    android:text="Created Date : 8 Feb 2018 09:46"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <RelativeLayout
+                    android:onClick="showDataBudget"
+                    android:background="@drawable/rounded_button_gray_select_budget"
+                    android:layout_marginTop="31dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
+                    <LinearLayout
+                        android:layout_marginLeft="9dp"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:onClick="showDataBudget"
+                            android:text="Budget"
+                            style="@style/RobotoRegular"
+                            android:textColor="#8024253d"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:onClick="showDataBudget"
+                            android:id="@+id/tv_budget"
+                            android:layout_marginTop="1dp"
+                            android:text="Choose your budget"
+                            android:textSize="17sp"
+                            style="@style/RobotoRegular"
+                            android:textColor="#24253d"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:onClick="showDataBudget"
+                        android:id="@+id/img_budget"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/chevron_down"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:onClick="showDataCostCenter"
+                    android:background="@drawable/rounded_button_gray_select_budget"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
+                    <LinearLayout
+                        android:onClick="showDataCostCenter"
+                        android:layout_marginLeft="9dp"
+                        android:layout_centerVertical="true"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:onClick="showDataCostCenter"
+                            android:text="Cost Center"
+                            style="@style/RobotoRegular"
+                            android:textColor="#8024253d"
+                            android:textSize="12sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:onClick="showDataCostCenter"
+                            android:id="@+id/tv_cost_center"
+                            android:layout_marginTop="1dp"
+                            android:text="Please select your cost center"
+                            android:textSize="17sp"
+                            style="@style/RobotoRegular"
+                            android:textColor="#24253d"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:onClick="showDataCostCenter"
+                        android:layout_marginRight="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_width="18dp"
+                        android:id="@+id/img_cost_center"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_down_gray"/>
+
+                </RelativeLayout>
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:textColor="#00776a"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginLeft="28dp"
+                    android:text="Available Cost"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_cost_avaibility"
+                    style="@style/RobotoMedium"
+                    android:textSize="22dp"
+                    android:layout_marginRight="22dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#24253d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="IDR 0"/>
+
+                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                    android:id="@+id/btn_next"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginBottom="50dp"
+                    android:layout_height="56dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
+                </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </RelativeLayout>
+
+</LinearLayout>

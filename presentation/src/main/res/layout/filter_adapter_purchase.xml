@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <CheckBox
+        android:buttonTint="@color/colorPrimary"
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/checkbox"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_name_filter"
+        android:layout_toEndOf="@+id/checkbox"
+        android:layout_centerVertical="true"
+        style="@style/RobotoRegular"
+        android:text="Flight"
+        android:textSize="14dp"
+        android:textColor="#9924253d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/checkbox" />
+
+
+
+    <CheckBox
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:buttonTint="@color/colorPrimary"
+        android:layout_marginRight="30dp"
+        android:id="@+id/checkbox_right"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="29dp"
+        android:visibility="gone"
+        android:id="@+id/tv_name_filter_right"
+        android:layout_centerVertical="true"
+        style="@style/RobotoRegular"
+        android:text="Flight"
+        android:textSize="14dp"
+        android:textColor="#9924253d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e0e0e1"
+        android:layout_alignParentBottom="true"></LinearLayout>
+
+</RelativeLayout>

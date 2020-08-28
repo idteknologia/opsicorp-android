@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"></com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <RelativeLayout
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/line_title"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="42dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Train Details"
+            android:textSize="15sp"
+            android:textColor="#00776a"
+            style="@style/RobotoRegular"
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_below="@+id/line_title"
+        android:background="#f6f8f8"
+        android:id="@+id/line_name_airline"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="66dp">
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/img_airline"
+                android:layout_gravity="center"
+                android:layout_marginRight="13dp"
+                android:layout_width="31dp"
+                android:layout_height="24dp" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="14dp"
+                    android:textColor="#24253d"
+                    style="@style/RobotoMedium"
+                    android:text="Sriwijaya Air"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12dp"
+                    android:textColor="#8024253d"
+                    style="@style/RobotoRegular"
+                    android:text="Economy Class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12dp"
+                android:textColor="#9924253d"
+                style="@style/RobotoMedium"
+                android:text="KAI-20A"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:visibility="gone"
+                android:textSize="9dp"
+                android:textColor="#8024253d"
+                style="@style/RobotoRegular"
+                android:text="Economy Class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="11dp"
+        android:id="@+id/rv_departure_arrival"
+        android:layout_below="@+id/line_name_airline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv_title_prize_detail"
+        android:layout_marginLeft="25.5dp"
+        android:textColor="#00776a"
+        android:textSize="15sp"
+        android:text="Price Details"
+        style="@style/RobotoMedium"
+        android:layout_marginBottom="13dp"
+        android:layout_below="@+id/rv_departure_arrival"
+        android:layout_marginTop="43.9dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_below="@+id/tv_title_prize_detail"
+        android:background="#f6f8f8"
+        android:id="@+id/line_prize_detail"
+        android:paddingLeft="26dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="66dp">
+
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:textSize="15dp"
+            android:textColor="#939396"
+            style="@style/RobotoMedium"
+            android:text="Adult x1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="15dp"
+            android:textColor="#d9000000"
+            style="@style/RobotoBold"
+            android:text="IDR 110.000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/detail_prize_bottom"></include>
+
+
+
+</RelativeLayout>

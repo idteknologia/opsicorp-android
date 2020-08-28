@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/nested_view"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="50dp"
+            style="@style/RobotoMedium"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="#f19c00"
+            android:text="@string/manage_trip"
+            />
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#939396"
+            android:lineSpacingMultiplier="1"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/yourtrip_hasbeen_released"/>
+
+        <!--        <com.opsigo.opsicorp.module.item_custom.button_top.ButtonTopRoundedOpsicorp-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:id="@+id/top_button"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:layout_marginBottom="0dp"-->
+        <!--            android:layout_height="wrap_content">-->
+        <!--        </com.opsigo.opsicorp.module.item_custom.button_top.ButtonTopRoundedOpsicorp>-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--<include-->
+            <!--android:emplaoyId="@+emplaoyId/line_list_approval"-->
+            <!--android:visibility="visible"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_width="match_parent"-->
+            <!--layout="@layout/list_layout_approval">-->
+
+            <!--</include>-->
+
+            <!--            <com.opsigo.opsicorp.module.item_custom.dasboard_approval.DasboardListApproval-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:id="@+id/line_list_approval">-->
+            <!--            </com.opsigo.opsicorp.module.item_custom.dasboard_approval.DasboardListApproval>-->
+
+            <com.opsigo.travelaja.module.manage_trip.TestDasboardListApproval
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/line_list_approval">
+            </com.opsigo.travelaja.module.manage_trip.TestDasboardListApproval>
+
+            <!--<include-->
+            <!--android:visibility="gone"-->
+            <!--layout="@layout/list_month_approval"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+            <!--</include>-->
+
+            <com.opsigo.travelaja.module.manage_trip.DasboardApproval
+                android:layout_width="match_parent"
+                android:id="@+id/line_dasboard"
+                android:layout_height="match_parent">
+            </com.opsigo.travelaja.module.manage_trip.DasboardApproval>
+
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/parent_layout"
+    android:background="#f6f8f8">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <LinearLayout
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="59dp">
+        <TextView
+            android:textColor="#009688"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:id="@+id/tv_total_data"
+            android:visibility="gone"
+            style="@style/RobotoItalic"
+            android:text="4 Departing Flights Found"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="8dp"
+            android:id="@+id/rv_result_flight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="invisible"
+        android:id="@+id/empty_result"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="59dp">
+
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="233dp"
+                android:layout_height="88dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_empty_train">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="#24253d"
+                android:gravity="center_horizontal"
+                android:text="Whoops!"
+                style="@style/RobotoBold"/>
+
+            <TextView
+                android:layout_width="177dp"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#9924253d"
+                android:lineSpacingExtra="6sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                style="@style/RobotoRegular"
+                android:layout_marginTop="10dp"
+                android:text="No train, please search again before 30 days."
+                />
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+        android:layout_width="match_parent"
+        android:id="@+id/filter"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
+</RelativeLayout>

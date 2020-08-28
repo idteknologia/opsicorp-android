@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <RelativeLayout
+            android:onClick="getCalendar"
+            android:layout_width="0dp"
+            android:layout_weight="35"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="getCalendar"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:onClick="getCalendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Check-In"
+                    android:textColor="#8024253d"
+                    android:textSize="12dp"
+                    style="@style/RobotoRegular">
+                </TextView>
+
+                <LinearLayout
+                    android:onClick="getCalendar"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:onClick="getCalendar"
+                        android:src="@drawable/ic_checkin"
+                        android:layout_width="17dp"
+                        android:layout_height="15dp">
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/tv_calendar"
+                        android:onClick="getCalendar"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="27 Mar 2018"
+                        android:textColor="#24253d"
+                        android:textSize="12dp"
+                        style="@style/RobotoRegular">
+                    </TextView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_height="match_parent">
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="selectDialogDuration"
+            android:layout_width="0dp"
+            android:layout_weight="32"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="selectDialogDuration"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:onClick="selectDialogDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration"
+                    android:textColor="#8024253d"
+                    android:textSize="12dp"
+                    style="@style/RobotoRegular">
+                </TextView>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@drawable/ic_duration"
+                        android:layout_width="17dp"
+                        android:layout_height="15dp">
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/tv_duration"
+                        android:onClick="selectDialogDuration"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 night(s)"
+                        android:textColor="#24253d"
+                        android:textSize="12dp"
+                        style="@style/RobotoRegular">
+                    </TextView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="1dp"
+                android:background="@color/colorPrimary"
+                android:layout_height="match_parent">
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="selectGuestAndRoom"
+            android:layout_width="0dp"
+            android:layout_weight="40"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="selectGuestAndRoom"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Guest(s) &amp; Room(s)"
+                    android:textColor="#8024253d"
+                    android:textSize="12dp"
+                    style="@style/RobotoRegular">
+                </TextView>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:onClick="selectGuestAndRoom"
+                        android:src="@drawable/ic_guest"
+                        android:layout_width="17dp"
+                        android:layout_height="15dp">
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/tv_room_and_guest"
+                        android:onClick="selectGuestAndRoom"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 Guest, 1 Room"
+                        android:textColor="#24253d"
+                        android:textSize="12dp"
+                        style="@style/RobotoRegular">
+                    </TextView>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_bottom">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#f6f8f8"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="62dp">
+
+        <RelativeLayout
+            android:onClick="guarantedListener"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="guarantedListener"
+                android:layout_centerInParent="true"
+                android:id="@+id/btn_guaranted"
+                android:background="@drawable/rounded_button_filter"
+                android:layout_marginLeft="12dp"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:onClick="guarantedListener"
+                    android:id="@+id/tv_guaranteed"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_btn_guaranteed_select_room"
+                    android:text="Guaranteed"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="freeMealListener"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="freeMealListener"
+                android:layout_centerInParent="true"
+                android:id="@+id/btn_free_meal"
+                android:background="@drawable/rounded_button_filter"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:onClick="freeMealListener"
+                    android:id="@+id/tv_fee_meal"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/color_text_btn_guaranteed_select_room"
+                    android:text="Free Meal"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:onClick="freeCancelationListener"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:onClick="freeCancelationListener"
+                android:id="@+id/btn_free_cancelation"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rounded_button_filter"
+                android:layout_marginRight="12dp"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/color_text_btn_guaranteed_select_room"
+                    android:onClick="freeCancelationListener"
+                    android:id="@+id/tv_free_cancelation"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="Free Cancelation"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_list_room">
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_marginLeft="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp">
+        <CheckBox
+            android:id="@+id/cb_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </CheckBox>
+
+        <TextView
+            android:id="@+id/tv_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/cb_select_all"
+            android:layout_toRightOf="@+id/cb_select_all"
+            android:lineSpacingExtra="4sp"
+            android:text="Select All "
+            android:textColor="#91929e"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/btn_delet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:gravity="end"
+            android:lineSpacingExtra="4sp"
+            android:text="Delete"
+            android:textColor="#eb0011"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:visibility="gone"
+        android:layout_marginBottom="90dp"
+        android:layout_marginTop="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_list_bisnis_trip"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_marginTop="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.opsigo.travelaja.module.item_custom.empty_view.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/loading_view">
+
+        </com.opsigo.travelaja.module.item_custom.empty_view.LoadingView>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    
+    <RelativeLayout
+        android:id="@+id/line_description_reason"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        android:elevation="3dp"
+        android:background="@drawable/card_background_corner_orange"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="69dp">
+
+        <ImageView
+            android:id="@+id/img_warning"
+            android:src="@drawable/warning_red"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Trip Plan : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_trip_plane"
+                    android:text=" TP201810080005"
+                    android:textColor="#d0021b"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Purpose : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_title_purpose"
+                    android:text=" Conference"
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Destination : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_destination_name_city"
+                    android:text=" Yogyakarta"
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
+        android:elevation="5dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_destination"
+                android:paddingLeft="10dp"
+                android:textColor="#24253d"
+                android:fontFamily="sans-serif-medium"
+                android:text="Jakarta (CGK) - Yogyakarta (JOG) "
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/btnOption"
+                android:paddingLeft="25dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_circle_gray"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp" />
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_circle_gray"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp" />
+
+                <ImageView
+                    android:id="@+id/btn_setting"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="2dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/ic_circle_gray" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:text="PNR Code : "
+                        android:textSize="12sp"
+                        android:textColor="#B2BBC6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_pnr_code"
+                        android:layout_marginLeft="0dp"
+                        android:textColor="#FF121300"
+                        android:textSize="12sp"
+                        android:text="IORUPD"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginLeft="10dp"
+                        android:text="Status : "
+                        android:textSize="12sp"
+                        android:textColor="#B2BBC6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_status"
+                        android:textSize="12sp"
+                        android:layout_marginLeft="0dp"
+                        android:textColor="@color/green_cyan_info"
+                        android:text="Reserved"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_flight"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/sriwijaya"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:progressDrawable="@drawable/background_progressbar"
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="50dp"
+            android:minWidth="200dp"
+            android:max="100"
+            android:indeterminate="false"
+            android:progress="0" />
+
+        <!--
+        <LinearLayout
+            android:emplaoyId="@+emplaoyId/layInfoPNR"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+        -->
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:paddingLeft="0dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <RelativeLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_airline"
+                                android:gravity="left"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="normal"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Sriwijaya Air"
+                                android:textColor="#24253d"
+                                android:layout_marginRight="10dp"
+                                android:layout_gravity="right" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:id="@+id/tv_date_arrival"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="normal"
+                                android:textColor="#6d7278"
+                                android:gravity="end"
+                                android:text="Sun, 27 Nov 2019" />
+
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_number_sheet"
+                                android:gravity="left"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textStyle="normal"
+                                android:textSize="12sp"
+                                android:text="SJ-0412"
+                                android:layout_marginRight="10dp"
+                                android:layout_gravity="right" />
+
+                            <TextView
+                                android:id="@+id/time_departure"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="normal"
+                                android:textColor="#24253d"
+                                android:gravity="end"
+                                android:text="06:40 "
+                                />
+
+                            <TextView
+                                android:id="@+id/time_arrival"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="normal"
+                                android:textColor="#24253d"
+                                android:gravity="end"
+                                android:text="09:35 "
+                                />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/layArrow"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#24253d"
+                android:text="Details Information"
+                />
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:id="@+id/img_chevron"
+                android:src="@drawable/ic_chevron_down_green"
+                android:layout_width="12sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textColor="#24253D"
+                android:textSize="12sp"
+                android:text="Total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:gravity="right"
+                android:layout_gravity="right"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:fontFamily="sans-serif-light"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_prize"
+                    android:textSize="14sp"
+                    android:textColor="#24253D"
+                    android:text="IDR 400.000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="visible"
+                    android:textSize="10sp"
+                    android:text="/pax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

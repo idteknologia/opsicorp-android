@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="15dp"
+        android:id="@+id/rv_departure_arrival"
+        android:layout_below="@+id/line_name_airline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <!--<LinearLayout
+        android:emplaoyId="@+emplaoyId/line_depart"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+emplaoyId/line_name_airline"
+        android:layout_marginLeft="24dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="12.5sp"
+            android:textColor="#24253d"
+            style="@style/RobotoMedium"
+            android:text="13:00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoMedium"
+            android:text="27 Apr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:emplaoyId="@+emplaoyId/line_arrival"
+        android:layout_marginTop="38.9dp"
+        android:layout_below="@+emplaoyId/line_depart"
+        android:layout_marginLeft="24dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="12.5sp"
+            android:textColor="#24253d"
+            style="@style/RobotoMedium"
+            android:text="14:35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoMedium"
+            android:text="27 Apr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_toEndOf="@+emplaoyId/line_depart"
+        android:emplaoyId="@+emplaoyId/line_detail_depart"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+emplaoyId/line_name_airline"
+        android:layout_marginLeft="36dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+emplaoyId/line_depart">
+        <TextView
+            android:textSize="12.5sp"
+            android:textColor="#24253d"
+            style="@style/RobotoMedium"
+            android:text="Jakarta (CGK)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoMedium"
+            android:text="Soekarno Hatta International Airport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoRegular"
+            android:text="Terminal 2F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:gravity="center"
+            android:background="@drawable/rounded_button_gray_fligh_info_activity"
+            android:textSize="10sp"
+            android:textColor="#ffffff"
+            style="@style/RobotoMedium"
+            android:text="Total Duration : 1h 35m"
+            android:layout_width="wrap_content"
+            android:layout_height="16sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_toEndOf="@+emplaoyId/line_arrival"
+        android:emplaoyId="@+emplaoyId/line_detail_arrifal"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+emplaoyId/line_detail_depart"
+        android:layout_marginLeft="36dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+emplaoyId/line_depart">
+        <TextView
+            android:textSize="12.5sp"
+            android:textColor="#24253d"
+            style="@style/RobotoMedium"
+            android:text="Jakarta (CGK)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoMedium"
+            android:text="Soekarno Hatta International Airport"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="11.3sp"
+            android:textColor="#8024253d"
+            style="@style/RobotoRegular"
+            android:text="Terminal 2F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_toEndOf="@+emplaoyId/line_depart"
+        android:layout_marginTop="21.8dp"
+        android:layout_marginLeft="14dp"
+        android:layout_below="@emplaoyId/line_name_airline"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+emplaoyId/line_depart">
+        <LinearLayout
+            android:background="@drawable/rounded_cycle_info_flight_departure"
+            android:layout_width="9dp"
+            android:layout_height="9dp"></LinearLayout>
+        <LinearLayout
+            android:background="#b2bbc6"
+            android:layout_width="1dp"
+            android:layout_height="63.5dp"></LinearLayout>
+        <LinearLayout
+            android:background="@drawable/rounded_cycle_info_flight_arrival"
+            android:layout_width="9dp"
+            android:layout_height="9dp"></LinearLayout>
+
+    </LinearLayout>
+-->
+
+</RelativeLayout>

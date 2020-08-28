@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="100dp"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="161dp"
+            android:layout_height="119dp"
+            android:src="@drawable/under_contruction"></ImageView>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:gravity="center_horizontal"
+            android:text="Sorry for your inconvinience" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_gravity="center"
+            android:textColor="#91929e"
+            android:gravity="center_horizontal"
+            android:text="This feature is under construction" />
+
+        <Button
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:text="Close"
+            android:textStyle="bold"
+            android:background="@color/colorOrangeApproval"
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+
+</RelativeLayout>

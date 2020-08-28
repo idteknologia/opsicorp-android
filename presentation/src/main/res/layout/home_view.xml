@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--<android.support.v4.widget.NestedScrollView
+        android:visibility="visible"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+    </android.support.v4.widget.NestedScrollView>-->
+
+    <FrameLayout
+        android:id="@+id/place_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
+            android:layout_width="match_parent"
+            android:id="@+id/menu_bottom"
+            android:layout_height="wrap_content">
+        </com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

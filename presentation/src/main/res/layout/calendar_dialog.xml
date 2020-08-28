@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_toStartOf="@+id/line_inside_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/line_outside_dialog"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@+id/line_inside_calendar">
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line_inside_calendar"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19.4sp"
+                android:textColor="#24253d"
+                android:lineSpacingExtra="0sp"
+                android:gravity="center"
+                style="@style/RobotoBold"
+                android:layout_gravity="center"
+                android:text="SEE"/>
+
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13.4sp"
+                android:layout_gravity="center"
+                android:textColor="#24253d"
+                android:lineSpacingExtra="0sp"
+                android:gravity="center"
+                android:layout_marginBottom="18dp"
+                android:text="OTHER DATES"/>
+
+            <LinearLayout
+                android:layout_width="104dp"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"
+                android:layout_marginBottom="19dp"
+                android:layout_gravity="center"></LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_shor_by"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

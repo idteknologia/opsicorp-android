@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <LinearLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"
+            android:textColor="#24253d"
+            android:text="Passenger Information"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="14sp"
+            android:textColor="#8024253d"
+            android:text="Passenger Information"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginTop="24dp"
+            android:id="@+id/rv_passanger"
+            android:layout_marginBottom="59dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_next"
+        android:layout_alignParentBottom="true"
+        ></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+</RelativeLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_marginBottom="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.opsigo.travelaja.module.item_custom.button_top_approval.ButtonTopApproval
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_approval">
+        </com.opsigo.travelaja.module.item_custom.button_top_approval.ButtonTopApproval>
+
+
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/line_approve"
+            android:layout_width="match_parent"
+            android:layout_height="32dp">
+
+            <LinearLayout
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp">
+                    <CheckBox
+                        android:outlineAmbientShadowColor="@color/colorPrimary"
+                        android:outlineSpotShadowColor="@color/colorPrimary"
+                        android:shadowColor="@color/colorPrimary"
+                        android:id="@+id/checkbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                    <LinearLayout
+                        android:id="@+id/line_checkbox"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"></LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_title_select_all"
+                    android:textSize="12sp"
+                    style="@style/RobotoRegular"
+                    android:layout_marginLeft="10sp"
+                    android:text="Select All"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:background="@drawable/rounded_button_reject"
+                    android:id="@+id/btn_reject"
+                    android:gravity="center"
+                    android:layout_marginRight="10sp"
+                    android:textSize="12sp"
+                    style="@style/RobotoRegular"
+                    android:layout_marginLeft="10sp"
+                    android:text="Reject"
+                    android:paddingRight="24sp"
+                    android:paddingLeft="24sp"
+                    android:textColor="#24253d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:background="@drawable/rounded_button_approve"
+                    android:id="@+id/btn_approv"
+                    android:textColor="#24253d"
+                    android:gravity="center"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    android:textSize="12sp"
+                    style="@style/RobotoRegular"
+                    android:text="Approve"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="54dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/rv_waiting_approval"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+        <com.opsigo.travelaja.module.item_custom.empty_view.EmptyView
+            android:layout_width="match_parent"
+            android:id="@+id/empty_view"
+            android:layout_height="match_parent"></com.opsigo.travelaja.module.item_custom.empty_view.EmptyView>
+
+        <com.opsigo.travelaja.module.item_custom.empty_view.EmptyView
+            android:layout_width="match_parent"
+            android:id="@+id/error_view"
+            android:layout_height="match_parent"></com.opsigo.travelaja.module.item_custom.empty_view.EmptyView>
+
+
+        <com.opsigo.travelaja.module.item_custom.empty_view.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/loading_view"></com.opsigo.travelaja.module.item_custom.empty_view.LoadingView>
+
+    </RelativeLayout>
+
+</LinearLayout>

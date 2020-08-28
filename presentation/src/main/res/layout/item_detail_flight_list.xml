@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/line_doted"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layerType="software"
+        android:background="@drawable/background_dot_horizontal">
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/RobotoBold"
+            android:textSize="14dp"
+            android:text="DEPARTURE FLIGHT"
+            android:textColor="#24253d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_title_reason"
+            android:paddingLeft="10dp"
+            android:paddingRight="10sp"
+            android:background="@drawable/rounded_approval_red"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            style="@style/RobotoMedium"
+            android:textSize="8dp"
+            android:gravity="center"
+            android:text="Not Comply"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="14dp" />
+
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/line_description_reason"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        android:elevation="3dp"
+        android:background="@drawable/card_background_corner_orange"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="69dp">
+
+        <ImageView
+            android:id="@+id/img_warning"
+            android:src="@drawable/warning_red"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"/>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Trip Plan : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_trip_plane"
+                    android:text=" TP201810080005"
+                    android:textColor="#d0021b"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Purpose : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_title_purpose"
+                    android:text=" Conference"
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="Destination : "
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoRegular"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_destination_name_city"
+                    android:text=" Yogyakarta"
+                    android:textColor="#4a4a4a"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        layout="@layout/layout_card_detail_flight"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+    </include>
+
+</LinearLayout>

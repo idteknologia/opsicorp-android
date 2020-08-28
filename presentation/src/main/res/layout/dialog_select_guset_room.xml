@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:textSize="17dp"
+                android:layout_width="170dp"
+                android:gravity="center"
+                android:layout_height="45dp"
+                android:text="Guest"
+                android:textColor="@color/black"
+                style="@style/RobotoBold">
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:textColor="@color/black"
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:text="Room"
+                style="@style/RobotoBold"
+                android:textSize="17dp">
+            </TextView>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            app:scroll_background_color="@android:color/white"
+            android:layout_height="wrap_content"
+            android:id="@+id/guest_select"
+            app:scroll_selected_item_background="@android:color/white"
+            app:scroll_item_text_color="#D3D3D3"
+            app:scroll_atmospheric="false"
+            app:scroll_indicator="true"
+            app:scroll_item_align="center"
+            app:scroll_selected_item_text_color="@android:color/black"
+            app:scroll_item_text_size="17sp"
+            app:scroll_indicator_size="1dp"
+            >
+        </com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice>
+
+<!--        app:scroll_indicator_color="#dadada"-->
+        <com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
+            android:layout_width="0dp"
+            app:scroll_background_color="@android:color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/room_select"
+            app:scroll_selected_item_background="@android:color/white"
+            app:scroll_item_text_color="#D3D3D3"
+            app:scroll_atmospheric="false"
+            app:scroll_indicator="true"
+            app:scroll_item_align="center"
+            app:scroll_selected_item_text_color="@android:color/black"
+            app:scroll_item_text_size="17sp"
+            app:scroll_indicator_size="1dp">
+        </com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_top">
+    </LinearLayout>
+    <LinearLayout
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_batal_select"
+                android:background="@drawable/rounded_button_gray"
+                android:layout_centerInParent="true"
+                android:textSize="17dp"
+                android:layout_width="170dp"
+                android:gravity="center"
+                android:layout_height="45dp"
+                android:text="Batal"
+                android:textColor="@color/colorYellowButton_2"
+                style="@style/RobotoBold">
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_selesai_select"
+                android:gravity="center"
+                android:background="@drawable/rounded_button_yellow"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/white"
+                android:layout_width="170dp"
+                android:layout_height="45dp"
+                android:text="Selesai"
+                style="@style/RobotoBold"
+                android:textSize="17dp">
+            </TextView>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

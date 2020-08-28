@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:visibility="visible"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+
+            <include
+                layout="@layout/header_home"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/header_line">
+            </include>
+
+
+            <!--<com.daimajia.slider.library.SliderLayout-->
+            <!--android:visibility="visible"-->
+            <!--android:emplaoyId="@+emplaoyId/slider"-->
+            <!--android:layout_width="match_parent"-->
+            <!--custom:pager_animation="Accordion"-->
+            <!--custom:auto_cycle="true"-->
+            <!--custom:indicator_visibility="visible"-->
+            <!--custom:pager_animation_span="1100"-->
+            <!--android:layout_height="224dp"/>-->
+
+            <!--        <ImageView-->
+            <!--            android:background="#f5f5f5"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="224dp"-->
+            <!--            android:emplaoyId="@+emplaoyId/image_header"/>-->
+
+            <com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lay_slider">
+            </com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp>
+
+
+            <LinearLayout
+                android:id="@+id/line_title_upcomming_flight"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+
+                <RelativeLayout
+                    android:paddingLeft="36dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="16dp"
+                        style="@style/RobotoMedium"
+                        android:textColor="#f19c00"
+                        android:text="@string/upcoming_trip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </RelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:overScrollMode="never"
+                    android:scrollbars="none"
+                    android:id="@+id/rv_upcomming_flight"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"/>
+
+            </LinearLayout>
+
+            <!-- <TextView
+                 android:layout_marginTop="15dp"
+                 android:layout_marginBottom="10dp"
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="10dp"
+                 android:text="@string/choose_your_trip"
+                 android:textSize="14sp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" />
+
+             <LinearLayout
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="10dp"
+                 android:visibility="visible"
+                 android:background="@drawable/shadow_button_2"
+                 android:emplaoyId="@+emplaoyId/layBusinessTrip"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <ImageView
+                     android:layout_margin="10dp"
+                     android:src="@drawable/ic_office_green"
+                     android:layout_width="@dimen/icon_width_home"
+                     android:layout_height="@dimen/icon_height_home" />
+
+                 <LinearLayout
+                     android:layout_weight="1"
+                     android:orientation="vertical"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+
+                     <TextView
+                         android:textColor="#FF4A4A4A"
+                         android:gravity="center"
+                         android:layout_marginBottom="0dp"
+                         android:textSize="18sp"
+                         android:text="@string/business_trip"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+                 <ImageView
+                     android:layout_marginRight="10dp"
+                     android:paddingRight="5dp"
+                     android:src="@drawable/ic_chevron_next_orange"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+
+             </LinearLayout>
+
+             <LinearLayout
+
+                 android:layout_marginTop="15dp"
+                 android:visibility="gone"
+                 android:emplaoyId="@+emplaoyId/layPersonalTrip1"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <ImageView
+                     android:layout_margin="10dp"
+                     android:src="@drawable/ic_vacation"
+                     android:layout_width="@dimen/icon_width"
+                     android:layout_height="@dimen/icon_height" />
+
+                 <LinearLayout
+                     android:layout_weight="1"
+                     android:orientation="vertical"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+
+                     <TextView
+                         android:textColor="@color/personal_trip"
+                         android:gravity="center"
+                         android:layout_marginBottom="0dp"
+                         android:textSize="18dp"
+                         android:textStyle="normal"
+                         android:text="@string/personal_trip"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+                 <ImageView
+                     android:paddingRight="5dp"
+                     android:src="@drawable/ic_chevron_next"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+
+             </LinearLayout>
+    -->
+            <!-- <TextView
+                 android:emplaoyId="@+emplaoyId/tvInfo2"
+                 android:text="info2"
+                 android:visibility="gone"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" />
+
+             <TextView
+                 android:emplaoyId="@+emplaoyId/tvInfo"
+                 android:visibility="gone"
+                 android:text="info"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content" />
+
+             <LinearLayout
+                 android:layout_marginLeft="20dp"
+                 android:layout_marginRight="10dp"
+                 android:background="@drawable/shadow_button_2"
+                 android:layout_marginTop="5dp"
+                 android:layout_marginBottom="20dp"
+                 android:visibility="visible"
+                 android:emplaoyId="@+emplaoyId/layPersonalTrip"
+                 android:gravity="center_vertical"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+
+                 <ImageView
+                     android:layout_margin="10dp"
+                     android:src="@drawable/ic_vacation_green"
+                     android:layout_width="@dimen/icon_width_home"
+                     android:layout_height="@dimen/icon_height_home" />
+
+                 <LinearLayout
+                     android:layout_weight="1"
+                     android:orientation="vertical"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content">
+
+                     <TextView
+                         android:textColor="#FF4A4A4A"
+                         android:gravity="center"
+                         android:layout_marginBottom="0dp"
+                         android:textSize="18sp"
+                         android:textStyle="normal"
+                         android:text="@string/personal_trip"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>
+
+                 <ImageView
+                     android:layout_marginRight="10dp"
+                     android:paddingRight="5dp"
+                     android:src="@drawable/ic_chevron_next_orange"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content" />
+
+             </LinearLayout>
+    -->
+
+            <!--
+            <TextView
+                android:visibility="gone"
+                android:emplaoyId="@+emplaoyId/tvLogout"
+                android:text="logout"
+                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            -->
+
+            <!--<LinearLayout
+                android:emplaoyId="@+emplaoyId/line_title_upcomming_flight"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:emplaoyId="@+emplaoyId/tvUpcomingLabel"
+                    android:text="@string/upcoming_flights"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="14sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="invisible"
+                    android:emplaoyId="@+emplaoyId/tv_showmore_cal"
+                    android:textColor="@color/green_price"
+                    android:text="@string/show_more"
+                    android:layout_weight="0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:emplaoyId="@+emplaoyId/rv_upcomming_flight"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="0dp" />-->
+
+
+            <RelativeLayout
+                android:id="@+id/line_title_family_time"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="@color/colorTextHint"
+                    android:id="@+id/tvFamilyTimeLabel"
+                    style="@style/RobotoMedium"
+                    android:text="@string/special_promo"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="invisible"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    style="@style/RobotoRegular"
+                    android:textSize="10sp"
+                    android:id="@+id/tv_showmore_family"
+                    android:textColor="@color/green_price"
+                    android:text="@string/show_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:overScrollMode="never"
+                android:id="@+id/rv_tour"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:padding="0dp"
+                android:layout_marginBottom="70dp">
+            </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

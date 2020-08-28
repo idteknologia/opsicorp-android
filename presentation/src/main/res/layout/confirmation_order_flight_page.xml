@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="37dp">
+        <TextView
+            android:layout_centerVertical="true"
+            style="@style/RobotoRegular"
+            android:textSize="20dp"
+            android:text="Confirm Your Information v1"
+            android:textColor="#24253d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:id="@+id/rv_detail_flight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/line_btn_reason_code"
+        android:layout_marginTop="15sp"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="2dp"
+            android:layout_centerVertical="true"
+            style="@style/RobotoRegular"
+            android:textSize="10sp"
+            android:text="Select reason code"
+            android:textColor="#8024253d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:id="@+id/line_reason"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/card_background_corner_orange"
+            android:elevation="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="38dp">
+
+
+            <TextView
+                android:id="@+id/tv_reason"
+                android:layout_marginLeft="10dp"
+                android:textSize="14dp"
+                style="@style/RobotoRegular"
+                android:textColor="#24253d"
+                android:layout_centerVertical="true"
+                android:text="Important Flight Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/btn_info_facility"
+                android:layout_marginRight="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_chevron_down_green"
+                android:layout_width="15dp"
+                android:layout_height="15dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_description_reason_code"
+        android:layout_marginTop="15sp"
+        android:visibility="visible"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerVertical="true"
+            style="@style/RobotoRegular"
+            android:textSize="10sp"
+            android:text="Description :"
+            android:textColor="#8024253d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            style="@style/RobotoRegular"
+            android:textColor="#4a4a4a"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Where a seat on a lower fare option was not available even though booking request was outside deadlines."/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        android:id="@+id/line_information_person"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerVertical="true"
+            style="@style/RobotoRegular"
+            android:textSize="10sp"
+            android:text="CONTACT INFORMATION"
+            android:textColor="#8024253d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_marginBottom="5dp"
+            android:elevation="3dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="2dp"
+            android:background="@drawable/card_background"
+            android:clipToPadding="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="11dp"
+            android:paddingBottom="11dp"
+            android:layout_marginTop="11dp">
+
+
+
+            <TextView
+                android:id="@+id/tv_name_person"
+                android:textSize="17dp"
+                style="@style/RobotoRegular"
+                android:textColor="#24253d"
+                android:text="Mr. Dwi Wahyudi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <TextView
+                android:layout_below="@+id/tv_name_person"
+                android:textSize="14dp"
+                style="@style/RobotoRegular"
+                android:textColor="#8024253d"
+                android:text="Important Flight Info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

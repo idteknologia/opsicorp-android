@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+
+        android:background="@android:color/white"
+        android:paddingRight="23dp"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Important Pre-Flight info"
+            style="@style/RobotoBold"
+            android:textColor="#24253d"
+            android:layout_centerVertical="true"
+            android:textSize="14dp">
+        </TextView>
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_chevron_up_orange"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+        </ImageView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#b2bbc6">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_pree_flight_info">
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+
+        android:background="@android:color/white"
+        android:paddingRight="23dp"
+        android:paddingLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:layout_centerVertical="true"
+            style="@style/RobotoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#009688"
+            android:text="Passenger(s)"
+            ></TextView>
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_chevron_up_orange"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true">
+        </ImageView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#b2bbc6">
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:nestedScrollingEnabled="false"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/rv_passanger">
+    </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:paddingRight="30dp"
+        android:paddingLeft="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="-10dp"
+        android:background="@drawable/rounded_button_green"
+        android:layout_marginLeft="20dp">
+
+
+        <TextView
+            android:textColor="#f6f8f8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            style="@style/RobotoBold"
+            android:text="Related Item(s)">
+        </TextView>
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_chevron_next_white"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true">
+        </ImageView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/tv_tittle_prize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Prize"
+            android:textColor="#939396"
+            style="@style/RobotoRegular"
+            android:textSize="14dp"
+            android:layout_marginTop="12dp"></TextView>
+
+        <TextView
+            android:id="@+id/tv_total_pricing"
+            android:layout_below="@+id/tv_tittle_prize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IDR 1.500.819.000"
+            android:textColor="#24253d"
+            style="@style/RobotoRegular"
+            android:layout_marginBottom="12dp"
+            android:textSize="14dp"
+            android:layout_marginTop="6dp">
+        </TextView>
+
+
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_send_receip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Receipt"
+            android:textColor="@color/colorPrimary"
+            style="@style/RobotoBold"
+            android:textSize="14dp"
+            android:layout_marginTop="12dp">
+        </TextView>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

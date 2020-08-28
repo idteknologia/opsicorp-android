@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+<!--        <include-->
+<!--            android:id="@+id/line_contruction"-->
+<!--            layout="@layout/contruction_view">-->
+<!--        </include>-->
+<!--    </LinearLayout>-->
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nested_view"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+           <!-- <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="53dp">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/recently_viewed"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Recently Viewed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:background="#00776a"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.01"></LinearLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:layout_centerInParent="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/favorite_hotel"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp" />
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:textSize="16sp"
+                            android:textColor="@color/colorPrimary"
+                            android:text="Favorite Hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#00776a"></LinearLayout>
+-->
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/line_button_left"
+                    android:background="@drawable/rounded_button_up_flight_selected_left"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5">
+                    <TextView
+                        style="@style/RobotoBlack"
+                        android:id="@+id/title_btn_left"
+                        android:textColor="@android:color/white"
+                        android:textSize="11dp"
+                        android:text="Nearby City"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line_button_center"
+                    android:background="@color/colorGrayRoundWhite"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5">
+                    <TextView
+                        android:id="@+id/title_btn_center"
+                        style="@style/RobotoRegular"
+                        android:textColor="@color/colorGrayTextButtonFlight"
+                        android:textSize="11dp"
+                        android:text="Nearby Company"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:background="#ffffff"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.1"></LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/line_button_right"
+                    android:background="@drawable/rounded_button_up_flight_default_right"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5">
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:textColor="@color/colorGrayTextButtonFlight"
+                        android:id="@+id/title_button_right"
+                        android:textSize="11dp"
+                        android:text="Nearby Map"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_country"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/marker_nearme"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_country"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:id="@+id/tv_title_country"
+                                android:text="@string/country"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:hint=""
+                                android:id="@+id/tv_country"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_country"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/btn_map"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="28dp"
+                            android:src="@drawable/nearme"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp" />
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_city"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/marker_nearme"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_city"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:id="@+id/tv_title_city"
+                                android:text="@string/city"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:hint=""
+                                android:id="@+id/tv_city"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_date_check_in"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_deaprture_date"
+                            android:layout_width="142dp"
+                            android:layout_height="60dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/checkIn"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_departur_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:textSize="@dimen/font_edittext"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_deaprture_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext">
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lay_return_date"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/night"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_end_date"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:id="@+id/title_duration"
+                                android:text="@string/duration"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+
+                            <TextView
+                                android:id="@+id/tv_duration"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_end_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_below="@+id/line_depart"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+
+                    android:id="@+id/line_passanger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:src="@drawable/passenger" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_passanger"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/passengers"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="1 Adults"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:textSize="@dimen/font_edittext"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/lay_passanger"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_below="@+id/line_depart"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginBottom="10dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/horizontal_setting"
+                        android:layout_width="@dimen/icon_edittext"
+                        android:layout_height="@dimen/icon_edittext" />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/lay_deafult"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp">
+
+                            <TextView
+                                android:text="@string/filer_hotel"
+                                android:textSize="14sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textColor="@color/colorTextHint"
+                                android:textColorHint="@color/colorTextHint"
+                                android:hint="Default"
+                                android:id="@+id/tv_passanger"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="9dp"
+                                android:textAlignment="viewStart"
+                                android:gravity="center"
+                                android:textSize="@dimen/font_edittext"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:ignore="RtlCompat" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_below="@+id/lay_deafult"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorLineEdittext"></LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="43.5dp"
+                android:layout_marginBottom="33dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_next">
+            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/line_title_family_time"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoMedium"
+                        android:id="@+id/tvFamilyTimeLabel"
+                        android:text="@string/family_time"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="14sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:textSize="10sp"
+                        android:id="@+id/tv_showmore_family"
+                        android:textColor="@color/green_price"
+                        android:text="@string/show_more"
+                        android:layout_weight="0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_tour"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:background="#eb0011"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            style="@style/RobotoBold"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="Reject"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            style="@style/RobotoBold"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:text="Reject"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:background="@android:color/white"
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/line_border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/cornerRounded">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/line_border_bottom"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3324253d">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="1dp"
+            android:id="@+id/line_start"
+            android:layout_width="7dp"
+            android:layout_height="match_parent"
+            android:background="#ffbe47"
+            android:orientation="vertical">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_approval_orange"
+                android:textSize="10sp"
+                style="@style/RobotoMedium"
+                android:text="Waiting"
+                android:gravity="center"
+                android:paddingRight="10sp"
+                android:paddingLeft="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_expired"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/tv_status"
+                android:layout_toRightOf="@+id/tv_status"
+                android:gravity="center"
+                android:text="9 days left to expired"
+                android:textColor="#eb0011"
+                android:textSize="10sp"></TextView>
+
+
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_below="@+id/tv_status"
+                android:layout_marginLeft="43dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#24253d"
+                android:textSize="18sp"
+                style="@style/RobotoMedium"
+                android:text="Meeting in Yogyakarta"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+            <ImageView
+                android:src="@drawable/ic_point_gps"
+                android:id="@+id/img_city"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_width="14dp"
+                android:layout_height="14dp"></ImageView>
+
+
+            <TextView
+                android:layout_toRightOf="@+id/img_city"
+                android:id="@+id/tv_city"
+                android:layout_below="@+id/tv_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:textColor="#939396"
+                android:textSize="12sp"
+                style="@style/RobotoRegular"
+                android:text="Surabaya"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+
+            <ImageView
+                android:src="@drawable/departure_date"
+                android:id="@+id/img_date"
+                android:layout_below="@+id/tv_city"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="8dp"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_width="14dp"
+                android:layout_height="14dp"></ImageView>
+
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_below="@+id/tv_city"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="7dp"
+                android:textColor="#24253d"
+                android:textSize="12sp"
+                style="@style/RobotoBold"
+                android:text="27 Mar - 31 Mar"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_date"></TextView>
+
+
+            <TextView
+                android:layout_marginRight="17dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_total_layer_approval"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#00776a"
+                android:textSize="10sp"
+                style="@style/RobotoMedium"
+                android:text="Participant +7"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+
+
+            <RelativeLayout
+                android:id="@+id/line_img_approvar"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/tv_total_layer_approval"
+                android:layout_marginRight="19dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp">
+
+
+                <RelativeLayout
+                    android:id="@+id/img_participant_second"
+                    android:layout_width="25dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true">
+
+                    <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="#d5d5d5"
+                        app:civ_circle_background_color="#d5d5d5"
+                        app:civ_border_width="0dp"/>
+
+                    <ImageView
+                        android:src="@drawable/ic_profile"
+                        android:layout_centerInParent="true"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp" />
+                </RelativeLayout>
+
+
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    android:id="@+id/line_singgel_image"
+                    android:layout_marginLeft="23dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"></LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="37dp"
+                    android:layout_height="38dp">
+
+                    <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                        android:layout_width="37dp"
+                        android:layout_height="38dp"
+                        app:civ_border_width="3dp"
+                        android:src="#f5f5f5"
+                        app:civ_circle_background_color="#f5f5f5"
+                        app:civ_border_color="#ffffff"/>
+
+
+                    <ImageView
+                        android:id="@+id/img_participant_first"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_profile"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_marginRight="19dp"
+                android:layout_marginTop="16dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_trip_code"
+                android:layout_below="@+id/line_img_approvar"
+                android:textColor="#939396"
+                android:textSize="12sp"
+                style="@style/RobotoRegular"
+                android:text="TP201802080003"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TextView>
+
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    
+    
+</FrameLayout>

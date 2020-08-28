@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6000000">
+
+    <LinearLayout
+        android:id="@+id/line_header"
+        android:layout_marginTop="41dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_close_white"></ImageView>
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            style="@style/RobotoBold"
+            android:textColor="#ffffff"
+            android:text="The Trans Luxury Bandung"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_body_content"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ic_image"
+            android:layout_width="match_parent"
+            android:layout_height="251dp"
+            android:scaleType="centerInside"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"></ImageView>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:id="@+id/rv_slider_image">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/title_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/line_body_content"
+        android:textColor="#ffffff"
+        style="@style/RobotoBold"
+        android:text="Swimming Pool" />
+
+    <TextView
+        android:id="@+id/total_image"
+        android:layout_below="@+id/line_body_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:textColor="#ffffff"
+        android:gravity="end"
+        android:text="8/104"
+        style="@style/RobotoBold"/>
+
+</RelativeLayout>

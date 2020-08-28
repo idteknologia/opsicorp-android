@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:background="@drawable/card_background_under_api_21"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:clipToPadding="false">
+        <RelativeLayout
+            android:paddingTop="15dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="88dp">
+            <ImageView
+                android:layout_marginBottom="13dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="3dp"
+                android:id="@+id/img_flight_icon"
+                android:src="@drawable/sriwijaya"
+                android:layout_marginRight="10dp"
+                android:layout_width="37dp"
+                android:layout_height="27dp" />
+
+
+            <TextView
+                android:id="@+id/title_airline"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jakarta (CGK) - Yogyakarta (JOG) "
+                android:textColor="#24253d"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:id="@+id/line_code"
+                android:layout_below="@+id/title_airline"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PNR Code : "
+                    android:textColor="#b2bbc6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_pnr_code"
+                    style="@style/RobotoBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AW5CRP"
+                    android:textColor="#24253d"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="4dp"
+                android:layout_below="@+id/line_code"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:id="@+id/tv_number_sheet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status : "
+                    android:textColor="#b2bbc6"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reserved"
+                    android:textColor="#2b9a8e"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/line_name_airline"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="9dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AW5CRP"
+                    android:textColor="#24253d"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginLeft="9dp"
+                android:layout_below="@+id/line_name_airline"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reserved"
+                    android:textColor="#2b9a8e"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/line_date"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="9dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AW5CRP"
+                    android:textColor="#24253d"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="9dp"
+                android:layout_below="@+id/line_date"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reserved"
+                    android:textColor="#2b9a8e"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f5f5f5"></LinearLayout>
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f5f5f5"></LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="31dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Details Information"
+                    android:textColor="#24253d"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f5f5f5"></LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:textColor="#24253d"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="2dp"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="IDR 400.000"
+                    android:textColor="#24253d"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:textSize="9dp"
+                    android:textColor="#24253d"
+                    style="@style/RobotoRegular"
+                    android:text="/pax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

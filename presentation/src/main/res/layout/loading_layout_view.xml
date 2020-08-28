@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/line_loading"
+    xmlns:custom="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title_loading"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:text="@string/please_wait2"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/title2"
+                android:gravity="center"
+                android:layout_below="@+id/tv_title_loading"
+                android:text="@string/its_just_second"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.cunoraz.gifview.library.GifView
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/title2"
+                android:id="@+id/gif"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                custom:gif="@mipmap/gif1" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

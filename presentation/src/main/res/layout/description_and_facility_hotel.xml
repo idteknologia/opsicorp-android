@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.TabLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabGravity="center"
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="39dp">
+
+    </android.support.design.widget.TabLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="31dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoRegular"
+            android:textColor="#91929e"
+            android:layout_marginBottom="80dp"
+            android:layout_marginLeft="41dp"
+            android:layout_marginRight="41dp"
+            android:text="@string/dummy_description_hotel">
+
+        </TextView>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_facility"
+            android:visibility="gone"
+            ></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
+
+    <include
+        layout="@layout/prize_layout_hotel"></include>
+
+
+</LinearLayout>

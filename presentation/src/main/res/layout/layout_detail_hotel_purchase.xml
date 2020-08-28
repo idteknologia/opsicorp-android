@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/item_hotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="51dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/rounded_green_stroke_50_persen"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoRegular"
+                android:text="Hotels"
+                android:textSize="11dp"
+                android:textColor="#2b9a8e">
+
+            </TextView>
+
+
+            <TextView
+                android:layout_marginTop="5.1dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Trans Luxury Bandung"
+                android:textColor="#24253d"
+                android:textSize="16dp"
+                style="@style/RobotoRegular">
+            </TextView>
+
+            <LinearLayout
+                android:layout_marginTop="7dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp" />
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp" />
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp" />
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp" />
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="7.7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="14dp"
+                android:layout_height="19dp"
+                android:src="@drawable/ic_place_green"></ImageView>
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                style="@style/RobotoRegular"
+                android:textColor="#91929e"
+                android:lineSpacingExtra="1sp"
+                android:text="Arjuna, Bandung">
+            </TextView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d3d8"></LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="31dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#939396"
+                        android:text="Chek In"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        style="@style/RobotoBold"
+                        android:textColor="#24253d"
+                        android:text="Thu, 18 Apr">
+                    </TextView>
+
+                    <TextView
+                        android:layout_marginTop="2dp"
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#00776a"
+                        android:text="14:00">
+                    </TextView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:background="#d3d3d8"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="1dp"
+                    android:layout_height="26dp">
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_duration"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp">
+                    </ImageView>
+                    <TextView
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#24253d"
+                        android:text="1 night(s)"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:background="#d3d3d8"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="1dp"
+                    android:layout_height="26dp">
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <LinearLayout
+                    android:gravity="right"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#939396"
+                        android:text="Chek Out"
+                        />
+
+                    <TextView
+                        android:layout_marginTop="2dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        style="@style/RobotoBold"
+                        android:textColor="#24253d"
+                        android:text="Thu, 18 Apr">
+                    </TextView>
+
+                    <TextView
+                        android:layout_marginTop="2dp"
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#00776a"
+                        android:text="14:00">
+                    </TextView>
+
+
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d3d8"></LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_marginBottom="27dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#009688"
+                android:text="Booking Contact">
+            </TextView>
+
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#939396"
+                android:gravity="end"
+                android:text="Vodyrizam">
+            </TextView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

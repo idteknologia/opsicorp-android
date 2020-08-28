@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/transparent">
+
+    <LinearLayout
+        android:background="@color/transparent"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingBottom="0dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:onClick="rejectAllitemListener"
+            android:id="@+id/lay_btn_reject"
+            android:background="@drawable/rounded_orange_stroke_2"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:onClick="rejectAllitemListener"
+                style="@style/RobotoMedium"
+                android:id="@+id/tv_button_reject_all"
+                android:textSize="17sp"
+                android:textColor="#24253D"
+                android:text="Reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#ffffff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"></LinearLayout>
+
+        <LinearLayout
+            android:onClick="approveAllitemListener"
+            android:id="@+id/lay_btn_approve"
+            android:background="@drawable/rounded_button_yellow"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="50dp">
+
+            <TextView
+                android:onClick="approveAllitemListener"
+                style="@style/RobotoMedium"
+                android:id="@+id/tv_button_approve_all"
+                android:textSize="17sp"
+                android:textColor="#24253D"
+                android:text="Approve Participant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

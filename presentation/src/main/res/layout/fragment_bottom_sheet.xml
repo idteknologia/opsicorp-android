@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/design_bottom_sheet"
+    android:layout_height="match_parent">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar"></com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+
+    <RelativeLayout
+        android:id="@+id/line_btn_add_adult"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_minus_adult"
+            android:src="@drawable/minus_inactive"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+
+        <LinearLayout
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:src="@drawable/adult"
+                android:layout_width="19dp"
+                android:layout_height="32dp"/>
+
+            <LinearLayout
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_adult"
+                    android:textSize="16dp"
+                    android:text="0 Adult(s)"
+                    android:textColor="#24253d"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="12dp"
+                    android:text="16+ years"
+                    android:textColor="#8024253d"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_add_adult"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus_active"
+            android:layout_width="36dp"
+            android:layout_height="36dp"></ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/line_btn_add_childern"
+        android:layout_below="@+id/line_btn_add_adult"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_minus_child"
+            android:src="@drawable/minus_inactive"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+
+        <LinearLayout
+            android:id="@+id/minus_child"
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:src="@drawable/children"
+                android:layout_width="19dp"
+                android:layout_height="27dp"/>
+
+            <LinearLayout
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_child"
+                    android:textSize="16dp"
+                    android:text="0 Children"
+                    android:textColor="#24253d"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="12dp"
+                    android:text="2-15 years"
+                    android:textColor="#8024253d"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_add_child"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus_active"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_btn_add_infant"
+        android:layout_below="@+id/line_btn_add_childern"
+        android:layout_marginTop="36dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginRight="39dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_minus_infant"
+            android:src="@drawable/minus_inactive"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+
+        <LinearLayout
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+            <ImageView
+                android:id="@+id/minus_infant"
+                android:src="@drawable/infant"
+                android:layout_width="19dp"
+                android:layout_height="23dp"/>
+
+            <LinearLayout
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_infant"
+                    android:textSize="16dp"
+                    android:text="0 Infant(s)"
+                    android:textColor="#24253d"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textSize="12dp"
+                    android:text="under 2 years"
+                    android:textColor="#8024253d"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_add_infant"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/plus_active"
+            android:layout_width="36dp"
+            android:layout_height="36dp" />
+    </RelativeLayout>
+
+
+    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        android:layout_width="match_parent"
+        android:id="@+id/btn_next"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+    <com.opsigo.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog
+        android:layout_width="match_parent"
+        android:id="@+id/snackbar"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true">
+    </com.opsigo.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog>
+</RelativeLayout>

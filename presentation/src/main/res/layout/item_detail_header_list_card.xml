@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_marginTop="1dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/line_image_accomodation"
+        android:layout_width="30dp"
+        android:layout_centerVertical="true"
+        android:layout_height="30dp"
+        android:background="@drawable/rounded_cart_header_train"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp">
+        <ImageView
+            android:id="@+id/ic_image_accomodation"
+            android:layout_margin="7dp"
+            android:src="@drawable/ic_train_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"></ImageView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_toEndOf="@+id/line_image_accomodation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/line_image_accomodation">
+
+        <TextView
+            android:id="@+id/title_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:text="Train Summary"
+            style="@style/RobotoBold"/>
+
+        <TextView
+            android:id="@+id/tv_type_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#91929e"
+            android:text="Roundtrip"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:id="@+id/btnOption"
+        android:paddingLeft="25dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_circle_gray"
+            android:layout_width="4dp"
+            android:layout_height="4dp" />
+
+        <ImageView
+            android:adjustViewBounds="true"
+            android:layout_marginTop="2dp"
+            android:src="@drawable/ic_circle_gray"
+            android:layout_width="4dp"
+            android:layout_height="4dp" />
+
+        <ImageView
+            android:id="@+id/btn_setting"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="2dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_circle_gray" />
+
+    </LinearLayout>
+
+</RelativeLayout>

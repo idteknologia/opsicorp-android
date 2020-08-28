@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:fillViewport="true"
+    android:background="#f6f8f8"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_above="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_back_dark_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#24253d"
+                    android:lineSpacingExtra="8sp"
+                    android:text="@string/detail_tripplan" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/RobotoMedium"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        android:textColor="#24253d"
+                        android:text="@string/total_amount"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_amount"
+                        style="@style/RobotoMedium"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"
+                        android:textColor="#009688"
+                        android:gravity="end"
+                        android:text="IDR 3.095.800"
+                        />
+
+
+                    <FrameLayout
+                        android:layout_marginTop="29dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/ticketView"
+                            app:ticketCornerType="rounded"
+                            app:ticketOrientation="horizontal"
+                            app:ticketScallopRadius="14dp"
+                            app:ticketShowBorder="false"
+                            app:ticketScallopPositionPercent="25"
+                            app:ticketShowDivider="true"
+                            app:ticketDividerType="dash"
+                            app:ticketDividerPadding="0dp"
+                            app:ticketElevation="14dp"/>
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_marginTop="14dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="normal"
+                                android:textColor="#2b9a8e"
+                                android:gravity="center_horizontal"
+                                android:text="Trip Code:"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_tripplan"
+                                style="@style/RobotoMedium"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="normal"
+                                android:textColor="#24253d"
+                                android:gravity="center_horizontal"
+                                android:text="TP201802080003"
+                                />
+
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_marginTop="33dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="normal"
+                                android:textColor="#939396"
+                                android:lineSpacingExtra="1sp"
+                                android:gravity="center_horizontal"
+                                android:text="Created Date : 8 Feb 2018 09:46"
+                                />
+
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_marginTop="12dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:fontFamily="sans-serif"
+                                android:textStyle="normal"
+                                android:textColor="#eb0011"
+                                android:letterSpacing="0.04"
+                                android:text="9 days left to expired"
+                                />
+
+                            <TextView
+                                android:id="@+id/tv_status"
+                                android:layout_marginTop="15dp"
+                                android:textColor="@color/white"
+                                android:background="@drawable/rounded_approval_orange"
+                                android:textSize="10sp"
+                                style="@style/RobotoMedium"
+                                android:text="Waiting"
+                                android:gravity="center"
+                                android:paddingRight="10sp"
+                                android:paddingLeft="10sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="16dp"/>
+
+                            <TextView
+                                android:id="@+id/tv_purpose"
+                                style="@style/RobotoMedium"
+                                android:layout_marginTop="17dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:fontFamily="sans-serif-medium"
+                                android:textStyle="normal"
+                                android:textColor="#91929e"
+                                android:gravity="center_horizontal"
+                                android:text="IBM Workshop "
+                                />
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <LinearLayout
+                                    android:layout_marginTop="9dp"
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_point_gps"
+                                        android:layout_width="14dp"
+                                        android:layout_height="10dp" />
+
+                                    <TextView
+                                        style="@style/RobotoRegular"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12sp"
+                                        android:fontFamily="sans-serif"
+                                        android:textStyle="normal"
+                                        android:textColor="#91929e"
+                                        android:text="Yogyakarta"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_date_depart"
+                                        android:layout_width="14dp"
+                                        android:layout_height="10dp" />
+
+                                    <TextView
+                                        style="@style/RobotoMedium"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12sp"
+                                        android:fontFamily="sans-serif"
+                                        android:textStyle="bold"
+                                        android:textColor="#24253d"
+                                        android:text="Thu, 31 MAR"
+                                        />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:gravity="center"
+                                    android:layout_marginTop="7dp"
+                                    android:layout_marginBottom="25dp"
+                                    android:orientation="horizontal"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_date_return"
+                                        android:layout_width="15dp"
+                                        android:layout_height="11dp" />
+
+                                    <TextView
+                                        style="@style/RobotoMedium"
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="12sp"
+                                        android:fontFamily="sans-serif"
+                                        android:textStyle="bold"
+                                        android:textColor="#24253d"
+                                        android:text="Sun, 27 MAR"
+                                        />
+
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="33dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Name"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_name"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text="Budi Sentosa"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Budget"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_budget"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text="B1000089 - Budget si Mamang"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Cost Center"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_cost_center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text="C1356426 - Mang Hiji Cost "
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Approver"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_approver"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text="Siti Badriah"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Trip Item"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_trip_item"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text="FLIGHT + HOTEL"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="9dp"
+                        android:layout_marginLeft="33dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:text="Allowance"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="2dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:text=":"
+                            />
+
+                        <TextView
+                            style="@style/RobotoMedium"
+                            android:id="@+id/tv_allowance"
+                            android:layout_marginLeft="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#079687"
+                            android:text="IDR 2.000.000"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--<TextView-->
+                <!--style="@style/RobotoBold"-->
+                <!--android:layout_marginBottom="15dp"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="16sp"-->
+                <!--android:fontFamily="sans-serif"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#24253d"-->
+                <!--android:text="1. Flight Summary"-->
+                <!--/>-->
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+                <!--<TextView-->
+                <!--style="@style/RobotoBold"-->
+                <!--android:layout_marginBottom="15dp"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="16sp"-->
+                <!--android:fontFamily="sans-serif"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#24253d"-->
+                <!--android:text="2. Hotel Summary"-->
+                <!--/>-->
+
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:emplaoyId="@+emplaoyId/rv_summary_hotel"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+
+                <!--<TextView-->
+                <!--style="@style/RobotoBold"-->
+                <!--android:layout_marginBottom="15dp"-->
+                <!--android:layout_marginTop="30dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="16sp"-->
+                <!--android:fontFamily="sans-serif"-->
+                <!--android:textStyle="bold"-->
+                <!--android:textColor="#24253d"-->
+                <!--android:text="3. Train Summary"-->
+                <!--/>-->
+
+                <!--<android.support.v7.widget.RecyclerView-->
+                <!--android:emplaoyId="@+emplaoyId/rv_summary_train"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#24253d"
+                    android:text="Total Amount: "
+                    />
+
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:textColor="#009688"
+                    android:gravity="end"
+                    android:text="IDR 3.360.000"
+                    />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/confirm_approve_bottom"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"></include>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

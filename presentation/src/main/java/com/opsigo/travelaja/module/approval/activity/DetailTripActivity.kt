@@ -1,0 +1,1149 @@
+package com.opsigo.travelaja.module.approval.activity
+
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.TextView
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.R
+import com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity
+import com.opsigo.travelaja.module.approval.dialog.ListParticipantDialog
+import com.opsigo.travelaja.module.approval.summary.ParticipantAdapter
+import com.opsigo.travelaja.module.approval.summary.ParticipantModel
+import com.opsigo.travelaja.module.approval.summary.SummaryAdapter
+import com.opsigo.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
+import com.opsigo.travelaja.module.home.activity.HomeActivity
+import com.opsigo.travelaja.module.item_custom.barcode.popup.QRPopUp
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.utility.Constants
+import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
+import com.opsigo.travelaja.utility.DateConverter
+import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import opsigo.com.datalayer.datanetwork.GetDataApproval
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.datalayer.request_model.ApprovalAllRequest
+import opsigo.com.domainlayer.callback.CallbackApprovAll
+import opsigo.com.domainlayer.callback.CallbackSummary
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import kotlinx.android.synthetic.main.detail_trip_activity_view.*
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
+import opsigo.com.datalayer.request_model.ApproverPerItemRequest
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.domainlayer.model.summary.*
+import org.koin.core.inject
+import org.koin.core.parameter.parametersOf
+import java.lang.Exception
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.forEachIndexed
+import kotlin.collections.isNotEmpty
+
+
+class DetailTripActivity : BaseActivity()
+        , View.OnClickListener, ToolbarOpsicorp.OnclickButtonListener,
+        ListParticipantDialog.CallbackDialog{
+
+    override fun getLayout(): Int { return R.layout.detail_trip_activity_view }
+
+    //var isFromList   = false
+    var isShareQR    = false
+    var isDraft      = false
+    var tripCode     = "abcx"
+    var employIdUser = ""
+    var tripId       = ""
+    var tripSummary  = SummaryModel()
+    val dataItems = ArrayList<SummaryModelItems>()
+    var isUpdateSummary = false
+
+    val dataParticipant = ArrayList<ParticipantModel>()
+    val dataApproval    = ArrayList<ParticipantModel>()
+    val adapterParticpant by lazy { ParticipantAdapter(this) }
+    val adapterApproval by lazy { ParticipantAdapter(this) }
+    val adapterItemOrder by lazy { SummaryAdapter(this) }
+
+    var dataAttachment  = ArrayList<UploadModel>()
+    val adapter  by inject<AttachmentAdapter> { parametersOf(dataAttachment)  }
+
+    //private lateinit var mReceiver: BroadcastReceiver
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        val intentFilter = IntentFilter(Constants.ACT_DETAIL_TP)
+//
+//        mReceiver = object : BroadcastReceiver() {
+//
+//            override fun onReceive(context: Context, intent: Intent) {
+//                //Get message from intent
+//                val tp_status = intent.getStringExtra("tp_status")
+//
+//                tripId = intent.getStringExtra(Constants.KEY_INTENT_TRIPID)
+//                tripCode = intent.getStringExtra(Constants.KEY_INTENT_TRIP_CODE)
+//                employIdUser = getProfile().employId
+//
+//                showLoadingOpsicorp(true)
+//                GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
+//                    override fun successLoad(summaryModel: SummaryModel) {
+//                        tripSummary = summaryModel
+//                        initRecyclerViewApproval()
+//                        initRecyclerViewParticipant()
+//                        initRecyclerViewAttachment()
+//
+//                        mapperlistParticipantAndApproval()
+//
+//                        hideLoadingOpsicorp()
+//
+//                    }
+//
+//                    override fun failedLoad(message: String) {
+//                        hideLoadingOpsicorp()
+//                        failedWarning(message)
+//                    }
+//                })
+//
+////                val vProgress = intent.getStringExtra("vProgress")
+////                val vText = intent.getStringExtra("vText")
+////                val vPnrId = intent.getStringExtra("vPnrId")
+////                val PnrCode = intent.getStringExtra("PnrCode")
+//
+////                pBar_test.progress = vProgress.toInt()
+////                tv_status_test.text = vText
+////                tv_pnr_test.text = PnrCode
+//
+//            }
+//        }
+//
+//        if(intentFilter != null || mReceiver != null){
+//            try {
+//                this.registerReceiver(mReceiver, intentFilter)
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//        }
+//    }
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        try {
+//            this.unregisterReceiver(mReceiver)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//    }
+
+    override fun OnMain() {
+        initRecyclerViewApproval()
+        initRecyclerViewParticipant()
+        initRecyclerViewAttachment()
+        initRecyclerViewItem()
+
+
+        toolbar.callbackOnclickToolbar(this)
+        toolbar.setTitleBar(getString(R.string.detail_tripplan))
+        toolbar.changeImageCard(R.drawable.ic_setting_dot_tree_my_booking)
+        image_barcode.setOnClickListener(this)
+
+        tv_share_qrcode.visibility = View.GONE
+
+        tv_tripcode.setOnClickListener {
+            if(isShareQR){
+                tv_share_qrcode.visibility = View.GONE
+//                line_button_manage_trip.visibility = View.GONE
+//                line_button_manage_trip_2.visibility = View.VISIBLE
+
+                isShareQR = false
+            }else{
+                tv_share_qrcode.visibility = View.VISIBLE
+//                line_button_manage_trip.visibility = View.VISIBLE
+//                line_button_manage_trip_2.visibility = View.GONE
+
+                isShareQR = true
+            }
+        }
+
+        if (intent.extras != null && intent.extras!!.containsKey(Constants.KEY_INTENT_NOTIF_ID_INT)) {
+
+            val intent = intent
+            val NOTIF_ID_INT = intent.getIntExtra(Constants.KEY_INTENT_NOTIF_ID_INT, -1)
+
+            //clear notification
+            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.cancel(NOTIF_ID_INT)
+
+        }
+
+        // intent.extras.getBoolean(Constants.IS_FROM_MANAGE_TRIP)
+        // "e63f36e3-87bd-4775-a625-98df872a9b5a"
+        if (intent.extras != null && intent.extras!!.containsKey(Constants.KEY_INTENT_TRIP_CODE)) {
+            getSummary()
+            //isFromList = intent.extras.getBoolean(Constants.KEY_FROM_LIST)
+        }
+    }
+
+    private fun getSummary() {
+        tripId = intent.extras.getString(Constants.KEY_INTENT_TRIPID)
+        tripCode = intent.extras.getString(Constants.KEY_INTENT_TRIP_CODE)
+//        tripId = "e7cb11a4-b90b-4e92-b5ed-c93a547b92ff"
+//        tripCode = "TP202003090006"
+        employIdUser = getProfile().employId
+
+        showLoadingOpsicorp(true)
+        GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
+            override fun successLoad(summaryModel: SummaryModel) {
+                tripSummary = summaryModel
+                mapperlistParticipantAndApproval()
+                hideLoadingOpsicorp()
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                failedWarning(message)
+            }
+        })
+
+        /*showLoadingOpsicorp(true)
+        GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
+            override fun successLoad(summaryModel: SummaryModel) {
+                tripSummary = summaryModel
+                mapperlistParticipantAndApproval()
+                hideLoadingOpsicorp()
+
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                failedWarning(message)
+            }
+        })*/
+    }
+
+    private fun mapperlistParticipantAndApproval() {
+        setDataApproval()
+        setDataSummary()
+        setDataAttacMent(tripSummary.attactment)
+
+//            tv_cost_center.text = tripSummary.costCenter
+//            tv_budget.text = tripSummary.budget.toString()
+//            tv_mount.text = tripSummary.allowance
+//        showLineButtonApproval()
+    }
+
+
+    fun initRecyclerViewApproval(){
+        tv_list_approval.visibility = View.VISIBLE
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv_approval.layoutManager = layoutManager
+        rv_approval.itemAnimator = DefaultItemAnimator()
+        rv_approval.adapter = adapterApproval
+    }
+
+    private fun initRecyclerViewParticipant() {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv_participant.layoutManager = layoutManager
+        rv_participant.itemAnimator = DefaultItemAnimator()
+        rv_participant.adapter = adapterParticpant
+
+        adapterParticpant.setOnclickListener(object :OnclickListenerRecyclerView{
+            override fun onClick(views: Int, position: Int) {
+                when (views){
+                    -1 -> {
+                        if (Constants.isApproval){
+                            if (dataParticipant[position].employId != getProfile().employId){
+                                val bundle = Bundle()
+                                bundle.putString(Constants.KEY_INTENT_TRIPID,tripId)
+                                bundle.putString(Constants.Summary,Serializer.serialize(tripSummary,SummaryModel::class.java))
+                                bundle.putString(Constants.ID_PARTICIPANT,dataParticipant[position].idParticipant)
+                                bundle.putString(Constants.JOB_TITLE,dataParticipant[position].jobtitle)
+                                bundle.putString(Constants.NAME_PARTICIPANT,dataParticipant[position].name)
+
+                                bundle.putString(Constants.COSTCENTER,dataParticipant[position].costCenterCode + " - " + dataParticipant[position].costCenterName)
+                                bundle.putString(Constants.BUDGET,dataParticipant[position].budgetCode + " - " + dataParticipant[position].budgetName)
+
+                                //Log.d("ckbudget","" + dataParticipant[position].budgetCode + " - " + dataParticipant[position].budgetName + ", cost " + dataParticipant[position].costCenterCode  )
+                                bundle.putString(Constants.EMPLOY_ID,dataParticipant[position].employId)
+                                bundle.putString(Constants.STATUS_MEMBER,dataParticipant[position].status)
+
+
+
+                                val status = dataParticipant[position].status
+                                gotoActivityResultWithBundle(DetailParticipantActivity::class.java,bundle,Constants.DETAIL_PERTICIPANT_INTENT)
+
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+
+    fun initRecyclerViewAttachment() {
+        val layoutManager = LinearLayoutManager(this)
+        rv_attachment.layoutManager = layoutManager
+        rv_attachment.itemAnimator = DefaultItemAnimator()
+        rv_attachment.adapter = adapter
+
+        adapter.setOnclickListener(object :OnclickListenerRecyclerView{
+            override fun onClick(views: Int, position: Int) {
+                when (views){
+                    R.id.image_delet -> {
+                        dataAttachment.removeAt(position)
+                        adapter.notifyItemChanged(position)
+                        removeAttactment(position)
+                    }
+                }
+            }
+        })
+
+        adapter.setData(dataAttachment)
+    }
+
+    private fun removeAttactment(position: Int) {
+
+    }
+
+    fun failedWarning(message:String) {
+        if (message.isNotEmpty()){
+            showAlert("Sorry",message)
+        }
+        else {
+            showAlert("Sorry","failed to retrieve data")
+        }
+    }
+
+    fun showAlert(title: String, message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setCancelable(false)
+        builder.setPositiveButton("Ok") { dialog, which -> backtoDashboard() }
+        builder.create().show()
+    }
+
+    private fun backtoDashboard() {
+        if (Constants.FROM_SUCCESS_CHECKOUT){
+            gotoActivity(HomeActivity::class.java)
+        }
+        else {
+            finish()
+        }
+    }
+
+
+    private fun setDataAttacMent(mData:ArrayList<UploadModel>){
+
+/*        mData.pathOriginalLocalImage = imagePath
+        mData.pathLocalImage = splitName.get(splitName.size-1)
+        mData.statusUploaded = "success"*/
+
+        if (mData.isNotEmpty()){
+            rv_attachment.visibility = View.VISIBLE
+            dataAttachment.clear()
+            dataAttachment.addAll(mData)
+            adapter.setData(dataAttachment)
+            title_attachment.visibility = View.VISIBLE
+            line_dot_attacthment.visibility = View.VISIBLE
+            title_attachment.text = "Attachment Files"
+        }
+        else{
+            rv_attachment.visibility = View.GONE
+//            title_attachment.text = "No attachment Files"
+            line_dot_attacthment.visibility = View.GONE
+            title_attachment.visibility = View.GONE
+        }
+
+    }
+
+    private fun setDataApproval() {
+        dataApproval.clear()
+        dataParticipant.clear()
+
+        if (tripSummary.tripParticipantModels.filter {
+                    it.employId == getProfile().employId
+                }.isNullOrEmpty()){
+            // get approval by id participant
+            tripSummary.tripParticipantModels.filter {
+                it.employId == getProfile().employId
+            }.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.forEachIndexed { index, participantModel ->
+                    val mDataParticipant = ParticipantModel()
+
+                    mDataParticipant.status = tripParticipantsItemModel.status
+                    mDataParticipant.isApproval = true
+                    mDataParticipant.jobtitle = participantModel.jobTitle
+                    mDataParticipant.budgetCode = "B00021"
+                    mDataParticipant.jobtitle   = "Approval (${index+1})"
+                    mDataParticipant.budgetName = "Budget Mobile Developer"
+                    mDataParticipant.name = participantModel.name
+                    mDataParticipant.imgUrl = participantModel.image
+
+                    dataApproval.add(mDataParticipant)
+                }
+            }
+        }
+
+        //get participant by approval
+        try {
+            tripSummary.tripParticipantModels.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.filter {
+                    it.employId == getProfile().employId
+                }.forEachIndexed { index, participantModel ->
+                    val model = ParticipantModel()
+                    model.name              = tripParticipantsItemModel.fullName
+                    model.employId          = tripParticipantsItemModel.employId
+                    model.idParticipant     = tripParticipantsItemModel.id
+                    model.status            = tripSummary.statusView
+                    model.isApproval        = false
+                    model.jobtitle          = tripParticipantsItemModel.jobtitle
+                    model.costCenterCode    = tripParticipantsItemModel.costCenterCode
+                    model.costCenterName    = tripParticipantsItemModel.costCenterName
+                    model.budgetCode        = tripParticipantsItemModel.budgetCode
+                    model.budgetName        = tripParticipantsItemModel.budgetName
+                    model.approval          = tripParticipantsItemModel.dataApproval
+
+                    model.imgUrl            = ""
+
+                    tv_budget.text      = model.budgetCode + " - " + model.budgetName
+                    tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
+
+                    dataParticipant.add(model)
+                }
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
+
+
+
+        /*if (Constants.isApproval&&Constants.isParticipant){
+
+            // get approval by id participant
+            tripSummary.tripParticipantModels.filter {
+                it.employId == getProfile().employId
+            }.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.forEachIndexed { index, participantModel ->
+                    val mDataParticipant = ParticipantModel()
+
+                    mDataParticipant.status = tripParticipantsItemModel.status
+                    mDataParticipant.isApproval = true
+                    mDataParticipant.jobtitle = participantModel.jobTitle
+                    mDataParticipant.budgetCode = "B00021"
+                    mDataParticipant.jobtitle   = "Approval (${index+1})"
+                    mDataParticipant.budgetName = "Budget Mobile Developer"
+                    mDataParticipant.name = participantModel.name
+                    mDataParticipant.imgUrl = participantModel.image
+
+                    dataApproval.add(mDataParticipant)
+                }
+            }
+
+            //get participant by approval
+            tripSummary.tripParticipantModels.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.filter {
+                    it.employId == getProfile().employId
+                }.forEachIndexed { index, participantModel ->
+                    val model = ParticipantModel()
+                    model.name              = tripParticipantsItemModel.fullName
+                    model.employId          = tripParticipantsItemModel.employId
+                    model.idParticipant     = tripParticipantsItemModel.id
+                    model.status            = tripSummary.statusView
+                    model.isApproval        = false
+                    model.jobtitle          = tripParticipantsItemModel.jobtitle
+                    model.costCenterCode    = tripParticipantsItemModel.costCenterCode
+                    model.costCenterName    = tripParticipantsItemModel.costCenterName
+                    model.budgetCode        = tripParticipantsItemModel.budgetCode
+                    model.budgetName        = tripParticipantsItemModel.budgetName
+                    model.approval          = tripParticipantsItemModel.dataApproval
+
+                    model.imgUrl            = ""
+
+                    tv_budget.text      = model.budgetCode + " - " + model.budgetName
+                    tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
+
+                    dataParticipant.add(model)
+                }
+            }
+
+        }
+        else if (Constants.isApproval&&!Constants.isParticipant) {
+            //get participant by approval
+            tripSummary.tripParticipantModels.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.filter {
+                    it.employId == getProfile().employId
+                }.forEachIndexed { index, participantModel ->
+                    val model = ParticipantModel()
+                    model.name = tripParticipantsItemModel.fullName
+                    model.employId = tripParticipantsItemModel.employId
+                    model.idParticipant = tripParticipantsItemModel.id
+                    model.status = tripSummary.statusView
+                    model.isApproval = false
+                    model.jobtitle = tripParticipantsItemModel.jobtitle
+                    model.costCenterCode    = tripParticipantsItemModel.costCenterCode
+                    model.costCenterName    = tripParticipantsItemModel.costCenterName
+                    model.budgetCode        = tripParticipantsItemModel.budgetCode
+                    model.budgetName        = tripParticipantsItemModel.budgetName
+                    model.approval          = tripParticipantsItemModel.dataApproval
+
+                    tv_budget.text      = ": " + model.budgetCode + " - " + model.budgetName
+                    tv_cost_center.text = ": " + model.costCenterCode + " - " + model.costCenterName
+
+                    model.imgUrl = ""
+                    dataParticipant.add(model)
+                }
+            }
+
+        }
+        else if(!Constants.isApproval&&Constants.isParticipant) {
+            // get approval by id participant
+            tripSummary.tripParticipantModels.filter {
+                it.employId == getProfile().employId
+            }.forEachIndexed { index, tripParticipantsItemModel ->
+                tripParticipantsItemModel.dataApproval.forEachIndexed { index, participantModel ->
+                    val mDataParticipant = ParticipantModel()
+
+                    mDataParticipant.status = tripSummary.statusView
+                    mDataParticipant.isApproval = true
+                    mDataParticipant.jobtitle = participantModel.jobTitle
+                    mDataParticipant.budgetCode = "B00021"
+                    mDataParticipant.jobtitle   = "Approval (${index+1})"
+                    mDataParticipant.budgetName = "Budget Mobile Developer"
+                    mDataParticipant.name = participantModel.name
+                    mDataParticipant.imgUrl = participantModel.image
+
+                    dataApproval.add(mDataParticipant)
+                }
+            }
+
+        }*/
+
+        if (dataApproval.isNotEmpty()){
+            tv_list_approval.visibility = View.VISIBLE
+            tv_notice_title.visibility = View.VISIBLE
+            rv_approval.visibility     = View.VISIBLE
+            tv_list_approval.text = "List Approver (${dataApproval.size})"
+            adapterApproval.setData(dataApproval)
+        }
+        else {
+            rv_approval.visibility     = View.GONE
+            tv_list_approval.visibility = View.GONE
+            tv_notice_title.visibility = View.GONE
+        }
+
+        if (dataParticipant.isNotEmpty()){
+            tv_list_participant_num.visibility = View.VISIBLE
+            tv_notice_participant.visibility = View.VISIBLE
+            rv_participant.visibility        = View.VISIBLE
+            tv_list_participant_num.text = "List Participant (${dataParticipant.size})"
+            adapterParticpant.setData(dataParticipant)
+        }
+        else{
+            rv_participant.visibility          = View.GONE
+            tv_list_participant_num.visibility = View.GONE
+            tv_notice_participant.visibility   = View.GONE
+        }
+
+    }
+
+    fun setDataSummary() {
+        image_barcode.setImageBitmap(Globals.stringToBarcodeImage(tripCode))
+        tv_total_amount.text = "IDR ${Globals.formatAmount(tripSummary.totalExpenditure.split(".")[0])}"
+        tv_tripcode.text    = tripCode
+        tv_status.text      = tripSummary.statusView
+
+        if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.CompletelyApproved){
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_green)
+            tv_expired.visibility = View.GONE
+            line_button_approve_reject.visibility = View.GONE
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.CompletelyRejected){
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
+            tv_expired.visibility = View.GONE
+            line_button_approve_reject.visibility = View.GONE
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.TripCompleted){
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_green)
+            tv_expired.visibility = View.GONE
+            line_button_approve_reject.visibility = View.GONE
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.PartiallyApprovedAndReject){
+            validationButtonApproval()
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.PartiallyApproved){
+            validationButtonApproval()
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_green)
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.PartiallyRejected){
+            validationButtonApproval()
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
+        }
+        else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.Draft){
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_gray)
+            tv_expired.visibility = View.GONE
+            tv_total_amount.visibility = View.GONE
+        }else if(tripSummary.status?.toInt() ?: -1 == Constants.StatusTrip.WaitingForApproval){
+            validationButtonApproval()
+            tv_status.text = "Waiting"
+        }
+
+        id_tv_create_date.text = "Created Date : ${tripSummary.creationDate}"
+        tv_expired.text     = "${tripSummary.expiredRemaining} left to expired"
+        tv_purpose.text     = tripSummary.purpose
+        tv_destination.text = tripSummary.destinationName
+        tv_start_date.text  = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
+        tv_end_date.text    = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
+
+        tv_notes.text       = tripSummary.remark
+
+        try {
+            if (tripSummary.remark?.isEmpty()!!){
+                tv_notes.visibility = View.GONE
+                titleNotes.visibility = View.GONE
+            }
+            else{
+                tv_notes.visibility = View.VISIBLE
+                titleNotes.visibility = View.VISIBLE
+            }
+        }catch (e:Exception){
+            tv_notes.visibility = View.GONE
+            titleNotes.visibility = View.GONE
+        }
+
+        initDataItem()
+        initViewDraft()
+
+        if(isUpdateSummary) {
+            line_button_approve_reject.visibility = View.GONE
+        }
+    }
+
+    private fun initViewDraft() {
+        val from = intent.extras.getString(Constants.KEY_FROM)
+        if(from.equals(Constants.FROM_DRAFT)){
+            line_button_approve_reject.visibility = View.GONE
+            line_button_submit_trip.visibility = View.VISIBLE
+            addDataAccomodation()
+        }else{
+            line_button_submit_trip.visibility = View.GONE
+        }
+    }
+
+    private fun initDataItem() {
+
+        if(dataParticipant.isNotEmpty()){
+            addDataAccomodation()
+        }
+        else {
+            line_items.visibility = View.GONE
+            rv_item_order.visibility = View.GONE
+            title_trip_total.visibility = View.GONE
+            lineBottomItemOrder.visibility = View.GONE
+        }
+    }
+
+    private fun validationButtonApproval() {
+        if(dataParticipant.isEmpty()){
+            line_button_approve_reject.visibility = View.GONE
+        }
+        else{
+            line_button_approve_reject.visibility = View.VISIBLE
+        }
+    }
+
+
+    private fun addDataAccomodation() {
+        rv_item_order.visibility = View.VISIBLE
+        line_items.visibility = View.VISIBLE
+        title_trip_total.visibility = View.VISIBLE
+
+        dataItems.clear()
+        val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId==getProfile().employId }.first()
+        val totalAccomdation = dataAccomodation.itemFlightModel.size+dataAccomodation.itemTrainModel.size+dataAccomodation.itemHotelModel.size
+        title_trip_total.text = "Your Trip Items Detail (${totalAccomdation})"
+
+        var number = 1
+        setLog("--------------------------")
+        setLog(tripSummary.tripParticipantModels.filter { it.employId==getProfile().employId }.first().itemTrainModel.size.toString())
+//        checkEnableOption(dataAccomodation)
+
+        if (dataAccomodation.itemFlightModel.isNotEmpty()){
+            val mDataHeaderFlight = SummaryModelItems()
+            mDataHeaderFlight.typeCard = "HEADER"
+            mDataHeaderFlight.title = number.toString() + ". Flight Summary"
+            mDataHeaderFlight.reason = reasonItemFlight(dataAccomodation,"Flight")
+            if(tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.Draft){
+                mDataHeaderFlight.reason = ""
+            }
+            dataItems.add(mDataHeaderFlight)
+            number += 1
+        }
+
+        dataAccomodation.itemFlightModel.forEachIndexed { index, itemFlightModel ->
+            val mDataFlighModel = SummaryModelItems()
+            mDataFlighModel.typeCard = "FLIGHT"
+            mDataFlighModel.title    = "flight"
+            mDataFlighModel.dataItemFlight = itemFlightModel
+            dataItems.add(mDataFlighModel)
+        }
+
+        if (dataAccomodation.itemTrainModel.isNotEmpty()){
+            val mDataHeaderTrain  = SummaryModelItems()
+            mDataHeaderTrain.typeCard  = "HEADER"
+            mDataHeaderTrain.title  = number.toString() + ". Train Summary"
+            if(tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.Draft){
+                mDataHeaderTrain.reason = ""
+            }
+            dataItems.add(mDataHeaderTrain)
+            number += 1
+        }
+
+        dataAccomodation.itemTrainModel.forEachIndexed { index, itemTrainModel ->
+            val mDataTrainModel = SummaryModelItems()
+            mDataTrainModel.typeCard = "TRAIN"
+            mDataTrainModel.title    = "train"
+            mDataTrainModel.dataItemTrain = itemTrainModel
+            dataItems.add(mDataTrainModel)
+        }
+
+        if (dataAccomodation.itemHotelModel.isNotEmpty()){
+            val mDataHeaderHotel  = SummaryModelItems()
+            mDataHeaderHotel.typeCard  = "HEADER"
+            mDataHeaderHotel.title  = number.toString() + ". Hotel"
+            mDataHeaderHotel.reason = reasonItemFlight(dataAccomodation,"Hotel")
+            if(tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.Draft){
+                mDataHeaderHotel.reason = ""
+            }
+            dataItems.add(mDataHeaderHotel)
+            number += 1
+        }
+
+        dataAccomodation.itemHotelModel.forEachIndexed { index, itemTrainModel ->
+            val mData = SummaryModelItems()
+            mData.typeCard = "HOTEL"
+            mData.title    ="hotel"
+            mData.dataItemHotel = itemTrainModel
+            dataItems.add(mData)
+        }
+
+        adapterItemOrder.setData(dataItems)
+    }
+
+    private fun reasonItemFlight(dataAccomodation: TripParticipantsItemModel,type: String): String {
+        var dataTotal = 0
+
+        dataAccomodation.dataApproval.forEachIndexed { index, participantModel ->
+            when (type){
+                "Flight" -> {
+                    if (participantModel.followUpFlight.isNotEmpty()){
+                        dataTotal++
+                    }
+                }
+                "Train"-> {
+                    if (participantModel.followUpTrain.isNotEmpty()){
+                        dataTotal++
+                    }
+                }
+                "Hotel" -> {
+                    if (participantModel.followUpHotel.isNotEmpty()){
+                        dataTotal++
+                    }
+                }
+            }
+
+         /*   setLog("-------------==================")
+            setLog(participantModel.name)
+            setLog(participantModel.layer.toString())
+            setLog(participantModel.isCompletelyReviewed.toString())
+            setLog(participantModel.followUpFlight)
+            setLog(participantModel.followUpTrain)
+            setLog(participantModel.followUpHotel)*/
+        }
+
+        if (dataTotal == dataAccomodation.dataApproval.size){
+            return "Approved"
+        } else if (dataTotal == 0){
+            return ""
+        } else{
+            return "Approved by ${dataTotal} (${dataAccomodation.dataApproval.size})"
+        }
+    }
+
+/*    private fun checkEnableOption(tripParticipant: TripParticipantsItemModel) {
+
+        if (Constants.isApproval){
+            var positionApproval = -1
+            tripParticipant.dataApproval.forEachIndexed { index, participantModel ->
+                if (participantModel.employId == getProfile().employId){
+                    positionApproval = index
+                }
+            }
+
+            if (positionApproval>0){
+                if (tripParticipant.dataApproval[positionApproval].layer == tripParticipant.dataApproval[(positionApproval-1)].layer){
+                    setAdapterButtonOption(tripParticipant.dataApproval.filter { it.employId == getProfile().employId }.first())
+                }
+                else{
+                    setButtonRejectOrApprove(tripParticipant.dataApproval[(positionApproval-1)].isCompletelyReviewed)
+                }
+            }
+            else{
+                setAdapterButtonOption(tripParticipant.dataApproval.filter { it.employId == getProfile().employId }.first())
+            }
+        }
+        else{
+            setButtonRejectOrApprove(false)
+        }
+    }
+
+    private fun setAdapterButtonOption(approval : ParticipantModelDomain) {
+        adapterItemOrder.optionMenuFlight = approval.followUpFlight.isEmpty()
+        adapterItemOrder.optionMenuTrain  = approval.followUpTrain.isEmpty()
+        adapterItemOrder.optionMenuHotel  = approval.followUpHotel.isEmpty()
+
+        if (approval.isCompletelyReviewed){
+            line_button_approve_reject.visibility = View.GONE
+        }else {
+            line_button_approve_reject.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setButtonRejectOrApprove(enable:Boolean) {
+        adapterItemOrder.optionMenuFlight = enable
+        adapterItemOrder.optionMenuTrain  = enable
+        adapterItemOrder.optionMenuHotel  = enable
+
+        line_button_approve_reject.visibility = View.GONE
+    }*/
+
+    private fun initRecyclerViewItem() {
+
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv_item_order.layoutManager = layoutManager
+        rv_item_order.itemAnimator = DefaultItemAnimator()
+        rv_item_order.adapter = adapterItemOrder
+
+
+        adapterItemOrder.setOnclickListener(object :OnclickListenerRecyclerView{
+            override fun onClick(views: Int, position: Int) {
+                when(views){
+                    Constants.OPTION_FLIGHT_APPROVE -> {
+                        approveOrRejectItemRequest("1","0")
+                    }
+                    Constants.OPTION_TRAIN_APPROVE -> {
+                        approveOrRejectItemRequest("1","2")
+                    }
+                    Constants.OPTION_HOTEL_APPROVE -> {
+                        approveOrRejectItemRequest("1","1")
+                    }
+
+                    Constants.OPTION_FLIGHT_REJECT -> {
+                        approveOrRejectItemRequest("0","0")
+                    }
+                    Constants.OPTION_TRAIN_REJECT -> {
+                        approveOrRejectItemRequest("0","2")
+                    }
+                    Constants.OPTION_HOTEL_REJECT -> {
+                        approveOrRejectItemRequest("0","1")
+                    }
+                }
+            }
+        })
+    }
+
+    fun approveOrRejectItemRequest(action: String, type:String){
+        showDialog("")
+        GetDataApproval(getBaseUrl()).approveItem(getToken() ,
+                getData(action,type),object : CallbackApprovAll {
+            override fun successLoad(data: String) {
+                isUpdateSummary = true;
+                updateSummary()
+            }
+
+            override fun failedLoad(message: String) {
+                hideDialog()
+                showAllert("Sorry",message)
+            }
+        })
+    }
+
+    private fun updateSummary() {
+        GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
+            override fun successLoad(summaryModel: SummaryModel) {
+                tripSummary = summaryModel
+                mapperlistParticipantAndApproval()
+                hideDialog()
+            }
+
+            override fun failedLoad(message: String) {
+                hideDialog()
+                failedWarning(message)
+            }
+        })
+    }
+
+    private fun getData(action: String, type: String): HashMap<Any, Any> {
+        val data = ApproverPerItemRequest()
+        data.approvalAction  = action
+        data.tripType   = type
+        data.employeeId = getProfile().employId
+        data.tripId     = tripSummary.tripId
+        data.tripParticipantId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().id
+        setLog("-----> "+action+" "+type+" "+data.tripId)
+        return Globals.classToHashMap(data, ApproverPerItemRequest::class.java)
+    }
+
+
+    override fun btnBack() {
+        backtoDashboard()
+    }
+
+    override fun logoCenter() {
+
+    }
+
+    override fun btnCard() {
+        backListener()
+    }
+
+    private fun backListener() {
+        val layoutInflater = getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = layoutInflater.inflate(R.layout.menu_popup_list_my_booking, null)
+        val btnDetail = layout.findViewById(R.id.tv_view_detail) as TextView
+        val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
+
+        btnDetail.text = "Back"
+        btnRemove.text = "Help and guide"
+
+        btnDetail.setOnClickListener {
+            if(isUpdateSummary){
+                val intent = Intent()
+                intent.putExtra("action", "load list")
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
+            else{
+                backtoDashboard()
+            }
+        }
+
+        btnRemove.setOnClickListener {
+
+        }
+
+        Globals.showPopup(toolbar.getImageCart(),layout)
+    }
+
+
+    override fun onClick(view: View?) {
+        when (view){
+            image_barcode -> {
+                QRPopUp.show(this,tripCode)
+            }
+        }
+    }
+
+    fun submitTripListener(view: View){
+        Log.d("managetrx","submit")
+    }
+
+    fun addTripItemListener(view: View){
+        gotoAddItem()
+    }
+
+    fun showApproveAllDialog(view: View){
+        ListParticipantDialog(this).create(this,dataParticipant)
+    }
+
+    fun rejectListener(view: View){
+        rejectOrApproveSelected("0")
+    }
+
+    fun rejectOrApproveSelected(action: String){
+        showDialog("")
+        GetDataApproval(getBaseUrl()).approveAll(Globals.getToken(),dataBodyApproved(action),object : CallbackApprovAll {
+            override fun successLoad(data: String) {
+                hideDialog()
+                when(action){
+                    "0"-> {
+                        allreadyApprovOrRejected("Success Rejected")
+                    }
+                    "1" -> {
+                        allreadyApprovOrRejected("Success Approved")
+                    }
+                }
+
+            }
+
+            override fun failedLoad(message: String) {
+                hideDialog()
+                showAllert("Sorry",message)
+            }
+        })
+    }
+
+    private fun allreadyApprovOrRejected(string: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(string)
+        builder.setPositiveButton("Ok") { dialog, which ->
+            val intent = Intent()
+            intent.putExtra("action", "load list")
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }
+        builder.create().show()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if(isUpdateSummary){
+            val intent = Intent()
+            intent.putExtra("action", "load list")
+            setResult(Activity.RESULT_OK, intent)
+            finish()
+        }else{
+            backtoDashboard()
+        }
+    }
+
+    private fun dataBodyApproved(action:String): HashMap<Any, Any> {
+        val mData = ApprovalAllRequest()
+        mData.approvalAction = action
+        mData.employeeId     = getProfile().employId
+        mData.tripId         = tripId
+
+        return Globals.classToHashMap(mData, ApprovalAllRequest::class.java)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            Constants.DETAIL_PERTICIPANT_INTENT -> {
+                if(resultCode == Activity.RESULT_OK){
+                    val intent = data?.getStringExtra("action")
+                    when(intent){
+                        "to_list_refresh" -> {
+                            val mData = Intent()
+                            mData.putExtra("action", "load list")
+                            setResult(Activity.RESULT_OK, mData)
+                            finish()
+                        }
+                        "to_list" -> {
+                            backtoDashboard()
+                        }
+                        "to_detail" -> {
+                            updateSummary()
+                            isUpdateSummary = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    var dataParticipantSelected = ArrayList<String>()
+    var lastParticipantApprove  = 0
+
+    override fun selected(data: ArrayList<String>) {
+        dataParticipantSelected.clear()
+        dataParticipantSelected = data
+        if (dataParticipantSelected.isNotEmpty()){
+            approveOrRejectAllpactRequest()
+        }
+    }
+
+    private fun approveOrRejectAllpactRequest() {
+        showDialog("")
+        GetDataApproval(getBaseUrl()).approvePerPax(getToken(),getDataPerpact(dataParticipantSelected[lastParticipantApprove]),object :CallbackApprovAll{
+            override fun successLoad(data: String) {
+                setLog(dataParticipant.filter { it.idParticipant == dataParticipantSelected[lastParticipantApprove] }.first().name)
+                setLog(dataParticipant.filter { it.idParticipant == dataParticipantSelected[lastParticipantApprove] }.first().idParticipant)
+
+                lastParticipantApprove++
+                if (lastParticipantApprove<dataParticipantSelected.size){
+                    approveOrRejectAllpactRequest()
+                }
+                else{
+                    hideDialog()
+                    successApproveParticipant("Success approve participant ")
+                }
+
+            }
+
+            override fun failedLoad(message: String) {
+                hideDialog()
+                showAllert("Sorry","there was a failure to approve ${dataParticipantSelected[lastParticipantApprove]} travel plans ")
+            }
+        })
+    }
+
+    private fun successApproveParticipant(message: String) {
+        Log.d("isUpdateSummary",":2" + isUpdateSummary)
+        isUpdateSummary = true
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Ok") {
+            dialog, which ->  getSummary()
+        }
+        builder.create().show()
+    }
+
+
+    private fun getDataPerpact(idParticipant: String): HashMap<Any, Any> {
+        val mData = ApprovePerPaxRequest()
+        mData.approvalAction = "1"
+        mData.employeeId     = getProfile().employId
+        mData.tripId         = tripSummary.tripId
+        mData.tripParticipantId = idParticipant
+        return Globals.classToHashMap(mData, ApprovePerPaxRequest::class.java)
+    }
+
+    fun gotoAddItem(){
+        if (tripSummary.contact.employeeId.equals(getProfile().employId)){
+            val model = SuccessCreateTripPlaneModel()
+            model.purpose     = tripSummary.purpose
+            model.idTripPlant = tripSummary.tripId
+            model.status      = tripSummary.status
+            model.tripCode    = tripSummary.code
+            model.createDate  = tripSummary.creationDate
+            model.timeExpired = tripSummary.expiredRemaining
+            model.destinationName  = tripSummary.destinationName
+            model.destinationId = tripSummary.destination
+            model.originId      = tripSummary.origin
+            model.originName  = tripSummary.originName
+            model.startDate   = tripSummary.startDate
+            model.endDate     = tripSummary.returnDate
+            model.buggetId    = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
+            model.costCenter  = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
+            Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
+
+            setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
+
+            val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
+            if (Date().before(dateFormatter.parse(tripSummary.returnDate))){
+                val bundle = Bundle()
+                bundle.putInt(TYPE_ACCOMODATION,Constants.KEY_ACCOMODATION)
+                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+            }
+            else {
+                showAlert("Sorry","This Trip Plant return date is expired")
+            }
+        }
+    }
+}

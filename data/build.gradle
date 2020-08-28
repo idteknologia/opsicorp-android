@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+    }
+    productFlavors {
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    def rootDependencies  = rootProject.ext.rootDependencies
+    def dataDependencies  = rootProject.ext.dataDependencies
+    def testDependencies  = rootProject.ext.dataTestDependencies
+
+    implementation rootDependencies.appcompact
+    implementation rootDependencies.kotlin
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation rootDependencies.kotlinJdk8
+    implementation rootDependencies.gson
+    implementation rootDependencies.dagger
+    implementation rootDependencies.daggerAndroid
+    implementation rootDependencies.daggerAndroidSupport
+    kapt rootDependencies.kaptDagger
+    kapt rootDependencies.kaptDaggerAndroid
+    implementation rootDependencies.rxJavaAdapter2
+    implementation rootDependencies.rxJava2
+    implementation rootDependencies.rxAndroid
+    compileOnly rootDependencies.annotationGlassfish
+
+    testImplementation testDependencies.junit
+    testImplementation testDependencies.assertj
+    testImplementation testDependencies.mockito
+
+
+    implementation dataDependencies.guava
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.converterGson
+    implementation dataDependencies.okhttpLogging
+    annotationProcessor dataDependencies.annotationProcessor
+//    implementation dataDependencies.annotationGlassfish
+//    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+//    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+//    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+//    implementation 'io.reactivex:rxandroid:0.24.0'
+    implementation "org.koin:koin-android:2.0.1"
+    implementation "org.koin:koin-android-scope:2.0.1"
+    implementation "org.koin:koin-android-viewmodel:2.0.1"
+    implementation "org.koin:koin-android-ext:2.0.1"
+
+    implementation 'org.koin:koin-test:2.0.1'
+
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+//    implementation dataDependencies.room
+//    implementation dataDependencies.annotationProcessor
+//    kapt dataDependencies.kapt
+    implementation project(':domain')
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'

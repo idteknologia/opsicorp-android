@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/line_center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/line_name_airline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f6f8f8"
+            android:paddingRight="25dp">
+
+            <LinearLayout
+                android:id="@+id/line_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_airline"
+                    android:layout_width="31dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="13dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title_flight"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sriwijaya Air"
+                        android:textColor="#24253d"
+                        android:textSize="14dp"
+                        android:layout_marginBottom="4dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_class_flight"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Economy Class"
+                        android:textColor="#8024253d"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="36dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_flight_number"
+                    style="@style/RobotoBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="GA 210"
+                    android:textColor="#9924253d"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/line_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:layout_marginBottom="13dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Airport :"
+                    android:textColor="#939396"
+                    android:textSize="12sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_airport_terminal"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="Soekarno Hatta - Terminal 2F"
+                    android:textColor="#24253d"
+                    android:textSize="12dp" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/line_detail_flight"
+            android:layout_below="@+id/line_name_airline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/img_info"
+                android:layout_marginTop="21dp"
+                android:src="@drawable/information_green"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="30dp"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/rv_facility"
+                android:layout_toEndOf="@+id/img_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_info" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/line_detail_flight"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e0e0e1"></LinearLayout>
+
+
+        <!--<RelativeLayout
+            android:id="@+id/line_banggage"
+            android:orientation="vertical"
+            android:layout_below="@+id/line_detail_flight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_baggage"
+                android:src="@drawable/baggage"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/img_baggage"
+                style="@style/RobotoRegular"
+                android:textSize="12sp"
+                android:text="Baggage 20 kg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_baggage" />
+
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"></LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_below="@+id/line_banggage"
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/img_meal"
+                android:src="@drawable/meal_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="30dp"/>
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@+id/img_meal"
+                style="@style/RobotoRegular"
+                android:textSize="12sp"
+                android:text="Meal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/img_meal" />
+
+
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"></LinearLayout>
+
+        </RelativeLayout>-->
+
+    </RelativeLayout>
+</LinearLayout>

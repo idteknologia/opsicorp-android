@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#f6f8f8"
+    android:layout_height="match_parent">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:fillViewport="true"
+        android:id="@+id/nested_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:visibility="visible"
+                    android:id="@+id/line_ticket"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="29dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:orientation="vertical"
+                        android:id="@+id/ticketView"
+                        app:ticketCornerType="rounded"
+                        app:ticketOrientation="horizontal"
+                        app:ticketScallopRadius="14dp"
+                        app:ticketShowBorder="false"
+                        app:ticketScallopPositionPercent="24"
+                        app:ticketShowDivider="true"
+                        app:ticketDividerType="dash"
+                        app:ticketDividerPadding="0dp"
+                        app:ticketElevation="14dp" >
+
+                    </com.opsigo.travelaja.module.item_custom.ticket_view.TicketView>
+
+                    <LinearLayout
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            style="@style/RobotoRegular"
+                            android:layout_marginTop="17dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textStyle="normal"
+                            android:textColor="#939396"
+                            android:gravity="center_horizontal"
+                            android:text="Airline Booking Code (PNR)" />
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                style="@style/RobotoBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16dp"
+                                android:textStyle="normal"
+                                android:textColor="#24253d"
+                                android:text="TSG14T">
+                            </TextView>
+                        </LinearLayout>
+
+                        <include
+                            android:visibility="gone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/lay_detail_hotel"
+                            layout="@layout/layout_detail_hotel_purchase"></include>
+
+                        <include
+                            android:visibility="visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/lay_detail_train"
+                            layout="@layout/layout_detail_hotel_train"></include>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <include
+                    android:visibility="gone"
+                    layout="@layout/detail_purchase_list_header_flight"
+                    android:id="@+id/flight_header">
+                </include>
+
+                <com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase
+                    android:layout_width="match_parent"
+                    android:id="@+id/pageHotel"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content">
+
+                </com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase>
+
+                <com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pageFlightAndTrain"
+                    android:visibility="visible">
+
+                </com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

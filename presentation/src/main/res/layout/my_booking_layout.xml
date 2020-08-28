@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 Mar 2019 - 20 Dec 2019"
+            android:textSize="14dp"
+            style="@style/RobotoMedium"
+            android:textColor="@color/colorPrimary">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/shadow_bottom">
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <include
+            android:layout_marginTop="42dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/lay_empty"
+            android:visibility="invisible"
+            layout="@layout/empty_cart_view">
+        </include>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_marginBottom="58dp"
+            android:id="@+id/rv_my_booking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"></android.support.v7.widget.RecyclerView>
+
+    </FrameLayout>
+
+
+</LinearLayout>

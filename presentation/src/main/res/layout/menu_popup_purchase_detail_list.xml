@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/rounded_button_white_r5"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/btn_reimbursement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        android:text="Reimbursement"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="13dp"/>
+
+    <LinearLayout
+        android:layout_width="132dp"
+        android:layout_marginRight="7dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="7dp"
+        android:background="#d3d3d8"></LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_back_to_purchase_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="13dp"
+        android:text="Back to Purchase List" />
+
+    <LinearLayout
+        android:layout_width="132dp"
+        android:layout_marginRight="7dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="7dp"
+        android:background="#d3d3d8"></LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_back_to_homepage"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        android:text="Back to Homepage"
+        />
+</LinearLayout>

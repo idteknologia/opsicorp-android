@@ -1,0 +1,20 @@
+package opsigo.com.domainlayer.model.create_trip_plane.save_as_draft
+
+class SuccessCreateTripPlaneModel {
+    var purpose     = ""
+    var idTripPlant = ""
+    var status      = ""
+    var tripCode    = ""
+    var createDate  = ""
+    var createDateView  = ""
+    var timeExpired     = ""
+    var destinationName = ""
+    var destinationId     = ""
+    var originId          = ""
+    var originName      = ""
+    var startDate    = ""
+    var endDate      = ""
+
+    var buggetId     = ""
+    var costCenter   = ""
+}

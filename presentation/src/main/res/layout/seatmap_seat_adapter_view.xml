@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="50dp">
+
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_seatmap_pick"
+        android:layout_width="33dp"
+        android:layout_height="33dp">
+
+        <TextView
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoBold"
+            android:text="A">
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="0dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_header_month"
+        style="@style/RobotoBold"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#212121"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:text="February 2019"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        android:layout_height="92dp" >
+
+        <RelativeLayout
+            android:background="@android:color/white"
+            android:id="@+id/parent_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_marginTop="1dp"
+                android:background="@drawable/card_background_under_api_21"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="90dp">
+
+                <RelativeLayout
+                    android:id="@+id/layout_green"
+                    android:layout_marginTop="1dp"
+                    android:background="@drawable/rounded_button_bottom_all_green"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="59dp">
+
+                    <TextView
+                        android:id="@+id/tv_purpose"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15sp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Meeting in Yogyakarta"
+                        android:textColor="#fff"
+                        android:textSize="14sp"/>
+
+                    <LinearLayout
+                        android:id="@+id/layCity"
+                        android:layout_marginTop="6dp"
+                        android:layout_below="@+id/tv_purpose"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!--                        <ImageView-->
+                        <!--                            android:src="@drawable/ic_point_gps_2"-->
+                        <!--                            android:id="@+id/img_date"-->
+                        <!--                            android:layout_marginLeft="15dp"-->
+                        <!--                            android:layout_marginRight="0dp"-->
+                        <!--                            android:gravity="center"-->
+                        <!--                            android:layout_width="14dp"-->
+                        <!--                            android:layout_height="14dp"/>-->
+
+                        <ImageView
+                            android:src="@drawable/departure_date"
+                            android:id="@+id/img_date"
+                            android:layout_below="@+id/tv_purpose"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="0dp"
+                            android:textSize="12sp"
+                            android:gravity="center"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"/>
+
+                        <TextView
+                            android:id="@+id/tv_date"
+                            android:layout_below="@+id/tv_purpose"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="0dp"
+                            android:textColor="#fff"
+                            android:textSize="12sp"
+                            style="@style/RobotoRegular"
+                            android:text="27 Mar - 31 Mar"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/img_date"/>
+
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/tv_city"-->
+                        <!--                            android:layout_marginLeft="5dp"-->
+                        <!--                            android:textColor="#91929e"-->
+                        <!--                            android:textSize="12sp"-->
+                        <!--                            style="@style/RobotoRegular"-->
+                        <!--                            android:text="Yogyakarta"-->
+                        <!--                            android:gravity="center"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="wrap_content" />-->
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/tv_status"-->
+                        <!--                            android:visibility="gone"-->
+                        <!--                            style="@style/RobotoRegular"-->
+                        <!--                            android:layout_width="wrap_content"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:layout_marginLeft="5dp"-->
+                        <!--                            android:gravity="center"-->
+                        <!--                            android:text="xxx"-->
+                        <!--                            android:textColor="#91929e"-->
+                        <!--                            android:textSize="12sp" />-->
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_trip_code"
+                    android:layout_below="@+id/layout_green"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#24253d"
+                    android:textSize="12sp"
+                    style="@style/RobotoBold"
+                    android:text="TP2018677647341"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:visibility="gone"
+                    android:layout_below="@+id/layout_green"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#24253d"
+                    android:textSize="12sp"
+                    style="@style/RobotoBold"
+                    android:text="status"
+                    android:gravity="center"
+                    android:layout_toRightOf="@id/tv_trip_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/lay_btn_next"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@drawable/rounded_green_stroke_35"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp">
+
+                    <ImageView
+                        android:src="@drawable/ic_chevron_next_orange"
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+
+    </FrameLayout>
+
+</LinearLayout>

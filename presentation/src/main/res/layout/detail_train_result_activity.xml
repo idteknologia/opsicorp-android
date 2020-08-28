@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toolbar">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="185dp"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_below="@+id/toolbar"
+                android:id="@+id/line_title"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#00776a"
+                    android:text="Departure Train" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"></LinearLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/line_title"
+                android:id="@+id/line_name_airline"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="66dp">
+
+                <LinearLayout
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/train_logo"
+                        android:id="@+id/img_airline"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="13dp"
+                        android:layout_width="43dp"
+                        android:layout_height="16dp" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_title_train"
+                            style="@style/RobotoMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gajayana"
+                            android:textColor="#24253d"
+                            android:textSize="14dp" />
+
+                        <TextView
+                            android:id="@+id/tv_class_type"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Economy Class"
+                            android:textColor="#8024253d"
+                            android:textSize="12dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="31dp"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_gerbong"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="KAI-20A"
+                        android:textColor="#9924253d"
+                        android:textSize="12dp" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"></LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="16dp"
+                android:paddingLeft="73dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/line_depart"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_time_departure"
+                        android:textSize="14dp"
+                        android:textColor="#24253d"
+                        style="@style/RobotoBold"
+                        android:text="13:00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_date_departure"
+                        android:textSize="10dp"
+                        android:textColor="#939396"
+                        style="@style/RobotoBold"
+                        android:text="27 Apr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="28dp"
+                    android:layout_below="@+id/line_depart"
+
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tv_time_arrival"
+                        android:textSize="14dp"
+                        android:textColor="#24253d"
+                        style="@style/RobotoBold"
+                        android:text="13:00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_date_arrival"
+                        android:textSize="10dp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="27 Apr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_toEndOf="@+id/line_depart"
+                    android:id="@+id/line_detail_depart"
+                    android:layout_marginLeft="36dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/line_depart">
+                    <TextView
+                        android:id="@+id/tv_name_city_departure"
+                        android:textSize="12dp"
+                        android:textColor="#666666"
+                        style="@style/RobotoRegular"
+                        android:text="Jakarta (GMR)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_name_station_departure"
+                        android:textSize="12dp"
+                        android:textColor="#212121"
+                        style="@style/RobotoBold"
+                        android:text="Gambir Station"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_bloc_station_departure"
+                        android:textSize="10dp"
+                        android:textColor="#8024253d"
+                        style="@style/RobotoRegular"
+                        android:text="Terminal 2F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+
+                    <LinearLayout
+                        android:layout_marginTop="6dp"
+                        android:layout_width="wrap_content"
+                        android:background="@drawable/rounded_green_stroke_50_persen"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_marginLeft="9dp"
+                            android:layout_gravity="center"
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:src="@drawable/ic_clock_black"></ImageView>
+
+                        <TextView
+                            android:id="@+id/line_total_duration"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="9dp"
+                            android:gravity="center"
+                            android:textSize="10sp"
+                            android:textColor="#212121"
+                            style="@style/RobotoMedium"
+                            android:text="2h 20m"
+                            android:layout_width="wrap_content"
+                            android:layout_height="16sp" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_toEndOf="@+id/line_depart"
+                    android:layout_marginLeft="14dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/line_depart">
+                    <ImageView
+                        android:id="@+id/dote_progress"
+                        android:src="@drawable/point_departure"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:orientation="vertical">
+                    </ImageView>
+                    <LinearLayout
+                        android:visibility="visible"
+                        android:id="@+id/line_after_dote_progress"
+                        android:orientation="vertical"
+                        android:background="@drawable/background_dot_vertical"
+                        android:layout_width="1dp"
+                        android:layout_height="53dp">
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:visibility="visible"
+                        android:src="@drawable/point_arrival"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"></ImageView>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="7dp"
+                    android:layout_toEndOf="@+id/line_depart"
+                    android:layout_below="@+id/line_detail_depart"
+                    android:layout_marginLeft="36dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/line_depart">
+                    <TextView
+                        android:id="@+id/tv_name_city_arrival"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        style="@style/RobotoRegular"
+                        android:text="Bandung (BD)"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/tv_name_station_arrival"
+                        android:textSize="12sp"
+                        android:textColor="#212121"
+                        style="@style/RobotoBold"
+                        android:text="Bandung Hall Station"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/tv_bloc_station_arrival"
+                        android:textSize="10dp"
+                        android:textColor="#8024253d"
+                        style="@style/RobotoRegular"
+                        android:text="Terminal 2F"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+            <!--        <android.support.v7.widget.RecyclerView-->
+            <!--            android:layout_marginTop="15dp"-->
+            <!--            android:id="@+id/rv_departure_arrival"-->
+            <!--            android:layout_below="@+id/line_name_airline"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>-->
+
+
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/rv_departure_arrival"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_title_prize_detail"
+                    android:textColor="#00776a"
+                    android:textSize="15sp"
+                    android:text="Price Details"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_marginLeft="4dp"
+                    android:textColor="#91929e"
+                    android:textSize="12dp"
+                    android:text="/ Pax"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+
+
+
+            <RelativeLayout
+                android:layout_below="@+id/tv_title_prize_detail"
+                android:background="#f6f8f8"
+                android:id="@+id/line_prize_detail"
+                android:paddingLeft="26dp"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="66dp">
+
+                <TextView
+                    android:id="@+id/tv_total_passager"
+                    style="@style/RobotoMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Adult x1"
+                    android:textColor="#939396"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_total_prize"
+                    style="@style/RobotoBold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="IDR 110.000"
+                    android:textColor="#d9000000"
+                    android:textSize="15dp" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:id="@+id/header_prize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:paddingLeft="15dp"
+            android:paddingBottom="14dp"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_alignParentLeft="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tv_title_prize"
+                        style="@style/RobotoRegular"
+                        android:text="Total price for 1 pax"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:gravity="center"
+                android:text="IDR 719.000"
+                android:textSize="18sp"
+                style="@style/RobotoMedium"
+                android:textColor="#24253D"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_including"
+                android:textSize="10sp"
+                android:textColor="#939396"
+                style="@style/RobotoRegular"
+                android:text="Including all fare and VAT"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:id="@+id/btn_next"
+                app:text="Detail Departing"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="@android:color/white"-->
+<!--        android:id="@+id/header_prize"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <LinearLayout-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:paddingBottom="14dp"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/tv_title_prize"-->
+<!--                        style="@style/RobotoRegular"-->
+<!--                        android:text="Total price for 1 pax"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content" />-->
+<!--                </LinearLayout>-->
+<!--            </RelativeLayout>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_price"-->
+<!--                android:gravity="center"-->
+<!--                android:text="IDR 719.000"-->
+<!--                android:textSize="20dp"-->
+<!--                style="@style/RobotoMedium"-->
+<!--                android:textColor="#00776a"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_including"-->
+<!--                android:textSize="12sp"-->
+<!--                android:textColor="#939396"-->
+<!--                style="@style/RobotoRegular"-->
+<!--                android:text="Inluding of all fares, taxes &amp; fees"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_height="wrap_content" />-->
+
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <com.opsigo.opsicorp.module.item_custom.button_default.ButtonDefaultOpsicorp-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:id="@+id/btn_next"-->
+<!--                app:text="Book"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:layout_height="wrap_content"></com.opsigo.opsicorp.module.item_custom.button_default.ButtonDefaultOpsicorp>-->
+
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+
+</RelativeLayout>

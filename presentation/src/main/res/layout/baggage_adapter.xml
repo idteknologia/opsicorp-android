@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <TextView
+        android:id="@+id/tv_title_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#00776a"
+        android:text="Departure Flight"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
+
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:paddingTop="11dp"
+        android:paddingBottom="11dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5">
+
+        <ImageView
+            android:id="@+id/img_airline"
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
+            android:background="@color/black">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_city_code"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/img_airline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            android:text="CGK - KNO"
+            android:layout_toRightOf="@+id/img_airline"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_name_passanger"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        style="@style/RobotoBold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#939396"
+        android:text="Mr. Vody Andrian"/>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_list_item_bagage"></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

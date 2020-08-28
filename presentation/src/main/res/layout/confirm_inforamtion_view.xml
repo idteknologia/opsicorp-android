@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundConfirmInformation">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_marginBottom="90dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.opsigo.travelaja.module.accomodation.flight.result.ConfirmationFlight
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/confirmation_flight">
+            </com.opsigo.travelaja.module.accomodation.flight.result.ConfirmationFlight>
+
+        </FrameLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="185dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/shadow_top"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorPureWhite">
+            <RelativeLayout
+                android:background="@color/colorPureWhite"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:src="@drawable/ic_chevron_up"
+                        android:layout_width="11dp"
+                        android:layout_height="11dp" />
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_marginLeft="6dp"
+                        android:text="Total price for 1 pax"
+                        android:textSize="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:gravity="center"
+                android:text="IDR 719.000"
+                android:textSize="20dp"
+                style="@style/RobotoMedium"
+                android:textColor="#00776a"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:textSize="12sp"
+                android:textColor="#939396"
+                style="@style/RobotoRegular"
+                android:text="Inluding of all fares, taxes &amp; fees"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content" />
+
+            <com.opsigo.opsicorp.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btn_next"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"></com.opsigo.opsicorp.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+        </LinearLayout>
+
+    </LinearLayout>-->
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/line_prize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/detail_prize_bottom"></include>
+
+
+</RelativeLayout>

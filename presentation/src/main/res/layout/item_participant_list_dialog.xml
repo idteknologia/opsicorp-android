@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:background="#f9f9f9"
+        android:id="@+id/parent_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/line_border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/cornerRounded">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/line_border_bottom"
+            android:visibility="gone"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#3324253d">
+        </LinearLayout>
+
+
+
+        <RelativeLayout
+            android:paddingBottom="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_jobtitle"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_approval_green"
+                android:textSize="10sp"
+                style="@style/RobotoMedium"
+                android:text="Marketing"
+                android:gravity="center"
+                android:paddingRight="17sp"
+                android:paddingLeft="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"/>
+
+            <RelativeLayout
+                android:id="@+id/line_img_approvar"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="19dp"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp">
+
+                <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                    android:layout_width="42dp"
+                    android:id="@+id/img_participant"
+                    android:layout_height="42dp"
+                    android:src="@drawable/ic_profile"
+                    app:civ_border_width="2dp"
+                    app:civ_circle_background_color="@android:color/black"
+                    app:civ_border_color="#ffffff"/>
+
+            </RelativeLayout>
+
+            <!--<RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp">
+                <com.opsigo.opsicorp.module.item_custom.circle_image.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:civ_border_color="#f5f5f5"
+                    android:src="#f5f5f5"
+                    android:id="@+id/img_profile"
+                    app:civ_circle_background_color="#f5f5f5"/>
+
+                <ImageView
+                    android:id="@+id/img_dummy"
+                    android:padding="20dp"
+                    android:src="@drawable/ic_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>-->
+
+
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_status"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_toEndOf="@+id/tv_jobtitle"
+                android:layout_toRightOf="@+id/tv_jobtitle"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:text="Completely Rejected"
+                android:textColor="#eb0011"
+                android:textSize="10sp"/>
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_below="@+id/tv_jobtitle"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#24253d"
+                android:textSize="16sp"
+                style="@style/RobotoMedium"
+                android:text="Icha Septriasa"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+            <TextView
+                android:id="@+id/tv_status_approve"
+                android:text="Done"
+                android:visibility="gone"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/tv_status"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"/>
+
+
+            <ImageView
+                android:id="@+id/img_check"
+                android:src="@drawable/ic_time_red"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/tv_status"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+
+</FrameLayout>

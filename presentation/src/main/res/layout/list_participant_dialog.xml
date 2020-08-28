@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                style="@style/RobotoBold"
+                android:layout_gravity="right"
+                android:paddingBottom="15dp"
+                android:layout_marginLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="Cancel"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="0dp"
+                    android:orientation="vertical"
+                    android:paddingRight="0dp"
+                    android:paddingBottom="0dp"
+                    android:background="@drawable/rounded_top_white_dialog">
+
+                    <TextView
+                        android:paddingLeft="19dp"
+                        android:paddingRight="19dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="#24253d"
+                        android:id="@+id/tv_total_participant"
+                        android:text="Selected Participant (2)" />
+
+                    <TextView
+                        android:paddingRight="19dp"
+                        android:paddingLeft="19dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="20dp"
+                        android:textColor="#939396"
+                        android:lineSpacingExtra="6sp"
+                        android:text="All participant selected will be approved,
+other than that still waiting for The first Approver."
+                        />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_participant"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </android.support.v7.widget.RecyclerView>
+
+                    <LinearLayout
+                        android:id="@+id/line_button_approve_reject"
+                        android:visibility="visible"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginTop="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/line_approve_all"
+                            android:background="@drawable/rounded_button_yellow"
+                            android:layout_marginLeft="4dp"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/btn_add_trip_item"
+                                android:textColor="#24253d"
+                                android:textSize="16sp"
+                                style="@style/RobotoMedium"
+                                android:text="Approve All"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/line_button_submit_trip"
+                android:visibility="gone"
+                android:layout_marginTop="53dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:onClick="submitTripListener"
+                    android:id="@+id/line_btn_submit"
+                    android:background="@drawable/rounded_button_gray"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="4sp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:onClick="submitTripListener"
+                        android:id="@+id/btn_submit"
+                        android:textColor="#939396"
+                        android:textSize="14sp"
+                        style="@style/RobotoMedium"
+                        android:text="Submit"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:onClick="addTripItemListener"
+                    android:id="@+id/line_add_trip_item"
+                    android:background="@drawable/rounded_button_yellow"
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:onClick="addTripItemListener"
+                        android:textColor="#24253d"
+                        android:textSize="16sp"
+                        style="@style/RobotoMedium"
+                        android:text="@string/add_trip_item"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,30 @@
+package opsigo.com.domainlayer.model.summary
+
+data class ContactModel(
+        val tripPlanId: String = "",
+        val company: Any? = null,
+        val email: Any? = null,
+        val jobTitleName: Any? = null,
+        val address: Any? = null,
+        val firstName: Any? = null,
+        val title: Any? = null,
+        val postalCode: Any? = null,
+        val parentCompanyName: Any? = null,
+        val city: Any? = null,
+        val jobTitle: Any? = null,
+        val mobilePhone: Any? = null,
+        val nationality: Any? = null,
+        val provinceState: Any? = null,
+        val parentCompany: Any? = null,
+        val companyName: Any? = null,
+        val jobTitleId: String = "",
+        val homePhone: Any? = null,
+        val id: String = "",
+        val lastName: Any? = null,
+        val nikEmployee: Any? = null,
+        val employeeId: String = "",
+        val companyCode: Any? = null,
+        val birthDate: Any? = null,
+        val tripHotelId: String = "",
+        val tripFlightId: String = ""
+)

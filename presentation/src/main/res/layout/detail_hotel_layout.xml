@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/line_title"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_name_hotel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Trans Luxury Bandung"
+            android:textColor="#24253d"
+            android:textSize="16dp"
+            style="@style/RobotoMedium"></TextView>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="@drawable/rounded_button_type_hotel">
+                <TextView
+                    android:layout_centerVertical="true"
+                    android:id="@+id/tv_type_hotel"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hotels"
+                    android:textColor="#2b9a8e"
+                    android:textSize="8dp"></TextView>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_marginLeft="7dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ic_start1"
+                    android:layout_marginLeft="2dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/ic_start2"
+                    android:layout_marginLeft="2dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/ic_start3"
+                    android:layout_marginLeft="2dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/ic_start4"
+                    android:layout_marginLeft="2dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+                <ImageView
+                    android:visibility="invisible"
+                    android:id="@+id/ic_start5"
+                    android:layout_marginLeft="2dp"
+                    android:src="@mipmap/ic_star"
+                    android:layout_width="13dp"
+                    android:layout_height="13dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp">
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_place_gray">
+            </ImageView>
+
+
+            <TextView
+                android:id="@+id/tv_city"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="Cibangkong, Bandung"
+                android:textColor="#91929e"
+                android:textSize="12dp">
+
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/line_riview"
+        android:paddingBottom="15dp"
+        android:layout_below="@id/line_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d3d8">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_width="35dp"
+                android:layout_height="39dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/combined">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/white"
+                    android:layout_centerHorizontal="true"
+                    style="@style/RobotoMedium"
+                    android:text="4.5"
+                    android:textSize="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reviews"
+                    android:textColor="#24253d"
+                    android:textSize="16dp"
+                    style="@style/RobotoMedium">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/totalRiviews"
+                    android:layout_marginTop="1dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="from 0 reviews"
+                    android:textColor="#939396"
+                    android:textSize="12dp"
+                    style="@style/RobotoRegular">
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rv_review">
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d3d8">
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/line_facility"
+        android:layout_below="@+id/line_riview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginLeft="40dp"
+            android:textSize="16dp"
+            style="@style/RobotoMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Common Facilities"
+            android:textColor="#24253D">
+        </TextView>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rv_facility">
+        </android.support.v7.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d3d8">
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:paddingTop="18dp"
+        android:id="@+id/line_map"
+        android:layout_below="@+id/line_facility"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="WebViewLayout">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textColor="#24253d"
+                android:textSize="16dp"
+                style="@style/RobotoMedium"></TextView>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View Larger Map"
+                android:textSize="12dp"
+                style="@style/RobotoMedium"
+                android:textColor="#2b9a8e">
+            </TextView>
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="178dp">
+            <WebView
+                android:clickable="false"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/webview">
+            </WebView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/line_web"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_address_hotel"
+            android:layout_marginBottom="32dp"
+            android:layout_marginTop="9dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy_address_detail_hotel"
+            android:layout_marginLeft="62dp"
+            android:gravity="center"
+            android:textSize="12dp"
+            style="@style/RobotoRegular"
+            android:layout_marginRight="62dp"></TextView>
+
+    </LinearLayout>
+</RelativeLayout>

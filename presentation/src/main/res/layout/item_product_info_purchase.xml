@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:paddingLeft="27dp"
+    android:paddingRight="27dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ic_info"
+        android:layout_gravity="center"
+        android:layout_width="21dp"
+        android:layout_height="15dp"
+        android:src="@drawable/ic_info_pre_flight">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv_message_info"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passenger need to show this e-ticket and passenger identity when check-in."
+        android:layout_marginLeft="10dp"
+        android:textSize="12dp"
+        style="@style/RobotoRegular"
+        android:textColor="#24253d"></TextView>
+
+</LinearLayout>

@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:layout_gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                style="@style/RobotoBold"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/white"
+                android:gravity="end"
+                android:text="Cancel" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:paddingTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="19dp"
+                    android:orientation="vertical"
+                    android:paddingRight="19dp"
+                    android:background="@android:color/white">
+
+                    <RelativeLayout
+                        android:paddingRight="23dp"
+                        android:paddingLeft="19dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:text="Purchase Date" />
+
+                        <ImageView
+                            android:id="@+id/btn_show_purchase_date"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_chevron_up_orange"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true">
+                        </ImageView>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:paddingLeft="19dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:textColor="#24253d"
+                        android:text="25/06/2019 - 23/09/2019"
+                        />
+
+                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                        android:id="@+id/expand_purchase_date"
+                        app:ael_duration="200"
+                        app:ael_expanded="true"
+                        app:ael_interpolator="accelerateDecelerate"
+                        android:layout_marginTop="17dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e0e0e1">
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:paddingLeft="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:text="Past 90 Days" />
+
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_width="17dp"
+                                android:layout_height="13dp"
+                                android:background="@drawable/ic_checked"
+                                android:layout_alignParentRight="true">
+                            </ImageView>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e0e0e1">
+                        </LinearLayout>
+
+
+                        <RelativeLayout
+                            android:paddingLeft="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp">
+
+                            <TextView
+                                style="@style/RobotoRegular"
+                                android:layout_centerVertical="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:text="Other Dates" />
+
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_width="17dp"
+                                android:layout_height="13dp"
+                                android:background="@drawable/ic_checked"
+                                android:layout_alignParentRight="true">
+                            </ImageView>
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e0e0e1">
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_marginTop="14dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    style="@style/RobotoRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#8024253d"
+                                    android:text="From" />
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_marginRight="10dp"
+                                        android:src="@drawable/ic_date_check_in"
+                                        android:layout_width="22dp"
+                                        android:layout_height="17dp"></ImageView>
+
+                                    <TextView
+                                        style="@style/RobotoRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="17sp"
+                                        android:textColor="#24253d"
+                                        tools:text="25 Jun 2019" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginRight="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#e0e0e1">
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+                                <TextView
+                                    style="@style/RobotoRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="#8024253d"
+                                    android:text="From" />
+
+                                <LinearLayout
+                                    android:layout_marginTop="7dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_marginRight="10dp"
+                                        android:src="@drawable/ic_date_check_out"
+                                        android:layout_width="22dp"
+                                        android:layout_height="17dp"></ImageView>
+
+                                    <TextView
+                                        style="@style/RobotoRegular"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="17sp"
+                                        android:textColor="#24253d"
+                                        tools:text="25 Jun 2019" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_marginRight="20dp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="#e0e0e1">
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_marginBottom="17dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/white"
+                        android:paddingRight="23dp"
+                        android:paddingLeft="19dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:text="Product Type" />
+
+                        <ImageView
+                            android:id="@+id/btn_show_product"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_chevron_up_orange"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true">
+                        </ImageView>
+                    </RelativeLayout>
+
+                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/expand_product_type"
+                        app:ael_duration="200"
+                        app:ael_expanded="false"
+                        android:orientation="vertical"
+                        app:ael_interpolator="accelerateDecelerate">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_product_type_filter">
+                        </android.support.v7.widget.RecyclerView>
+
+                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+
+
+                    <RelativeLayout
+                        android:layout_marginBottom="17dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@android:color/white"
+                        android:paddingRight="23dp"
+                        android:paddingLeft="19dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:textColor="#009688"
+                            android:text="Payment Method" />
+
+                        <ImageView
+                            android:id="@+id/btn_show_payment_methode"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_chevron_up_orange"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true">
+                        </ImageView>
+                    </RelativeLayout>
+
+                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:ael_duration="200"
+                        app:ael_expanded="false"
+                        app:ael_interpolator="accelerateDecelerate"
+                        android:id="@+id/expand_payment_method"
+                        android:layout_marginBottom="20dp">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rv_payment_method_filter">
+                        </android.support.v7.widget.RecyclerView>
+                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+
+
+
+
+
+                    <LinearLayout
+                        android:layout_marginBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:background="@drawable/rounded_orange_stroke_1"
+                            android:layout_marginRight="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:gravity="center_horizontal"
+                                android:text="Reset"
+                                style="@style/RobotoBold"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:background="@drawable/rounded_button_yellow"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:gravity="center_horizontal"
+                                android:text="Apply"
+                                style="@style/RobotoBold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

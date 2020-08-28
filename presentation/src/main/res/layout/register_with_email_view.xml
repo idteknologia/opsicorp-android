@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/btn_back"
+                android:src="@drawable/ic_back"></ImageView>
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="53dp"
+                android:src="@drawable/ic_travel_aja" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#707070"
+                android:lineSpacingExtra="9sp"
+                android:text="Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip."
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="25dp"
+                style="@style/RobotoRegular"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:id="@+id/tvTest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="19dp"
+                    android:text="Travelaja Member"
+                    android:textColor="@color/colorBlueTitle"
+                    android:textSize="22sp" />
+
+                <!--TextInput for Entering Password-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/hintEmail"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:text=" Email / Corporate email"
+                        android:textColor="#91929e"
+                        android:textSize="14dp" />
+
+
+                    <EditText
+                        android:gravity="center"
+                        android:id="@+id/et_email"
+                        style="@style/RobotoRegular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/hintEmail"
+                        android:layout_marginBottom="10dp"
+                        android:paddingBottom="18dp"
+                        android:singleLine="true"
+                        android:textColor="#24253d"
+                        android:textSize="@dimen/font_edittext" />
+
+                </RelativeLayout>
+
+
+                <!--TextView to Display Text When Enter anything in any TextInputEditText-->
+                <TextView
+                    android:id="@+id/display"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    android:visibility="gone" />
+
+                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                    android:layout_width="match_parent"
+                    app:text="Start Now"
+                    android:layout_marginBottom="40dp"
+                    android:layout_marginTop="70dp"
+                    android:id="@+id/btnSignIn"
+                    android:layout_height="wrap_content">
+
+                </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_loader"
+            android:visibility="gone"
+            android:gravity="center"
+            android:background="@color/white_transparent"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    android:text="@string/please_wait2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:text="@string/its_just_second"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.cunoraz.gifview.library.GifView
+                    android:id="@+id/gif1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    custom:gif="@mipmap/ellipsis" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

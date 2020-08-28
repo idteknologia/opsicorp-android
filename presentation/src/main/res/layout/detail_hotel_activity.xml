@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="199dp">
+
+            <ImageView
+                android:transitionName="header"
+                android:background="@color/colorBrightGray"
+                android:id="@+id/img_hotel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ImageView>
+
+            <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar">
+            </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+            <LinearLayout
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="19dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:background="@drawable/rounded_button_see_all_photo">
+                <TextView
+                    android:id="@+id/btn_show_galery"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textColor="@android:color/white"
+                    android:text="See all Photos">
+                </TextView>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <include
+            android:visibility="invisible"
+            android:id="@+id/line_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            layout="@layout/detail_hotel_layout">
+        </include>
+
+        <include
+            android:id="@+id/line_detail_loading"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/header"
+            layout="@layout/detail_hotel_layout_loading">
+        </include>
+
+        <com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel
+            android:layout_below="@+id/line_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/line_desc">
+        </com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel>
+
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

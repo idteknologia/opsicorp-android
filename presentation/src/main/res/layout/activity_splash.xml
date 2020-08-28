@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    xmlns:custom="http://schemas.android.com/tools"
+    android:id="@+id/parent_layout"
+    android:layout_height="fill_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/parent_layout_splash">
+    </ImageView>
+
+<!--    android:src="@drawable/splash_background"-->
+
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:visibility="visible"
+            android:scaleType="centerInside"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo"/>
+<!--        android:src="@drawable/logo_opsigo_copy"-->
+
+        <TextView
+            android:textSize="17dp"
+            android:gravity="center"
+            style="@style/RobotoBold"
+            android:id="@+id/title_splash"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.cunoraz.gifview.library.GifView
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/title2"
+            android:id="@+id/gif1"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            custom:gif="@mipmap/gif1" />
+<!--        android:text="@string/title_corporation"-->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:textSize="12dp"
+            android:gravity="center"
+            style="@style/RobotoRegular"
+            android:id="@+id/footer_splash_screen"
+            android:text="@string/footer_splash_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="22dp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            style="@style/RobotoBold"
+            android:text="@string/footer_splash_screen_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</RelativeLayout>

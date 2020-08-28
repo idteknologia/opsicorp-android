@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginTop="33dp"
+        android:layout_marginBottom="35dp"
+        android:scaleType="centerInside"
+        android:id="@+id/img_empty"
+        android:src="@drawable/empty_cart"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="148dp">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv_title_empty"
+        android:text="Wow"
+        android:textSize="25dp"
+        style="@style/RobotoBold"
+        android:gravity="center"
+        android:textColor="#24253d"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <TextView
+        android:lineSpacingMultiplier="1"
+        android:lineSpacingExtra="6dp"
+        android:id="@+id/tv_massage_empty"
+        android:layout_marginTop="11dp"
+        style="@style/RobotoRegular"
+        android:gravity="center"
+        android:textColor="#9924253d"
+        android:text="Your cart is still"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </TextView>
+
+    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:id="@+id/btn_home_page"
+        android:layout_marginTop="56dp"
+        app:text="Go to Homepage"
+        android:layout_height="wrap_content">
+    </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+</LinearLayout>

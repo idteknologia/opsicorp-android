@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="4dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content">
+            </CheckBox>
+
+            <RelativeLayout
+                android:id="@+id/line_item"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/checkbox"
+                android:background="@drawable/rounded_button_cart_list_bottom_left_green"
+                android:layout_toRightOf="@+id/checkbox">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_title_bisnis_trip"
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meeting IBM Workshop 2"
+                        android:textColor="#ffffff"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_date"
+                        android:layout_marginTop="2dp"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="27 Jul 2019 - 29 Jul 2019"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:background="@drawable/rounded_button_white_100_persent"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_chevron_next_orange"
+                        android:layout_height="14dp">
+
+                    </ImageView>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_trip_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_item"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_toEndOf="@+id/checkbox"
+                android:layout_toRightOf="@+id/checkbox"
+                android:text="TP2018677647341"
+                android:textColor="#24253d"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

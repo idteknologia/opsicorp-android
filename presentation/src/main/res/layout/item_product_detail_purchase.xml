@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:paddingBottom="14dp"
+        android:paddingTop="14dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_marginTop="3dp"
+            android:background="@drawable/rounded_item_product_detail"
+            android:layout_width="35dp"
+            android:layout_height="35dp">
+            <ImageView
+                android:id="@+id/ic_image_accomodation"
+                android:layout_margin="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_flight_up_white">
+
+            </ImageView>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="9dp">
+
+
+                <TextView
+                    android:id="@+id/tv_departure"
+                    style="@style/RobotoRegular"
+                    android:textSize="14dp"
+                    android:textColor="#24253d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jakarta">
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/ic_panah"
+                    android:src="@drawable/panah_detail_product"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="9dp"
+                    android:layout_height="6dp"
+                    android:layout_gravity="center">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tv_arrival"
+                    style="@style/RobotoRegular"
+                    android:textSize="14dp"
+                    android:textColor="#24253d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jakarta">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="9dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_green_stroke_50_persen">
+                <TextView
+                    android:id="@+id/type_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-ticket Issued"
+                    style="@style/RobotoRegular"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="10dp"></TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@drawable/ic_chevron_next_orange"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="8dp"
+                android:layout_height="14dp">
+            </ImageView>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#b2bbc6"></LinearLayout>
+
+</LinearLayout>

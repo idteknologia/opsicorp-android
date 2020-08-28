@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#bb000e"
+    android:id="@+id/parent_layout_snackbar"
+    android:layout_height="90dp">
+
+    <LinearLayout
+        android:layout_marginLeft="39dp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/snackbar_action"
+            android:src="@drawable/ic_error_outline_white"
+            android:layout_width="33dp"
+            android:layout_height="33dp" />
+
+        <TextView
+            android:id="@+id/textError"
+            android:layout_marginLeft="18dp"
+            android:textColor="@android:color/white"
+            style="@style/RobotoRegular"
+            android:textSize="15sp"
+            android:layout_marginRight="90dp"
+            android:text="The Number of Adults and Children should not Exceed 9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>

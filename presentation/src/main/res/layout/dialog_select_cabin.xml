@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    android:fillViewport="true"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scroll"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+            <TextView
+                android:layout_marginLeft="19dp"
+                android:layout_marginBottom="20dp"
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="Select Coach" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@drawable/rounded_calendar_inside_top"
+                    android:orientation="vertical"
+                    android:paddingTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_cabin_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+                    <LinearLayout
+                        android:layout_marginTop="50dp"
+                        android:layout_marginBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/line_close"
+                            android:background="@drawable/rounded_orange_stroke_1"
+                            android:layout_marginRight="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+
+                            <TextView
+                                android:id="@+id/close"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:gravity="center_horizontal"
+                                android:text="Close"
+                                style="@style/RobotoBold"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/line_apply"
+                            android:background="@drawable/rounded_button_yellow"
+                            android:layout_marginLeft="3dp"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/apply"
+                                android:layout_centerInParent="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="17sp"
+                                android:textColor="#24253d"
+                                android:gravity="center_horizontal"
+                                android:text="Apply"
+                                style="@style/RobotoBold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+</android.support.v4.widget.NestedScrollView>

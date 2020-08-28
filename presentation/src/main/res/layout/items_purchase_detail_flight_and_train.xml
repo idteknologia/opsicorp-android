@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:layout_height="wrap_content">
+<!--    220-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                style="@style/RobotoItalic"
+                android:textColor="#009688"
+                android:text="Operated by:"
+                />
+
+            <TextView
+                android:id="@+id/tv_airport_name"
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sriwijaya Air"
+                android:textColor="#212121"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_seat_number"
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="SA-110"
+                android:textColor="#80ade2"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_calss"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Economy Class"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_type_accomodation"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boeing 737"
+                android:textColor="#b2bbc6"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/sriwijaya"
+            android:layout_alignParentRight="true"></ImageView>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="9dp"
+        android:background="#cc939396"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/line_depart"
+            android:layout_below="@+id/line_name_airline"
+            android:layout_marginLeft="24dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_time_departure"
+                android:textSize="14dp"
+                android:textColor="#24253d"
+                style="@style/RobotoBold"
+                android:text="13:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_date_departure"
+                android:textSize="10dp"
+                android:textColor="#939396"
+                style="@style/RobotoBold"
+                android:text="27 Apr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="47dp"
+            android:layout_below="@+id/line_depart"
+            android:layout_marginLeft="24dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_time_arrival"
+                android:textSize="14dp"
+                android:textColor="#24253d"
+                style="@style/RobotoBold"
+                android:text="13:00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_date_arrival"
+                android:textSize="10dp"
+                android:textColor="#939396"
+                style="@style/RobotoMedium"
+                android:text="27 Apr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_toEndOf="@+id/line_depart"
+            android:id="@+id/line_detail_depart"
+            android:layout_marginLeft="36dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/line_depart">
+            <TextView
+                android:id="@+id/tv_name_city_departure"
+                android:textSize="12dp"
+                android:textColor="#666666"
+                style="@style/RobotoRegular"
+                android:text="Jakarta (CGK)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_name_station_departure"
+                android:textSize="12dp"
+                android:textColor="#212121"
+                style="@style/RobotoBold"
+                android:text="Soekarno Hatta International Airport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_bloc_station_departure"
+                android:textSize="10dp"
+                android:textColor="#8024253d"
+                style="@style/RobotoRegular"
+                android:text="Terminal 2F"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/line_total_duration"
+                android:layout_marginTop="6dp"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:gravity="center"
+                android:background="@drawable/rounded_green_stroke_50_persen"
+                android:textSize="10sp"
+                android:textColor="#212121"
+                style="@style/RobotoMedium"
+                android:text="2h 20m"
+                android:layout_width="wrap_content"
+                android:layout_height="16sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_toEndOf="@+id/line_depart"
+            android:layout_marginLeft="14dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/line_depart">
+            <ImageView
+                android:id="@+id/dote_progress"
+                android:src="@drawable/point_departure"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:orientation="vertical">
+            </ImageView>
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/line_after_dote_progress"
+                android:orientation="vertical"
+                android:background="#b2bbc6"
+                android:layout_width="1dp"
+                android:layout_height="69dp">
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:visibility="visible"
+                android:src="@drawable/point_arrival"
+                android:layout_width="12dp"
+                android:layout_height="12dp"></ImageView>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="11dp"
+            android:layout_toEndOf="@+id/line_depart"
+            android:layout_below="@+id/line_detail_depart"
+            android:layout_marginLeft="36dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/line_depart">
+            <TextView
+                android:id="@+id/tv_name_city_arrival"
+                android:textSize="12sp"
+                android:textColor="#666666"
+                style="@style/RobotoRegular"
+                android:text="Jakarta (CGK)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/tv_name_station_arrival"
+                android:textSize="12sp"
+                android:textColor="#212121"
+                style="@style/RobotoBold"
+                android:text="Soekarno Hatta International Airport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_bloc_station_arrival"
+                android:textSize="10dp"
+                android:textColor="#8024253d"
+                style="@style/RobotoRegular"
+                android:text="Terminal 2F"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

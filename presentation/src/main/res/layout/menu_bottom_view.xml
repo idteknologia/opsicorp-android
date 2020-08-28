@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@drawable/shadow_top"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="#f6f8f8"
+        android:id="@+id/lay_nav_Bottom"
+        android:gravity="center"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true">
+
+
+        <!--rounded_button_green.xml-->
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/line_1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_1"
+                    android:src="@drawable/ic_home"
+                    android:layout_width="@dimen/icon_width_accomodation"
+                    android:layout_height="@dimen/icon_height_accomodation" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_1"
+                    android:textSize="10sp"
+                    android:text="@string/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_2"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_2"
+                    android:src="@drawable/ic_search"
+                    android:layout_width="@dimen/icon_width_accomodation"
+                    android:layout_height="@dimen/icon_height_accomodation" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_2"
+                    android:textSize="10sp"
+                    android:text="@string/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_3"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_3"
+                    android:src="@drawable/ic_booking"
+                    android:layout_width="@dimen/icon_width_accomodation"
+                    android:layout_height="@dimen/icon_height_accomodation" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_3"
+                    android:textSize="10sp"
+                    android:text="@string/approval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_4"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_4"
+                    android:src="@drawable/ic_manage_trip"
+                    android:layout_width="@dimen/icon_width_accomodation"
+                    android:layout_height="@dimen/icon_height_accomodation" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_4"
+                    android:textSize="10sp"
+                    android:text="@string/manage_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/line_5"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/img_5"
+                    android:src="@drawable/ic_profile"
+                    android:layout_width="@dimen/icon_width_accomodation"
+                    android:layout_height="@dimen/icon_height_accomodation" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:id="@+id/tv_5"
+                    android:textSize="10sp"
+                    android:text="@string/profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
