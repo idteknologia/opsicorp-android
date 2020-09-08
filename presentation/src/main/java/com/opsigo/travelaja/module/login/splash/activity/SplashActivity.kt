@@ -220,9 +220,6 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
                         presenter.getDataCity(getToken())
                     }
 
-                    "getAirlineByCompany" -> {
-                        presenter.getAirlineByCompany(getToken())
-                    }
 
                     "getAllAirline" -> {
                         presenter.getAllAirLine(getToken())

@@ -33,7 +33,7 @@ interface AccomodationRepository {
     fun getRemoveTrain(token: String, idTrain:HashMap<Any,Any>, callback:CallbackArrayListString)
     fun getSyncTrain(token: String, data:HashMap<Any,Any>, callback:CallbackArrayListString)
     fun getSearchFlight(token: String,data:HashMap<Any,Any>,callback:CallbackResultSearchFlight)
-    fun getPreferedFlight(token: String,jobId:String,companyCode:String,callback:CallbackGetAllCodeAirline)
+    fun getPreferedFlight(token: String,data:HashMap<Any,Any>,callback:CallbackAirlinePreference)
     fun getAllCodeFlight(token: String,callback:CallbackGetAllCodeAirline)
     fun getSeatMapFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackSeatMapFlight)
     fun getSsrFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackGetSsr)

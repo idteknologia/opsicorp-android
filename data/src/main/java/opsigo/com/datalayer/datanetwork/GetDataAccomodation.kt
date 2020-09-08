@@ -89,25 +89,25 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
-    override fun getPreferedFlight(token: String, jobTitleId: String, companyCode: String, callback: CallbackGetAllCodeAirline) {
-        apiOpsicorp.getAirlineprefered(token,jobTitleId,companyCode).enqueue(object :Callback<ResponseBody>{
+    override fun getPreferedFlight(token: String, data: HashMap<Any, Any>, callback: CallbackAirlinePreference) {
+        apiOpsicorp.getAirlineprefered(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failed(t.message!!)
+                callback.failedLoad(t.message!!)
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.success(CodeAirlineMapper().mapping(responseString!!))
+                        callback.successLoad(CodeAirlinePrefMapper().mapping(responseString!!))
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
                         val message = json.optString("error_description")
-                        callback.failed(message)
+                        callback.failedLoad(message)
                     }
                 }catch (e:Exception){
-                    callback.failed(messageFailed)
+                    callback.failedLoad(messageFailed)
                 }
             }
         })

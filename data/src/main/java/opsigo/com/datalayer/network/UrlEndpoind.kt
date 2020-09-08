@@ -160,8 +160,7 @@ interface UrlEndpoind {
 
     @GET(MyURL.AIRLINE_PREFERED)
     fun getAirlineprefered(@Header("Authorization")token:String,
-                          @Query("jobTitleId")jobTitleId:String,
-                          @Query("compCode")companyCode:String): Call<ResponseBody>
+                           @Body body: HashMap<Any, Any>): Call<ResponseBody>
 
     @GET(MyURL.ALL_CODE_AIRLINE)
     fun getAllCodeAirline(@Header("Authorization")token:String): Call<ResponseBody>

@@ -477,6 +477,18 @@ class TestLogic {
     }
 
     @Test
+    fun tests(){
+        val data=ArrayList<String>()
+        data.add("cbh")
+        data.add("gcdb")
+        var total  = 0
+        for (i in 0 until data.size){
+            total++
+        }
+        println(total)
+    }
+
+    @Test
     fun testIataMapping(){
         var dataAllIata = ArrayList<Flight>()
         var dataFilterIAta = ArrayList<FlightFilter>()

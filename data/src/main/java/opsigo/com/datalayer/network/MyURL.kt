@@ -31,7 +31,7 @@ object MyURL {
 
     //search flight
     const val SEARCH_FLIGHT       = "api/SearchFlight"
-    const val AIRLINE_PREFERED    = "api/Lookup/GetCarriersBasedJobTitle"
+    const val AIRLINE_PREFERED    = "api/SetSearchFlightParam"
     const val FLIGHT_VALIDATION   = "api/TripPlan/ValidationTrip"
     const val RESERVATION_AIRLINE = "api/TripPlan/ReservationFlight"
     const val SYNCRONIZE_FLIGHT   = "api/TripPlan/SynchronizeBooking"

@@ -20,12 +20,14 @@ import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.PurposeModel
 import opsigo.com.domainlayer.model.accomodation.flight.CodeAirLineModel
 import opsigo.com.domainlayer.model.accomodation.flight.CodeSearchAirLineModel
+import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.signin.CheckVersionModel
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.json.JSONArray
 import java.io.IOException
+import java.util.HashMap
 
 
 class SplashPresenter {
@@ -209,21 +211,15 @@ class SplashPresenter {
         }
         else{
             setLog("not get all airline")
-            getAirlineByCompany(token)
+            view.successLoadData()
         }
     }
-
-    var dataAllAirlineCode     = ArrayList<CodeAirLineModel>()
-    var dataAirlineByCompany   = ArrayList<CodeAirLineModel>()
-    var codeSearchAirLineModel = ArrayList<CodeSearchAirLineModel>()
 
     fun getAllAirLine(token: String){
         GetDataAccomodation(baseUrl).getAllCodeFlight(token,object : CallbackGetAllCodeAirline {
             override fun success(data: ArrayList<CodeAirLineModel>) {
                 Globals.writeJsonToFile(Serializer.serialize(data),context,Constants.FILE_NAME_ALL_CODE_AIRPORT)
-                dataAllAirlineCode.clear()
-                dataAllAirlineCode = data
-                getAirlineByCompany(token)
+                view.successLoadData()
             }
 
             override fun failed(string: String) {
@@ -231,64 +227,5 @@ class SplashPresenter {
             }
         })
     }
-
-    fun getAirlineByCompany(token: String){
-        GetDataAccomodation(baseUrl).getPreferedFlight(token,Globals.getProfile(context).jobTitleId,Globals.getProfile(context).companyCode,object : CallbackGetAllCodeAirline {
-            override fun success(data: ArrayList<CodeAirLineModel>) {
-                dataAirlineByCompany.clear()
-                if (Globals.readJsonFromFile(context,Constants.FILE_NAME_ALL_CODE_AIRPORT).isNotEmpty()){
-                    dataAllAirlineCode.clear()
-                    val json = JSONArray(Globals.readJsonFromFile(context,Constants.FILE_NAME_ALL_CODE_AIRPORT))
-                    for (i in 0 until json.length()){
-                        setLog(json[i].toString())
-                        dataAllAirlineCode.add(Serializer.deserialize(json[i].toString(),CodeAirLineModel::class.java))
-                    }
-                }
-
-                data.forEachIndexed { index, codeAirLineModel ->
-                    dataAirlineByCompany.addAll(dataAllAirlineCode.filter { codeAirLineModel.iataCode == it.iataCode })
-                }
-                mappingDataAirline()
-            }
-
-            override fun failed(string: String) {
-                view.failedGetData("getAirlineByCompany")
-            }
-        })
-    }
-
-    private fun mappingDataAirline() {
-        var numSame = -1
-        dataAirlineByCompany.sortBy { it.codeAirline }
-        dataAirlineByCompany.forEachIndexed { index, it ->
-            if (it.codeAirline!=numSame){
-                addDataCode(it)
-            }
-            else{
-                if (codeSearchAirLineModel.isNotEmpty()){
-                    codeSearchAirLineModel[codeSearchAirLineModel.size-1].iataCode.add(it.iataCode)
-                }
-                else {
-                    addDataCode(it)
-                }
-            }
-            numSame = it.codeAirline
-        }
-
-        /* setLog("--------vsbdn ")
-         setLog(Serializer.serialize(codeSearchAirLineModel))*/
-        Constants.CODE_SEARCH_AIRLINE = codeSearchAirLineModel
-        view.successLoadData()
-    }
-
-    private fun addDataCode(it: CodeAirLineModel) {
-        val model = CodeSearchAirLineModel()
-        model.codeAirline = it.codeAirline
-        model.nameAirline = it.nameAirline
-        model.iataCode.add(it.iataCode)
-        codeSearchAirLineModel.add(model)
-    }
-
-
 
 }

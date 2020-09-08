@@ -26,10 +26,19 @@ import com.opsigo.travelaja.utility.Globals
 import android.content.Intent
 import com.opsigo.travelaja.R
 import android.app.Activity
+import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import org.json.JSONArray
 import android.view.View
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
+import android.widget.TextView
+import com.opsigo.travelaja.utility.Constants.dataClassFlight
 
 class FlightFragment : BaseFragment(),
         View.OnClickListener,
@@ -41,7 +50,7 @@ class FlightFragment : BaseFragment(),
 
     override fun getLayout(): Int { return R.layout.flight_fragment }
 
-    var namesAirlines = ArrayList<String>()
+    var namesAirlines  = ArrayList<String>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
 
     var SELECT_CODE_COUNTRY_FROM = 28
@@ -51,6 +60,9 @@ class FlightFragment : BaseFragment(),
     var totalAdult : Int = 0
     var totalInfant: Int = 0
     var totalChild : Int = 0
+
+    var idClassAirline = ""
+    var nameClassAirline = ""
 
     var startDate     = ""
     var endDate       = ""
@@ -118,6 +130,9 @@ class FlightFragment : BaseFragment(),
         tv_airline_prreferance.setOnClickListener(this)
         tv_titile_airline_prreferance.setOnClickListener(this)
 
+        tv_titile_airline_class.setOnClickListener(this)
+        tv_airline_class.setOnClickListener(this)
+
         tv_from.setOnClickListener(this)
         tv_to.setOnClickListener(this)
 
@@ -158,6 +173,8 @@ class FlightFragment : BaseFragment(),
 
         dataOrder.dateDeparture     = startDate
         dataOrder.dateArrival       = endDate
+        dataOrder.classFlightCode   = idClassAirline
+        dataOrder.classFlightName   = nameClassAirline
 
         dataOrder.totalPassagerString = tv_passanger.text.toString()
         dataOrder.airlinePreferance   = tv_airline_prreferance.text.toString()
@@ -188,6 +205,14 @@ class FlightFragment : BaseFragment(),
                 airlinesPreferance()
             }
 
+            tv_titile_airline_class -> {
+                airlinesClass()
+            }
+
+            tv_airline_class -> {
+                airlinesClass()
+            }
+
             tv_from ->{
                 selectCityFrom()
             }
@@ -196,6 +221,52 @@ class FlightFragment : BaseFragment(),
                 selectCityTo()
             }
         }
+    }
+
+    private fun airlinesClass() {
+        showPopUpRemove(tv_airline_class)
+    }
+
+    private fun showPopUpRemove(option: TextView) {
+        val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = layoutInflater.inflate(R.layout.menu_popup_class_airline, null)
+        val btnEconomy = layout.findViewById(R.id.btn_economy_class) as TextView
+        val btnBisnis = layout.findViewById(R.id.btn_bisnis_class) as TextView
+        val btnFirst = layout.findViewById(R.id.btn_first_class) as TextView
+
+        val popupWindow = PopupWindow(
+                layout,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT)
+
+
+        popupWindow.setBackgroundDrawable(BitmapDrawable())
+        popupWindow.setOutsideTouchable(true)
+        popupWindow.setOnDismissListener(object : PopupWindow.OnDismissListener{
+            override fun onDismiss() {
+
+            }
+        })
+
+        btnFirst.setOnClickListener {
+            popupWindow.dismiss()
+            idClassAirline = "1"
+            nameClassAirline = "First"
+        }
+
+        btnEconomy.setOnClickListener {
+            popupWindow.dismiss()
+            idClassAirline = "3"
+            nameClassAirline = "Economy"
+        }
+
+        btnBisnis.setOnClickListener {
+            popupWindow.dismiss()
+            idClassAirline = "2"
+            nameClassAirline = "Business"
+        }
+
+        popupWindow.showAsDropDown(option)
     }
 
     private fun openCalendarView() {
@@ -351,8 +422,9 @@ class FlightFragment : BaseFragment(),
     private fun addNamesAirline() {
         namesAirlines.clear()
         namesAirlines.add("Select All")
-        Constants.CODE_SEARCH_AIRLINE.forEach {
-            namesAirlines.add(it.nameAirline)
+        val dataJson = JSONArray(Globals.readJsonFromFile(context!!,Constants.FILE_NAME_ALL_CODE_AIRPORT))
+        for (i in 0 until dataJson.length()){
+            namesAirlines.add(dataJson.getJSONObject(i).getString("nameAirline"))
         }
 
         /*namesAirlines.add("Air France")

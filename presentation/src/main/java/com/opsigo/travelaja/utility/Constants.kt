@@ -301,6 +301,9 @@ object Constants {
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
 
+
+    var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
+
     var dataDepartureTime = ArrayList<AccomodationPreferanceModel>()
     var dataArrivalTime   = ArrayList<AccomodationPreferanceModel>()
     var dataNameTrainSelected     = ArrayList<AccomodationPreferanceModel>()
