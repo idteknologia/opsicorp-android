@@ -176,6 +176,26 @@ class TestLogic {
     }
 
     @Test
+    fun testShortListByName(){
+        val items = ArrayList<Tester>()
+        items.add(Tester("Jakarta","indofood"))
+        items.add(Tester("Bandung","unesa"))
+        items.add(Tester("Jakarta","Suprime"))
+
+        items.sortBy { it.aku }
+        items.forEach {
+
+            println(it.aku)
+            println(it.oke)
+        }
+    }
+
+    class Tester(
+        var aku :String,
+        var oke :String
+    )
+
+    @Test
     fun testShortList(){
 
         val dateFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")

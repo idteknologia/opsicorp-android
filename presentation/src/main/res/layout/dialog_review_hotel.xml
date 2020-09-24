@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="1000dp">
+    <RelativeLayout
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/dialog_rounded"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:id="@+id/tv_name_riview_hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#24253d"
+                android:text="Nur Baiti"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="28dp"
+                style="@style/RobotoBold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:id="@+id/tv_date_riview_hotel"
+                android:textColor="#2b9a8e"
+                android:layout_marginTop="5dp"
+                android:text="Tue, 29 AUG 2020"
+                android:layout_marginLeft="28dp"
+                style="@style/RobotoMedium"/>
+
+            <TextView
+                android:id="@+id/tv_value_riview_hotel"
+                android:layout_marginBottom="23sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                style="@style/RobotoRegular"
+                android:textColor="#939396"
+                android:lineSpacingExtra="6sp"
+                android:text="&quot;This is by far the best in term of payment. You can book via website or application and pay at the hotel without 24sqm Kingsize or Twin Bed 2m10 Bath Show, 24sqm Kingsize or Twin Bed 2m10 Bath Show, 24sqm Kingsize or Twin Bed 2m10 Bath Show, 24sqm Kingsize or Twin Bed 2m10 Bath Show"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="22dp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="38dp"
+            android:layout_width="44dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/combined">
+            </ImageView>
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:id="@+id/tv_rating_riview_hotel"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                style="@style/RobotoBold"
+                android:text="4.5"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

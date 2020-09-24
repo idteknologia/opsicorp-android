@@ -1,17 +1,19 @@
 package com.opsigo.travelaja.module.accomodation.hotel.detail_hotel
 
-import android.content.Intent
 import com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
 import com.opsigo.travelaja.module.accomodation.hotel.select_room.SelectRoomActivity
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.module.item_custom.galery.CallbackGalery
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.module.item_custom.galery.MyGalery
 import kotlinx.android.synthetic.main.detail_hotel_activity.*
 import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
+import opsigo.com.domainlayer.model.accomodation.hotel.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
@@ -21,10 +23,8 @@ import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsigo.travelaja.R
+import android.content.Intent
 import android.view.View
-import com.opsigo.travelaja.module.item_custom.galery.CallbackGalery
-import com.opsigo.travelaja.module.item_custom.galery.MyGalery
-import opsigo.com.domainlayer.model.accomodation.hotel.*
 import java.util.HashMap
 
 
@@ -86,7 +86,17 @@ class DetailHotelActivity :BaseActivity(),
 
         reviewAdapter.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
-
+                when(views){
+                    Constants.REVIEW_HOTEL_SELECT -> {
+                        val dialog = DialogDetailReview()
+                        showDialogFragment(dialog)
+                        dialog.setDataReview(
+                                "Tue, 29 AUG 2020",
+                                dataReview[position].name,
+                                dataReview[position].massage,
+                                data.rating)
+                    }
+                }
             }
         })
 

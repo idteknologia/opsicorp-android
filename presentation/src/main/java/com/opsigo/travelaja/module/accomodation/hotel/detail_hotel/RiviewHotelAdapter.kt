@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.hotel.RiviewHotelModel
 import kotlinx.android.synthetic.main.item_review_hotel.view.*
@@ -36,7 +37,7 @@ class RiviewHotelAdapter (context: Context, var items: ArrayList<RiviewHotelMode
         holder.itemView.tv_name.text           = data.name
 
         holder.itemView.setOnClickListener {
-            onclick.onClick(-1,position)
+            onclick.onClick(Constants.REVIEW_HOTEL_SELECT,position)
         }
     }
 
