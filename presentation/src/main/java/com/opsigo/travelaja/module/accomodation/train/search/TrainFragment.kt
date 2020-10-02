@@ -2,10 +2,11 @@ package com.opsigo.travelaja.module.accomodation.train.search
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.accomodation.train.result.ResultSearchTrainActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
@@ -22,9 +23,9 @@ import com.opsigo.travelaja.R
 import android.app.Activity
 import android.view.View
 import android.os.Bundle
-import com.opsigo.travelaja.module.accomodation.train.result.ResultSearchTrainActivity
+import com.khoiron.sliderdatepicker.utils.Constant
 
-class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
+class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener, ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener{
@@ -38,6 +39,7 @@ class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
     var idOrigin      = ""
     var startDate     = ""
     var endDate       = ""
+    lateinit var data: SuccessCreateTripPlaneModel
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         top_button.callbackOnclickToolbar(this)
@@ -81,7 +83,7 @@ class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
         idDestination = queryDestination.code
 
         if (Constants.DATA_SUCCESS_CREATE_TRIP.isNotEmpty()){
-            val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
+            data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
             startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
         }
@@ -169,7 +171,7 @@ class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        CalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
+        NewCalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
 
         when(requestCode){
             SELECT_CODE_TRAIN_STATION -> {
@@ -190,10 +192,10 @@ class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
     override fun onClick(v: View?) {
         when(v){
             tv_departur_date -> {
-                CalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",startDate,endDate)
+                openCalendar()
             }
             tv_end_date -> {
-                CalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",startDate,endDate)
+                openCalendar()
             }
             tv_from -> {
                 typeSelectStation = "from"
@@ -203,6 +205,15 @@ class TrainFragment : BaseFragment(), CalendarViewOpsicorp.CallbackResult,
                 typeSelectStation = "to"
                 selectStattionTrain()
             }
+        }
+    }
+
+    private fun openCalendar() {
+        if (Globals.ONE_TRIP){
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+        }
+        else{
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
         }
     }
 

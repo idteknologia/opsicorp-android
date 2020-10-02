@@ -136,7 +136,5 @@ class CalendarViewActivity : BaseActivity() {
         if (intent.getStringExtra("endDate")!=null){
             setEndateCalendar(intent.getStringExtra("formatDate"),intent.getStringExtra("endDate"))
         }
-
-
     }
 }

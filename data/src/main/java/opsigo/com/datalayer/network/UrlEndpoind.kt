@@ -158,7 +158,7 @@ interface UrlEndpoind {
                       @Body body: HashMap<Any, Any>): Call<ResponseBody>
 
 
-    @GET(MyURL.AIRLINE_PREFERED)
+    @POST(MyURL.AIRLINE_PREFERED)
     fun getAirlineprefered(@Header("Authorization")token:String,
                            @Body body: HashMap<Any, Any>): Call<ResponseBody>
 

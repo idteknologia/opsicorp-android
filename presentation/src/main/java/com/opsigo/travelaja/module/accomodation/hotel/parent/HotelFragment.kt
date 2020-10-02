@@ -12,11 +12,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.khoiron.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.hotel.result.ResultSearchHotelActivity
 import com.opsigo.travelaja.module.accomodation.hotel.select_room.DialogSelectDuration
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.map.MapActivity
 import com.opsigo.travelaja.module.item_custom.map.MyLocation
 import com.opsigo.travelaja.module.item_custom.search_dialog.SearchDialog
@@ -46,7 +47,7 @@ import kotlin.collections.ArrayList
 
 
 class HotelFragment : BaseFragment(),
-        CalendarViewOpsicorp.CallbackResult,
+        NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener,
         KoinComponent,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -221,7 +222,12 @@ class HotelFragment : BaseFragment(),
     override fun onClick(v: View?) {
         when(v){
             tv_departur_date -> {
-                CalendarViewOpsicorp().showCalendarView(activity!!)
+                if (Globals.ONE_TRIP){
+                    NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+                }
+                else{
+                    NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
+                }
             }
             tv_duration -> {
                 selectDuration()
@@ -436,7 +442,7 @@ class HotelFragment : BaseFragment(),
             }
         }
         else {
-            CalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
+            NewCalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
         }
     }
 

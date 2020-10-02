@@ -1,38 +1,39 @@
 package com.opsigo.travelaja.module.create_trip.newtrip.actvity
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import com.opsigo.travelaja.BaseActivity
+import android.app.Activity
+import org.koin.core.inject
+import android.content.Intent
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
+import com.yalantis.ucrop.UCrop
+import org.koin.core.KoinComponent
+import android.content.pm.PackageManager
+import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.utility.Globals
+import org.koin.core.parameter.parametersOf
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsigo.travelaja.utility.DateConverter
+import kotlinx.android.synthetic.main.activity_create_tripplan.*
+import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.opsigo.travelaja.module.create_trip.newtrip.view.CreateTripView
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
+import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
 import com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudget
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCamera
-import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import com.yalantis.ucrop.UCrop
-import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
-import opsigo.com.datalayer.mapper.Serializer
-import kotlinx.android.synthetic.main.activity_create_tripplan.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
         ButtonDefaultOpsicorp.OnclickButtonListener,
         CreateTripView,KoinComponent,
-        CalendarViewOpsicorp.CallbackResult {
+        NewCalendarViewOpsicorp.CallbackResult {
     override fun getLayout(): Int { return R.layout.activity_create_tripplan }
 
     val presenter by inject<CreateTripPresenter> { parametersOf(this) }
@@ -68,7 +69,7 @@ class CreateTripActivity : BaseActivity(),
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        CalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
+        NewCalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
 
         when(requestCode){
 
@@ -103,7 +104,7 @@ class CreateTripActivity : BaseActivity(),
 
     fun getDateWithCalendar(view: View){
         Globals.ONE_TRIP = false
-        CalendarViewOpsicorp().showCalendarView(this)
+        NewCalendarViewOpsicorp().showCalendarView(this,Constant.DOUBLE_SELECTED)
     }
 
     fun selectPurpose(view: View){
@@ -175,14 +176,14 @@ class CreateTripActivity : BaseActivity(),
 
     override fun startDate(displayStartDate: String, startDate: String) {
         tv_from.setText(displayStartDate)
-        setLog(m_startdate)
         m_startdate = startDate
+        setLog("start date "+m_startdate)
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
         et_end_date.setText(displayEndDate)
         m_endate = endDate
-        setLog(m_endate)
+        setLog("end date "+m_endate)
     }
 
     override fun canceledCalendar() {

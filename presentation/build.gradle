@@ -125,6 +125,7 @@ dependencies {
     implementation project(':domain')
     implementation project(':calendarlib')
     implementation project(':rangeseekbar-library')
+    implementation project(':SliderDatePicker')
 
     implementation presentationDependencies.zbar
     implementation presentationDependencies.zxing

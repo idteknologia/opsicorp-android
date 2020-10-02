@@ -5,12 +5,14 @@
     android:orientation="vertical">
 
     <Button
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="permission"
         android:id="@+id/tvPermission"></Button>
 
     <Button
+        android:visibility="gone"
         android:id="@+id/tv_current_lication"
         android:layout_width="wrap_content"
         android:text="get current location"
@@ -18,14 +20,14 @@
     </Button>
 
     <Button
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/open_map"
         android:text="open map">
     </Button>
-
-
     <RelativeLayout
+        android:visibility="gone"
         android:paddingTop="17dp"
         android:paddingBottom="20dp"
         android:layout_width="match_parent"
@@ -220,6 +222,10 @@
 
     </RelativeLayout>
 
-
+    <com.khoiron.sliderdatepicker.lib.CalendarVertical
+        android:layout_width="match_parent"
+        android:id="@+id/calendarView"
+        android:layout_height="match_parent">
+    </com.khoiron.sliderdatepicker.lib.CalendarVertical>
 
 </LinearLayout>

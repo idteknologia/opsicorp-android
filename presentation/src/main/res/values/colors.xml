@@ -16,6 +16,7 @@
     <color name="ucrop_color_widget_background">#009688</color>
 
     <color name="color_text_btn_guaranteed_select_room">#8894a2</color>
+    <color name="colorPrimaryCalendar">#1BA0E2</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_transparent">#ddffffff</color>

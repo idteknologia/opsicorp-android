@@ -25,6 +25,7 @@ import com.opsigo.travelaja.R
 import org.koin.core.inject
 import java.lang.Exception
 import android.view.View
+import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.READ_REQUEST_LOCATION
 import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
@@ -214,7 +215,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
-            CalendarViewOpsicorp().REQUEST_CODE_CALENDAR->{
+            NewCalendarViewOpsicorp().REQUEST_CODE_CALENDAR->{
                when(positionPage){
                    FLIGHT_POSITION ->{
                        flightFragment.onActivityResult(requestCode, resultCode, data)

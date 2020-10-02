@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Build
 import com.opsigo.travelaja.R
 import android.location.Location
+import com.khoiron.sliderdatepicker.utils.CallbackCalendar
+import com.khoiron.sliderdatepicker.utils.Constant.DOUBLE_SELECTED
+import com.khoiron.sliderdatepicker.utils.Constant.SINGGLE_SELECTED
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.CODE_MAP_ACTIVITY
@@ -13,7 +16,7 @@ import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.layout_test.*
 import opsigo.com.datalayer.mapper.Serializer
 
-class TestActivity : BaseActivity() {
+class TestActivity : BaseActivity() ,CallbackCalendar{
 
     var latitude  = -7.3589299
     var longitude = 112.6916272
@@ -25,7 +28,10 @@ class TestActivity : BaseActivity() {
 //            checkPermissionLocation()
 //        }
 
-        getAllAirLine()
+//        getAllAirLine()
+
+        calendarView.callbackCalendarListener(this)
+        calendarView.typeSelected(SINGGLE_SELECTED)
 
     }
 
@@ -133,5 +139,13 @@ class TestActivity : BaseActivity() {
                 setLog(data?.getDoubleExtra("long",0.0).toString())
             }
         }
+    }
+
+    override fun startDate(string: String) {
+        setLog(string)
+    }
+
+    override fun endDate(string: String) {
+        setLog(string)
     }
 }

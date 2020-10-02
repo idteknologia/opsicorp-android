@@ -583,6 +583,53 @@ class TestLogic {
         var flightCode = 0
     }
 
+    class TestingLop{
+        var date = ""
+        var isi  = ""
+        var type = ""
+    }
+
+    @Test
+    fun testLogic(){
+        var data = ArrayList<TestingLop>()
+
+        var testing  = TestingLop()
+        testing.date = "999999"
+        testing.isi  = "aaaaa"
+        testing.type = "1"
+
+        var testing2  = TestingLop()
+        testing2.date = "66666"
+        testing2.isi  = "bbbbb"
+        testing2.type = "2"
+
+        var testing1  = TestingLop()
+        testing1.date = "66666"
+        testing1.isi  = "bbbbb"
+        testing1.type = "2"
+
+        var testing3  = TestingLop()
+        testing3.date = "999999"
+        testing3.isi  = "aaaaa"
+        testing3.type = "1"
+
+        data.add(testing)
+        data.add(testing1)
+        data.add(testing2)
+        data.add(testing3)
+
+        /*for (i in 0 until data.size){
+            if (data[i].type=="2"){
+                data.remove(data[i])
+            }
+        }*/
+        data.removeAll(data.filter { it.type=="2"})
+
+        data.forEach {
+            println(it.type)
+        }
+    }
+
 
 }
 

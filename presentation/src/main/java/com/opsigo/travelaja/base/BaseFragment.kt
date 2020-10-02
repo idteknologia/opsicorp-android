@@ -168,10 +168,6 @@ abstract class BaseFragment: Fragment()  {
         snackbar.show()
     }
 
-    fun showCalandar(){
-        CalendarViewOpsicorp().showCalendarView(activity!!)
-    }
-
     fun logout(){
         AlertDialog.Builder(activity!!)
                 .setMessage(getString(R.string.confirm_logout))

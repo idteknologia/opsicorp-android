@@ -236,15 +236,19 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun getReservased(){
+        setLog(Serializer.serialize(getDataFlight()))
         showLoadingOpsicorp(true)
         GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(),getDataFlight(),object : CallbackReserveFlight {
             override fun successLoad(data: ReserveFlightModel) {
                 hideLoadingOpsicorp()
                 Constants.ID_BOOKING_TEMPORARY = data.idTrip
+                setLog("-----------##################---------------")
+                setLog(Serializer.serialize(data))
                 gotoActivity(NewCartActivity::class.java)
             }
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
+                showAllert("error",message)
             }
         })
     }
@@ -348,10 +352,6 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
         dataListFlight.dataFlight.forEachIndexed { index, it ->
             val segment = SegmentFlightsRequest()
-
-            //test ssr
-            setLog("-------||-------")
-            setLog(Serializer.serialize(it.dataSSR))
 
             segment.airline             =  it.airline
             segment.airlineImageUrl     =  it.imgAirline

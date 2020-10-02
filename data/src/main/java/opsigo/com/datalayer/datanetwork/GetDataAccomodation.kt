@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import android.util.Log
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
@@ -325,7 +326,12 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.successLoad(ReserveFlightMapper().mapper(Serializer.deserialize(responseString!!, ReservationFlightEntity::class.java)))
+                        if (responseString=="{\"status\":false,\"errorMessage\":\"\"}"){
+                            callback.failedLoad(responseString)
+                        }
+                        else{
+                            callback.successLoad(ReserveFlightMapper().mapper(Serializer.deserialize(responseString!!, ReservationFlightEntity::class.java)))
+                        }
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

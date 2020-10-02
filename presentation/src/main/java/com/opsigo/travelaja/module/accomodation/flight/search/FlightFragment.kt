@@ -9,7 +9,7 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassager
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
@@ -21,28 +21,26 @@ import com.opsigo.travelaja.base.InitApplications
 import com.opsigo.travelaja.utility.DateConverter
 import com.unicode.kingmarket.Base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
+import android.graphics.drawable.BitmapDrawable
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
+import android.view.LayoutInflater
+import android.widget.PopupWindow
+import android.widget.TextView
+import android.content.Context
+import android.view.ViewGroup
 import android.content.Intent
 import com.opsigo.travelaja.R
 import android.app.Activity
-import android.content.Context
-import android.graphics.drawable.BitmapDrawable
 import org.json.JSONArray
 import android.view.View
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.TextView
-import com.opsigo.travelaja.utility.Constants.dataClassFlight
+import com.khoiron.sliderdatepicker.utils.Constant
 
 class FlightFragment : BaseFragment(),
         View.OnClickListener,
-        CalendarViewOpsicorp.CallbackResult
+        NewCalendarViewOpsicorp.CallbackResult
         ,ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener
@@ -61,7 +59,7 @@ class FlightFragment : BaseFragment(),
     var totalInfant: Int = 0
     var totalChild : Int = 0
 
-    var idClassAirline = ""
+    var idClassAirline = "1"
     var nameClassAirline = ""
 
     var startDate     = ""
@@ -183,6 +181,7 @@ class FlightFragment : BaseFragment(),
         Globals.DATA_ORDER_FLIGHT     = Serializer.serialize(dataOrder,OrderAccomodationModel::class.java)
         Globals.DATA_LIST_FLIGHT      = ""
 
+//        setLog(Serializer.serialize(dataOrder))
         gotoActivity(ResultSearchFlightActivity::class.java)
     }
 
@@ -190,11 +189,11 @@ class FlightFragment : BaseFragment(),
         when(v){
             tv_departur_date -> {
                 //openCalendarView()
-                CalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",startDate)
+                openCalendar()
             }
             tv_end_date -> {
                 //openCalendarView()
-                CalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",startDate)
+                openCalendar()
             }
 
             tv_airline_prreferance ->{
@@ -220,6 +219,15 @@ class FlightFragment : BaseFragment(),
             tv_to ->{
                 selectCityTo()
             }
+        }
+    }
+
+    private fun openCalendar() {
+        if (Globals.ONE_TRIP){
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.SINGGLE_SELECTED)
+        }
+        else{
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.DOUBLE_SELECTED)
         }
     }
 
@@ -267,10 +275,6 @@ class FlightFragment : BaseFragment(),
         }
 
         popupWindow.showAsDropDown(option)
-    }
-
-    private fun openCalendarView() {
-        showCalandar()
     }
 
     private fun selectCityTo() {
@@ -379,7 +383,7 @@ class FlightFragment : BaseFragment(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        CalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
+        NewCalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
 
         when(requestCode){
             SELECT_CODE_COUNTRY_FROM -> {
