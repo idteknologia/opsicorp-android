@@ -20,16 +20,12 @@ class ListParticipantsDataMapper {
                 val dataHotelModel  = ArrayList<ItemHotelModel>()
 
                 if (mData.flights.isNotEmpty()){
-                    Log.d("xixxx","gohere 6006 oke?" )
                     mData.flights.filter { it.employeeId == data.employeeId }.first().tripFlights.forEachIndexed { index, tripFlightsItem ->
 
-                        Log.d("xixxx","gohere 6007 oke?" )
                         var num = 0
                         tripFlightsItem.segments.forEachIndexed { _, segmentFlightEntity ->
 
-                            Log.d("xixxx","gohere 6008 oke?" )
                             if (num==segmentFlightEntity.num){
-                                Log.d("xixxx","gohere 6009 oke?" )
                                 val dataFlight  = ItemFlightModel()
 
                                 dataFlight.typeView         = tripFlightsItem.flightTypeView
@@ -38,7 +34,6 @@ class ListParticipantsDataMapper {
                                 dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
                                 //dataFlight.carrier          = tripFlightsItem.carrier
 
-                                Log.d("xixxx","gohere 6011 oke?" )
                                 dataFlight.originDeatination = segmentFlightEntity.originName+" - "+segmentFlightEntity.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
 
                                 //dataFlight.idFlight         = segmentFlightEntity.id//"Sriwijaya"
@@ -46,25 +41,20 @@ class ListParticipantsDataMapper {
                                 dataFlight.titleFlight      = segmentFlightEntity.airlineName//"Sriwijaya"
                                 dataFlight.flightNumber     = segmentFlightEntity.flightNumber//"SJ-0412"
 
-                                Log.d("xixxx","gohere 6012 oke?" )
-
                                 //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
                                 dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
                                 dataFlight.classFlight      = segmentFlightEntity.category + " Class"
                                 dataFlight.subClass         = "Subclass-" + segmentFlightEntity.classCode
 
-                                Log.d("xixxx","gohere 6013 oke?" )
-                                //num-seq
                                 dataFlight.num              = segmentFlightEntity.num
                                 dataFlight.seq              = segmentFlightEntity.seq
 
-
-                                Log.d("xixxx","gohere 6014 oke?" )
                                 //departure
                                 dataFlight.origin           = segmentFlightEntity.origin
                                 dataFlight.originName       = segmentFlightEntity.cityOrigin
                                 dataFlight.airportDeparture = segmentFlightEntity.airportOrigin
                                 dataFlight.dateDeparture    = segmentFlightEntity.departDate
+
                                 dataFlight.timeDeparture    = segmentFlightEntity.departTime
 
                                 //arrival
@@ -74,31 +64,24 @@ class ListParticipantsDataMapper {
                                 dataFlight.dateArrival      = segmentFlightEntity.arriveDate
                                 dataFlight.timeArrival      = segmentFlightEntity.arriveTime
 
-                                Log.d("xixxx","gohere 6015 oke?" )
-                                dataFlight.isComply         = segmentFlightEntity.isAirlineCompliance
-
                                 dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
                                 dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
+
+                                dataFlight.isComply         = segmentFlightEntity.isComply
 
 //                                dataFlight.price          = "IDR 400.000/pax"
                                 dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount
 
-                                Log.d("xixxx","gohere 6016 oke?" )
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
 
-                                Log.d("xixxx","gohere 6017 oke?" )
-
                                 dataFlight.progressFLight    = if (tripFlightsItem.jobProgress.progress==null) "" else tripFlightsItem.jobProgress.progress
-//
-                                Log.d("xixxx","gohere 6018 oke?" )
+
                                 dataFlightModel.add(dataFlight)
                                 num++
 
                             }
                             else{
                                 dataFlightModel[num-1].flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
-
-                                Log.d("xixxx","gohere 6011 oke?" )
                             }
 
                         }
@@ -141,6 +124,7 @@ class ListParticipantsDataMapper {
                                     dataTrain.stationArrival    = segmentsItem.airportDestination
                                     dataTrain.dateArrival   = segmentsItem.arriveDate
                                     dataTrain.timeArrival   = segmentsItem.arriveTime
+                                    dataTrain.isComply      = segmentsItem.isComply
 
                                     dataTrain.status           = if (tripTrainsItem.status==null) "" else tripTrainsItem.status//"Reserved"
 

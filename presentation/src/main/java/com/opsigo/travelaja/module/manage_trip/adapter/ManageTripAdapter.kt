@@ -47,8 +47,6 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
         fun bind(data: ApprovalModelAdapter, position: Int) {
 
             itemView.tv_status.text         = data.status
-            Log.d("xMonthx",":" + data.header)
-            Log.d("xMonthx2",":" + DateConverter().setDateFormatMonthYear(data.header))
             itemView.tv_header_month.text   = DateConverter().setDateFormatMonthYear(data.header)
             itemView.tv_purpose.text        = data.title
             itemView.tv_date.text           = DateConverter().setDateFormat4(data.start_date) + " - " + DateConverter().setDateFormat4(data.end_date)
@@ -63,18 +61,9 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
             }
             month_temp_completed = month
 
-//            itemView.setOnLongClickListener {
-//                onclick.onClick(-109,position)
-//                true// returning true instead of false, works for me
-//            }
-//
             itemView.setOnClickListener {
                 onclick.onClick(-1,position)
             }
-
-//            if ("Completed".equals(data.status)){
-//                //itemView.tv_status.background = context.resources.getDrawable(R.drawable.rounded_approval_green)
-//            }
 
             if(data.selected == true){
                 itemView.parent_layout.setBackgroundColor(context.resources.getColor(R.color.colorBackgroundSelected))
@@ -110,35 +99,9 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
             }
             month_temp_draft = month
 
-            Log.d("puropse1","" + data.title + " - " + data.isApproval + " - " + data.status)
-
-//            if(data.isApproval){
-//                itemView.tv_user_type.visibility = View.VISIBLE
-//            }
-//
-//            itemView.setOnLongClickListener {
-//                onclick.onClick(-109,position)
-//                true// returning true instead of false, works for me
-//            }
-//
             itemView.setOnClickListener {
                 onclick.onClick(-1,position)
             }
-//
-//
-//            if(data.selected == true){
-//                itemView.parent_layout.setBackgroundColor(context.resources.getColor(R.color.colorBackgroundSelected))
-//            }
-//            else{
-//                itemView.parent_layout.setBackgroundColor(context.resources.getColor(R.color.colorPureWhite))
-//            }
-
-//            if(position==items.size-1){
-//                itemView.line_border_bottom.visibility = View.VISIBLE
-//            }
-//            else{
-//                itemView.line_border_bottom.visibility = View.GONE
-//            }
         }
 
     }

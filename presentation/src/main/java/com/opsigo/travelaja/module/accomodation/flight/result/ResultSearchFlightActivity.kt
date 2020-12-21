@@ -84,27 +84,42 @@ class ResultSearchFlightActivity : BaseActivity(),
         Log.d("data order",":" + dataOrder.toString())
 
         //init toolbar
-        val date = DateConverter().setDateFormat3(dataOrder.dateDeparture)
-        setToolbar(date)
+        setToolbar()
         getAirlineByCompany()
     }
 
     override fun onResume() {
         super.onResume()
+        setToolbar()
         setDataArrival()
     }
 
     private fun setDataArrival() {
         data.clear()
         data.addAll(DATA_FLIGHT_ARIVAL)
-        adapter.notifyDataSetChanged()
+        adapter.setDataList(DATA_FLIGHT_ARIVAL,this)
     }
 
-    private fun setToolbar(depart: String) {
-
+    private fun setToolbar(mDate : String = "") {
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}","Departure Date : ${depart} - 1 pax")
+        var originName      = ""
+        var destinationName = ""
+        var date            = ""
+        var titleDate       = ""
+        if (Globals.ALL_READY_SELECT_DEPARTING){
+            if (mDate.isNotEmpty()) date = mDate else date = DateConverter().setDateFormat3(dataOrder.dateArrival)
+            originName      = dataOrder.destinationName
+            destinationName = dataOrder.originName
+            titleDate       = "Returning"
+        }
+        else {
+            if (mDate.isNotEmpty()) date = mDate  else date = DateConverter().setDateFormat3(dataOrder.dateDeparture)
+            originName      = dataOrder.originName
+            destinationName = dataOrder.destinationName
+            titleDate       = "Departure"
+        }
+        toolbar.setDoubleTitle("${originName} - ${destinationName}","$titleDate Date : ${date} - 1 pax")
     }
 
     private fun addDataDummyFlight() {
@@ -133,6 +148,10 @@ class ResultSearchFlightActivity : BaseActivity(),
                 data.addAll(dataFromServer)
                 if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
                     checkEmptyData()
+
+                    /*setLog("-----------------------------------------")
+                    setLog("${DATA_FLIGHT_ARIVAL.size}")
+                    setLog("${DATA_FLIGHT_ARIVAL[0].listFlightModel.isFlightArrival}")*/
                 }
                 else{
                     addDataLoading()
@@ -160,38 +179,6 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun dataSearchFlight(airlineCode: ListScheduleItem): HashMap<Any, Any> {
-        setLog(Serializer.serialize(airlineCode))
-/*
-
-        val data = SearchFlightRequest()
-
-        data.airline     = airlineCode.codeAirline.toString()
-        data.jobTitleId  = getProfile().idPosition
-        data.departDate  = dataOrder.dateDeparture//"2020-01-26"
-        data.destination = dataOrder.idDestination//"BD"
-        data.origin      = dataOrder.idOrigin//"GMR"
-        data.destination = dataOrder.idDestination
-        data.preferredCarriers = airlineCode.iataCode
-
-        if (Globals.ALL_READY_SELECT_DEPARTING){
-            departureDate  = if (dataOrder.dateArrival.contains(" ")) dataOrder.dateArrival.split(" ")[0] else dataOrder.dateArrival//"2020-01-26"
-        }else{
-            departureDate  = if (dataOrder.dateDeparture.contains(" ")) dataOrder.dateDeparture.split(" ")[0] else dataOrder.dateDeparture//"2020-01-26"
-        }
-
-        when (dataOrder.typeTrip){
-            "one_trip"->{
-                data.returnDate = ""
-            }
-            "round_trip"->{
-                data.returnDate = dataOrder.dateArrival
-            }
-        }
-
-        data.travelAgentCode =  Globals.getConfigCompany(this).defaultTravelAgent //"GoldenNusa"
-        data.compCode   = getProfile().companyCode //"000006"
-*/
-//        return Globals.classToHashMap(data, SearchFlightRequest::class.java)
         return Globals.classToHashMap(airlineCode, ListScheduleItem::class.java)
     }
 

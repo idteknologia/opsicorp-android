@@ -47,7 +47,6 @@ class SummaryEntityMapper() {
         }
         summary.contact         = contactModel
 
-        Log.d("xixxx","gohere 6005 oke?" )
         summary.tripParticipantModels   = ListParticipantsDataMapper().mapFrom(from)
 
         return summary

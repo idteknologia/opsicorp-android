@@ -14,7 +14,7 @@ data class DepartureFlightsItem(
 	val isComply: Boolean = false,
 
 		@field:SerializedName("ArriveTime")
-	val arriveTime: String = "",
+	val arriveTime: String? = null,
 
 		@field:SerializedName("Airline")
 	val airline: Int = 0,
@@ -23,49 +23,49 @@ data class DepartureFlightsItem(
 	val fareBreakdowns: Any? = null,
 
 		@field:SerializedName("DurationIncludeTransit")
-	val durationIncludeTransit: String = "",
+	val durationIncludeTransit: String? = null,
 
 		@field:SerializedName("IsMultiClass")
 	val isMultiClass: Boolean = false,
 
 		@field:SerializedName("ClassId")
-	val classId: String = "",
+	val classId: String? = null,
 
 		@field:SerializedName("SelectedSeatLeft")
 	val selectedSeatLeft: Int = 0,
 
 		@field:SerializedName("DurationView")
-	val durationView: String = "",
+	val durationView: String? = null,
 
 		@field:SerializedName("SelectedClassCode")
-	val selectedClassCode: String = "",
+	val selectedClassCode: String? = null,
 
 		@field:SerializedName("DepartDateTimeView")
-	val departDateTimeView: String = "",
+	val departDateTimeView: String? = null,
 
 		@field:SerializedName("FlightType")
-	val flightType: String = "",
+	val flightType: String? = null,
 
 		@field:SerializedName("ArriveDate")
-	val arriveDate: String = "",
+	val arriveDate: String? = null,
 
 		@field:SerializedName("DepartureDate")
-	val departureDate: String = "",
+	val departureDate: String? = null,
 
 		@field:SerializedName("SelectedClass")
 	val selectedClass: SelectedClass = SelectedClass(),
 
 		@field:SerializedName("FlightTypeView")
-	val flightTypeView: String = "",
+	val flightTypeView: String? = null,
 
 		@field:SerializedName("AirlineImageUrl")
-	val airlineImageUrl: String = "",
+	val airlineImageUrl: String? = null,
 
 		@field:SerializedName("FareType")
 	val fareType: Any? = null,
 
 		@field:SerializedName("Duration")
-	val duration: String = "",
+	val duration: String? = null,
 
 		@field:SerializedName("Sequence")
 	val sequence: Int = 0,
@@ -74,28 +74,28 @@ data class DepartureFlightsItem(
 	val connectingFlights: List<TransitFlightsEntity> = ArrayList(),
 
 		@field:SerializedName("DepartDate")
-	val departDate: String = "",
+	val departDate: String? = null,
 
 		@field:SerializedName("ClassCode")
-	val classCode: String = "",
+	val classCode: String? = null,
 
 		@field:SerializedName("FlightNumber")
-	val flightNumber: String = "",
+	val flightNumber: String? = null,
 
 		@field:SerializedName("Id")
-	val id: String = "",
+	val id: String? = null,
 
 		@field:SerializedName("ArriveDateTimeView")
-	val arriveDateTimeView: String = "",
+	val arriveDateTimeView: String? = null,
 
 		@field:SerializedName("PriceFare")
-	val priceFare: String = "",
+	val priceFare: String? = null,
 
 		@field:SerializedName("Destination")
 	val destination: String? = null,
 
 		@field:SerializedName("Modified")
-	val modified: String = "",
+	val modified: String? = null,
 
 		@field:SerializedName("IsHolderFlight")
 	val isHolderFlight: Boolean = false,
@@ -104,31 +104,31 @@ data class DepartureFlightsItem(
 	val totalTransit: Int = 0,
 
 		@field:SerializedName("AirlineName")
-	val airlineName: String = "",
+	val airlineName: String? = null,
 
 		@field:SerializedName("ConnectingUsable")
 	val connectingUsable: Boolean = false,
 
 		@field:SerializedName("InlineView")
-	val inlineView: String = "",
+	val inlineView: String? = null,
 
 		@field:SerializedName("GroupingId")
 	val groupingId: Any? = null,
 
 		@field:SerializedName("Number")
-	val number: String = "",
+	val number: String? = null,
 
 		@field:SerializedName("Selectable")
 	val selectable: Boolean = false,
 
 		@field:SerializedName("DepartTime")
-	val departTime: String = "",
+	val departTime: String? = null,
 
 		@field:SerializedName("IsConnecting")
 	val isConnecting: Boolean = false,
 
 		@field:SerializedName("DurationIncludeTransitView")
-	val durationIncludeTransitView: String = "",
+	val durationIncludeTransitView: String? = null,
 
 		@field:SerializedName("ClassObjects")
 	val classObjects: List<ClassObjectsItem> = ArrayList(),
@@ -137,25 +137,25 @@ data class DepartureFlightsItem(
 	val classesView: List<ClassesViewItem> = ArrayList(),
 
 		@field:SerializedName("SelectedClassKey")
-	val selectedClassKey: String = "",
+	val selectedClassKey: String? = null,
 
 		@field:SerializedName("Fareview")
-	val fareview: String = "",
+	val fareview: String? = null,
 
 		@field:SerializedName("Fare")
-	val fare: String = "",
+	val fare: String? = null,
 
 		@field:SerializedName("Facilities")
 	val facilities: ArrayList<FacilityEntity> = ArrayList(),
 
 		@field:SerializedName("ArrivalDate")
-	val arrivalDate: String = "",
+	val arrivalDate: String? = null,
 
 		@field:SerializedName("IsAvailable")
 	val isAvailable: Boolean = false,
 
 		@field:SerializedName("FlightKey")
-	val flightKey: String = "",
+	val flightKey: String? = null,
 
 
 		@field:SerializedName("OriginCity")

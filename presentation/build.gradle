@@ -64,6 +64,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
 }
 
 dependencies {
@@ -123,7 +124,7 @@ dependencies {
 
     implementation project(':data')
     implementation project(':domain')
-    implementation project(':calendarlib')
+//    implementation project(':calendarlib')
     implementation project(':rangeseekbar-library')
     implementation project(':SliderDatePicker')
 

@@ -154,7 +154,7 @@ class ResultSearchTrainActivity : BaseActivity(),
         data.departDate  = departureDate
 
         data.returnDate  = ""
-        data.travelAgentCode = Globals.getConfigCompany(this).defaultTravelAgent//"GoldenNusa"
+        data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent//"GoldenNusa"
 
         return Globals.classToHashMap(data, SearchTrainRequest::class.java)
     }

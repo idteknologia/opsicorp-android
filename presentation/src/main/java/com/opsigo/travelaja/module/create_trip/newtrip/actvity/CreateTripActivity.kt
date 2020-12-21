@@ -132,7 +132,6 @@ class CreateTripActivity : BaseActivity(),
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED&&checkSelfPermission(Manifest.permission.CAMERA)!==PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA),
                         READ_REQUEST_CODE)
-
             } else {
                 showDialogCamera()
             }
@@ -140,7 +139,6 @@ class CreateTripActivity : BaseActivity(),
         else{
             showDialogCamera()
         }
-
     }
 
 

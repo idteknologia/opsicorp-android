@@ -151,8 +151,6 @@ class DetailResultFlightActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonL
             tv_number.text       = data.flightNumber
             tv_type_class.text   = data.nameClass + " (" + data.code + ")"
 
-            tv_time_departure.text   = data.departTime
-            tv_time_arrival.text     = data.arriveTime
 
             tv_duration.text     = data.durationView
             if(data.isConnecting){
@@ -161,11 +159,24 @@ class DetailResultFlightActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonL
                 tv_transit.visibility   = View.GONE
             }
 
-            tv_departure.text        = dataOrder.originName + " (" + dataOrder.idOrigin + ")"
-            tv_arrival.text          = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
 
-            tv_date_departure.text  = DateConverter().setDateFormat4(dataOrder.dateDeparture)
-            tv_date_arrival.text    = DateConverter().setDateFormat4(dataOrder.dateArrival)
+            tv_time_departure.text   = data.departTime
+            tv_time_arrival.text     = data.arriveTime
+
+            tv_date_departure.text  = DateConverter().setDateFormat4(data.departDate)
+            tv_date_arrival.text    = DateConverter().setDateFormat4(data.arrivalDate)
+//            tv_departure.text       = "${data.originName} (${data.origin})"
+//            tv_arrival.text         = "${data.destinationName} (${data.destination})"
+
+
+            if (Globals.ALL_READY_SELECT_DEPARTING){
+                tv_departure.text        = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
+                tv_arrival.text          = dataOrder.originName + " (" + dataOrder.idOrigin + ")"
+            }
+            else{
+                tv_departure.text        = dataOrder.originName + " (" + dataOrder.idOrigin + ")"
+                tv_arrival.text          = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
+            }
 
             Picasso.get()
                     .load(data.imgAirline)

@@ -25,7 +25,7 @@ data class SearchTrainRequest(
 	var jobTitleId: String = "",
 
 
-	@field:SerializedName("TravelAgentCode")
-	var travelAgentCode: String = ""
+	@field:SerializedName("TravelAgent")
+	var travelAgent: String = ""
 
 )

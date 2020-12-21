@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.item_custom.calendar
 
 import android.app.Activity
 import android.content.Intent
-import com.opsigo.library.impl.OnDaySelectedListener
+//import com.opsigo.library.impl.OnDaySelectedListener
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.DateConverter
@@ -23,7 +23,7 @@ class CalendarViewActivity : BaseActivity() {
     override fun OnMain() {
 //        typeSelected = intent.getStringExtra("type")
         setOnclickListener()
-        setCalendarView()
+//        setCalendarView()
     }
 
     private fun setOnclickListener() {
@@ -86,55 +86,55 @@ class CalendarViewActivity : BaseActivity() {
     }
 
     fun setStartDateCalendar(formatInput:String,dateStringInput: String){
-        calendarView.setStartDay(SimpleDateFormat(formatInput).parse(dateStringInput))
+//        calendarView.setStartDay(SimpleDateFormat(formatInput).parse(dateStringInput))
     }
 
     fun setEndateCalendar(formatInput:String,dateStringInput: String){
         end_date.text = DateConverter().getDate(dateStringInput,formatInput,"EEE , dd MMM yyyy")
         endDateSelected  = if (endDateSelected.split(" ").isEmpty()) endDateSelected else endDateSelected.split(" ")[0]
-        calendarView.setEndDay(SimpleDateFormat(formatInput).parse(dateStringInput))
+//        calendarView.setEndDay(SimpleDateFormat(formatInput).parse(dateStringInput))
     }
 
 
-    private fun setCalendarView() {
-        calendarView.setDateFormat("MMM yyyy")
-        calendarView.setPreventPreviousDate(true)
-        calendarView.setErrToastMessage("You can not select the previous date.")
-        calendarView.setOnDaySelectedListener(object :OnDaySelectedListener{
-            override fun onDaySelected(startDay: String, endDay: String) {
-                val formatter = SimpleDateFormat("EEE, dd MMMM yyyy")
-                val formatterOpsicorp = SimpleDateFormat("yyyy-MM-dd")
-                var startDate = Date()
-
-                if (startDay.isEmpty()||"".equals(startDay)){
-                    start_date.text = "-"
-
-                }else{
-                    startDate = SimpleDateFormat("yyyy.MM.dd").parse(startDay)
-                    start_date.text = FormatingMonthIndonesian().format(formatter.format(startDate))
-                    startDateSelected = FormatingMonthIndonesian().format(formatterOpsicorp.format(startDate))
-                }
-
-                if (endDay.isEmpty()||"".equals(endDay)){
-                    end_date.text   = "-"
-                }
-                else {
-                    var endDate   = SimpleDateFormat("yyyy.MM.dd").parse(endDay)
-                    end_date.text   = FormatingMonthIndonesian().format(formatter.format(endDate))
-                    endDateSelected  = FormatingMonthIndonesian().format(formatterOpsicorp.format(endDate))
-                }
-            }
-        })
-
-        calendarView.buildCalendar()
-        calendarView.getOnTouchListener()
-
-        if (intent.getStringExtra("formatDate")!=null){
-            setStartDateCalendar(intent.getStringExtra("formatDate"),intent.getStringExtra("startDate"))
-        }
-
-        if (intent.getStringExtra("endDate")!=null){
-            setEndateCalendar(intent.getStringExtra("formatDate"),intent.getStringExtra("endDate"))
-        }
-    }
+//    private fun setCalendarView() {
+//        calendarView.setDateFormat("MMM yyyy")
+//        calendarView.setPreventPreviousDate(true)
+//        calendarView.setErrToastMessage("You can not select the previous date.")
+//        calendarView.setOnDaySelectedListener(object :OnDaySelectedListener{
+//            override fun onDaySelected(startDay: String, endDay: String) {
+//                val formatter = SimpleDateFormat("EEE, dd MMMM yyyy")
+//                val formatterOpsicorp = SimpleDateFormat("yyyy-MM-dd")
+//                var startDate = Date()
+//
+//                if (startDay.isEmpty()||"".equals(startDay)){
+//                    start_date.text = "-"
+//
+//                }else{
+//                    startDate = SimpleDateFormat("yyyy.MM.dd").parse(startDay)
+//                    start_date.text = FormatingMonthIndonesian().format(formatter.format(startDate))
+//                    startDateSelected = FormatingMonthIndonesian().format(formatterOpsicorp.format(startDate))
+//                }
+//
+//                if (endDay.isEmpty()||"".equals(endDay)){
+//                    end_date.text   = "-"
+//                }
+//                else {
+//                    var endDate   = SimpleDateFormat("yyyy.MM.dd").parse(endDay)
+//                    end_date.text   = FormatingMonthIndonesian().format(formatter.format(endDate))
+//                    endDateSelected  = FormatingMonthIndonesian().format(formatterOpsicorp.format(endDate))
+//                }
+//            }
+//        })
+//
+//        calendarView.buildCalendar()
+//        calendarView.getOnTouchListener()
+//
+//        if (intent.getStringExtra("formatDate")!=null){
+//            setStartDateCalendar(intent.getStringExtra("formatDate"),intent.getStringExtra("startDate"))
+//        }
+//
+//        if (intent.getStringExtra("endDate")!=null){
+//            setEndateCalendar(intent.getStringExtra("formatDate"),intent.getStringExtra("endDate"))
+//        }
+//    }
 }

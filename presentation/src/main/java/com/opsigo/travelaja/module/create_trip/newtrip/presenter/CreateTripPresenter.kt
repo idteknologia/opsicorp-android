@@ -13,10 +13,10 @@ import opsigo.com.domainlayer.model.BudgetModel
 import android.support.v7.widget.RecyclerView
 import org.koin.core.parameter.parametersOf
 import opsigo.com.domainlayer.callback.*
+import com.opsigo.travelaja.utility.*
 import org.koin.core.KoinComponent
 import android.content.Context
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.utility.*
 import org.koin.core.inject
 
 class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinComponent {

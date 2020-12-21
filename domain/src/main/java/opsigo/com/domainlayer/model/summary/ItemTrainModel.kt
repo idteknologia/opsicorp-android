@@ -2,6 +2,7 @@ package opsigo.com.domainlayer.model.summary
 
 class ItemTrainModel{
 
+    var isComply        = false
     var referenceCode   = ""
     var tripItemID      = ""
     var tripID     = ""

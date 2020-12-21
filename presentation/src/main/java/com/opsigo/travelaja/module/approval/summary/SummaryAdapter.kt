@@ -151,13 +151,6 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
             time_arrival.text        = data.timeArrival
             tv_price.text            = "IDR "+Globals.formatAmount(data.price.split(".")[0])
 
-           /* if(data.imageTrain.isNotEmpty()){
-                Picasso.get()
-                        .load(data.imageTrain)
-                        .fit()
-                        .centerCrop()
-                        .into(img_train)
-            }*/
 
             btnOption.setOnClickListener {
                 showDialogOption(position,btnOption)
@@ -207,7 +200,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
             tv_date_arrival.text     = DateConverter().getDate(data.dateArrival,"yyyy-mm-dd","EEE, dd MMMM yyyy")
             time_departure.text      = data.timeDeparture
             time_arrival.text        = data.timeArrival
-            tv_price.text            = data.price
+            tv_price.text            = "IDR "+Globals.formatAmount(data.price.split(".")[0])
 
             if(data.imageFlight.isNotEmpty()){
                 Picasso.get()

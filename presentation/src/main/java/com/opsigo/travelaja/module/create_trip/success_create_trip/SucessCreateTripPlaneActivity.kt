@@ -31,11 +31,12 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
         if(data.tripCode!=null) {
             image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
         }else{
-            Log.d("xlogx_successtp","something wrong")
+
         }
 
         tv_status.text = data.status
         tv_tripcode.text = data.tripCode
+        tv_purpose.text  = data.purpose
         tv_created_date.text = "Created Date ${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft

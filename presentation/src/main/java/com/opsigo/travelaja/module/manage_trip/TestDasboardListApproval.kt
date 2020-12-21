@@ -19,6 +19,7 @@ import com.opsigo.travelaja.module.item_custom.button_manage_trip.ButtonManageTr
 
 import com.opsigo.travelaja.module.manage_trip.adapter.ManageTripAdapter
 import com.opsigo.travelaja.utility.*
+import com.opsigo.travelaja.utility.Globals.getBaseUrl
 import com.opsigo.travelaja.utility.Globals.getToken
 import com.opsigo.travelaja.utility.Globals.setLog
 import kotlinx.android.synthetic.main.list_manage_trip.view.*
@@ -48,7 +49,6 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     var itemSelected = false
     var positionPage = 0
     lateinit var callback : CallbackTestDassboardListApproval
-    var baseUrl = ""
 
     fun setInitCallback(callback:CallbackTestDassboardListApproval){
         this.callback = callback
@@ -70,10 +70,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
 
     private fun init() {
         setOrientation(VERTICAL)
-
         View.inflate(context, R.layout.list_manage_trip, this)
-        baseUrl = Globals.getBaseUrl(context)
-        Log.d("xbasexx","" + baseUrl)
         setInitRecyclerView()
         setOnClikListener()
     }
@@ -177,7 +174,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
 
         loading_view.show()
         data.clear()
-        GetDataGeneral(baseUrl).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
+        GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
                 if (approvalModel.isEmpty()) {
@@ -277,7 +274,6 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
                     intent.putExtra(Constants.KEY_INTENT_TRIPID, idTripPlane)
                     intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, tripCode)
 
-
                     (context as Activity).startActivityForResult(intent,Constants.OPEN_DETAIL_TRIP_PLANE)
                 }
             }
@@ -299,14 +295,10 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     private fun checkSelection(data:ArrayList<ApprovalModelAdapter>) {
         if (data.filter { it.selected == true }.size>0){
             itemSelected = true
-//            line_approve.visibility = View.VISIBLE
-//            btn_approval.visibility = View.GONE
             top_button.visibility = View.GONE
         }
         else{
             itemSelected = false
-//            line_approve.visibility = View.GONE
-//            btn_approval.visibility = View.VISIBLE
             top_button.visibility = View.VISIBLE
         }
     }
@@ -327,7 +319,6 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onDraft() {
         positionPage = 0
         dataFilter.clear()
-        //dataFilter.addAll(data)
         dataFilter.addAll(data.filter { it.status.equals("Draft") })
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
@@ -343,70 +334,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         checkSelection(dataFilter)
     }
 
-//    override fun onAll() {
-//        positionPage = 0
-//        dataFilter.clear()
-//        dataFilter.addAll(data)
-//        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
-//        adapter.setData(dataFilter)
-//        checkSelection(dataFilter)
-//    }
-//
-//    override fun onWaiting() {
-//        positionPage = 1
-//        dataFilter.clear()
-//        dataFilter.addAll(data.filter { it.status.equals("Waiting") })
-//        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
-//        adapter.setData(dataFilter)
-//        checkSelection(dataFilter)
-//    }
-//
-//    override fun onApproval() {
-//        positionPage = 2
-//        dataFilter.clear()
-//        dataFilter.addAll(data.filter { it.status.equals("Completely Approved") })
-//        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
-//        adapter.setData(dataFilter)
-//        checkSelection(dataFilter)
-//    }
-
-//    override fun btnLeft() {
-//        positionPage = 0
-//        dataFilter.clear()
-//        dataFilter.addAll(data)
-//        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
-//        adapter.setData(dataFilter)
-//        checkSelection(dataFilter)
-//    }
-//
-//    override fun btnRight() {
-//        positionPage = 1
-//        dataFilter.clear()
-//        dataFilter.addAll(data.filter { it.status.equals("Waiting") })
-//        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
-//        adapter.setData(dataFilter)
-//        checkSelection(dataFilter)
-//    }
-
-
-
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
-//        if (viewHolder is ApprovalAdapter.ViewHolder) {
-//
-//            val name = data.get(viewHolder.adapterPosition).title
-//
-//            val deletedItem = data.get(viewHolder.adapterPosition)
-//            val deletedIndex = viewHolder.adapterPosition
-//
-//            removeAt(viewHolder.adapterPosition)
-//
-//            val snackbar = Snackbar.make(this, name + " rejected from list waiting approval!", Snackbar.LENGTH_LONG)
-//            snackbar.setAction("UNDO", View.OnClickListener {
-//                restoreItem(deletedItem, deletedIndex)
-//            })
-//            snackbar.setActionTextColor(resources.getColor(R.color.colorRedUndo))
-//            snackbar.show()
-//        }
+
     }
 
     private fun restoreItem(deletedItem: ApprovalModelAdapter, deletedIndex: Int) {
@@ -423,70 +352,12 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     }
 
     override fun onClick(v: View?) {
-        when(v){
-//            btn_reject->{
-//                btnRejectedBySelected()
-//            }
-//            btn_approv->{
-//                btnApproveBySelected()
-//            }
-//            tv_title_select_all->{
-//                checkBoxListener()
-//            }
-//            line_checkbox->{
-//                checkBoxListener()
-//            }
-        }
+
     }
-
-    private fun checkBoxListener() {
-//        if (checkbox.isChecked){
-//            selectAll(false)
-//            checkbox.isChecked = false
-//        }
-//        else{
-//            selectAll(true)
-//            checkbox.isChecked = true
-//        }
-    }
-
-//    fun btnApproveBySelected(){
-//        if (positionPage==0){
-//            approveBySelected(data)
-//        }
-//        else{
-//            approveBySelected(dataFilter)
-//        }
-//    }
-
-//    fun btnRejectedBySelected(){
-//        if (positionPage==0){
-//            rejectingBySelected(data)
-//        }
-//        else{
-//            rejectingBySelected(dataFilter)
-//        }
-//
-//    }
 
     val dataUploaded : ArrayList<Int> = ArrayList()
     var totalRequested = 0
     var totalUploaded   = 0
-
-
-    /*private fun checkRequest(){
-        Globals.delay(1500,object :Globals.DelayCallback{
-            override fun done() {
-                if (requestCompleted==requestTotal){
-                    adapter.setData(data)
-                    setTitleButton()
-                }
-                else{
-                    checkRequest()
-                }
-            }
-        })
-    }*/
 
     private fun cleareDataUpload() {
         dataUploaded.clear()
@@ -495,7 +366,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     }
 
     fun rejectOrApproveSelected(mData :ApprovalModelAdapter,action: String){
-        GetDataApproval(baseUrl).approveAll(getToken(),dataBodyApproved(mData,action),object :CallbackApprovAll{
+        GetDataApproval(getBaseUrl(context)).approveAll(getToken(),dataBodyApproved(mData,action),object :CallbackApprovAll{
             override fun successLoad(data: String) {
                 setLog(data)
             }
@@ -514,8 +385,6 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
 
         return Globals.classToHashMap(mData, ApprovalAllRequest::class.java)
     }
-
-
 
     fun selectAll(select:Boolean){
         if (positionPage==0){

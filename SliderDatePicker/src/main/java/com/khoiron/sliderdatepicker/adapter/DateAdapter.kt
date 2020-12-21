@@ -96,13 +96,6 @@ class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): Rec
             }
         }
 
-        /*if (dataHoliday.isNotEmpty()){
-            dataHoliday.forEach {
-                if (data.fullDay==SimpleDateFormat(Constant.formatDate).format(it.date)){
-                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHoliday))
-                }
-            }
-        }*/
     }
 
     class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {

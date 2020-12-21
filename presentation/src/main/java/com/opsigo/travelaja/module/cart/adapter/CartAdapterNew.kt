@@ -337,9 +337,6 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 itemView.line_item_vertical_flight.visibility = View.VISIBLE
             }
 
-            Log.d("xcartx-pos",": " + position)
-            Log.d("xcartx",":" + data.imageFlight)
-
             if(data.imageFlight.isNotEmpty()){
                 Picasso.get()
                         .load(data.imageFlight)
@@ -370,8 +367,6 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }catch (e:Exception){
                 setLog("Error parsing progress")
             }
-
-            itemView.tv_date_departure_flight_cart_top.text   = DateConverter().setDateFormat3(data.dateDeparture)
 
             //departure
             itemView.tv_origin_flight_cart.text             = data.departure
@@ -408,7 +403,6 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
 
             itemView.tv_status_flight_cart.text            = data.status
             itemView.tv_pnr_flight_cart.text               = data.pnrCode
-            itemView.tv_date_departure_flight_cart.text    = DateConverter().getDate(data.dateDeparture,"yyyy-MM-dd","EEEE, yyyy-MMM-dd")
             itemView.tv_number_seat_flight_cart.text       = data.numberSheet
             itemView.tv_class_flight_cart.text             = data.classFlight
 

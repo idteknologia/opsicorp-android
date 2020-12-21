@@ -98,49 +98,86 @@ class CalendarVertical : LinearLayout,
         view: Int,
         position: Int) {
 
-        when(viewParent){
+        when(viewParent) {
             Constant.ONCLICK_DATE -> {
                 val mCalendar = Calendar.getInstance()
-                if (startSelectDate.isEmpty()){
-                    if (!data[positionParent].data[position].date.before(mCalendar.time)||(SimpleDateFormat(Constant.formatDate).format(mCalendar.time)==data[positionParent].data[position].fullDay)){
-                        startSelectDate = SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
+                if (startSelectDate.isEmpty()) {
+                    if (!data[positionParent].data[position].date.before(mCalendar.time) || (SimpleDateFormat(
+                                    Constant.formatDate
+                            ).format(mCalendar.time) == data[positionParent].data[position].fullDay)
+                    ) {
+                        startSelectDate =
+                                SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
                         adapter.notifyDataSetChanged()
 
-                        if (Constant.formatDateOutput.isNotEmpty()){
-                            callback.startDate(convertFormatDate(startSelectDate,Constant.formatDate,Constant.formatDateOutput))
-                        }else{
+                        if (Constant.formatDateOutput.isNotEmpty()) {
+                            callback.startDate(
+                                    convertFormatDate(
+                                            startSelectDate,
+                                            Constant.formatDate,
+                                            Constant.formatDateOutput
+                                    )
+                            )
+                        } else {
                             callback.startDate(startSelectDate)
                         }
                     }
-                }
-                else {
-                    val dateSelected = SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
-                    if (startSelectDate==dateSelected){
+                } else {
+                    val dateSelected =
+                            SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
+                    if (startSelectDate == dateSelected) {
                         startSelectDate = ""
-                        endSelectDate   = ""
+                        endSelectDate = ""
                         adapter.notifyDataSetChanged()
-                    }
-                    else {
-                        if (Constant.TYPE_SELECTED==Constant.SINGGLE_SELECTED){
-                            startSelectDate = SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
+                    } else {
+                        if (Constant.TYPE_SELECTED == Constant.SINGGLE_SELECTED) {
+                            startSelectDate = SimpleDateFormat(Constant.formatDate).format(
+                                    data[positionParent].data[position].date
+                            )
                             adapter.notifyDataSetChanged()
-                            if (Constant.formatDateOutput.isNotEmpty()){
-                                callback.startDate(convertFormatDate(startSelectDate,Constant.formatDate,Constant.formatDateOutput))
-                            }else{
+                            if (Constant.formatDateOutput.isNotEmpty()) {
+                                callback.startDate(
+                                        convertFormatDate(
+                                                startSelectDate,
+                                                Constant.formatDate,
+                                                Constant.formatDateOutput
+                                        )
+                                )
+                            } else {
                                 callback.startDate(startSelectDate)
                             }
-                        }else{
-                            if (data[positionParent].data[position].date.before(SimpleDateFormat(Constant.formatDate).parse(startSelectDate))){
-                                Toast.makeText(context,"You cant select the previous date",Toast.LENGTH_LONG).show()
-                            }
-                            else {
+                        } else {
+                            if (data[positionParent].data[position].date.before(
+                                            SimpleDateFormat(
+                                                    Constant.formatDate
+                                            ).parse(startSelectDate)
+                                    )
+                            ) {
+                                Toast.makeText(
+                                        context,
+                                        "You cant select the previous date",
+                                        Toast.LENGTH_LONG
+                                ).show()
+                            } else {
                                 endSelectDate = dateSelected
                                 adapter.notifyDataSetChanged()
 
-                                if (Constant.formatDateOutput.isNotEmpty()){
-                                    callback.startDate(convertFormatDate(startSelectDate,Constant.formatDate,Constant.formatDateOutput))
-                                    callback.endDate(convertFormatDate(endSelectDate,Constant.formatDate,Constant.formatDateOutput))
-                                }else{
+                                if (Constant.formatDateOutput.isNotEmpty()) {
+                                    callback.startDate(
+                                            convertFormatDate(
+                                                    startSelectDate,
+                                                    Constant.formatDate,
+                                                    Constant.formatDateOutput
+                                            )
+                                    )
+                                    callback.endDate(
+                                            convertFormatDate(
+                                                    endSelectDate,
+                                                    Constant.formatDate,
+                                                    Constant.formatDateOutput
+                                            )
+                                    )
+                                } else {
                                     callback.startDate(startSelectDate)
                                     callback.endDate(endSelectDate)
                                 }
@@ -151,6 +188,7 @@ class CalendarVertical : LinearLayout,
                 }
             }
         }
+
     }
 
     fun setMinDate(minDate:Date){

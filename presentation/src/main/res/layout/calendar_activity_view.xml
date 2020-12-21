@@ -134,11 +134,11 @@
         </RelativeLayout>
 
 
-        <com.opsigo.library.CustomCalendarView
-            android:layout_width="match_parent"
-            android:background="@android:color/white"
-            android:layout_height="340dp"
-            android:id="@+id/calendarView"></com.opsigo.library.CustomCalendarView>
+<!--        <com.opsigo.library.CustomCalendarView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:background="@android:color/white"-->
+<!--            android:layout_height="340dp"-->
+<!--            android:id="@+id/calendarView"></com.opsigo.library.CustomCalendarView>-->
 
         <RelativeLayout
             android:layout_marginTop="20dp"

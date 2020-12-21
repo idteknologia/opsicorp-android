@@ -249,7 +249,9 @@ class ResultSearchHotelActivity : BaseActivity(),
 
             override fun failed(errorMessage: String) {
                 loadingSearch = false
-                showAllert("Sorry",errorMessage)
+                data.clear()
+                checkEmptyData()
+//                showAllert("Sorry",errorMessage)
             }
         })
     }

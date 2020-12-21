@@ -18,7 +18,7 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
     var startDateSelected = ""
     var endDateSelected   = ""
     val formatDate        = "dd-MM-yyyy"
-    var typeSelected      = Constant.DOUBLE_SELECTED
+    var typeSelected  = Constant.DOUBLE_SELECTED
 
     override fun getLayout(): Int {
         return R.layout.new_calendar_view
@@ -26,6 +26,10 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
 
     override fun OnMain() {
         initCalendar()
+
+        btn_close.setOnClickListener {
+            finish()
+        }
     }
 
     private fun initCalendar() {
@@ -45,10 +49,8 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
         if (intent.getStringExtra("maxDate")!=null){
             calendar_view.setMaxDate(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("maxDate")))
         }
-        if (intent.getStringExtra("typeSelected")!=null){
-            typeSelected = intent.getIntExtra("typeSelected",Constant.DOUBLE_SELECTED)
-            calendar_view.typeSelected(typeSelected)
-        }
+        typeSelected = intent.getIntExtra("typeSelected",Constant.DOUBLE_SELECTED)
+        calendar_view.typeSelected(typeSelected)
 
         if (LIST_DATA_HOLIDAY.isNotEmpty()){
             val dataHoliday = ArrayList<HolidayModel>()
@@ -80,7 +82,7 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
         start_date.text   = DateConverter().getDate(string,formatDate,"dd MMM yyyy")
 
         if (typeSelected==Constant.SINGGLE_SELECTED){
-            Globals.delay(2000,object :Globals.DelayCallback{
+            Globals.delay(1000,object :Globals.DelayCallback{
                 override fun done() {
                     finishListener()
                 }
@@ -92,7 +94,7 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
         endDateSelected   = DateConverter().getDate(string,formatDate,"yyyy-MM-dd")
         end_date.text     = DateConverter().getDate(string,formatDate,"dd MMM yyyy")
 
-        Globals.delay(3000,object :Globals.DelayCallback{
+        Globals.delay(2000,object :Globals.DelayCallback{
             override fun done() {
                 finishListener()
             }

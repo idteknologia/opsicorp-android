@@ -1,20 +1,15 @@
 package opsigo.com.datalayer.mapper
 
-//import opsigo.com.datalayer.model.accomodation.train.search.SearchTrainResultEntity
 import opsigo.com.datalayer.model.accomodation.flight.search.SearchFlightResultEntity
-import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import opsigo.com.domainlayer.model.accomodation.flight.FacilityFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.FacilityFlightModel
+import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import opsigo.com.domainlayer.model.accomodation.flight.TransiteFlight
-//import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 
 class AccomodationResultFlightMapper {
     fun mapping(resultData:String):ArrayList<AccomodationResultModel> {
         val data  = ArrayList<AccomodationResultModel>()
         val model = Serializer.deserialize(resultData, SearchFlightResultEntity::class.java)
-        val dateFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
 
         model.result.departureFlights.forEachIndexed { index, departureflightItem ->
             departureflightItem.classesView.forEachIndexed { _ , classView ->
@@ -22,40 +17,49 @@ class AccomodationResultFlightMapper {
 
                 model.isFlightArrival   = false
                 model.airline           = departureflightItem.airline //11
-                model.imgAirline        = departureflightItem.airlineImageUrl
-                model.titleAirline      = departureflightItem.airlineName
+                if (departureflightItem.airlineImageUrl.isNullOrEmpty()){
+                    model.imgAirline = departureflightItem.connectingFlights[0].airlineImageUrl.toString() // "https://toppng.com/uploads/preview/aircraft-png-photos-plane-icon-vector-11562926974aztqwsacuj.png"
+                }
+                else {
+                    model.imgAirline        = departureflightItem.airlineImageUrl
+                }
+                if(departureflightItem.airlineName.isNullOrEmpty()){
+                    model.titleAirline      = departureflightItem.connectingFlights[0].airlineName.toString()
+                }
+                else{
+                    model.titleAirline      = departureflightItem.airlineName.toString()
+                }
 
-                model.arrivalDate       = departureflightItem.arrivalDate
-                model.arriveDate        = departureflightItem.arriveDate
-                model.arriveDateTimeView    = departureflightItem.arriveDateTimeView
-                model.arriveTime        = departureflightItem.arriveTime
+                model.arrivalDate       = departureflightItem.arrivalDate.toString()
+                model.arriveDate        = departureflightItem.arriveDate.toString()
+                model.arriveDateTimeView    = departureflightItem.arriveDateTimeView.toString()
+                model.arriveTime        = departureflightItem.arriveTime.toString()
 
-                //model.category          = departureflightItem.categoryxxx
-                model.nameClass          = classView.category.toString()
+                model.nameClass         = classView.category.toString()
 
-                model.classCode         = departureflightItem.classCode
-                model.classId           = departureflightItem.classId
+                model.classCode         = departureflightItem.classCode.toString()
+                model.classId           = departureflightItem.classId.toString()
                 model.code              = classView.code.toString()
 
-                model.departDate        = departureflightItem.departDate
-                model.departTime        = departureflightItem.departTime
-                model.departureDate     = departureflightItem.departureDate
+                model.departDate        = departureflightItem.departDate.toString()
+                model.departTime        = departureflightItem.departTime.toString()
+                model.departureDate     = departureflightItem.departureDate.toString()
 
                 //model.duration        = departureflightItem.duration
 
-                model.duration        = departureflightItem.duration
-                model.durationView    = departureflightItem.durationView
-                model.durationIncludeTransit        = departureflightItem.durationIncludeTransit
-                model.durationIncludeTransitView    = departureflightItem.durationIncludeTransitView
+                model.duration        = departureflightItem.duration.toString()
+                model.durationView    = departureflightItem.durationView.toString()
+                model.durationIncludeTransit        = departureflightItem.durationIncludeTransit.toString()
+                model.durationIncludeTransitView    = departureflightItem.durationIncludeTransitView.toString()
 
                 model.price             = classView.fare
                 model.fareBasisCode     = classView.fareBasisCode.toString()
                 model.flightId          = classView.flightId.toString()
-                model.flightNumber      = departureflightItem.flightNumber
-                model.flightType        = departureflightItem.flightType
-                model.flightTypeView    = departureflightItem.flightTypeView
+                model.flightNumber      = departureflightItem.flightNumber.toString()
+                model.flightType        = departureflightItem.flightType.toString()
+                model.flightTypeView    = departureflightItem.flightTypeView.toString()
 
-                model.id                = departureflightItem.id
+                model.id                = departureflightItem.id.toString()
                 model.isAvailable       = departureflightItem.isAvailable
                 model.isComply          = departureflightItem.isComply
                 model.isConnecting      = departureflightItem.isConnecting
@@ -64,7 +68,7 @@ class AccomodationResultFlightMapper {
 
                 model.sequence          = departureflightItem.sequence
 
-                model.number            = departureflightItem.number
+                model.number            = departureflightItem.number.toString()
                 model.origin            = departureflightItem.origin.toString()
                 model.originName        = departureflightItem.originCity.toString()
                 model.destination       = departureflightItem.destination.toString()
@@ -237,7 +241,6 @@ class AccomodationResultFlightMapper {
                         transit.airlineName     = transitFlightsEntity.airlineName.toString()//Garuda Indonesia",
                         transitFlight.add(transit)
                     }
-
 
                     model.transiteFlight.addAll(transitFlight)
                 }

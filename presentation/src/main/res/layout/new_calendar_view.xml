@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="@color/colorPrimaryCalendar">
+        android:background="@color/colorPrimary">
         <ImageView
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
@@ -32,7 +32,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:background="@color/colorPrimaryCalendar"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -55,7 +55,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/colorTextTitleSample"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Berangkat"
@@ -64,7 +64,7 @@
 
                 <TextView
                     android:id="@+id/start_date"
-                    android:textColor="@color/colorTextTitleSample"
+                    android:textColor="@color/colorWhite"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <TextView
-                    android:textColor="@color/colorTextTitleSample"
+                    android:textColor="@color/colorWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pulang"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/end_date"
-                    android:textColor="@color/colorTextTitleSample"
+                    android:textColor="@color/colorWhite"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

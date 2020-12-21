@@ -27,7 +27,6 @@ data class TripFlightsItem(
 
 		@field:SerializedName("Segments")
 	val segments: List<SegmentFlightEntity> = ArrayList(),
-	//val segments: List<SegmentsItem?>? = null,
 
 		@field:SerializedName("Payments")
 	val payments: List<PaymentsItem?>? = null,

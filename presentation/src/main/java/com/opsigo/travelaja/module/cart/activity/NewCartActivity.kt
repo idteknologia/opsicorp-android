@@ -38,6 +38,8 @@ import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.domainlayer.model.summary.ItemFlightModel
+import opsigo.com.domainlayer.model.summary.ItemHotelModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -84,14 +86,13 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     }
 
     private fun checkData() {
-//        data dummy
-//        Constants.ID_BOOKING_TEMPORARY = "b242e061-a7a5-4667-8d2e-353322873ecf"
         if (Constants.ID_BOOKING_TEMPORARY.isEmpty()){
             getDataCart()
         }
         else{
             idTripPlant =  Constants.ID_BOOKING_TEMPORARY
 
+            showLoadingOpsicorp(false)
             getDataSummary(idTripPlant)
             btn_home_page.callbackOnclickButton(object :ButtonDefaultOpsicorp.OnclickButtonListener{
                 override fun onClicked() {
@@ -179,6 +180,8 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
     override fun onClicked(position: Int) {
         val data = mData.get(position)
+
+        showLoadingOpsicorp(false)
         getDataSummary(data.id)
     }
 
@@ -212,34 +215,28 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         line_prize.visibility            = View.VISIBLE
         list_order_personal_trip.visibility = View.GONE
 
-        page_list_detail_trip.setPurpose(tripSummary.purpose.toString())
-        page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining.toString())
-        page_list_detail_trip.setTripCode(tripSummary.code.toString())
+        page_list_detail_trip.setPurpose(tripSummary.purpose)
+        page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
+        page_list_detail_trip.setTripCode(tripSummary.code)
 
         page_list_detail_trip.setData(getDataTrip())
 
         page_list_detail_trip.callbackOnclickButton(this)
         showValidationButtonSubmit()
-
     }
 
     private fun getDataTrip(): ArrayList<CartModel> {
         val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId==getProfile().employId }.first()
 
-        Log.d("xixxx","gohere abc" )
         val list = ArrayList<CartModel>()
         list.clear()
         itemsTrip.clear()
 
         if (dataAccomodation.itemTrainModel.isNotEmpty()){
-            setLog("03832w32932")
-            setLog(dataAccomodation.itemTrainModel.size.toString())
             val data = CartModel()
             data.typeCard       = Constants.TYPE_HEADER
             data.dataHeader     = headerTrain()
-
             list.add(data)
-
             dataAccomodation.itemTrainModel.forEachIndexed { index, itemTrainModel ->
                 val model = CartModel()
                 model.typeCard       = Constants.TYPE_TRAIN
@@ -288,7 +285,6 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 itemsTrip.add(modelItem)
                 list.add(model)
             }
-
         }
 
         if (dataAccomodation.itemFlightModel.isNotEmpty()){
@@ -296,7 +292,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             Log.d("xixxx","gohere 22" )
             val data = CartModel()
             data.typeCard       = Constants.TYPE_HEADER
-            data.dataHeader     = headerFlight()
+            data.dataHeader     = headerFlight(dataAccomodation.itemFlightModel)
 
             list.add(data)
 
@@ -316,6 +312,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.dateArrival         = it.dateArrival
                 model.dataCardFlight.dateDeparture       = it.dateDeparture
                 model.dataCardFlight.timeArrival         = it.timeArrival
+                model.dataCardFlight.isComply            = it.isComply
                 model.dataCardFlight.timeDeparture       = it.timeDeparture
                 model.dataCardFlight.price               = it.price
                 model.dataCardFlight.classFlight         = it.price
@@ -342,6 +339,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             val data = CartModel()
             data.typeCard       = Constants.TYPE_HEADER
             data.dataHeader     = headerHotel()
+
 
             list.add(data)
 
@@ -392,24 +390,27 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         header.typeHeader  = Constants.TYPE_TRAIN
         return header
     }
-    private fun headerFlight(): CartHeaderModel {
+    private fun headerFlight(data: List<ItemFlightModel>): CartHeaderModel {
         val header    = CartHeaderModel()
         header.titleHeader = "Flight Summary"
-        header.typeTrip    = "OneWay"
+        if (data[0].type==0){
+            header.typeTrip    = "One Way"
+        }
+        else{
+            header.typeTrip    = "Round Trip"
+        }
         header.typeHeader  = Constants.TYPE_FLIGHT
         return header
     }
 
     private fun getDataSummary(tripId: String) {
         nestedScrollUp()
-        showLoadingOpsicorp(false)
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 toolbar.showAddMoreItem()
 
                 hideLoadingOpsicorp()
-
                 updateViewSummary()
             }
 
@@ -646,6 +647,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             Constants.GET_SEAT_MAP -> {
                 if (resultCode==Activity.RESULT_OK){
                     idTripPlant =  Constants.ID_BOOKING_TEMPORARY
+                    showLoadingOpsicorp(false)
                     getDataSummary(idTripPlant)
                 }
             }

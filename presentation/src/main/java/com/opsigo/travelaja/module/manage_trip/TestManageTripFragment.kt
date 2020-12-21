@@ -23,27 +23,10 @@ class TestManageTripFragment : BaseFragment()
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         checkPositionAmployer()
-        //initButtonSwict()
-        //searchData()
         line_list_approval.setInitCallback(this)
     }
 
     private fun checkPositionAmployer() {
-
-//        showDasboardApprofal()
-
-        //sementara.. selanjutnya bisa di kondisikan dari status jabatan / posisi
-        // karyawan sebagai approfal atau bukan
-        /*
-        if (getProfile().isApproval){
-            tv_title.text = "Hi, ${getProfile().name.substring(0,1).toUpperCase()}${getProfile().name.substring(1,getProfile().name.length).toLowerCase()}"
-            showDasboardApprofal()
-        }
-        else{
-            line_search.visibility = View.GONE
-            showListApprofal(DateConverter().getDay(-30,"yyyy-MM-dd").replace("Current Date : ","").trim(), DateConverter().getDay("yyyy-MM-dd").replace("Current Date : ","").trim(),0,"")
-        }
-        */
 
         showListApprofal(
                 DateConverter().getDay(-10,"yyyy-MM-dd").replace("Current Date : ", "").trim(),
@@ -67,60 +50,6 @@ class TestManageTripFragment : BaseFragment()
         line_list_approval.show(tripDateFrom,tripDateTo,position,key)
     }
 
-
-//    private fun showDasboardApprofal() {
-//        tv_title_two.text = "Today: ${Globals.getDateNow()}"
-//        dasboardPage = true
-//        line_list_approval.gone()
-//        line_dasboard.show()
-//    }
-
-//    fun searchData(){
-//        var key = ""
-//        tv_search_approval.addTextChangedListener(object : TextWatcher {
-//            override fun afterTextChanged(s: Editable?) {
-//
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                line_list_approval.searchData(s.toString())
-//                key = s.toString()
-//            }
-//        })
-//
-//        tv_search_approval.setOnKeyListener { _, keyCode, keyEvent ->
-//            if (keyCode ==  KeyEvent.KEYCODE_DPAD_CENTER
-//                    || keyCode ==  KeyEvent.KEYCODE_ENTER) {
-//                showListApprofal(line_dasboard.dateFrom,line_dasboard.dateTo,0,key)
-////                showListApprofal()
-//
-//                return@setOnKeyListener true
-//            }
-//            return@setOnKeyListener false
-//        }
-//    }
-
-    fun backPressed(onbackPressed: CallbackPressed){
-        if (getProfile().isApproval){
-            if (dasboardPage){
-                onbackPressed.back()
-            }
-            else{
-                //showDasboardApprofal()
-            }
-        }
-        else{
-            onbackPressed.back()
-        }
-    }
-
-    interface CallbackPressed{
-        fun back()
-    }
 
     override fun onClick(v: View?) {
 

@@ -13,13 +13,13 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.view.View
 import com.opsigo.travelaja.R
+import com.unicode.kingmarket.Base.BaseDialogFragment
+import kotlinx.android.synthetic.main.dialog_camera.*
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
-import com.unicode.kingmarket.Base.BaseDialogFragment
-import com.yalantis.ucrop.UCrop
-import kotlinx.android.synthetic.main.dialog_camera.*
-import java.io.File
 import java.text.SimpleDateFormat
+import com.yalantis.ucrop.UCrop
+import java.io.File
 import java.util.*
 
 class DialogCamera : BaseDialogFragment() {
@@ -119,7 +119,6 @@ class DialogCamera : BaseDialogFragment() {
 
     private fun setImage(realPathFromURI: String) {
         val f = File(realPathFromURI)
-        setLog("set Image picasso")
         Picasso.get()
                 .load(f)
                 .into(image_selected)
@@ -152,7 +151,6 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     private fun getCrop(tempUri: Uri) {
-        setLog("====> Croped")
         UCrop.of(tempUri, Uri.fromFile(File(Globals.getTmpDir(context), UUID.randomUUID().toString() + ".jpg")))
                 .withAspectRatio(16f, 16f)
                 .start((context as Activity))
@@ -185,7 +183,7 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     fun getRealPathFromURI(uri: Uri?): String {
-        val cursor = activity?.getContentResolver()?.query(uri, null, null, null, null)
+        val cursor = uri?.let { activity?.getContentResolver()?.query(it, null, null, null, null) }
         cursor?.moveToFirst()
         val idx = cursor?.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
         return cursor?.getString(idx!!)!!

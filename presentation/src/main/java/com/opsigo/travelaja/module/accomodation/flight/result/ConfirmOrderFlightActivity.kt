@@ -47,7 +47,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         btn_next.setTextButton("Book Now")
         btn_next.callbackOnclickButton(this)
 
-        if(Globals.ALL_READY_SELECT_DEPARTING){
+        if(Globals.ONE_TRIP){
             tvoneway.text = "Oneway"
         }else{
             tvoneway.text = "Roundtrip"
@@ -171,34 +171,34 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             mData.timeDeparture = resultListFlightModel.departTime
             mData.dateDeparture = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","dd MMM")
 
-            when (index){
+            mData.originDisplay    = resultListFlightModel.originName+" ("+resultListFlightModel.origin+")"
+            mData.departureDisplay = resultListFlightModel.destinationName+" ("+resultListFlightModel.destination+")"
+
+            /*when (index){
                 0 ->{
-                    mData.originDisplay = resultListFlightModel.originName+" ("+resultListFlightModel.origin+")"
+                    mData.originDisplay    = resultListFlightModel.originName+" ("+resultListFlightModel.origin+")"
                     mData.departureDisplay = resultListFlightModel.destinationName+" ("+resultListFlightModel.destination+")"
                 }
                 1->{
-                    mData.originDisplay = resultListFlightModel.destinationName+" ("+resultListFlightModel.destination+")"
+                    mData.originDisplay    = resultListFlightModel.destinationName+" ("+resultListFlightModel.destination+")"
                     mData.departureDisplay = resultListFlightModel.originName+" ("+resultListFlightModel.origin+")"
                 }
-            }
-
+            }*/
 
             mData.name_stationDeparture = resultListFlightModel.titleAirline
             mData.line_total_duration   = resultListFlightModel.duration
 
-            mData.time_arrival = resultListFlightModel.arriveTime
-            mData.date_arrival = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
+            mData.time_arrival  = resultListFlightModel.arriveTime
+            mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
 
             mData.total_passager = dataOrder.totalPassagerString
             mData.total_prize    = StringUtils().setCurrency("IDR",  resultListFlightModel.price, false)
 
             dataList.add(mData)
-
         }
 
         adapter.setData(dataList)
         showOrHideNotComply()
-
     }
 
     private fun showOrHideNotComply() {

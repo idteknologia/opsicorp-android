@@ -94,12 +94,12 @@ class HotelFragment : BaseFragment(),
         lineDefault.clear()
         lineSelected.clear()
 
-        lineButtons.add(line_button_left)
-        lineButtons.add(line_button_center)
-        lineButtons.add(line_button_right)
-        textButtons.add(title_btn_left)
-        textButtons.add(title_btn_center)
-        textButtons.add(title_button_right)
+//        lineButtons.add(line_button_left)
+//        lineButtons.add(line_button_center)
+//        lineButtons.add(line_button_right)
+//        textButtons.add(title_btn_left)
+//        textButtons.add(title_btn_center)
+//        textButtons.add(title_button_right)
 
         lineDefault.add(R.drawable.rounded_button_up_flight_default_left)
         lineDefault.add(R.drawable.rounded_button_up_flight_default_center)
@@ -136,16 +136,16 @@ class HotelFragment : BaseFragment(),
         tv_duration.setOnClickListener(this)
         title_duration.setOnClickListener(this)
         btn_next.callbackOnclickButton(this)
-        tv_country.setOnClickListener(this)
+//        tv_country.setOnClickListener(this)
         tv_city.setOnClickListener(this)
-        btn_map.setOnClickListener(this)
+//        btn_map.setOnClickListener(this)
 
-        line_button_left.setOnClickListener(this)
-        line_button_center.setOnClickListener(this)
-        line_button_right.setOnClickListener(this)
-        title_btn_left.setOnClickListener(this)
-        title_btn_center.setOnClickListener(this)
-        title_button_right.setOnClickListener(this)
+//        line_button_left.setOnClickListener(this)
+//        line_button_center.setOnClickListener(this)
+//        line_button_right.setOnClickListener(this)
+//        title_btn_left.setOnClickListener(this)
+//        title_btn_center.setOnClickListener(this)
+//        title_button_right.setOnClickListener(this)
     }
 
 
@@ -235,27 +235,27 @@ class HotelFragment : BaseFragment(),
             title_duration-> {
                 selectDuration()
             }
-            tv_country -> {
-                when(typeDestination) {
-                    "destinationByCity" -> {
-                        typeDialog = "country"
-                        val dialogSeacrh = SearchDialog(true,R.style.CustomDialog, dataCountry)
-                        dialogSeacrh.show(fragmentManager,"dialog")
-                        dialogSeacrh.setCallbackListener(this)
-                    }
-                    "destinationByCompany" -> {
-                        typeDialog = "company"
-                        val dialogSeacrh = SearchDialog(true,R.style.CustomDialog, dataCompany)
-                        dialogSeacrh.show(fragmentManager,"dialog")
-                        dialogSeacrh.setCallbackListener(this)
-                    }
-                    "destinationByMap" -> {
-                        if (Constants.Latitude!=null){
-                            gotoActivityForResult(MapActivity::class.java,CODE_MAP_ACTIVITY)
-                        }
-                    }
-                }
-            }
+//            tv_country -> {
+//                when(typeDestination) {
+//                    "destinationByCity" -> {
+//                        typeDialog = "country"
+//                        val dialogSeacrh = SearchDialog(true,R.style.CustomDialog, dataCountry)
+//                        dialogSeacrh.show(fragmentManager,"dialog")
+//                        dialogSeacrh.setCallbackListener(this)
+//                    }
+//                    "destinationByCompany" -> {
+//                        typeDialog = "company"
+//                        val dialogSeacrh = SearchDialog(true,R.style.CustomDialog, dataCompany)
+//                        dialogSeacrh.show(fragmentManager,"dialog")
+//                        dialogSeacrh.setCallbackListener(this)
+//                    }
+//                    "destinationByMap" -> {
+//                        if (Constants.Latitude!=null){
+//                            gotoActivityForResult(MapActivity::class.java,CODE_MAP_ACTIVITY)
+//                        }
+//                    }
+//                }
+//            }
             tv_city -> {
                 when(typeDestination){
                     "destinationByCity" -> {
@@ -272,33 +272,33 @@ class HotelFragment : BaseFragment(),
                 }
             }
 
-            btn_map -> {
-                typeDestination = "destinationByMap"
-                changeUiMapListener()
-            }
-
-            line_button_left -> {
-                btnCityListener()
-            }
-            line_button_center -> {
-                typeDestination = "destinationByCompany"
-                btnByCompanyListener()
-            }
-            line_button_right -> {
-                typeDestination = "destinationByMap"
-                changeUiMapListener()
-            }
-            title_btn_left -> {
-                btnCityListener()
-            }
-            title_btn_center -> {
-                typeDestination = "destinationByCompany"
-                btnByCompanyListener()
-            }
-            title_button_right -> {
-                typeDestination = "destinationByMap"
-                changeUiMapListener()
-            }
+//            btn_map -> {
+//                typeDestination = "destinationByMap"
+//                changeUiMapListener()
+//            }
+//
+//            line_button_left -> {
+//                btnCityListener()
+//            }
+//            line_button_center -> {
+//                typeDestination = "destinationByCompany"
+//                btnByCompanyListener()
+//            }
+//            line_button_right -> {
+//                typeDestination = "destinationByMap"
+//                changeUiMapListener()
+//            }
+//            title_btn_left -> {
+//                btnCityListener()
+//            }
+//            title_btn_center -> {
+//                typeDestination = "destinationByCompany"
+//                btnByCompanyListener()
+//            }
+//            title_button_right -> {
+//                typeDestination = "destinationByMap"
+//                changeUiMapListener()
+//            }
 
         }
     }
@@ -306,13 +306,13 @@ class HotelFragment : BaseFragment(),
     private fun changeUiMapListener() {
         changeImageBtn(2)
         line_city.visibility = View.VISIBLE
-        tv_title_country.text = "Country"
-        tv_title_city.text    = "Location"
+//        tv_title_country.text = "Country"
+//        tv_title_city.text    = "Location"
         tv_city.text          = dataSelectMap.name
     }
 
     private fun btnByCompanyListener() {
-        tv_title_country.text = "Company"
+//        tv_title_country.text = "Company"
         line_city.visibility = View.GONE
         changeImageBtn(1)
     }
@@ -321,8 +321,8 @@ class HotelFragment : BaseFragment(),
     private fun btnCityListener() {
         typeDestination = "destinationByCity"
         line_city.visibility  = View.VISIBLE
-        tv_title_country.text = "Country"
-        tv_title_city.text    = "City"
+//        tv_title_country.text = "Country"
+//        tv_title_city.text    = "City"
         tv_city.text          = dataSelectCity.name
         changeImageBtn(0)
     }
@@ -342,7 +342,7 @@ class HotelFragment : BaseFragment(),
 
             if (dataCountry.isNotEmpty()){
                 dataSelectCountry = dataCountry.filter { it.name.contains("Indonesia") }.first()
-                tv_country.text = dataSelectCountry.name
+//                tv_country.text = dataSelectCountry.name
                 getDataCity(dataSelectCountry)
             }
         }
@@ -354,7 +354,7 @@ class HotelFragment : BaseFragment(),
         when(typeDialog){
             "country" -> {
                 dataSelectCountry = model
-                tv_country.text = model.name
+//                tv_country.text = model.name
                 getDataCity(model)
             }
             "city" -> {
@@ -363,7 +363,7 @@ class HotelFragment : BaseFragment(),
             }
 
             "company" -> {
-                tv_country.text   = model.name
+//                tv_country.text   = model.name
                 dataSelectCompany = model
                 try {
                     latitude = model.latitude.toDouble()
@@ -453,7 +453,7 @@ class HotelFragment : BaseFragment(),
         val gcd = Geocoder(context, Locale.getDefault())
         val addresses: List<Address> = gcd.getFromLocation(lat!!, long!!, 1)
         if (addresses.size > 0) {
-            tv_country.text = addresses[0].countryName
+//            tv_country.text = addresses[0].countryName
             tv_city.text    = addresses[0].locality
         }
         dataSelectMap.name  = addresses[0].locality

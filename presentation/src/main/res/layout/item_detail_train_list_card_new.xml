@@ -214,6 +214,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:singleLine="true"
                             android:id="@+id/tv_station_departure_cart"
                             style="@style/RobotoRegular"
                             android:layout_width="match_parent"
@@ -264,6 +265,7 @@
                             android:textSize="12sp" />
 
                         <TextView
+                            android:singleLine="true"
                             android:id="@+id/tv_station_arrival_cart"
                             style="@style/RobotoRegular"
                             android:layout_width="match_parent"

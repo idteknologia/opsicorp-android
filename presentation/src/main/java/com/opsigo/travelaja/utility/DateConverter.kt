@@ -221,17 +221,23 @@ class DateConverter {
 
     fun setDateFormat4(date_resp: String): String {
         try {
-
-            val sDate = date_resp.substring(0, 10)
             val output = SimpleDateFormat("dd MMM")
-            val formatter = SimpleDateFormat("yyyy-MM-dd")
-
+            var sDate = ""
             var newFormat = ""
+
+            var formatter= SimpleDateFormat("yyyy-MM-dd")
+
+            if (date_resp.contains(":")){
+                sDate = date_resp.split(" ")[0]
+                formatter = SimpleDateFormat("yyyy-MM-dd")
+            }
+            else{
+                sDate = date_resp
+            }
 
             try {
                 val d = formatter.parse(sDate)
                 newFormat = output.format(d)
-
             } catch (e: ParseException) {
                 e.printStackTrace()
             }

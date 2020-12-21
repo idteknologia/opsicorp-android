@@ -29,7 +29,6 @@ class ConfirmOrderTrainActivity : BaseActivity(),
 
     override fun getLayout(): Int { return R.layout.confirm_train_order }
 
-
     val data = ArrayList<ConfirmationTrainModel>()
     var allreadySelectReasonCode = false
     val adapter by lazy { ConfirmationTrainAdapter(this, data) }
@@ -198,16 +197,18 @@ class ConfirmOrderTrainActivity : BaseActivity(),
             mData.time_arrival = resultListTrainModel.timeArrifal
             mData.date_arrival = formatter.format(resultListTrainModel.dateArrival)
 
-            mData.name_departure = resultListTrainModel.origin
-            mData.name_arrival = resultListTrainModel.destination
 
             mData.notcomply = resultListTrainModel.isViolatedTrainRules
 
             if (Globals.ALL_READY_SELECT_DEPARTING){
+                mData.name_arrival = resultListTrainModel.origin
+                mData.name_departure = resultListTrainModel.destination
                 mData.name_station_departure = dataOrder.destinationStationName
                 mData.name_station_arrival = dataOrder.originStationName
             }
             else {
+                mData.name_arrival = resultListTrainModel.destination
+                mData.name_departure = resultListTrainModel.origin
                 mData.name_station_departure = dataOrder.originStationName
                 mData.name_station_arrival = dataOrder.destinationStationName
             }
