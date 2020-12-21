@@ -2,19 +2,15 @@
 
 ## Description
 
-design patren 
-- MVP
-
 Architecture
-- datalayer => konsume data
-- domainlayer => logic bisnis
-- presentationLayer => desaign patern n ui/ux layer
+- data layer => consume data
+- domain layer => logic bisnis
+- presentation layer => design patern n ui/ux layer
 
 testing
-- JUnit
+- junit
 - espresso
 - mockito
-- robolectrick
 
 more information
 - path key : /opsicorpKey.jks
