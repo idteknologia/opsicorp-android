@@ -64,6 +64,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    dynamicFeatures = [':feature_flight']
 
 }
 
@@ -108,19 +109,19 @@ dependencies {
     implementation rootDependencies.rxAndroid
     compileOnly rootDependencies.annotationGlassfish
 
-    implementation presentationDependencies.picasso
-    implementation presentationDependencies.cardview
-    implementation presentationDependencies.lottie
-    implementation presentationDependencies.resize
-    implementation presentationDependencies.shimmer
+    api presentationDependencies.picasso
+    api presentationDependencies.cardview
+    api presentationDependencies.lottie
+    api presentationDependencies.resize
+    api presentationDependencies.shimmer
 //    implementation presentationDependencies.slider
-    implementation presentationDependencies.GifView
+    api presentationDependencies.GifView
 
     // Koin for Android
-    implementation rootDependencies.koin
-    implementation rootDependencies.scope
-    implementation rootDependencies.viewModel
-    implementation rootDependencies.extKoin
+    api rootDependencies.koin
+    api rootDependencies.scope
+    api rootDependencies.viewModel
+    api rootDependencies.extKoin
 
     implementation project(':data')
     implementation project(':domain')
@@ -128,10 +129,10 @@ dependencies {
     implementation project(':rangeseekbar-library')
     implementation project(':SliderDatePicker')
 
-    implementation presentationDependencies.zbar
-    implementation presentationDependencies.zxing
-    implementation presentationDependencies.ucorp
-    implementation presentationDependencies.barcode
+    api presentationDependencies.zbar
+    api presentationDependencies.zxing
+    api presentationDependencies.ucorp
+    api presentationDependencies.barcode
 
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.0'

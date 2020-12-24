@@ -1,2 +1,3 @@
+include ':feature_flight'
 include ':SliderDatePicker'
 include ':presentation', ':data', ':domain', ':rangeseekbar-library'
