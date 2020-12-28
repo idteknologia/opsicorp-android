@@ -1,9 +1,9 @@
 package com.opsicorp.travelaja.feature_flight.result
 
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Constants
@@ -11,7 +11,7 @@ import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_departing_flight_activity.*
+import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.*
 import kotlinx.android.synthetic.main.layout_card_detail_flight.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
@@ -33,7 +33,7 @@ import java.util.HashMap
 class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener, View.OnClickListener {
 
     override fun getLayout(): Int {
-        return R.layout.detail_departing_flight_activity
+        return R.layout.detail_departing_flight_activity_new
     }
 
     var isNotComply = false

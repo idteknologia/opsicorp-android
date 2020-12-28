@@ -63,7 +63,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivityBackup"
             android:screenOrientation="portrait">
         </activity>
         <activity

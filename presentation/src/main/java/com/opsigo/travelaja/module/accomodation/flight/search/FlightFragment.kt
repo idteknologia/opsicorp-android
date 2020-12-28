@@ -4,7 +4,7 @@ import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_pref
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
-import com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivity
+import com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivityBackup
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -70,6 +70,8 @@ class FlightFragment : BaseFragment(),
     var originName      = ""
     var destinationName = ""
     var dataTripPlan = SuccessCreateTripPlaneModel()
+
+    val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.result."
 
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
@@ -182,7 +184,7 @@ class FlightFragment : BaseFragment(),
         Globals.DATA_LIST_FLIGHT      = ""
 
 //        setLog(Serializer.serialize(dataOrder))
-        gotoActivity(ResultSearchFlightActivity::class.java)
+        gotoActivity(context!!,BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
     }
 
     override fun onClick(v: View?) {

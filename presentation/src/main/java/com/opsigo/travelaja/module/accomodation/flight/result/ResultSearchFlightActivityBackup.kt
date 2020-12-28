@@ -45,7 +45,7 @@ import android.view.View
 import android.util.Log
 import java.util.*
 
-class ResultSearchFlightActivity : BaseActivity(),
+class ResultSearchFlightActivityBackup : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult,KoinComponent,
         FilterOpsicorp.OnclickFilterListener,
         ToolbarOpsicorp.OnclickButtonListener,
@@ -174,7 +174,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             showTotalData()
             dataFilter.clear()
             dataFilter.addAll(data)
-            adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+            adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
         }
     }
 
@@ -363,7 +363,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { dateFormatter.parse(it.listTrainModel.durationTime) })
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
     private fun firstFilter() {
@@ -379,7 +379,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()==0}.sortedBy { it.listFlightModel.price.toInt() })
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
 
@@ -394,7 +394,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { it.listTrainModel.dateDeparture })
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
     private fun filterByLatestDeparture(){
@@ -408,7 +408,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { it.listTrainModel.dateDeparture }.reversed())
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
     fun filterByTimeDeparture(){
@@ -423,7 +423,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                         && it.listTrainModel.dateDeparture.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[0]}"))
                         && it.listTrainModel.dateDeparture.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[1]}"))})
             }
-            adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+            adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
         }
     }
 
@@ -442,7 +442,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                         && it.listTrainModel.dateArrival.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.split("-")[0]}"))
                         && it.listTrainModel.dateArrival.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.split("-")[1]}"))})
             }
-            adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+            adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
         }
     }
 
@@ -453,7 +453,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0&&it.listTrainModel.price.toInt()>prizeMin&&it.listTrainModel.price.toInt()<prizeMax})
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
     fun filterByNameTrain(){
@@ -467,7 +467,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                 dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0&&it.listTrainModel.nameStation==s})
             }
         }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
+        adapter.setDataList(dataFilter,this@ResultSearchFlightActivityBackup)
     }
 
     private fun headerNotComply(): AccomodationResultModel {

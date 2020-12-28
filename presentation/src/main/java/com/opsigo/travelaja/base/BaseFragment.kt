@@ -2,6 +2,7 @@ package com.unicode.kingmarket.Base
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -81,6 +82,22 @@ abstract class BaseFragment: Fragment()  {
 
     open fun gotoActivity(c: Class<*>) {
         startActivity(Intent(context,c))
+    }
+
+    open fun gotoActivity(context: Context, namaActivity: String) {
+        try {
+            val intent = Intent(
+                    context,
+                    Class.forName(namaActivity)
+            )
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            /*context.startActivity(context.intentFor<ComingSoonActivity>())*/
+//                context.toast(FEATURE_NOT_FOUND)
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada")
+        }
     }
 
     open fun gotoActivityWithBundle(c: Class<*>,bundle: Bundle) {

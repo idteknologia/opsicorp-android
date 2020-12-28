@@ -3,11 +3,20 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.opsicorp.travelaja.feature_flight">
 
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_feature_flight">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
     <application>
         <activity
             android:name=".detail_passanger.DetailPassengerActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".filter.FilterFlightActivity"
             android:screenOrientation="portrait" />
@@ -27,12 +36,5 @@
             android:name=".result.ResultSearchFlightActivity"
             android:screenOrientation="portrait" />
     </application>
-    <dist:module
-        dist:instant="false"
-        dist:title="@string/title_feature_flight">
-        <dist:delivery>
-            <dist:on-demand />
-        </dist:delivery>
-        <dist:fusing dist:include="true" />
-    </dist:module>
+
 </manifest>

@@ -86,7 +86,5 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
-
-    }
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
 }

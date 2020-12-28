@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:background="#f5f5f5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#00776a"
+                    android:layout_centerInParent="true"
+                    android:text="107 Ticket(s) found" />
+            </RelativeLayout>
+
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#24253d"
+                android:text="DEPARTURE TIME"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_departure_time">
+            </android.support.v7.widget.RecyclerView>
+
+
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="14dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#24253d"
+                android:text="ARRIVAL TIME"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_arrival_time"></android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#e0e0e1">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#24253d"
+                    android:text="PRICE / PAX" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#009688"
+                    android:gravity="end"
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:text="50.000 - 500.000" />
+
+                <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
+                    android:layout_marginTop="60dp"
+                    android:layout_width="match_parent"
+                    android:max="1000000"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:id="@+id/rangebar"
+                    style="@style/Base.Sephiroth.Widget.RangeSeekBar"
+                    android:layout_height="wrap_content"
+                    app:range_progress_endValue="1000"
+                    app:range_progress_startValue="0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#939396"
+                    android:text="IDR 50.000"
+                    android:layout_below="@+id/rangebar"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="21dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="13sp"
+                    android:textColor="#939396"
+                    android:gravity="end"
+                    android:layout_below="@+id/rangebar"
+                    android:text="IDR 300.000"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="20dp"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#e0e0e1">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#24253d"
+                    android:lineSpacingExtra="2sp"
+                    android:text="Train Name"/>
+
+                <TextView
+                    style="@style/RobotoBold"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="24dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#f19c00"
+                    android:lineSpacingExtra="6sp"
+                    android:gravity="end"
+                    android:text="SELECT ALL" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_name_train"></android.support.v7.widget.RecyclerView>
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:id="@+id/btn_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="49dp"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -9,10 +9,11 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
+import com.opsicorp.travelaja.feature_flight.adapter.ResultAccomodationAdapterNew
 import com.opsicorp.travelaja.feature_flight.dialog.FlightShortByDialog
 import com.opsicorp.travelaja.feature_flight.filter.FilterFlightActivity
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
@@ -23,7 +24,7 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_search_filter_activity.*
+import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -52,7 +53,7 @@ class ResultSearchFlightActivity : BaseActivity(),
         BottomSheetSort.BottomSheetListener , FlightShortByDialog.CallbackDialog {
     
     override fun getLayout(): Int {
-        return R.layout.detail_search_filter_activity
+        return R.layout.detail_search_filter_activity_new
     }
 
     var current_sort = 0
@@ -61,7 +62,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     var data = ArrayList<AccomodationResultModel>()
     var dataFromServer = ArrayList<AccomodationResultModel>()
     var dataFilter = ArrayList<AccomodationResultModel>()
-    val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
+    val adapter by inject<ResultAccomodationAdapterNew> { parametersOf() }
     var departureDate = ""
     var prizeMax = 0
     var prizeMin = 0
@@ -79,22 +80,22 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun initItemViews() {
         dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
-        setRecyclerView()
-        filter.callbackOnclickFilter(this)
+        /*setRecyclerView()*/
+        /*filter.callbackOnclickFilter(this)*/
 
         Log.d("data order",":" + dataOrder.toString())
 
         //init toolbar
-        setToolbar()
-        getAirlineByCompany()
+        /*setToolbar()*/
+        /*getAirlineByCompany()*/
     }
 
     private fun setRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
+        /*val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_result_flight.layoutManager = layoutManager
-        rv_result_flight.itemAnimator = DefaultItemAnimator()
-        rv_result_flight.adapter = adapter
+        rv_result_flightnew.layoutManager = layoutManager
+        rv_result_flightnew.itemAnimator = DefaultItemAnimator()
+        rv_result_flightnew.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
@@ -111,7 +112,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                     }
                 }
             }
-        })
+        })*/
     }
 
     private fun gotoDetailFlight(position: Int) {
