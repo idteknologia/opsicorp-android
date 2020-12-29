@@ -4,17 +4,17 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.unicode.kingmarket.Base.BaseFragment
-import kotlinx.android.synthetic.main.flight_info_fragment.*
+import kotlinx.android.synthetic.main.flight_info_fragment_new.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 class FlightInfoFragment : BaseFragment() {
     override fun getLayout(): Int {
-        return R.layout.flight_info_fragment
+        return R.layout.flight_info_fragment_new
     }
 
     val data = ArrayList<ModelListDepartureAndArivalAdapter>()

@@ -2,15 +2,15 @@ package com.opsicorp.travelaja.feature_flight.detail_passanger
 
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_passanger_activity.*
+import kotlinx.android.synthetic.main.detail_passanger_activity_new.*
 import opsigo.com.datalayer.database.AccessDb
 import opsigo.com.datalayer.database.OrderDbEntity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
@@ -21,7 +21,7 @@ class DetailPassengerActivity : BaseActivity()
         , ToolbarOpsicorp.OnclickButtonListener,
         ButtonDefaultOpsicorp.OnclickButtonListener {
     override fun getLayout(): Int {
-        return R.layout.detail_passanger_activity
+        return R.layout.detail_passanger_activity_new
     }
 
     var totalAdult = 0

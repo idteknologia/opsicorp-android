@@ -184,7 +184,7 @@ class FlightFragment : BaseFragment(),
         Globals.DATA_LIST_FLIGHT      = ""
 
 //        setLog(Serializer.serialize(dataOrder))
-        gotoActivity(context!!,BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
+        gotoActivityModule(context!!,BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
     }
 
     override fun onClick(v: View?) {

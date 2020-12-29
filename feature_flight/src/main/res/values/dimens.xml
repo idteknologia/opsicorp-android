@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="icon_airline_w">41px</dimen>
+    <dimen name="icon_airline_h">41px</dimen>
+
+    <dimen name="icon_edittext">22dp</dimen>
+    <dimen name="title">20sp</dimen>
+
+    <dimen name="detailpart_label_width">110dp</dimen>
+    <dimen name="tripplan_label_width">70dp</dimen>
+    <dimen name="participant_status_label_width">110dp</dimen>
+    <dimen name="tripplan_width">130dp</dimen>
+    <dimen name="item_participant_width">110dp</dimen>
+
+
+    <!--Fixed Parameterized Height, Width & Font-->
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="one_dp">1dp</dimen>
+
+    <dimen name="mp_xxlg">100dp</dimen>
+    <dimen name="mp_xlg">60dp</dimen>
+    <dimen name="mp_half_xlg">50dp</dimen>
+    <dimen name="mp_lg">40dp</dimen>
+    <dimen name="mp_half_lg">30dp</dimen>
+    <dimen name="mp_md">20dp</dimen>
+    <dimen name="mp_half_md">15dp</dimen>
+    <dimen name="mp_sm">10dp</dimen>
+    <dimen name="mp_half_sm">7dp</dimen>
+    <dimen name="mp_xs">5dp</dimen>
+    <dimen name="mp_xxs">2dp</dimen>
+
+    <dimen name="font_xxxxlg">100sp</dimen>
+    <dimen name="font_xxxlg">50sp</dimen>
+    <dimen name="font_half_xxxlg">40sp</dimen>
+    <dimen name="font_xxlg">25sp</dimen>
+    <dimen name="font_xlg">20sp</dimen>
+    <dimen name="font_half_xlg">18sp</dimen>
+    <dimen name="font_lg">16sp</dimen>
+    <dimen name="font_half_lg">14sp</dimen>
+    <dimen name="font_md">12sp</dimen>
+    <dimen name="font_sm">10sp</dimen>
+    <dimen name="font_half_sm">9sp</dimen>
+    <dimen name="font_xs">8sp</dimen>
+
+    <dimen name="font_edittext">17sp</dimen>
+
+    <!--Flight Result-->
+    <dimen name="fr_item_select_button">33dp</dimen>
+
+    <!--CitySelector-->
+    <dimen name="margin_top">16dp</dimen>
+    <dimen name="margin_top_medium">8dp</dimen>
+    <dimen name="margin_bottom">16dp</dimen>
+    <dimen name="margin_bottom_small">8dp</dimen>
+    <dimen name="margin_left">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_right">16dp</dimen>
+    <dimen name="margin_right_handle">22dp</dimen>
+    <dimen name="icon_width_home">28dp</dimen>
+    <dimen name="icon_height_home">28dp</dimen>
+
+    <dimen name="icon_width_accomodation">20dp</dimen>
+    <dimen name="icon_height_accomodation">20dp</dimen>
+    <dimen name="icon_width">40dp</dimen>
+    <dimen name="icon_height">40dp</dimen>
+    <dimen name="icon_touchable_component_mini">40dp</dimen>
+    <dimen name="layout_bottom">60dp</dimen>
+    <dimen name="line_selected">2dp</dimen>
+    <dimen name="line_not_selected">1dp</dimen>
+
+    <dimen name="WheelItemTextSize">22dp</dimen>
+    <dimen name="WheelItemSpace">0dp</dimen>
+    <dimen name="WheelIndicatorSize">1.5dp</dimen>
+    <dimen name="WheelMargins">0dp</dimen>
+    <dimen name="wheel_spacing">5dp</dimen>
+
+
+</resources>

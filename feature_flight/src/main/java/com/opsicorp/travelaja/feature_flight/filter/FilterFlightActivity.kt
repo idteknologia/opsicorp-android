@@ -4,8 +4,8 @@ import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
@@ -13,9 +13,9 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
-import kotlinx.android.synthetic.main.filter_flight_activity.*
-import kotlinx.android.synthetic.main.filter_flight_activity.btn_next
-import kotlinx.android.synthetic.main.flight_fragment.*
+import kotlinx.android.synthetic.main.filter_flight_activity_new.*
+import kotlinx.android.synthetic.main.filter_flight_activity_new.btn_next
+import kotlinx.android.synthetic.main.flight_fragment_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 import org.koin.core.KoinComponent
@@ -25,7 +25,7 @@ import org.koin.core.parameter.parametersOf
 class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener, FilterTransitOpsicorp.OnclickFilterListener, KoinComponent, ToolbarOpsicorp.OnclickButtonListener {
 
     override fun getLayout(): Int {
-        return R.layout.filter_flight_activity
+        return R.layout.filter_flight_activity_new
     }
 
     var dataDeparture  = ArrayList<FilterFlightModel>()

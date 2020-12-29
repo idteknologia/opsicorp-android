@@ -1,15 +1,15 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.activity
 
 import android.os.Build
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FareRulesFragment
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FlightInfoFacility
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FlightInfoFragment
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.flight_info_activity.*
+import kotlinx.android.synthetic.main.flight_info_activity_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
@@ -18,7 +18,7 @@ class FlightInfoActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener
         , TabLayoutOpsicorp.OnclickButtonListener {
 
     override fun getLayout(): Int {
-        return R.layout.flight_info_activity
+        return R.layout.flight_info_activity_new
     }
 
     var data = ArrayList<String>()

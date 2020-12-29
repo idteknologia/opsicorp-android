@@ -52,7 +52,7 @@
             <include
                 android:id="@+id/layout"
                 android:layout_marginTop="12dp"
-                layout="@layout/layout_card_detail_flight"
+                layout="@layout/layout_card_detail_flight_new"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"></include>
         </LinearLayout>

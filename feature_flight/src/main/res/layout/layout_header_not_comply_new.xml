@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="20dp"
+    android:background="#e6009688"
+    android:paddingLeft="20dp"
+    android:paddingBottom="21dp"
+    android:layout_marginBottom="10dp"
+    android:paddingTop="14dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        style="@style/RobotoBold"
+        android:textColor="#ffffff"
+        android:text="Didn&apos;t find the train ?"/>
+
+    <TextView
+        style="@style/RobotoRegular"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="6sp"
+        android:text="If you don&apos;t find any train match with your budget or travel policy.
+You can select not comply list of train, with specific notes." />
+
+</LinearLayout>

@@ -84,7 +84,7 @@ abstract class BaseFragment: Fragment()  {
         startActivity(Intent(context,c))
     }
 
-    open fun gotoActivity(context: Context, namaActivity: String) {
+    open fun gotoActivityModule(context: Context, namaActivity: String) {
         try {
             val intent = Intent(
                     context,
@@ -92,8 +92,6 @@ abstract class BaseFragment: Fragment()  {
             )
             context.startActivity(intent)
         } catch (e: Exception) {
-            /*context.startActivity(context.intentFor<ComingSoonActivity>())*/
-//                context.toast(FEATURE_NOT_FOUND)
             setLog(e.message.toString())
             e.printStackTrace()
             setToast("Error Halaman Tidak ada")

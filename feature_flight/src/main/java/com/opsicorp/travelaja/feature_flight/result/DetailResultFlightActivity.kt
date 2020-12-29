@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.*
-import kotlinx.android.synthetic.main.layout_card_detail_flight.*
+import kotlinx.android.synthetic.main.layout_card_detail_flight_new.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel

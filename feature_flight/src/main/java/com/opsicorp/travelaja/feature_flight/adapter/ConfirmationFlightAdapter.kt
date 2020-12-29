@@ -5,11 +5,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_confirmation_order_flight.view.*
+import kotlinx.android.synthetic.main.item_confirmation_order_flight_new.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 
 
@@ -23,7 +23,7 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_confirmation_order_flight, parent, false)
+                .inflate(R.layout.item_confirmation_order_flight_new, parent, false)
 
         return ViewHolder(itemView)
     }

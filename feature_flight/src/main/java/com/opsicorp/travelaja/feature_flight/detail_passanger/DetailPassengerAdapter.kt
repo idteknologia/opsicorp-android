@@ -9,10 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_passanger_adapter.view.*
+import kotlinx.android.synthetic.main.detail_passanger_adapter_new.view.*
 
 class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -28,13 +28,13 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
         return when (viewType){
 
             VIEW_TYPE_ADULT -> AdultHeader(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.detail_passanger_adapter, parent, false))
+                    .inflate(R.layout.detail_passanger_adapter_new, parent, false))
 
             VIEW_TYPE_CHILD -> ChildHeader(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.detail_passanger_adapter, parent, false))
+                    .inflate(R.layout.detail_passanger_adapter_new, parent, false))
 
             else            -> InfantHeader(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.detail_passanger_adapter, parent, false))
+                    .inflate(R.layout.detail_passanger_adapter_new, parent, false))
         }
     }
 

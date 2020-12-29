@@ -5,10 +5,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_adapter_time_arrival_departure.view.*
+import kotlinx.android.synthetic.main.item_adapter_time_arrival_departure_new.view.*
 
 class InfoDepartureArrivalAdapter (val context: Context, private var items: ArrayList<ModelListDepartureAndArivalAdapter>): RecyclerView.Adapter<InfoDepartureArrivalAdapter.ViewHolder>() {
 
@@ -16,7 +16,7 @@ class InfoDepartureArrivalAdapter (val context: Context, private var items: Arra
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_adapter_time_arrival_departure, parent, false)
+                .inflate(R.layout.item_adapter_time_arrival_departure_new, parent, false)
 
         return ViewHolder(itemView)
     }

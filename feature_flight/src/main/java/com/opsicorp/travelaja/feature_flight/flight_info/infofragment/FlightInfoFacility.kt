@@ -4,19 +4,19 @@ import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.FacilityFlightListAdapter
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 import com.unicode.kingmarket.Base.BaseFragment
-import kotlinx.android.synthetic.main.flight_info_facility_fragment.*
+import kotlinx.android.synthetic.main.flight_info_facility_fragment_new.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.FacilityFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 class FlightInfoFacility : BaseFragment() {
     override fun getLayout(): Int {
-        return R.layout.flight_info_facility_fragment
+        return R.layout.flight_info_facility_fragment_new
     }
 
     var data = ArrayList<FacilityFlightModel>()

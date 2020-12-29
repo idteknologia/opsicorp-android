@@ -5,15 +5,15 @@ import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactFlight
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_reason_trip.SelectReasonAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.*
-import kotlinx.android.synthetic.main.confirm_flight_order.*
-import kotlinx.android.synthetic.main.detail_prize_bottom.*
+import kotlinx.android.synthetic.main.confirm_flight_order_new.*
+import kotlinx.android.synthetic.main.detail_prize_bottom_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
@@ -24,7 +24,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
         View.OnClickListener {
     override fun getLayout(): Int {
-        return R.layout.confirm_flight_order
+        return R.layout.confirm_flight_order_new
     }
 
     val data = ArrayList<ConfirmationFlightModel>()

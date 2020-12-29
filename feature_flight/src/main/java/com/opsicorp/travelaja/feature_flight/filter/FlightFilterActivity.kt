@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceAdapter
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -13,7 +13,7 @@ import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
-import kotlinx.android.synthetic.main.train_filter_actvity_view.*
+import kotlinx.android.synthetic.main.train_filter_actvity_view_new.*
 
 class FlightFilterActivity : BaseActivity() ,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -29,7 +29,7 @@ class FlightFilterActivity : BaseActivity() ,
     val adapterTrainName     by lazy {  AccomodationPreferanceAdapter(this,dataNameTrain) }
 
     override fun getLayout(): Int {
-        return R.layout.train_filter_actvity_view
+        return R.layout.train_filter_actvity_view_new
     }
 
     override fun OnMain() {

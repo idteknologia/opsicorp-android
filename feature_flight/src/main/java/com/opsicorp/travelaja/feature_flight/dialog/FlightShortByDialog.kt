@@ -11,7 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.module.accomodation.train.adapter.TrainShorByAdapter
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 
@@ -29,7 +29,7 @@ class FlightShortByDialog (var context: Context) {
         val adb = AlertDialog.Builder(context)
         this.currentSort = currentSort
         this.callbackDialog = callbackDialog
-        views = LayoutInflater.from(context).inflate(R.layout.train_short_by_dialog,null)
+        views = LayoutInflater.from(context).inflate(R.layout.train_short_by_dialog_new,null)
         recyclerView = views.findViewById(R.id.recycler_shor_by)
 
         initRecyclerView()
