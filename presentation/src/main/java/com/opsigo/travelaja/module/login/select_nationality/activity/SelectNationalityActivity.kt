@@ -60,6 +60,10 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         imgCloseDest.setOnClickListener {
             et_filter.text.clear()
         }
+
+        tvCloseSearch.setOnClickListener {
+            finish()
+        }
     }
 
 
@@ -116,6 +120,7 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
             }
 
             tv_title.text = intent.getBundleExtra("data").getString("titleHeader")
+            et_filter.hint = intent.getBundleExtra("data").getString("searchHint")
         }
     }
 

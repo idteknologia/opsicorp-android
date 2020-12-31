@@ -4,7 +4,6 @@ import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreat
 import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
 import com.opsigo.travelaja.module.accomodation.hotel.detail_hotel.DetailHotelActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
-import com.opsigo.travelaja.module.accomodation.flight.dialog.FlightShortByDialog
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
@@ -40,7 +39,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         FilterOpsicorp.OnclickFilterListener,
         ToolbarOpsicorp.OnclickButtonListener,
         BottomSheetSort.BottomSheetListener ,
-        FlightShortByDialog.CallbackDialog ,
+        /*FlightShortByDialog.CallbackDialog ,*/
         OnclickListenerRecyclerViewAnimation{
 
     override fun getLayout(): Int { return R.layout.detail_search_hotel_activity }
@@ -209,7 +208,7 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     }
 
-    override fun selected(int: Int) {
+    /*override fun selected(int: Int) {
         current_sort = int
         when(int){
             0 -> {
@@ -225,7 +224,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                 //filterByDurationTime()
             }
         }
-    }
+    }*/
 
     override fun onClick(views: Int, position: Int, viewAnim: View) {
         when(views){

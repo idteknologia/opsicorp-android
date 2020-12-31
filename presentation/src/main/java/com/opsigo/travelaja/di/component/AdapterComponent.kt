@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.di.component
 
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import com.opsigo.travelaja.module.accomodation.flight.filter.FilterFlightAdapter
+
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 import com.opsigo.travelaja.module.approval.adapter.ApprovalAdapter
 import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
@@ -30,7 +30,7 @@ class AdapterComponent {
         factory { (data: ArrayList<SelectNationalModel>) ->SelectNationalityAdapter(data) }
         factory { (data: ArrayList<SelectNationalModel>) ->LookUpAdapter(data) }
         factory { (data: ArrayList<UploadModel>) ->AttachmentAdapter(androidContext(),data) }
-        factory { (data: ArrayList<FilterFlightModel>) ->FilterFlightAdapter(androidContext(),data) }
+        /*factory { (data: ArrayList<FilterFlightModel>) ->FilterFlightAdapter(androidContext(),data) }*/
         factory { (data: ArrayList<ApprovalModelAdapter>) ->ApprovalAdapter(androidContext(),data) }
         factory { (_: ArrayList<AccomodationResultModel>) -> ResultAccomodationAdapter() }
         factory { (_: ArrayList<SummaryFlightModelAdapter>) -> SummaryAdapter(androidContext()) }

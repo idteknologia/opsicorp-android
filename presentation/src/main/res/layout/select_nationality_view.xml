@@ -16,7 +16,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:orientation="vertical"
-        android:layout_alignParentLeft="true">
+        android:layout_alignParentLeft="true"
+        android:visibility="gone">
 
         <include
             android:visibility="visible"
@@ -31,71 +32,102 @@
 
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_below="@+id/layInfo"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:text="@string/what_is_your_purpose"
-        android:textColor="@color/green_price"
-        android:textSize="@dimen/title"
-        android:layout_marginBottom="22dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
-        android:id="@+id/lay_search"
-        android:layout_below="@id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:background="@drawable/rounded_button_et_search">
+        android:layout_height="wrap_content"
+        android:background="@color/selected_tab"
+        android:id="@+id/lay_search"
+        android:orientation="horizontal">
 
-        <TextView
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:id="@+id/dialog_title"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="product_title"
-            android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/rounded_button_et_search">
 
-        <EditText
-            android:layout_weight="1"
-            android:id="@+id/et_filter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/type_origin_city"
-            android:inputType="textNoSuggestions"
-            android:imeOptions="actionSearch"
-            android:background="@android:color/transparent"
-            android:textSize="17sp"
-            android:drawablePadding="5dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="15dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="5dp"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:id="@+id/dialog_title"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="product_title"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-        <ImageView
-            android:id="@+id/imgCloseDest"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:src="@drawable/ic_close_dark_gray"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/icSearch"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_search_orange"/>
 
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/et_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/type_origin_city"
+                android:inputType="textNoSuggestions"
+                android:imeOptions="actionSearch"
+                android:background="@android:color/transparent"
+                android:textSize="17sp"
+                android:drawablePadding="5dp"
+                android:paddingTop="17dp"
+                android:paddingBottom="15dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"/>
+
+            <ImageView
+                android:id="@+id/imgCloseDest"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_close_dark_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+            <TextView
+                android:id="@+id/tvCloseSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:text="@string/close"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:fontFamily="@font/lato_bold"/>
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/lay_search"
+        android:id="@+id/lay_title"
+        android:background="@color/green_cyan_info"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/what_is_your_purpose"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:layout_marginBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/lay_title"
         android:id="@+id/rv_nationality"
-        android:layout_marginTop="12dp"
         android:layout_marginBottom="40dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

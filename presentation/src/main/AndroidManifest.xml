@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity"></activity>
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -60,10 +62,6 @@
         </activity>
         <activity
             android:name="com.opsigo.travelaja.module.accomodation.hotel.result.ResultSearchHotelActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivityBackup"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -208,16 +206,7 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.flight_info.activity.FlightInfoActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.filter.FilterFlightActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.detail_passanger.DetailPassangerActivity"
-            android:screenOrientation="portrait">
-        </activity>
+
         <activity
             android:name="com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudget"
             android:screenOrientation="portrait">
@@ -226,13 +215,6 @@
             android:name="com.opsigo.travelaja.module.approval.activity.DetailApprovalActivityOld"
             android:screenOrientation="portrait">
         </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ConfirmOrderFlightActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.result.DetailResultFlightActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name="com.opsigo.travelaja.module.login.register.ComplitelyRegisterActivity"
             android:screenOrientation="portrait" />
