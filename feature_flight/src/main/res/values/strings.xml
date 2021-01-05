@@ -667,4 +667,7 @@ Please add your trip item for Approval."
     <string name="string_information_passsanger_booking_contact">Passenger details must be written as on ID card / Driving \n License / Passport / GDS Travel Profile.</string>
     <string name="string_information_passsanger_booking_contact2">Passenger data cannot be changed after passing this page.</string>
     <string name="title_feature_flight">feature flight</string>
+    <string name="noFlightResult">No flight, please search again before 30 days.</string>
+    <string name="whoops">Whoops!</string>
+    <string name="totalFlightFound">4 Departing Flights Found</string>
 </resources>

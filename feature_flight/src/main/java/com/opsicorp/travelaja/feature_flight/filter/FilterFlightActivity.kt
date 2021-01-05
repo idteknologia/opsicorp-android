@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.module.accomodation.adapter.FilterFlightAdapter
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp

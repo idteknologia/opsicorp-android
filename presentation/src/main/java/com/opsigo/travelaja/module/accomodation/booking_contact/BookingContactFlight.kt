@@ -27,10 +27,12 @@ import com.opsigo.travelaja.R
 import android.app.Activity
 import android.view.View
 import android.os.Build
+import android.widget.Toast
 import com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SeatActivityFlight
 import com.opsigo.travelaja.module.accomodation.ssr.BagageActivity
 import com.opsigo.travelaja.module.accomodation.ssr.FrequecyFlayerActivity
 import com.opsigo.travelaja.module.accomodation.ssr.SsrActivity
+import opsigo.com.datalayer.model.accomodation.flight.seat.ResultSeat
 import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
 import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
@@ -41,6 +43,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     override fun getLayout(): Int { return R.layout.booking_contact_view_flight }
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
+    val resultSeat = ResultSeat()
     val adapter by lazy { BookingContactAdapter(this,dataContacts) }
     lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
@@ -472,16 +475,21 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
                 setLog("--------------------------")
-                Constants.DATA_SEAT_AIRLINE.clear()
-                Constants.DATA_SEAT_AIRLINE.addAll(data)
-                Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
-                    setLog(seatAirlineModel.nameFlight)
-                    setLog(seatAirlineModel.nameAirCraft)
-                    setLog(seatAirlineModel.totalRows.toString())
-                    setLog(Serializer.serialize(seatAirlineModel.dataSeat))
+                if (!resultSeat.rsFlightSeats.isNullOrEmpty()){
+                    Constants.DATA_SEAT_AIRLINE.clear()
+                    Constants.DATA_SEAT_AIRLINE.addAll(data)
+                    Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
+                        setLog(seatAirlineModel.nameFlight)
+                        setLog(seatAirlineModel.nameAirCraft)
+                        setLog(seatAirlineModel.totalRows.toString())
+                        setLog(Serializer.serialize(seatAirlineModel.dataSeat))
+                    }
+                    gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)
+                    hideDialog()
+                } else {
+                    Toast.makeText(applicationContext, "Seat Is Unavailable", Toast.LENGTH_SHORT).show()
+                    hideDialog()
                 }
-                gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)
-                hideDialog()
             }
 
             override fun failed(errorMessage: String) {

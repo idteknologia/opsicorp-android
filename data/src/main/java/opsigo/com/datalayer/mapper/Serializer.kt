@@ -13,7 +13,7 @@ object Serializer {
         return gson.toJson(`object`)
     }
 
-    fun <T> deserialize(string: String, clazz: Class<T>): T {
+    fun <T> deserialize(string: String?, clazz: Class<T>): T {
         return gson.fromJson(string, clazz)
     }
 }

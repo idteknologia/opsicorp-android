@@ -1,13 +1,13 @@
-package com.opsicorp.travelaja.feature_flight.filter
+package com.opsigo.travelaja.module.accomodation.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsicorp.travelaja.feature_flight.R
+import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.filter_adapter_flight_new.view.*
+import kotlinx.android.synthetic.main.filter_adapter_flight.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 
 class FilterFlightAdapter (val context: Context, private var items: ArrayList<FilterFlightModel>): RecyclerView.Adapter<FilterFlightAdapter.ViewHolder>() {
@@ -17,7 +17,7 @@ class FilterFlightAdapter (val context: Context, private var items: ArrayList<Fi
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.filter_adapter_flight_new, parent, false)
+                .inflate(R.layout.filter_adapter_flight, parent, false)
 
         return ViewHolder(itemView)
     }

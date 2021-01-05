@@ -379,6 +379,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lay_air_class"
                 android:layout_below="@+id/line_depart"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
@@ -451,6 +452,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/lay_air_pref"
                 android:layout_below="@+id/line_depart"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"

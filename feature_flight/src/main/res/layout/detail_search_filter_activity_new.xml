@@ -24,7 +24,7 @@
             android:id="@+id/tv_total_data"
             android:visibility="gone"
             style="@style/RobotoItalic"
-            android:text="4 Departing Flights Found"
+            android:text="@string/totalFlightFound"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -33,7 +33,9 @@
             android:layout_marginTop="8dp"
             android:id="@+id/rv_result_flightnew"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
     <RelativeLayout
@@ -67,7 +69,7 @@
                 android:textSize="22sp"
                 android:textColor="#24253d"
                 android:gravity="center_horizontal"
-                android:text="Whoops!"
+                android:text="@string/whoops"
                 style="@style/RobotoBold"/>
 
             <TextView
@@ -80,7 +82,7 @@
                 android:layout_gravity="center"
                 style="@style/RobotoRegular"
                 android:layout_marginTop="10dp"
-                android:text="No flight, please search again before 30 days."
+                android:text="@string/noFlightResult"
                 />
         </LinearLayout>
 
@@ -92,5 +94,7 @@
         android:layout_width="match_parent"
         android:id="@+id/filter"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
+        android:layout_height="wrap_content">
+
+    </com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
 </RelativeLayout>

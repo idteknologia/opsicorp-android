@@ -1,7 +1,6 @@
 package com.opsigo.travelaja.module.accomodation.page_parent.activity
 
 import com.opsigo.travelaja.module.accomodation.page_parent.presenter.AccomodationPresenter
-import com.opsigo.travelaja.module.accomodation.flight.search.FlightFragment
 import com.opsigo.travelaja.module.accomodation.page_parent.view.AccomodationView
 import com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
@@ -25,6 +24,7 @@ import com.opsigo.travelaja.R
 import org.koin.core.inject
 import java.lang.Exception
 import android.view.View
+import com.opsigo.travelaja.module.accomodation.search.FlightFragment
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.READ_REQUEST_LOCATION

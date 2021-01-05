@@ -123,7 +123,7 @@
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
-                    android:text="TRANSIT"
+                    android:text="PRICE/PAX"
                     android:textSize="13sp"
                     android:textColor="#24253d"
                     android:layout_width="wrap_content"
