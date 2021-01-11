@@ -32,7 +32,8 @@
                         android:layout_marginLeft="20dp"
                         android:src="@drawable/ic_back"
                         android:layout_width="20dp"
-                        android:layout_height="20dp">
+                        android:layout_height="20dp"
+                        android:layout_marginStart="20dp">
                     </ImageView>
 
                     <LinearLayout
@@ -47,7 +48,7 @@
                             android:textSize="18sp"
                             android:textColor="#24253d"
                             android:gravity="end"
-                            android:text="Flight Summary"
+                            android:text="@string/flights_summary"
                             style="@style/RobotoBold"/>
 
                         <TextView
@@ -58,7 +59,7 @@
                             android:textColor="#91929e"
                             android:gravity="end"
                             style="@style/RobotoRegular"
-                            android:text="Oneway"
+                            android:text="@string/one_way"
                             android:layout_marginTop="2dp"/>
                     </LinearLayout>
 
@@ -114,15 +115,15 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="#24253d"
-                                android:text="CZ - Fare option not available"
+                                android:text="@string/cz_fare_option_not_available"
                                 style="@style/RobotoBold"/>
                             <TextView
                                 android:layout_marginTop="2dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp"
+                                android:textSize="12sp"
                                 android:textColor="#91929e"
-                                android:text="Please choose the information for fastest Approval"
+                                android:text="@string/please_choose_the_information_for_fastest_approval"
                                 style="@style/RobotoRegular"/>
                         </LinearLayout>
 
@@ -153,7 +154,9 @@
         android:id="@+id/line_prize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/detail_prize_bottom_new"></include>
+        layout="@layout/detail_prize_bottom_new">
+
+    </include>
 
 
 </RelativeLayout>

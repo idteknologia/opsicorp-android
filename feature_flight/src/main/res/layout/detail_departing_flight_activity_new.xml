@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content">
                 <TextView
                     style="@style/RobotoRegular"
-                    android:textSize="14dp"
-                    android:text="Airport :"
+                    android:textSize="14sp"
+                    android:text="@string/airport"
                     android:textColor="#24253d"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -41,8 +41,8 @@
                     android:layout_marginLeft="3dp"
                     android:id="@+id/tv_airport_name"
                     style="@style/RobotoRegular"
-                    android:textSize="14dp"
-                    android:text="Soekarno Hatta - Terminal 1C"
+                    android:textSize="14sp"
+                    android:text="@string/terminalBandara"
                     android:textColor="#939396"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -54,7 +54,9 @@
                 android:layout_marginTop="12dp"
                 layout="@layout/layout_card_detail_flight_new"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"></include>
+                android:layout_width="wrap_content">
+
+            </include>
         </LinearLayout>
     </LinearLayout>
 
@@ -85,7 +87,7 @@
                     <TextView
                         android:id="@+id/tv_title_prize"
                         style="@style/RobotoRegular"
-                        android:text="Total price for 1 pax"
+                        android:text="@string/total_price_for_1_pax"
                         android:textSize="12sp"
                         android:textColor="@color/black"
                         android:layout_width="wrap_content"
@@ -96,7 +98,7 @@
             <TextView
                 android:id="@+id/tv_price"
                 android:gravity="center"
-                android:text="IDR 719.000"
+                android:text="@string/hargaTotal"
                 android:textSize="18sp"
                 style="@style/RobotoMedium"
                 android:textColor="#00776a"
@@ -106,10 +108,10 @@
 
             <TextView
                 android:id="@+id/tv_including"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#939396"
                 style="@style/RobotoRegular"
-                android:text="Including of all fares &amp; vat"
+                android:text="@string/including_of_all_fares"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:gravity="left"

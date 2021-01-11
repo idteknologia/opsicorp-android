@@ -1,5 +1,8 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class ResultListFlightModel {
 
@@ -23,6 +26,7 @@ class ResultListFlightModel {
     var departDate      = ""
     var departureDate   = ""
     var departTime      = ""
+    var dateDeparture   = Date()
 
     var arrivalDate     = ""
     var arriveDate      = ""

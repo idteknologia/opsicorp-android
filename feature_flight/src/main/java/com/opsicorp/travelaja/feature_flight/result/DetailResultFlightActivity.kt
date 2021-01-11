@@ -93,6 +93,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
                 hideLoadingOpsicorp()
                 initView()
                 dataSsr = data
+                //setlog ssr
             }
 
             override fun failed(string: String) {

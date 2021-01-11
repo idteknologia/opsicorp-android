@@ -276,9 +276,12 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     override fun onResume() {
+        if (Globals.ALL_READY_SELECT_DEPARTING){
+            getAirlineByCompany()
+        }
         super.onResume()
-        setToolbar()
-        setDataArrival()
+        /*setToolbar()
+        setDataArrival()*/
     }
 
     private fun setToolbar(mDate : String = "") {
@@ -356,14 +359,14 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun filterByDurationTime() {
         val dateFormatter: DateFormat = SimpleDateFormat("hh:mm")
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0 && !it.listTrainModel.notComply}.sortedBy { dateFormatter.parse(it.listTrainModel.durationTime) })
-        if (data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0}.isNotEmpty()){
+        dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && !it.listFlightModel.isComply}.sortedBy { dateFormatter.parse(it.listFlightModel.duration) })
+        if (data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0}.isNotEmpty()){
             dataFilter.add(headerNotComply())
-            dataFilter.addAll(data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0 }.sortedBy { dateFormatter.parse(it.listTrainModel.durationTime)  })
+            dataFilter.addAll(data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0 }.sortedBy { dateFormatter.parse(it.listFlightModel.duration)  })
         }
-        if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
+        if (data.filter { it.listFlightModel.numberSeat.toInt()==0}.isNotEmpty()){
             dataFilter.add(headerNotAvailable())
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { dateFormatter.parse(it.listTrainModel.durationTime) })
+            dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()==0}.sortedBy { dateFormatter.parse(it.listFlightModel.duration) })
         }
         adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
     }
@@ -386,28 +389,28 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun filterByEarliestDeparture(){
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0 && !it.listTrainModel.notComply}.sortedBy { it.listTrainModel.dateDeparture })
-        if (data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0}.isNotEmpty()){
+        dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && !it.listFlightModel.isComply}.sortedBy { it.listFlightModel.dateDeparture })
+        if (data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0}.isNotEmpty()){
             dataFilter.add(headerNotComply())
-            dataFilter.addAll(data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0 }.sortedBy { it.listTrainModel.dateDeparture })
+            dataFilter.addAll(data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0 }.sortedBy { it.listFlightModel.dateDeparture })
         }
-        if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
+        if (data.filter { it.listFlightModel.numberSeat.toInt()==0}.isNotEmpty()){
             dataFilter.add(headerNotAvailable())
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { it.listTrainModel.dateDeparture })
+            dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()==0}.sortedBy { it.listFlightModel.dateDeparture })
         }
         adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
     }
 
     private fun filterByLatestDeparture(){
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0 && !it.listTrainModel.notComply}.sortedBy { it.listTrainModel.dateDeparture }.reversed())
-        if (data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0}.isNotEmpty()){
+        dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && !it.listFlightModel.isComply}.sortedBy { it.listFlightModel.dateDeparture }.reversed())
+        if (data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0}.isNotEmpty()){
             dataFilter.add(headerNotComply())
-            dataFilter.addAll(data.filter { it.listTrainModel.notComply && it.listTrainModel.totalSeat.toInt()>0 }.sortedBy { it.listTrainModel.dateDeparture })
+            dataFilter.addAll(data.filter { it.listFlightModel.isComply && it.listFlightModel.numberSeat.toInt()>0 }.sortedBy { it.listFlightModel.dateDeparture })
         }
-        if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
+        if (data.filter { it.listFlightModel.numberSeat.toInt()==0}.isNotEmpty()){
             dataFilter.add(headerNotAvailable())
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0}.sortedBy { it.listTrainModel.dateDeparture }.reversed())
+            dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()==0}.sortedBy { it.listFlightModel.dateDeparture }.reversed())
         }
         adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
     }
@@ -491,10 +494,11 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onSort() {
         if (data.isNotEmpty()){
-            if(Globals.typeAccomodation=="Flight"){
+            /*if(Globals.typeAccomodation=="Flight"){
                 val bottomSheet = BottomSheetSort(current_sort)
                 bottomSheet.show(supportFragmentManager, "FlightSort")
-            }
+            }*/
+            FlightShortByDialog(this).create(current_sort, this)
         }
     }
 
@@ -511,8 +515,8 @@ class ResultSearchFlightActivity : BaseActivity(),
                     dataOrder.dateDeparture = departureDate
                 }
 
-                clearDataListFlight()
                 getAirlineByCompany()
+                setToolbar(DateConverter().getDate(departureDate,"yyyy-MM-dd","EEE, dd MMM yyyy"))
             }
         })
     }
@@ -538,13 +542,13 @@ class ResultSearchFlightActivity : BaseActivity(),
                 firstFilter()
             }
             1 -> {
-                //filterByEarliestDeparture()
+                filterByEarliestDeparture()
             }
             2 -> {
-                //filterByLatestDeparture()
+                filterByLatestDeparture()
             }
             3 -> {
-                //filterByDurationTime()
+                filterByDurationTime()
             }
         }
     }

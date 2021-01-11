@@ -7,6 +7,7 @@ import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.accomodation.adapter.FilterFlightAdapter
+import com.opsigo.travelaja.module.accomodation.adapter.FilterFlightCabinAdapter
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
@@ -29,10 +30,12 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
         return R.layout.filter_flight_activity_new
     }
 
+    var dataCabin = ArrayList<FilterFlightModel>()
     var dataDeparture  = ArrayList<FilterFlightModel>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
     var dataArrival    = ArrayList<FilterFlightModel>()
     var namesAirlines  = ArrayList<String>()
+    val adapterCabinClass by inject<FilterFlightCabinAdapter> { parametersOf(dataCabin)  }
     val adapterDeparture by inject<FilterFlightAdapter> { parametersOf(dataDeparture) }
     val adapterArrival by inject<FilterFlightAdapter> { parametersOf(dataArrival) }
 
@@ -51,14 +54,32 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     }
 
     private fun addDataDummyTime() {
+        dataCabin = DataDummyAccomodation().addCabinClass()
         dataDeparture = DataDummyAccomodation().addDataDepartureTime()
         dataArrival   = DataDummyAccomodation().addDataDepartureTime()
 
+        adapterCabinClass.setData(dataCabin)
         adapterDeparture.setData(dataDeparture)
         adapterArrival.setData(dataArrival)
     }
 
     private fun initRecyclerView() {
+        val layoutManagerCabin = LinearLayoutManager(this)
+        layoutManagerCabin.orientation = LinearLayoutManager.VERTICAL
+        rvCabinClass.layoutManager = layoutManagerCabin
+        rvCabinClass.itemAnimator = DefaultItemAnimator()
+        rvCabinClass.adapter = adapterCabinClass
+
+        adapterCabinClass.setOnclickListener(object : OnclickListenerRecyclerView {
+            override fun onClick(views: Int, position: Int) {
+                when (views){
+                    -1 -> {
+
+                    }
+                }
+            }
+        })
+
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_departure_time.layoutManager = layoutManager

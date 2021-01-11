@@ -11,8 +11,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.module.accomodation.train.adapter.TrainShorByAdapter
+import com.opsicorp.travelaja.feature_flight.adapter.FlightShortByAdapter
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 
 class FlightShortByDialog (var context: Context) {
@@ -22,7 +23,8 @@ class FlightShortByDialog (var context: Context) {
     val data = ArrayList<String>()
     var currentSort = 0
     lateinit var recyclerView : RecyclerView
-    val adapterShortBy by lazy { TrainShorByAdapter(context,data) }
+    lateinit var background: RelativeLayout
+    val adapterShortBy by lazy { FlightShortByAdapter(context,data) }
     lateinit var callbackDialog : CallbackDialog
 
     fun create(currentSort: Int,callbackDialog: CallbackDialog){
@@ -31,6 +33,7 @@ class FlightShortByDialog (var context: Context) {
         this.callbackDialog = callbackDialog
         views = LayoutInflater.from(context).inflate(R.layout.train_short_by_dialog_new,null)
         recyclerView = views.findViewById(R.id.recycler_shor_by)
+        background = views.findViewById(R.id.line_background)
 
         initRecyclerView()
 
@@ -46,6 +49,8 @@ class FlightShortByDialog (var context: Context) {
     }
 
     private fun initRecyclerView() {
+        background.setOnClickListener { alertDialog?.hide() }
+
         val layoutManager = LinearLayoutManager(context)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager

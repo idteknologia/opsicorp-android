@@ -19,37 +19,16 @@
         android:layout_marginEnd="10dp" />
 
     <TextView
-        android:id="@+id/tv_name_time"
+        android:id="@+id/tvCabinClass"
         android:layout_toEndOf="@+id/checkbox"
         android:layout_centerVertical="true"
         style="@style/RobotoRegular"
-        android:text="Early Morning"
+        android:text="Economy"
         android:textSize="14sp"
         android:textColor="#9924253d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/checkbox" />
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="11dp"
-        style="@style/RobotoMedium"
-        android:text="00:00 - 06:00"
-        android:textSize="14sp"
-        android:layout_alignParentRight="true"
-        android:textColor="#24253d"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="11dp"
-        android:layout_alignParentEnd="true" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e0e0e1"
-        android:layout_alignParentBottom="true">
-
-    </LinearLayout>
 
 </RelativeLayout>

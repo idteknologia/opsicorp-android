@@ -15,6 +15,8 @@ import com.opsigo.travelaja.locale.AppLocaleChangeReceiver
 import com.opsigo.travelaja.module.login.select_nationality.presenter.SelectedNationalityPresenter
 import com.opsigo.travelaja.module.login.select_nationality.view.SelectNationalityView
 import com.opsigo.travelaja.utility.Constants
+import com.opsigo.travelaja.utility.gone
+import com.opsigo.travelaja.utility.visible
 import kotlinx.android.synthetic.main.select_nationality_view.*
 import kotlinx.android.synthetic.main.toolbar_white.*
 import org.koin.core.inject
@@ -49,10 +51,12 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
                 if (s.length>0){
                     presenter.filterActivated = true
                     presenter.filterDataAdapter(s.toString())
+                    lay_title.gone()
                 }
                 else{
                     presenter.filterActivated = false
                     getData()
+                    lay_title.visible()
                 }
             }
         })

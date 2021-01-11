@@ -27,6 +27,7 @@ class SsrListActivity : BaseActivity(),
 
     val meal = "Meal"
     val ps   = "Participant Assistant"
+
     var positionTabName = ""
     val ssrMeal = ArrayList<DataSsr>()
     val ssrAssistent = ArrayList<DataSsr>()

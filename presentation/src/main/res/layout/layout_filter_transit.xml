@@ -10,15 +10,16 @@
         <RelativeLayout
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="19dp"
+            android:layout_marginStart="19dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_centerHorizontal="true"
                 android:id="@+id/btn_direct"
                 android:background="@drawable/rounded_button_filter"
-                android:layout_width="91dp"
-                android:layout_height="wrap_content">
+                android:layout_width="109dp"
+                android:layout_height="35dp">
                 <TextView
                     android:textColor="#24253d"
                     android:id="@+id/tv_direct"
@@ -33,15 +34,19 @@
         <RelativeLayout
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <LinearLayout
                 android:id="@+id/btn_one_transit"
                 android:background="@drawable/rounded_button_filter"
                 android:layout_centerHorizontal="true"
-                android:layout_width="91dp"
-                android:layout_height="wrap_content">
+                android:layout_width="99dp"
+                android:layout_height="35dp">
                 <TextView
                     android:textColor="#24253d"
                     android:id="@+id/tv_one_transit"
@@ -57,16 +62,16 @@
             android:background="#f6f8f8"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <LinearLayout
                 android:id="@+id/btn_two_transit"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/rounded_button_filter"
-                android:layout_marginRight="12dp"
-                android:layout_width="91dp"
-                android:layout_height="wrap_content">
+                android:layout_width="109dp"
+                android:layout_height="35dp">
                 <TextView
                     android:textColor="@color/colorTextHint"
                     android:id="@+id/tv_two_transit"

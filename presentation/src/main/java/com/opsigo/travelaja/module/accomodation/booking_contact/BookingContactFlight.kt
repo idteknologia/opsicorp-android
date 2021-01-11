@@ -65,7 +65,9 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
         val datereturn = DateConverter().setDateFormat3(dataOrder.dateArrival)
 
-        toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}","Date : ${datedepar} , ${datereturn}") //- 1 pax
+       // toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}") //- 1 pax
+        toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar}") //- 1 pax
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)
         }
@@ -475,7 +477,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
                 setLog("--------------------------")
-                if (!resultSeat.rsFlightSeats.isNullOrEmpty()){
+                if (!resultSeat.isError.equals(false)){
                     Constants.DATA_SEAT_AIRLINE.clear()
                     Constants.DATA_SEAT_AIRLINE.addAll(data)
                     Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->

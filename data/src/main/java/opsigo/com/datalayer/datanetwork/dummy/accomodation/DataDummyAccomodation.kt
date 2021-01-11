@@ -268,6 +268,25 @@ class DataDummyAccomodation {
         return data
     }
 
+    fun addCabinClass():ArrayList<FilterFlightModel>{
+        val data = ArrayList<FilterFlightModel>()
+
+        val names = ArrayList<String>()
+        names.add("Economy")
+        names.add("Business")
+        names.add("Premium Economy")
+        names.add("First Class")
+
+        names.forEachIndexed { index, s ->
+            val mData = FilterFlightModel()
+            mData.id = "${index+1}"
+            mData.name = s
+            data.add(mData)
+        }
+
+        return data
+    }
+
     fun addDataDummyRoom():ArrayList<SelectRoomModel>{
         val data = ArrayList<SelectRoomModel>()
 

@@ -48,7 +48,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel ,positionParent: Int) {
         val adapter by lazy { BaggageListAdapter(context) }
         val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_list_item_bagage.layoutManager = layoutManager
         holder.itemView.rv_list_item_bagage.itemAnimator = DefaultItemAnimator()
         holder.itemView.rv_list_item_bagage.adapter = adapter

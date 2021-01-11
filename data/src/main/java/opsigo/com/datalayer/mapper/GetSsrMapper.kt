@@ -44,7 +44,7 @@ class GetSsrMapper {
                     mDataBagage.ssrType = it.ssrType.toString()
                     data.dataBagage.add(mDataBagage).toString()
                 }
-                data.isBagage  = true
+                data.isBagage = data.dataBagage.isNotEmpty()
             }catch (e:Exception){
                 e.printStackTrace()
             }
@@ -61,6 +61,7 @@ class GetSsrMapper {
                         mDataBagage.ssrType = it.ssrType.toString()
                         data.dataDrink.add(mDataBagage).toString()
                     }
+                    data.isHaveDrink = data.dataDrink.isNotEmpty()
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -79,6 +80,7 @@ class GetSsrMapper {
                         mDataBagage.ssrType = it.ssrType.toString()
                         data.dataSport.add(mDataBagage).toString()
                     }
+                    data.isHaveSport = data.dataSport.isNotEmpty()
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -96,6 +98,7 @@ class GetSsrMapper {
                         mDataBagage.ssrType = it.ssrType.toString()
                         data.dataMeal.add(mDataBagage).toString()
                     }
+                    data.isHaveMeal = data.dataMeal.isNotEmpty()
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -118,7 +121,7 @@ class GetSsrMapper {
                         mDataBagage.ssrType = it.ssrType.toString()
                         data.dataOther.add(mDataBagage).toString()
                     }
-
+                    data.isOther = data.dataOther.isNotEmpty()
                     data.isOther = true
                 }
             }catch (e:Exception){

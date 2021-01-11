@@ -23,12 +23,14 @@
             <RelativeLayout
                 android:background="@android:color/white"
                 android:paddingLeft="20dp"
+                android:paddingEnd="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="43dp">
+                android:layout_height="43dp"
+                android:paddingStart="20dp">
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
-                    android:text="TRANSIT"
+                    android:text="@string/transit"
                     android:textSize="13sp"
                     android:textColor="#24253d"
                     android:layout_width="wrap_content"
@@ -38,7 +40,9 @@
             <com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_transit"></com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp>
+                android:id="@+id/btn_transit">
+
+            </com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp>
 
             <!--<LinearLayout
                 android:orientation="horizontal"
@@ -123,7 +127,7 @@
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
-                    android:text="PRICE/PAX"
+                    android:text="@string/price_pax"
                     android:textSize="13sp"
                     android:textColor="#24253d"
                     android:layout_width="wrap_content"
@@ -156,7 +160,7 @@
                     style="@style/Base.Sephiroth.Widget.RangeSeekBar"
                     android:layout_height="wrap_content"
                     app:range_progress_endValue="100"
-                    app:range_progress_startValue="10"/>
+                    app:range_progress_startValue="0"/>
 
                 <RelativeLayout
                     android:paddingRight="19dp"
@@ -168,7 +172,7 @@
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         style="@style/RobotoRegular"
-                        android:text="Rp 5.230.000"
+                        android:text="Start"
                         android:textSize="13sp"
                         android:textColor="#939396"
                         android:layout_width="wrap_content"
@@ -177,7 +181,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         style="@style/RobotoRegular"
-                        android:text="Rp 5.230.000"
+                        android:text="Max"
                         android:textSize="13sp"
                         android:textColor="#939396"
                         android:layout_width="wrap_content"
@@ -191,8 +195,45 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="#e0e0e1"
-                android:layout_marginBottom="10dp"></LinearLayout>
+                android:layout_marginBottom="10dp">
 
+            </LinearLayout>
+
+            <RelativeLayout
+                android:background="@android:color/white"
+                android:paddingLeft="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="43dp">
+                <ImageView
+                    android:id="@+id/ivChair"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_chair"/>
+                <TextView
+                    android:layout_centerVertical="true"
+                    style="@style/RobotoBold"
+                    android:text="AVAILABLE CABIN CLASS"
+                    android:textSize="13sp"
+                    android:textColor="#24253d"
+                    android:layout_toRightOf="@id/ivChair"
+                    android:layout_marginStart="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvCabinClass">
+
+            </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1">
+            </LinearLayout>
             <RelativeLayout
                 android:background="@android:color/white"
                 android:paddingLeft="20dp"
@@ -212,7 +253,9 @@
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_departure_time"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/rv_departure_time">
+
+            </android.support.v7.widget.RecyclerView>
 
             <RelativeLayout
                 android:background="@android:color/white"
@@ -234,7 +277,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_arrival_time"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/rv_arrival_time">
+
+            </android.support.v7.widget.RecyclerView>
 
             <RelativeLayout
                 android:onClick="airlinesPreferance"
@@ -318,7 +363,9 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:id="@id/btn_next"
-                android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                android:layout_height="wrap_content">
+
+            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
