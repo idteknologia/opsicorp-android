@@ -8,33 +8,33 @@ class ProfileEntityDataMapper{
     fun transform(profileEntity: ProfileEntity): ProfileModel {
         val data = ProfileModel()
 
-        data.name        = profileEntity.fullName
-        data.firstName   = profileEntity.firstName
-        data.lastName    = profileEntity.lastName
-        data.nameAgent   = profileEntity.companyName
-        data.position    = profileEntity.jobTitleName
+        data.name        = profileEntity.fullName.toString()
+        data.firstName   = profileEntity.firstName.toString()
+        data.lastName    = profileEntity.lastName.toString()
+        data.nameAgent   = profileEntity.companyName.toString()
+        data.position    = profileEntity.jobTitleName.toString()
         data.address     = ""
-        data.email       = profileEntity.email
-        data.employId           = profileEntity.employeeId
-        data.phone              = profileEntity.mobilePhone
-        data.nationality        = profileEntity.nationality
-        data.nationalityName    = profileEntity.nationalityName
+        data.email       = profileEntity.email.toString()
+        data.employId           = profileEntity.employeeId.toString()
+        data.phone              = profileEntity.mobilePhone.toString()
+        data.nationality        = profileEntity.nationality.toString()
+        data.nationalityName    = profileEntity.nationalityName.toString()
         data.isApproval     = profileEntity.IsApprover
-        data.idPosition     = profileEntity.jobTitleId
-        data.homePhone      = profileEntity.homePhone
-        data.title          = profileEntity.title
+        data.idPosition     = profileEntity.jobTitleId.toString()
+        data.homePhone      = profileEntity.homePhone.toString()
+        data.title          = profileEntity.title.toString()
 
 
-        data.idNumber     = profileEntity.idNumber
-        data.employeeNik  = profileEntity.nikEmployee
+        data.idNumber     = profileEntity.idNumber.toString()
+        data.employeeNik  = profileEntity.nikEmployee.toString()
         data.index        = 1
-        data.mobilePhone  = profileEntity.mobilePhone
-        data.jobTitleId   = profileEntity.jobTitleId
-        data.type         = profileEntity.companyType
-        data.companyCode  = profileEntity.companyCode
-        data.birthDate    = profileEntity.birthDate
+        data.mobilePhone  = profileEntity.mobilePhone.toString()
+        data.jobTitleId   = profileEntity.jobTitleId.toString()
+        data.type         = profileEntity.companyType.toString()
+        data.companyCode  = profileEntity.companyCode.toString()
+        data.birthDate    = profileEntity.birthDate.toString()
         data.identityType = if (profileEntity.identityType==null) "" else profileEntity.identityType
-        data.ktp          = profileEntity.idNumber
+        data.ktp          = profileEntity.idNumber.toString()
         data.passport     = if (profileEntity.passportNumber==null) "" else profileEntity.passportNumber
         data.sim          = if (profileEntity.simNumber==null) "" else profileEntity.simNumber
 

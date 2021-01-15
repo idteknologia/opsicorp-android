@@ -13,11 +13,16 @@ import android.content.Context
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import android.view.View
+import com.opsigo.travelaja.utility.Globals
+import com.squareup.picasso.Picasso
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
+import opsigo.com.domainlayer.model.accomodation.flight.DataSsr
 
 class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     var items = ArrayList<ResultListFlightModel>()
+    var dataCabin = ArrayList<DataSsr>()
     val context = context
 
     override fun getItemCount(): Int {
@@ -38,9 +43,20 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = items.get(position)
-        holder.itemView.tv_title_trip.text     = "Departure Flight"
+        val dataProfile = Globals.getProfile(context)
+        if (position==0){
+            holder.itemView.tv_title_trip.text     = "Departure Flight"
+        } else {
+            holder.itemView.tv_title_trip.text     = "Arrival Flight"
+        }
         holder.itemView.tv_city_code.text      = "${data.origin} - ${data.destination}"
-        holder.itemView.tv_name_passanger.text = "Mr. Vody Andrian"
+
+        holder.itemView.tv_name_passanger.text = dataProfile.name
+        Picasso.get()
+                .load(data.imgAirline)
+                .fit()
+                .centerInside()
+                .into(holder.itemView.img_airline)
 
         setDataRecycler(holder,data,position)
     }
@@ -48,6 +64,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel ,positionParent: Int) {
         val adapter by lazy { BaggageListAdapter(context) }
         val layoutManager = LinearLayoutManager(context)
+        dataCabin = DataDummyAccomodation().addBaggae()
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_list_item_bagage.layoutManager = layoutManager
         holder.itemView.rv_list_item_bagage.itemAnimator = DefaultItemAnimator()
@@ -58,12 +75,16 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
                 when(views){
                     Constants.KEY_BAGGAGE_ITEM_SELECTED -> {
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
+                        holder.itemView.tvTotalBaggage.text = dataCabin.get(position).ssrName
+                        /*holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName*/
+
                     }
                 }
             }
         })
 
-        adapter.setData(data.dataSSR.dataBagage)
+        /*adapter.setData(data.dataSSR.dataBagage)*/
+        adapter.setData(dataCabin)
 
     }
 

@@ -94,7 +94,7 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
         endDateSelected   = DateConverter().getDate(string,formatDate,"yyyy-MM-dd")
         end_date.text     = DateConverter().getDate(string,formatDate,"dd MMM yyyy")
 
-        Globals.delay(2000,object :Globals.DelayCallback{
+        Globals.delay(1000,object :Globals.DelayCallback{
             override fun done() {
                 finishListener()
             }

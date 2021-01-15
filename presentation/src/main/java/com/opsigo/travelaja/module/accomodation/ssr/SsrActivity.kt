@@ -20,8 +20,8 @@ class SsrActivity : BaseActivity(), OnclickListenerRecyclerViewParent {
 
     override fun OnMain() {
         initToolbar()
-        initRecyclerView()
-        setData()
+        /*initRecyclerView()
+        setData()*/
     }
 
     private fun initToolbar() {

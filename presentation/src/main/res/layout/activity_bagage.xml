@@ -29,7 +29,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#d8d8d8"></LinearLayout>
+            android:background="#d8d8d8">
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -42,7 +44,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#939396"
-                android:text="Baggage Charge"/>
+                android:text="@string/baggage_charge"
+                android:layout_marginStart="20dp" />
 
             <TextView
                 android:layout_marginRight="20dp"
@@ -52,8 +55,23 @@
                 android:textSize="16sp"
                 android:textColor="#24253d"
                 android:gravity="end"
-                android:text="IDR 870.000"
-                android:layout_centerVertical="true"/>
+                android:text="@string/total_price"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="42dp"
+                android:layout_alignParentEnd="true" />
+            <ImageView
+                android:id="@+id/ic_image"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chevron_up_orange"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginStart="13dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="22dp"
+                android:layout_marginLeft="13dp" />
         </RelativeLayout>
 
         <LinearLayout

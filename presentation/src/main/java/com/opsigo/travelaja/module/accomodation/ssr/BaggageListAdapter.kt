@@ -4,6 +4,8 @@ import android.view.View
 import com.opsigo.travelaja.R
 import android.view.ViewGroup
 import android.content.Context
+import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.Constants
 import android.support.v7.widget.RecyclerView
@@ -16,6 +18,7 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<DataSsr>()
     val context = context
+    var row_index = -1
 
     override fun getItemCount(): Int {
         return items.size
@@ -39,6 +42,15 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
 
         holder.itemView.setOnClickListener {
             onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
+            row_index = position
+            notifyDataSetChanged()
+        }
+        if (row_index == position ){
+            holder.itemView.cvBaggage.setBackgroundResource(R.drawable.card_background_corner_green)
+            holder.itemView.tv_price_baggage.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+        } else {
+            holder.itemView.cvBaggage.setBackgroundResource(R.drawable.card_background_corner_grey)
+            holder.itemView.tv_price_baggage.setTextColor(ContextCompat.getColor(context, R.color.colorMaterialGrey))
         }
 
     }

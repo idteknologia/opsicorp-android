@@ -276,12 +276,12 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     override fun onResume() {
-        if (Globals.ALL_READY_SELECT_DEPARTING){
+        /*if (Globals.ALL_READY_SELECT_DEPARTING){
             getAirlineByCompany()
-        }
+        }*/
         super.onResume()
-        /*setToolbar()
-        setDataArrival()*/
+        setToolbar()
+        setDataArrival()
     }
 
     private fun setToolbar(mDate : String = "") {

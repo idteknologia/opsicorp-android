@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#00776a"
-        android:text="Departure Flight"
+        android:text="@string/departure_flight"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
 
 
     <RelativeLayout
@@ -31,7 +32,9 @@
             android:layout_marginRight="10dp"
             android:layout_width="30dp"
             android:layout_height="22dp"
-            android:background="@color/black">
+            android:src="@drawable/background_slider"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="10dp">
         </ImageView>
 
         <TextView
@@ -42,26 +45,49 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#24253d"
-            android:text="CGK - KNO"
+            android:text="@string/flightRoute"
             android:layout_toRightOf="@+id/img_airline"/>
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tv_name_passanger"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        style="@style/RobotoBold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="#939396"
-        android:text="Mr. Vody Andrian"/>
+        <TextView
+            android:id="@+id/tv_name_passanger"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            style="@style/RobotoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#939396"
+            android:text="@string/passengers"
+            android:layout_marginStart="30dp" />
 
+        <TextView
+            android:id="@+id/tvTotalBaggage"
+            style="@style/RobotoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginLeft="350dp"
+            android:layout_marginTop="15dp"
+            android:text="kg"
+            android:textColor="#939396"
+            android:textSize="14sp" />
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rv_list_item_bagage"></android.support.v7.widget.RecyclerView>
+        android:id="@+id/rv_list_item_bagage">
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="335dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="#e0e0e1">
+    </LinearLayout>
 
 </LinearLayout>

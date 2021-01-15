@@ -670,4 +670,5 @@ Please add your trip item for Approval."
     <string name="flightRoute">CGK - KNO</string>
     <string name="change">Change</string>
     <string name="selectedSsr"><![CDATA[Fried Rice & Sausage, Mac & Cheese]]></string>
+    <string name="baggage_charge">Baggage Charge</string>
 </resources>

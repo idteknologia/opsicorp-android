@@ -45,6 +45,7 @@ class GetSsrMapper {
                     data.dataBagage.add(mDataBagage).toString()
                 }
                 data.isBagage = data.dataBagage.isNotEmpty()
+                data.isBagage = true
             }catch (e:Exception){
                 e.printStackTrace()
             }
@@ -62,12 +63,11 @@ class GetSsrMapper {
                         data.dataDrink.add(mDataBagage).toString()
                     }
                     data.isHaveDrink = data.dataDrink.isNotEmpty()
+                    data.isHaveDrink = true
                 }
             }catch (e:Exception){
                 e.printStackTrace()
             }
-
-
             try {
                 if (model.data.first().isHaveSport){
                     model.data.first().ssrs.filter { it.ssrType == model.data.first().sportEquipmentType  }.forEach {
@@ -81,6 +81,7 @@ class GetSsrMapper {
                         data.dataSport.add(mDataBagage).toString()
                     }
                     data.isHaveSport = data.dataSport.isNotEmpty()
+                    data.isHaveSport = true
                 }
             }catch (e:Exception){
                 e.printStackTrace()
@@ -99,6 +100,7 @@ class GetSsrMapper {
                         data.dataMeal.add(mDataBagage).toString()
                     }
                     data.isHaveMeal = data.dataMeal.isNotEmpty()
+                    data.isHaveMeal = true
                 }
             }catch (e:Exception){
                 e.printStackTrace()

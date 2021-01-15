@@ -1,5 +1,6 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
+import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import java.util.*
 import kotlin.collections.ArrayList
 
