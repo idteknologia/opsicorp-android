@@ -120,7 +120,7 @@ class DetailPassengerActivity : BaseActivity()
 
     private fun initToolbar() {
         toolbar.setToolbarColorView(R.color.white)
-        toolbar.changeImageBtnBack(R.drawable.ic_back_dark_blue)
+        toolbar.changeImageBtnBack(com.opsigo.travelaja.R.drawable.ic_close)
         toolbar.hidenBtnCart()
         toolbar.hidenLogoCenter()
         toolbar.callbackOnclickToolbar(this)

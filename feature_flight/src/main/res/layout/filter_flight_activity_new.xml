@@ -209,7 +209,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_chair"/>
+                    android:src="@drawable/ic_car"/>
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"

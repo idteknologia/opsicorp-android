@@ -11,7 +11,6 @@ import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
-import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.line_vertical
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
 
 class BookingContactAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -91,7 +90,7 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
 
             itemView.number_data_adult.text = (position+1).toString()
 
-            /*if (data.ssr.isBagage){
+            if (data.ssr.isBagage){
                 itemView.card_baggage.visibility = View.VISIBLE
             }
             else{
@@ -103,7 +102,7 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
             }
             else{
                 itemView.card_ssr.visibility = View.GONE
-            }*/
+            }
 
             itemView.card_baggage.setOnClickListener {
                 onclick.onClick(Constants.KEY_ACTIVITY_BAGAGE,position)

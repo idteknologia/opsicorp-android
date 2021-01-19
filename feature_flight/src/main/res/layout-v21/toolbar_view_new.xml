@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/line_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp">
+
+        <RelativeLayout
+            android:id="@+id/line_back"
+            android:layout_centerVertical="true"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
+            <ImageView
+                android:layout_centerVertical="true"
+                android:id="@+id/btn_back"
+                android:src="@drawable/ic_arrow_back_white"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:singleLine="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:visibility="visible"
+            android:id="@+id/logo_center"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            style="@style/RobotoRegular"
+            android:textColor="@android:color/white"
+            android:text="@string/find_flights"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/line_title_round_trip_left"
+            android:layout_toEndOf="@+id/line_back"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/line_back">
+
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/tv_title_round_trip_left_departure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                style="@style/RobotoRegular"
+                android:text="Jakarta" />
+
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="12dp"
+                android:src="@drawable/panah_double"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"></ImageView>
+
+            <TextView
+                android:singleLine="true"
+                android:id="@+id/tv_title_round_trip_left_arrival"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="Jakarta" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="invisible"
+            android:id="@+id/line_text_double"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:singleLine="true"
+                android:gravity="center"
+                android:id="@+id/title_double1"
+                android:textSize="16sp"
+                style="@style/RobotoRegular"
+                android:textColor="@android:color/white"
+                android:text="Jakarta - Yogyakarta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:singleLine="true"
+                android:gravity="center"
+                android:id="@+id/title_double2"
+                android:textSize="12sp"
+                style="@style/RobotoRegular"
+                android:layout_marginTop="3dp"
+                android:textColor="@android:color/white"
+                android:text="Depart Date : Sun, 27 Mar 2018 - 1 pax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/line_title_purchase"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_departure_airport"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:text="Soekarno Hatta"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_title_departure_airport"
+                    style="@style/RobotoLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="2dp"
+                    android:gravity="end"
+                    android:text="International Airport"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:src="@drawable/panah_putih"
+                    android:layout_marginLeft="8dp"
+                    android:layout_gravity="center"
+                    android:layout_width="18dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_height="13dp"
+                    android:background="@drawable/panah_detail_product"></ImageView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_arrival_airport"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ngurah Rai"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_title_arrival_airport"
+                    style="@style/RobotoLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="International Airport"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:singleLine="true"
+            android:visibility="gone"
+            android:textSize="16dp"
+            style="@style/RobotoRegular"
+            android:textColor="#f8b945"
+            android:text="Reset"
+            android:id="@+id/btn_reset"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_cart_white"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_cart_white"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/btn_card"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/cart_home"
+            android:layout_width="22dp"
+            android:layout_height="22dp">
+        </ImageView>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/line_btn_filter"
+            android:background="@drawable/rounded_white_stroke"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:layout_height="20dp">
+            <TextView
+                android:singleLine="true"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#ffffff"
+                android:text="Filter" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/line_btn_add_more_item"
+            android:background="@drawable/rounded_orange_stroke"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:paddingLeft="13dp"
+            android:paddingRight="13dp"
+            android:layout_height="20dp">
+            <TextView
+                android:singleLine="true"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9dp"
+                android:textColor="#ffffff"
+                android:text="+Add more item" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

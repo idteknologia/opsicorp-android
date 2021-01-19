@@ -8,8 +8,8 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.activity_bagage.*
+import kotlinx.android.synthetic.main.activity_bagage.toolbar
 import kotlinx.android.synthetic.main.ssr_flight_activity.*
-import kotlinx.android.synthetic.main.ssr_flight_activity.toolbar
 import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
