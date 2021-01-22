@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.ssr
 
 import android.content.Context
-import android.content.res.Resources
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -36,12 +36,17 @@ class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = items.get(position)
         holder.itemView.tv_airline_name.text     = "${data.origin} - ${data.destination}"
-        if (data.dataSSR.dataDrink.isNullOrEmpty()||data.dataSSR.dataMeal.isNullOrEmpty()||data.dataSSR.dataOther.isNullOrEmpty()||data.dataSSR.dataSport.isNullOrEmpty()){
+        if (position==0){
+            holder.itemView.tv_title_trip.text    = "Departure Flight"
+        } else {
+            holder.itemView.tv_title_trip.text     = "Arrival Flight"
+        }
+        /*if (data.dataSSR.dataDrink.isNullOrEmpty()||data.dataSSR.dataMeal.isNullOrEmpty()||data.dataSSR.dataOther.isNullOrEmpty()||data.dataSSR.dataSport.isNullOrEmpty()){
             holder.itemView.tvPickSsr.text = "Select SSR"
         } else {
             holder.itemView.tvPickSsr.text = "Change"
         }
-        holder.itemView.tvSelectedSsr.text = Resources.getSystem().getString(R.string.selectedSsr)
+        holder.itemView.tvSelectedSsr.text = Resources.getSystem().getString(R.string.selectedSsr)*/
 
         if (data.imgAirline.isNotEmpty()){
             Picasso.get()
@@ -51,7 +56,8 @@ class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>(
         }
 
         holder.itemView.tvPickSsr.setOnClickListener {
-
+            val intent = Intent(context, SsrListActivity::class.java)
+            context.startActivity(intent)
         }
     }
 

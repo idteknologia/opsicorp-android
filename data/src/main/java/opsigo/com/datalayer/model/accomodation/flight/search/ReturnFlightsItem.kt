@@ -158,16 +158,16 @@ data class ReturnFlightsItem(
 	val flightKey: Any? = null,
 
 		@field:SerializedName("OriginCity")
-		val originCity: String? = "",
+		val originCity: String? = null,
 
 		@field:SerializedName("OriginAirport")
-		val originAirport: String? = "",
+		val originAirport: String? = null,
 
 		@field:SerializedName("DestinationCity")
-		val destinationCity: String? = "",
+		val destinationCity: String? = null,
 
 		@field:SerializedName("DestinationAirport")
-		val destinationAirport: String? = "",
+		val destinationAirport: String? = null,
 
 		@field:SerializedName("OriginTerminal")
 		val originTerminal: String? = null,

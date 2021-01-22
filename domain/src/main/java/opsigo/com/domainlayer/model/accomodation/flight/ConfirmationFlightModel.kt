@@ -20,6 +20,9 @@ class ConfirmationFlightModel {
     var name_stationDeparture =""
     var line_total_duration =""
 
+    var depatureAirportName = ""
+    var arrivalAirportName = ""
+
     var time_arrival = ""
     var date_arrival = ""
 

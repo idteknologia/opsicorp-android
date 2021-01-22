@@ -18,7 +18,11 @@ class AccomodationResultFlightMapper {
                 model.isFlightArrival   = false
                 model.airline           = departureflightItem.airline //11
                 if (departureflightItem.airlineImageUrl.isNullOrEmpty()){
-                    model.imgAirline = departureflightItem.connectingFlights[0].airlineImageUrl.toString() // "https://toppng.com/uploads/preview/aircraft-png-photos-plane-icon-vector-11562926974aztqwsacuj.png"
+                    if (departureflightItem.connectingFlights.isNullOrEmpty()){
+                        model.imgAirline =  "https://toppng.com/uploads/preview/aircraft-png-photos-plane-icon-vector-11562926974aztqwsacuj.png"
+                    } else {
+                        model.imgAirline = departureflightItem.connectingFlights[0].airlineImageUrl.toString() // "https://toppng.com/uploads/preview/aircraft-png-photos-plane-icon-vector-11562926974aztqwsacuj.png"
+                    }
                 }
                 else {
                     model.imgAirline        = departureflightItem.airlineImageUrl

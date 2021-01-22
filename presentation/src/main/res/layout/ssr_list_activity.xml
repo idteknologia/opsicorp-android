@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:id="@+id/tablayout"
         android:layout_below="@+id/toolbar"
-        android:background="@android:color/black"
         android:layout_height="wrap_content">
     </com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp>
 

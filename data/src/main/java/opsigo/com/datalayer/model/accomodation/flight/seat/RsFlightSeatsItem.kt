@@ -28,7 +28,7 @@ data class RsFlightSeatsItem(
 	val posY: Int? = null,
 
 		@field:SerializedName("Airline")
-	val airline: String? = "",
+	val airline: String? = null,
 
 		@field:SerializedName("IsPremium")
 	val isPremium: Boolean? = null,
@@ -139,7 +139,7 @@ data class RsFlightSeatsItem(
 	val seatNumber: Any? = null,
 
 		@field:SerializedName("AirCraftTypeName")
-	val airCraftTypeName: String? = "",
+	val airCraftTypeName: String? = null,
 
 		@field:SerializedName("Seq")
 	val seq: Int? = null,

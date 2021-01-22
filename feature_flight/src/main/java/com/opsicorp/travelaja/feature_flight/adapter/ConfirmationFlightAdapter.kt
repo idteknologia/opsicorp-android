@@ -57,8 +57,8 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         holder.itemView.tv_time_arrival.text = data.time_arrival
         holder.itemView.tv_date_arrival.text = data.date_arrival
 
-        holder.itemView.tv_station_origin.text  = data.originDisplay+ " Airport"
-        holder.itemView.tv_station_destination.text = data.departureDisplay +" Airport"
+        holder.itemView.tv_station_origin.text  = data.depatureAirportName
+        holder.itemView.tv_station_destination.text = data.arrivalAirportName
 
         if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
             holder.itemView.tv_terminal.text = "Terminal - "

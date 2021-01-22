@@ -20,17 +20,15 @@ class SsrActivity : BaseActivity(), OnclickListenerRecyclerViewParent {
 
     override fun OnMain() {
         initToolbar()
-        /*initRecyclerView()
-        setData()*/
+        initRecyclerView()
+        setData()
     }
 
-    private fun initToolbar() {
-        toolbar.setTitleBar("SSR(Special Service Request)")
-        toolbar.hidenBtnCart()
-        toolbar.btn_back.setOnClickListener { finish() }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+    private fun setData() {
+        val datalist   = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        val dataProfile = Globals.getProfile(applicationContext)
+        tvPassengerSsr.text = dataProfile.name
+        adapter.setData(datalist.dataFlight)
     }
 
     private fun initRecyclerView() {
@@ -43,10 +41,17 @@ class SsrActivity : BaseActivity(), OnclickListenerRecyclerViewParent {
         adapter.setOnclickListener(this)
     }
 
-    private fun setData() {
-        val datalist   = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        adapter.setData(datalist.dataFlight)
+    private fun initToolbar() {
+        toolbar.setTitleBar("SSR(Special Service Request)")
+        toolbar.hidenBtnCart()
+        toolbar.btn_back.setOnClickListener { finish() }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            toolbar.singgleTitleGravity(toolbar.START)
+        }
+        tvTotalPriceSsr.text = "IDR 0"
     }
+
+
 
     override fun getLayout(): Int {
         return R.layout.ssr_flight_activity

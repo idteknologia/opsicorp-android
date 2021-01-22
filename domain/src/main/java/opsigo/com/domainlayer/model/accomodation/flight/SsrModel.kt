@@ -7,15 +7,16 @@ class SsrModel {
     var mealType        = ""
     var drinkType       = ""
     var sportEquepmentType = ""
+    var bagaggeSelected = DataSsr()
     var dataBagage      = ArrayList<DataSsr>()
     var dataSport       = ArrayList<DataSsr>()
     var dataMeal        = ArrayList<DataSsr>()
     var dataDrink       = ArrayList<DataSsr>()
     var dataOther       = ArrayList<DataSsr>()
-    var isOther         = false
-    var isBagage        = false
-    var isHaveSport     = false
-    var isHaveDrink     = false
-    var isHaveMeal      = false
-    var isDoubleDrink   = false
+    var isOther         = true
+    var isBagage        = true
+    var isHaveSport     = true
+    var isHaveDrink     = true
+    var isHaveMeal      = true
+    var isDoubleDrink   = true
 }

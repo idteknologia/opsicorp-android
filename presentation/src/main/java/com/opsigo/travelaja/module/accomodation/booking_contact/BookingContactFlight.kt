@@ -477,7 +477,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
                 setLog("--------------------------")
-                if (!resultSeat.isError.equals(false)){
+                if (!resultSeat.rsFlightSeats.isNullOrEmpty()){
                     Constants.DATA_SEAT_AIRLINE.clear()
                     Constants.DATA_SEAT_AIRLINE.addAll(data)
                     Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->

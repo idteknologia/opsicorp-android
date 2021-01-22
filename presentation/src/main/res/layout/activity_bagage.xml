@@ -22,10 +22,11 @@
 
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -36,42 +37,45 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#939396"
-                android:text="@string/baggage_charge"
-                android:layout_marginStart="20dp" />
 
             <TextView
-                android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="#24253d"
-                android:gravity="end"
-                android:text="@string/total_price"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="42dp"
-                android:layout_alignParentEnd="true" />
-            <ImageView
-                android:id="@+id/ic_image"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_chevron_up_orange"
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="22dp"
-                android:layout_marginStart="13dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/baggage_charge"
+                android:textColor="#939396"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvTotalPriceBaggage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="42dp"
+                android:layout_marginRight="20dp"
+                android:gravity="end"
+                android:text="@string/total_price"
+                android:textColor="#24253d"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ic_image"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="13dp"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="22dp"
                 android:layout_marginRight="22dp"
-                android:layout_marginLeft="13dp" />
+                android:src="@drawable/ic_chevron_up_orange" />
         </RelativeLayout>
 
         <LinearLayout
@@ -79,17 +83,114 @@
             android:layout_height="1dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="#d8d8d8">
-        </LinearLayout>
+            android:background="#d8d8d8"></LinearLayout>
+
+        <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:ael_duration="200"
+            app:ael_expanded="false"
+            android:id="@+id/body_price"
+            app:ael_interpolator="accelerateDecelerate"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="#e0e0e1"
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp">
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_station_departure"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="Gajayana"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#939396"
+                        android:text="Adult x1"
+                        style="@style/RobotoRegular"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_price_departure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 110.800"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/line_arrival"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_station_arrival"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="Argo Parahyangan Tambahan"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="10sp"
+                        android:textColor="#939396"
+                        android:text="Adult x1"
+                        style="@style/RobotoRegular"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_price_arrival"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 110.800"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+        </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
         <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="29dp"
-            app:text="Done"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            app:text="Done">
 
         </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
     </LinearLayout>

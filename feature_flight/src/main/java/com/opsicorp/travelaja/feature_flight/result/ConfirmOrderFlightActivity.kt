@@ -98,6 +98,9 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             mData.name_stationDeparture = resultListFlightModel.titleAirline
             mData.line_total_duration   = resultListFlightModel.duration
 
+            mData.depatureAirportName = resultListFlightModel.originAirport
+            mData.arrivalAirportName = resultListFlightModel.destinationAirport
+
             mData.time_arrival  = resultListFlightModel.arriveTime
             mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
 

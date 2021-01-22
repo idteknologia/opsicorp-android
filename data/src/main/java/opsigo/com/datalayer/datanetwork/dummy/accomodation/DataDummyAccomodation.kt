@@ -298,18 +298,18 @@ class DataDummyAccomodation {
         value.add("15 Kg")
         value.add("20 Kg")
 
-        val price = ArrayList<String>()
-        price.add("IDR 0")
-        price.add("IDR 100.000")
-        price.add("IDR 200.000")
-        price.add("IDR 300.000")
-        price.add("IDR 400.000")
+        val price = ArrayList<Int>()
+        price.add(0)
+        price.add(100000)
+        price.add(200000)
+        price.add(300000)
+        price.add(400000)
 
         value.forEachIndexed { index, s ->
             val mData = DataSsr()
             mData.id = "${index+1}"
             mData.ssrName = s
-            mData.pricing = price.get(index)
+            mData.pricing = price.get(index).toString()
             data.add(mData)
         }
 

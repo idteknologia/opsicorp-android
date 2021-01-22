@@ -10,25 +10,25 @@ data class ClassObjectsItem(
 	val isComply: Boolean = false,
 
 	@field:SerializedName("PaxFare")
-	val paxFare: String? = "",
+	val paxFare: String? = null,
 
 	@field:SerializedName("Seat")
-	val seat: String? = "",
+	val seat: String? = null,
 
 	@field:SerializedName("Category")
-	val category: String? = "",
+	val category: String? = null,
 
 	@field:SerializedName("FareBasisCode")
-	val fareBasisCode: String? = "",
+	val fareBasisCode: String? = null,
 
 	@field:SerializedName("Tax")
 	val tax: Int = 0,
 
 	@field:SerializedName("Code")
-	val code: String? = "",
+	val code: String? = null,
 
 	@field:SerializedName("Fareview")
-	val fareview: String? = "",
+	val fareview: String? = null,
 
 	@field:SerializedName("Fare")
 	val fare: Double = 0.0,
@@ -40,14 +40,14 @@ data class ClassObjectsItem(
 	val categoryCabin: Any? = null,
 
 	@field:SerializedName("FlightId")
-	val flightId: String? = "",
+	val flightId: String? = null,
 
 	@field:SerializedName("FareRuleKeys")
-	val fareRuleKeys: String? = "",
+	val fareRuleKeys: String? = null,
 
 	@field:SerializedName("ClassKey")
-	val classKey: String? = "",
+	val classKey: String? = null,
 
 	@field:SerializedName("Id")
-	val id: String? = ""
+	val id: String? = null
 )

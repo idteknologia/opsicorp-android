@@ -27,9 +27,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity">
-
-        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -277,6 +274,17 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
+
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity">
+
+        </activity>
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.SsrActivity">
+
+        </activity>
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.SsrListActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

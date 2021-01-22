@@ -2,7 +2,18 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_title_trip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#00776a"
+        android:text="Departure Flight"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <RelativeLayout
         android:layout_marginTop="15dp"
@@ -14,14 +25,12 @@
 
         <ImageView
             android:id="@+id/img_airline"
-            android:layout_marginLeft="26dp"
-            android:layout_marginRight="10dp"
             android:layout_width="30dp"
             android:layout_height="22dp"
-            android:background="@color/black"
             android:layout_marginStart="26dp"
-            android:layout_marginEnd="10dp">
-        </ImageView>
+            android:layout_marginLeft="26dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"/>
 
         <TextView
             android:id="@+id/tv_airline_name"
@@ -44,23 +53,31 @@
             android:textSize="14sp"
             android:textColor="#009688"
             android:gravity="end"
-            android:text="@string/change"
+            android:text="@string/select_ssr"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp" />
 
     </RelativeLayout>
 
-    <TextView
-        style="@style/RobotoRegular"
-        android:id="@+id/tvSelectedSsr"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rlSelectedSsr"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:textColor="#24253d"
-        android:text="@string/selectedSsr"
-        android:layout_marginStart="30dp" />
+        android:background="@color/white"
+        android:visibility="gone">
+        <TextView
+            style="@style/RobotoRegular"
+            android:id="@+id/tvSelectedSsr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="#24253d"
+            android:text="@string/selectedSsr"
+            android:layout_marginStart="30dp" />
+    </RelativeLayout>
+
 
 </LinearLayout>

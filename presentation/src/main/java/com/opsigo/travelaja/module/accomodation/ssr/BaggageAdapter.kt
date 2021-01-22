@@ -13,6 +13,7 @@ import android.content.Context
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import android.view.View
+import android.widget.Toast
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
@@ -22,7 +23,6 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     var items = ArrayList<ResultListFlightModel>()
-    var dataCabin = ArrayList<DataSsr>()
     val context = context
 
     override fun getItemCount(): Int {
@@ -64,7 +64,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel ,positionParent: Int) {
         val adapter by lazy { BaggageListAdapter(context) }
         val layoutManager = LinearLayoutManager(context)
-        dataCabin = DataDummyAccomodation().addBaggae()
+
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_list_item_bagage.layoutManager = layoutManager
         holder.itemView.rv_list_item_bagage.itemAnimator = DefaultItemAnimator()
@@ -75,7 +75,8 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
                 when(views){
                     Constants.KEY_BAGGAGE_ITEM_SELECTED -> {
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
-                        holder.itemView.tvTotalBaggage.text = dataCabin.get(position).ssrName
+                        holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName
+
                         /*holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName*/
 
                     }
@@ -84,7 +85,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
         })
 
         /*adapter.setData(data.dataSSR.dataBagage)*/
-        adapter.setData(dataCabin)
+        adapter.setData(data.dataSSR.dataBagage)
 
     }
 

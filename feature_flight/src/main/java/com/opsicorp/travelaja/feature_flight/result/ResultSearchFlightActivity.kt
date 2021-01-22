@@ -19,10 +19,7 @@ import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
@@ -215,6 +212,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                 }
                 data.clear()
                 data.addAll(dataFromServer)
+                empty_result.gone()
                 if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
                     checkEmptyData()
 

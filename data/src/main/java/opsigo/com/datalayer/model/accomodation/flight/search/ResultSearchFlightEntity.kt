@@ -7,19 +7,19 @@ import com.google.gson.annotations.SerializedName
 data class ResultSearchFlightEntity(
 
 		@field:SerializedName("Origin")
-	val origin: String = "",
+	val origin: String? = null,
 
 		@field:SerializedName("ReturnDate")
-	val returnDate: String = "",
+	val returnDate: String? = null,
 
 		@field:SerializedName("Destination")
-	val destination: String = "",
+	val destination: String? = null,
 
 	@field:SerializedName("ReturnFlights")
 	val returnFlights: List<ReturnFlightsItem> = ArrayList(),
 
 		@field:SerializedName("RequestId")
-	val requestId: String = "",
+	val requestId: String? = null,
 
 		@field:SerializedName("Airline")
 	val airline: Int = 0,
@@ -28,13 +28,13 @@ data class ResultSearchFlightEntity(
 	val outgoingTrain: List<Any?>? = null,
 
 		@field:SerializedName("AirlineName")
-	val airlineName: String = "",
+	val airlineName: String? = null,
 
 		@field:SerializedName("HaveUpdate")
 	val haveUpdate: Boolean = false,
 
 		@field:SerializedName("DepartureDate")
-	val departureDate: String = "",
+	val departureDate: String? = null,
 
 		///List<OutgoingTrainItem> = ArrayList(),
 		@field:SerializedName("DepartureFlights")
