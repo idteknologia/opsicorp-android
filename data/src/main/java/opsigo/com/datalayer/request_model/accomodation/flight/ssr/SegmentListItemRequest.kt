@@ -7,41 +7,41 @@ import com.google.gson.annotations.SerializedName
 data class SegmentListItemRequest(
 
 	@field:SerializedName("Origin")
-	val origin: String? = null,
+	var origin: String? = null,
 
 	@field:SerializedName("Destination")
-	val destination: String? = null,
+	var destination: String? = null,
 
 	@field:SerializedName("ArriveTime")
-	val arriveTime: String? = null,
+	var arriveTime: String? = null,
 
 	@field:SerializedName("Airline")
-	val airline: Int? = null,
+	var airline: Int? = null,
 
 	@field:SerializedName("Num")
-	val num: String? = null,
+	var num: String? = null,
 
 	@field:SerializedName("ClassId")
-	val classId: String? = null,
+	var classId: String? = null,
 
 	@field:SerializedName("DepartDate")
-	val departDate: String? = null,
+	var departDate: String? = null,
 
 	@field:SerializedName("ClassCode")
-	val classCode: String? = null,
+	var classCode: String? = null,
 
 	@field:SerializedName("DepartTime")
-	val departTime: String? = null,
+	var departTime: String? = null,
 
 	@field:SerializedName("FlightId")
-	val flightId: String? = null,
+	var flightId: String? = null,
 
 	@field:SerializedName("FlightNumber")
-	val flightNumber: String? = null,
+	var flightNumber: String? = null,
 
 	@field:SerializedName("ArriveDate")
-	val arriveDate: String? = null,
+	var arriveDate: String? = null,
 
 	@field:SerializedName("Seq")
-	val seq: String? = null
+	var seq: String? = null
 )

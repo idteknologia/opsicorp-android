@@ -7,17 +7,17 @@ import com.google.gson.annotations.SerializedName
 data class SsrRequest(
 
         @field:SerializedName("TravelAgent")
-	val travelAgent: String? = null,
+	var travelAgent: String? = null,
 
         @field:SerializedName("SegmentList")
-	val segmentList: List<SegmentListItemRequest?>? = null,
+	var segmentList: List<SegmentListItemRequest?>? = null,
 
         @field:SerializedName("Adult")
-	val adult: Int? = null,
+	var adult: Int? = null,
 
         @field:SerializedName("Infant")
-	val infant: Int? = null,
+	var infant: Int? = null,
 
         @field:SerializedName("Child")
-	val child: Int? = null
+	var child: Int? = null
 )

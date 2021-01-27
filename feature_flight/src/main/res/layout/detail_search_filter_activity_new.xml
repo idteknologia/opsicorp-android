@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parent_layout"
     android:background="#f6f8f8">
 
@@ -39,26 +40,27 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:visibility="invisible"
+        android:visibility="gone"
         android:id="@+id/empty_result"
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="59dp">
+        android:layout_marginBottom="59dp"
+        android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/tvNoResult"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="233dp"
-                android:layout_height="88dp"
+                android:layout_width="191dp"
+                android:layout_height="161dp"
                 android:layout_gravity="center"
-                android:visibility="gone"
-                android:src="@drawable/ic_empty_train">
+                android:visibility="visible"
+                android:src="@drawable/ic_empty_flight">
             </ImageView>
 
             <TextView
@@ -73,8 +75,10 @@
                 style="@style/RobotoBold"/>
 
             <TextView
-                android:layout_width="177dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
                 android:textSize="14sp"
                 android:textColor="#9924253d"
                 android:lineSpacingExtra="6sp"
@@ -82,14 +86,21 @@
                 android:layout_gravity="center"
                 style="@style/RobotoRegular"
                 android:layout_marginTop="10dp"
-                android:text="@string/noFlightResult"
-                />
+                android:text="@string/noFlightResult" />
         </LinearLayout>
+        <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="29dp"
+            android:id="@+id/btnChangeResult"
+            android:layout_below="@+id/tvNoResult"
+            app:text="Change Result">
 
-
-
+        </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
     </RelativeLayout>
-
     <com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/filter"

@@ -39,7 +39,7 @@ class GetSsrMapper {
                     mDataBagage.curency = it.ccy.toString()
                     mDataBagage.id      = model.data.first().id.toString()
                     mDataBagage.pricing = it.ssrFare.toString()
-                    mDataBagage.ssrName = it.ssrName.toString()
+                    mDataBagage.ssrName = it.ssrName!!.replace("+","").replace("Baggage","").replace("Checked","").replace("baggage","")
                     mDataBagage.ssrCode = it.ssrCode.toString()
                     mDataBagage.ssrType = it.ssrType.toString()
                     data.dataBagage.add(mDataBagage).toString()
@@ -52,14 +52,14 @@ class GetSsrMapper {
             try {
                 if (model.data.first().isHaveDrink){
                     model.data.first().ssrs.filter { it.ssrType == model.data.first().drinkType  }.forEach {
-                        val mDataBagage = DataSsr()
-                        mDataBagage.curency = it.ccy.toString()
-                        mDataBagage.id      = model.data.first().id.toString()
-                        mDataBagage.pricing = it.ssrFare.toString()
-                        mDataBagage.ssrName = it.ssrName.toString()
-                        mDataBagage.ssrCode = it.ssrCode.toString()
-                        mDataBagage.ssrType = it.ssrType.toString()
-                        data.dataDrink.add(mDataBagage).toString()
+                        val mDataDrink = DataSsr()
+                        mDataDrink.curency = it.ccy.toString()
+                        mDataDrink.id      = model.data.first().id.toString()
+                        mDataDrink.pricing = it.ssrFare.toString()
+                        mDataDrink.ssrName = it.ssrName.toString()
+                        mDataDrink.ssrCode = it.ssrCode.toString()
+                        mDataDrink.ssrType = it.ssrType.toString()
+                        data.dataDrink.add(mDataDrink).toString()
                     }
                     data.isHaveDrink = data.dataDrink.isNotEmpty()
                 }
@@ -69,14 +69,14 @@ class GetSsrMapper {
             try {
                 if (model.data.first().isHaveSport){
                     model.data.first().ssrs.filter { it.ssrType == model.data.first().sportEquipmentType  }.forEach {
-                        val mDataBagage = DataSsr()
-                        mDataBagage.curency = it.ccy.toString()
-                        mDataBagage.id      = model.data.first().id.toString()
-                        mDataBagage.pricing = it.ssrFare.toString()
-                        mDataBagage.ssrName = it.ssrName.toString()
-                        mDataBagage.ssrCode = it.ssrCode.toString()
-                        mDataBagage.ssrType = it.ssrType.toString()
-                        data.dataSport.add(mDataBagage).toString()
+                        val mDataSport = DataSsr()
+                        mDataSport.curency = it.ccy.toString()
+                        mDataSport.id      = model.data.first().id.toString()
+                        mDataSport.pricing = it.ssrFare.toString()
+                        mDataSport.ssrName = it.ssrName.toString()
+                        mDataSport.ssrCode = it.ssrCode.toString()
+                        mDataSport.ssrType = it.ssrType.toString()
+                        data.dataSport.add(mDataSport).toString()
                     }
                     data.isHaveSport = data.dataSport.isNotEmpty()
                 }
@@ -87,14 +87,14 @@ class GetSsrMapper {
             try {
                 if (model.data.first().isHaveMeals){
                     model.data.first().ssrs.filter { it.ssrType == model.data.first().mealType  }.forEach {
-                        val mDataBagage = DataSsr()
-                        mDataBagage.curency = it.ccy.toString()
-                        mDataBagage.id      = model.data.first().id.toString()
-                        mDataBagage.pricing = it.ssrFare.toString()
-                        mDataBagage.ssrName = it.ssrName.toString()
-                        mDataBagage.ssrCode = it.ssrCode.toString()
-                        mDataBagage.ssrType = it.ssrType.toString()
-                        data.dataMeal.add(mDataBagage).toString()
+                        val mDataMeal = DataSsr()
+                        mDataMeal.curency = it.ccy.toString()
+                        mDataMeal.id      = model.data.first().id.toString()
+                        mDataMeal.pricing = it.ssrFare.toString()
+                        mDataMeal.ssrName = it.ssrName.toString()
+                        mDataMeal.ssrCode = it.ssrCode.toString()
+                        mDataMeal.ssrType = it.ssrType.toString()
+                        data.dataMeal.add(mDataMeal).toString()
                     }
                     data.isHaveMeal = data.dataMeal.isNotEmpty()
                 }
@@ -110,14 +110,14 @@ class GetSsrMapper {
                             it.ssrType != model.data.first().drinkType &&
                             it.ssrType != TypeSsr.Baggage
                     }.forEach {
-                        val mDataBagage = DataSsr()
-                        mDataBagage.curency = it.ccy.toString()
-                        mDataBagage.id      = model.data.first().id.toString()
-                        mDataBagage.pricing = it.ssrFare.toString()
-                        mDataBagage.ssrName = it.ssrName.toString()
-                        mDataBagage.ssrCode = it.ssrCode.toString()
-                        mDataBagage.ssrType = it.ssrType.toString()
-                        data.dataOther.add(mDataBagage).toString()
+                        val mDataOther = DataSsr()
+                        mDataOther.curency = it.ccy.toString()
+                        mDataOther.id      = model.data.first().id.toString()
+                        mDataOther.pricing = it.ssrFare.toString()
+                        mDataOther.ssrName = it.ssrName.toString()
+                        mDataOther.ssrCode = it.ssrCode.toString()
+                        mDataOther.ssrType = it.ssrType.toString()
+                        data.dataOther.add(mDataOther).toString()
                     }
                     data.isOther = data.dataOther.isNotEmpty()
                 }

@@ -432,7 +432,7 @@
                         <ImageView
                             android:layout_marginRight="8dp"
                             android:layout_width="20dp"
-                            android:src="@drawable/ic_baggage"
+                            android:src="@drawable/ic_meal_grey"
                             android:layout_height="20dp">
 
                         </ImageView>

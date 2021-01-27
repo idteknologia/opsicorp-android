@@ -34,7 +34,9 @@ import com.opsigo.travelaja.module.accomodation.ssr.FrequecyFlayerActivity
 import com.opsigo.travelaja.module.accomodation.ssr.SsrActivity
 import opsigo.com.datalayer.model.accomodation.flight.seat.ResultSeat
 import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.seat.SegmenFlightRequest
 import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 
 class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
@@ -47,6 +49,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     val adapter by lazy { BookingContactAdapter(this,dataContacts) }
     lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
+    lateinit var dataFlight: ResultListFlightModel
 
     override fun OnMain() {
         initRecyclerView()
@@ -65,7 +68,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
         val datereturn = DateConverter().setDateFormat3(dataOrder.dateArrival)
 
-       // toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}") //- 1 pax
+       /*toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}")*/ //- 1 pax
         toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar}") //- 1 pax
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -477,7 +480,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
                 setLog("--------------------------")
-                if (!resultSeat.rsFlightSeats.isNullOrEmpty()){
+                if (!data.isNullOrEmpty()){
                     Constants.DATA_SEAT_AIRLINE.clear()
                     Constants.DATA_SEAT_AIRLINE.addAll(data)
                     Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
@@ -501,7 +504,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun dataRequestSeatMap(): java.util.HashMap<Any, Any> {
-        val dataString = "{\n" +
+        /*val dataString = "{\n" +
                 "    \"MultiClass\":false,\n" +
                 "    \"Adult\":1,\n" +
                 "    \"Child\":0,\n" +
@@ -535,7 +538,18 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 "    ],\n" +
                 "    \"TravelAgent\":\"apidev\"\n" +
                 "}"
-        val modelSeatMapRequest = Serializer.deserialize(dataString, SeatMapFlightRequest::class.java)
-        return Globals.classToHashMap(modelSeatMapRequest, SeatMapFlightRequest::class.java)
+        val modelSeatMapRequest = Serializer.deserialize(dataString, SeatMapFlightRequest::class.java)*/
+        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+
+        val data = SeatMapFlightRequest()
+        data.adult  = 1
+        data.child = 0
+        data.infant = 0
+        data.travelAgent = "apidev"
+        data.multiClass = false
+        data.segments = getSegment()
+
+        return Globals.classToHashMap(data, SeatMapFlightRequest::class.java)
     }
+
 }

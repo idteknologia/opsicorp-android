@@ -14,11 +14,11 @@
         android:paddingTop="15dp">
 
         <ImageView
-            android:src="@drawable/background_slider"
-            android:layout_marginRight="10dp"
             android:id="@+id/icon_train"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="35dp"
+            android:layout_height="34dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/background_slider" />
 
         <LinearLayout
             android:layout_toRightOf="@+id/icon_train"
@@ -193,8 +193,8 @@
             <ImageView
                 android:id="@+id/dote_progress"
                 android:src="@drawable/point_departure"
-                android:layout_width="9dp"
-                android:layout_height="9dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:orientation="vertical">
             </ImageView>
             <View
@@ -208,8 +208,8 @@
             <ImageView
                 android:visibility="visible"
                 android:background="@drawable/point_arrival"
-                android:layout_width="9dp"
-                android:layout_height="9dp"></ImageView>
+                android:layout_width="12dp"
+                android:layout_height="12dp"/>
 
         </LinearLayout>
 

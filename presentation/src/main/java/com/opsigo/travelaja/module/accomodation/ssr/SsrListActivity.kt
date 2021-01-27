@@ -58,11 +58,13 @@ class SsrListActivity : BaseActivity(),
 
     private fun setDataRecyclerView() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        ssrMeal.clear()
-        ssrAssistent.clear()
-        ssrMeal.addAll(ssr.dataMeal)
+        /*ssrMeal.clear()
+        ssrAssistent.clear()*/
+        /*ssrMeal.addAll(ssr.dataMeal)
         ssrAssistent.addAll(ssr.dataDrink)
-        ssrAssistent.addAll(ssr.dataSport)
+        ssrAssistent.addAll(ssr.dataSport)*/
+        ssrMeal.addAll(datalist.dataFlight[0].dataSSR.dataMeal)
+        ssrAssistent.addAll(datalist.dataFlight[0].dataSSR.dataDrink)
     }
 
     private fun initRecyclerView() {

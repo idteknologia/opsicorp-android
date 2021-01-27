@@ -50,7 +50,6 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
             holder.itemView.tv_title_trip.text     = "Arrival Flight"
         }
         holder.itemView.tv_city_code.text      = "${data.origin} - ${data.destination}"
-
         holder.itemView.tv_name_passanger.text = dataProfile.name
         Picasso.get()
                 .load(data.imgAirline)
@@ -77,14 +76,11 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
                         holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName
 
-                        /*holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName*/
-
                     }
                 }
             }
         })
 
-        /*adapter.setData(data.dataSSR.dataBagage)*/
         adapter.setData(data.dataSSR.dataBagage)
 
     }

@@ -673,4 +673,5 @@ Please add your trip item for Approval."
     <string name="selectedSsr"><![CDATA[Fried Rice & Sausage, Mac & Cheese]]></string>
     <string name="baggage_charge">Baggage Charge</string>
     <string name="select_ssr">Select SSR</string>
+    <string name="ssr_charge">SSR Charge</string>
 </resources>

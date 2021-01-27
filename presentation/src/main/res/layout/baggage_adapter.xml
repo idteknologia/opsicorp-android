@@ -83,11 +83,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/rv_list_item_bagage">
     </android.support.v7.widget.RecyclerView>
+
     <LinearLayout
+        android:id="@+id/line_baggage"
         android:layout_width="335dp"
         android:layout_height="1dp"
         android:layout_gravity="center"
-        android:background="#e0e0e1">
+        android:background="#e0e0e1"
+        android:orientation="horizontal"
+        android:visibility="gone">
     </LinearLayout>
 
 </LinearLayout>

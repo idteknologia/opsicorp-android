@@ -34,7 +34,7 @@ class FlightInfoFacility : BaseFragment() {
             tv_flight_number.text       = mData.flightNumber
             tv_title_flight.text        = mData.titleAirline
             tv_class_flight.text        = "${mData.nameClass} Class (${mData.classCode})"
-            tv_airport_terminal.text    = "${mData.originAirport} Terminal : ${mData.terminal}"
+            tv_airport_terminal.text    = "${mData.originAirport} Terminal : ${mData.terminal.replace("null","")}"
 
             Picasso.get()
                     .load(mData.imgAirline)
@@ -50,7 +50,7 @@ class FlightInfoFacility : BaseFragment() {
             if (mData.facility.isEmpty()){
                 for (i in 0 until 2){
                     val mNull = FacilityFlightModel()
-                    mNull.nameFacility = "null"
+                    mNull.nameFacility = "-"
                     mNull.valueFacility = ""
                     data.add(mNull)
                 }

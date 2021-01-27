@@ -17,6 +17,7 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.SegmentsItemRequest
@@ -103,7 +104,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     }
 
     private fun dataSrrRequest(): HashMap<Any, Any> {
-        val temporary = "{\n" +
+        /*val temporary = "{\n" +
                 "    \"Adult\":1,\n" +
                 "    \"Child\":0,\n" +
                 "    \"Infant\":0,\n" +
@@ -125,9 +126,38 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
                 "            \"Seq\":\"0\"\n" +
                 "        }\n" +
                 "    ]\n" +
-                "}"
-        val data = Serializer.deserialize(temporary, SsrRequest::class.java)
+                "}"*/
+        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+
+        val data = SsrRequest()
+        data.adult = 1
+        data.child = 0
+        data.infant = 0
+        data.travelAgent = "apidev"
+        data.segmentList = getDataSegmentSsr()
+        /*val data = Serializer.deserialize(temporary, SsrRequest::class.java)*/
         return Globals.classToHashMap(data, SsrRequest::class.java)
+    }
+
+    private fun getDataSegmentSsr(): List<SegmentListItemRequest?>? {
+        val data = ArrayList<SegmentListItemRequest>()
+        val mData = SegmentListItemRequest()
+        mData.origin                = dataFlight.origin
+        mData.destination           = dataFlight.destination
+        mData.arriveTime            = dataFlight.arriveTime
+        mData.airline               = dataFlight.airline
+        mData.num                   = dataFlight.num
+        mData.classId               = dataFlight.classId
+        mData.departDate            = dataFlight.departDate
+        mData.classCode             = dataFlight.classCode
+        mData.departTime            = dataFlight.departTime
+        mData.flightId              = dataFlight.flightId
+        mData.flightNumber          = dataFlight.flightNumber
+        mData.arriveDate            = dataFlight.arriveDate
+        mData.seq                   = dataFlight.seq
+        data.add(mData)
+
+        return data
     }
 
     private fun initView() {

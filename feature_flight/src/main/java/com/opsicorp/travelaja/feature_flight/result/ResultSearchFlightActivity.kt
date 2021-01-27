@@ -15,6 +15,7 @@ import com.opsicorp.travelaja.feature_flight.filter.FilterFlightActivity
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
@@ -46,7 +47,9 @@ class ResultSearchFlightActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult, KoinComponent,
         FilterOpsicorp.OnclickFilterListener,
         ToolbarOpsicorp.OnclickButtonListener,
-        BottomSheetSort.BottomSheetListener , FlightShortByDialog.CallbackDialog {
+        BottomSheetSort.BottomSheetListener ,
+        ButtonDefaultOpsicorp.OnclickButtonListener,
+        FlightShortByDialog.CallbackDialog {
     
     override fun getLayout(): Int {
         return R.layout.detail_search_filter_activity_new
@@ -78,7 +81,8 @@ class ResultSearchFlightActivity : BaseActivity(),
         dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
         setRecyclerView()
         filter.callbackOnclickFilter(this)
-
+        btnChangeResult.setTextButton("Change Result")
+        btnChangeResult.callbackOnclickButton(this)
         Log.d("data order",":" + dataOrder.toString())
 
         //init toolbar
@@ -238,6 +242,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun checkEmptyData() {
         if (dataFromServer.isEmpty()){
             empty_result.visibility = View.VISIBLE
+            rv_result_flightnew.gone()
         }
         else {
             empty_result.visibility = View.GONE
@@ -549,5 +554,9 @@ class ResultSearchFlightActivity : BaseActivity(),
                 filterByDurationTime()
             }
         }
+    }
+
+    override fun onClicked() {
+        finish()
     }
 }

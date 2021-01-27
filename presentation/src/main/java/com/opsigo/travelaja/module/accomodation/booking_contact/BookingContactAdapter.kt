@@ -7,15 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.*
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.mapper.Serializer
 
 class BookingContactAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
+    /*lateinit var datalist: DataListOrderAccomodation*/
 
     override fun getItemCount(): Int { return items.size }
 
@@ -46,6 +48,7 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
     inner class BookingAdultAdapter internal constructor(itemView: View) : ViewHolder(itemView) {
 
         fun bind(data: BookingContactAdapterModel, position: Int) {
+            /*datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)*/
             val radiobutton = ArrayList<RadioButton>()
             radiobutton.add(itemView.checkboxIdCart)
             radiobutton.add(itemView.checkboxPassport)
@@ -69,9 +72,11 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
 
             if (position==(items.size-1)){
                 itemView.line_vertical.visibility = View.GONE
+                itemView.line_vertical_aaditional.gone()
             }
             else{
                 itemView.line_vertical.visibility = View.VISIBLE
+                itemView.line_vertical_aaditional.visible()
             }
 
             itemView.name_passanger_by_ktp.text      = data.idcart.fullname
@@ -90,12 +95,12 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
 
             itemView.number_data_adult.text = (position+1).toString()
 
-            if (data.ssr.isBagage){
+            /*if (!datalist.dataFlight[0].dataSSR.dataBagage.isNullOrEmpty()){
                 itemView.card_baggage.visibility = View.VISIBLE
             }
             else{
                 itemView.card_baggage.visibility = View.GONE
-            }
+            }*/
 
             if (data.ssr.isHaveMeal||data.ssr.isHaveDrink||data.ssr.isHaveSport){
                 itemView.card_ssr.visibility = View.VISIBLE
