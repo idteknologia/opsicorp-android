@@ -35,6 +35,9 @@
         <activity
             android:name=".result.ResultSearchFlightActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".flight_info.activity.FareRulesActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -10,22 +10,73 @@
         android:id="@+id/toolbar">
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
-    <com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
+    <!--<com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/tablayout"
         android:layout_below="@+id/toolbar"
         android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp>
+    </com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp>-->
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="10dp"
-        android:id="@+id/rv_list_item_ssr"
+        android:layout_marginBottom="90dp"
+        android:id="@+id/rv_list_type_ssr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tablayout">
+        android:layout_below="@+id/toolbar">
 
     </android.support.v7.widget.RecyclerView>
 
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/empty_result"
+        android:layout_below="@id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="59dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvNoResult"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="191dp"
+                android:layout_height="161dp"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                android:src="@drawable/ic_cart_grey">
+            </ImageView>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="#24253d"
+                android:gravity="center_horizontal"
+                android:text="Whoops!"
+                style="@style/RobotoBold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:textSize="13sp"
+                android:textColor="#9924253d"
+                android:lineSpacingExtra="6sp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                style="@style/RobotoRegular"
+                android:layout_marginTop="10dp"
+                android:text="It seems Special Service Request for this flight is not available. Please pick another flight" />
+        </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:orientation="vertical"

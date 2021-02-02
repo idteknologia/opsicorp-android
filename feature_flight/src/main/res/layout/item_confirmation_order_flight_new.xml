@@ -363,11 +363,35 @@
 
             </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/rlFareRules"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#d3d3d8">
-            </LinearLayout>
+                android:layout_height="42dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="#f5f5f5">
+                <TextView
+                    android:id="@+id/tvToFareRules"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fare Rules"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="222dp"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#009688"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="222dp" />
+                <ImageView
+                    android:id="@+id/btToFareRules"
+                    android:layout_width="10dp"
+                    android:layout_height="16dp"
+                    android:layout_toRightOf="@+id/tvToFareRules"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_next_green"
+                    android:layout_toEndOf="@+id/tvToFareRules" />
+            </RelativeLayout>
 
 
             <RelativeLayout

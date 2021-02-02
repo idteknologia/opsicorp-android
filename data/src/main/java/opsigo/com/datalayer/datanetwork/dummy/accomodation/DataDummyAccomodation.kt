@@ -1,7 +1,7 @@
 package opsigo.com.datalayer.datanetwork.dummy.accomodation
 
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import opsigo.com.domainlayer.model.accomodation.flight.DataSsr
+import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
@@ -288,8 +288,8 @@ class DataDummyAccomodation {
         return data
     }
 
-    fun addBaggae():ArrayList<DataSsr>{
-        val data = ArrayList<DataSsr>()
+    fun addBaggae():ArrayList<DataSsrModel>{
+        val data = ArrayList<DataSsrModel>()
 
         val value = ArrayList<String>()
         value.add("0 Kg")
@@ -306,7 +306,7 @@ class DataDummyAccomodation {
         price.add(400000)
 
         value.forEachIndexed { index, s ->
-            val mData = DataSsr()
+            val mData = DataSsrModel()
             mData.id = "${index+1}"
             mData.ssrName = s
             mData.pricing = price.get(index).toString()

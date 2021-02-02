@@ -9,12 +9,11 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_bagage.*
 import kotlinx.android.synthetic.main.toolbar_view.view.*
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.domainlayer.model.accomodation.flight.DataSsr
+import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
+import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
 import java.lang.Exception
-import java.util.ArrayList
 
 class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
@@ -25,6 +24,8 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
 
     val adapter by lazy { BaggageAdapter(this) }
     lateinit var datalist: DataListOrderAccomodation
+    var ssrBaggage      = ""
+    var ssrBaggagePrice = ""
 
 
     override fun OnMain() {
@@ -51,11 +52,9 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         if (Globals.typeAccomodation== Constants.FLIGHT) {
             datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
             tv_station_departure.text = "${datalist.dataFlight[0].origin} - ${datalist.dataFlight[0].destination}"
-            tv_price_departure.text = "IDR ${datalist.dataFlight[0].dataSSR.bagaggeSelected.pricing.replace(".0","").trim()}"
             if (datalist.dataFlight.size>1){
                 line_arrival.visible()
                 tv_station_arrival.text = "${datalist.dataFlight[1].origin} - ${datalist.dataFlight[1].destination}"
-                tv_price_arrival.text = "IDR ${datalist.dataFlight[1].dataSSR.bagaggeSelected.pricing.replace(".0","").trim()}"
             } else {
                 line_arrival.gone()
             }
@@ -103,15 +102,32 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
 
     private fun setData() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        /*datalist.dataFlight[0].dataSSR.dataBagage = DataDummyAccomodation().addBaggae()*/
-        /*datalist.dataFlight[1].dataSSR.dataBagage = DataDummyAccomodation().addBaggae()*/
         adapter.setData(datalist.dataFlight)
     }
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
-        setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)
+        /*setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)*/
         datalist.dataFlight[positionParent].dataSSR.bagaggeSelected = datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild]
-        tvTotalPriceBaggage.text = "IDR ${totalPriceSelected()!!.replace(".0","").trim()}"
+        tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0","").toDouble())}"
+        /*saveDataToModel(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild])*/
+    }
+
+    private fun saveDataToModel(bagaggeSelected: DataSsrModel) {
+        var dataBaggage = SelectedBaggageModel()
+        dataBaggage.ssrName = bagaggeSelected.ssrName
+        dataBaggage.price = bagaggeSelected.pricing
+        /*setLog(dataBaggage.price)*/
+        if (Globals.typeAccomodation== Constants.FLIGHT) {
+            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+            tv_price_departure.text = "IDR ${Globals.currencyIDRFormat(dataBaggage.price.toDouble())}"
+            if (datalist.dataFlight.size>1){
+                line_arrival.visible()
+                tv_price_arrival.text = "IDR ${Globals.currencyIDRFormat(dataBaggage.price.toDouble())}"
+            } else {
+                line_arrival.gone()
+            }
+        }
+
     }
 
     private fun totalPriceSelected(): String? {

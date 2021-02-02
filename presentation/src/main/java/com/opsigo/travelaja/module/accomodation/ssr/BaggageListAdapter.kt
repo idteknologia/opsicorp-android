@@ -4,19 +4,19 @@ import android.view.View
 import com.opsigo.travelaja.R
 import android.view.ViewGroup
 import android.content.Context
-import android.graphics.Color
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.Constants
 import android.support.v7.widget.RecyclerView
+import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_list_item_adapter.view.*
-import opsigo.com.domainlayer.model.accomodation.flight.DataSsr
+import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 
 class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
-    var items = ArrayList<DataSsr>()
+    var items = ArrayList<DataSsrModel>()
     val context = context
     var row_index = -1
 
@@ -38,7 +38,7 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = items[position]
         holder.itemView.tv_value_baggage.text = data.ssrName
-        holder.itemView.tv_price_baggage.text = "IDR ${data.pricing.replace(".0","").trim()}"
+        holder.itemView.tv_price_baggage.text = "IDR ${Globals.currencyIDRFormat(data.pricing.toDouble())}"
 
         holder.itemView.setOnClickListener {
             onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
@@ -55,7 +55,7 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
 
     }
 
-    fun setData(data: ArrayList<DataSsr>) {
+    fun setData(data: ArrayList<DataSsrModel>) {
         items = data
         notifyDataSetChanged()
     }

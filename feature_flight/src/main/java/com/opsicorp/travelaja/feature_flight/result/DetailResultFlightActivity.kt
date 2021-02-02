@@ -65,10 +65,11 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     }
 
     private fun initToolbar() {
+        toolbar.hidenBtnCart()
         if(Globals.ALL_READY_SELECT_DEPARTING){
-            toolbar.setTitleBar("Detail Returning Flight")
+            toolbar.setTitleBar("Returning Flight")
         }else{
-            toolbar.setTitleBar("Detail Departing Flight")
+            toolbar.setTitleBar("Departing Flight")
         }
         toolbar.callbackOnclickToolbar(this)
     }

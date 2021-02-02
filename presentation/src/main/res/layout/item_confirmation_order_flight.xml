@@ -363,13 +363,6 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#d3d3d8">
-            </LinearLayout>
-
-
             <RelativeLayout
                 android:layout_below="@+id/tv_title_prize_detail"
                 android:id="@+id/line_prize_detail"

@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
+import com.opsicorp.travelaja.feature_flight.flight_info.activity.FareRulesActivity
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactFlight
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_reason_trip.SelectReasonAccomodation
@@ -22,7 +23,7 @@ import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 
 class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
-        View.OnClickListener {
+        View.OnClickListener, OnclickListenerRecyclerView {
     override fun getLayout(): Int {
         return R.layout.confirm_flight_order_new
     }
@@ -243,5 +244,13 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 adapter.notifyDataSetChanged()
             }
         })
+    }
+
+    override fun onClick(views: Int, position: Int) {
+        /*when (views){
+            Constants.KEY_ACTIVITY_FARE_RULES -> {
+                gotoActivityResult(FareRulesActivity::class.java,Constants.KEY_ACTIVITY_FARE_RULES)
+            }
+        }*/
     }
 }

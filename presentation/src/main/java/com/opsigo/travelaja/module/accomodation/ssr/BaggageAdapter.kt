@@ -13,11 +13,8 @@ import android.content.Context
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import android.view.View
-import android.widget.Toast
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
-import opsigo.com.domainlayer.model.accomodation.flight.DataSsr
 
 class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
 

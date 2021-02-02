@@ -62,6 +62,9 @@ object Constants {
     val KEY_BAGGAGE_ITEM_SELECTED = 9074
     val RC_SIGN_IN               = 9073
     val REVIEW_HOTEL_SELECT      = 9072
+    val KEY_ACTIVITY_FARE_RULES    = 9071
+    val KEY_POSITION_FARE_RULES  = "keyFareRules"
+    val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val DATA_DETAIL_HOTEL        = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"

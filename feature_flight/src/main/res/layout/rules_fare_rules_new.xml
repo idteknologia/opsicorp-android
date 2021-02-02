@@ -4,6 +4,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content">
+
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="41dp">
@@ -22,7 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_alignParentBottom="true"
-            android:background="#00776a"></LinearLayout>
+            android:background="#00776a">
+
+        </LinearLayout>
     </RelativeLayout>
 
     <LinearLayout

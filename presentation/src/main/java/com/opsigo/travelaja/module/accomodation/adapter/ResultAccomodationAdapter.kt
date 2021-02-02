@@ -195,11 +195,14 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 //            tv_price.text          = Globals.formatAmount(data.price)
             tv_price.text          = StringUtils().setCurrency("IDR", data.price , false)
 
-            var transit = "1"
+            var transit = data.totalTransit.toString()
             if(!data.isConnecting){
                 transit = "Direct"
+                tv_transit.text        = transit
+            } else {
+                tv_transit.text        = "${transit} Transit"
             }
-            tv_transit.text        = transit
+
 
             itemView.setOnClickListener {
                 onclick.onClick(-1,position)

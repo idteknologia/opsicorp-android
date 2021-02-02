@@ -148,7 +148,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:gravity="end"
-                    android:text="IDR 110.800"
+                    android:text="IDR 0"
                     android:textColor="#939396"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -182,7 +182,7 @@
                     android:textSize="14sp"
                     android:textColor="#939396"
                     android:gravity="end"
-                    android:text="IDR 110.800"
+                    android:text="IDR 0"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
 

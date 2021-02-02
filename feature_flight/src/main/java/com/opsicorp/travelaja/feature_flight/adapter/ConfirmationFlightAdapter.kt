@@ -1,11 +1,14 @@
 package com.opsicorp.travelaja.feature_flight.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
+import com.opsicorp.travelaja.feature_flight.flight_info.activity.FareRulesActivity
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
@@ -59,6 +62,13 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
         holder.itemView.tv_station_origin.text  = data.depatureAirportName
         holder.itemView.tv_station_destination.text = data.arrivalAirportName
+
+        holder.itemView.rlFareRules.setOnClickListener {
+            /*onclick.onClick(Constants.KEY_ACTIVITY_FARE_RULES,position)*/
+            val intent = Intent(context,FareRulesActivity::class.java)
+            intent.putExtra(Constants.KEY_POSITION_FARE_RULES,position)
+            context.startActivity(intent)
+        }
 
         if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
             holder.itemView.tv_terminal.text = "Terminal - "

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ssr_adapter.view.*
@@ -57,6 +58,7 @@ class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>(
 
         holder.itemView.tvPickSsr.setOnClickListener {
             val intent = Intent(context, SsrListActivity::class.java)
+            intent.putExtra(Constants.KEY_POSITION_SELECT_SSR,position)
             context.startActivity(intent)
         }
     }
