@@ -15,11 +15,17 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.confirm_flight_order_new.*
 import kotlinx.android.synthetic.main.detail_prize_bottom_new.*
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.SegmentFlightsRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
+import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 
 class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -30,6 +36,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
     val data = ArrayList<ConfirmationFlightModel>()
     lateinit var supportFragment: FragmentManager
+    lateinit var dataFlight: ResultListFlightModel
+    lateinit var dataListFlight: DataListOrderAccomodation
     var allreadySelectReasonCode = false
     val adapter by lazy { ConfirmationFlightAdapter(this, data) }
 
@@ -42,6 +50,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         }else{
             tvoneway.text = "Roundtrip"
         }
+        /*getSeatMapFlight()*/
         initDataView()
         initPrice()
         initToolbar()
@@ -56,6 +65,74 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             }
         })
     }
+
+    private fun getSeatMapFlight() {
+        showDialog("")
+        GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
+            override fun success(data: ArrayList<SeatAirlineModel>) {
+                setLog("--------------------------")
+                Constants.DATA_SEAT_AIRLINE.clear()
+                Constants.DATA_SEAT_AIRLINE.addAll(data)
+                Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
+                    setLog(seatAirlineModel.nameFlight)
+                    setLog(seatAirlineModel.nameAirCraft)
+                    setLog(seatAirlineModel.totalRows.toString())
+                    setLog(Serializer.serialize(seatAirlineModel.dataSeat))
+                }
+            }
+
+            override fun failed(errorMessage: String) {
+
+            }
+
+        })
+    }
+
+    private fun dataRequestSeatMap(): HashMap<Any, Any> {
+        dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+        val data = SeatMapFlightRequest()
+        data.adult  = 1
+        data.child = 0
+        data.infant = 0
+        data.travelAgent = "apidev"
+        data.provider = dataFlight.airline
+        data.segments = getSegmentSeat()
+
+        return Globals.classToHashMap(data, SeatMapFlightRequest::class.java)
+    }
+
+    private fun getSegmentSeat(): List<SegmentFlightsRequest?>? {
+        val listSegment = ArrayList<SegmentFlightsRequest>()
+
+        dataListFlight.dataFlight.forEachIndexed { index, it ->
+            val segment = SegmentFlightsRequest()
+
+            segment.airline             =  it.airline
+            segment.arriveDate          =  it.arriveDate
+            segment.arriveTime          =  it.arriveTime
+
+            segment.classCode           =  it.classCode
+            segment.classId             =  it.classId
+
+            segment.departDate          =  it.departDate
+            segment.departTime          =  it.departTime
+
+            segment.flightId        =  it.flightId
+            segment.flightNumber    =  it.flightNumber
+
+            segment.num         =  index.toString()
+            segment.seq         =  index.toString()
+
+            segment.origin      =  it.origin
+            segment.destination =  it.destination
+
+            listSegment.add(segment)
+        }
+
+        return listSegment
+    }
+
 
     private fun initDataView() {
         tv_price.text = "IDR 0"
@@ -247,10 +324,6 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     override fun onClick(views: Int, position: Int) {
-        /*when (views){
-            Constants.KEY_ACTIVITY_FARE_RULES -> {
-                gotoActivityResult(FareRulesActivity::class.java,Constants.KEY_ACTIVITY_FARE_RULES)
-            }
-        }*/
+
     }
 }

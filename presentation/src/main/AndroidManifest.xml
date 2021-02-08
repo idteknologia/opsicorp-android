@@ -284,6 +284,9 @@
         <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.SsrListActivity">
 
         </activity>
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.FrequentFlyerActivity">
+
+        </activity>
 
     </application>
 

@@ -16,6 +16,7 @@ class SsrListItemAdapter (context: Context): RecyclerView.Adapter<SsrListItemAda
 
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<DataSsrModel>()
+    var check = -1
     val context = context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -41,12 +42,16 @@ class SsrListItemAdapter (context: Context): RecyclerView.Adapter<SsrListItemAda
         }
         holder.itemView.tv_title_ssr.text  = data.ssrName
 
-        holder.itemView.checkbox.isChecked = data.selected
+        holder.itemView.checkbox.isChecked = position == check
 
         holder.itemView.setOnClickListener {
+            check = position
+            notifyDataSetChanged()
             onclick.onClick(Constants.KEY_CHECK_BOX_SSR,position)
         }
         holder.itemView.checkbox.setOnClickListener {
+            check = position
+            notifyDataSetChanged()
             onclick.onClick(Constants.KEY_CHECK_BOX_SSR,position)
         }
     }

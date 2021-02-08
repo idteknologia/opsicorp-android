@@ -1,11 +1,11 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
-class SelectedBaggageModel {
-    var id = ""
-    var ssrCode = ""
-    var price =""
-    var curency = ""
-    var ssrName = ""
-    var ssrType = ""
-    var ssrTypeName = ""
-}
+data class SelectedBaggageModel(
+        var id: String,
+        var ssrCode: String,
+        var price: String,
+        var curency: String,
+        var ssrName: String,
+        var ssrType: String,
+        var ssrTypeName: String
+)

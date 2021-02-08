@@ -137,6 +137,12 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
+    fun setLog(tag : String,message: String){
+        if(BuildConfig.DEBUG){
+            Log.e(tag,message)
+        }
+    }
+
     fun showSnackbar(viewParent:View,calback: CallbackSnackBar){
         val snackbar = Snackbar
                 .make(viewParent, "No internet connection!", Snackbar.LENGTH_LONG)
@@ -410,7 +416,8 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
                     }
 
                     override fun failed(string: String) {
-                        showAllert("Sorry",string)
+                        /*showAllert("Sorry",string)*/
+                        Toast.makeText(this@BaseActivity, string, Toast.LENGTH_SHORT).show()
                     }
                 })
     }

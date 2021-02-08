@@ -24,8 +24,6 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
 
     val adapter by lazy { BaggageAdapter(this) }
     lateinit var datalist: DataListOrderAccomodation
-    var ssrBaggage      = ""
-    var ssrBaggagePrice = ""
 
 
     override fun OnMain() {
@@ -49,10 +47,10 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         line_shadow.setOnClickListener {
             showOrHideDetailPrice()
         }
-        if (Globals.typeAccomodation== Constants.FLIGHT) {
+        if (Globals.typeAccomodation == Constants.FLIGHT) {
             datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
             tv_station_departure.text = "${datalist.dataFlight[0].origin} - ${datalist.dataFlight[0].destination}"
-            if (datalist.dataFlight.size>1){
+            if (datalist.dataFlight.size > 1) {
                 line_arrival.visible()
                 tv_station_arrival.text = "${datalist.dataFlight[1].origin} - ${datalist.dataFlight[1].destination}"
             } else {
@@ -62,7 +60,7 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
     }
 
     private fun showOrHideDetailPrice() {
-        if (body_price.isExpanded){
+        if (body_price.isExpanded) {
             collapsePrice()
         } else {
             expandPrice()
@@ -108,26 +106,25 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
         /*setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)*/
         datalist.dataFlight[positionParent].dataSSR.bagaggeSelected = datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild]
-        tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0","").toDouble())}"
-        /*saveDataToModel(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild])*/
-    }
-
-    private fun saveDataToModel(bagaggeSelected: DataSsrModel) {
-        var dataBaggage = SelectedBaggageModel()
-        dataBaggage.ssrName = bagaggeSelected.ssrName
-        dataBaggage.price = bagaggeSelected.pricing
-        /*setLog(dataBaggage.price)*/
-        if (Globals.typeAccomodation== Constants.FLIGHT) {
-            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-            tv_price_departure.text = "IDR ${Globals.currencyIDRFormat(dataBaggage.price.toDouble())}"
-            if (datalist.dataFlight.size>1){
+        tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
+        if (datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.isNotEmpty()){
+            tv_price_departure.text = "IDR ${Globals.currencyIDRFormat(datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.toDouble())}"
+            if (datalist.dataFlight.size > 1) {
                 line_arrival.visible()
-                tv_price_arrival.text = "IDR ${Globals.currencyIDRFormat(dataBaggage.price.toDouble())}"
+                tv_price_arrival.text = "IDR ${Globals.currencyIDRFormat(datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.toDouble())}"
             } else {
                 line_arrival.gone()
             }
         }
+        saveDataToModel()
+    }
 
+    private fun saveDataToModel() {
+        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        /*var dataBaggage = SelectedBaggageModel()
+        dataBaggage.ssrName = bagaggeSelected.ssrName
+        dataBaggage.price = bagaggeSelected.pricing*/
+        /*setLog(dataBaggage.price)*/
     }
 
     private fun totalPriceSelected(): String? {
@@ -135,9 +132,8 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         datalist.dataFlight.forEach {
             try {
                 totalSelected = totalSelected + it.dataSSR.bagaggeSelected.pricing.toDouble()
-            }
-            catch (e:Exception){
-               e.printStackTrace()
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
         return totalSelected.toString()

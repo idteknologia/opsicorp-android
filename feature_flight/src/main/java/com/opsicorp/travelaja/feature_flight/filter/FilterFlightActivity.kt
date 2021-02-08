@@ -2,6 +2,7 @@ package com.opsicorp.travelaja.feature_flight.filter
 
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
@@ -13,6 +14,7 @@ import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_pref
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.filter_flight_activity_new.*
@@ -32,9 +34,13 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
 
     var dataCabin = ArrayList<FilterFlightModel>()
     var dataDeparture  = ArrayList<FilterFlightModel>()
+    var dataNameCabin = ArrayList<AccomodationPreferanceModel>()
+    var dataDepartureTime = ArrayList<AccomodationPreferanceModel>()
+    var dataArrivalTime = ArrayList<AccomodationPreferanceModel>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
     var dataArrival    = ArrayList<FilterFlightModel>()
     var namesAirlines  = ArrayList<String>()
+    val totalFlight = "0"
     val adapterCabinClass by inject<FilterFlightCabinAdapter> { parametersOf(dataCabin)  }
     val adapterDeparture by inject<FilterFlightAdapter> { parametersOf(dataDeparture) }
     val adapterArrival by inject<FilterFlightAdapter> { parametersOf(dataArrival) }
@@ -50,7 +56,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
 
     private fun initButtonNext() {
         btn_next.callbackOnclickButton(this)
-        btn_next.setTextButton("Filter")
+        btn_next.setTextButton("See ${totalFlight} Flight(s)")
     }
 
     private fun addDataDummyTime() {
@@ -64,8 +70,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     }
 
     private fun initRecyclerView() {
-        val layoutManagerCabin = LinearLayoutManager(this)
-        layoutManagerCabin.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerCabin = GridLayoutManager(this, 2)
         rvCabinClass.layoutManager = layoutManagerCabin
         rvCabinClass.itemAnimator = DefaultItemAnimator()
         rvCabinClass.adapter = adapterCabinClass
@@ -74,7 +79,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             override fun onClick(views: Int, position: Int) {
                 when (views){
                     -1 -> {
-
+                        dataNameCabin[position].checked = !dataNameCabin[position].checked
+                        adapterCabinClass.notifyItemChanged(position)
+                        Constants.dataClassFlight = dataNameCabin
                     }
                 }
             }
@@ -90,7 +97,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             override fun onClick(views: Int, position: Int) {
                 when (views){
                     -1 -> {
-
+                        dataDepartureTime[position].checked = !dataDepartureTime[position].checked
+                        adapterDeparture.notifyItemChanged(position)
+                        Constants.dataDepartureTime = dataDepartureTime
                     }
                 }
             }
@@ -106,7 +115,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     -1 ->{
-
+                        dataArrivalTime[position].checked = !dataArrivalTime[position].checked
+                        adapterArrival.notifyItemChanged(position)
+                        Constants.dataArrivalTime = dataDepartureTime
                     }
                 }
             }
@@ -121,6 +132,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
         rangebar.setOnRangeSeekBarChangeListener(object : RangeSeekBar.OnRangeSeekBarChangeListener{
             override fun onProgressChanged(p0: RangeSeekBar?, p1: Int, p2: Int, p3: Boolean) {
                 setLog("rangeBar p1 = ${p1}  p1 = ${p2}" )
+                tvRangeBar.text = "${p1} - ${p2}"
             }
 
             override fun onStartTrackingTouch(p0: RangeSeekBar?) {
@@ -129,6 +141,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
 
             override fun onStopTrackingTouch(p0: RangeSeekBar?) {
                 setLog("rangeBar strat = ${p0?.progressStart}  end = ${p0?.progressEnd}" )
+                tvRangeBar.text = "${p0?.progressStart} - ${p0?.progressEnd}"
             }
         })
     }

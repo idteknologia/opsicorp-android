@@ -27,7 +27,7 @@
             android:id="@+id/img_airline"
             android:layout_marginLeft="26dp"
             android:layout_marginRight="10dp"
-            android:layout_width="30dp"
+            android:layout_width="20dp"
             android:layout_height="22dp"
             android:src="@drawable/background_slider"
             android:layout_marginStart="26dp"

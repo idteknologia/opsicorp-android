@@ -3,6 +3,7 @@ package com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_pre
 import android.annotation.SuppressLint
 import android.app.DialogFragment
 import android.content.DialogInterface
+import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -32,6 +33,13 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         buttonSearch = fragment.findViewById(R.id.btn_next)
         recyclerView = fragment.findViewById(R.id.rv_select_accomodation)
 
+        toolbar.setTitleBar("Airlines Filter")
+        toolbar.hidenBtnCart()
+        toolbar.showBtnReset()
+        toolbar.changeImageBtnBack(R.drawable.ic_close_white)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            toolbar.singgleTitleGravity(toolbar.START)
+        }
         toolbar.callbackOnclickToolbar(this)
         buttonSearch.callbackOnclickButton(this)
         buttonSearch.setTextButton("See Flight")

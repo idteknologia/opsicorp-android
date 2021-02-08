@@ -1,11 +1,14 @@
 package com.opsigo.travelaja.module.accomodation.ssr
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import com.opsigo.travelaja.BaseActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.util.Log
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
@@ -15,8 +18,9 @@ import kotlinx.android.synthetic.main.ssr_list_activity.*
 import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 
-class SsrListActivity : BaseActivity(),
+class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
 
     val data = ArrayList<String>()
@@ -29,12 +33,12 @@ class SsrListActivity : BaseActivity(),
     val ssr = SsrModel()
     val adapter by lazy { SsrListAdapter(this) }
 
-
-    val ssrMeal = ArrayList<DataSsrModel>()
-    val ssrAssistent = ArrayList<DataSsrModel>()
     lateinit var datalist: DataListOrderAccomodation
+    val ssrSelected = ArrayList<SelectedSsrModel>()
+    var positionFlight: Int = 0
 
     override fun OnMain() {
+        btnApply.callbackOnclickButton(this)
         initToolbar()
         initRecyclerView()
         setDataRecyclerView()
@@ -52,11 +56,11 @@ class SsrListActivity : BaseActivity(),
 
     private fun setDataRecyclerView() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        var position = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SSR,0)
-        datalist.dataFlight.forEach {
-            Log.e("testdata",Serializer.serialize(it.dataSSR.dataSsr))
-        }
-        adapter.setData(datalist.dataFlight[position].dataSSR.dataSsr)
+        positionFlight = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SSR, 0)
+        /*datalist.dataFlight.forEach {
+            Log.e("testdata", Serializer.serialize(it.dataSSR.dataSsr))
+        }*/
+        adapter.setData(datalist.dataFlight[positionFlight].dataSSR.dataSsr)
     }
 
     private fun initRecyclerView() {
@@ -71,7 +75,41 @@ class SsrListActivity : BaseActivity(),
 
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
+        val selectedItem = SelectedSsrModel()
+        selectedItem.price = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].pricing
+        selectedItem.ssrName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrName
+        selectedItem.ssrType = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrType
+        selectedItem.ssrTypeName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrTypeName
+        if (!ssrSelected.filter { it.ssrType  == selectedItem.ssrType}.isNullOrEmpty()){
+            /*var lastPosition: Int = -1
+            ssrSelected.forEachIndexed { index, selectedSsrModel ->
+                if (selectedSsrModel.ssrType == selectedItem.ssrType){
+                    lastPosition = index
+                }
+            }
+            ssrSelected.removeAt(lastPosition)
+            ssrSelected.add(selectedItem)*/
+            ssrSelected.removeAt(ssrSelected.indexOf(ssrSelected.filter { it.ssrType  == selectedItem.ssrType }.last()))
+            ssrSelected.add(selectedItem)
+        } else {
+            ssrSelected.add(selectedItem)
+        }
+        ssrSelected.distinct()
+        datalist.dataFlight[positionFlight].dataSSR.ssrSelected.clear()
+        datalist.dataFlight[positionFlight].dataSSR.ssrSelected.addAll(ssrSelected)
+        Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+        Log.e("testSave", ssrSelected[0].ssrName)
 
+    }
+
+    override fun onClicked() {
+        val returnIntent = Intent()
+        setResult(Activity.RESULT_OK,returnIntent)
+        val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        dataList.dataFlight[0].dataSSR.ssrSelected.forEach {
+            setLog("testSave2",it.ssrName)
+        }
+        finish()
     }
 
 }

@@ -7,11 +7,11 @@ import opsigo.com.datalayer.request_model.accomodation.flight.reservation.Segmen
 @Generated("com.robohorse.robopojogenerator")
 data class SeatMapFlightRequest(
 
-        @field:SerializedName("MultiClass")
-	var multiClass: Boolean? = null,
-
         @field:SerializedName("TravelAgent")
 	var travelAgent: String? = null,
+
+		@field:SerializedName("Provider")
+	var provider: Int? = null,
 
         @field:SerializedName("Adult")
 	var adult: Int? = null,

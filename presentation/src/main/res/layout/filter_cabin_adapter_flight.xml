@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:layout_height="40dp">
+    android:layout_height="50dp">
 
     <CheckBox
         android:buttonTint="@color/colorPrimary"
@@ -22,8 +22,9 @@
         android:id="@+id/tvCabinClass"
         android:layout_toEndOf="@+id/checkbox"
         android:layout_centerVertical="true"
+        android:layout_alignBaseline="@+id/checkbox"
         style="@style/RobotoRegular"
-        android:text="Economy"
+        android:text="@string/lorem_ipsum"
         android:textSize="14sp"
         android:textColor="#9924253d"
         android:layout_width="wrap_content"

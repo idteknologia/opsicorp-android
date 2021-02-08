@@ -43,6 +43,7 @@ class GetSsrMapper {
             try {
                 model.data.first().ssrs.filter { it.ssrType == TypeSsr.Baggage }.forEach {
                     val mDataBagage = DataSsrModel()
+                    data.isBagage = true
                     mDataBagage.curency = it.ccy.toString()
                     mDataBagage.id = model.data.first().id.toString()
                     mDataBagage.pricing = it.ssrFare.toString()

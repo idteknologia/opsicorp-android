@@ -14,6 +14,7 @@ import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.list_ssr_adapter.view.*
+import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.SsrItemModel
 
 class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.ViewHolder>() {
@@ -40,15 +41,8 @@ class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = items.get(position)
-        /*if (data.dataSSR.dataMeal.isNotEmpty()){
-            holder.itemView.tv_ssr_type.text  = data.dataSSR.dataMeal[position].ssrTypeName
-        } else if (data.dataSSR.dataSport.isNotEmpty()){
-            holder.itemView.tv_ssr_type.text  = data.dataSSR.dataSport[position].ssrTypeName
-        } else if (data.dataSSR.dataDrink.isNotEmpty()){
-            holder.itemView.tv_ssr_type.text  = data.dataSSR.dataDrink[position].ssrTypeName
-        }*/
         holder.itemView.tv_ssr_type.text = data.ssrTypeName
-        Log.e("testAdapter",items.size.toString())
+        /*Log.e("testAdapter",items.size.toString())*/
         setDataRecycler(holder,data,position)
 
     }
@@ -66,18 +60,11 @@ class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.Vie
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     Constants.KEY_CHECK_BOX_SSR -> {
-                        /*onclick.onClick(Constants.KEY_CHECK_BOX_SSR,positionParent,Constants.KEY_CHECK_BOX_SSR,position)*/
+                        onclick.onClick(Constants.KEY_CHECK_BOX_SSR,positionParent,Constants.KEY_CHECK_BOX_SSR,position)
                     }
                 }
             }
         })
-        /*if (data.dataSSR.dataMeal.isNotEmpty()){
-            adapter.setData(data.dataSSR.dataMeal)
-        } else if (data.dataSSR.dataDrink.isNotEmpty()){
-            adapter.setData(data.dataSSR.dataDrink)
-        } else if (data.dataSSR.dataSport.isNotEmpty()){
-            adapter.setData(data.dataSSR.dataSport)
-        }*/
         adapter.setData(data.ssrItem)
     }
 

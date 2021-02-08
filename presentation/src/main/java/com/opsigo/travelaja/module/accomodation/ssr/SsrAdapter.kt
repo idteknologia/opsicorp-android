@@ -1,5 +1,6 @@
 package com.opsigo.travelaja.module.accomodation.ssr
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -9,6 +10,8 @@ import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
+import com.opsigo.travelaja.utility.gone
+import com.opsigo.travelaja.utility.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ssr_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
@@ -42,12 +45,18 @@ class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>(
         } else {
             holder.itemView.tv_title_trip.text     = "Arrival Flight"
         }
-        /*if (data.dataSSR.dataDrink.isNullOrEmpty()||data.dataSSR.dataMeal.isNullOrEmpty()||data.dataSSR.dataOther.isNullOrEmpty()||data.dataSSR.dataSport.isNullOrEmpty()){
-            holder.itemView.tvPickSsr.text = "Select SSR"
-        } else {
+        if (data.dataSSR.ssrSelected.isNotEmpty()){
+            holder.itemView.rlSelectedSsr.visible()
             holder.itemView.tvPickSsr.text = "Change"
+            var selectedSsr = ""
+            data.dataSSR.ssrSelected.forEach {
+                selectedSsr = selectedSsr + "${it.ssrName}, "
+            }
+            holder.itemView.tvSelectedSsr.text = selectedSsr.substring(0,selectedSsr.length-1)
+        } else {
+            holder.itemView.rlSelectedSsr.gone()
+            holder.itemView.tvPickSsr.text = "Select SSR"
         }
-        holder.itemView.tvSelectedSsr.text = Resources.getSystem().getString(R.string.selectedSsr)*/
 
         if (data.imgAirline.isNotEmpty()){
             Picasso.get()
@@ -59,7 +68,7 @@ class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>(
         holder.itemView.tvPickSsr.setOnClickListener {
             val intent = Intent(context, SsrListActivity::class.java)
             intent.putExtra(Constants.KEY_POSITION_SELECT_SSR,position)
-            context.startActivity(intent)
+             (context as Activity).startActivityForResult(intent,Constants.REQUEST_CODE_SELECT_SSR)
         }
     }
 

@@ -231,7 +231,7 @@
                     android:textSize="10sp"
                     style="@style/RobotoRegular"
                     android:textColor="#939396"
-                    android:text="Important info includes Segment, Facilities or Fare Rules"
+                    android:text="Important info includes Segment and Facilities"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

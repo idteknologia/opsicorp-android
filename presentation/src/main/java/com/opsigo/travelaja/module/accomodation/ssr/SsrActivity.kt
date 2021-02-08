@@ -1,5 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.ssr
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ import kotlinx.android.synthetic.main.ssr_flight_activity.tv_station_departure
 import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
+import java.lang.Exception
 
 class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
@@ -30,7 +33,6 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
         btnDone.callbackOnclickButton(this)
         initToolbar()
         initRecyclerView()
-        initPrice()
         setData()
     }
 
@@ -48,9 +50,15 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
             showOrHideDetailPrice()
         }
         if (Globals.typeAccomodation == Constants.FLIGHT) {
-            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+            tvTotalPriceSsr.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
             tv_station_departure.text = "${datalist.dataFlight[0].origin} - ${datalist.dataFlight[0].destination}"
-            tv_price_departure.text = "IDR 0"
+            if (datalist.dataFlight[0].dataSSR.ssrSelected.isNotEmpty()){
+                tvSsrValue.text = "${datalist.dataFlight[0].dataSSR.ssrSelected[0].ssrName}"
+                tv_price_departure.text = "${datalist.dataFlight[0].dataSSR.ssrSelected[0].price}"
+            } else {
+                tvSsrValue.text = "-"
+                tv_price_departure.text = "IDR 0"
+            }
             if (datalist.dataFlight.size >= 2) {
                 line_transit.visible()
                 tv_station_transit.text = "${datalist.dataFlight[1].origin} - ${datalist.dataFlight[1].destination}"
@@ -68,6 +76,21 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
             }
         }
 
+    }
+
+    private fun totalPriceSelected(): String? {
+        var totalSelected = 0.0
+        datalist.dataFlight.forEach {
+            it.dataSSR.ssrSelected.forEach {
+                try {
+                    totalSelected = totalSelected + it.price.toDouble()
+                }
+                catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return totalSelected.toString()
     }
 
     private fun showOrHideDetailPrice() {
@@ -91,10 +114,24 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
     }
 
     private fun setData() {
-        val datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataProfile = Globals.getProfile(applicationContext)
         tvPassengerSsr.text = dataProfile.name
         adapter.setData(datalist.dataFlight)
+        initPrice()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode){
+            Constants.REQUEST_CODE_SELECT_SSR -> {
+                if (resultCode == Activity.RESULT_OK){
+                    setData()
+                    val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+                    setLog("testSaveKembali",dataList.dataFlight[0].dataSSR.ssrSelected.size.toString())
+                }
+            }
+        }
     }
 
     private fun initRecyclerView() {

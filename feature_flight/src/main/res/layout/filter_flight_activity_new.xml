@@ -119,11 +119,13 @@
 
 
             <RelativeLayout
+                android:id="@+id/rlPricePax"
                 android:background="@android:color/white"
                 android:paddingLeft="20dp"
                 android:paddingRight="19dp"
                 android:layout_width="match_parent"
-                android:layout_height="43dp">
+                android:layout_height="43dp"
+                android:visibility="gone">
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
@@ -133,6 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView
+                    android:id="@+id/tvRangeBar"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     style="@style/RobotoMedium"
@@ -145,22 +148,24 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:id="@+id/llRangeBar"
                 android:background="@android:color/white"
                 android:paddingTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
                     android:layout_width="match_parent"
-                    android:max="100"
+                    android:max="10000000"
                     android:layout_marginRight="40dp"
                     android:layout_marginLeft="40dp"
                     android:id="@+id/rangebar"
                     style="@style/Base.Sephiroth.Widget.RangeSeekBar"
                     android:layout_height="wrap_content"
-                    app:range_progress_endValue="100"
-                    app:range_progress_startValue="0"/>
+                    app:range_progress_endValue="10000000"
+                    app:range_progress_startValue="100000"/>
 
                 <RelativeLayout
                     android:paddingRight="19dp"
@@ -209,7 +214,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_car"/>
+                    android:src="@drawable/ic_chair"/>
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
@@ -330,7 +335,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="35dp">
+                android:layout_height="35dp"
+                android:visibility="gone">
                 <ImageView
                     android:id="@+id/img_meal"
                     android:layout_width="19dp"
@@ -359,6 +365,7 @@
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
