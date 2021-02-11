@@ -57,7 +57,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="#91929e"
-                            android:gravity="end"
+                            android:layout_gravity="end"
                             style="@style/RobotoRegular"
                             android:text="@string/one_way"
                             android:layout_marginTop="2dp"/>

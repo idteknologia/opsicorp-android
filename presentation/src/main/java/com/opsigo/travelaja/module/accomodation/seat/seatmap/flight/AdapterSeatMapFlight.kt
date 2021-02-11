@@ -80,6 +80,21 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
                 itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorGray))
             }
 
+            when (data.status){
+                Constants.SelectSeat -> {
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_selected)
+                }
+                Constants.PickSeat -> {
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_pick)
+                }
+                Constants.SoldSeat -> {
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_occupied)
+                }
+                Constants.AvailableSeat -> {
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_available)
+                }
+            }
+
             itemView.titel_seat.setOnClickListener {
                 onclick.onClick(-3,position)
             }

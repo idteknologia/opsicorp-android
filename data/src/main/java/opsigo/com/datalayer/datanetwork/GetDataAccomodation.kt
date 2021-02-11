@@ -1,6 +1,5 @@
 package opsigo.com.datalayer.datanetwork
 
-import android.util.Log
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
@@ -267,6 +266,30 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                     callback.failed(e.message!!)
                 }
             }
+        })
+    }
+
+    override fun getFareRules(token: String, data: HashMap<Any, Any>, callback: CallbackGetFareRules) {
+        apiOpsicorp.getFareRules(token,data).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failed(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        callback.success(GetFareRulesMapper().mapper(responseString!!))
+                    } else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failed(message)
+                    }
+                } catch (e:Exception){
+                    callback.failed(e.message!!)
+                }
+            }
+
         })
     }
 

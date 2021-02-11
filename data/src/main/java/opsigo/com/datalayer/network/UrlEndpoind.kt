@@ -149,6 +149,10 @@ interface UrlEndpoind {
     fun getSsrFlight(@Header("Authorization")token:String,
                          @Body body: HashMap<Any, Any>): Call<ResponseBody>
 
+    @POST(MyURL.GET_FARE_RULES)
+    fun getFareRules(@Header("Authorization")token:String,
+                     @Body body: HashMap<Any, Any>): Call<ResponseBody>
+
     @POST(MyURL.RESERVATION_AIRLINE)
     fun reserveFlight(@Header("Authorization")token:String,
                          @Body body: HashMap<Any, Any>): Call<ResponseBody>
@@ -168,6 +172,7 @@ interface UrlEndpoind {
     @POST(MyURL.FLIGHT_VALIDATION)
     fun getValidationFlight(@Header("Authorization")token:String,
                            @Body body: HashMap<Any, Any>): Call<ResponseBody>
+
 
     // train
 

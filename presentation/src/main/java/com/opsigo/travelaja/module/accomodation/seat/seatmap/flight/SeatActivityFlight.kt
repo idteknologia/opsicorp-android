@@ -13,6 +13,10 @@ import android.os.CountDownTimer
 import com.opsigo.travelaja.R
 import android.view.View
 import android.os.Build
+import com.squareup.picasso.Picasso
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 
 class SeatActivityFlight : BaseActivity(),
@@ -21,41 +25,40 @@ class SeatActivityFlight : BaseActivity(),
 
     override fun getLayout(): Int { return R.layout.seatmap_view_flight }
 
-    var posisitionPageAirline  = 0
+    var posisitionPageAirline  : Int = 0
     val dataAirline            = ArrayList<SeatAirlineModel>()
     val dataDialogCabin        = ArrayList<String>()
     var dataItem               = CartModel()
+    lateinit var dataOrder: OrderAccomodationModel
+    lateinit var datalist: DataListOrderAccomodation
+
 
     override fun OnMain() {
-        addDataDummy()
+        initData()
         initRecyclerViewCabin()
         countDownExpiredTime()
-//        initToolbar()
+        initToolbar()
     }
 
-    private fun addDataDummy() {
-//        val modelAirLine = SeatAirlineModel()
-//        modelAirLine.totalRows = 6
-//        modelAirLine.dataSeat  = DummySeatFlight().getDataSeat1()
-//
-//        val modelAirLine2 = SeatAirlineModel()
-//        modelAirLine2.totalRows = 8
-//        modelAirLine2.dataSeat  = DummySeatFlight().getDataSeat2()
-//
-//        dataAirline.add(modelAirLine)
-//        dataAirline.add(modelAirLine2)
-
+    private fun initData() {
         dataAirline.addAll(Constants.DATA_SEAT_AIRLINE)
+        posisitionPageAirline = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SEAT, 0)
 
         Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
             dataDialogCabin.add(seatAirlineModel.nameAirCraft)
         }
 
-        setTitleAirline(dataAirline[0].nameFlight,dataAirline[0].nameAirCraft)
+        setTitleAirline(dataAirline[posisitionPageAirline].nameFlight,dataAirline[posisitionPageAirline].nameAirCraft)
 
-//        dataDialogCabin.add("Garuda")
-//        dataDialogCabin.add("Abu dabi")
+    }
 
+    fun setAirlineImage(imgAirline: String) {
+        if (imgAirline.isNotEmpty()){
+            Picasso.get()
+                    .load(imgAirline)
+                    .fit()
+                    .into(ivAirlines)
+        }
     }
 
     fun setTitleAirline(nameAirline:String,codeAirline:String){
@@ -63,15 +66,30 @@ class SeatActivityFlight : BaseActivity(),
         tv_code_airline.text = codeAirline
     }
 
+    fun setAirlineClass(nameClass: String) {
+        tvAirlineClass.text = nameClass
+    }
+
     private fun initToolbar() {
+        dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+
+        toolbar.setDoubleTitle("Select Seat","${datalist.dataFlight[posisitionPageAirline].originName} (${datalist.dataFlight[posisitionPageAirline].origin})"
+                + " --> " + "${datalist.dataFlight[posisitionPageAirline].destinationName} (${datalist.dataFlight[posisitionPageAirline].destination})")
+
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        val dateDeparture = if (dataItem.dataCardTrain.dateDeparture.contains(" ")) dataItem.dataCardTrain.dateDeparture.split(" ")[0] else dataItem.dataCardTrain.dateDeparture
-        toolbar.setDoubleTitle("${dataItem.dataCardTrain.stationDeparture} - ${dataItem.dataCardTrain.stationArrival}","${DateConverter().getDate(dateDeparture,"yyyy-MM-dd","EEE, dd MMM |")} 1 adult") //- 1 pax , ${dataOrder.dateArrival}
+        /*toolbar.setDoubleTitle("Select Seat","${dataOrder.originName} (${dataOrder.idOrigin}) -> ${dataOrder.destinationName} (${dataOrder.idDestination})")*/
+
+        setAirlineImage(datalist.dataFlight[posisitionPageAirline].imgAirline)
+        setAirlineClass(datalist.dataFlight[posisitionPageAirline].nameClass)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)
         }
     }
+
+
 
     private fun countDownExpiredTime() {
         object : CountDownTimer(getTimeExpiredTime(),1000){
@@ -111,6 +129,16 @@ class SeatActivityFlight : BaseActivity(),
                                 dataAirline[posisitionPageAirline].dataSeat[position].status = Constants.PickSeat
                                 adapterSeat.notifyDataSetChanged()
                                 tv_number_seat_select.text = "Seat Number ${dataAirline[posisitionPageAirline].dataSeat[position].numberSeat}"
+
+                                /*val seatItem = SeatAirlineModel()
+                                val seatSelected = ArrayList<SeatAirlineModel>()
+                                seatItem.nameFlight = dataAirline[posisitionPageAirline].nameFlight
+                                seatItem.nameAirCraft = dataAirline[posisitionPageAirline].nameAirCraft
+                                seatItem.dataSeat = dataAirline[posisitionPageAirline].dataSeat
+                                seatSelected.add(seatItem)
+                                datalist.dataFlight[posisitionPageAirline].dataSeat.clear()
+                                datalist.dataFlight[posisitionPageAirline].dataSeat.addAll(seatSelected)
+                                Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)*/
                             }
                         }
                     }
@@ -130,7 +158,7 @@ class SeatActivityFlight : BaseActivity(),
     fun showDialogAirline(views: View){
         DialogSelectCabin(this).create(posisitionPageAirline,dataDialogCabin,object :DialogSelectCabin.CallbackDialog{
             override fun selected(int: Int) {
-//                setTitleBtnDialogCabin(dataDialogCabin[int])
+                setTitleBtnDialogCabin(dataDialogCabin[int])
                 posisitionPageAirline = int
 
                 tv_number_seat_select.text = "Seat Number ${dataAirline[posisitionPageAirline].dataSeat.filter { it.status == Constants.PickSeat }.first().numberSeat}"

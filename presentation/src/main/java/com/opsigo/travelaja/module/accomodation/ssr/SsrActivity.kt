@@ -116,7 +116,7 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
     private fun setData() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataProfile = Globals.getProfile(applicationContext)
-        tvPassengerSsr.text = dataProfile.name
+        tvPassengerSsr.text = "${dataProfile.title}.${dataProfile.name}"
         adapter.setData(datalist.dataFlight)
         initPrice()
     }
@@ -145,7 +145,7 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
     }
 
     private fun initToolbar() {
-        toolbar.setTitleBar("SSR(Special Service Request)")
+        toolbar.setTitleBar("SSR (Special Service Request)")
         toolbar.hidenBtnCart()
         toolbar.btn_back.setOnClickListener { finish() }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

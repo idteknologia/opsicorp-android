@@ -58,6 +58,7 @@ class AccomodationResultFlightMapper {
 
                 model.price             = classView.fare
                 model.fareBasisCode     = classView.fareBasisCode.toString()
+                model.fareRuleKeys      = classView.fareRuleKeys.toString()
                 model.flightId          = classView.flightId.toString()
                 model.flightNumber      = departureflightItem.flightNumber.toString()
                 model.flightType        = departureflightItem.flightType.toString()
@@ -183,6 +184,7 @@ class AccomodationResultFlightMapper {
 
                 model.price            = classView.fare
                 model.fareBasisCode    = classView.fareBasisCode.toString()
+                model.fareRuleKeys      = classView.fareRuleKeys.toString()
                 model.flightId          = classView.flightId.toString()
                 model.flightNumber      = returnFlight.flightNumber.toString()
                 model.flightType        = returnFlight.flightType.toString()

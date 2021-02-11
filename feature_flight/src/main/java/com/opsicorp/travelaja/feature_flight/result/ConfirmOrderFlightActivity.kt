@@ -50,7 +50,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         }else{
             tvoneway.text = "Roundtrip"
         }
-        /*getSeatMapFlight()*/
+        getSeatMapFlight()
         initDataView()
         initPrice()
         initToolbar()
@@ -67,7 +67,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun getSeatMapFlight() {
-        showDialog("")
+        showDialog("Checking Available Seat")
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
                 setLog("--------------------------")
@@ -79,10 +79,11 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                     setLog(seatAirlineModel.totalRows.toString())
                     setLog(Serializer.serialize(seatAirlineModel.dataSeat))
                 }
+                hideDialog()
             }
 
             override fun failed(errorMessage: String) {
-
+                hideDialog()
             }
 
         })
@@ -152,6 +153,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             mData.title_flight  = resultListFlightModel.titleAirline
             mData.img_airline   = resultListFlightModel.imgAirline
             mData.class_type    = resultListFlightModel.flightNumber
+            mData.flight_type    = resultListFlightModel.flightType
             mData.number_sheet  = resultListFlightModel.numberSeat
             mData.terminal      = resultListFlightModel.terminal
 
@@ -178,6 +180,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
             mData.depatureAirportName = resultListFlightModel.originAirport
             mData.arrivalAirportName = resultListFlightModel.destinationAirport
+
 
             mData.time_arrival  = resultListFlightModel.arriveTime
             mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
@@ -324,6 +327,5 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     override fun onClick(views: Int, position: Int) {
-
     }
 }

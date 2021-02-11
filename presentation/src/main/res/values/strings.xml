@@ -677,4 +677,6 @@ Please add your trip item for Approval."
     <string name="carrier_code">Carrier Code</string>
     <string name="select_carrier_code">Select carrier code</string>
     <string name="frequent_flyer_number">Frequent Flyer Number</string>
+    <string name="select_seat">Select Seat</string>
+    <string name="airline_class">Airline Class</string>
 </resources>

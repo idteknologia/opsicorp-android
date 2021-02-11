@@ -8,6 +8,7 @@ class ConfirmationFlightModel {
     var title_flight  = ""
     var img_airline   = ""
 
+    var flight_type   = ""
     var class_type    = ""
     var number_sheet  = ""
 

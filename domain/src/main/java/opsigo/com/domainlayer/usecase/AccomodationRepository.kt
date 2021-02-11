@@ -37,5 +37,6 @@ interface AccomodationRepository {
     fun getAllCodeFlight(token: String,callback:CallbackGetAllCodeAirline)
     fun getSeatMapFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackSeatMapFlight)
     fun getSsrFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackGetSsr)
+    fun getFareRules(token: String, data: HashMap<Any, Any>, callback: CallbackGetFareRules)
 
 }

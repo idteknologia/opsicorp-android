@@ -288,6 +288,10 @@
 
         </activity>
 
+        <activity android:name="com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SelectSeatActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

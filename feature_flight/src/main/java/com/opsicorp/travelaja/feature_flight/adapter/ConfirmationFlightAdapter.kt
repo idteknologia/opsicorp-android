@@ -1,5 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.RecyclerView
@@ -8,9 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FareRulesActivity
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_confirmation_order_flight_new.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
@@ -63,11 +62,16 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         holder.itemView.tv_station_origin.text  = data.depatureAirportName
         holder.itemView.tv_station_destination.text = data.arrivalAirportName
 
+        if (data.flight_type.equals("NonGds")){
+            holder.itemView.rlFareRules.gone()
+        } else {
+            holder.itemView.rlFareRules.visible()
+        }
+
         holder.itemView.rlFareRules.setOnClickListener {
-            /*onclick.onClick(Constants.KEY_ACTIVITY_FARE_RULES,position)*/
             val intent = Intent(context,FareRulesActivity::class.java)
             intent.putExtra(Constants.KEY_POSITION_FARE_RULES,position)
-            context.startActivity(intent)
+            (context as Activity).startActivityForResult(intent,Constants.REQUEST_CODE_FARE_RULES)
         }
 
         if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){

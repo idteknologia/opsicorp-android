@@ -17,13 +17,17 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.SegmentFareRulesRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.SegmentsItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
+import opsigo.com.domainlayer.callback.CallbackGetFareRules
 import opsigo.com.domainlayer.callback.CallbackGetSsr
 import opsigo.com.domainlayer.callback.CallbackValidationFlight
+import opsigo.com.domainlayer.model.accomodation.flight.FareRulesModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
@@ -41,6 +45,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     lateinit var dataTripPlan: SuccessCreateTripPlaneModel
     lateinit var dataFlight: ResultListFlightModel
     lateinit var dataSsr : SsrModel
+    lateinit var dataFareRules : ArrayList<FareRulesModel>
 
     override fun OnMain() {
         getValidationFlight()
@@ -80,6 +85,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         GetDataAccomodation(getBaseUrl()).getValidationFlight(getToken(),dataRequest(),object : CallbackValidationFlight {
             override fun successLoad(data: ValidationFlightModel) {
                 isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
+                getFareRules()
                 getSsr()
             }
 
@@ -87,6 +93,61 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
                 hideLoadingOpsicorp()
             }
         })
+    }
+
+    private fun getFareRules() {
+        GetDataAccomodation(getBaseUrl()).getFareRules(getToken(),dataFareRulesRequest(),object : CallbackGetFareRules {
+            override fun success(data: ResultListFlightModel) {
+                dataFareRules = data.dataFareRules
+            }
+
+            override fun failed(string: String) {
+            }
+
+        })
+    }
+
+    private fun dataFareRulesRequest(): HashMap<Any, Any> {
+        /*val temporary = "{\n" +
+                "    \"Adult\":1,\n" +
+                "    \"Child\":0,\n" +
+                "    \"Infant\":0,\n" +
+                "    \"Provider\":\"6\",\n" +
+                "    \"CompanyCode\":\"000002\",\n" +
+                "    \"TravelAgent\":\"apidev\",\n" +
+                "    \"SegmentList\":[\n" +
+                "        {\n" +
+                "            \"ClassId\":\"49eed9a9-5751-4833-bd09-cd2b6fc6a592~CGK~SIN~09:25~07/16/2020~12:15~07/16/2020~8955~GA~955~SQ~Economy~Y~0~0~||||||||||YOXCSQID||\",\n" +
+                "            \"FlightId\":\"e04aaa99-9a08-4126-a00b-25879e21049c~~6~Market~ad4ac608-b621-4073-9ad6-f4183f67c512~GA~no-code~\",\n" +
+                "            \"FareRuleKeys\":\"1298bccf-84fd-4723-ae00-5bad931f1c8a\",\n" +
+                "            \"Num\":\"0\",\n" +
+                "            \"Seq\":\"0\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}"*/
+        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+        val data = FareRulesRequest()
+        data.adult = 1
+        data.child = 0
+        data.infant = 0
+        data.companyCode = "000002"
+        data.travelAgent = "apidev"
+        data.provider = dataFlight.airline
+        data.segments = getDataSegmentFareRules()
+        return Globals.classToHashMap(data, FareRulesRequest::class.java)
+    }
+
+    private fun getDataSegmentFareRules(): List<SegmentFareRulesRequest?>? {
+        val data = ArrayList<SegmentFareRulesRequest>()
+        val mData = SegmentFareRulesRequest()
+        mData.classId               = dataFlight.classId
+        mData.flightId              = dataFlight.flightId
+        mData.fareRuleKeys          = dataFlight.fareRuleKeys
+        mData.num                   = 0
+        mData.seq                   = 0
+        data.add(mData)
+
+        return data
     }
 
     private fun getSsr() {
@@ -335,6 +396,10 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         var datalist   = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
         dataFlight.notComply = isNotComply
+        if (dataFlight.flightType.equals("GdsBfm")){
+            dataFlight.dataFareRules = dataFareRules
+            setLog(dataFareRules[0].fareRulesName)
+        }
         dataFlight.dataSSR   = dataSsr
         try {
             datalist.dataFlight.add(dataFlight)

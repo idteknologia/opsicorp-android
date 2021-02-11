@@ -38,6 +38,7 @@ object MyURL {
     const val ALL_CODE_AIRLINE    = "api/Lookup/GetAllCarriers"
     const val GET_SEATMAP_FLIGHT  = "api/TripPlan/GetFlightSeat"
     const val GET_SSR_FLIGHT      = "api/TripPlan/GetSsrFlight"
+    const val GET_FARE_RULES      = "api/TripPlan/GetFareRules"
 
     // search train
     const val STATION_TRAIN     = "api/Lookup/GetStationList"

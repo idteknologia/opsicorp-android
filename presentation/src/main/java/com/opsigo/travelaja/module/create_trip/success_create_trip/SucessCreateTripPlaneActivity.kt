@@ -79,10 +79,11 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
     }
 
     override fun onBackPressed() {
-        backListerner()
+        /*backListerner()*/
+        later()
     }
 
-    private fun backListerner() {
+    /*private fun backListerner() {
 
             Globals.showAlert("Maaf","Apakah anda yakin?",this,object :Globals.OnclikAllert{
                 override fun yes() {
@@ -94,5 +95,5 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
                 }
             })
 
-    }
+    }*/
 }

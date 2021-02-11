@@ -29,6 +29,7 @@ import android.view.View
 import android.os.Build
 import android.widget.Toast
 import com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SeatActivityFlight
+import com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SelectSeatActivity
 import com.opsigo.travelaja.module.accomodation.ssr.BagageActivity
 import com.opsigo.travelaja.module.accomodation.ssr.FrequentFlyerActivity
 import com.opsigo.travelaja.module.accomodation.ssr.SsrActivity
@@ -72,6 +73,12 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)
+        }
+
+        if (Constants.DATA_SEAT_AIRLINE.isNotEmpty()) {
+            line_select_seat_map.visible()
+        } else {
+            line_select_seat_map.gone()
         }
     }
 
@@ -235,7 +242,10 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun seatMapListener(view: View){
-        getDataSeatMap()
+        /*getDataSeatMap()*/
+        /*gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)*/
+        gotoActivityResult(SelectSeatActivity::class.java,Constants.GET_SEAT_MAP)
+
     }
 
     override fun onClicked() {
@@ -475,75 +485,5 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
     }
 
-    fun getDataSeatMap() {
-        showDialog("")
-        GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
-            override fun success(data: ArrayList<SeatAirlineModel>) {
-                setLog("--------------------------")
-                Constants.DATA_SEAT_AIRLINE.clear()
-                Constants.DATA_SEAT_AIRLINE.addAll(data)
-                Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
-                    setLog(seatAirlineModel.nameFlight)
-                    setLog(seatAirlineModel.nameAirCraft)
-                    setLog(seatAirlineModel.totalRows.toString())
-                    setLog(Serializer.serialize(seatAirlineModel.dataSeat))
-                }
-                if (data.isNotEmpty()) {
-                    gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)
-                    hideDialog()
-                } else {
-                    hideDialog()
-                }
-            }
-
-            override fun failed(errorMessage: String) {
-                hideDialog()
-            }
-        })
-    }
-
-    fun dataRequestSeatMap(): java.util.HashMap<Any, Any> {
-        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
-        val data = SeatMapFlightRequest()
-        data.adult  = 1
-        data.child = 0
-        data.infant = 0
-        data.travelAgent = "apidev"
-        data.provider = dataFlight.airline
-        data.segments = getSegmentSeat()
-
-        return Globals.classToHashMap(data, SeatMapFlightRequest::class.java)
-    }
-
-    private fun getSegmentSeat(): List<SegmentFlightsRequest?>? {
-        val listSegment = ArrayList<SegmentFlightsRequest>()
-
-        dataListFlight.dataFlight.forEachIndexed { index, it ->
-            val segment = SegmentFlightsRequest()
-
-            segment.airline             =  it.airline
-            segment.arriveDate          =  it.arriveDate
-            segment.arriveTime          =  it.arriveTime
-
-            segment.classCode           =  it.classCode
-            segment.classId             =  it.classId
-
-            segment.departDate          =  it.departDate
-            segment.departTime          =  it.departTime
-
-            segment.flightId        =  it.flightId
-            segment.flightNumber    =  it.flightNumber
-
-            segment.num         =  index.toString()
-            segment.seq         =  index.toString()
-
-            segment.origin      =  it.origin
-            segment.destination =  it.destination
-
-            listSegment.add(segment)
-        }
-
-        return listSegment
-    }
 
 }

@@ -260,7 +260,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/line_depart">
                     <LinearLayout
-                        android:visibility="invisible"
+                        android:visibility="gone"
                         android:id="@+id/line_before_dote_progress"
                         android:orientation="vertical"
                         android:background="#b2bbc6"
@@ -270,8 +270,8 @@
                     <ImageView
                         android:id="@+id/dote_progress"
                         android:src="@drawable/point_departure"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
                         android:orientation="vertical">
                     </ImageView>
                     <View
@@ -280,7 +280,7 @@
                         android:orientation="vertical"
                         android:background="@drawable/line_dot"
                         android:layout_width="1dp"
-                        android:layout_height="73dp">
+                        android:layout_height="60dp">
                     </View>
 
                     <LinearLayout
@@ -295,8 +295,8 @@
                     <ImageView
                         android:visibility="visible"
                         android:background="@drawable/point_arrival"
-                        android:layout_width="9dp"
-                        android:layout_height="9dp"></ImageView>
+                        android:layout_width="12dp"
+                        android:layout_height="15dp"></ImageView>
 
                 </LinearLayout>
 
@@ -333,7 +333,7 @@
 
 
                 <LinearLayout
-                    android:layout_marginTop="39dp"
+                    android:layout_marginTop="35dp"
                     android:layout_below="@+id/line_depart"
                     android:layout_marginLeft="40dp"
                     android:orientation="vertical"

@@ -8,6 +8,8 @@ import kotlin.collections.ArrayList
 class ResultListFlightModel {
 
     var dataSSR         = SsrModel()
+    var dataFareRules   = ArrayList<FareRulesModel>()
+    var dataSeat        = ArrayList<SeatAirlineModel>()
     var originAirport   = ""
     var destinationAirport = ""
     var airline         = 0
@@ -68,6 +70,7 @@ class ResultListFlightModel {
     var seq             = "0"
     var sequence        = 0
     var fareBasisCode   = ""
+    var fareRuleKeys    = ""
     var isFlightArrival = false
 
     var transiteFlight  = ArrayList<TransiteFlight>()
