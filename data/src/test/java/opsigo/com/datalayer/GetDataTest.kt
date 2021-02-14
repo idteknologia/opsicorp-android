@@ -1,11 +1,15 @@
 package opsigo.com.datalayer.datanetwork
 
+import okhttp3.ResponseBody
 import opsigo.com.datalayer.request_model.accomodation.train.search.SearchTrainRequest
 import org.junit.Test
 import org.koin.test.KoinTest
+import retrofit2.Call
+import retrofit2.Response
 
 import java.lang.Exception
 import java.util.concurrent.CountDownLatch
+import javax.security.auth.callback.Callback
 
 
 class GetDataTest:KoinTest{
@@ -325,6 +329,28 @@ class GetDataTest:KoinTest{
     }
 
     @Test
+    fun testLogin(){
+        val latch = CountDownLatch(1)
+
+        GetDataLogin(url).apiOpsicorp.getDataLogin("password",
+                "klarisha","Opsicorp2020!").enqueue(object : retrofit2.Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
     fun testApiTrain(){
         val latch = CountDownLatch(1)
 //            GetDataAccomodation(url).apiOpsicorp.getDataDestinationTrain(token)
@@ -344,7 +370,7 @@ class GetDataTest:KoinTest{
             data.destination = "BD"
             data.origin      = "GMR"
             data.returnDate  = ""
-            data.travelAgentCode = "apidev"
+//            data.travelAgentCode = "apidev"
 
 //            val callRequest = GetDataAccomodation(url).apiOpsicorp.getDataSearchTrain(token,classToHasMaps(data,SearchTrainRequest::class.java))
 //            callRequest.enqueue(object :Callback<ResponseBody>{

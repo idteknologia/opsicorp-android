@@ -27,7 +27,7 @@ import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCameraCallbac
 import com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudget
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
-import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,

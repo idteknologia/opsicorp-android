@@ -1,6 +1,6 @@
 package com.opsigo.travelaja.module.item_custom.search_dialog
 
-import com.opsigo.travelaja.module.login.select_nationality.adapter.SelectNationalityAdapter
+import com.opsigo.travelaja.module.signin.select_nationality.adapter.SelectNationalityAdapter
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView

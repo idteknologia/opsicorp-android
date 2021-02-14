@@ -1,15 +1,15 @@
 package com.opsigo.travelaja.di.component
 
-import com.opsigo.travelaja.module.login.detail_profile.presenter.CompletedDataProfilePresenter
-import com.opsigo.travelaja.module.login.detail_profile.view.CompletedDataProfileView
-import com.opsigo.travelaja.module.login.select_nationality.presenter.SelectedNationalityPresenter
-import com.opsigo.travelaja.module.login.select_nationality.view.SelectNationalityView
-import com.opsigo.travelaja.module.login.select.presenter.LookUpPresenter
-import com.opsigo.travelaja.module.login.select.view.LookUpView
-import com.opsigo.travelaja.module.login.signin.presenter.LoginPresenter
-import com.opsigo.travelaja.module.login.signin.view.LoginView
-import com.opsigo.travelaja.module.login.splash.presenter.SplashPresenter
-import com.opsigo.travelaja.module.login.splash.view.SplashView
+import com.opsigo.travelaja.module.signin.detail_profile.presenter.CompletedDataProfilePresenter
+import com.opsigo.travelaja.module.signin.detail_profile.view.CompletedDataProfileView
+import com.opsigo.travelaja.module.signin.select_nationality.presenter.SelectedNationalityPresenter
+import com.opsigo.travelaja.module.signin.select_nationality.view.SelectNationalityView
+import com.opsigo.travelaja.module.signin.select.presenter.LookUpPresenter
+import com.opsigo.travelaja.module.signin.select.view.LookUpView
+import com.opsigo.travelaja.module.signin.login.presenter.LoginPresenter
+import com.opsigo.travelaja.module.signin.login.view.LoginView
+import com.opsigo.travelaja.module.signin.splash.presenter.SplashPresenter
+import com.opsigo.travelaja.module.signin.splash.view.SplashView
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 

@@ -230,7 +230,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.contact         = getContactHotelRequest()
         data.correlationId   = dataHotel.correlationId
         data.destinationCity = dataHotel.city
-        data.guestPassport   = Constants.Country.id
+//        data.guestPassport   = Constants.Country.id
         data.guests          = dataGuest()
 //        data.travelProfileId = null!!
         data.remark          = ""

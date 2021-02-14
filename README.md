@@ -16,5 +16,3 @@ more information
 - path key : /opsicorpKey.jks
 - alias    : opsicorpKey
 - pass     : opsicorp
-
-

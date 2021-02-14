@@ -13,7 +13,7 @@ import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.loading.DialogErrorConection
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals

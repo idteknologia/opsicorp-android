@@ -27,7 +27,7 @@ import com.opsigo.travelaja.locale.LocalePrefrences
 import com.opsigo.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.opsigo.travelaja.module.item_custom.loading.DialogErrorConection
 import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
-import com.opsigo.travelaja.module.login.signin.activity.LoginActivity
+import com.opsigo.travelaja.module.signin.login.activity.LoginActivity
 
 import com.opsigo.travelaja.utility.CallbackSnackBar
 import com.opsigo.travelaja.utility.Constants

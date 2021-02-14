@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.train.search
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.module.accomodation.train.result.ResultSearchTrainActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp

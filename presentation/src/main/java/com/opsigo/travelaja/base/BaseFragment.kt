@@ -16,10 +16,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.opsigo.travelaja.BuildConfig
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
 import com.opsigo.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
-import com.opsigo.travelaja.module.login.signin.activity.LoginActivity
+import com.opsigo.travelaja.module.signin.login.activity.LoginActivity
 import com.opsigo.travelaja.utility.CallbackSnackBar
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
