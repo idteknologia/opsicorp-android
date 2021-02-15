@@ -8,6 +8,7 @@ class SsrModel {
     var drinkType       = ""
     var sportEquipmentType = ""
     var bagaggeSelected = DataSsrModel()
+    var bagaggeItemSelected = ArrayList<SelectedBaggageModel>()
     var ssrSelected     = ArrayList<SelectedSsrModel>()
     var dataBagage      = ArrayList<DataSsrModel>()
     var dataSsr         = ArrayList<SsrItemModel>()

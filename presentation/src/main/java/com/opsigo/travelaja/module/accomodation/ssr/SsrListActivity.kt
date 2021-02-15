@@ -81,14 +81,6 @@ class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListe
         selectedItem.ssrType = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrType
         selectedItem.ssrTypeName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrTypeName
         if (!ssrSelected.filter { it.ssrType  == selectedItem.ssrType}.isNullOrEmpty()){
-            /*var lastPosition: Int = -1
-            ssrSelected.forEachIndexed { index, selectedSsrModel ->
-                if (selectedSsrModel.ssrType == selectedItem.ssrType){
-                    lastPosition = index
-                }
-            }
-            ssrSelected.removeAt(lastPosition)
-            ssrSelected.add(selectedItem)*/
             ssrSelected.removeAt(ssrSelected.indexOf(ssrSelected.filter { it.ssrType  == selectedItem.ssrType }.last()))
             ssrSelected.add(selectedItem)
         } else {

@@ -3,6 +3,7 @@ package com.opsigo.travelaja.module.accomodation.ssr
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -13,6 +14,7 @@ import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomoda
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
+import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 import java.lang.Exception
 
 class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -23,6 +25,8 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
     }
 
     val adapter by lazy { BaggageAdapter(this) }
+    val adapter2 by lazy { BaggagePriceAdapter(this) }
+    val baggageSelected = ArrayList<SelectedBaggageModel>()
     lateinit var datalist: DataListOrderAccomodation
 
 
@@ -31,7 +35,16 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         initToolbar()
         initRecyclerView()
         initPrice()
+        initPriceRv()
         setData()
+    }
+
+    private fun initPriceRv() {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rvPriceBagagge.layoutManager = layoutManager
+        rvPriceBagagge.itemAnimator = DefaultItemAnimator()
+        rvPriceBagagge.adapter = adapter2
     }
 
     private fun initPrice() {
@@ -49,13 +62,7 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         }
         if (Globals.typeAccomodation == Constants.FLIGHT) {
             datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-            tv_station_departure.text = "${datalist.dataFlight[0].origin} - ${datalist.dataFlight[0].destination}"
-            if (datalist.dataFlight.size > 1) {
-                line_arrival.visible()
-                tv_station_arrival.text = "${datalist.dataFlight[1].origin} - ${datalist.dataFlight[1].destination}"
-            } else {
-                line_arrival.gone()
-            }
+
         }
     }
 
@@ -107,25 +114,30 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
         /*setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)*/
         datalist.dataFlight[positionParent].dataSSR.bagaggeSelected = datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild]
         tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
-        if (datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.isNotEmpty()){
-            tv_price_departure.text = "IDR ${Globals.currencyIDRFormat(datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.toDouble())}"
-            if (datalist.dataFlight.size > 1) {
-                line_arrival.visible()
-                tv_price_arrival.text = "IDR ${Globals.currencyIDRFormat(datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing.toDouble())}"
-            } else {
-                line_arrival.gone()
-            }
+
+        val selectedItem = SelectedBaggageModel()
+        selectedItem.price = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing
+        selectedItem.ssrName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrName
+        selectedItem.ssrType = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrType
+        selectedItem.ssrTypeName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrTypeName
+        selectedItem.flightTitle = "${datalist.dataFlight[positionParent].origin}-${datalist.dataFlight[positionParent].destination}"
+        if (!baggageSelected.filter { it.ssrType  == selectedItem.ssrType}.isNullOrEmpty()){
+            baggageSelected.removeAt(baggageSelected.indexOf(baggageSelected.filter { it.ssrType  == selectedItem.ssrType }.last()))
+            baggageSelected.add(selectedItem)
+        } else {
+            baggageSelected.add(selectedItem)
         }
-        saveDataToModel()
+
+        datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.clear()
+        datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.addAll(baggageSelected)
+        Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+
+        adapter2.setData(datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected)
+
+        Log.e("testSaveBaggage", baggageSelected[0].price)
     }
 
-    private fun saveDataToModel() {
-        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        /*var dataBaggage = SelectedBaggageModel()
-        dataBaggage.ssrName = bagaggeSelected.ssrName
-        dataBaggage.price = bagaggeSelected.pricing*/
-        /*setLog(dataBaggage.price)*/
-    }
+
 
     private fun totalPriceSelected(): String? {
         var totalSelected = 0.0

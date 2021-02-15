@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:layout_height="50dp">
+
+    <TextView
+        android:id="@+id/tvBaggageValue"
+        style="@style/RobotoRegular"
+        android:layout_centerVertical="true"
+        android:text= "CGK-KNO"
+        android:textSize="14sp"
+        android:textColor="#24253d"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvBaggagePrice"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="11dp"
+        style="@style/RobotoMedium"
+        android:text="IDR 198.000"
+        android:textSize="14sp"
+        android:layout_alignParentRight="true"
+        android:textColor="#939396"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

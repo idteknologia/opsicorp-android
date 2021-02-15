@@ -121,70 +121,21 @@
                 android:layout_height="1.5dp">
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPriceBagagge"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tv_station_departure"
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Gajayana"/>
+                android:layout_height="150dp">
 
-                </LinearLayout>
+            </android.support.v7.widget.RecyclerView>
 
-                <TextView
-                    android:id="@+id/tv_price_departure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:textColor="#939396"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/line_arrival"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
+            <LinearLayout
                 android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="#e0e0e1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tv_station_arrival"
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Argo Parahyangan Tambahan"/>
+                android:layout_height="1.5dp">
+            </LinearLayout>
 
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_price_arrival"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#939396"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
 
         </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
