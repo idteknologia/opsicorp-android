@@ -1,8 +1,8 @@
 package opsigo.com.domainlayer.callback
 
-import opsigo.com.domainlayer.model.accomodation.hotel.ListCompanyModel
+import opsigo.com.domainlayer.model.accomodation.hotel.NearbyOfficeModel
 
 interface CallbackListCompany {
-    fun success(data:ArrayList<ListCompanyModel>)
+    fun success(data:ArrayList<NearbyOfficeModel>)
     fun failed(message:String)
 }

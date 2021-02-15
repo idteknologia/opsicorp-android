@@ -1,3 +1,4 @@
-
+include ':train_feature'
+include ':hotel_feature'
 include ':SliderDatePicker'
 include ':presentation', ':data', ':domain',':feature_flight', ':rangeseekbar-library'

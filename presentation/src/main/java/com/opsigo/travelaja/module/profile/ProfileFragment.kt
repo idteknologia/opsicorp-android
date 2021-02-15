@@ -11,8 +11,8 @@ import com.opsigo.travelaja.locale.AppLocale
 import com.opsigo.travelaja.locale.LocaleManager
 import com.opsigo.travelaja.locale.LocalePrefrences
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.login.detail_profile.activity.DataProfileActivity
-import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.signin.detail_profile.activity.DataProfileActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
 import com.unicode.kingmarket.Base.BaseFragment

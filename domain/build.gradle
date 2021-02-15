@@ -11,7 +11,9 @@ dependencies {
     implementation rootDependencies.rxJavaAdapter2
     implementation rootDependencies.rxJava2
     implementation rootDependencies.rxAndroid
+    implementation rootDependencies.gson
     compileOnly rootDependencies.annotationGlassfish
+
 
     testImplementation testDependencies.junit
     testImplementation testDependencies.assertj

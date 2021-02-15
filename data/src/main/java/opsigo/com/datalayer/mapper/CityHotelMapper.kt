@@ -1,15 +1,15 @@
 package opsigo.com.datalayer.mapper
 
 import opsigo.com.datalayer.model.accomodation.hotel.city.CityHotelEntity
-import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
+import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
 
 class CityHotelMapper {
-    fun mapping(data:CityHotelEntity):ArrayList<SelectNationalModel>{
-        val mData = ArrayList<SelectNationalModel>()
+    fun mapping(data:CityHotelEntity):ArrayList<CityHotelModel>{
+        val mData = ArrayList<CityHotelModel>()
         data.data.forEach {
-            val model  = SelectNationalModel()
-            model.name = it.cityName
-            model.id   = it.cityKey
+            val model  = CityHotelModel()
+            model.cityName = it.cityName
+            model.idCity   = it.cityKey
             mData.add(model)
         }
         return mData

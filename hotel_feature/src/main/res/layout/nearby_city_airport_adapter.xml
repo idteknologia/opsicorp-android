@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:visibility="gone"
+        android:background="#2b9a8e"
+        android:id="@+id/layToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoReguler"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:text="Popular Airports" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:visibility="visible"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="17dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/RobotoReguler"
+        android:textStyle="normal"
+        android:textSize="14sp"
+        android:textColor="#91929e"
+        android:text="Afganistan (AF)"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/line_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:textStyle="normal"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            android:text="Jakarta, Indonesia"/>
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoReguler"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#bbbbbb"
+            android:text="All airports in Jakarta" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_line">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:visibility="gone"
+        android:id="@+id/line_bottom"></LinearLayout>
+
+</LinearLayout>

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.seat_adater_view.view.*
+import kotlinx.android.synthetic.main.seat_adapter_view_flight.view.*
 import kotlinx.android.synthetic.main.seatmap_number_adapter_view.view.*
 import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view.view.*
 import kotlinx.android.synthetic.main.seatmap_spacing_left_adapter_view.view.*
@@ -29,7 +29,7 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
         return when (viewType){
 
             VIEW_SEAT -> SeatAdapter(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.seat_adater_view, parent, false))
+                    .inflate(R.layout.seat_adapter_view_flight, parent, false))
 
             VIEW_NUMBER -> NumberAdapter(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.seatmap_number_adapter_view, parent, false))

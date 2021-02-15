@@ -12,13 +12,13 @@ import com.opsigo.travelaja.module.home.adapter.TourEventAdapter
 import com.opsigo.travelaja.module.home.adapter.UpcommingFlightAdapter
 import com.opsigo.travelaja.module.home.model.TourEventModel
 import com.opsigo.travelaja.module.home.model.UpcommingFlightModel
-import com.opsigo.travelaja.module.login.select_nationality.adapter.SelectNationalityAdapter
+import com.opsigo.travelaja.module.signin.select_nationality.adapter.SelectNationalityAdapter
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.approval.summary.SummaryAdapter
 import com.opsigo.travelaja.module.approval.summary.SummaryFlightModelAdapter
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageAdapter
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageModel
-import com.opsigo.travelaja.module.login.select.adapter.LookUpAdapter
+import com.opsigo.travelaja.module.signin.select.adapter.LookUpAdapter
 import com.opsigo.travelaja.module.manage_trip.adapter.ManageTripAdapter
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel

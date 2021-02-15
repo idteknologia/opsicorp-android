@@ -3,10 +3,8 @@ package com.opsigo.travelaja.module.accomodation.page_parent.activity
 import com.opsigo.travelaja.module.accomodation.page_parent.presenter.AccomodationPresenter
 import com.opsigo.travelaja.module.accomodation.page_parent.view.AccomodationView
 import com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.accomodation.hotel.parent.HotelFragment
-import com.opsigo.travelaja.module.accomodation.train.search.TrainFragment
+import com.opsigo.travelaja.module.accomodation.train.TrainFragment
 import com.opsigo.travelaja.module.accomodation.tour.TourFragment
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import kotlinx.android.synthetic.main.accomodation_activity.*
@@ -24,25 +22,26 @@ import com.opsigo.travelaja.R
 import org.koin.core.inject
 import java.lang.Exception
 import android.view.View
+import com.opsigo.travelaja.module.accomodation.hotel.HotelFragmentNew
 import com.opsigo.travelaja.module.accomodation.search.FlightFragment
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Constants.READ_REQUEST_LOCATION
 import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
 import com.opsigo.travelaja.utility.Constants.TYPE_FLIGHT
 import com.opsigo.travelaja.utility.Constants.TYPE_HOTEL
 import com.opsigo.travelaja.utility.Constants.TYPE_TOUR
 import com.opsigo.travelaja.utility.Constants.TYPE_TRAIN
+import com.opsigo.travelaja.utility.OnclikAllertDoubleSelected
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }
 
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
     var flightFragment = FlightFragment()
-    var hotelFragment  = HotelFragment()
+    var hotelFragment  = HotelFragmentNew()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
-    var profileFragment        = ProfileFragment()
+    var profileFragment     = ProfileFragment()
 
     var positionPage        = 0
     var FLIGHT_POSITION     = 1
@@ -231,7 +230,9 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
                    }
                }
             }
-
+            Constants.REQUEST_CODE_NEARBY -> {
+                hotelFragment.onActivityResult(requestCode, resultCode, data)
+            }
         }
     }
 
@@ -244,7 +245,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
             finish()
         }
         else{
-            Globals.showAlert("Maaf","Apakah anda yakin ingin meninggalkan halaman ini?",this,object :Globals.OnclikAllert{
+            Globals.showAlert("Maaf","Apakah anda yakin ingin meninggalkan halaman ini?",this,object : OnclikAllertDoubleSelected {
                 override fun yes() {
                     finish()
                 }
@@ -259,13 +260,12 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){
-            READ_REQUEST_LOCATION -> {
+            Constants.REQUEST_CODE_NEARBY -> {
                 if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                    hotelFragment.checkPermissionLocation()
+                    hotelFragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
                 }
             }
         }
-
     }
 
 }

@@ -2,12 +2,12 @@ package com.opsigo.travelaja.module.create_trip.newtrip.presenter
 
 import com.opsigo.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.DataTemporary
-import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.create_trip.newtrip.view.CreateTripView
+import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
 import opsigo.com.domainlayer.model.PurposeModel
 import opsigo.com.domainlayer.model.BudgetModel
 import android.support.v7.widget.RecyclerView
@@ -69,7 +69,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
 
     private fun getDataCity() {
         view.loadDataView()
-        GetDataTripPlane(baseUrl).getDataCity(Globals.getToken(),object :CallbackArrayListCity{
+        GetDataTripPlane(baseUrl).getDataCity(Globals.getToken(),object :CallbackListCityTrip{
             override fun failedLoad(message: String) {
                 view.failedLoadDataView()
             }

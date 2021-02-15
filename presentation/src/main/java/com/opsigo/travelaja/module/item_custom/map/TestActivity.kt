@@ -5,11 +5,9 @@ import android.content.Intent
 import android.os.Build
 import com.opsigo.travelaja.R
 import android.location.Location
-import com.khoiron.sliderdatepicker.utils.CallbackCalendar
-import com.khoiron.sliderdatepicker.utils.Constant.DOUBLE_SELECTED
-import com.khoiron.sliderdatepicker.utils.Constant.SINGGLE_SELECTED
+import com.opsicorp.sliderdatepicker.utils.CallbackCalendar
+import com.opsicorp.sliderdatepicker.utils.Constant.SINGGLE_SELECTED
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.CODE_MAP_ACTIVITY
 import com.opsigo.travelaja.utility.Constants.READ_REQUEST_LOCATION
 import com.opsigo.travelaja.utility.Globals
@@ -114,8 +112,8 @@ class TestActivity : BaseActivity() ,CallbackCalendar{
             getLatLongWithGprs()
         }
         open_map.setOnClickListener {
-            Constants.Latitude = latitude
-            Constants.Longitude = longitude
+//            Constants.Latitude = latitude
+//            Constants.Longitude = longitude
             gotoActivityResult(MapActivity::class.java,CODE_MAP_ACTIVITY)
         }
     }

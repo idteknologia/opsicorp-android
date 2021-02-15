@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="53dp">
                 <RelativeLayout
+                    android:id="@+id/btn_office"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
@@ -60,7 +61,9 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.007"></LinearLayout>
+
                 <RelativeLayout
+                    android:id="@+id/btn_city"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
@@ -89,6 +92,7 @@
                             android:textColor="#939396"
                             android:text="Country"/>
                         <TextView
+                            android:id="@+id/tv_country"
                             style="@style/RobotoBold"
                             android:layout_marginTop="3dp"
                             android:layout_width="wrap_content"
@@ -141,11 +145,12 @@
                             android:layout_height="60dp">
 
                             <TextView
+                                android:id="@+id/tv_title_destination"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
                                 android:textColor="#2b9a8e"
-                                android:text="Location nearby ( Airport )" />
+                                android:text="@string/title_nearby_city" />
 
                             <TextView
                                 android:textColor="@color/colorTextHint"

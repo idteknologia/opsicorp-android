@@ -33,7 +33,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun getDataUpcomingFlight(token:String, callbackUpcomingFlight: CallbackUpcomingFlight) {
         apiOpsicorp.getDataUpcomingFlight(token).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callbackUpcomingFlight.failedLoad(t.message!!)
+                callbackUpcomingFlight.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -56,7 +56,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun getCheckVersion(token: String,version:String,type:String, callback: CallbackCheckVersion) {
         apiOpsicorp.checkVersion(version,type).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failedLoad(t.message!!)
+                callback.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -126,7 +126,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
 //    override fun getDataAirlinePreference(token: String,jobTitleId:String,companyCode:String ,callbackAirlinePreference: CallbackAirlinePreference) {
 //        apiOpsicorp.getAirlineprefered(token,jobTitleId,companyCode).enqueue(object :Callback<ResponseBody>{
 //            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                callbackAirlinePreference.failedLoad(t.message!!)
+//                callbackAirlinePreference.failedLoad(t.message.toString())
 //            }
 //
 //            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -149,7 +149,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun setProfile(token: String, mobilePhone: String, nationality: String, callbackSetProfile: CallbackSetProfile) {
         apiOpsicorp.setProfile(token, mobilePhone, nationality).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callbackSetProfile.failedLoad(t.message!!)
+                callbackSetProfile.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -177,7 +177,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun setDeviceId(token: String, userName: String, deviceId: String, modelPhone: String, callbackDevice: CallbackSetDeviceId) {
         apiOpsicorp.setDeviceId(token, userName, deviceId, modelPhone).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callbackDevice.failedLoad(t.message!!)
+                callbackDevice.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -205,7 +205,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun removeDeviceId(token: String, userName: String, deviceId: String, modelPhone: String, callbackDevice: CallbackSetDeviceId) {
         apiOpsicorp.removeDeviceId(token, userName, deviceId, modelPhone).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callbackDevice.failedLoad(t.message!!)
+                callbackDevice.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -232,7 +232,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun getListTripplan(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String, callback: CallbackListTripplan) {
         apiOpsicorp.getListTripplan(token,size,index,orderBy,direction,tripDateFrom,tripDateTo).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failedLoad(t.message!!)
+                callback.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -262,7 +262,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun getListCart(token: String, size: String, index: String, orderBy: String, direction: String, callback: CallbackListCart) {
         apiOpsicorp.getListCart(token,size,index,orderBy,direction).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failedLoad(t.message!!)
+                callback.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -288,7 +288,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     override fun getDataSummary(token:String, id: String, callbackSummary: CallbackSummary) {
         apiOpsicorp.getDataSummary(token, id).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callbackSummary.failedLoad(t.message!!)
+                callbackSummary.failedLoad(t.message.toString())
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {

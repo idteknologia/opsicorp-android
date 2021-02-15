@@ -13,17 +13,20 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
+    val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
-    val TYPE_PASSANGGER_ADULT          = "1"
-    val TYPE_PASSANGGER_CHILD          = "2"
-    val TYPE_PASSANGGER_INFANT         = "3"
+    val TYPE_PASSANGGER_ADULT    = "1"
+    val TYPE_PASSANGGER_CHILD    = "2"
+    val TYPE_PASSANGGER_INFANT   = "3"
     val OPEN_LOCATION            = "OPEN_MAP"
     val OPEN_MAP                 = "open_map"
     val GET_LOCATION_GPS_OR_GPRS = "get_gps"
+    val KEY_BUNDLE               = "data"
     var TEST_CITY                = ""
     var dataValidationHotel      = ""
     var dataConfirmationHotel    = ""
@@ -50,8 +53,8 @@ object Constants {
     val ONCLICK_DETAIL_TRAIN     = 9086
     val PROGRESS_TRAIN_SAVED     = 9085
     val ONCLIK_OPTION_REMOVE_TRAIN_CART = 9084
-    val SELECT_COUNTRY_IN_HOTEL  = 9083
-    val SELECT_CITY_IN_HOTEL     = 9082
+    val SELECT_NEARBY_OFFICE     = 9083
+    val SELECT_NEARBY_CITY       = 9082
     val CODE_MAP_ACTIVITY        = 9081
     var READ_REQUEST_LOCATION    = 9080
     val ONCLICK_DETAIL_HOTEL     = 9079
@@ -68,6 +71,10 @@ object Constants {
     val KEY_POSITION_FARE_RULES  = "keyFareRules"
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
+    val SELECT_NEARBY_COUNTRY    = 9071
+    val SELECT_NEARBY_AIRPORT    = 9070
+    val REQUEST_CODE_NEARBY      = 9069
+    val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"

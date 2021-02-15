@@ -28,13 +28,18 @@ import android.app.Activity
 import android.view.View
 import android.os.Build
 import android.widget.Toast
+import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
 import com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SeatActivityFlight
 import com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SelectSeatActivity
 import com.opsigo.travelaja.module.accomodation.ssr.BagageActivity
 import com.opsigo.travelaja.module.accomodation.ssr.FrequentFlyerActivity
 import com.opsigo.travelaja.module.accomodation.ssr.SsrActivity
+import com.opsigo.travelaja.module.accomodation.ssr.FrequecyFlayerActivity
+import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 import opsigo.com.datalayer.model.accomodation.flight.seat.ResultSeat
-import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
+import com.opsigo.travelaja.module.accomodation.ssr.BagageActivity
+import com.opsigo.travelaja.module.accomodation.ssr.SsrActivity
+import kotlinx.android.synthetic.main.booking_contact_view_flight.*
 import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
@@ -49,7 +54,6 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     val adapter by lazy { BookingContactAdapter(this,dataContacts) }
     lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
-    lateinit var dataFlight: ResultListFlightModel
 
     override fun OnMain() {
         initRecyclerView()
@@ -68,17 +72,11 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
         val datereturn = DateConverter().setDateFormat3(dataOrder.dateArrival)
 
-       /*toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}")*/ //- 1 pax
+       // toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}") //- 1 pax
         toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar}") //- 1 pax
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)
-        }
-
-        if (Constants.DATA_SEAT_AIRLINE.isNotEmpty()) {
-            line_select_seat_map.visible()
-        } else {
-            line_select_seat_map.gone()
         }
     }
 
@@ -215,7 +213,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 gotoActivityResult(SsrActivity::class.java,Constants.KEY_ACTIVITY_SSR)
             }
             Constants.KEY_ACTIVITY_FREQUENCE -> {
-                gotoActivityResult(FrequentFlyerActivity::class.java,Constants.KEY_ACTIVITY_FREQUENCE)
+                gotoActivityResult(FrequecyFlayerActivity::class.java,Constants.KEY_ACTIVITY_FREQUENCE)
             }
         }
     }
@@ -242,10 +240,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun seatMapListener(view: View){
-        /*getDataSeatMap()*/
-        /*gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)*/
-        gotoActivityResult(SelectSeatActivity::class.java,Constants.GET_SEAT_MAP)
-
+        getDataSeatMap()
     }
 
     override fun onClicked() {
@@ -280,14 +275,13 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     private fun getDataBooking(): DataBookingFlightRequest {
         val dataBooking   = DataBookingFlightRequest()
         val dataTrip      = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
 
         dataBooking.origin                  = dataTrip.originId
         dataBooking.destination             = dataTrip.destinationId
         dataBooking.segments                = getSegment()
         dataBooking.opsigoPassengers        = getPassanger()
 
-        dataBooking.flightType              = dataFlight.flightType
+        dataBooking.flightType              = "NonGds"
         if (dataListFlight.dataFlight.size==1){
             dataBooking.flightTripType          = 0
         }
@@ -485,5 +479,70 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
     }
 
+    fun getDataSeatMap() {
+        showDialog("")
+        GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
+            override fun success(data: ArrayList<SeatAirlineModel>) {
+                setLog("--------------------------")
+                if (!resultSeat.isError.equals(false)){
+                    Constants.DATA_SEAT_AIRLINE.clear()
+                    Constants.DATA_SEAT_AIRLINE.addAll(data)
+                    Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
+                        setLog(seatAirlineModel.nameFlight)
+                        setLog(seatAirlineModel.nameAirCraft)
+                        setLog(seatAirlineModel.totalRows.toString())
+                        setLog(Serializer.serialize(seatAirlineModel.dataSeat))
+                    }
+                    gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)
+                    hideDialog()
+                } else {
+                    Toast.makeText(applicationContext, "Seat Is Unavailable", Toast.LENGTH_SHORT).show()
+                    hideDialog()
+                }
+            }
 
+            override fun failed(errorMessage: String) {
+                hideDialog()
+            }
+        })
+    }
+
+    fun dataRequestSeatMap(): java.util.HashMap<Any, Any> {
+        val dataString = "{\n" +
+                "    \"MultiClass\":false,\n" +
+                "    \"Adult\":1,\n" +
+                "    \"Child\":0,\n" +
+                "    \"Infant\":0,\n" +
+                "    \"Segments\":[\n" +
+                "        {\n" +
+                "            \"Id\":\"f30b79af-df59-4dfb-88f1-9f4c31f3c53e\",\n" +
+                "            \"ClassId\":\"0~A~ ~AK~A01H00~AAB1~~0~12~~X_EC\",\n" +
+                "            \"Airline\":5,\n" +
+                "            \"FlightNumber\":\"QZ 7680\",\n" +
+                "            \"Origin\":\"CGK\",\n" +
+                "            \"OriginCity\":\"Jakarta\",\n" +
+                "            \"OriginAirport\":\"Soekarno Hatta\",\n" +
+                "            \"DepartDate\":\"2020-09-08\",\n" +
+                "            \"DepartTime\":\"06:50\",\n" +
+                "            \"Destination\":\"SUB\",\n" +
+                "            \"DestinationCity\":\"Surabaya\",\n" +
+                "            \"DestinationAirport\":\"Juanda Airport\",\n" +
+                "            \"DestinationTerminal\":null,\n" +
+                "            \"ArriveDate\":\"2020-09-08\",\n" +
+                "            \"ArriveTime\":\"08:25\",\n" +
+                "            \"ClassCode\":\"A\",\n" +
+                "            \"FlightId\":\"QZ~7680~ ~~CGK~09/08/2020 06:50~SUB~09/08/2020 08:25~~\",\n" +
+                "            \"AirlineImageUrl\":\"http://portalvhds11000v9mfhk0k.blob.core.windows.net/airline/QZ-mail.png\",\n" +
+                "            \"AirlineView\":\"AirAsia\",\n" +
+                "            \"Duration\":\"1h 35m\",\n" +
+                "            \"Amount\":534576,\n" +
+                "            \"OriginName\":\"Jakarta(CGK)\",\n" +
+                "            \"DestinationName\":\"Surabaya(SUB)\"\n" +
+                "        }\n" +
+                "    ],\n" +
+                "    \"TravelAgent\":\"apidev\"\n" +
+                "}"
+        val modelSeatMapRequest = Serializer.deserialize(dataString, SeatMapFlightRequest::class.java)
+        return Globals.classToHashMap(modelSeatMapRequest, SeatMapFlightRequest::class.java)
+    }
 }

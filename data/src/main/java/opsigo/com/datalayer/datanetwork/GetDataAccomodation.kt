@@ -526,7 +526,7 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
-    override fun getSearchCountry(token: String, travelAgent: String, callback: CallbackArrayListCity) {
+    override fun getSearchCountry(token: String, travelAgent: String, callback: CallbackArrayListCountry) {
         apiOpsicorp.getSearchCountry(token,travelAgent).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)
@@ -549,7 +549,7 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
-    override fun getSearchCity(token: String, isoCountry: String, travelAgent: String, callback: CallbackArrayListCity) {
+    override fun getSearchCity(token: String, isoCountry: String, travelAgent: String, callback: CallbackListCityHotel) {
         apiOpsicorp.getSearchCityHotel(token,isoCountry,travelAgent).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)

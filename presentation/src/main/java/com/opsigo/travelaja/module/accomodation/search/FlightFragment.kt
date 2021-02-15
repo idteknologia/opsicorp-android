@@ -3,7 +3,7 @@ package com.opsigo.travelaja.module.accomodation.search
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -16,10 +16,12 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment.*
 import opsigo.com.domainlayer.model.signin.CountryModel
+import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.base.InitApplications
+import android.graphics.drawable.BitmapDrawable
 import com.unicode.kingmarket.Base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
-import android.graphics.drawable.BitmapDrawable
+import com.opsigo.travelaja.utility.*
 import android.view.LayoutInflater
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -32,8 +34,6 @@ import org.json.JSONArray
 import android.view.View
 import android.os.Bundle
 import android.util.Log
-import com.khoiron.sliderdatepicker.utils.Constant
-import com.opsigo.travelaja.utility.*
 
 class FlightFragment : BaseFragment(),
         View.OnClickListener,

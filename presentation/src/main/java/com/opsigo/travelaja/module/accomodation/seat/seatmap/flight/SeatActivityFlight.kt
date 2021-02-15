@@ -1,7 +1,5 @@
 package com.opsigo.travelaja.module.accomodation.seat.seatmap.flight
 
-import com.opsigo.travelaja.module.accomodation.seat.seatmap.WrappableGridLayoutManager
-import com.opsigo.travelaja.module.accomodation.train.dialog.DialogSelectCabin
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import kotlinx.android.synthetic.main.seatmap_view_flight.*
 import com.opsigo.travelaja.module.cart.model.CartModel
@@ -156,7 +154,7 @@ class SeatActivityFlight : BaseActivity(),
     }
 
     fun showDialogAirline(views: View){
-        DialogSelectCabin(this).create(posisitionPageAirline,dataDialogCabin,object :DialogSelectCabin.CallbackDialog{
+        /*DialogSelectCabinFlight(this).create(posisitionPageAirline,dataDialogCabin,object :DialogSelectCabinFlight.CallbackDialog{
             override fun selected(int: Int) {
                 setTitleBtnDialogCabin(dataDialogCabin[int])
                 posisitionPageAirline = int
@@ -165,7 +163,7 @@ class SeatActivityFlight : BaseActivity(),
                 setTitleAirline(dataAirline[posisitionPageAirline].nameFlight,dataAirline[posisitionPageAirline].nameAirCraft)
                 initRecyclerViewCabin()
             }
-        })
+        })*/
     }
 
     private fun setTitleBtnDialogCabin(data: String) {

@@ -10,5 +10,4 @@ interface LoginRepository {
     fun getDataRegister(data :HashMap<Any, Any>,callback: CallbackString)
     fun getDataValidationOtp(data :HashMap<Any, Any>,callback: CallbackString)
     fun getCompletlyRegister(data :HashMap<Any, Any>,callback: CallbackString)
-
 }

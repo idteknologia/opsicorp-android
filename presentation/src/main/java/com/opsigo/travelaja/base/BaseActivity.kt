@@ -137,9 +137,9 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun setLog(tag : String,message: String){
+    fun setLog(tag:String,s: String) {
         if(BuildConfig.DEBUG){
-            Log.e(tag,message)
+            Log.e(tag,s)
         }
     }
 
@@ -416,8 +416,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
                     }
 
                     override fun failed(string: String) {
-                        /*showAllert("Sorry",string)*/
-                        Toast.makeText(this@BaseActivity, string, Toast.LENGTH_SHORT).show()
+                        showAllert("Sorry",string)
                     }
                 })
     }

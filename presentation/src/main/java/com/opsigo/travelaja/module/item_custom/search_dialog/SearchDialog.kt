@@ -1,22 +1,22 @@
 package com.opsigo.travelaja.module.item_custom.search_dialog
 
-import com.opsigo.travelaja.module.login.select_nationality.adapter.SelectNationalityAdapter
+import com.opsigo.travelaja.module.signin.select_nationality.adapter.SelectNationalityAdapter
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v4.app.DialogFragment
 import com.opsigo.travelaja.utility.Globals
-import android.annotation.SuppressLint
 import android.content.DialogInterface
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.text.TextWatcher
 import android.widget.TextView
 import android.widget.EditText
-import android.text.Editable
 import com.opsigo.travelaja.R
+import android.text.Editable
 import android.view.View
 
 @SuppressLint("ValidFragment")

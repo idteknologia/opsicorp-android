@@ -96,8 +96,8 @@ interface UrlEndpoind {
             : Call<ResponseBody>
 
 
-    @GET(MyURL.DESTINATION)
-    fun getDataDestinationAirline(@Header("Authorization")token:String): Call<ResponseBody>
+    @GET(MyURL.AIRPORT)
+    fun getDataAirport(@Header("Authorization")token:String): Call<ResponseBody>
 
     @GET(MyURL.CITY)
     fun getCity(@Header("Authorization")token:String): Call<ResponseBody>

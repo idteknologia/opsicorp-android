@@ -11,7 +11,6 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.seat.model.CabinModel2
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
-import kotlinx.android.synthetic.main.cabin_adapter_view.view.*
 
 class CabinAdapter (context: Context, var items: ArrayList<CabinModel2>): RecyclerView.Adapter<CabinAdapter.ViewHolder>() {
 
@@ -24,7 +23,7 @@ class CabinAdapter (context: Context, var items: ArrayList<CabinModel2>): Recycl
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var itemView = LayoutInflater.from(parent?.context)
-                .inflate(R.layout.cabin_adapter_view, parent, false)
+                .inflate(R.layout.accomodation_activity, parent, false)
 
         return ViewHolder(itemView)
     }
@@ -45,10 +44,10 @@ class CabinAdapter (context: Context, var items: ArrayList<CabinModel2>): Recycl
     private fun setInitRecyclerView(data: CabinModel2, holder: ViewHolder, positionParent: Int) {
         var adapter = SeatAdapter2(context,data.Seat)
         val mLayoutManager = GridLayoutManager(context, 5)
-        holder.itemView.rv_seat.setLayoutManager(mLayoutManager)
-        holder.itemView.rv_seat.setItemAnimator(DefaultItemAnimator())
-        holder.itemView.rv_seat.hasFixedSize()
-        holder.itemView.rv_seat.setAdapter(adapter)
+//        holder.itemView.rv_seat.setLayoutManager(mLayoutManager)
+//        holder.itemView.rv_seat.setItemAnimator(DefaultItemAnimator())
+//        holder.itemView.rv_seat.hasFixedSize()
+//        holder.itemView.rv_seat.setAdapter(adapter)
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {

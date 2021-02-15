@@ -2,14 +2,14 @@ package com.opsigo.travelaja.module.item_custom.calendar
 
 import android.app.Activity
 import android.content.Intent
-import com.khoiron.sliderdatepicker.model.HolidayModel
+import com.opsicorp.sliderdatepicker.model.HolidayModel
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.DateConverter
 import kotlinx.android.synthetic.main.new_calendar_view.*
-import com.khoiron.sliderdatepicker.utils.CallbackCalendar
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.utils.CallbackCalendar
+import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.utility.Constants.LIST_DATA_HOLIDAY
 import java.text.SimpleDateFormat
 

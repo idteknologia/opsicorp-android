@@ -27,17 +27,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map" />
 
         <activity
-            android:name="com.opsigo.travelaja.module.login.splash.activity.SplashActivity"
+            android:name="com.opsigo.travelaja.module.signin.splash.activity.SplashActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.login.signin.activity.AddressActivity"
+            android:name="com.opsigo.travelaja.module.signin.login.activity.AddressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
 
@@ -50,63 +51,42 @@
 
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.train.filter.TrainFilterActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name="com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.hotel.result.ResultSearchHotelActivity"
+
+        <!--<activity
+            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivity"
             android:screenOrientation="portrait">
-        </activity>
+        </activity>-->
         <activity
             android:name="com.opsigo.travelaja.module.item_custom.galery.MyGaleryActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.SimFormContactActivity"
+            android:name="com.opsigo.travelaja.module.profile.SimFormContactActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.KtpCartFormActivity"
+            android:name="com.opsigo.travelaja.module.profile.KtpCartFormActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.PassportFormActivity"
+            android:name="com.opsigo.travelaja.module.profile.PassportFormActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".module.login.signin.activity.LoginPremiumActivity"
+            android:name=".module.signin.login.activity.LoginPremiumActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <activity
             android:name="com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactFlight"
             android:screenOrientation="portrait" />
+
+
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactTrain"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.train.result.DetailResultTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.train.result.ConfirmOrderTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.train.result.ResultSearchTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.OtherFormActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.seat.seatmap.SeatActivityTrain"
+            android:name="com.opsigo.travelaja.module.profile.OtherFormActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -118,7 +98,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.login.signin.activity.LoginActivity"
+            android:name="com.opsigo.travelaja.module.signin.login.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <!-- this main -->
@@ -129,7 +109,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".module.login.signin.activity.OtpRegisterActivity"
+
+
+        <activity android:name=".module.signin.login.activity.OtpRegisterActivity"
             android:screenOrientation="portrait">
 
         </activity>
@@ -144,16 +126,16 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.login.select_nationality.activity.SelectNationalityActivity"
+            android:name="com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.login.select.activity.LookUpActivity"
+            android:name="com.opsigo.travelaja.module.signin.select.activity.LookUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.login.detail_profile.activity.CompletedDataProfileActivity"
+            android:name="com.opsigo.travelaja.module.signin.detail_profile.activity.CompletedDataProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.login.detail_profile.activity.DataProfileActivity"
+            android:name="com.opsigo.travelaja.module.signin.detail_profile.activity.DataProfileActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.opsigo.travelaja.module.item_custom.calendar.CalendarViewActivity"
@@ -161,10 +143,6 @@
         </activity>
         <activity
             android:name="com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactHotel"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.hotel.confirmation.ConfirmationOrderHotel"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -203,7 +181,16 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
+        <!--<activity
+            android:name="com.opsigo.travelaja.module.accomodation.flight.flight_info.activity.FlightInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.opsigo.travelaja.module.accomodation.flight.filter.FilterFlightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.opsigo.travelaja.module.accomodation.flight.detail_passanger.DetailPassangerActivity"
+            android:screenOrientation="portrait">
+        </activity>-->
         <activity
             android:name="com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudget"
             android:screenOrientation="portrait">
@@ -212,14 +199,19 @@
             android:name="com.opsigo.travelaja.module.approval.activity.DetailApprovalActivityOld"
             android:screenOrientation="portrait">
         </activity>
+<!--        <activity-->
+<!--            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ConfirmOrderFlightActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+<!--        <activity-->
+<!--            android:name="com.opsigo.travelaja.module.accomodation.flight.result.DetailResultFlightActivity"-->
+<!--            android:screenOrientation="portrait" />-->
+
         <activity
-            android:name="com.opsigo.travelaja.module.login.register.ComplitelyRegisterActivity"
+            android:name="com.opsigo.travelaja.module.signin.register.ComplitelyRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.login.register.RegisterWithEmailActivity"
+            android:name="com.opsigo.travelaja.module.signin.register.RegisterWithEmailActivity"
             android:screenOrientation="portrait" />
-
-
 
         <activity
             android:name="com.opsigo.travelaja.module.item_custom.success_view.SuccessView"
@@ -228,21 +220,9 @@
             android:name="com.opsigo.travelaja.locale.ApplyLanguageActivity"
             android:screenOrientation="portrait">
         </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.hotel.detail_hotel.DetailHotelActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.hotel.select_room.SelectRoomActivity"
-            android:screenOrientation="portrait">
-        </activity>
 
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.hotel.parent.NearbyActivity"
+            android:name="com.opsigo.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity"
             android:screenOrientation="portrait">
         </activity>
 

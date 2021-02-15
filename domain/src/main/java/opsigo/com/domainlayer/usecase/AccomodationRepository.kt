@@ -12,8 +12,8 @@ interface AccomodationRepository {
     fun setSeatMapTrain(token:String, data:HashMap<Any,Any>, callback: CallbackSetSeatMapTrain)
     fun getProgressTrain(token: String, idTrain:String, callback:CallbackProgressTrain)
 
-    fun getSearchCountry(token: String,travelAgent:String,callback: CallbackArrayListCity)
-    fun getSearchCity(token: String,isoCountry:String,travelAgent:String,callback: CallbackArrayListCity)
+    fun getSearchCountry(token: String,travelAgent:String,callback: CallbackArrayListCountry)
+    fun getSearchCity(token: String,isoCountry:String,travelAgent:String,callback: CallbackListCityHotel)
     fun getSearchHotel(token: String,data:HashMap<Any,Any>,callback: CallbackSearchHotel)
     fun getSearchPageHotel(token: String,data:HashMap<Any,Any>,callback: CallbackUploadFile)
     fun getHotelDetail(token: String,data:HashMap<Any,Any>,callback: CallbackDetailHotel)

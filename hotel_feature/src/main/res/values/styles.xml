@@ -1,0 +1,98 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarTabStyle">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.Blue2" parent="AppTheme">
+        <item name="colorPrimary">#1976D2</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <!-- <item name="colorAccent">#FF4081</item> -->
+        <item name="colorAccent">@color/green_price</item>
+    </style>
+
+    <style name="AppThemes" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorRed</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/colorRed</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="DialogAnimations" />
+    <style name="DialogAnimations.SmileWindow">
+        <item name="android:windowEnterAnimation">@anim/slide_in_botoom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_top</item>
+    </style>
+
+    <style name="DialogAnimations2" />
+    <style name="DialogAnimations.SmileWindow2">
+        <item name="android:windowEnterAnimation">@anim/enter_from_right</item>
+        <item name="android:windowExitAnimation">@anim/exit_to_right</item>
+    </style>
+
+    <style name="DialogCustom">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="ToolBarStyle_light" parent="ThemeOverlay.AppCompat">
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorPrimary</item>
+        <item name="actionMenuTextColor">@color/colorPrimary</item>
+        <item name="android:elevation" tools:ignore="NewApi">4dp</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle_light</item>
+    </style>
+
+    <style name="DrawerArrowStyle_light" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/white</item>
+    </style>
+
+
+    <style name="RobotoThint" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_thin</item>
+    </style>
+
+    <style name="RobotoRegular" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_regular</item>
+    </style>
+
+    <style name="RobotoBlack" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_black</item>
+    </style>
+
+    <style name="RobotoMedium" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="RobotoLight" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_light</item>
+    </style>
+
+    <style name="RobotoItalic" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_italic</item>
+    </style>
+
+    <style name="RobotoBold" parent="@android:style/TextAppearance.Small">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+    </style>
+
+</resources>

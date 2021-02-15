@@ -35,13 +35,13 @@ class MapActivity : BaseActivity(), OnMapReadyCallback {
     }
 
     private fun initDataBundle() {
-        if (Constants.Latitude==null||Constants.Longitude==null){
-            finish()
-        }
-        else {
-            latNow = Constants.Latitude
-            longNow = Constants.Longitude
-        }
+//        if (Constants.Latitude==null||Constants.Longitude==null){
+//            finish()
+//        }
+//        else {
+//            latNow = Constants.Latitude
+//            longNow = Constants.Longitude
+//        }
     }
 
     override fun onMapReady(mMap: GoogleMap) {
