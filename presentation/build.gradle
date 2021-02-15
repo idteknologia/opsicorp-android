@@ -64,7 +64,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-    dynamicFeatures = [':feature_flight']
+    dynamicFeatures = [':feature_flight', ':hotel_feature', ':train_feature']
 
 }
 
@@ -92,6 +92,7 @@ dependencies {
     testImplementation 'org.json:json:20140107'
 
 
+    //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 //    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'

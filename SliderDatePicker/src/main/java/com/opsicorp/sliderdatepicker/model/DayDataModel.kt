@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.model
+package com.opsicorp.sliderdatepicker.model
 
 import java.util.*
 

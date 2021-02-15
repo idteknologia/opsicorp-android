@@ -1,5 +1,6 @@
 package com.unicode.kingmarket.Base
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
@@ -97,14 +98,38 @@ abstract class BaseFragment: Fragment()  {
         }
     }
 
+    open fun gotoActivityModule(context: Context, intent: Intent) {
+        try {
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada")
+        }
+    }
+
+    open fun gotoActivityForResultModule(context: Context, intent: Intent,code:Int) {
+        try {
+            (context as Activity).startActivityForResult(intent,code)
+        } catch (e: Exception) {
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada")
+        }
+    }
+
     open fun gotoActivityWithBundle(c: Class<*>,bundle: Bundle) {
         val intent = Intent(context,c)
-        intent.putExtra("data",bundle)
+        intent.putExtra(Constants.KEY_BUNDLE,bundle)
         startActivity(intent)
     }
 
     open fun gotoActivityForResult(c: Class<*>, code :Int) {
         val intent = Intent(context,c)
+        startActivityForResult(intent,code)
+    }
+
+    open fun gotoActivityForResult(intent:Intent, code :Int) {
         startActivityForResult(intent,code)
     }
 

@@ -1,4 +1,4 @@
-package com.khoiron.hotel_feature.select_room
+package com.opsicorp.hotel_feature.select_room
 
 import android.app.AlertDialog
 import android.content.Context
@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import com.opsigo.travelaja.R
+import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
 import com.opsigo.travelaja.utility.DialogSelectGuestRoomCallback
 
@@ -28,7 +28,7 @@ class DialogSelectGuestRoom {
 
     fun create( actionSheetCallBack: DialogSelectGuestRoomCallback){
         val adb = AlertDialog.Builder(context)
-        val v = LayoutInflater.from(context).inflate(R.layout.dialog_select_guset_room,null)
+        val v = LayoutInflater.from(context).inflate(R.layout.dialog_select_guest_room,null)
 
         val scroll_guest : ScrollChoice = v.findViewById(R.id.guest_select)
         val scroll_room  : ScrollChoice = v.findViewById(R.id.room_select)
@@ -42,12 +42,12 @@ class DialogSelectGuestRoom {
 
         adb.setView(v)
         alertDialog = adb.create()
-        alertDialog.window.getAttributes().windowAnimations = R.style.DialogAnimations_SmileWindow //R.style.DialogAnimations_SmileWindow;
+        alertDialog.window?.getAttributes()?.windowAnimations = R.style.DialogAnimations_SmileWindow //R.style.DialogAnimations_SmileWindow;
         alertDialog.setCancelable(false)
-        alertDialog.window.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM)
-        alertDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.window?.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
-        alertDialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        alertDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         scroll_guest.setOnItemSelectedListener { scrollChoice, position, name ->
             totalGuest = name

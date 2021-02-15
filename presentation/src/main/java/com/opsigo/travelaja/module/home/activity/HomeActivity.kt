@@ -61,7 +61,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
 
     private fun getDataCountryHotel() {
         if (Globals.getDataPreferenceString(this,Constants.COUNTRY_HOTEL).isEmpty()){
-            GetDataAccomodation(getBaseUrl()).getSearchCountry(getToken(),Globals.getConfigCompany(this).defaultTravelAgent,object :CallbackArrayListCity{
+            GetDataAccomodation(getBaseUrl()).getSearchCountry(getToken(),Globals.getConfigCompany(this).defaultTravelAgent,object :CallbackArrayListCountry{
                 override fun successLoad(data: ArrayList<SelectNationalModel>) {
                     Globals.setDataPreferenceString(this@HomeActivity,Constants.COUNTRY_HOTEL,Serializer.serialize(data))
                 }

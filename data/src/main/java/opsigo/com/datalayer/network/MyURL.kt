@@ -18,7 +18,7 @@ object MyURL {
 
     //create tripplan
     const val PURPOSE          = "api/Lookup/TravelingPurpose"
-    const val DESTINATION      = "api/Lookup/Airports"
+    const val AIRPORT          = "api/Lookup/Airports"
     const val ATTACHMENT       = "api/UploadAttachment"
     const val SELECT_BUDGET    = "api/Lookup/Budgets"
     const val COST             = "api/Lookup/CostCenters"

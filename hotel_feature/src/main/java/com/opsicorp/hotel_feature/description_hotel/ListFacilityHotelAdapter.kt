@@ -1,14 +1,14 @@
-package com.opsigo.travelaja.module.item_custom.description_hotel
+package com.opsicorp.hotel_feature.description_hotel
 
-import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import android.content.Context
+import android.view.LayoutInflater
+import com.opsicorp.hotel_feature.R
+import android.support.v7.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import kotlinx.android.synthetic.main.item_facility_list_hotel.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
-import kotlinx.android.synthetic.main.item_facility_hotel.view.*
 
 class ListFacilityHotelAdapter (var context: Context, var items: ArrayList<FacilityHotelModel>): RecyclerView.Adapter<ListFacilityHotelAdapter.ViewHolder>() {
 
@@ -19,7 +19,7 @@ class ListFacilityHotelAdapter (var context: Context, var items: ArrayList<Facil
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent?.context)
+        val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_facility_list_hotel, parent, false)
 
         return ViewHolder(itemView)

@@ -1,10 +1,10 @@
-package com.khoiron.sliderdatepicker.utils
+package com.opsicorp.sliderdatepicker.utils
 
 import java.util.*
 import kotlin.collections.ArrayList
-import com.khoiron.sliderdatepicker.model.HolidayModel
-import com.khoiron.sliderdatepicker.model.DayDataModel
-import com.khoiron.sliderdatepicker.model.CalendarModel
+import com.opsicorp.sliderdatepicker.model.HolidayModel
+import com.opsicorp.sliderdatepicker.model.DayDataModel
+import com.opsicorp.sliderdatepicker.model.CalendarModel
 import java.text.SimpleDateFormat
 
 class DataCalendar {

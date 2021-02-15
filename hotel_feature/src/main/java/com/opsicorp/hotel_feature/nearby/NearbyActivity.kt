@@ -1,4 +1,4 @@
-package com.opsicorp.hotel_feature.parent
+package com.opsicorp.hotel_feature.nearby
 
 import android.content.Intent
 import android.view.View

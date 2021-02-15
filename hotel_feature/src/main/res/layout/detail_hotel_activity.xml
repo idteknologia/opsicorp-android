@@ -73,13 +73,13 @@
             layout="@layout/detail_hotel_layout_loading">
         </include>
 
-        <com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel
+        <com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
             android:layout_below="@+id/line_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
             android:id="@+id/line_desc">
-        </com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel>
+        </com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel>
 
     </RelativeLayout>
 

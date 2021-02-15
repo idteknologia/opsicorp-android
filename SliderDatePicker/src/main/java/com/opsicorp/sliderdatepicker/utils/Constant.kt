@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.utils
+package com.opsicorp.sliderdatepicker.utils
 
 import java.text.SimpleDateFormat
 import java.util.*

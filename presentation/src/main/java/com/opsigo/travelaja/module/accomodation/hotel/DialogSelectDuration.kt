@@ -1,17 +1,16 @@
-package com.khoiron.hotel_feature.select_room
+package com.opsigo.travelaja.module.accomodation.hotel
 
-import android.content.Context
-
-import android.app.AlertDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.view.Gravity
-import android.view.LayoutInflater
-import android.widget.TextView
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
-import com.opsigo.travelaja.utility.DialogSelectDurationHotel
 import android.view.ViewGroup
+import android.graphics.Color
+import android.content.Context
+import android.app.AlertDialog
+import android.widget.TextView
+import android.view.LayoutInflater
+import android.graphics.drawable.ColorDrawable
+import com.opsigo.travelaja.utility.DialogSelectDurationHotel
+import com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
 
 
 class DialogSelectDuration {

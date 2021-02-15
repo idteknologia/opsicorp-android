@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.utils
+package com.opsicorp.sliderdatepicker.utils
 
 interface CallbackCalendar {
     fun startDate(string: String)

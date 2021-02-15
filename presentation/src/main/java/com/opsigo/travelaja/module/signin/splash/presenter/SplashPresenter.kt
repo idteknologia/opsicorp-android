@@ -158,7 +158,7 @@ class SplashPresenter {
     }
 
     fun getDataCity(token: String) {
-        GetDataTripPlane(baseUrl).getDataCity(token,object : CallbackArrayListCity {
+        GetDataTripPlane(baseUrl).getDataCity(token,object : CallbackListCityTrip {
             override fun failedLoad(message: String) {
                 view.failedGetData("city")
             }

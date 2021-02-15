@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.adapter
+package com.opsicorp.sliderdatepicker.adapter
 
 import android.view.View
 import java.util.ArrayList
@@ -6,17 +6,17 @@ import android.view.ViewGroup
 import android.content.Context
 import android.widget.TextView
 import android.view.LayoutInflater
-import com.khoiron.sliderdatepicker.R
+import com.opsicorp.sliderdatepicker.R
 import android.support.v7.widget.RecyclerView
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.utils.Constant
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v4.content.res.ResourcesCompat
-import com.khoiron.sliderdatepicker.model.CalendarModel
-import com.khoiron.contact.module.StickyHeaderInterface
-import com.khoiron.sliderdatepicker.utils.Constant.VIEW_TYPE_BODY
-import com.khoiron.sliderdatepicker.utils.Constant.VIEW_TYPE_HEADER
+import com.opsicorp.sliderdatepicker.model.CalendarModel
+import com.opsicorp.contact.module.StickyHeaderInterface
+import com.opsicorp.sliderdatepicker.utils.Constant.VIEW_TYPE_BODY
+import com.opsicorp.sliderdatepicker.utils.Constant.VIEW_TYPE_HEADER
 import kotlinx.android.synthetic.main.body_calendar_vertical_view.view.*
 import kotlinx.android.synthetic.main.header_calendar_vertical_view.view.*
 

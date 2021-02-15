@@ -1,5 +1,7 @@
 package com.opsigo.travelaja.utility
 
+//import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Target
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -33,15 +35,13 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.opsigo.travelaja.BuildConfig
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.base.InitApplications
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.domainlayer.model.ConfigModel
-import opsigo.com.domainlayer.model.signin.ProfileModel
-//import com.squareup.picasso.Picasso
-//import com.squareup.picasso.Target
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.ConfigModel
+import opsigo.com.domainlayer.model.signin.ProfileModel
 import java.io.*
 import java.text.*
 import java.text.DateFormat
@@ -67,11 +67,15 @@ object Globals {
     var DATA_LIST_TRAIN   = ""
 
     fun showAlert(title: String, message: String, activity: Activity) {
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setPositiveButton("Ok") { dialog, which -> dialog.dismiss() }
-        builder.create().show()
+        try {
+            val builder = AlertDialog.Builder(activity)
+            builder.setTitle(title)
+            builder.setMessage(message)
+            builder.setPositiveButton("Ok") { dialog, which -> dialog.dismiss() }
+            builder.create().show()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
     fun stringToBarcodeImage(code: String): Bitmap? {
@@ -93,17 +97,17 @@ object Globals {
     }
 
     fun getToken(): String {
-        val token = getDataPreferenceString(InitApplications.appContext,"token")
+        val token = getDataPreferenceString(InitApplications.appContext, "token")
         return token
     }
 
-    fun delay(callback:DelayCallback){
+    fun delay(callback: DelayCallback){
         Handler().postDelayed({
             callback.done()
         }, 1500)
     }
 
-    fun delay(timer:Long,callback:DelayCallback){
+    fun delay(timer: Long, callback: DelayCallback){
         Handler().postDelayed({
             callback.done()
         }, timer)
@@ -128,7 +132,7 @@ object Globals {
         return tmpDir
     }
 
-    fun showAlert(title: String, message: String, context: Context, onclikAllert: onclikAllert) {
+    fun showAlert(title: String, message: String, context: Context, onclikAllert: OnclikAllertSingelSelected) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(title)
         builder.setMessage(message)
@@ -136,7 +140,7 @@ object Globals {
         builder.create().show()
     }
 
-    fun showAlert(title: String, message: String, activity: Activity, onclikAllert: OnclikAllert) {
+    fun showAlert(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)
         builder.setMessage(message)
@@ -188,7 +192,7 @@ object Globals {
         return sharedPref.getBoolean(key, false)
     }
 
-    fun toDp(context: Context,sizeInDP:Int): Int {
+    fun toDp(context: Context, sizeInDP: Int): Int {
         return TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, sizeInDP.toFloat(), context.resources
                 .displayMetrics).toInt()
@@ -244,7 +248,7 @@ object Globals {
             val myFormatter = DecimalFormat("#,###.###")
             string = myFormatter.format(parsed).replace(",".toRegex(), ".")
 
-        }catch (e:Exception){
+        }catch (e: Exception){
             e.printStackTrace()
         }
         return string
@@ -345,7 +349,7 @@ object Globals {
                     val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
                     val tsLong = System.currentTimeMillis() / 1000
                     val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
-                    fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString()+".jpeg", image)
+                    fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString() + ".jpeg", image)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -353,7 +357,7 @@ object Globals {
             } else {
                 val tsLong = System.currentTimeMillis() / 1000
                 val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
-                fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString()+".jpeg", image)
+                fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString() + ".jpeg", image)
             }
         }
         return fileToUpload
@@ -380,7 +384,7 @@ object Globals {
                     val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
                     val tsLong = System.currentTimeMillis() / 1000
                     val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
-                    fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString()+".jpeg", image)
+                    fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -388,7 +392,7 @@ object Globals {
             } else {
                 val tsLong = System.currentTimeMillis() / 1000
                 val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
-                fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString()+".jpeg", image)
+                fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
             }
         }
         return fileToUpload
@@ -513,19 +517,10 @@ object Globals {
         return bmpUri
     }
 
-    fun openGoogleMap(context: Context,latitude:Double,longitude:Double){
+    fun openGoogleMap(context: Context, latitude: Double, longitude: Double){
         val uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude)
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
         context.startActivity(intent)
-    }
-
-    interface onclikAllert {
-        fun onclik()
-    }
-
-    interface OnclikAllert {
-        fun yes()
-        fun no()
     }
 
     fun detectKeyboard(activity: Activity) {
@@ -555,7 +550,7 @@ object Globals {
         return obDateFormat.format(obDate.getTime())
     }
 
-    fun getDateAfterNow(numberAfter:Int,formatOutPut:String):String{
+    fun getDateAfterNow(numberAfter: Int, formatOutPut: String):String{
         var obDate = Date()
         val c = Calendar.getInstance()
         c.setTime(obDate)
@@ -565,12 +560,12 @@ object Globals {
         return obDateFormat.format(obDate.getTime())
     }
 
-    fun dpToPx(activity:Activity,dp: Int): Int {
+    fun dpToPx(activity: Activity, dp: Int): Int {
         val r = activity.getResources()
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp.toFloat(), r.getDisplayMetrics()))
     }
 
-    fun changeViewButton(textviews:ArrayList<TextView>, lines:ArrayList<RelativeLayout>, position:Int, context: Context) {
+    fun changeViewButton(textviews: ArrayList<TextView>, lines: ArrayList<RelativeLayout>, position: Int, context: Context) {
         lines.forEachIndexed { index, linearLayout ->
             if(index==position){
                 linearLayout.background = context.resources.getDrawable(R.drawable.rounded_button_green_passanger_button)
@@ -583,7 +578,7 @@ object Globals {
         }
     }
 
-    fun changeViewButtonLinearlayout(textviews:ArrayList<TextView>, lines:ArrayList<LinearLayout>, position:Int, context: Context) {
+    fun changeViewButtonLinearlayout(textviews: ArrayList<TextView>, lines: ArrayList<LinearLayout>, position: Int, context: Context) {
         lines.forEachIndexed { index, linearLayout ->
             if(index==position){
                 linearLayout.background = context.resources.getDrawable(R.drawable.rounded_button_green_passanger_button)
@@ -596,7 +591,7 @@ object Globals {
         }
     }
 
-    fun changeViewButton(textviews:ArrayList<TextView>, lines:ArrayList<RelativeLayout>, position:Int,drawable:Int,color:Int,drawableDefault:Int,colorDefault:Int, context: Context) {
+    fun changeViewButton(textviews: ArrayList<TextView>, lines: ArrayList<RelativeLayout>, position: Int, drawable: Int, color: Int, drawableDefault: Int, colorDefault: Int, context: Context) {
         lines.forEachIndexed { index, linearLayout ->
             if(index==position){
                 linearLayout.background = context.resources.getDrawable(drawable)
@@ -609,7 +604,7 @@ object Globals {
         }
     }
 
-    fun changeViewButton(textviews: ArrayList<TextView>, position:Int, context: Context) {
+    fun changeViewButton(textviews: ArrayList<TextView>, position: Int, context: Context) {
         textviews.forEachIndexed { index, textviews ->
             if(index==position){
                 textviews.background = context.resources.getDrawable(R.drawable.rounded_button_green_passanger_button)
@@ -622,7 +617,7 @@ object Globals {
         }
     }
 
-    fun copyText(text: String,context: Context) {
+    fun copyText(text: String, context: Context) {
         val sdk = android.os.Build.VERSION.SDK_INT
         if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -634,7 +629,7 @@ object Globals {
         }
     }
 
-     fun showPopup(v: View,layout:View):PopupWindow{
+     fun showPopup(v: View, layout: View):PopupWindow{
 //         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 //         val layout = layoutInflater.inflate(layout, null)
 
@@ -646,7 +641,7 @@ object Globals {
 
             popupWindow.setBackgroundDrawable(BitmapDrawable())
             popupWindow.setOutsideTouchable(true)
-            popupWindow.setOnDismissListener(object : PopupWindow.OnDismissListener{
+            popupWindow.setOnDismissListener(object : PopupWindow.OnDismissListener {
                 override fun onDismiss() {
 
                 }
@@ -660,7 +655,7 @@ object Globals {
     fun scrollToUp(nestedView: NestedScrollView) {
         nestedView.postDelayed({
             nestedView.fullScroll(View.FOCUS_UP)
-            nestedView.smoothScrollTo(0,0)
+            nestedView.smoothScrollTo(0, 0)
         }, 200)
     }
 
@@ -682,18 +677,24 @@ object Globals {
 
     fun setLog(s: String) {
         if(BuildConfig.DEBUG){
-            Log.e("Tag",s)
+            Log.e("Tag", s)
+        }
+    }
+
+    fun setLog(tag: String, s: String) {
+        if(BuildConfig.DEBUG){
+            Log.e(tag, s)
         }
     }
 
     fun getConfigCompany(context: Context): ConfigModel {
-        return Serializer.deserialize(getDataPreferenceString(context,"config"), ConfigModel::class.java)
+        return Serializer.deserialize(getDataPreferenceString(context, "config"), ConfigModel::class.java)
     }
     fun getProfile(context: Context): ProfileModel {
-        return Serializer.deserialize(getDataPreferenceString(context,"profile"), ProfileModel::class.java)
+        return Serializer.deserialize(getDataPreferenceString(context, "profile"), ProfileModel::class.java)
     }
 
-    fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<String, Any>{
+    fun classToHasMap(objects: Any, nameClass: Class<*>):HashMap<String, Any>{
         val maps = HashMap<String, Any>()
         for (field in nameClass.getDeclaredFields()) {
             if (!field.isAccessible()) {
@@ -705,7 +706,7 @@ object Globals {
         return maps
     }
 
-    fun classToHashMap(objects: Any, nameClass:Class<*>):HashMap<Any, Any>{
+    fun classToHashMap(objects: Any, nameClass: Class<*>):HashMap<Any, Any>{
         val maps = HashMap<Any, Any>()
         for (field in nameClass.getDeclaredFields()) {
             if (!field.isAccessible()) {
@@ -718,11 +719,11 @@ object Globals {
     }
 
     fun getBaseUrl(context: Context): String {
-        return getDataPreferenceString(context,Constants.BASE_URL)
+        return getDataPreferenceString(context, Constants.BASE_URL)
     }
 
-    fun setBaseUrl(context: Context,url:String){
-        setDataPreferenceString(context,Constants.BASE_URL,url)
+    fun setBaseUrl(context: Context, url: String){
+        setDataPreferenceString(context, Constants.BASE_URL, url)
     }
 
     fun getVersionCode(): String {
@@ -737,43 +738,43 @@ object Globals {
         return BuildConfig.VERSION_NAME
     }
 
-    fun setStartImage(image:ArrayList<ImageView>,position:ArrayList<Int>){
+    fun setStartImage(image: ArrayList<ImageView>, position: ArrayList<Int>){
         position.forEachIndexed { index, i ->
             image[index].visibility = View.VISIBLE
         }
     }
     fun clearCache(context: Context){
-        setDataPreferenceBolean(context,"login",false)
-        setDataPreferenceBolean(context,"first",false)
+        setDataPreferenceBolean(context, "login", false)
+        setDataPreferenceBolean(context, "first", false)
 
-        setDataPreferenceString(context,"login_user","")
-        setDataPreferenceString(context,"token","")
-        setDataPreferenceString(context,"username", "")
+        setDataPreferenceString(context, "login_user", "")
+        setDataPreferenceString(context, "token", "")
+        setDataPreferenceString(context, "username", "")
     }
 
-    fun blinkImageAnimation(image:ImageView){
+    fun blinkImageAnimation(image: ImageView){
         val animation = AlphaAnimation(1f, 0f); //to change visibility from visible to invisible
         animation.setDuration(800); //1 second duration for each animation cycle
-        animation.setInterpolator( LinearInterpolator());
+        animation.setInterpolator(LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE); //repeating indefinitely
         animation.setRepeatMode(Animation.REVERSE); //animation will start from end point once ended.
         image.startAnimation(animation); //to start animation
     }
 
-    fun getWitdhAndHeightLayout(context: Context):Pair<Int,Int>{
+    fun getWitdhAndHeightLayout(context: Context):Pair<Int, Int>{
 
         val displayMetrics = context.resources.displayMetrics
         val dpHeight = displayMetrics.heightPixels / displayMetrics.density
         val dpWidth = displayMetrics.widthPixels / displayMetrics.density
 
-        return Pair(dpWidth.toInt(),dpHeight.toInt())
+        return Pair(dpWidth.toInt(), dpHeight.toInt())
     }
 
     fun calculatePercentage(obtained: Double, total: Double): Double {
         return obtained * total /100
     }
 
-    fun shortListDate(dataTime:ArrayList<String>,formatTime:String):ArrayList<String>{
+    fun shortListDate(dataTime: ArrayList<String>, formatTime: String):ArrayList<String>{
         val listDates = ArrayList<Date>()
         val dateFormatter: DateFormat = SimpleDateFormat(formatTime)
 
@@ -808,7 +809,7 @@ object Globals {
         return null
     }
 
-    fun getCalendarSpinner(context: Context,year:Int,month:Int,day:Int,mDateSetListener:DatePickerDialog.OnDateSetListener){
+    fun getCalendarSpinner(context: Context, year: Int, month: Int, day: Int, mDateSetListener: DatePickerDialog.OnDateSetListener){
 //        val cal   = Calendar.getInstance()
 //        val year  = cal.get(Calendar.YEAR)
 //        val month = cal.get(Calendar.MONTH)
@@ -818,7 +819,7 @@ object Globals {
                 context,
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 mDateSetListener,
-                year,month,day)
+                year, month, day)
         dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
@@ -830,7 +831,7 @@ object Globals {
         activity.finish()
     }
 
-    fun finishResultOk(context: Context,data:Intent){
+    fun finishResultOk(context: Context, data: Intent){
         val activity = (context as Activity)
         activity.setResult(Activity.RESULT_OK, data)
         activity.finish()
@@ -842,19 +843,19 @@ object Globals {
         activity.finish()
     }
 
-    fun writeJsonToFile(data:String,context: Context,namefile:String) {
+    fun writeJsonToFile(data: String, context: Context, namefile: String) {
         try {
             val outputStreamWriter = OutputStreamWriter(context.openFileOutput(namefile, Context.MODE_PRIVATE))//"config.txt"
             outputStreamWriter.write(data)
             outputStreamWriter.close()
         }
-        catch (e:IOException) {
+        catch (e: IOException) {
             Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 
 
-    fun readJsonFromFile(context:Context,nameFile:String) :String{
+    fun readJsonFromFile(context: Context, nameFile: String) :String{
 
         var ret = ""
         try {
@@ -873,26 +874,60 @@ object Globals {
                 ret = stringBuilder.toString()
             }
         }
-        catch ( e:FileNotFoundException) {
+        catch (e: FileNotFoundException) {
             Log.e("login activity", "File not found: " + e.toString());
-        } catch ( e:IOException) {
+        } catch (e: IOException) {
             Log.e("login activity", "Can not read file: " + e.toString());
         }
 
         return ret;
     }
 
-    fun countDaysBettwenTwoDate(inputString1:String,inputString2:String,format:String):String{
+    fun countDaysBettwenTwoDate(inputString1: String, inputString2: String, format: String):Int{
         val myFormat = SimpleDateFormat(format)
-        var totalDays = ""
+        var totalDays = 0
         try {
             val date1: Date = myFormat.parse(inputString1)
             val date2: Date = myFormat.parse(inputString2)
             val diff: Long = date2.getTime() - date1.getTime()
-            totalDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toString()
+            totalDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
         } catch (e: ParseException) {
             e.printStackTrace()
         }
         return totalDays
+    }
+
+    fun gotoActivityModule(context: Context, namaActivity: String) {
+        try {
+            val intent = Intent(
+                    context,
+                    Class.forName(namaActivity)
+            )
+            context.startActivity(intent)
+        } catch (e: java.lang.Exception) {
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada",context)
+        }
+    }
+
+    fun gotoActivityModule(context: Context, intent: Intent) {
+        try {
+            context.startActivity(intent)
+        } catch (e: java.lang.Exception) {
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada",context)
+        }
+    }
+
+    fun gotoActivityForResultModule(context: Context, intent: Intent,code:Int) {
+        try {
+            (context as Activity).startActivityForResult(intent,code)
+        } catch (e: java.lang.Exception) {
+            setLog(e.message.toString())
+            e.printStackTrace()
+            setToast("Error Halaman Tidak ada",context)
+        }
     }
 }

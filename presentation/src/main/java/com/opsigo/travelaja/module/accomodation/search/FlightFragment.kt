@@ -1,10 +1,9 @@
-package com.opsigo.travelaja.module.accomodation.flight.search
+package com.opsigo.travelaja.module.accomodation.search
 
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -17,13 +16,12 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment.*
 import opsigo.com.domainlayer.model.signin.CountryModel
+import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.base.InitApplications
-import com.opsigo.travelaja.utility.DateConverter
+import android.graphics.drawable.BitmapDrawable
 import com.unicode.kingmarket.Base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
-import android.graphics.drawable.BitmapDrawable
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.utility.*
 import android.view.LayoutInflater
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -36,7 +34,6 @@ import org.json.JSONArray
 import android.view.View
 import android.os.Bundle
 import android.util.Log
-import com.khoiron.sliderdatepicker.utils.Constant
 
 class FlightFragment : BaseFragment(),
         View.OnClickListener,
@@ -71,6 +68,8 @@ class FlightFragment : BaseFragment(),
     var destinationName = ""
     var dataTripPlan = SuccessCreateTripPlaneModel()
 
+    val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.result."
+
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
 
@@ -101,9 +100,13 @@ class FlightFragment : BaseFragment(),
 
         if (Globals.BisnisTrip){
             lay_parent_passager.visibility = View.GONE
+            lay_air_class.gone()
+            lay_air_pref.gone()
         }
         else{
             lay_parent_passager.visibility = View.VISIBLE
+            lay_air_class.visible()
+            lay_air_pref.visible()
         }
 
     }
@@ -182,7 +185,7 @@ class FlightFragment : BaseFragment(),
         Globals.DATA_LIST_FLIGHT      = ""
 
 //        setLog(Serializer.serialize(dataOrder))
-        gotoActivity(ResultSearchFlightActivity::class.java)
+        gotoActivityModule(context!!,BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
     }
 
     override fun onClick(v: View?) {
@@ -281,7 +284,8 @@ class FlightFragment : BaseFragment(),
         val bundle = Bundle()
         bundle.putString("emplaoyId","city")
         bundle.putString("invisibleSearch","yes")
-        bundle.putString("titleHeader","destination")
+        bundle.putString("searchHint","Enter city or airport name")
+        bundle.putString("titleHeader","Popular Cities and Airports")
         gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_CODE_COUNTRY_TO)
     }
 
@@ -289,7 +293,8 @@ class FlightFragment : BaseFragment(),
         val bundle = Bundle()
         bundle.putString("emplaoyId","city")
         bundle.putString("invisibleSearch","yes")
-        bundle.putString("titleHeader","destination")
+        bundle.putString("searchHint","Enter city or airport name")
+        bundle.putString("titleHeader","Popular Cities and Airports")
         gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_CODE_COUNTRY_FROM)
 
     }

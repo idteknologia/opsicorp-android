@@ -1,8 +1,8 @@
-package com.khoiron.hotel_feature.detail_hotel
+package com.opsicorp.hotel_feature.detail_hotel
 
 import android.os.Bundle
 import android.view.View
-import com.opsigo.travelaja.R
+import com.opsicorp.hotel_feature.R
 import com.unicode.kingmarket.Base.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_review_hotel.*
 

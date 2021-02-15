@@ -1,7 +1,7 @@
 package opsigo.com.domainlayer.callback
 
-import opsigo.com.domainlayer.model.accomodation.hotel.CityHotel
-interface CallbackArrayListCity {
-    fun successLoad(data: ArrayList<CityHotel>)
+import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
+interface CallbackListCityHotel {
+    fun successLoad(data: ArrayList<CityHotelModel>)
     fun failedLoad(message:String)
 }

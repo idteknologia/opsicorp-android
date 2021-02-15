@@ -1,14 +1,14 @@
-package com.opsigo.travelaja.module.item_custom.description_hotel
+package com.opsicorp.hotel_feature.description_hotel
 
+import android.view.View
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
-import com.opsigo.travelaja.R
-import android.support.design.widget.TabLayout
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
+import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.Globals
+import android.support.design.widget.TabLayout
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import kotlinx.android.synthetic.main.description_and_facility_hotel.view.*
 import kotlinx.android.synthetic.main.prize_layout_hotel.view.*

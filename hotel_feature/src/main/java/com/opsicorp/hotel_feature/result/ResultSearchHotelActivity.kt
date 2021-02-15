@@ -1,17 +1,16 @@
-package com.khoiron.hotel_feature.result
+package com.opsicorp.hotel_feature.result
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
-import com.khoiron.hotel_feature.detail_hotel.DetailHotelActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
-import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
+import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
+import com.opsicorp.hotel_feature.detail_hotel.DetailHotelActivity
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackSearchHotel
 import android.support.v7.widget.DefaultItemAnimator
@@ -22,16 +21,20 @@ import android.support.transition.Transition
 import org.koin.core.parameter.parametersOf
 import com.opsigo.travelaja.BaseActivity
 import android.support.transition.Fade
-import com.opsigo.travelaja.utility.*
 import kotlin.collections.ArrayList
 import org.koin.core.KoinComponent
 import java.text.SimpleDateFormat
 import android.content.Intent
-import com.opsigo.travelaja.R
 import android.app.Activity
 import org.koin.core.inject
 import android.view.View
 import android.os.Build
+import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewAnimation
+import com.opsicorp.hotel_feature.R
+import com.opsigo.travelaja.utility.Constants
+import com.opsigo.travelaja.utility.DateConverter
+import com.opsigo.travelaja.utility.Globals
+import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
 import java.lang.Exception
 import java.util.*
 
@@ -40,7 +43,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         FilterOpsicorp.OnclickFilterListener,
         ToolbarOpsicorp.OnclickButtonListener,
         BottomSheetSort.BottomSheetListener ,
-        OnclickListenerRecyclerViewAnimation{
+        OnclickListenerRecyclerViewAnimation {
 
     override fun getLayout(): Int { return R.layout.detail_search_hotel_activity }
 
@@ -66,21 +69,6 @@ class ResultSearchHotelActivity : BaseActivity(),
     var nameOffice       = ""
     var nameAirport      = ""
 
-    object KeyBundle {
-        var KEY_ID_COUNTRY       = "1"
-        var KEY_DURATION         = "2"
-        var KEY_ID_CITY          = "3"
-        var KEY_DESTINATION      = "4"
-        var KEY_LATITUDE         = "5"
-        var KEY_LONGITUDE        = "6"
-        var KEY_CHECKIN          = "7"
-        var KEY_CHECKOUT         = "8"
-        var KEY_NAME_CITY        = "9"
-        var KEY_NAME_AIRPORT     = "10"
-        var KEY_NAME_OFFICE      = "11"
-        var KEY_NAME_COUNTRY     = "12"
-    }
-
     override fun OnMain() {
         initItemViews()
     }
@@ -94,17 +82,17 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     private fun getDataIntent() {
         try {
-            typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(KeyBundle.KEY_DESTINATION)
-            latitude         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_LATITUDE,"")
-            longitude        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_LONGITUDE,"")
-            idCountry        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_ID_COUNTRY,"")
-            duration         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_DURATION,"")
-            idCity           = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_ID_CITY,"")
-            checkIn          = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_CHECKIN,"")
-            checkOut         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_CHECKOUT,"")
-            nameCity         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_NAME_CITY,"")
-            nameOffice       = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_NAME_OFFICE,"")
-            nameAirport      = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(KeyBundle.KEY_NAME_AIRPORT,"")
+            typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_DESTINATION)
+            latitude         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LATITUDE,"")
+            longitude        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LONGITUDE,"")
+            idCountry        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_ID_COUNTRY,"")
+            duration         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_DURATION,"")
+            idCity           = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_ID_CITY,"")
+            checkIn          = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_CHECKIN,"")
+            checkOut         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_CHECKOUT,"")
+            nameCity         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_CITY,"")
+            nameOffice       = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_OFFICE,"")
+            nameAirport      = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_AIRPORT,"")
         }catch (e:Exception){
             e.printStackTrace()
         }

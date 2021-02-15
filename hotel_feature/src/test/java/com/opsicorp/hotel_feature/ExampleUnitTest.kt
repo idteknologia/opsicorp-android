@@ -1,4 +1,4 @@
-package com.khoiron.hotel_feature
+package com.opsicorp.hotel_feature
 
 import org.junit.Test
 

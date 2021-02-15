@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.seat.model.SeatModel2
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.seat_adater_view.view.*
 
 
 class SeatAdapter2 (var context: Context, var items: ArrayList<SeatModel2>): RecyclerView.Adapter<SeatAdapter2.ViewHolder>() {
@@ -21,7 +20,7 @@ class SeatAdapter2 (var context: Context, var items: ArrayList<SeatModel2>): Rec
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.seat_adater_view, parent, false)
+                .inflate(R.layout.filter_cabin_adapter_flight, parent, false)
 
         return ViewHolder(itemView)
     }
@@ -34,7 +33,7 @@ class SeatAdapter2 (var context: Context, var items: ArrayList<SeatModel2>): Rec
 
         var data = items.get(position)
 
-        if (data.selected&&data.actived) {
+        /*if (data.selected&&data.actived) {
             holder.itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_button_seat_activated)
         }
         else if (data.selected) {
@@ -51,7 +50,7 @@ class SeatAdapter2 (var context: Context, var items: ArrayList<SeatModel2>): Rec
         }else{
             holder.itemView.titel_seat.setText(data.seatNumberRow)
             holder.itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_button_seat_transparant)
-        }
+        }*/
 
         holder.itemView.setOnClickListener { v ->
             if(data.type!="bangku"){

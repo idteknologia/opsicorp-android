@@ -1,4 +1,4 @@
-package com.opsigo.travelaja.module.accomodation.hotel.parent
+package com.opsigo.travelaja.module.accomodation.hotel
 
 import java.util.*
 import android.Manifest
@@ -23,7 +23,7 @@ import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import com.unicode.kingmarket.Base.BaseFragment
 import com.opsigo.travelaja.utility.DateConverter
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.utils.Constant
 import kotlinx.android.synthetic.main.hotel_fragment.*
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.callback.CallbackReasonCode
@@ -41,8 +41,6 @@ import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.search_dialog.SearchDialog
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.accomodation.hotel.select_room.DialogSelectDuration
-import com.opsigo.travelaja.module.accomodation.hotel.result.ResultSearchHotelActivity
 import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
@@ -195,7 +193,9 @@ class HotelFragment : BaseFragment(),
             Constants.CheckOutDate   = checkOut
             Constants.Latitude       = latitude
             Constants.Longitude      = longitude*/
-            gotoActivity(ResultSearchHotelActivity::class.java)
+            gotoActivityModule(context!!,Constants.BASE_PACKAGE_HOTEL +"ResultSearchHotelActivity")
+
+            //            gotoActivity(com.khoiron.hotel_feature.ResultSearchHotelActivity::class.java)
         }
         else{
             Globals.showAlert("Please","Select city",context!!)

@@ -13,17 +13,20 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
+    val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
-    val TYPE_PASSANGGER_ADULT          = "1"
-    val TYPE_PASSANGGER_CHILD          = "2"
-    val TYPE_PASSANGGER_INFANT         = "3"
+    val TYPE_PASSANGGER_ADULT    = "1"
+    val TYPE_PASSANGGER_CHILD    = "2"
+    val TYPE_PASSANGGER_INFANT   = "3"
     val OPEN_LOCATION            = "OPEN_MAP"
     val OPEN_MAP                 = "open_map"
     val GET_LOCATION_GPS_OR_GPRS = "get_gps"
+    val KEY_BUNDLE               = "data"
     var TEST_CITY                = ""
     var dataValidationHotel      = ""
     var dataConfirmationHotel    = ""
@@ -50,8 +53,8 @@ object Constants {
     val ONCLICK_DETAIL_TRAIN     = 9086
     val PROGRESS_TRAIN_SAVED     = 9085
     val ONCLIK_OPTION_REMOVE_TRAIN_CART = 9084
-    val SELECT_COUNTRY_IN_HOTEL  = 9083
-    val SELECT_CITY_IN_HOTEL     = 9082
+    val SELECT_NEARBY_OFFICE     = 9083
+    val SELECT_NEARBY_CITY       = 9082
     val CODE_MAP_ACTIVITY        = 9081
     var READ_REQUEST_LOCATION    = 9080
     val ONCLICK_DETAIL_HOTEL     = 9079
@@ -62,6 +65,10 @@ object Constants {
     val KEY_BAGGAGE_ITEM_SELECTED = 9074
     val RC_SIGN_IN               = 9073
     val REVIEW_HOTEL_SELECT      = 9072
+    val SELECT_NEARBY_COUNTRY    = 9071
+    val SELECT_NEARBY_AIRPORT    = 9070
+    val REQUEST_CODE_NEARBY      = 9069
+    val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"
@@ -314,7 +321,7 @@ object Constants {
 
     val TYPE_HEADER = 6
 
-    var TotalNight               = ""
+    /*var TotalNight               = ""
     var Country                  = SelectNationalModel()
     var City                     = SelectNationalModel()
     var Company                  = SelectNationalModel()
@@ -322,7 +329,7 @@ object Constants {
     var CheckInDate              = ""
     var CheckOutDate             = ""
     var Latitude:Double?         = null
-    var Longitude:Double?        = null
+    var Longitude:Double?        = null*/
 
     object TypeSsr{
         var Unspecified = 0
@@ -338,6 +345,21 @@ object Constants {
         var InFlightEntertainment = 8
         var ComfortKit = 9
         var Other = 99
+    }
+
+    object KeyBundle {
+        var KEY_ID_COUNTRY       = "1"
+        var KEY_DURATION         = "2"
+        var KEY_ID_CITY          = "3"
+        var KEY_DESTINATION      = "4"
+        var KEY_LATITUDE         = "5"
+        var KEY_LONGITUDE        = "6"
+        var KEY_CHECKIN          = "7"
+        var KEY_CHECKOUT         = "8"
+        var KEY_NAME_CITY        = "9"
+        var KEY_NAME_AIRPORT     = "10"
+        var KEY_NAME_OFFICE      = "11"
+        var KEY_NAME_COUNTRY     = "12"
     }
 
 }

@@ -1,6 +1,6 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
-class CityHotel{
+class CityHotelModel {
 	var cityName: String = ""
 	var idCity : String  = ""
 	var descrip : String = ""

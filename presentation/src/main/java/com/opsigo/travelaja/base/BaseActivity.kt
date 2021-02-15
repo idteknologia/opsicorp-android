@@ -137,6 +137,12 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
+    fun setLog(tag:String,s: String) {
+        if(BuildConfig.DEBUG){
+            Log.e(tag,s)
+        }
+    }
+
     fun showSnackbar(viewParent:View,calback: CallbackSnackBar){
         val snackbar = Snackbar
                 .make(viewParent, "No internet connection!", Snackbar.LENGTH_LONG)

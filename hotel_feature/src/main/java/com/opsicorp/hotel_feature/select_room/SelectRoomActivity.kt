@@ -1,20 +1,21 @@
-package com.khoiron.hotel_feature.select_room
+package com.opsicorp.hotel_feature.select_room
 
-import android.content.Intent
 import android.os.Build
+import android.view.View
+import android.content.Intent
+import com.opsicorp.hotel_feature.R
+import com.opsigo.travelaja.utility.*
+import com.opsigo.travelaja.BaseActivity
+import opsigo.com.datalayer.mapper.Serializer
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
-import com.khoiron.hotel_feature.confirmation.ConfirmationOrderHotel
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.*
-import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
 import kotlinx.android.synthetic.main.select_room_activity.*
-import opsigo.com.datalayer.mapper.Serializer
+import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
+import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
+import com.opsigo.travelaja.module.accomodation.hotel.DialogSelectDuration
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
+import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 
 class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         ToolbarOpsicorp.OnclickButtonListener,CalendarViewOpsicorp.CallbackResult {

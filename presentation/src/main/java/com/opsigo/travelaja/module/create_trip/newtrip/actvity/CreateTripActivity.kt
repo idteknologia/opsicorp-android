@@ -11,7 +11,7 @@ import com.opsigo.travelaja.R
 import com.yalantis.ucrop.UCrop
 import org.koin.core.KoinComponent
 import android.content.pm.PackageManager
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
 import org.koin.core.parameter.parametersOf

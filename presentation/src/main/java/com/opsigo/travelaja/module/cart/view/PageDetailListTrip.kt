@@ -9,8 +9,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.accomodation.seat.seatmap.SeatActivityTrain
-import com.opsigo.travelaja.module.accomodation.train.result.ConfirmOrderTrainActivity
 import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
 import com.opsigo.travelaja.module.cart.model.CartModel
 import com.opsigo.travelaja.utility.Constants
@@ -23,6 +21,7 @@ import com.opsigo.travelaja.utility.Constants.PROGRESS_FLIGHT_SAVED
 import com.opsigo.travelaja.utility.Constants.PROGRESS_HOTEL_CALLBACK
 import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_CALLBACK
 import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_SAVED
+import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.page_cart_list_detail_trip.view.*
 import opsigo.com.datalayer.mapper.Serializer
@@ -111,10 +110,11 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 callback.updateViewSaved()
             }
             ONCLICK_CHANGE_SEAT_MAP_TRAIN -> {
-                val intent = Intent(context, SeatActivityTrain::class.java)
+                val intent = Intent(context, Class.forName(Constants.BASE_PACKAGE_TRAIN+"seat.SeatActivityTrain"))
                 intent.putExtra("data", Serializer.serialize(data[position]))
                 if (!data[position].dataCardTrain.status.toLowerCase().contains("expired")&&!data[position].dataCardTrain.status.toLowerCase().contains("saved")){
-                    (context as Activity).startActivityForResult(intent,Constants.GET_SEAT_MAP)
+//                    (context as Activity).startActivityForResult(intent,Constants.GET_SEAT_MAP)
+                    Globals.gotoActivityForResultModule(context,intent,Constants.GET_SEAT_MAP)
                 }
             }
             PROGRESS_HOTEL_CALLBACK -> {
@@ -124,20 +124,18 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
             }
             ONCLICK_DETAIL_TRAIN -> {
-                val intent = Intent(context,ConfirmOrderTrainActivity::class.java)
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_TRAIN+"detail.ConfirmOrderTrainActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_TRAIN,Serializer.serialize(data[position]))
-                context.startActivity(intent)
+                Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_HOTEL -> {
-                val intent = Intent(context,ConfirmOrderTrainActivity::class.java)
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_TRAIN+"detail.ConfirmOrderTrainActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_HOTEL,Serializer.serialize(data[position]))
-                context.startActivity(intent)
+                Globals.gotoActivityModule(context,intent)
             }
         }
     }
-
-
 
 }

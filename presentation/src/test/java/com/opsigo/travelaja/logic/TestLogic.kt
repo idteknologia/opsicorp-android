@@ -1,6 +1,6 @@
 package com.opsigo.travelaja.logic
 
-import com.opsigo.travelaja.module.accomodation.flight.detail_passanger.DetailPassangerModel
+import com.opsigo.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import org.hamcrest.CoreMatchers
@@ -85,18 +85,18 @@ class TestLogic {
 
         Assert.assertThat("5", CoreMatchers.`is`(totalPassanger.toString()))*/
 
-        val mData1 = DetailPassangerModel()
+        /*val mData1 = DetailPassangerModel()
         mData1.email        = "whcbkj"
         mData1.firstname    = "hcjwcb"
         mData1.lastname     = "ftgyhj"
         mData1.mobileNumber = "ftdw"
 
-        data.add(mData1)
+        data.add(mData1)*/
 
-        Assert.assertThat(true, CoreMatchers.`is`(completedData()))
+//        Assert.assertThat(true, CoreMatchers.`is`(completedData()))
     }
 
-    var data = ArrayList<DetailPassangerModel>()
+    /*var data = ArrayList<DetailPassangerModel>()
 
     private fun completedData(): Boolean {
         var completed = false
@@ -115,7 +115,7 @@ class TestLogic {
 
         return completed
     }
-
+*/
 
     private fun totalPassanger(): Pair<String,String> {
 
@@ -628,6 +628,19 @@ class TestLogic {
         data.forEach {
             println(it.type)
         }
+    }
+
+    @Test
+    fun testDateCalculation(){
+        println("${Globals.countDaysBettwenTwoDate("2021-01-01","2021-01-01","yyyy-MM-dd")} Nigh")
+    }
+
+    fun dateCheckoutCalculation(string: String): String {
+        val cal = Calendar.getInstance()
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+        cal.time = sdf.parse(string)
+        cal.add(Calendar.DATE, 4)
+        return sdf.format(cal.time)
     }
 
 

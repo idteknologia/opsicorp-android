@@ -49,24 +49,24 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
         })
     }
 
-    override fun getDataCityFlight(token: String, callback: CallbackArrayListCity) {
-        apiOpsicorp.getDataDestinationAirline(token).enqueue(object : Callback<ResponseBody> {
+    override fun getDataAiport(token: String, callback: CallbackDataAirport) {
+        apiOpsicorp.getDataAirport(token).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failedLoad(t.message!!)
+                callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
                         val data = JSONArray(response.body()?.string())
-                        callback.successLoad(DestinationFlightMapper().mapper(data))
+                        callback.success(AirportMapper().mapper(data))
                     }
                     else{
                         val json = JSONObject(response.errorBody()?.string())
                         val message = json.optString("error_description")
-                        callback.failedLoad(message)
+                        callback.failed(message)
                     }
                 }catch (e:Exception){
-                    callback.failedLoad(messageFailed)
+                    callback.failed(messageFailed)
                 }
             }
         })
@@ -197,7 +197,7 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
     }
 
 
-    override fun getDataCity(token: String, callback: CallbackArrayListCity) {
+    override fun getDataCity(token: String, callback: CallbackListCityTrip) {
         apiOpsicorp.getCity(token).enqueue(object : Callback<ResponseBody> {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)

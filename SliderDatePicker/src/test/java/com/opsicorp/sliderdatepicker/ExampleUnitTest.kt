@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker
+package com.opsicorp.sliderdatepicker
 
 import org.junit.Test
 

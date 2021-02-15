@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.dynamic-feature'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 android {
     compileSdkVersion 30
@@ -27,8 +29,16 @@ android {
 dependencies {
     implementation project(":presentation")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.+'
+    //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     androidTestImplementation 'com.android.support:support-annotations:28.0.0'
+
+    implementation project(":presentation")
+    implementation project(":data")
+    implementation project(":domain")
 }

@@ -1,10 +1,10 @@
-package com.khoiron.hotel_feature.adapter
+package com.opsicorp.hotel_feature.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
 import android.content.Context
 import android.view.LayoutInflater
+import com.opsicorp.hotel_feature.R
 import android.support.v7.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.nearby_office_adapter.view.*

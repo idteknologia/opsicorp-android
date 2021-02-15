@@ -1,4 +1,4 @@
-package com.khoiron.hotel_feature
+package com.opsicorp.hotel_feature
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

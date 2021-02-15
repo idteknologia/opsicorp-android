@@ -1,13 +1,13 @@
-package com.khoiron.sliderdatepicker.adapter
+package com.opsicorp.sliderdatepicker.adapter
 
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import kotlin.collections.ArrayList
-import com.khoiron.sliderdatepicker.R
+import com.opsicorp.sliderdatepicker.R
 import android.support.v7.widget.RecyclerView
-import com.khoiron.sliderdatepicker.model.HolidayModel
+import com.opsicorp.sliderdatepicker.model.HolidayModel
 import kotlinx.android.synthetic.main.item_holiday_view.view.*
 
 class HolidayAdapter (var context: Context, var items: ArrayList<HolidayModel>): RecyclerView.Adapter<HolidayAdapter.ViewHolder>() {

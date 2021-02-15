@@ -1,19 +1,16 @@
-package com.khoiron.hotel_feature.detail_hotel
+package com.opsicorp.hotel_feature.detail_hotel
 
-import com.opsigo.travelaja.module.item_custom.description_hotel.DescriptionAndFacilityHotel
+import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
-import com.khoiron.hotel_feature.select_room.SelectRoomActivity
+import com.opsicorp.hotel_feature.select_room.SelectRoomActivity
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.item_custom.galery.CallbackGalery
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.module.item_custom.galery.MyGalery
-import kotlinx.android.synthetic.main.detail_hotel_activity.*
-import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
-import opsigo.com.domainlayer.model.accomodation.hotel.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
@@ -22,9 +19,12 @@ import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
-import com.opsigo.travelaja.R
+import com.opsicorp.hotel_feature.R
 import android.content.Intent
 import android.view.View
+import kotlinx.android.synthetic.main.detail_hotel_activity.*
+import kotlinx.android.synthetic.main.detail_hotel_layout.*
+import opsigo.com.domainlayer.model.accomodation.hotel.*
 import java.util.HashMap
 
 

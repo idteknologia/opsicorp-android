@@ -1,4 +1,4 @@
-package com.khoiron.contact.module
+package com.opsicorp.contact.module
 
 import android.view.View
 

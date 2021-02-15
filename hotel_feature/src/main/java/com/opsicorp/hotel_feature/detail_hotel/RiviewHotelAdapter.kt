@@ -1,15 +1,15 @@
-package com.khoiron.hotel_feature.detail_hotel
+package com.opsicorp.hotel_feature.detail_hotel
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import opsigo.com.domainlayer.model.accomodation.hotel.RiviewHotelModel
 import kotlinx.android.synthetic.main.item_review_hotel.view.*
+import opsigo.com.domainlayer.model.accomodation.hotel.RiviewHotelModel
 
 class RiviewHotelAdapter (context: Context, var items: ArrayList<RiviewHotelModel>): RecyclerView.Adapter<RiviewHotelAdapter.ViewHolder>() {
 

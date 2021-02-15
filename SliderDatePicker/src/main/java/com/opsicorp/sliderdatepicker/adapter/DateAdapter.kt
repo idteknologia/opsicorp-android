@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.adapter
+package com.opsicorp.sliderdatepicker.adapter
 
 import android.view.View
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import android.content.Context
 import java.text.SimpleDateFormat
 import android.view.LayoutInflater
 import kotlin.collections.ArrayList
-import com.khoiron.sliderdatepicker.R
+import com.opsicorp.sliderdatepicker.R
 import android.support.v7.widget.RecyclerView
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.utils.Constant
 import android.support.v4.content.res.ResourcesCompat
-import com.khoiron.sliderdatepicker.model.DayDataModel
+import com.opsicorp.sliderdatepicker.model.DayDataModel
 import kotlinx.android.synthetic.main.item_date_view.view.*
 
 class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {

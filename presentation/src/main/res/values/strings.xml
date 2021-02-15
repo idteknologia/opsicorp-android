@@ -672,4 +672,15 @@ Please add your trip item for Approval."
     <string name="change">Change</string>
     <string name="selectedSsr"><![CDATA[Fried Rice & Sausage, Mac & Cheese]]></string>
     <string name="baggage_charge">Baggage Charge</string>
+    <string name="descript_nearby_airport">Activate toggle button for search</string>
+    <string name="descript_nearby_office">Inactivate toggle button search near by Office</string>
+    <string name="string_title_nearby_aiport">Hotel near by Airport</string>
+    <string name="string_title_nearby_office">Hotel near by Office</string>
+    <string name="title_nearby_city">Destination City</string>
+    <string name="title_nearby_airport">Location nearby ( Airport )</string>
+    <string name="title_nearby_office">Location nearby ( Office )</string>
+    <string name="title_popular_aiport">Popular Airports</string>
+    <string name="title_popular_city">Popular Cities</string>
+    <string name="title_hotel_feature">Module Title</string>
+    <string name="title_train_feature">Train Feature</string>
 </resources>

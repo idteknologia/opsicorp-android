@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.adapter
+package com.opsicorp.sliderdatepicker.adapter
 
 interface OnclickListenerRecyclerView{
     fun callbackRecyclerView(view:Int,position:Int)

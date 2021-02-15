@@ -1,4 +1,4 @@
-package com.khoiron.sliderdatepicker.lib
+package com.opsicorp.sliderdatepicker.lib
 
 import java.util.*
 import android.view.View
@@ -8,21 +8,21 @@ import android.util.AttributeSet
 import java.text.SimpleDateFormat
 import android.widget.LinearLayout
 import kotlin.collections.ArrayList
-import com.khoiron.sliderdatepicker.R
-import com.khoiron.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.R
+import com.opsicorp.sliderdatepicker.utils.Constant
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.khoiron.sliderdatepicker.utils.DataCalendar
-import com.khoiron.sliderdatepicker.model.CalendarModel
-import com.khoiron.sliderdatepicker.utils.CallbackCalendar
-import com.khoiron.sliderdatepicker.utils.Constant.endSelectDate
-import com.khoiron.sliderdatepicker.utils.Constant.startSelectDate
-import com.khoiron.sliderdatepicker.utils.StickHeaderItemDecoration
-import com.khoiron.sliderdatepicker.adapter.CalendarVerticalAdapter
+import com.opsicorp.sliderdatepicker.utils.DataCalendar
+import com.opsicorp.sliderdatepicker.model.CalendarModel
+import com.opsicorp.sliderdatepicker.utils.CallbackCalendar
+import com.opsicorp.sliderdatepicker.utils.Constant.endSelectDate
+import com.opsicorp.sliderdatepicker.utils.Constant.startSelectDate
+import com.opsicorp.sliderdatepicker.utils.StickHeaderItemDecoration
+import com.opsicorp.sliderdatepicker.adapter.CalendarVerticalAdapter
 import kotlinx.android.synthetic.main.calendar_vertical_view.view.*
-import com.khoiron.sliderdatepicker.adapter.OnclickListenerRecyclerViewParent
-import com.khoiron.sliderdatepicker.model.HolidayModel
+import com.opsicorp.sliderdatepicker.adapter.OnclickListenerRecyclerViewParent
+import com.opsicorp.sliderdatepicker.model.HolidayModel
 import java.lang.Exception
 
 class CalendarVertical : LinearLayout,
