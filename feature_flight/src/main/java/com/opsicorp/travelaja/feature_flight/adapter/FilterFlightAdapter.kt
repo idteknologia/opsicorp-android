@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.filter_adapter_flight.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel

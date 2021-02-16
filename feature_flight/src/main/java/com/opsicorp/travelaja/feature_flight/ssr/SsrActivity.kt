@@ -5,21 +5,21 @@ import android.content.Intent
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.ssr_flight_activity.*
 import kotlinx.android.synthetic.main.ssr_flight_activity.body_price
 import kotlinx.android.synthetic.main.ssr_flight_activity.btnDone
 import kotlinx.android.synthetic.main.ssr_flight_activity.line_shadow
 import kotlinx.android.synthetic.main.ssr_flight_activity.toolbar
-import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import java.lang.Exception
 
-class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
+class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
 
     val adapter by lazy { SsrAdapter(this) }
@@ -28,6 +28,7 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
 
     override fun OnMain() {
         btnDone.callbackOnclickButton(this)
+        btnDone.setTextButton("Done")
         initToolbar()
         initRecyclerView()
         initRecyclerViewPrice()
@@ -132,7 +133,7 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
     private fun initToolbar() {
         toolbar.setTitleBar("SSR (Special Service Request)")
         toolbar.hidenBtnCart()
-        toolbar.btn_back.setOnClickListener { finish() }
+        toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.singgleTitleGravity(toolbar.START)
         }
@@ -150,5 +151,15 @@ class SsrActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
 
     override fun onClicked() {
         finish()
+    }
+
+    override fun btnBack() {
+        finish()
+    }
+
+    override fun logoCenter() {
+    }
+
+    override fun btnCard() {
     }
 }

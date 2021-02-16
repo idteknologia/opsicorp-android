@@ -8,7 +8,7 @@ import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
 import com.opsigo.travelaja.BaseActivity
-import com.opsicorp.travelaja.feature_flight.boking_contact.BookingContactFlight
+import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.*
@@ -266,14 +266,14 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun expandPrice() {
-        ic_image.setImageDrawable(resources.getDrawable(com.opsigo.travelaja.R.drawable.ic_chevron_down))
+        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
         line_shadow.visibility  = View.VISIBLE
         tv_including.visibility = View.GONE
         body_prize.expand()
     }
 
     private fun collapsePrice() {
-        ic_image.setImageDrawable(resources.getDrawable(com.opsigo.travelaja.R.drawable.ic_chevron_up_orange))
+        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_orange))
         tv_including.visibility = View.VISIBLE
         line_shadow.visibility  = View.GONE
         body_prize.collapse()

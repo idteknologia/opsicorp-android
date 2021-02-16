@@ -1,13 +1,13 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.view.View
-import com.opsigo.travelaja.R
 import android.view.ViewGroup
 import android.content.Context
 import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.Constants
 import android.support.v7.widget.RecyclerView
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_list_item_adapter.view.*

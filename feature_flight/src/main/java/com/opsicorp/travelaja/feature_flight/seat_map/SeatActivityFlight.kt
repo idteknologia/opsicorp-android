@@ -8,9 +8,9 @@ import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.*
 import kotlin.collections.ArrayList
 import android.os.CountDownTimer
-import com.opsigo.travelaja.R
 import android.view.View
 import android.os.Build
+import com.opsicorp.travelaja.feature_flight.R
 import com.squareup.picasso.Picasso
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel

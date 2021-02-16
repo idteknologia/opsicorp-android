@@ -40,7 +40,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".boking_contact.BookingContactFlight"
+            android:name=".booking_contact.BookingContactFlight"
             android:screenOrientation="portrait" />
 
 

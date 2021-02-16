@@ -1,4 +1,4 @@
-package com.opsicorp.travelaja.feature_flight.boking_contact
+package com.opsicorp.travelaja.feature_flight.booking_contact
 
 import android.content.Context
 import android.view.View

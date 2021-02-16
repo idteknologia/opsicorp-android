@@ -3,8 +3,8 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Globals
@@ -12,7 +12,6 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.select_seat_activity.*
 import kotlinx.android.synthetic.main.select_seat_activity.btnDone
 import kotlinx.android.synthetic.main.select_seat_activity.toolbar
-import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 
@@ -28,6 +27,7 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
 
     override fun OnMain() {
         btnDone.callbackOnclickButton(this)
+        btnDone.setTextButton("Done")
         initToolbar()
         initRecyclerView()
         setData()
@@ -53,7 +53,7 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
     private fun initToolbar() {
         toolbar.setTitleBar("Seat Map")
         toolbar.hidenBtnCart()
-        toolbar.btn_back.setOnClickListener { finish() }
+        toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.singgleTitleGravity(toolbar.START)
         }

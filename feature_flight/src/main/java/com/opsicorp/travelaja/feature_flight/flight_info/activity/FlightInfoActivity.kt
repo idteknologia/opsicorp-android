@@ -30,7 +30,7 @@ class FlightInfoActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener
 
             toolbar.setDoubleTitle(data.titleAirline,dataOrder.idOrigin + " - " + dataOrder.idDestination + ", " + data.durationView)
             toolbar.hidenBtnCart()
-            toolbar.changeImageBtnBack(com.opsigo.travelaja.R.drawable.ic_close)
+            toolbar.changeImageBtnBack(R.drawable.ic_close_white)
             toolbar.callbackOnclickToolbar(this)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

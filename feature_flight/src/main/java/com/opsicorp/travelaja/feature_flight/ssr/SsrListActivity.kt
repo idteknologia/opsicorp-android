@@ -7,19 +7,20 @@ import com.opsigo.travelaja.BaseActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
 import android.util.Log
-import com.opsigo.travelaja.R
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.ssr_list_activity.*
-import kotlinx.android.synthetic.main.toolbar_view.view.*
+import kotlinx.android.synthetic.main.ssr_list_activity.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 
-class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
+class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
 
     val data = ArrayList<String>()
@@ -38,6 +39,7 @@ class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListe
 
     override fun OnMain() {
         btnApply.callbackOnclickButton(this)
+        btnApply.setTextButton("Apply")
         initToolbar()
         initRecyclerView()
         setDataRecyclerView()
@@ -46,8 +48,8 @@ class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListe
     private fun initToolbar() {
         toolbar.setTitleBar("SSR list menu")
         toolbar.hidenBtnCart()
+        toolbar.callbackOnclickToolbar(this)
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
-        toolbar.btn_back.setOnClickListener { finish() }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.singgleTitleGravity(toolbar.START)
         }
@@ -101,6 +103,16 @@ class SsrListActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListe
             setLog("testSave2",it.ssrName)
         }
         finish()
+    }
+
+    override fun btnBack() {
+        finish()
+    }
+
+    override fun logoCenter() {
+    }
+
+    override fun btnCard() {
     }
 
 }

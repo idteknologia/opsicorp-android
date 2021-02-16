@@ -11,8 +11,8 @@ import com.opsigo.travelaja.utility.Constants
 import android.view.LayoutInflater
 import android.content.Context
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
 import android.view.View
+import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 

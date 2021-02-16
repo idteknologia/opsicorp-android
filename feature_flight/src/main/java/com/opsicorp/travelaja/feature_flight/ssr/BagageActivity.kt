@@ -7,15 +7,18 @@ import android.util.Log
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_bagage.*
-import kotlinx.android.synthetic.main.toolbar_view.view.*
+import kotlinx.android.synthetic.main.activity_bagage.btnDone
+import kotlinx.android.synthetic.main.activity_bagage.toolbar
+import kotlinx.android.synthetic.main.toolbar_view_new.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
 import java.lang.Exception
 
-class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
+class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
 
     override fun getLayout(): Int {
@@ -30,6 +33,7 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
 
     override fun OnMain() {
         btnDone.callbackOnclickButton(this)
+        btnDone.setTextButton("Done")
         initToolbar()
         initRecyclerView()
         initPrice()
@@ -87,7 +91,7 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
     private fun initToolbar() {
         toolbar.setTitleBar("Baggage")
         toolbar.hidenBtnCart()
-        toolbar.btn_back.setOnClickListener { finish() }
+        toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.singgleTitleGravity(toolbar.START)
         }
@@ -151,5 +155,17 @@ class BagageActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListen
 
     override fun onClicked() {
         finish()
+    }
+
+    override fun btnBack() {
+        finish()
+    }
+
+    override fun logoCenter() {
+
+    }
+
+    override fun btnCard() {
+
     }
 }
