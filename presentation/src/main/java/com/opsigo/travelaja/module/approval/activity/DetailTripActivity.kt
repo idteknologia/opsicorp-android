@@ -14,7 +14,7 @@ import android.view.View
 import android.widget.TextView
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.approval.dialog.ListParticipantDialog
 import com.opsigo.travelaja.module.approval.summary.ParticipantAdapter
 import com.opsigo.travelaja.module.approval.summary.ParticipantModel

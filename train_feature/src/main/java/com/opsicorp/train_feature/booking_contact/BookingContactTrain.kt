@@ -29,7 +29,6 @@ import android.app.Activity
 import android.view.View
 import android.os.Build
 import com.opsicorp.train_feature.R
-import com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactAdapter
 import kotlinx.android.synthetic.main.booking_contact_train_view.*
 
 class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
@@ -38,7 +37,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     override fun getLayout(): Int { return R.layout.booking_contact_train_view }
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
-    val adapter by lazy { BookingContactAdapter(this,dataContacts) }
+    val adapter by lazy { BookingContactTrainAdapter(this,dataContacts) }
 
     override fun OnMain() {
         initRecyclerView()

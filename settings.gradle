@@ -1,3 +1,4 @@
+include ':tour_feature'
 include ':train_feature'
 include ':hotel_feature'
 include ':SliderDatePicker'

@@ -7,10 +7,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.accomodation.adapter.FilterFlightAdapter
-import com.opsigo.travelaja.module.accomodation.adapter.FilterFlightCabinAdapter
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.SelectAccomodationPreferance
+import com.opsicorp.travelaja.feature_flight.adapter.FilterFlightAdapter
+import com.opsicorp.travelaja.feature_flight.adapter.FilterFlightCabinAdapter
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -41,9 +41,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     var dataArrival    = ArrayList<FilterFlightModel>()
     var namesAirlines  = ArrayList<String>()
     val totalFlight = "0"
-    val adapterCabinClass by inject<FilterFlightCabinAdapter> { parametersOf(dataCabin)  }
-    val adapterDeparture by inject<FilterFlightAdapter> { parametersOf(dataDeparture) }
-    val adapterArrival by inject<FilterFlightAdapter> { parametersOf(dataArrival) }
+    val adapterCabinClass by lazy { FilterFlightCabinAdapter(this,dataCabin) }
+    val adapterDeparture by lazy { FilterFlightAdapter(this,dataDeparture) }
+    val adapterArrival by lazy { FilterFlightAdapter(this,dataArrival) }
 
     override fun OnMain() {
         initToolbar()

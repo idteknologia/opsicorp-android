@@ -13,8 +13,8 @@ import kotlinx.android.synthetic.main.train_filter_actvity_view.*
 import kotlinx.android.synthetic.main.detail_train_result_activity.toolbar
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceAdapter
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 
 class TrainFilterActivity : BaseActivity() ,
         ButtonDefaultOpsicorp.OnclickButtonListener,

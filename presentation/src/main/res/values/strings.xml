@@ -690,4 +690,5 @@ Please add your trip item for Approval."
     <string name="title_popular_city">Popular Cities</string>
     <string name="title_hotel_feature">Module Title</string>
     <string name="title_train_feature">Train Feature</string>
+    <string name="title_module_tour">Module Tour</string>
 </resources>

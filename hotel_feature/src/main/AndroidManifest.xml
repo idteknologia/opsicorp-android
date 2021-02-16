@@ -39,6 +39,12 @@
             android:name=".select_room.SelectRoomActivity"
             android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".booking_contact.BookingContactHotel"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 

@@ -38,6 +38,37 @@
         <activity
             android:name=".flight_info.activity.FareRulesActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".boking_contact.BookingContactFlight"
+            android:screenOrientation="portrait" />
+
+
+        <activity android:name=".ssr.BagageActivity"></activity>
+
+
+        <activity android:name=".ssr.SsrActivity">
+
+        </activity>
+        <activity
+            android:name=".ssr.SsrListActivity">
+
+        </activity>
+
+        <activity
+            android:name=".ssr.FrequentFlyerActivity">
+        </activity>
+
+        <activity
+            android:name=".seat_map.SeatActivityFlight"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".seat_map.SelectSeatActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

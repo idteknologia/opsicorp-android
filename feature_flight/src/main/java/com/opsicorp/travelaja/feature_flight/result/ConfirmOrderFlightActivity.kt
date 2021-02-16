@@ -7,10 +7,9 @@ import android.util.Log
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
-import com.opsicorp.travelaja.feature_flight.flight_info.activity.FareRulesActivity
 import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactFlight
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.opsicorp.travelaja.feature_flight.boking_contact.BookingContactFlight
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.confirm_flight_order_new.*

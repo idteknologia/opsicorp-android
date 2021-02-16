@@ -27,7 +27,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -51,12 +50,12 @@
 
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity"
             android:screenOrientation="portrait">
         </activity>
 
         <!--<activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ResultSearchFlightActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.result.ResultSearchFlightActivity"
             android:screenOrientation="portrait">
         </activity>-->
         <activity
@@ -80,17 +79,10 @@
             android:screenOrientation="portrait">
         </activity>
 
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactFlight"
-            android:screenOrientation="portrait" />
 
 
         <activity
             android:name="com.opsigo.travelaja.module.profile.OtherFormActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SeatActivityFlight"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -142,15 +134,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactHotel"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name="com.opsigo.travelaja.module.my_booking.purchase_detail.PurchaseDetailActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
-            android:name="com.opsigo.travelaja.module.accomodation.seat.activity.SeatActivityTest"
             android:screenOrientation="portrait">
         </activity>
         <activity
@@ -182,13 +166,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <!--<activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.flight_info.activity.FlightInfoActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.flight_info.activity.FlightInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.filter.FilterFlightActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.filter.FilterFlightActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.opsigo.travelaja.module.accomodation.flight.detail_passanger.DetailPassangerActivity"
+            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.detail_passanger.DetailPassangerActivity"
             android:screenOrientation="portrait">
         </activity>-->
         <activity
@@ -200,10 +184,10 @@
             android:screenOrientation="portrait">
         </activity>
 <!--        <activity-->
-<!--            android:name="com.opsigo.travelaja.module.accomodation.flight.result.ConfirmOrderFlightActivity"-->
+<!--            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.result.ConfirmOrderFlightActivity"-->
 <!--            android:screenOrientation="portrait" />-->
 <!--        <activity-->
-<!--            android:name="com.opsigo.travelaja.module.accomodation.flight.result.DetailResultFlightActivity"-->
+<!--            android:name="com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.result.DetailResultFlightActivity"-->
 <!--            android:screenOrientation="portrait" />-->
 
         <activity
@@ -254,23 +238,6 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.BagageActivity">
-
-        </activity>
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.SsrActivity">
-
-        </activity>
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.SsrListActivity">
-
-        </activity>
-        <activity android:name="com.opsigo.travelaja.module.accomodation.ssr.FrequentFlyerActivity">
-
-        </activity>
-
-        <activity android:name="com.opsigo.travelaja.module.accomodation.seat.seatmap.flight.SelectSeatActivity">
-
-        </activity>
 
     </application>
 

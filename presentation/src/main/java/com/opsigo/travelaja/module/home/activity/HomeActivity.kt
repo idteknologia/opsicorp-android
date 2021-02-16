@@ -97,7 +97,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
     private fun checkUserLogin() {
         val dataUser = getProfile()
         if (dataUser.isApproval){
-            menu_bottom.setButtonSelectedPosition(0)
+            menu_bottom.setButtonSelectedPosition(2)
         }
         else{
             menu_bottom.setButtonSelectedPosition(0)

@@ -1,6 +1,6 @@
 package com.opsigo.travelaja.utility
 
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
@@ -351,6 +351,21 @@ object Constants {
         var InFlightEntertainment = 8
         var ComfortKit = 9
         var Other = 99
+    }
+
+    object KeyBundle {
+        var KEY_ID_COUNTRY       = "1"
+        var KEY_DURATION         = "2"
+        var KEY_ID_CITY          = "3"
+        var KEY_DESTINATION      = "4"
+        var KEY_LATITUDE         = "5"
+        var KEY_LONGITUDE        = "6"
+        var KEY_CHECKIN          = "7"
+        var KEY_CHECKOUT         = "8"
+        var KEY_NAME_CITY        = "9"
+        var KEY_NAME_AIRPORT     = "10"
+        var KEY_NAME_OFFICE      = "11"
+        var KEY_NAME_COUNTRY     = "12"
     }
 
 }

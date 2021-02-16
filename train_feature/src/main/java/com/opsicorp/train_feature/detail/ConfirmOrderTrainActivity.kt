@@ -1,6 +1,6 @@
 package com.opsicorp.train_feature.detail
 
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 import com.opsicorp.train_feature.adapter.ConfirmationTrainAdapter
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import com.opsicorp.train_feature.booking_contact.BookingContactTrain

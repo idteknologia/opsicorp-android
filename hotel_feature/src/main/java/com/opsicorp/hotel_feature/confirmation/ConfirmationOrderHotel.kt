@@ -1,18 +1,18 @@
 package com.opsicorp.hotel_feature.confirmation
 
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 import opsigo.com.datalayer.request_model.accomodation.hotel.validation.ContactValidationHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.validation.DataValidationHotelRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.hotel.validation.ValidationHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.confirmation.ConfirmHotelRequest
-import com.opsigo.travelaja.module.accomodation.booking_contact.BookingContactHotel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ConfirmationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ValidationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
+import com.opsicorp.hotel_feature.booking_contact.BookingContactHotel
 import kotlinx.android.synthetic.main.confirmation_order_hotel.*
 import opsigo.com.domainlayer.callback.CallbackConfirmationHotel
 import com.opsigo.travelaja.module.cart.model.ItemCardHotelModel

@@ -29,7 +29,7 @@ import android.view.View
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.mapper.Serializer
@@ -39,7 +39,6 @@ import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.ItemFlightModel
-import opsigo.com.domainlayer.model.summary.ItemHotelModel
 import java.text.SimpleDateFormat
 import java.util.*
 

@@ -64,7 +64,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-    dynamicFeatures = [':feature_flight', ':hotel_feature', ':train_feature']
+    dynamicFeatures = [':feature_flight', ':hotel_feature', ':train_feature', ':tour_feature']
 
 }
 

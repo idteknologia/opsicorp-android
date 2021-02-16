@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.View
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.accomodation.page_parent.activity.AccomodationActivity
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclikAllertDoubleSelected
 import kotlinx.android.synthetic.main.success_create_trip_plane.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel

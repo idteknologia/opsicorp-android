@@ -12,7 +12,7 @@ import android.support.v7.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsigo.travelaja.module.accomodation.hotel.DialogSelectDuration
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.DialogSelectDuration
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp

@@ -1,6 +1,6 @@
 package com.opsicorp.train_feature.result
 
-import com.opsigo.travelaja.module.accomodation.booking_dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.datalayer.request_model.accomodation.train.search.SearchTrainRequest
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
