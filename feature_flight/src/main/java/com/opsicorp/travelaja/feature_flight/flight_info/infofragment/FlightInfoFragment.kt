@@ -76,6 +76,7 @@ class FlightInfoFragment : BaseFragment() {
                 mData.arrivalDisplay   = "${data.destinationName} (${data.destination})" //Jakarta (Cgk)
                 mData.dateArrival      = DateConverter().getDate(data.arrivalDate,"yyyy-MM-dd","dd MMM") //27 Apr
                 mData.arrivalAirport   = data.destinationAirport
+                mData.originTerminal = data.terminal
                 listData.add(mData)
             }
 

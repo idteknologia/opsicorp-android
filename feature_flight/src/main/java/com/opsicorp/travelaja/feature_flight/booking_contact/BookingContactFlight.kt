@@ -33,6 +33,7 @@ import android.view.View
 import android.os.Build
 import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.BagageFlightRequest
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
@@ -358,6 +359,24 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
             model.add(data)
         }
         return model
+    }
+
+    private fun getSsr(): ArrayList<BagageFlightRequest> {
+        val listSsr = ArrayList<BagageFlightRequest>()
+        dataListFlight.dataFlight.forEachIndexed { index, it ->
+            val mData = BagageFlightRequest()
+            mData.ssrCode           = it.dataSSR.ssrSelected[index].ssrCode
+            mData.originCode        = it.origin
+            mData.destinationCode   = it.destination
+            mData.ssrFare           = it.dataSSR.ssrSelected[index].price.toInt()
+            mData.ccy               = it.dataSSR.ssrSelected[index].curency
+            mData.ssrName           = it.dataSSR.ssrSelected[index].ssrName
+            mData.ssrType           = it.dataSSR.ssrSelected[index].ssrType.toInt()
+            mData.flightNumber      = it.flightNumber
+
+            listSsr.add(mData)
+        }
+        return listSsr
     }
 
     private fun getSegment(): List<SegmentFlightsRequest> {

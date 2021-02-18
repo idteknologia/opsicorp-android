@@ -18,4 +18,5 @@ class ModelListDepartureAndArivalAdapter {
     var arrivalDisplay   = ""
     var dateArrival      = "" //27 Apr
     var arrivalAirport   = ""
+    var originTerminal  = ""
 }

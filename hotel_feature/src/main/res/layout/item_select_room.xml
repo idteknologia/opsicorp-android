@@ -49,6 +49,7 @@
             android:layout_below="@+id/line_guaranted">
 
             <TextView
+                android:maxLines="24"
                 android:id="@+id/tv_title_room"
                 style="@style/RobotoMedium"
                 android:layout_width="wrap_content"
@@ -129,6 +130,7 @@
             android:layout_marginTop="11dp"></LinearLayout>
 
         <RelativeLayout
+            android:paddingBottom="10dp"
             android:layout_marginTop="9dp"
             android:layout_marginLeft="15dp"
             android:layout_width="match_parent"

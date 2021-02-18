@@ -12,7 +12,6 @@
         android:id="@+id/toolbar"></com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <FrameLayout
-        android:background="@android:color/white"
         android:id="@+id/place_fragment"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"

@@ -175,7 +175,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             }*/
 
             mData.name_stationDeparture = resultListFlightModel.titleAirline
-            mData.line_total_duration   = resultListFlightModel.duration
+            mData.line_total_duration   = resultListFlightModel.durationView
 
             mData.depatureAirportName = resultListFlightModel.originAirport
             mData.arrivalAirportName = resultListFlightModel.destinationAirport

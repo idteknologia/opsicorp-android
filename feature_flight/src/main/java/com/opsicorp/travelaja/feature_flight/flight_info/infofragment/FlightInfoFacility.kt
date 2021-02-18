@@ -42,21 +42,23 @@ class FlightInfoFacility : BaseFragment() {
                     .into(img_airline)
 
             data.clear()
-            val mFacility = FacilityFlightModel()
-            mFacility.nameFacility = "Cabin baggage"
-            mFacility.valueFacility = "7 kg"
-            data.add(mFacility)
 
             if (mData.facility.isEmpty()){
                 for (i in 0 until 2){
                     val mNull = FacilityFlightModel()
                     mNull.nameFacility = "-"
-                    mNull.valueFacility = ""
+                    mNull.valueFacility = "-"
                     data.add(mNull)
                 }
             }
             else {
-                data.addAll(mData.facility)
+                mData.facility.forEach {
+                    val mFacility = FacilityFlightModel()
+                    mFacility.nameFacility = it.nameFacility
+                    mFacility.valueFacility = it.valueFacility
+                    data.add(mFacility)
+                }
+                /*data.addAll(mData.facility)*/
             }
 
             adapter.notifyDataSetChanged()

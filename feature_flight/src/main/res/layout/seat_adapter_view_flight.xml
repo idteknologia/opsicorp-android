@@ -10,7 +10,7 @@
         android:layout_height="50dp">
         <TextView
             android:layout_margin="2dp"
-            android:background="@drawable/rounded_seatmap_pick"
+            android:background="@drawable/rounded_seatmap_flight_pick"
             android:textColor="@android:color/white"
             android:id="@+id/titel_seat"
             android:gravity="center"

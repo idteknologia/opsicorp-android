@@ -237,4 +237,5 @@ class ToolbarOpsicorp : LinearLayout, View.OnClickListener {
     fun getImageBack():ImageView{
         return btn_back
     }
+
 }

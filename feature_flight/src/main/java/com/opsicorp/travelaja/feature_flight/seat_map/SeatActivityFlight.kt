@@ -46,8 +46,6 @@ class SeatActivityFlight : BaseActivity(),
             dataDialogCabin.add(seatAirlineModel.nameAirCraft)
         }
 
-        setTitleAirline(dataAirline[posisitionPageAirline].nameFlight,dataAirline[posisitionPageAirline].nameAirCraft)
-
     }
 
     fun setAirlineImage(imgAirline: String) {
@@ -81,6 +79,7 @@ class SeatActivityFlight : BaseActivity(),
 
         setAirlineImage(datalist.dataFlight[posisitionPageAirline].imgAirline)
         setAirlineClass(datalist.dataFlight[posisitionPageAirline].nameClass)
+        setTitleAirline(datalist.dataFlight[posisitionPageAirline].titleAirline,dataAirline[posisitionPageAirline].nameAirCraft)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)

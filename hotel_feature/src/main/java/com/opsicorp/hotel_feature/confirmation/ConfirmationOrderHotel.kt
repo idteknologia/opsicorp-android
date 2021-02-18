@@ -20,7 +20,7 @@ import com.opsigo.travelaja.module.cart.model.ItemCardHotelModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.domainlayer.callback.CallbackValidationHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import kotlinx.android.synthetic.main.detail_prize_bottom.*
+import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import com.opsigo.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
@@ -29,6 +29,7 @@ import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import com.opsicorp.hotel_feature.R
 import android.view.View
+import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import java.util.HashMap
 
 class ConfirmationOrderHotel : BaseActivity(),
