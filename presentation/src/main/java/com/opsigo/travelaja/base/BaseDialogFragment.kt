@@ -2,6 +2,8 @@ package com.unicode.kingmarket.Base
 
 import android.app.ProgressDialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.util.Log
@@ -91,5 +93,9 @@ abstract class BaseDialogFragment: DialogFragment()  {
 
     fun getToken():String{
         return Globals.getDataPreferenceString(context!!,"token")
+    }
+
+    fun transparantBackground(){
+        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

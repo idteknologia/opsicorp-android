@@ -16,7 +16,7 @@ data class ReviewsItem(
 	val text: String = "",
 
 	@field:SerializedName("RelativeTime")
-	val relativeTime: String = "",
+	val relativeTime: String? = null,
 
 	@field:SerializedName("Uri")
 	val uri: String = ""

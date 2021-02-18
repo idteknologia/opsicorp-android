@@ -54,6 +54,7 @@ class HotelDetailMapper {
             val model     = RiviewHotelModel()
             model.image   = it.uri
             model.massage = it.text
+            model.time    = it.relativeTime.toString()
             model.rating  = it.rating
             model.name    = it.authorName
             data.add(model)

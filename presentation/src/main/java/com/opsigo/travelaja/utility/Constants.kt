@@ -112,16 +112,18 @@ object Constants {
     var tripDateFrom             = ""
     val KEY_TRIP_ITEM_TYPE       = "keytripitemtype"
     val KEY_INTENT_NOTIF_ID_INT  = "keyintentnotifint"
-
     val OPTION_FLIGHT_APPROVE    = 67
+
     val OPTION_TRAIN_APPROVE     = 56
     val OPTION_HOTEL_APPROVE     = 75
-
     val OPTION_FLIGHT_REJECT     = 68
+
     val OPTION_TRAIN_REJECT      = 59
+    var DATA_FLIGHT_ARIVAL       = ArrayList<AccomodationResultModel>()
     val OPTION_HOTEL_REJECT      = 76
 
-    var DATA_FLIGHT_ARIVAL       = ArrayList<AccomodationResultModel>()
+    //hotel
+    val ONCLICK_INFO_CANCELATION_HOTEL = 8001
 
     var DATA_SUCCESS_CREATE_TRIP = ""
 

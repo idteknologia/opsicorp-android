@@ -1,7 +1,8 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
 class RiviewHotelModel {
-    var id = ""
+    var time    = ""
+    var id      = ""
     var massage = ""
     var name    = ""
     var rating  = 0

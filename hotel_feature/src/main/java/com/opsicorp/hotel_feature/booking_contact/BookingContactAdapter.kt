@@ -19,8 +19,6 @@ import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomoda
 class BookingContactAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
-    lateinit var datalist: DataListOrderAccomodation
-
     override fun getItemCount(): Int { return items.size }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -50,7 +48,6 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
     inner class BookingAdultAdapter internal constructor(itemView: View) : ViewHolder(itemView) {
 
         fun bind(data: BookingContactAdapterModel, position: Int) {
-            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
             val radiobutton = ArrayList<RadioButton>()
             radiobutton.add(itemView.checkboxIdCart)
             radiobutton.add(itemView.checkboxPassport)
@@ -97,40 +94,12 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
 
             itemView.number_data_adult.text = (position+1).toString()
 
-            if (!datalist.dataFlight[position].dataSSR.dataBagage.isNullOrEmpty()){
-                itemView.card_baggage.visibility = View.VISIBLE
-            }
-            else{
-                itemView.card_baggage.visibility = View.GONE
-            }
-
-            if (!datalist.dataFlight[position].dataSSR.dataSsr.isNullOrEmpty()){
-                itemView.card_ssr.visibility = View.VISIBLE
-            }
-            else{
-                itemView.card_ssr.visibility = View.GONE
-            }
-            if (datalist.dataFlight[position].titleAirline.equals("Garuda Indonesia")){
-                itemView.card_frequency_flayer.visibility = View.VISIBLE
-            } else {
-                itemView.card_frequency_flayer.visibility = View.GONE
-            }
-
             if (itemView.card_baggage.visibility.equals(0)||itemView.card_ssr.visibility.equals(0)||itemView.card_frequency_flayer.visibility.equals(0)){
                 itemView.tv_additional.visibility = View.VISIBLE
             } else {
                 itemView.tv_additional.visibility = View.GONE
             }
 
-            itemView.card_baggage.setOnClickListener {
-                onclick.onClick(Constants.KEY_ACTIVITY_BAGAGE,position)
-            }
-            itemView.card_ssr.setOnClickListener {
-                onclick.onClick(Constants.KEY_ACTIVITY_SSR,position)
-            }
-            itemView.card_frequency_flayer.setOnClickListener {
-                onclick.onClick(Constants.KEY_ACTIVITY_FREQUENCE,position)
-            }
         }
 
     }

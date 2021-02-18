@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="1000dp">
+    <RelativeLayout
+        android:background="@color/transparent"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/btn_cancel"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoBold"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:gravity="end"
+            android:text="Close"/>
+
+        <LinearLayout
+            android:paddingLeft="20dp"
+            android:padding="20dp"
+            android:paddingTop="23dp"
+            android:paddingBottom="23dp"
+            android:layout_below="@+id/btn_cancel"
+            android:background="@drawable/dialog_rounded"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_marginRight="13dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_warning_trianggel_orange">
+                </ImageView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoBold"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#24253d"
+                    android:text="Cancelation Policy" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:singleLine="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="•"
+                    android:textColor="#91929e"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_cancel_before"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textColor="#91929e"
+                    android:text="No charge for cancellation before 22 May 2020"
+                    style="@style/RobotoMedium">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="•"
+                    android:textColor="#91929e"
+                    android:textSize="20dp">
+
+                </TextView>
+
+                <TextView
+                    android:singleLine="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:textColor="#91929e"
+                    android:text="Charge 100% - Start from 22 May 2020"
+                    style="@style/RobotoMedium">
+
+                </TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

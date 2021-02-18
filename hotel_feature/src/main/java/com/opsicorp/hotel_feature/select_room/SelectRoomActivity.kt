@@ -122,6 +122,11 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
                 Constants.DATA_ROOM_HOTEL = Serializer.serialize(data[position],SelectRoomModel::class.java)
                 gotoActivity(ConfirmationOrderHotel::class.java)
             }
+            Constants.ONCLICK_INFO_CANCELATION_HOTEL -> {
+                val dialog = DialogCancelationPolicy(
+                        data[position].cancelLimit)
+                showDialogFragment(dialog)
+            }
         }
     }
 

@@ -88,13 +88,12 @@ class DetailHotelActivity :BaseActivity(),
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     Constants.REVIEW_HOTEL_SELECT -> {
-                        val dialog = DialogDetailReview()
-                        showDialogFragment(dialog)
-                        dialog.setDataReview(
-                                "Tue, 29 AUG 2020",
+                        val dialog = DialogDetailReview(
+                                dataReview[position].time, //"Tue, 29 AUG 2020"
                                 dataReview[position].name,
                                 dataReview[position].massage,
                                 data.rating)
+                        showDialogFragment(dialog)
                     }
                 }
             }

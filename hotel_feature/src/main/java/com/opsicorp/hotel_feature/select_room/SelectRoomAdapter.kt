@@ -8,6 +8,8 @@ import android.content.Context
 import android.view.ViewGroup
 import android.view.View
 import com.opsicorp.hotel_feature.R
+import com.opsicorp.hotel_feature.detail_hotel.DialogDetailReview
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.item_select_room.view.*
 
@@ -34,16 +36,29 @@ class SelectRoomAdapter (context: Context, var items: ArrayList<SelectRoomModel>
         val data = items.get(position)
 
         holder.itemView.tv_title_room.text          = data.titleRoom
-        holder.itemView.tv_bed_facility.text        = data.BedFacility
+        holder.itemView.tv_bed_facility.text        = "Twin bed or Double bed (dummy)"//data.BedFacility
         holder.itemView.tv_policy_description.text  = data.policyDescription
         holder.itemView.tv_prize_room.text          = "IDR ${Globals.formatAmount(data.prize.toDouble().toInt().toString())}"
 
+        holder.itemView.btn_information.setOnClickListener {
+            onclick.onClick(Constants.ONCLICK_INFO_CANCELATION_HOTEL,position)
+        }
+        holder.itemView.tv_policy_description.setOnClickListener {
+            onclick.onClick(Constants.ONCLICK_INFO_CANCELATION_HOTEL,position)
+        }
+        holder.itemView.tv_title_policy.setOnClickListener {
+            onclick.onClick(Constants.ONCLICK_INFO_CANCELATION_HOTEL,position)
+        }
+
         if (data.isGuaranteedBooking){
             holder.itemView.tv_type_refund.text         = "Guaranted"
+            holder.itemView.tv_policy_description.text  = "This Reservation is non-refundable"
         }
         else{
             holder.itemView.tv_type_refund.text         = "Refundable"
+            holder.itemView.tv_policy_description.text  = "This Reservation is refundable"
         }
+
 
         holder.itemView.setOnClickListener {
             onclick.onClick(-1,position)

@@ -13,12 +13,14 @@ import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ValidationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
 import com.opsicorp.hotel_feature.booking_contact.BookingContactHotel
+import com.opsicorp.hotel_feature.select_room.DialogCancelationPolicy
 import kotlinx.android.synthetic.main.confirmation_order_hotel.*
 import opsigo.com.domainlayer.callback.CallbackConfirmationHotel
 import com.opsigo.travelaja.module.cart.model.ItemCardHotelModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.domainlayer.callback.CallbackValidationHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import kotlinx.android.synthetic.main.detail_prize_bottom.*
 import com.opsigo.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
@@ -27,7 +29,6 @@ import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import com.opsicorp.hotel_feature.R
 import android.view.View
-import kotlinx.android.synthetic.main.detail_prize_bottom.*
 import java.util.HashMap
 
 class ConfirmationOrderHotel : BaseActivity(),
@@ -49,6 +50,11 @@ class ConfirmationOrderHotel : BaseActivity(),
         initDataOrder()
         initToolbar()
         btn_next.callbackOnclickButton(this)
+        btn_info_cancelation.setOnClickListener {
+            val dialog = DialogCancelationPolicy(
+                    "2020-02-18")
+            showDialogFragment(dialog)
+        }
         setDataConfirmationOrder()
     }
 
