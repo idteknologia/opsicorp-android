@@ -188,7 +188,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
             title_airline.text     = data.titleAirline
             tv_number.text         = data.flightNumber
-            tv_duration.text       = data.duration
+            tv_duration.text       = data.durationView
             tv_type_class.text     = data.nameClass + " (" + data.code + ")"
             tv_destination.text    = data.origin + " - " + data.destination
             tv_time_departure.text = data.departTime + " - " + data.arriveTime

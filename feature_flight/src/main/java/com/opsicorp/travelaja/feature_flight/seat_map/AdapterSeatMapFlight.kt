@@ -9,9 +9,9 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.seat_adapter_view_flight.view.*
-import kotlinx.android.synthetic.main.seatmap_number_adapter_view.view.*
-import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view.view.*
-import kotlinx.android.synthetic.main.seatmap_spacing_left_adapter_view.view.*
+import kotlinx.android.synthetic.main.seatmap_number_adapter_view_flight.view.*
+import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view_flight.view.*
+import kotlinx.android.synthetic.main.seatmap_spacing_left_adapter_view_flight.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SeatFlightModel
 
 class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<SeatFlightModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -32,13 +32,13 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
                     .inflate(R.layout.seat_adapter_view_flight, parent, false))
 
             VIEW_NUMBER -> NumberAdapter(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.seatmap_number_adapter_view, parent, false))
+                    .inflate(R.layout.seatmap_number_adapter_view_flight, parent, false))
 
             VIEW_SPACING_CENTER -> SpacingCenterAdapter(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.seatmap_spacing_center_adapter_view, parent, false))
+                    .inflate(R.layout.seatmap_spacing_center_adapter_view_flight, parent, false))
 
             else -> SpacingAdapter(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.seatmap_spacing_left_adapter_view, parent, false))
+                    .inflate(R.layout.seatmap_spacing_left_adapter_view_flight, parent, false))
         }
 
     }
@@ -64,34 +64,34 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
 
 
             if (data.status.equals( Constants.SelectSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_selected)
+                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_selected)
                 itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorWhite))
             }
             else if(data.status.equals(Constants.PickSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_pick)
+                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_pick)
                 itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorWhite))
             }
             else if(data.status.equals(Constants.SoldSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_occupied)
+                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_occupied)
                 itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorGrayRound))
             }
             else if(data.status.equals(Constants.AvailableSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_available)
+                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_available)
                 itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorGray))
             }
 
             when (data.status){
                 Constants.SelectSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_selected)
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_selected)
                 }
                 Constants.PickSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_pick)
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_pick)
                 }
                 Constants.SoldSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_occupied)
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_occupied)
                 }
                 Constants.AvailableSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_available)
+                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_available)
                 }
             }
 

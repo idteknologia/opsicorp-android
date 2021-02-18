@@ -62,6 +62,8 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         holder.itemView.tv_station_origin.text  = data.depatureAirportName
         holder.itemView.tv_station_destination.text = data.arrivalAirportName
 
+        holder.itemView.line_total_duration.text = "Total Duration : ${data.line_total_duration}"
+
         if (data.flight_type.equals("NonGds")){
             holder.itemView.rlFareRules.gone()
         } else {

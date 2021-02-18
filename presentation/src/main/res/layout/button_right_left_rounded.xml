@@ -18,7 +18,9 @@
             android:background="@drawable/rounded_button_up_flight_selected_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_marginRight="5dp"
+            android:layout_weight="5"
+            android:layout_marginEnd="5dp">
             <TextView
                 style="@style/RobotoBlack"
                 android:id="@+id/title_btn_left"
@@ -31,16 +33,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="#ffffff"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.1"></LinearLayout>
-        <LinearLayout
             android:id="@+id/line_button_right"
             android:background="@drawable/rounded_button_up_flight_default_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="5">
+            android:layout_marginLeft="5dp"
+            android:layout_weight="5"
+            android:layout_marginStart="5dp">
             <TextView
                 style="@style/RobotoRegular"
                 android:textColor="@color/colorGrayTextButtonFlight"

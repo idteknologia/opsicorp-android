@@ -20,7 +20,7 @@ import com.opsigo.travelaja.BaseActivity
 import java.text.SimpleDateFormat
 import android.view.View
 import com.opsicorp.train_feature.R
-import kotlinx.android.synthetic.main.detail_prize_bottom.*
+import kotlinx.android.synthetic.main.detail_prize_bottom_train.*
 import java.lang.Exception
 
 class ConfirmOrderTrainActivity : BaseActivity(),

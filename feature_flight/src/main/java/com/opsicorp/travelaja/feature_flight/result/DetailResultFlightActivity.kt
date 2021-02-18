@@ -126,11 +126,12 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
                 "    ]\n" +
                 "}"*/
         dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+        val dataProfile = Globals.getProfile(applicationContext)
         val data = FareRulesRequest()
         data.adult = 1
         data.child = 0
         data.infant = 0
-        data.companyCode = "000002"
+        data.companyCode = dataProfile.companyCode
         data.travelAgent = "apidev"
         data.provider = dataFlight.airline
         data.segments = getDataSegmentFareRules()

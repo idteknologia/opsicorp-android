@@ -524,6 +524,6 @@
         android:id="@+id/line_prize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        layout="@layout/detail_prize_bottom"></include>
+        layout="@layout/detail_prize_bottom_hotel"></include>
 
 </RelativeLayout>

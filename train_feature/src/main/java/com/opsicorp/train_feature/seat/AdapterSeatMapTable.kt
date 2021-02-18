@@ -81,16 +81,16 @@ class AdapterSeatMapTable (val context: Context, private var items: ArrayList<Se
             }
 //            when (data.status){
 //                Constants.SelectSeat -> {
-//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_selected)
+//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_selected)
 //                }
 //                Constants.PickSeat -> {
-//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_pick)
+//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_pick)
 //                }
 //                Constants.SoldSeat -> {
-//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_occupied)
+//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_occupied)
 //                }
 //                Constants.AvailableSeat -> {
-//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_available)
+//                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_available)
 //                }
 //            }
 

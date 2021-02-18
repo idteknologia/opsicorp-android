@@ -27,7 +27,7 @@ import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import com.opsicorp.hotel_feature.R
 import android.view.View
-import kotlinx.android.synthetic.main.detail_prize_bottom.*
+import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import java.util.HashMap
 
 class ConfirmationOrderHotel : BaseActivity(),

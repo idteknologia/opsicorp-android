@@ -7,26 +7,26 @@ import com.google.gson.annotations.SerializedName
 data class BagageFlightRequest(
 
 	@field:SerializedName("SsrName")
-	val ssrName: String? = null,
+	var ssrName: String? = null,
 
 	@field:SerializedName("SsrCode")
-	val ssrCode: String? = null,
+	var ssrCode: String? = null,
 
 	@field:SerializedName("DestinationCode")
-	val destinationCode: String? = null,
+	var destinationCode: String? = null,
 
 	@field:SerializedName("OriginCode")
-	val originCode: String? = null,
+	var originCode: String? = null,
 
 	@field:SerializedName("Ccy")
-	val ccy: String? = null,
+	var ccy: String? = null,
 
 	@field:SerializedName("FlightNumber")
-	val flightNumber: String? = null,
+	var flightNumber: String? = null,
 
 	@field:SerializedName("SsrFare")
-	val ssrFare: Int? = null,
+	var ssrFare: Int? = null,
 
 	@field:SerializedName("SsrType")
-	val ssrType: Int? = null
+	var ssrType: Int? = null
 )

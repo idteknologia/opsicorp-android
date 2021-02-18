@@ -4,5 +4,5 @@
     <solid android:color="@color/colorGreenButton"/>
     <corners android:topLeftRadius="18dp"
         android:bottomLeftRadius="18dp"/>
-    <stroke android:width="1px" android:color="@color/colorGreenButton" />
+    <stroke android:width="5px" android:color="@color/white" />
 </shape>

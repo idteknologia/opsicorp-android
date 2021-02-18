@@ -11,7 +11,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_tour.view.*
+import kotlinx.android.synthetic.main.item_tour_new.view.*
 
 class TourEventAdapter ( context: Context,private var items: ArrayList<TourEventModel>): RecyclerView.Adapter<TourEventAdapter.ViewHolder>() {
 
@@ -24,7 +24,7 @@ class TourEventAdapter ( context: Context,private var items: ArrayList<TourEvent
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var itemView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_tour, parent, false)
+                .inflate(R.layout.item_tour_new, parent, false)
 
         return ViewHolder(itemView)
     }
