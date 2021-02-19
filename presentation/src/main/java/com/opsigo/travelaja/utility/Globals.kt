@@ -550,6 +550,12 @@ object Globals {
         return obDateFormat.format(obDate.getTime())
     }
 
+    fun getDateNowNewFormat():String{
+        val obDate = Date();
+        val obDateFormat = SimpleDateFormat("EEE, dd MMM yyyy")
+        return obDateFormat.format(obDate.getTime())
+    }
+
     fun getDateAfterNow(numberAfter: Int, formatOutPut: String):String{
         var obDate = Date()
         val c = Calendar.getInstance()

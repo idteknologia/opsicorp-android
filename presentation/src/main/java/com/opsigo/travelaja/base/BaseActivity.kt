@@ -206,6 +206,10 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         startActivityForResult(Intent(this,clas),code)
     }
 
+    fun gotoActivityResultIntent(intent: Intent,code:Int){
+        startActivityForResult(intent,code)
+    }
+
     fun gotoActivityResultWithBundle(clas : Class<*>?,bundle: Bundle,code:Int){
         val intent = Intent(this,clas)
         intent.putExtra("data",bundle)

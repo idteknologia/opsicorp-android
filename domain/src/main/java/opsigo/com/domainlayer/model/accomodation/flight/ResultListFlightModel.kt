@@ -9,7 +9,7 @@ class ResultListFlightModel {
 
     var dataSSR         = SsrModel()
     var dataFareRules   = ArrayList<FareRulesModel>()
-    var dataSeat        = ArrayList<SeatAirlineModel>()
+    var dataSeat        = SeatAirlineModel()
     var originAirport   = ""
     var destinationAirport = ""
     var airline         = 0

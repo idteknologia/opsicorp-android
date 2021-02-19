@@ -41,6 +41,8 @@ import com.opsigo.travelaja.R
 import java.lang.Exception
 import android.view.View
 import android.util.Log
+import com.opsigo.travelaja.utility.Globals.getDateNow
+import com.opsigo.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*
 
 class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -352,6 +354,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 itemView.tv_status_flight_cart.setTextColor(Color.parseColor("#2b9a8e"))
             }
 
+            itemView.tv_date_departure_flight_cart_top.text = getDateNowNewFormat()
             itemView.tv_airline_name.text                  = data.titleFlight
             itemView.tv_pnr_flight_cart.text               = data.pnrCode + "x-pos " + position
             itemView.tv_progress_flight.text               = "on progress ${data.progressFlight}%"
@@ -388,7 +391,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 itemView.tv_number_seat_flight_cart.text    = data.numberSheet
             }
 
-            itemView.tv_price_flight_cart.text = Globals.formatAmount(data.price.split(".")[0])
+            itemView.tv_price_flight_cart.text = "IDR ${Globals.formatAmount(data.price.split(".")[0])}"
 
 //
             if(data.isComply) {

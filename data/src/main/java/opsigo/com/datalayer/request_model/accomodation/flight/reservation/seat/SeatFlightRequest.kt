@@ -7,44 +7,44 @@ import com.google.gson.annotations.SerializedName
 data class SeatFlightRequest(
 
         @field:SerializedName("Availability")
-	val availability: String? = null,
+	var availability: String? = null,
 
         @field:SerializedName("PosX")
-	val posX: Int? = null,
+	var posX: Int? = null,
 
         @field:SerializedName("PosY")
-	val posY: Int? = null,
+	var posY: Int? = null,
 
         @field:SerializedName("SeatGroup")
-	val seatGroup: Int? = null,
+	var seatGroup: Int? = null,
 
         @field:SerializedName("SeatClass")
-	val seatClass: String? = null,
+	var seatClass: String? = null,
 
         @field:SerializedName("Properties")
-	val properties: PropertiesSeatFlight? = null,
+	var properties: PropertiesSeatFlight? = null,
 
         @field:SerializedName("SeatCode")
-	val seatCode: String? = null,
+	var seatCode: String? = null,
 
         @field:SerializedName("SeatFare")
-	val seatFare: Int? = null,
+	var seatFare: Int? = null,
 
         @field:SerializedName("SeatClassCode")
-	val seatClassCode: String? = null,
+	var seatClassCode: String? = null,
 
         @field:SerializedName("Ccy")
-	val ccy: String? = null,
+	var ccy: String? = null,
 
         @field:SerializedName("FlightNumber")
-	val flightNumber: String? = null,
+	var flightNumber: String? = null,
 
         @field:SerializedName("SeatType")
-	val seatType: String? = null,
+	var seatType: String? = null,
 
         @field:SerializedName("SeatRowSet")
-	val seatRowSet: String? = null,
+	var seatRowSet: String? = null,
 
         @field:SerializedName("SeatNumber")
-	val seatNumber: String? = null
+	var seatNumber: String? = null
 )

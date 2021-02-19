@@ -9,4 +9,10 @@ class SeatFlightModel {
     var status     = ""
     var seatName   = ""
     var price      = ""
+    var ccy        = ""
+    var seatGroup   = ""
+    var seatClass   = ""
+    var seatClassCode   = ""
+    var seatRow     = ""
+    var flightNumber = ""
 }

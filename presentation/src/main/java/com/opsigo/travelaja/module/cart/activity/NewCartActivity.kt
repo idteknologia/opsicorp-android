@@ -318,8 +318,8 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.codeFlight          = it.pnrCode
                 model.dataCardFlight.departureFlight     = it.originDeatination.split("-")[0]
                 model.dataCardFlight.arrivalFlight       = it.originDeatination.split("-")[1]
-                model.dataCardFlight.departure           = it.originName
-                model.dataCardFlight.arrival             = it.destinationName
+                model.dataCardFlight.departure           = it.origin
+                model.dataCardFlight.arrival             = it.destination
                 model.dataCardFlight.airportDeparture    = it.airportDeparture
                 model.dataCardFlight.airportArrival      = it.airportArrival
 
@@ -407,7 +407,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
-                toolbar.showAddMoreItem()
+
 
                 hideLoadingOpsicorp()
                 updateViewSummary()

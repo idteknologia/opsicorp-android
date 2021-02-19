@@ -517,9 +517,73 @@
                                 android:text="Adult x1"
                                 style="@style/RobotoRegular"/>
                         </LinearLayout>
-
                         <TextView
                             android:id="@+id/tv_prize_departure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="#d9000000"
+                            android:gravity="end"
+                            android:text="IDR 110.800"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlBaggagePrice"
+                        android:visibility="gone"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tv_booking_baggage"
+                                style="@style/RobotoRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#b324253d"
+                                android:text="Baggage"/>
+
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_total_price_baggage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:textColor="#d9000000"
+                            android:gravity="end"
+                            android:text="IDR 110.800"
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rlSsrPrice"
+                        android:visibility="gone"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tv_booking_ssr"
+                                style="@style/RobotoRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#b324253d"
+                                android:text="Special Service Request"/>
+                        </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_total_price_ssr"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"

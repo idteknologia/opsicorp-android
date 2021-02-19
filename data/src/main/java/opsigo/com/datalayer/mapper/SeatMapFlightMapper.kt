@@ -82,6 +82,7 @@ class SeatMapFlightMapper {
                     model.dataSeat.addAll(seats)
                     model.nameFlight       = rsFlightSeatsItem.airline.toString()
                     model.nameAirCraft     = rsFlightSeatsItem.airCraftTypeName.toString()
+                    model.flightNumber     = rsFlightSeatsItem.flightNumber.toString()
                     model.totalRows        = rsFlightSeatsItem.seatRows[0].size+1
 
                     mData.add(model)
@@ -100,6 +101,12 @@ class SeatMapFlightMapper {
         st.y          = seatRowsItemItem.posY
         st.seatName   = seatRowsItemItem.seatClassCode.toString()
         st.price      = seatRowsItemItem.seatFare.toString()
+        st.ccy        = seatRowsItemItem.ccy.toString()
+        st.seatClass  = seatRowsItemItem.seatClass.toString()
+        st.seatClassCode  = seatRowsItemItem.seatClassCode.toString()
+        st.seatGroup  = seatRowsItemItem.seatGroup.toString()
+        st.seatRow    = seatRowsItemItem.seatRowSeat.toString()
+        st.flightNumber = seatRowsItemItem.flightNumber.toString()
         return st
     }
 
@@ -134,6 +141,12 @@ class SeatMapFlightMapper {
         st.numberSeat = seatRowsItemItem.seatNumber.toString()
         st.x          = seatRowsItemItem.posX
         st.y          = seatRowsItemItem.posY
+        st.ccy        = seatRowsItemItem.ccy.toString()
+        st.seatClass  = seatRowsItemItem.seatClass.toString()
+        st.seatClassCode  = seatRowsItemItem.seatClassCode.toString()
+        st.seatGroup  = seatRowsItemItem.seatGroup.toString()
+        st.seatRow    = seatRowsItemItem.seatRowSeat.toString()
+        st.flightNumber = seatRowsItemItem.flightNumber.toString()
         return st
     }
 }

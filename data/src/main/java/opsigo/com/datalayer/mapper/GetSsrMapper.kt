@@ -47,7 +47,7 @@ class GetSsrMapper {
                     mDataBagage.curency = it.ccy.toString()
                     mDataBagage.id = model.data.first().id.toString()
                     mDataBagage.pricing = it.ssrFare.toString()
-                    mDataBagage.ssrName = it.ssrName!!.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
+                    mDataBagage.ssrName = it.ssrName.toString()
                     mDataBagage.ssrCode = it.ssrCode.toString()
                     mDataBagage.ssrType = it.ssrType.toString()
                     mDataBagage.ssrTypeName = it.ssrTypeName.toString()

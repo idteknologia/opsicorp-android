@@ -1,5 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Build
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -7,6 +9,7 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.select_seat_activity.*
@@ -59,18 +62,29 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode){
+            Constants.GET_SEAT_MAP -> {
+                val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+                setLog("test save seat",Serializer.serialize(dataList.dataFlight[0].dataSeat))
+                setData()
+            }
+        }
+    }
+
     override fun onClicked() {
         finish()
     }
 
     override fun onClick(views: Int, position: Int) {
-        /*when(views){
-            -1 ->{
-                val bundle = Bundle()
-                bundle.putInt(Constants.KEY_POSITION_SELECT_SEAT,position)
-                gotoActivityResultWithBundle(SeatActivityFlight::class.java,bundle, Constants.GET_SEAT_MAP)
+        when(views){
+            Constants.REQUEST_CODE_SELECT_SEAT->{
+                val intent = Intent(this, SeatActivityFlight::class.java)
+                intent.putExtra(Constants.KEY_POSITION_SELECT_SEAT,position)
+               gotoActivityResultIntent(intent,Constants.GET_SEAT_MAP)
             }
-        }*/
+        }
     }
 
     override fun btnBack() {

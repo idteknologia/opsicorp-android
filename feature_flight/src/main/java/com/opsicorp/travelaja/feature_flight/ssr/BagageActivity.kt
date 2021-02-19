@@ -119,6 +119,8 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
         val selectedItem = SelectedBaggageModel()
         selectedItem.price = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing
+        selectedItem.ssrCode = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrCode
+        selectedItem.curency = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.curency
         selectedItem.ssrName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrName
         selectedItem.ssrType = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrType
         selectedItem.ssrTypeName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrTypeName

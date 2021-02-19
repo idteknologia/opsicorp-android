@@ -90,8 +90,6 @@ data class SegmentFlightsRequest(
 	@field:SerializedName("FareRuleKeys")
 	var fareRuleKeys: Any? = null,
 
-	@field:SerializedName("Id")
-	var id: String? = null,
 
 	@field:SerializedName("Seq")
 	var seq: String? = null,

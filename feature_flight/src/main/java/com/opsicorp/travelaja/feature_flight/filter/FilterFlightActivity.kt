@@ -19,12 +19,10 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.filter_flight_activity_new.*
 import kotlinx.android.synthetic.main.filter_flight_activity_new.btn_next
-import kotlinx.android.synthetic.main.flight_fragment_new.*
+import kotlinx.android.synthetic.main.flight_filter_fragment_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
 
 class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener, FilterTransitOpsicorp.OnclickFilterListener, KoinComponent, ToolbarOpsicorp.OnclickButtonListener {
 

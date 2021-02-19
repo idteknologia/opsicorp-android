@@ -1,6 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.booking_contact
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
@@ -100,6 +101,26 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
             }
             else{
                 itemView.card_baggage.visibility = View.GONE
+            }
+
+            if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
+                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
+                itemView.tvBaggageTotalSelect.text = datalist.dataFlight[0].dataSSR.bagaggeItemSelected[0].ssrName
+                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+            } else {
+                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
+                itemView.tvBaggageTotalSelect.text = "0 Kg"
+                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
+            }
+
+            if (!datalist.dataFlight[position].dataSSR.ssrSelected.isNullOrEmpty()){
+                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
+                itemView.tvSsrTotalSelect.text = "${datalist.dataFlight[position].dataSSR.ssrSelected.size} Selected"
+                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+            } else {
+                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
+                itemView.tvSsrTotalSelect.text = "Meals, etc"
+                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
 
             if (!datalist.dataFlight[position].dataSSR.dataSsr.isNullOrEmpty()){

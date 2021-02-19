@@ -127,15 +127,12 @@ class SeatActivityFlight : BaseActivity(),
                                 adapterSeat.notifyDataSetChanged()
                                 tv_number_seat_select.text = "Seat Number ${dataAirline[posisitionPageAirline].dataSeat[position].numberSeat}"
 
-                                /*val seatItem = SeatAirlineModel()
-                                val seatSelected = ArrayList<SeatAirlineModel>()
+                                val seatItem = SeatAirlineModel()
                                 seatItem.nameFlight = dataAirline[posisitionPageAirline].nameFlight
                                 seatItem.nameAirCraft = dataAirline[posisitionPageAirline].nameAirCraft
-                                seatItem.dataSeat = dataAirline[posisitionPageAirline].dataSeat
-                                seatSelected.add(seatItem)
-                                datalist.dataFlight[posisitionPageAirline].dataSeat.clear()
-                                datalist.dataFlight[posisitionPageAirline].dataSeat.addAll(seatSelected)
-                                Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)*/
+                                seatItem.dataSeat.add(dataAirline[posisitionPageAirline].dataSeat[position])
+                                datalist.dataFlight[posisitionPageAirline].dataSeat = seatItem
+                                Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
                             }
                         }
                     }

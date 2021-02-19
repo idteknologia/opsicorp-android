@@ -37,7 +37,7 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = items[position]
-        holder.itemView.tv_value_baggage.text = data.ssrName
+        holder.itemView.tv_value_baggage.text = data.ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
         holder.itemView.tv_price_baggage.text = "IDR ${Globals.currencyIDRFormat(data.pricing.toDouble())}"
 
         holder.itemView.setOnClickListener {

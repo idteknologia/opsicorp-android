@@ -78,6 +78,8 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
         val selectedItem = SelectedSsrModel()
         selectedItem.price = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].pricing
+        selectedItem.ssrCode = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrCode
+        selectedItem.curency = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].curency
         selectedItem.ssrName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrName
         selectedItem.ssrType = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrType
         selectedItem.ssrTypeName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrTypeName

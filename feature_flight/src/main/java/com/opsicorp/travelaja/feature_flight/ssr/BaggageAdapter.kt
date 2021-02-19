@@ -71,7 +71,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
                 when(views){
                     Constants.KEY_BAGGAGE_ITEM_SELECTED -> {
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
-                        holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName
+                        holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
 
                     }
                 }

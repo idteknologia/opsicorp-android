@@ -42,22 +42,36 @@ class SelectSeatAdapter(context: Context): RecyclerView.Adapter<SelectSeatAdapte
         } else {
             holder.itemView.tv_title_trip.text     = "Arrival Flight"
         }
-        if (data.dataSeat.isNotEmpty()){
+        /*if (data.dataSeat.isNotEmpty()){
             holder.itemView.tvPickSeat.text = "Change"
         } else {
             holder.itemView.tvPickSeat.text = "Select Seat"
-        }
+        }*/
         if (data.imgAirline.isNotEmpty()){
             Picasso.get()
                     .load(data.imgAirline)
                     .fit()
                     .into(holder.itemView.img_airline)
         }
+
+        if (!Constants.DATA_SEAT_AIRLINE.filter {
+                    it.flightNumber == data.flightNumber
+                }.isNullOrEmpty()){
+            if (data.dataSeat.dataSeat.isNotEmpty()){
+                holder.itemView.tvPickSeat.text = "Change"
+            } else {
+                holder.itemView.tvPickSeat.text = "Select Seat"
+            }
+        } else {
+            holder.itemView.tvPickSeat.text = "Unavailable"
+            holder.itemView.tvPickSeat.setTextColor(context.resources.getColor(R.color.colorGray))
+        }
+
         holder.itemView.tvPickSeat.setOnClickListener {
-            /*onclick.onClick(-1,position)*/
-            val intent = Intent(context, SeatActivityFlight::class.java)
-            intent.putExtra(Constants.KEY_POSITION_SELECT_SEAT,position)
-             (context as Activity).startActivityForResult(intent,Constants.GET_SEAT_MAP)
+            if (holder.itemView.tvPickSeat.text.equals("Select Seat")){
+                onclick.onClick(Constants.REQUEST_CODE_SELECT_SEAT,position)
+
+            }
         }
     }
 
