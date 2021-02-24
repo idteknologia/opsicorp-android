@@ -31,6 +31,7 @@ import android.app.Activity
 import android.widget.Toast
 import android.view.View
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
@@ -46,7 +47,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     val dataContacts = ArrayList<BookingContactAdapterModel>()
     val resultSeat = ResultSeat()
     var totalPriceBagaggeItem = 0.0
-    var totalPriceSsrItem : Double = 0.0
+    var totalPriceSsrItem  = 0.0
     val adapter by lazy { BookingContactFlightAdapter(this,dataContacts) }
     lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
@@ -154,26 +155,29 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
             tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
             tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"
 
+
             if (dataListFlight.dataFlight.size>1){
                 line_arrival.visibility     = View.VISIBLE
                 tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price , false)
-                tv_station_arrival.visibility = View.INVISIBLE
-                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) , false)
+                tv_station_arrival.text     = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
+                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBagaggeItem + totalPriceSsrItem ) , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBagaggeItem + totalPriceSsrItem ) , false)
             }
             else{
                 line_arrival.visibility     = View.GONE
                 tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
                 tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
             }
-            if (dataListFlight.dataFlight[0].dataSSR.bagaggeItemSelected.isNotEmpty()||dataListFlight.dataFlight[0].dataSSR.ssrSelected.isNotEmpty()){
-                rlBaggagePrice.visible()
-                rlSsrPrice.visible()
-                tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBagaggeItem,false)
-                tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsrItem,false)
-            } else {
-                rlBaggagePrice.gone()
-                rlSsrPrice.gone()
+            dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
+                if (resultListFlightModel.dataSSR.bagaggeItemSelected.isNotEmpty()||resultListFlightModel.dataSSR.ssrSelected.isNotEmpty()){
+                    rlBaggagePrice.visible()
+                    rlSsrPrice.visible()
+                    tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBagaggeItem,false)
+                    tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsrItem,false)
+                } else {
+                    rlBaggagePrice.gone()
+                    rlSsrPrice.gone()
+                }
             }
         }
     }
@@ -218,7 +222,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun expandPrize() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_down))
         tv_including.visibility = View.GONE
         body_prize.expand()
         Globals.delay(210,object :Globals.DelayCallback{
@@ -229,7 +233,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun collapsePrize() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_orange))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_up_orange))
         tv_including.visibility = View.VISIBLE
         body_prize.collapse()
     }
@@ -284,7 +288,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 setLog("testSaveBaruBaggage",Serializer.serialize(dataList.dataFlight[0].dataSSR.bagaggeItemSelected))
                 totalPriceBaggage()
                 initPrize()
-
+                adapter.setData(dataContacts)
 
             }
             Constants.KEY_ACTIVITY_SSR ->{
@@ -292,6 +296,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 setLog("testSaveBaruSsr",Serializer.serialize(dataList.dataFlight[0].dataSSR.ssrSelected))
                 totalPriceSsr()
                 initPrize()
+                adapter.setData(dataContacts)
             }
         }
     }
@@ -316,7 +321,11 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 Constants.ID_BOOKING_TEMPORARY = data.idTrip
                 setLog("-----------##################---------------")
                 setLog(Serializer.serialize(data))
-                gotoActivity(NewCartActivity::class.java)
+                if(data.errorMessage.equals("")){
+                    gotoActivity(NewCartActivity::class.java)
+                } else {
+                    showAllert("error",data.errorMessage)
+                }
             }
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
@@ -423,22 +432,41 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         val listSeat = ArrayList<SeatFlightRequest>()
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         if (dataList.dataFlight.isNotEmpty()){
-            dataList.dataFlight.forEach {
+            dataList.dataFlight[0].dataSeat.dataSeat.forEach {
                 val mData = SeatFlightRequest()
-                mData.availability      = it.dataSeat.dataSeat[0].status
-                mData.ccy               = it.dataSeat.dataSeat[0].ccy
-                mData.flightNumber      = it.dataSeat.dataSeat[0].flightNumber
-                mData.seatFare          = it.dataSeat.dataSeat[0].price.toDouble().toInt()
-                mData.seatNumber        = it.dataSeat.dataSeat[0].numberSeat
-                mData.seatType          = it.dataSeat.dataSeat[0].type
-                mData.seatCode          = it.dataSeat.dataSeat[0].seatName
-                mData.seatClass         = it.dataSeat.dataSeat[0].seatClass
-                mData.seatClassCode     = it.dataSeat.dataSeat[0].seatClassCode
-                mData.seatRowSet        = it.dataSeat.dataSeat[0].seatRow
-                mData.posX              = it.dataSeat.dataSeat[0].x
-                mData.posX              = it.dataSeat.dataSeat[0].y
+                mData.availability      = it.status
+                mData.ccy               = it.ccy
+                mData.flightNumber      = it.flightNumber
+                mData.seatFare          = it.price.toDouble().toInt()
+                mData.seatNumber        = it.numberSeat
+                mData.seatType          = it.type
+                mData.seatCode          = it.seatName
+                mData.seatClass         = it.seatClass
+                mData.seatClassCode     = it.seatClassCode
+                mData.seatRowSet        = it.seatRow
+                mData.posX              = it.x
+                mData.posX              = it.y
 
                 listSeat.add(mData)
+            }
+            if (dataList.dataFlight.size > 1){
+                dataList.dataFlight[1].dataSeat.dataSeat.forEach {
+                    val mData = SeatFlightRequest()
+                    mData.availability      = it.status
+                    mData.ccy               = it.ccy
+                    mData.flightNumber      = it.flightNumber
+                    mData.seatFare          = it.price.toDouble().toInt()
+                    mData.seatNumber        = it.numberSeat
+                    mData.seatType          = it.type
+                    mData.seatCode          = it.seatName
+                    mData.seatClass         = it.seatClass
+                    mData.seatClassCode     = it.seatClassCode
+                    mData.seatRowSet        = it.seatRow
+                    mData.posX              = it.x
+                    mData.posX              = it.y
+
+                    listSeat.add(mData)
+                }
             }
             return listSeat
         } else {

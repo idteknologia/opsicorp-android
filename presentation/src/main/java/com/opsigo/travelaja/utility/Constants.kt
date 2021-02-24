@@ -7,6 +7,7 @@ import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.domainlayer.model.accomodation.flight.CodeSearchAirLineModel
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
+import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.signin.CountryModel
 
@@ -18,6 +19,7 @@ object Constants {
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
+    var DATA_SSR          = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
     val TYPE_PASSANGGER_ADULT    = "1"
@@ -68,6 +70,10 @@ object Constants {
     val REQUEST_CODE_FARE_RULES   = 9071
     val REQUEST_CODE_SELECT_SSR  = 9070
     val REQUEST_CODE_SELECT_SEAT = 9069
+    val REQUEST_CODE_DELETE_SSR  = 9068
+    val REQUEST_CODE_DELETE_SEAT = 9067
+    val REQUEST_CODE_DELETE_BAGGAGE  = 9066
+    val KEY_DETAILS_CART         = 9065
     val KEY_POSITION_FARE_RULES  = "keyFareRules"
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"

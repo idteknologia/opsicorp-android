@@ -7,7 +7,7 @@
     android:paddingRight="20dp"
     android:layout_height="wrap_content">
 
-    <CheckBox
+    <RadioButton
         android:buttonTint="@color/colorPrimary"
         android:layout_marginLeft="11dp"
         android:layout_marginRight="10dp"

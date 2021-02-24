@@ -155,7 +155,7 @@ class CalendarVertical : LinearLayout,
                             ) {
                                 Toast.makeText(
                                         context,
-                                        "You cant select the previous date",
+                                        "You can't select the previous date",
                                         Toast.LENGTH_LONG
                                 ).show()
                             } else {

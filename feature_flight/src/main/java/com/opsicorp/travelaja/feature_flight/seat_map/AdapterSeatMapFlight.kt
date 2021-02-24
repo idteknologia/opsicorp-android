@@ -1,6 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -64,34 +65,34 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
 
 
             if (data.status.equals( Constants.SelectSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_selected)
-                itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorWhite))
+                itemView.titel_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_selected)
+                itemView.titel_seat.setTextColor(ContextCompat.getColor(context,R.color.colorWhite))
             }
             else if(data.status.equals(Constants.PickSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_pick)
-                itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorWhite))
+                itemView.titel_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_pick)
+                itemView.titel_seat.setTextColor(ContextCompat.getColor(context,R.color.colorWhite))
             }
             else if(data.status.equals(Constants.SoldSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_occupied)
-                itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorGrayRound))
+                itemView.titel_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_occupied)
+                itemView.titel_seat.setTextColor(ContextCompat.getColor(context,R.color.colorGrayRound))
             }
             else if(data.status.equals(Constants.AvailableSeat)){
-                itemView.titel_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_available)
-                itemView.titel_seat.setTextColor(context.resources.getColor(R.color.colorGray))
+                itemView.titel_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_available)
+                itemView.titel_seat.setTextColor(ContextCompat.getColor(context,R.color.colorGray))
             }
 
             when (data.status){
                 Constants.SelectSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_selected)
+                    itemView.line_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_selected)
                 }
                 Constants.PickSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_pick)
+                    itemView.line_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_pick)
                 }
                 Constants.SoldSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_occupied)
+                    itemView.line_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_occupied)
                 }
                 Constants.AvailableSeat -> {
-                    itemView.line_seat.background = context.resources.getDrawable(R.drawable.rounded_seatmap_flight_available)
+                    itemView.line_seat.background = ContextCompat.getDrawable(context,R.drawable.rounded_seatmap_flight_available)
                 }
             }
 

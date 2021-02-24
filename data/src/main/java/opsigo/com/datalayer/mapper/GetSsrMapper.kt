@@ -159,6 +159,7 @@ class GetSsrMapper {
     private fun dataSsrMapper(it: SsrsItem): SsrItemModel {
         var mData = SsrItemModel()
         mData.ssrTypeName = it.ssrTypeName.toString()
+        mData.ssrFlightNumber    = it.flightNumber.toString()
         mData.ssrItem.addAll(ssrItemMapper())
         return mData
     }

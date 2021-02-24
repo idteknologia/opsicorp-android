@@ -347,6 +347,10 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                         .into(itemView.img_airline)
             }
 
+            itemView.tvDetailsCart.setOnClickListener {
+                onclick.onClick(Constants.KEY_DETAILS_CART,position)
+            }
+
             itemView.tv_status_flight_cart.text   = data.status
             if("Expired".equals(data.status)){
                 itemView.tv_status_flight_cart.setTextColor(Color.parseColor("#BB000E"))

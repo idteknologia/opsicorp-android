@@ -3,6 +3,7 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
@@ -20,7 +21,7 @@ import opsigo.com.datalayer.mapper.Serializer
 import java.lang.Exception
 
 class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
-        OnclickListenerRecyclerViewParent {
+        OnclickListenerRecyclerView {
 
     val adapter by lazy { SsrAdapter(this) }
     val adapter2 by lazy { SsrPriceAdapter(this) }
@@ -69,8 +70,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
             it.dataSSR.ssrSelected.forEach {
                 try {
                     totalSelected = totalSelected + it.price.toDouble()
-                }
-                catch (e: Exception) {
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
@@ -87,13 +87,13 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     private fun expandPrice() {
-        icImageSsr.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
+        icImageSsr.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.ic_chevron_down))
         line_shadow.visible()
         body_price.expand()
     }
 
     private fun collapsePrice() {
-        icImageSsr.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_orange))
+        icImageSsr.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.ic_chevron_up_orange))
         line_shadow.gone()
         body_price.collapse()
     }
@@ -109,12 +109,12 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode){
+        when (requestCode) {
             Constants.REQUEST_CODE_SELECT_SSR -> {
-                if (resultCode == Activity.RESULT_OK){
+                if (resultCode == Activity.RESULT_OK) {
                     setData()
                     val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                    setLog("testSaveKembali",dataList.dataFlight[0].dataSSR.ssrSelected.size.toString())
+                    setLog("testSaveKembali", dataList.dataFlight[0].dataSSR.ssrSelected.size.toString())
                 }
             }
         }
@@ -145,10 +145,6 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
         return R.layout.ssr_flight_activity
     }
 
-    override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
-
-    }
-
     override fun onClicked() {
         finish()
     }
@@ -161,5 +157,22 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     override fun btnCard() {
+    }
+
+    override fun onClick(views: Int, position: Int) {
+        when (views){
+            Constants.REQUEST_CODE_SELECT_SSR -> {
+                val intent = Intent(this, SsrListActivity::class.java)
+                intent.putExtra(Constants.KEY_POSITION_SELECT_SSR, position)
+                gotoActivityResultIntent(intent,Constants.REQUEST_CODE_SELECT_SSR)
+            }
+            Constants.REQUEST_CODE_DELETE_SSR -> {
+                datalist.dataFlight[position].dataSSR.ssrSelected.clear()
+                Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+                adapter.setData(datalist.dataFlight)
+                adapter2.setData(datalist.dataFlight)
+                initPrice()
+            }
+        }
     }
 }

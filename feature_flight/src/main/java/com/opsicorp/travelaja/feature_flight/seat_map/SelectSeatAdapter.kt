@@ -3,6 +3,7 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,8 @@ import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.gone
+import com.opsigo.travelaja.utility.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.select_seat_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
@@ -59,16 +62,22 @@ class SelectSeatAdapter(context: Context): RecyclerView.Adapter<SelectSeatAdapte
                 }.isNullOrEmpty()){
             if (data.dataSeat.dataSeat.isNotEmpty()){
                 holder.itemView.tvPickSeat.text = "Change"
+                holder.itemView.ivRemoveSeat.visible()
+                holder.itemView.ivRemoveSeat.setOnClickListener {
+                    onclick.onClick(Constants.REQUEST_CODE_DELETE_SEAT,position)
+                }
             } else {
+                holder.itemView.ivRemoveSeat.gone()
                 holder.itemView.tvPickSeat.text = "Select Seat"
             }
         } else {
+            holder.itemView.ivRemoveSeat.gone()
             holder.itemView.tvPickSeat.text = "Unavailable"
-            holder.itemView.tvPickSeat.setTextColor(context.resources.getColor(R.color.colorGray))
+            holder.itemView.tvPickSeat.setTextColor(ContextCompat.getColor(context,R.color.colorGray))
         }
 
         holder.itemView.tvPickSeat.setOnClickListener {
-            if (holder.itemView.tvPickSeat.text.equals("Select Seat")){
+            if (holder.itemView.tvPickSeat.text.equals("Select Seat")||holder.itemView.tvPickSeat.text.equals("Change")){
                 onclick.onClick(Constants.REQUEST_CODE_SELECT_SEAT,position)
 
             }

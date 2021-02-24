@@ -38,8 +38,9 @@ class ListParticipantsDataMapper {
 
                                 //dataFlight.idFlight         = segmentFlightEntity.id//"Sriwijaya"
                                 dataFlight.idFlight         = segmentFlightEntity.tripFlightId//"Sriwijaya"
-                                dataFlight.titleFlight      = segmentFlightEntity.airlineName//"Sriwijaya"
+                                dataFlight.airlineName      = tripFlightsItem.airlineView//"Sriwijaya"
                                 dataFlight.flightNumber     = segmentFlightEntity.flightNumber//"SJ-0412"
+                                dataFlight.seatNumber       = segmentFlightEntity.flightNumber
 
                                 //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
                                 dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status

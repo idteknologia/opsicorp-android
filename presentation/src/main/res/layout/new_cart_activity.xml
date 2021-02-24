@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="#009688"
-                    android:text="IDR 0" />
+                    android:text=""/>
             </LinearLayout>
 
             <TextView

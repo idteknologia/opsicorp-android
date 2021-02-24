@@ -119,7 +119,7 @@ class CreateTripActivity : BaseActivity(),
         val bundle = Bundle()
         bundle.putString("emplaoyId","city")
         bundle.putString("invisibleSearch","yes")
-        bundle.putString("titleHeader","destination")
+        bundle.putString("titleHeader","Select Destination")
         gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_CODE_COUNTRY)
     }
 

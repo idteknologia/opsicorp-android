@@ -14,9 +14,6 @@ import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.empty_cart_view.*
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import com.opsigo.travelaja.module.cart.model.CartModel
-import com.opsigo.travelaja.utility.StringUtils
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
 import android.app.AlertDialog
 import android.content.BroadcastReceiver
@@ -32,6 +29,7 @@ import android.util.Log
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.utility.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
@@ -45,7 +43,8 @@ import java.util.*
 class NewCartActivity : BaseActivity() , View.OnClickListener ,
         PageListBisnisTrip.Callback,
         PageDetailListTrip.Callback,
-        PageDetailPersonalTrip.Callback,ToolbarOpsicorp.OnclickButtonListener{
+        PageDetailPersonalTrip.Callback,ToolbarOpsicorp.OnclickButtonListener,
+        OnclickListenerRecyclerView {
 
     override fun getLayout(): Int { return R.layout.new_cart_activity }
     override fun OnMain() {
@@ -306,7 +305,8 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.pnrCode             = it.pnrCode
                 model.dataCardFlight.pnrId               = it.pnrId
                 model.dataCardFlight.tripId              = tripSummary.tripId
-                model.dataCardFlight.titleFlight         = it.titleFlight
+                model.dataCardFlight.titleFlight         = it.airlineName
+                model.dataCardFlight.numberSheet         = it.seatNumber
                 model.dataCardFlight.flightNumber        = it.flightNumber
                 model.dataCardFlight.dateArrival         = it.dateArrival
                 model.dataCardFlight.dateDeparture       = it.dateDeparture
@@ -314,7 +314,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.isComply            = it.isComply
                 model.dataCardFlight.timeDeparture       = it.timeDeparture
                 model.dataCardFlight.price               = it.price
-                model.dataCardFlight.classFlight         = it.price
+                model.dataCardFlight.classFlight         = it.classFlight
                 model.dataCardFlight.codeFlight          = it.pnrCode
                 model.dataCardFlight.departureFlight     = it.originDeatination.split("-")[0]
                 model.dataCardFlight.arrivalFlight       = it.originDeatination.split("-")[1]
@@ -325,7 +325,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
                 val modelItem  = ModelItemTrip()
                 modelItem.id   = it.idFlight
-                modelItem.name = it.titleFlight
+                modelItem.name = it.airlineName
                 modelItem.progress = it.progressFLight
                 modelItem.status = it.status
 
@@ -710,6 +710,14 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             this.unregisterReceiver(mReceiver)
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    override fun onClick(views: Int, position: Int) {
+        when(views){
+            Constants.KEY_DETAILS_CART -> {
+                
+            }
         }
     }
 

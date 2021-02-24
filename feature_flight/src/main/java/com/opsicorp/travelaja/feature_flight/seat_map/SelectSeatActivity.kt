@@ -79,10 +79,15 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
 
     override fun onClick(views: Int, position: Int) {
         when(views){
-            Constants.REQUEST_CODE_SELECT_SEAT->{
+            Constants.REQUEST_CODE_SELECT_SEAT ->{
                 val intent = Intent(this, SeatActivityFlight::class.java)
                 intent.putExtra(Constants.KEY_POSITION_SELECT_SEAT,position)
                gotoActivityResultIntent(intent,Constants.GET_SEAT_MAP)
+            }
+            Constants.REQUEST_CODE_DELETE_SEAT -> {
+                datalist.dataFlight[position].dataSeat.dataSeat.clear()
+                Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+                adapter.setData(datalist.dataFlight)
             }
         }
     }

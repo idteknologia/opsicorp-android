@@ -1,6 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.os.Build
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -77,13 +78,13 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     private fun expandPrice() {
-        icImageBagagge.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
+        icImageBagagge.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_down))
         line_shadow.visible()
         body_price.expand()
     }
 
     private fun collapsePrice() {
-        icImageBagagge.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_orange))
+        icImageBagagge.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_up_orange))
         line_shadow.gone()
         body_price.collapse()
     }

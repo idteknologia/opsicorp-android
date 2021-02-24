@@ -47,7 +47,7 @@ class DetailApprovalActivityOld: BaseActivity(){
         val mData2 = SummaryModelItems()
         val dataTrain2  = ItemFlightModel()
         dataTrain2.imageFlight = "https://i.ibb.co/C0XzT6K/sriwijaya.png"
-        dataTrain2.titleFlight = "Sriwijaya"
+        dataTrain2.airlineName = "Sriwijaya"
         dataTrain2.flightNumber     = "SJ-0412"
         dataTrain2.airportDeparture = "Jakarta (CGK) - Yogyakarta (JOG)"
         dataTrain2.status           = "Reserved"

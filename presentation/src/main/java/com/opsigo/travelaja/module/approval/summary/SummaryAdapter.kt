@@ -192,7 +192,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
                 tv_dep_return_tittle.visibility = View.GONE
             }
 
-            tv_airline.text          = data.titleFlight
+            tv_airline.text          = data.airlineName
             tv_destination.text      = data.airportDeparture
             tv_pnr.text              = data.pnrCode
             tv_status.text           = data.status

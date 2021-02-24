@@ -1,6 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.result
 
 import android.support.v4.app.FragmentManager
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
@@ -266,14 +267,14 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun expandPrice() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_down))
         line_shadow.visibility  = View.VISIBLE
         tv_including.visibility = View.GONE
         body_prize.expand()
     }
 
     private fun collapsePrice() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_orange))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_up_orange))
         tv_including.visibility = View.VISIBLE
         line_shadow.visibility  = View.GONE
         body_prize.collapse()

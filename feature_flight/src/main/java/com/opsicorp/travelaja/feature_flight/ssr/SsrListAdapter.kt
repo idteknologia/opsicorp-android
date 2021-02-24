@@ -39,7 +39,7 @@ class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.Vie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = items.get(position)
-        holder.itemView.tv_ssr_type.text = data.ssrTypeName
+        holder.itemView.tv_ssr_type.text = Globals.splitCamelCase(data.ssrTypeName)
         /*Log.e("testAdapter",items.size.toString())*/
         setDataRecycler(holder,data,position)
 

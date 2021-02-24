@@ -96,16 +96,38 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
 
             itemView.number_data_adult.text = (position+1).toString()
 
-            if (!datalist.dataFlight[position].dataSSR.dataBagage.isNullOrEmpty()){
+            datalist.dataFlight.forEachIndexed { index, resultListFlightModel ->
+                if (resultListFlightModel.dataSSR.dataBagage.isNotEmpty()){
+                    itemView.card_baggage.visibility = View.VISIBLE
+                } else {
+                    itemView.card_baggage.visibility = View.GONE
+                }
+            }
+            datalist.dataFlight.forEachIndexed { index, resultListFlightModel ->
+                if (resultListFlightModel.dataSSR.dataSsr.isNotEmpty()){
+                    itemView.card_ssr.visibility = View.VISIBLE
+                } else {
+                    itemView.card_ssr.visibility = View.GONE
+                }
+            }
+
+            /*if (!datalist.dataFlight[position].dataSSR.dataBagage.isNullOrEmpty()){
                 itemView.card_baggage.visibility = View.VISIBLE
             }
             else{
                 itemView.card_baggage.visibility = View.GONE
             }
 
+            if (!datalist.dataFlight[position].dataSSR.dataSsr.isNullOrEmpty()){
+                itemView.card_ssr.visibility = View.VISIBLE
+            }
+            else{
+                itemView.card_ssr.visibility = View.GONE
+            }*/
+
             if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
                 itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
-                itemView.tvBaggageTotalSelect.text = datalist.dataFlight[0].dataSSR.bagaggeItemSelected[0].ssrName
+                itemView.tvBaggageTotalSelect.text = datalist.dataFlight[0].dataSSR.bagaggeItemSelected[0].ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
                 itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
                 itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
@@ -123,12 +145,6 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
                 itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
 
-            if (!datalist.dataFlight[position].dataSSR.dataSsr.isNullOrEmpty()){
-                itemView.card_ssr.visibility = View.VISIBLE
-            }
-            else{
-                itemView.card_ssr.visibility = View.GONE
-            }
             if (datalist.dataFlight[position].titleAirline.equals("Garuda Indonesia")){
                 itemView.card_frequency_flayer.visible()
             } else {

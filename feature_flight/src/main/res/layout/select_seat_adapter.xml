@@ -60,6 +60,14 @@
             android:textColor="#009688"
             android:textSize="14sp" />
 
+        <ImageView
+            android:id="@+id/ivRemoveSeat"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/tvPickSeat"
+            android:src="@drawable/ic_delete"/>
+
     </RelativeLayout>
 
 

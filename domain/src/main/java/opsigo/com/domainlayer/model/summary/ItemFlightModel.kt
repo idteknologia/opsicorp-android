@@ -17,9 +17,10 @@ class ItemFlightModel{
     var classFlight = ""
     var subClass    = ""
     var flightNumber   = ""
+    var seatNumber  = ""
 
 
-    var titleFlight = ""
+    var airlineName = ""
     //var number      = ""
 
     //depart

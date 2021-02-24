@@ -8,6 +8,7 @@ class ReserveFlightMapper {
     fun mapper(deserialize: ReservationFlightEntity): ReserveFlightModel {
         val reservationFlightModel = ReserveFlightModel()
         reservationFlightModel.idTrip = deserialize.tripId
+        reservationFlightModel.errorMessage = deserialize.errorMessage
         return reservationFlightModel
     }
 }
