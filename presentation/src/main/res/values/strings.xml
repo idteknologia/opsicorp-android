@@ -691,4 +691,5 @@ Please add your trip item for Approval."
     <string name="title_hotel_feature">Module Title</string>
     <string name="title_train_feature">Train Feature</string>
     <string name="title_module_tour">Module Tour</string>
+    <string name="add_other_flight">+ Add other flight</string>
 </resources>

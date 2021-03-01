@@ -32,12 +32,13 @@ import org.koin.core.inject
 import java.lang.Exception
 import android.view.View
 import android.util.Log
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }
 
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
-    var flightFragment = FlightFragment()
+    var flightFragment = FlightFragmentNew()
     var hotelFragment  = HotelFragmentNew()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
