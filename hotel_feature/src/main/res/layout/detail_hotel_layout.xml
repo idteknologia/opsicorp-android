@@ -114,13 +114,22 @@
 
             </TextView>
         </LinearLayout>
+
+
     </LinearLayout>
 
-
+    <LinearLayout
+        android:layout_below="@+id/line_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d3d3d8">
+    </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="13dp"
         android:id="@+id/line_riview"
-        android:paddingBottom="15dp"
         android:layout_below="@id/line_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,15 +138,6 @@
         <LinearLayout
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#d3d3d8">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -207,8 +207,8 @@
         </LinearLayout>
     </LinearLayout>
 
-
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:id="@+id/line_facility"
         android:layout_below="@+id/line_riview"
         android:layout_width="match_parent"

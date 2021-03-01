@@ -14,38 +14,25 @@
     </dist:module>
 
     <application>
+        <activity android:name=".booking_contact.SpecialRequestActivity"></activity>
         <activity
             android:name=".result.ResultSearchHotelActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".nearby.NearbyActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".confirmation.ConfirmationOrderHotel"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".detail_hotel.DetailHotelActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".select_room.SelectRoomActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".booking_contact.BookingContactHotel"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
     </application>
-
 
 </manifest>

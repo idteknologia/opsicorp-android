@@ -1,8 +1,8 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
-import opsigo.com.datalayer.model.SummaryEntity
-import opsigo.com.datalayer.model.accomodation.flight.SegmentFlightEntity
+import opsigo.com.datalayer.model.cart.SegmentsItem
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.summary.*
 
 class ListParticipantsDataMapper {
@@ -13,56 +13,56 @@ class ListParticipantsDataMapper {
 
         from.let {
 
-            val tpModelList = it.map { data ->
+            val tpModelList = it?.map { data ->
 
                 val dataFlightModel = ArrayList<ItemFlightModel>()
                 val dataTrainModel  = ArrayList<ItemTrainModel>()
                 val dataHotelModel  = ArrayList<ItemHotelModel>()
 
-                if (mData.flights.isNotEmpty()){
-                    mData.flights.filter { it.employeeId == data.employeeId }.first().tripFlights.forEachIndexed { index, tripFlightsItem ->
+                if (!mData.flights.isNullOrEmpty()){
+                    mData.flights.filter { it?.employeeId == data?.employeeId }.first()?.tripFlights?.forEachIndexed { index, tripFlightsItem ->
 
                         var num = 0
-                        tripFlightsItem.segments.forEachIndexed { _, segmentFlightEntity ->
+                        tripFlightsItem?.segments?.forEachIndexed { _, segmentFlightEntity ->
 
-                            if (num==segmentFlightEntity.num){
+                            if (num==segmentFlightEntity?.num){
                                 val dataFlight  = ItemFlightModel()
 
-                                dataFlight.typeView         = tripFlightsItem.flightTypeView
+                                dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
                                 dataFlight.type             = tripFlightsItem.flightType
 
-                                dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
+                                dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
                                 //dataFlight.carrier          = tripFlightsItem.carrier
 
                                 dataFlight.originDeatination = segmentFlightEntity.originName+" - "+segmentFlightEntity.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
 
                                 //dataFlight.idFlight         = segmentFlightEntity.id//"Sriwijaya"
-                                dataFlight.idFlight         = segmentFlightEntity.tripFlightId//"Sriwijaya"
-                                dataFlight.titleFlight      = segmentFlightEntity.airlineName//"Sriwijaya"
-                                dataFlight.flightNumber     = segmentFlightEntity.flightNumber//"SJ-0412"
+                                dataFlight.idFlight         = segmentFlightEntity.tripFlightId.toString()//"Sriwijaya"
+                                dataFlight.titleFlight      = segmentFlightEntity.airlineName.toString()//"Sriwijaya"
+                                dataFlight.flightNumber     = segmentFlightEntity.flightNumber.toString()//"SJ-0412"
 
                                 //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
                                 dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
                                 dataFlight.classFlight      = segmentFlightEntity.category + " Class"
-                                dataFlight.subClass         = "Subclass-" + segmentFlightEntity.classCode
+                                dataFlight.subClass         = "Subclass-" + segmentFlightEntity.classCode.toString()
 
                                 dataFlight.num              = segmentFlightEntity.num
                                 dataFlight.seq              = segmentFlightEntity.seq
 
                                 //departure
-                                dataFlight.origin           = segmentFlightEntity.origin
-                                dataFlight.originName       = segmentFlightEntity.cityOrigin
-                                dataFlight.airportDeparture = segmentFlightEntity.airportOrigin
-                                dataFlight.dateDeparture    = segmentFlightEntity.departDate
+                                dataFlight.origin           = segmentFlightEntity.origin.toString()
+                                dataFlight.originName       = segmentFlightEntity.cityOrigin.toString()
+                                dataFlight.airportDeparture = segmentFlightEntity.airportOrigin.toString()
+                                dataFlight.dateDeparture    = segmentFlightEntity.departDate.toString()
 
-                                dataFlight.timeDeparture    = segmentFlightEntity.departTime
+                                dataFlight.timeDeparture    = segmentFlightEntity.departTime.toString()
 
                                 //arrival
-                                dataFlight.destination      = segmentFlightEntity.destination
-                                dataFlight.destinationName  = segmentFlightEntity.cityDestination
-                                dataFlight.airportArrival   = segmentFlightEntity.airportDestination
-                                dataFlight.dateArrival      = segmentFlightEntity.arriveDate
-                                dataFlight.timeArrival      = segmentFlightEntity.arriveTime
+                                dataFlight.destination      = segmentFlightEntity.destination.toString()
+                                dataFlight.destinationName  = segmentFlightEntity.cityDestination.toString()
+                                dataFlight.airportArrival   = segmentFlightEntity.airportDestination.toString()
+                                dataFlight.dateArrival      = segmentFlightEntity.arriveDate.toString()
+                                dataFlight.timeArrival      = segmentFlightEntity.arriveTime.toString()
 
                                 dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
                                 dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
@@ -70,11 +70,11 @@ class ListParticipantsDataMapper {
                                 dataFlight.isComply         = segmentFlightEntity.isComply
 
 //                                dataFlight.price          = "IDR 400.000/pax"
-                                dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount
+                                dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
 
-                                dataFlight.progressFLight    = if (tripFlightsItem.jobProgress.progress==null) "" else tripFlightsItem.jobProgress.progress
+                                dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
                                 dataFlightModel.add(dataFlight)
                                 num++
@@ -89,23 +89,23 @@ class ListParticipantsDataMapper {
                     }
                 }
 
-                if (mData.trains.isNotEmpty()){
-                    if (mData.trains.filter { it.employeeId == data.employeeId }.isNotEmpty()){
-                        mData.trains.filter { it.employeeId == data.employeeId }.forEachIndexed { index, tripTrainEntity ->
-                            tripTrainEntity.tripTrains.forEachIndexed { index, tripTrainsItem ->
-                                tripTrainsItem.segments.forEachIndexed { index, segmentsItem ->
+                if (!mData.trains.isNullOrEmpty()){
+                    if (mData.trains.filter { it?.employeeId == data?.employeeId }.isNotEmpty()){
+                        mData.trains.filter { it?.employeeId == data?.employeeId }.forEachIndexed { index, tripTrainEntity ->
+                            tripTrainEntity?.tripTrains?.forEachIndexed { index, tripTrainsItem ->
+                                tripTrainsItem?.segments?.forEachIndexed { index, segmentsItem ->
                                     val dataTrain  = ItemTrainModel()
 
-                                    dataTrain.typeView      = tripTrainsItem.flightTypeView
+                                    dataTrain.typeView      = tripTrainsItem.flightTypeView.toString()
 
                                     dataTrain.imageTrain    = if(segmentsItem.kaiImageUrl==null) "https://i.ibb.co/5Wv9ksW/Screen-Shot-2019-08-27-at-13-34-15.png" else segmentsItem.kaiImageUrl
                                     dataTrain.titleTrain    = segmentsItem.trainName//"Argo Parahyangan"
                                     dataTrain.carrierNumber = if (segmentsItem.currierNumber==null) "" else segmentsItem.currierNumber//"K02"
                                     dataTrain.classTrain    = segmentsItem.category + " (" + segmentsItem.classCode + ")"//"Executive (J)"
 
-                                    dataTrain.seatNumber    = if (tripTrainsItem.passengers.get(0).seatNumber==null) "" else tripTrainsItem.passengers.get(0).seatNumber
-                                    dataTrain.seatName      = if (tripTrainsItem.passengers.get(0).seatName==null) "" else tripTrainsItem.passengers.get(0).seatName
-                                    dataTrain.seatText      = if (tripTrainsItem.passengers.get(0).seatText==null) "" else tripTrainsItem.passengers.get(0).seatText
+                                    dataTrain.seatNumber    = if (tripTrainsItem.passengers?.get(0)?.seatNumber==null) "" else tripTrainsItem.passengers?.get(0)?.seatNumber.toString()
+                                    dataTrain.seatName      = if (tripTrainsItem.passengers?.get(0)?.seatName==null) "" else tripTrainsItem.passengers?.get(0)?.seatName.toString()
+                                    dataTrain.seatText      = if (tripTrainsItem.passengers?.get(0)?.seatText==null) "" else tripTrainsItem.passengers?.get(0)?.seatText.toString()
                                     dataTrain.classCode     = if (segmentsItem.classCode==null) "" else segmentsItem.classCode
                                     dataTrain.fareBasisCode = if (segmentsItem.fareBasisCode==null) "" else segmentsItem.fareBasisCode
 
@@ -131,12 +131,12 @@ class ListParticipantsDataMapper {
                                     dataTrain.pnrCode          = if (tripTrainsItem.pnrCode==null) "" else tripTrainsItem.pnrCode //"AW5CRP"
                                     dataTrain.pnrID            = if (tripTrainsItem.pnrId==null) "" else tripTrainsItem.pnrId
                                     dataTrain.price            = tripTrainsItem.amount.toString()
-                                    dataTrain.idTrain          = if (tripTrainsItem.idTrain==null) "" else tripTrainsItem.idTrain
+                                    dataTrain.idTrain          = if (tripTrainsItem.id==null) "" else tripTrainsItem.id
                                     dataTrain.tripID           = if (mData.id==null) "" else mData.id
                                     dataTrain.tripItemID       = tripTrainsItem.tripItemId ?: ""
                                     dataTrain.referenceCode    = if (tripTrainsItem.referenceCode==null) "" else tripTrainsItem.referenceCode
 
-                                    dataTrain.progressTrain    = tripTrainsItem.jobProgress.progress
+                                    dataTrain.progressTrain    = tripTrainsItem.jobProgress?.progress.toString()
 
                                     dataTrainModel.add(dataTrain)
                                 }
@@ -145,26 +145,26 @@ class ListParticipantsDataMapper {
                     }
                 }
 
-                if (data.tripItemTypes.filter { it.name == "Hotel" }.isNotEmpty()){
-                    data.tripItemTypes.filter { it.name == "Hotel" }.forEachIndexed { index, tripItemTypesItem ->
-                        tripItemTypesItem.tripItems.
-                                filter {it.employeeId == data.employeeId }.forEach {
-                            it.tripHotels.forEachIndexed { index, tripHotelsItem ->
+                if (!data?.tripItemTypes?.filter { it?.name == "Hotel" }.isNullOrEmpty()){
+                    data?.tripItemTypes?.filter { it?.name == "Hotel" }?.forEachIndexed { index, tripItemTypesItem ->
+                        tripItemTypesItem?.tripItems?.
+                                filter {it?.employeeId == data.employeeId }?.forEach {
+                            it?.tripHotels?.forEachIndexed { index, tripHotelsItem ->
                                 val dataHotel =  ItemHotelModel()
-                                dataHotel.image       = tripHotelsItem.image.toString()
-                                dataHotel.status      = tripHotelsItem.statusName.toString()
-                                dataHotel.nameHotel   = tripHotelsItem.name.toString()
-                                dataHotel.address     = if (tripHotelsItem.address==null) "${tripHotelsItem.cityName}" else tripHotelsItem.address
+                                dataHotel.image       = tripHotelsItem?.image.toString()
+                                dataHotel.status      = tripHotelsItem?.statusName.toString()
+                                dataHotel.nameHotel   = tripHotelsItem?.name.toString()
+                                dataHotel.address     = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address.toString()
 
-                                dataHotel.dateBooking = tripHotelsItem.bookedDate.toString()
-                                dataHotel.starRating  = tripHotelsItem.rating.toString()
-                                dataHotel.price       = tripHotelsItem.amount.toString()
-                                dataHotel.employId    = data.employeeId
-                                dataHotel.tripItemId  = tripHotelsItem.tripItemId.toString()
+                                dataHotel.dateBooking = tripHotelsItem?.bookedDate.toString()
+                                dataHotel.starRating  = tripHotelsItem?.rating.toString()
+                                dataHotel.price       = tripHotelsItem?.amount.toString()
+                                dataHotel.employId    = data.employeeId.toString()
+                                dataHotel.tripItemId  = tripHotelsItem?.tripItemId.toString()
 
-                                dataHotel.typeHotel   = tripHotelsItem.roomType.toString()
-                                dataHotel.pnrHotel    = tripHotelsItem.pnrId.toString()
-                                dataHotel.description = if (tripHotelsItem.address==null) "${tripHotelsItem.cityName}" else tripHotelsItem.address +" ,"+ tripHotelsItem.city
+                                dataHotel.typeHotel   = tripHotelsItem?.roomType.toString()
+                                dataHotel.pnrHotel    = tripHotelsItem?.pnrId.toString()
+                                dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address +" ,"+ tripHotelsItem.city.toString()
 
                                 dataHotelModel.add(dataHotel)
                             }
@@ -173,54 +173,56 @@ class ListParticipantsDataMapper {
                 }
 
                 return@map TripParticipantsItemModel(
-                        data.id,
-                        data.totalTripPaidAirline,
-                        data.totalTripPaidTrain,
-                        data.totalTripPaidHotel,
-                        data.costCenterCode,
-                        data.costCenterName,
-                        data.budgetCode,
-                        data.budgetName,
-                        data.budgetId,
-                        data.costCenterId,
-                        ListTripItemTypesDataMapper().mapFrom(data.tripItemTypes),
-                        data.isApproveForm,
-                        data.status,
-                        data.statusView,
-                        data.fullName,
-                        data.jobTitle,
-                        data.employeeId,
-                        ListApprovalDataMapper().mapFrom(data.tripParticipantCustomApprovals),
+                        data?.id.toString(),
+                        data?.totalTripPaidAirline.toString(),
+                        data?.totalTripPaidTrain.toString(),
+                        data?.totalTripPaidHotel.toString(),
+                        data?.costCenterCode.toString(),
+                        data?.costCenterName.toString(),
+                        data?.budgetCode.toString(),
+                        data?.budgetName.toString(),
+                        data?.budgetId.toString(),
+                        data?.costCenterId.toString(),
+                        ListTripItemTypesDataMapper().mapFrom(data?.tripItemTypes),
+                        if(data?.isApproveForm==null)false else data.isApproveForm,
+                        data?.status.toString(),
+                        data?.statusView.toString(),
+                        data?.fullName.toString(),
+                        data?.jobTitle.toString(),
+                        data?.employeeId.toString(),
+                        ListApprovalDataMapper().mapFrom(data?.tripParticipantCustomApprovals),
                         dataFlightModel,
                         dataTrainModel,
                         dataHotelModel)
             }
-
-            return tpModelList
+            if (!tpModelList.isNullOrEmpty()){
+                return tpModelList
+            }else{
+                return ArrayList()
+            }
         }
-
     }
 
-    private fun segmentMapperData(segmentFlightEntity: SegmentFlightEntity): FlightSegmentItem {
+    private fun segmentMapperData(segmentFlightEntity: SegmentsItem?): FlightSegmentItem {
         val mData = FlightSegmentItem()
-        Log.d("xixxx","on mapper 1 :" + segmentFlightEntity.id + " - " + segmentFlightEntity.airlineName)
+        Log.d("xixxx","on mapper 1 :" + segmentFlightEntity?.id + " - " + segmentFlightEntity?.airlineName)
 
-        mData.nameAirline = segmentFlightEntity.airlineName
-        mData.idAirline   =   segmentFlightEntity.id
-        mData.imageAirline  = segmentFlightEntity.airlineImageUrl
-        mData.classAirline  = segmentFlightEntity.classCode
-        mData.timeDeparture = segmentFlightEntity.departTime
-        mData.timeArrival   = segmentFlightEntity.arriveTime
-        mData.cityDeparture = segmentFlightEntity.cityOrigin
-        mData.cityArrival   = segmentFlightEntity.cityDestination
+        mData.nameAirline = segmentFlightEntity?.airlineName.toString()
+        mData.idAirline   =   segmentFlightEntity?.id.toString()
+        mData.imageAirline  = segmentFlightEntity?.airlineImageUrl.toString()
+        mData.classAirline  = segmentFlightEntity?.classCode.toString()
+        mData.timeDeparture = segmentFlightEntity?.departTime.toString()
+        mData.timeArrival   = segmentFlightEntity?.arriveTime.toString()
+        mData.cityDeparture = segmentFlightEntity?.cityOrigin.toString()
+        mData.cityArrival   = segmentFlightEntity?.cityDestination.toString()
         mData.teminal       = ""
         mData.estimatiTime  = ""
-        mData.seatFlight    = segmentFlightEntity.flightNumber
-        mData.typeFlight    = segmentFlightEntity.category
-        mData.airportDeparture = segmentFlightEntity.airportOrigin
-        mData.airportArrival   = segmentFlightEntity.airportDestination
-        mData.dateDeparture    = segmentFlightEntity.departDate
-        mData.dateArrival      = segmentFlightEntity.arriveDate
+        mData.seatFlight    = segmentFlightEntity?.flightNumber.toString()
+        mData.typeFlight    = segmentFlightEntity?.category.toString()
+        mData.airportDeparture = segmentFlightEntity?.airportOrigin.toString()
+        mData.airportArrival   = segmentFlightEntity?.airportDestination.toString()
+        mData.dateDeparture    = segmentFlightEntity?.departDate.toString()
+        mData.dateArrival      = segmentFlightEntity?.arriveDate.toString()
         mData.layouver         = ""
 
         return mData

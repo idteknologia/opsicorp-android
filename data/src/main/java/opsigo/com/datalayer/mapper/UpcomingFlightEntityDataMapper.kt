@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.UpcomingFlightEntity
+import opsigo.com.datalayer.model.accomodation.flight.upcomming.UpcomingFlightEntity
 import opsigo.com.domainlayer.model.UpcomingFlightModel
 
 

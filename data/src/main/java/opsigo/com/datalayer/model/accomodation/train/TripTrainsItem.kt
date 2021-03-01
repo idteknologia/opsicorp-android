@@ -2,182 +2,182 @@ package opsigo.com.datalayer.model.accomodation.train
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
-import opsigo.com.datalayer.model.Contact
 import opsigo.com.datalayer.model.accomodation.train.reservation.SegmentsItemReservationEntity
+import opsigo.com.datalayer.model.cart.Contact
 
 @Generated("com.robohorse.robopojogenerator")
 data class TripTrainsItem(
 
-        @field:SerializedName("Origin")
+		@field:SerializedName("Origin")
 		var origin: String = "",
 
-        @field:SerializedName("BookingDate")
+		@field:SerializedName("BookingDate")
 		var bookingDate: String = "",
 
-        @field:SerializedName("TripPlanId")
+		@field:SerializedName("TripPlanId")
 		var tripPlanId: String = "",
 
-        @field:SerializedName("IsRefundable")
+		@field:SerializedName("IsRefundable")
 		var isRefundable: Boolean = false,
 
-        @field:SerializedName("Segments")
+		@field:SerializedName("Segments")
 		var segments: List<SegmentsItemReservationEntity> = ArrayList(),
 
-        @field:SerializedName("Payments")
+		@field:SerializedName("Payments")
 		var payments: List<PaymentsItem> = ArrayList(),
 
-        @field:SerializedName("OriginView")
+		@field:SerializedName("OriginView")
 		var originView: String = "",
 
-        @field:SerializedName("ActionDate")
+		@field:SerializedName("ActionDate")
 		var actionDate: String = "",
 
-        @field:SerializedName("IsPostedHipchat")
+		@field:SerializedName("IsPostedHipchat")
 		var isPostedHipchat: Boolean = false,
 
-        @field:SerializedName("Remarks")
+		@field:SerializedName("Remarks")
 		var remarks: List<Any?>? = null,
 
-        @field:SerializedName("TicketNumber")
+		@field:SerializedName("TicketNumber")
 		var ticketNumber: String = "",
 
-        @field:SerializedName("TimeLimitString")
+		@field:SerializedName("TimeLimitString")
 		var timeLimitString: String = "",
 
-        @field:SerializedName("FlightType")
+		@field:SerializedName("FlightType")
 		var flightType: Int = 0,
 
-        @field:SerializedName("PrgText")
+		@field:SerializedName("PrgText")
 		var prgText: String = "",
 
-        @field:SerializedName("Child")
+		@field:SerializedName("Child")
 		var child: Int = 0,
 
-        @field:SerializedName("PaymentStatus")
+		@field:SerializedName("PaymentStatus")
 		var paymentStatus: String = "",
 
-        @field:SerializedName("PaymentSuccess")
+		@field:SerializedName("PaymentSuccess")
 		var paymentSuccess: Boolean = false,
 
-        @field:SerializedName("FlightTypeView")
+		@field:SerializedName("FlightTypeView")
 		var flightTypeView: String = "",
 
-        @field:SerializedName("Status")
+		@field:SerializedName("Status")
 		var status: String = "",
 
-        @field:SerializedName("PaymentReff")
+		@field:SerializedName("PaymentReff")
 		var paymentReff: String = "",
 
-        @field:SerializedName("PaymentTimeLimit")
+		@field:SerializedName("PaymentTimeLimit")
 		var paymentTimeLimit: String = "",
 
-        @field:SerializedName("IsEmailSent")
+		@field:SerializedName("IsEmailSent")
 		var isEmailSent: Boolean = false,
 
-        @field:SerializedName("TicketedDate")
+		@field:SerializedName("TicketedDate")
 		var ticketedDate: String = "",
 
-        @field:SerializedName("PoNumber")
+		@field:SerializedName("PoNumber")
 		var poNumber: String = "",
 
-        @field:SerializedName("TicketDocName")
+		@field:SerializedName("TicketDocName")
 		var ticketDocName: String = "",
 
-        @field:SerializedName("BookingDateView")
+		@field:SerializedName("BookingDateView")
 		var bookingDateView: String = "",
 
-        @field:SerializedName("HasCostCenterUpdated")
+		@field:SerializedName("HasCostCenterUpdated")
 		var hasCostCenterUpdated: Boolean = false,
 
-        @field:SerializedName("PnrCode")
+		@field:SerializedName("PnrCode")
 		var pnrCode: String = "",
 
-        @field:SerializedName("FlightDurationPerNum")
+		@field:SerializedName("FlightDurationPerNum")
 		var flightDurationPerNum: String = "",
 
-        @field:SerializedName("TimeLimitView")
+		@field:SerializedName("TimeLimitView")
 		var timeLimitView: String = "",
 
-        @field:SerializedName("Passengers")
+		@field:SerializedName("Passengers")
 		var passengers: List<PassengersItem> = ArrayList(),
 //		var passengers: List<opsigo.com.datalayer.model.accomodation.train.reservation.PassengersItem?>? = null,
 
-        @field:SerializedName("ApprovedBy")
+		@field:SerializedName("ApprovedBy")
 		var approvedBy: String = "",
 
-        @field:SerializedName("DestinationView")
+		@field:SerializedName("DestinationView")
 		var destinationView: String = "",
 
-        @field:SerializedName("TravelAgent")
+		@field:SerializedName("TravelAgent")
 		var travelAgent: String = "",
 
-        @field:SerializedName("Id")
+		@field:SerializedName("Id")
 		var idTrain: String = "",
 
-        @field:SerializedName("PrgNum")
+		@field:SerializedName("PrgNum")
 		var prgNum: Double = 0.0,
 
-        @field:SerializedName("ReferenceCode")
+		@field:SerializedName("ReferenceCode")
 		var referenceCode: String = "",
 
-        @field:SerializedName("JobProgress")
+		@field:SerializedName("JobProgress")
 		var jobProgress: JobProgress,
 
-        @field:SerializedName("Destination")
+		@field:SerializedName("Destination")
 		var destination: String = "",
 
-        @field:SerializedName("IsRemoved")
+		@field:SerializedName("IsRemoved")
 		var isRemoved: Boolean = false,
 
-        @field:SerializedName("AmountBeforeReserved")
+		@field:SerializedName("AmountBeforeReserved")
 		var amountBeforeReserved: Double = 0.0,
 
-        @field:SerializedName("OpsigoLastSync")
+		@field:SerializedName("OpsigoLastSync")
 		var opsigoLastSync: String = "",
 
-        @field:SerializedName("TrainName")
+		@field:SerializedName("TrainName")
 		var trainName: String = "",
 
-        @field:SerializedName("DiffAmountInfo")
+		@field:SerializedName("DiffAmountInfo")
 		var diffAmountInfo: String = "",
 
-        @field:SerializedName("Infant")
+		@field:SerializedName("Infant")
 		var infant: Int = 0,
 
-        @field:SerializedName("PnrId")
+		@field:SerializedName("PnrId")
 		var pnrId: String = "",
 
-        @field:SerializedName("LinkReference")
+		@field:SerializedName("LinkReference")
 		var linkReference: String = "",
 
-        @field:SerializedName("ActionDateView")
+		@field:SerializedName("ActionDateView")
 		var actionDateView: String = "",
 
-        @field:SerializedName("TicketedDateView")
+		@field:SerializedName("TicketedDateView")
 		var ticketedDateView: String = "",
 
-        @field:SerializedName("Adult")
+		@field:SerializedName("Adult")
 		var adult: Int = 0,
 
-        @field:SerializedName("PrgJobType")
+		@field:SerializedName("PrgJobType")
 		var prgJobType: String = "",
 
-        @field:SerializedName("RemarkReject")
+		@field:SerializedName("RemarkReject")
 		var remarkReject: String = "",
 
-        @field:SerializedName("TimeLimit")
+		@field:SerializedName("TimeLimit")
 		var timeLimit: String = "",
 
-        @field:SerializedName("Amount")
+		@field:SerializedName("Amount")
 		var amount: Double = 0.0,
 
-        @field:SerializedName("Contact")
+		@field:SerializedName("Contact")
 		var contact: Contact = Contact(),
 
-        @field:SerializedName("TicketDocUrl")
+		@field:SerializedName("TicketDocUrl")
 		var ticketDocUrl: String = "",
 
-        @field:SerializedName("TripItemId")
+		@field:SerializedName("TripItemId")
 		var tripItemId: String = ""
 
 )

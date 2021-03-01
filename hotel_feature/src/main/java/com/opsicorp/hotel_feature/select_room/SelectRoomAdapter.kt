@@ -13,7 +13,7 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.item_select_room.view.*
 
-class SelectRoomAdapter (context: Context, var items: ArrayList<SelectRoomModel>): RecyclerView.Adapter<SelectRoomAdapter.ViewHolder>() {
+class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): RecyclerView.Adapter<SelectRoomAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -36,9 +36,9 @@ class SelectRoomAdapter (context: Context, var items: ArrayList<SelectRoomModel>
         val data = items.get(position)
 
         holder.itemView.tv_title_room.text          = data.titleRoom
-        holder.itemView.tv_bed_facility.text        = "Twin bed or Double bed (dummy)"//data.BedFacility
         holder.itemView.tv_policy_description.text  = data.policyDescription
-        holder.itemView.tv_prize_room.text          = "IDR ${Globals.formatAmount(data.prize.toDouble().toInt().toString())}"
+        holder.itemView.tv_prize_room.text          = "${Globals.formatAmount(data.prize.toDouble().toInt().toString())}"
+        holder.itemView.tv_policy_description.text  = "This Reservation is non-refundable"
 
         holder.itemView.btn_information.setOnClickListener {
             onclick.onClick(Constants.ONCLICK_INFO_CANCELATION_HOTEL,position)
@@ -50,13 +50,24 @@ class SelectRoomAdapter (context: Context, var items: ArrayList<SelectRoomModel>
             onclick.onClick(Constants.ONCLICK_INFO_CANCELATION_HOTEL,position)
         }
 
+        if (data.isBreakfast){
+            holder.itemView.tv_include_breakfast.text  = "Included Breakfast"
+        }
+        else {
+            holder.itemView.tv_include_breakfast.text  = "Room Only"
+        }
+
         if (data.isGuaranteedBooking){
-            holder.itemView.tv_type_refund.text         = "Guaranted"
-            holder.itemView.tv_policy_description.text  = "This Reservation is non-refundable"
+            holder.itemView.type_booking.text          = "Hold Booking"
         }
         else{
-            holder.itemView.tv_type_refund.text         = "Refundable"
-            holder.itemView.tv_policy_description.text  = "This Reservation is refundable"
+            holder.itemView.type_booking.text          = "Direct Booking"
+        }
+
+        if (data.isFullCharge){
+//            holder.itemView.line_guaranted.visibility   = View.VISIBLE //"Refundable"\
+        }else {
+//            holder.itemView.line_guaranted.visibility   = View.GONE //"Refundable"\
         }
 
 

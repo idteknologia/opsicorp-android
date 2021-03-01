@@ -1,7 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
 import android.util.Log
-import com.google.gson.JsonObject
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import opsigo.com.datalayer.model.*
@@ -10,10 +9,10 @@ import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.usecase.GeneralRepository
 
 import okhttp3.ResponseBody
+import opsigo.com.datalayer.model.accomodation.flight.upcomming.UpcomingFlightEntity
 import opsigo.com.datalayer.model.calendar.CalendarHolidayEntity
-import opsigo.com.datalayer.model.signin.ResponseVersionEntity
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.datalayer.model.signin.version.RespVersionEntity
-import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -292,20 +291,22 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                try {
-                    if (response.isSuccessful){
-                        val summaryEntity = Serializer.deserialize(response.body()?.string().toString(), SummaryEntity::class.java)
-                        val summ = SummaryEntityMapper().mapFrom(summaryEntity)
-                        callbackSummary.successLoad(summ)
-                    }
-                    else{
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callbackSummary.failedLoad(message)
-                    }
+                if (response.isSuccessful){
+                    val summaryEntity = Serializer.deserialize(response.body()?.string().toString(), SummaryEntity::class.java)
+                    Log.e("??????????????? ",Serializer.serialize(summaryEntity))
+                    val summ = SummaryEntityMapper().mapFrom(summaryEntity)
+                    callbackSummary.successLoad(summ)
+                }
+                else{
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callbackSummary.failedLoad(message)
+                }
+                /*try {
+
                 }catch (e:Exception){
                     callbackSummary.failedLoad(messageFailed)
-                }
+                }*/
             }
         })
     }

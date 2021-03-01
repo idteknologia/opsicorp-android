@@ -11,7 +11,7 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import opsigo.com.datalayer.model.StatusTrip
+import opsigo.com.datalayer.model.listtripplan.StatusTrip
 import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
 import kotlinx.android.synthetic.main.approval_adapter.view.*
 

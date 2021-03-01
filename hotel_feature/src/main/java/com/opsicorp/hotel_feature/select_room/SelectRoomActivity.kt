@@ -24,7 +24,7 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
     override fun getLayout(): Int { return R.layout.select_room_activity }
 
     val data = ArrayList<SelectRoomModel>()
-    val adapter by lazy { SelectRoomAdapter(this, data) }
+    val adapter by lazy { SelectRoomAdapter(data) }
 
     var guaranteed = false
     var freeMeal  = false

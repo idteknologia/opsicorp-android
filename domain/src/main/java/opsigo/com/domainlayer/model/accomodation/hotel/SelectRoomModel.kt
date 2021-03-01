@@ -10,6 +10,7 @@ class SelectRoomModel {
     var roomCodeHash    = ""
     var roomKey         = ""
     var breakfastType   = ""
+    var isBreakfast     = false
     var cancelLimit     = ""
     var isGuaranteedBooking = false
     var isFullCharge        = false

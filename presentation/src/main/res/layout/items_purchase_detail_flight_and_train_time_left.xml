@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:layout_width="14dp"
                 android:layout_height="17dp"
-                android:src="@drawable/ic_tower"
+                android:src="@drawable/ic_tower_blue"
                 android:layout_marginRight="5dp"></ImageView>
 
             <TextView

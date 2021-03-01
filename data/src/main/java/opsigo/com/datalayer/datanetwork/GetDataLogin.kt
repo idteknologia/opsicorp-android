@@ -10,11 +10,11 @@ import okhttp3.ResponseBody
 import org.json.JSONObject
 import opsigo.com.datalayer.mapper.*
 import opsigo.com.data.network.UrlEndpoind
-import opsigo.com.datalayer.model.LoginEntity
-import opsigo.com.datalayer.model.ProfileEntity
+import opsigo.com.datalayer.model.signin.LoginEntity
+import opsigo.com.datalayer.model.profile.ProfileEntity
 import opsigo.com.domainlayer.usecase.LoginRepository
 import opsigo.com.datalayer.model.general.CountryEntity
-import opsigo.com.datalayer.model.listtripplan.ConfigEntity
+import opsigo.com.datalayer.model.profile.ConfigEntity
 import opsigo.com.domainlayer.callback.*
 
 class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
@@ -36,7 +36,7 @@ class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                        callbackLogin.successGetData(LoginEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(),LoginEntity::class.java)))
+                        callbackLogin.successGetData(LoginEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(), LoginEntity::class.java)))
                     }
                     else{
                         val json = JSONObject(response.errorBody()?.string())
@@ -59,7 +59,7 @@ class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.code()==200){
-                        callbackProfile.successLoad(ProfileEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(),ProfileEntity::class.java)))
+                        callbackProfile.successLoad(ProfileEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(), ProfileEntity::class.java)))
                     }
                     else if(response.code()==401){
                         callbackProfile.failedLoad("token")

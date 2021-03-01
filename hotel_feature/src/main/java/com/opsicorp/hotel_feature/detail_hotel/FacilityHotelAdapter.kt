@@ -1,6 +1,8 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -47,22 +49,22 @@ class FacilityHotelAdapter (context: Context, var items: ArrayList<FacilityHotel
 
         holder.itemView.tv_name_facility.text = data.name
 
-        if (data.image.isEmpty()){
+        /*if (data.image.isEmpty()){
             holder.itemView.image_facility.setImageDrawable(context.resources.getDrawable(R.drawable.ac))
         }
         else {
             Picasso.get()
                     .load(data.image)
                     .centerInside()
-                    .fit()
                     .into(holder.itemView.image_facility)
-        }
+        }*/
+
+        holder.itemView.image_facility.setImageDrawable(ContextCompat.getDrawable(context,data.image))//data.image
 
         holder.itemView.setOnClickListener {
             onclick.onClick(-1,position)
         }
     }
-
 
     fun setData(data: ArrayList<FacilityHotelModel>) {
         items = data

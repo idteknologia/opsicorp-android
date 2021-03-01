@@ -362,7 +362,13 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 modelItem.id   = it.pnrHotel
                 modelItem.name = it.nameHotel
                 if ("pending".equals(it.status.toLowerCase())){
+                    modelItem.progress = "100.00"
+                }
+                else if ("saved".equals(it.status.toLowerCase())) {
                     modelItem.progress = "50.00"
+                }
+                else {
+                    modelItem.progress = "100.00"
                 }
                 modelItem.status = it.status
 
@@ -406,6 +412,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         nestedScrollUp()
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
+                setLog(Serializer.serialize(summaryModel))
                 tripSummary = summaryModel
                 toolbar.showAddMoreItem()
 
@@ -522,6 +529,9 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                     line_warning.visibility = View.VISIBLE
                     line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
                 }
+                /*else if (itemsTrip.filter { it.status.toLowerCase().contains("pending") }.isNotEmpty()){
+
+                }*/
                 else {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_yellow)
                     line_warning.visibility = View.GONE

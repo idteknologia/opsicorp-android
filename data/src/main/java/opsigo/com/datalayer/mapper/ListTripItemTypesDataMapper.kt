@@ -1,25 +1,28 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.TripItemTypesItem
+import opsigo.com.datalayer.model.cart.TripItemTypesItem
 import opsigo.com.domainlayer.Mapper
 import opsigo.com.domainlayer.model.summary.TripItemTypesModel
+import java.util.ArrayList
 
-class ListTripItemTypesDataMapper
-constructor() : Mapper<List<TripItemTypesItem>, List<TripItemTypesModel>>() {
+class ListTripItemTypesDataMapper : Mapper<List<TripItemTypesItem?>?, List<TripItemTypesModel>>() {
 
-    override fun mapFrom(from: List<TripItemTypesItem>): List<TripItemTypesModel> {
+    override fun mapFrom(from: List<TripItemTypesItem?>?): List<TripItemTypesModel> {
 
         from.let {
 
-            var tpModelList = it.map { data ->
+            var tpModelList = it?.map { data ->
                 return@map TripItemTypesModel(
-                        data.type,
-                        ListTripItemsDataMapper().mapFrom(data.tripItems),
-                        data.id,
-                        data.name)
+                        data?.type,
+                        ListTripItemsDataMapper().mapFrom(data?.tripItems),
+                        data?.id,
+                        data?.name)
             }
 
-            return tpModelList
+            if (!tpModelList.isNullOrEmpty()){
+                return tpModelList
+            }
+            return ArrayList()
         }
 
     }

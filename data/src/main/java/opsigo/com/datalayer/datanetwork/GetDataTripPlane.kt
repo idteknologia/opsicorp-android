@@ -2,7 +2,7 @@ package opsigo.com.datalayer.datanetwork
 
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
-import opsigo.com.datalayer.model.create_trip_plane.UploadFileEntity
+import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
 import opsigo.com.datalayer.model.create_trip_plane.save_as_daft.SaveAsDraftEntity
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.usecase.CreateTripPlaneRepository
@@ -81,7 +81,7 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                 try {
                     if (response.isSuccessful){
                         val data = response.body()?.string()!!
-                        val dataResponse = Serializer.deserialize(data,UploadFileEntity::class.java)
+                        val dataResponse = Serializer.deserialize(data, UploadFileEntity::class.java)
                         callback.successLoad(UploadFileMapper().mapping(dataResponse))
                     }
                     else{

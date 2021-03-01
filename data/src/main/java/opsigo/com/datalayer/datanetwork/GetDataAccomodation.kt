@@ -624,7 +624,6 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
@@ -717,16 +716,22 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                try {
-                    if (response.isSuccessful){
-                        val responseString = response.body()?.string()
+                if (response.isSuccessful){
+                    val responseString = response.body()?.string()
+                    if (JSONObject(responseString).getBoolean("isSuccess")){
                         callback.success(BookingHotelMapper().mapping(responseString.toString()))
                     }
                     else {
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callback.failed(message)
+                        callback.failed(JSONObject(responseString).getString("errorMessage"))
                     }
+                }
+                else {
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callback.failed(message)
+                }
+                try {
+
                 }catch (e:Exception){
                     callback.failed(e.message!!)
                 }

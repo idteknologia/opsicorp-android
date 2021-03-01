@@ -1,11 +1,10 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.StatusTrip
+import opsigo.com.datalayer.model.listtripplan.StatusTrip
 import opsigo.com.datalayer.model.approval.list_approval.ListApprovalEntity
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
 //import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
 //import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
-import org.json.JSONObject
 
 class MapperModelListCart {
 

@@ -64,6 +64,7 @@
                             android:text="Booking Code (PNR)" />
 
                         <TextView
+                            android:visibility="visible"
                             android:maxLength="10"
                             android:id="@+id/tv_pnr_hotel_cart"
                             style="@style/RobotoBold"

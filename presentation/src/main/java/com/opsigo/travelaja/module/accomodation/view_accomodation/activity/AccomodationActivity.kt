@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.view_accomodation.activity
 
 import com.opsigo.travelaja.module.accomodation.view_accomodation.presenter.AccomodationPresenter
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragmentNew
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.train.TrainFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.tour.TourFragment
@@ -38,7 +38,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
     var flightFragment = FlightFragment()
-    var hotelFragment  = HotelFragmentNew()
+    var hotelFragment  = HotelFragment()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
     var profileFragment     = ProfileFragment()

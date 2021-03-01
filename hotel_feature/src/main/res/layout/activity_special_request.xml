@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".booking_contact.SpecialRequestActivity">
+
+    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+        android:layout_width="match_parent"
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginLeft="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#009688"
+                android:id="@+id/title_bed_type"
+                android:text="Bed type request"
+                android:layout_marginBottom="18dp"
+                style="@style/RobotoBold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoRegular"
+                android:layout_marginLeft="25dp"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="#b2bbc6"
+                android:text="Guest Name"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoBold"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#24253d"
+                android:text="Mr. Vody Andrian" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e0e0e1"
+                android:layout_marginTop="15dp">
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="visible"
+                android:id="@+id/line_bed_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/line_rb_1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp">
+                    </RadioButton>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/RobotoBold"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#24253d"
+                            android:text="King Size Bed"/>
+
+                        <TextView
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:textSize="12sp"
+                            android:textColor="#91929e"
+                            android:text="Lorem ipsum 14 x 8 M"
+                            style="@style/RobotoRegular"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line_rb_2"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp">
+                    </RadioButton>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/RobotoBold"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#24253d"
+                            android:text="Queen Size Bed"/>
+
+                        <TextView
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:textSize="12sp"
+                            android:textColor="#91929e"
+                            android:text="Lorem ipsum 14 x 8 M"
+                            style="@style/RobotoRegular"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line_rb_3"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/rb_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp">
+                    </RadioButton>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/RobotoBold"
+                            android:textStyle="bold"
+                            android:textSize="14sp"
+                            android:textColor="#24253d"
+                            android:text="Twin Bed"/>
+
+                        <TextView
+                            android:layout_marginTop="3dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:textSize="12sp"
+                            android:textColor="#91929e"
+                            android:text="Lorem ipsum 14 x 8 M"
+                            style="@style/RobotoRegular"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/line_other_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoBold"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#009688"
+                    android:text="Specific request in detail"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="25dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoRegular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#b2bbc6"
+                    android:text="Please write in English or in accommodation&apos;s local language (max. 100 character)."
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"/>
+
+                <EditText
+                    android:padding="10dp"
+                    android:gravity="start"
+                    android:id="@+id/et_notes"
+                    android:layout_width="match_parent"
+                    android:layout_height="152dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/rounded_button_corner_grey">
+                </EditText>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoRegular"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:gravity="end"
+                    android:text="0 / 100"
+                    android:layout_marginRight="21dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="#b2bbc6"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="vertical"
+                android:background="#d8d8d8">
+            </LinearLayout>
+
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_submit"
+                android:layout_marginTop="21dp"
+                app:text="Apply"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp">
+            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

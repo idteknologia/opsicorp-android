@@ -2,14 +2,18 @@ package opsigo.com.domainlayer.model.accomodation.hotel
 
 class ResultListHotelModel {
 
+    var checkIn      = ""
+    var checkOut     = ""
+    var duration     = ""
     var imageHotelSorcut = ""
     var imageHotel   = ""
     var typeHotel    = ""
-    var starRating  = ""
+    var starRating   = ""
     var rating       = ""
     var prize        = ""
     var correlationId   = ""
     var city            = ""
+    var idCountry       = ""
     var totalAvailable  = ""
     var nameHotel    = ""
     var addressHotel = ""

@@ -3,17 +3,18 @@ package com.opsicorp.hotel_feature.booking_contact
 import java.util.*
 import android.os.Build
 import android.view.View
+import android.os.Bundle
+import java.lang.Exception
 import android.app.Activity
 import android.content.Intent
 import kotlin.collections.List
+import android.widget.CheckBox
 import kotlin.collections.ArrayList
+import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import com.opsicorp.hotel_feature.R
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackBookingHotel
@@ -35,20 +36,124 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     override fun getLayout(): Int { return R.layout.booking_contact_view_hotel }
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
-    val adapter by lazy { BookingContactAdapter(this,dataContacts) }
+//    val adapter by lazy { BookingContactAdapter(this,dataContacts) }
 
     lateinit var dataHotel: ResultListHotelModel
     lateinit var dataRoom: SelectRoomModel
     lateinit var dataValidation: ValidationHotelModel
     lateinit var dataConfirmation: ConfirmationHotelModel
     lateinit var dataTrip: SuccessCreateTripPlaneModel
+    val BED_TYPE_REQUEST    = 1089
+    val OTHER_TYPE_REQUEST  = 1088
+    val KEY_REQUEST         = "type"
+    val KEY_VALUE           = "value"
+    var remark              = ArrayList<RemarkBookingModel>()
 
     override fun OnMain() {
         initDataOrder()
         initToolbar()
-        initRecyclerView()
+//        initRecyclerView()
+        initOnClickListener()
         setDataContact()
         initPrize()
+    }
+
+    private fun initOnClickListener() {
+        line_cb_1.setOnClickListener { cbCheckedListener(cb1,1) }
+        line_cb_3.setOnClickListener { cbCheckedListener(cb3,3) }
+        line_cb_4.setOnClickListener { cbCheckedListener(cb4,4) }
+
+        line_cb_2.setOnClickListener { bedTypeListener() }
+        line_cb_5.setOnClickListener { otherTypeListener() }
+        btn_cb5.setOnClickListener { otherTypeListener() }
+        btn_cb2.setOnClickListener { bedTypeListener() }
+        cb_guest.setOnClickListener {
+            if (cb_guest.isChecked){
+                setGuestName()
+            }
+            else {
+                emptyGuestName()
+            }
+        }
+    }
+
+    private fun emptyGuestName() {
+        et_guest.setText("")
+        et_guest.isEnabled = true
+    }
+
+    private fun setGuestName() {
+        et_guest.isEnabled = false
+        et_guest.setText(getProfile().name)
+    }
+
+    private fun otherTypeListener() {
+        if (cb5.isChecked==false){
+            val intent =  Bundle()
+            intent.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
+            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,intent,OTHER_TYPE_REQUEST)
+        }else {
+            cb5.isChecked = false
+            deletRemark(5)
+        }
+    }
+
+    private fun bedTypeListener() {
+        if (cb2.isChecked==false){
+            val intent =  Bundle()
+            intent.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
+            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,intent,BED_TYPE_REQUEST)
+        }else {
+            cb2.isChecked = false
+            deletRemark(2)
+        }
+    }
+
+    private fun cbCheckedListener(cb: CheckBox,type: Int) {
+        cb.isChecked = !cb.isChecked
+        when(type){
+            1->  {
+                if (cb1.isChecked){
+                    addRemark("Hight Floor",type)
+                }
+                else {
+                    deletRemark(type)
+                }
+            }
+            3-> {
+                if (cb3.isChecked){
+                    addRemark("Non Smoking Room",type)
+                }
+                else {
+                    deletRemark(type)
+                }
+            }
+            4-> {
+                if (cb4.isChecked){
+                    addRemark("Conecting Room",type)
+                }
+                else {
+                    deletRemark(type)
+                }
+            }
+        }
+    }
+
+    private fun deletRemark(type: Int) {
+        try {
+            remark.removeAt(remark.indexOf(remark.filter { it.type ==type }.first()))
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
+
+    private fun addRemark(data:String,type: Int) {
+        if (!remark.filter { it.type==type }.isNullOrEmpty()){
+            remark.add(remark.indexOf(remark.filter { it.type==type }.first()),RemarkBookingModel("Hight Floor",type))
+        }
+        else {
+            remark.add(RemarkBookingModel(data,type))
+        }
     }
 
     private fun initDataOrder() {
@@ -81,7 +186,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         tv_number_contact.text      = dataProfile.homePhone
         tv_email_contact.text       = dataProfile.email
 
-        adapter.notifyDataSetChanged()
+//        adapter.notifyDataSetChanged()
     }
 
     private fun getDataIdCartBooker(): IdCartModel {
@@ -93,9 +198,9 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun getSimDataBooker(): SimModel {
-        val model = SimModel()
-        model.name = getProfile().name
-        model.id   = getProfile().employId
+        val model   = SimModel()
+        model.name  = getProfile().name
+        model.id    = getProfile().employId
         model.idSim = getProfile().sim
         return model
     }
@@ -108,15 +213,15 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         return model
     }
 
-    private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_booking_information.layoutManager = layoutManager
-        rv_booking_information.itemAnimator = DefaultItemAnimator()
-        rv_booking_information.adapter = adapter
-
-        adapter.setOnclickListener(this)
-    }
+//    private fun initRecyclerView() {
+//        val layoutManager = LinearLayoutManager(this)
+//        layoutManager.orientation = LinearLayoutManager.VERTICAL
+//        rv_booking_information.layoutManager = layoutManager
+//        rv_booking_information.itemAnimator = DefaultItemAnimator()
+//        rv_booking_information.adapter = adapter
+//
+//        adapter.setOnclickListener(this)
+//    }
 
     private fun initPrize() {
         tv_price.setOnClickListener {
@@ -136,7 +241,6 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         line_arrival.visibility   = View.GONE
         tv_price_total.text       = "IDR "+Globals.formatAmount(dataRoom.prize.toDouble())
         tv_price.text             = "IDR "+Globals.formatAmount(dataRoom.prize.toDouble())
-
     }
 
     fun showOrHideDetailPrize(){
@@ -197,6 +301,18 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
 
                 }
             }
+            BED_TYPE_REQUEST -> {
+                if (resultCode==Activity.RESULT_OK){
+                    cb2.isChecked = true
+                    addRemark(data?.getStringExtra(KEY_VALUE).toString(),2)
+                }
+            }
+            OTHER_TYPE_REQUEST -> {
+                if (resultCode==Activity.RESULT_OK){
+                    cb5.isChecked = true
+                    addRemark(data?.getStringExtra(KEY_VALUE).toString(),5)
+                }
+            }
         }
     }
 
@@ -208,7 +324,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     fun getReservasedHotel(){
         showLoadingOpsicorp(true)
         setLog(Serializer.serialize(dataReservationHotelRequest()))
-        GetDataAccomodation(getBaseUrl()).getBookingHotel(getToken(),dataReservationHotelRequest(),object :CallbackBookingHotel{
+        GetDataAccomodation(getBaseUrl()).getBookingHotel(getToken(),dataReservationHotelRequest(),object : CallbackBookingHotel {
             override fun success(data: BookingHotelModel) {
                 hideLoadingOpsicorp()
                 Constants.ID_BOOKING_TEMPORARY = dataTrip.idTripPlant
@@ -229,29 +345,28 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.confirmationId  = dataConfirmation.idConfirmation
         data.contact         = getContactHotelRequest()
         data.correlationId   = dataHotel.correlationId
-        data.destinationCity = dataHotel.city
-//        data.guestPassport   = Constants.Country.id
+        data.destinationCity = "vOoQdQqvHE6Req8ZI8ulZA"//dataHotel.city
+        data.guestPassport   = dataHotel.idCountry
         data.guests          = dataGuest()
 //        data.travelProfileId = null!!
-        data.remark          = ""
+        data.remark          = parsingDataRemark()
         data.header          = dataHeader()
-
-
         return Globals.classToHashMap(data,ReservationHotelRequest::class.java)
     }
 
     private fun dataHeader(): HeaderReservationHotelRequest {
         val data            = HeaderReservationHotelRequest()
         data.origin         = dataTrip.originId
-        data.returnDate     = dataTrip.endDate
-        data.startDate      = dataTrip.startDate
+        data.returnDate     = dataHotel.checkOut
+        data.startDate      = dataHotel.checkIn
         data.destination    = dataTrip.destinationName
         data.tripParticipants   = listParticipant()
         data.type               = 1
         data.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         data.purpose        = dataTrip.purpose
+        data.idTripPlan     = dataTrip.idTripPlant
         data.code           = dataTrip.tripCode
-        data.ID             = dataTrip.idTripPlant
+//        data.ID             = dataTrip.idTripPlant
         return data
     }
 
@@ -271,6 +386,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         model.lastName      = getProfile().lastName
         model.mobilePhone   = getProfile().mobilePhone
         model.nationality   = getProfile().nationality
+        model.isUseLocal    = true
 
         data.add(model)
         return data
@@ -291,7 +407,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.title     = getProfile().title
         data.lastName  = getProfile().lastName
         data.mobilePhone = getProfile().mobilePhone
-        data.remark    = ""
+        data.remark    = parsingDataRemark()
         return data
     }
 
@@ -299,24 +415,34 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         val data = BookingReservationHotelRequest()
         data.origin      = dataTrip.originName
         data.destination = dataHotel.city
-        data.remarks     = ""
+        data.remarks     = null
         data.reasonCode  = dataValidation.reasonCode
         data.members     = getDataMembers()
         data.hotel       = getDataHotel()
         return data
     }
 
+    private fun parsingDataRemark(): String {
+        var dataRemark = ""
+        if (remark.isNotEmpty()){
+            remark.forEach {
+                dataRemark = dataRemark+it.remark+","
+            }
+        }
+        return if (dataRemark.contains(",")) dataRemark.substring(0,dataRemark.length-1) else dataRemark
+    }
+
     private fun getDataHotel(): HotelReservationHotelRequest {
-        val mData = HotelReservationHotelRequest()
-        mData.isHsre = false
-        mData.mapUri = dataConfirmation.mapUri
-        mData.area = dataHotel.city
-        mData.roomSelector = dataRoom.roomKey
-        mData.isTourism  = false
-        mData.tourismTax = 0
+        val mData           = HotelReservationHotelRequest()
+        mData.isHsre        = false
+        mData.mapUri        = dataConfirmation.mapUri
+        mData.area          = dataHotel.city
+        mData.roomSelector  = dataRoom.roomKey
+        mData.isTourism     = false
+        mData.tourismTax    = 0
         mData.isViolatedHotelRules = dataValidation.isViolatedRules
-        mData.causeViolatedRules = dataValidation.causeViolatedRules
-        mData.image  = dataHotel.imageHotel
+        mData.causeViolatedRules   = dataValidation.causeViolatedRules
+        mData.image                = dataHotel.imageHotel
         mData.cancellationPoliciesView = dataConfirmation.cancellPolicyHotel
         return mData
     }
@@ -335,9 +461,9 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         return data
     }
 
-    private fun listParticipant(): List<TripParticipantsReservationHotelRequest> {
-        val data = ArrayList<TripParticipantsReservationHotelRequest>()
-        val model = TripParticipantsReservationHotelRequest()
+    private fun listParticipant(): List<TripParticipantHotelRequest> {
+        val data = ArrayList<TripParticipantHotelRequest>()
+        val model = TripParticipantHotelRequest()
         model.budgetId     = dataTrip.buggetId
         model.costCenterId = dataTrip.costCenter
         model.employeeId   = getProfile().employId

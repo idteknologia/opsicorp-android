@@ -1,5 +1,6 @@
 package com.opsicorp.hotel_feature
 
+import opsigo.com.datalayer.mapper.Serializer
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,7 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        val data = "a,"
+        assertEquals(data.substring(0,data.length-1), "a")
     }
 }

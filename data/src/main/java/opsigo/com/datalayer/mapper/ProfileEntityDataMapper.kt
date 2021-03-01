@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.ProfileEntity
+import opsigo.com.datalayer.model.profile.ProfileEntity
 import opsigo.com.domainlayer.model.signin.ProfileModel
 
 class ProfileEntityDataMapper{

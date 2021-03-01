@@ -207,10 +207,10 @@ class DataDummyAccomodation {
                 val mFacility = FacilityHotelModel()
                 mFacility.name  = f
                 if (index<6){
-                    mFacility.image = imageFacility[index]
+//                    mFacility.image = imageFacility[index]
                 }
                 else{
-                    mFacility.image = ""
+                    mFacility.image = 0
                 }
                 facility.add(mFacility)
             }
