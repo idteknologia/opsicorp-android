@@ -1,32 +1,33 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.TripParticipantCustomApprovalsItem
+import opsigo.com.datalayer.model.cart.TripParticipantCustomApprovalsItem
 import opsigo.com.domainlayer.Mapper
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import java.lang.Exception
 
-class ListApprovalDataMapper
-constructor() : Mapper<ArrayList<TripParticipantCustomApprovalsItem>, List<ParticipantModelDomain>>() {
+class ListApprovalDataMapper: Mapper<ArrayList<TripParticipantCustomApprovalsItem?>?, List<ParticipantModelDomain>>() {
 
-    override fun mapFrom(from: ArrayList<TripParticipantCustomApprovalsItem>): ArrayList<ParticipantModelDomain> {
+    override fun mapFrom(from: ArrayList<TripParticipantCustomApprovalsItem?>?): ArrayList<ParticipantModelDomain> {
 
         from.let {
 
             val mData = ArrayList<ParticipantModelDomain>()
             mData.clear()
-            val tpModelList    = it.map { data ->
+            val tpModelList    = it?.map { data ->
                 val approval   = ParticipantModelDomain()
-                approval.id    = data.id
-                approval.employId = data.approverId
-                approval.name  = data.approverName
-                approval.layer = data.layers
-                approval.isCompletelyReviewed = data.isCompletelyReviewed
-                approval.followUpFlight = exception(data.followUpAirline)
-                approval.followUpHotel  = exception(data.followUpHotel)
-                approval.followUpTrain  = exception(data.followUpTrain)
+                approval.id    = data?.id.toString()
+                approval.employId = data?.approverId.toString()
+                approval.name  = data?.approverName.toString()
+                approval.layer = if (data?.layers==null) -1 else data.layers
+                approval.isCompletelyReviewed = if (data?.isCompletelyReviewed==null) false else data.isCompletelyReviewed
+                approval.followUpFlight = exception(data?.followUpAirline)
+                approval.followUpHotel  = exception(data?.followUpHotel)
+                approval.followUpTrain  = exception(data?.followUpTrain)
                 return@map approval
             }
-            mData.addAll(tpModelList)
+            if (!tpModelList.isNullOrEmpty()){
+                mData.addAll(tpModelList)
+            }
             return mData
         }
 

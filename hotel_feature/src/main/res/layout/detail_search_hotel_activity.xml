@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/parent_layout"
     android:background="#f6f8f8">
@@ -12,7 +14,68 @@
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <LinearLayout
-        android:layout_below="@id/toolbar"
+        android:layout_marginTop="-1dp"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/line_search_toolbar"
+        android:background="#00776a"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="59dp">
+
+        <LinearLayout
+            android:id="@+id/lay_search"
+            android:layout_below="@id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button_et_search">
+
+            <ImageView
+                android:focusable="true"
+                android:id="@+id/img_search"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_search_orange"
+                android:layout_width="20dp"
+                android:layout_height="20dp"/>
+
+            <EditText
+                android:layout_marginLeft="14dp"
+                android:id="@+id/et_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawablePadding="5dp"
+                android:hint="Enter hotel name"
+                android:imeOptions="actionSearch"
+                android:inputType="textNoSuggestions"
+                android:textColorHint="#b2bbc6"
+                android:paddingLeft="6dp"
+                android:paddingTop="0dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="0dp"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/imgCloseDest"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:src="@drawable/ic_close_dark_gray"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/line_search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -52,10 +115,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
-                android:layout_width="233dp"
-                android:layout_height="88dp"
+                android:layout_width="204dp"
+                android:layout_height="149dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_empty_train">
+                android:src="@drawable/ic_hotel_empty">
             </ImageView>
 
             <TextView
@@ -91,5 +154,6 @@
         android:layout_width="match_parent"
         android:id="@+id/filter"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
+        android:layout_height="wrap_content">
+    </com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
 </RelativeLayout>

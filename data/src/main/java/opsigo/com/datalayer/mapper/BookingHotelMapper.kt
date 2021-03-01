@@ -6,13 +6,13 @@ import opsigo.com.domainlayer.model.accomodation.hotel.BookingHotelModel
 class BookingHotelMapper {
     fun mapping(response: String):BookingHotelModel{
         val data = BookingHotelModel()
-        val model = Serializer.deserialize(response,BookingHotelEntity::class.java)
+        val model = Serializer.deserialize(response, BookingHotelEntity::class.java)
 
-        data.hotelId      = model.model.hotel.id.toString()
-        data.mapUri       = model.model.hotel.mapUri.toString()
-        data.nameHotel    = model.model.hotel.name.toString()
-        data.pnr          = model.model.hotel.pnrId.toString()
-        data.image        = model.model.hotel.image.toString()
+        data.hotelId      = model.model?.hotel?.id.toString()
+        data.mapUri       = model.model?.hotel?.mapUri.toString()
+        data.nameHotel    = model.model?.hotel?.name.toString()
+        data.pnr          = model.model?.hotel?.pnrId.toString()
+        data.image        = model.model?.hotel?.image.toString()
 
         return data
     }

@@ -1,7 +1,7 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
 class FacilityHotelModel {
-    var id    = ""
+    var code    = ""
     var name  = ""
-    var image = ""
+    var image = 0
 }

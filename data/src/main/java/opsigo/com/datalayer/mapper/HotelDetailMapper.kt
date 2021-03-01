@@ -41,8 +41,7 @@ class HotelDetailMapper {
         facilities.forEach {
             val model = FacilityHotelModel()
             model.name  = it.description
-            model.image = ""
-            model.id    = it.code
+            model.code    = it.code
             data.add(model)
         }
         return data

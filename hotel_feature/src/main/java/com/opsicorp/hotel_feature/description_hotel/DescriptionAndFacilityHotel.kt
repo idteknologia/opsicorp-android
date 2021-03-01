@@ -96,7 +96,7 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
 
     fun setDataListFacility(mData:ArrayList<FacilityHotelModel>){
         data.clear()
-        data.addAll(mData.filter { it.image.isEmpty() })
+        data.addAll(mData)
         adapter.setData(data)
     }
 

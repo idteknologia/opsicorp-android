@@ -1,7 +1,7 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
-import opsigo.com.datalayer.model.SummaryEntity
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.summary.*
 
@@ -9,46 +9,49 @@ class SummaryEntityMapper() {
 
     fun mapFrom(from: SummaryEntity): SummaryModel {
 
-        val contact = from.contact
-        val contactModel = ContactEntityDataMapper().mapFrom(contact)
-
+        Log.e("TAG 1",Serializer.serialize(from))
         val summary = SummaryModel()
-        summary.tripId          = from.id
-        summary.type            = from.type
-        summary.code            = from.code
-        summary.purpose         = from.purpose
+        summary.tripId          = from.id.toString()
+        summary.type            = from.type.toString()
+        summary.code            = from.code.toString()
+        Log.e("code ",from.code)
+        summary.purpose         = from.purpose.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
         summary.destination     = if (from.destination==null) "" else from.destination
         summary.destinationName = if (from.destinationView==null) "" else from.destinationView
-        summary.startDate       = from.startDate
-        summary.budgetId        = from.budgetId
-        summary.budget          = from.totalBudget
-        summary.returnDate      = from.returnDate
-        summary.totalExpenditure = from.totalExpenditure
-        summary.totalAllowance  = from.totalAllowance
-        summary.remark          = from.remark
-        summary.status          = from.status
-        summary.statusView      = from.statusView
-        summary.creationDate    = from.creationDateView
-        summary.idUser          = from.contact.id
+        summary.startDate       = from.startDate.toString()
+        summary.budgetId        = from.budgetId.toString()
+        summary.budget          = from.totalBudget.toString()
+        summary.returnDate      = from.returnDate.toString()
+        summary.totalExpenditure = from.totalExpenditure.toString()
+        summary.totalAllowance  = from.totalAllowance.toString()
+        summary.remark          = from.remark.toString()
+        summary.status          = from.status.toString()
+        summary.statusView      = from.statusView.toString()
+        summary.creationDate    = from.creationDateView.toString()
+        summary.idUser          = from.contact?.id.toString()
 //        summary.employId        = from.contact.employeeId
-        summary.creationDateView  = from.creationDateView
-        summary.expiredRemaining  = from.timeLimitRemaining
+        summary.creationDateView  = from.creationDateView.toString()
+        summary.expiredRemaining  = from.timeLimitRemaining.toString()
         
-        from.tripAttachments.forEachIndexed { index, tripAttachmentsItem ->
+        from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()
-            uplaodModel.id = tripAttachmentsItem.id
-            uplaodModel.url = tripAttachmentsItem.url
-            uplaodModel.nameImage = tripAttachmentsItem.description
-            uplaodModel.pathLocalImage = tripAttachmentsItem.description
+            uplaodModel.id = tripAttachmentsItem.id.toString()
+            uplaodModel.url = tripAttachmentsItem.url.toString()
+            uplaodModel.nameImage = tripAttachmentsItem.description.toString()
+            uplaodModel.pathLocalImage = tripAttachmentsItem.description.toString()
             uplaodModel.statusUploaded = "success"
             summary.attactment.add(uplaodModel)
         }
-        summary.contact         = contactModel
 
+
+        val contact = from.contact
+        val contactModel = ContactEntityDataMapper().mapFrom(contact)
+        summary.contact         = contactModel
         summary.tripParticipantModels   = ListParticipantsDataMapper().mapFrom(from)
 
+        Log.e("id ",from.id)
         return summary
 
     }

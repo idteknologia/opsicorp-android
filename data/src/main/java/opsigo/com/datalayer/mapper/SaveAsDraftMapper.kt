@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.SummaryEntity
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.datalayer.model.create_trip_plane.save_as_daft.SaveAsDraftEntity
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
@@ -28,8 +28,8 @@ class SaveAsDraftMapper {
     fun mappingSuccesCheckout(responseString: String?): SuccessCreateTripPlaneModel {
         val data = Serializer.deserialize(responseString!!, SummaryEntity::class.java)
         val mData = SuccessCreateTripPlaneModel()
-        mData.idTripPlant = data.id
-        mData.tripCode    = data.code
+        mData.idTripPlant = data.id.toString()
+        mData.tripCode    = data.code.toString()
         return mData
     }
 }

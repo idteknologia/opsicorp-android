@@ -57,6 +57,8 @@ class SearchHotelMapper {
             model.roomKey           = it.roomKey
             model.isGuaranteedBooking = false
             model.isFullCharge        = false
+            model.isBreakfast         = it.includeBreakfast
+            model.isGuaranteedBooking  = it.isGuaranteedBooking
             data.add(model)
         }
         return data

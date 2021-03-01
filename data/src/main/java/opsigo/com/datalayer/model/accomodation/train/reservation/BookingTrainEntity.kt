@@ -2,7 +2,7 @@ package opsigo.com.datalayer.model.accomodation.train.reservation
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
-import opsigo.com.datalayer.model.TripItemsItem
+import opsigo.com.datalayer.model.cart.TripItemsItem
 
 @Generated("com.robohorse.robopojogenerator")
 data class BookingTrainEntity(

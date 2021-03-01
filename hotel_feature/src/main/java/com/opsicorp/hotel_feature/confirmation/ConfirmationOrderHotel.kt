@@ -14,14 +14,15 @@ import opsigo.com.domainlayer.model.accomodation.hotel.ValidationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
 import com.opsicorp.hotel_feature.booking_contact.BookingContactHotel
 import com.opsicorp.hotel_feature.select_room.DialogCancelationPolicy
+import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import kotlinx.android.synthetic.main.confirmation_order_hotel.*
 import opsigo.com.domainlayer.callback.CallbackConfirmationHotel
 import com.opsigo.travelaja.module.cart.model.ItemCardHotelModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.domainlayer.callback.CallbackValidationHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import com.opsigo.travelaja.module.cart.model.CartModel
+import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
@@ -29,7 +30,6 @@ import com.opsigo.travelaja.BaseActivity
 import com.squareup.picasso.Picasso
 import com.opsicorp.hotel_feature.R
 import android.view.View
-import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import java.util.HashMap
 
 class ConfirmationOrderHotel : BaseActivity(),
@@ -146,12 +146,11 @@ class ConfirmationOrderHotel : BaseActivity(),
     }
 
     private fun initDataView() {
-//        tv_check_in.text                = DateConverter().getDate(Constants.CheckInDate,"yyyy-MM-dd","EEE, dd MMM yyyy")//"Sun 27 Apr 2019"
-//        tv_check_out.text               = DateConverter().getDate(Constants.CheckInDate,"yyyy-MM-dd","EEE, dd MMM yyyy")
+        tv_check_in.text                = DateConverter().getDate(dataHotel.checkIn,"yyyy-MM-dd","EEE, dd MMM yyyy")//"Sun 27 Apr 2019"
+        tv_check_out.text               = DateConverter().getDate(dataHotel.checkOut,"yyyy-MM-dd","EEE, dd MMM yyyy")
         tv_name_hotel_cart.text         = dataHotel.nameHotel
         tv_type_hotel_cart.text         = dataHotel.typeHotel
         tv_description_hotel_cart.text  = dataHotel.addressHotel
-        id_include_breakfast.text       = dataValidation.breakfast
         tv_detail_facility.text         = "24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
         tv_double_bed.text              = dataValidation.typeBed
         tv_cancelation_policy1.text     = "No charge for cancellation before ${dataTrip.startDate}"
@@ -167,6 +166,12 @@ class ConfirmationOrderHotel : BaseActivity(),
             tv_notcomply.visibility     = View.GONE
         }
 
+        if (dataRoom.isBreakfast){
+            id_include_breakfast.text = "Include Breakfast"
+        }
+        else {
+            id_include_breakfast.text = dataValidation.breakfast
+        }
 
         line_reason_code.setOnClickListener { selectReasonCode() }
         Picasso.get()
@@ -240,7 +245,7 @@ class ConfirmationOrderHotel : BaseActivity(),
     private fun initToolbar() {
         dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         ic_back.setOnClickListener(this)
-//        tv_total_night.text = "${Constants.TotalNight} Night (s)"
+        tv_total_night.text = "${dataHotel.duration} Night (s)"
     }
 
     override fun onClicked() {

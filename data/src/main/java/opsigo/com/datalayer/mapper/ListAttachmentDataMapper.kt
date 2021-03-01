@@ -1,11 +1,10 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.TripAttachmentItem
+import opsigo.com.datalayer.model.cart.TripAttachmentItem
 import opsigo.com.domainlayer.Mapper
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 
-class ListAttachmentDataMapper
-constructor() : Mapper<List<TripAttachmentItem>, List<TripAttachmentItemModel>>() {
+class ListAttachmentDataMapper : Mapper<List<TripAttachmentItem>, List<TripAttachmentItemModel>>() {
 
     override fun mapFrom(from: List<TripAttachmentItem>): List<TripAttachmentItemModel> {
 
@@ -13,10 +12,10 @@ constructor() : Mapper<List<TripAttachmentItem>, List<TripAttachmentItemModel>>(
 
             var tpModelList = it.map { data ->
                 return@map TripAttachmentItemModel(
-                        data.id,
-                        data.tripPlanId,
-                        data.description,
-                        data.url)
+                        data.id.toString(),
+                        data.tripPlanId.toString(),
+                        data.description.toString(),
+                        data.url.toString())
             }
 
             return tpModelList

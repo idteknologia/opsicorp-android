@@ -25,7 +25,7 @@ class ProgressMapper {
         model.progress      = deserialize.num
         model.idFlight      = deserialize.flightId
         if (deserialize.num==100.00){
-            model.referanceCode = deserialize.tripFlight.linkReference
+            model.referanceCode = deserialize.tripFlight.linkReference.toString()
         }
 
         return model

@@ -28,6 +28,7 @@ import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyOfficeModel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
+import java.lang.Exception
 
 class NearbyActivity : BaseActivity() {
     override fun getLayout(): Int { return R.layout.nearby_hotel_view }
@@ -65,50 +66,54 @@ class NearbyActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                filterActif = p0.toString().length>0
+                try {
+                    filterActif = p0.toString().length>0
 
-                when(typeSelect){
-                    Constants.SELECT_NEARBY_AIRPORT -> {
-                        rv_nearby.adapter = airportAdapter
-                        if (p0.toString().length>0){
-                            filterAirport.clear()
-                            filterAirport.addAll(airportData.filter { it.nameCountry.toLowerCase().contains(p0.toString().toLowerCase())||it.nameAirport.toLowerCase().contains(p0.toString().toLowerCase())  })
-                            airportAdapter.setData(filterAirport)
-                        }else{
-                            airportAdapter.setData(airportData)
+                    when(typeSelect){
+                        Constants.SELECT_NEARBY_AIRPORT -> {
+                            rv_nearby.adapter = airportAdapter
+                            if (p0.toString().length>0){
+                                filterAirport.clear()
+                                filterAirport.addAll(airportData.filter { it.nameCountry.toLowerCase().contains(p0.toString().toLowerCase())||it.nameAirport.toLowerCase().contains(p0.toString().toLowerCase())  })
+                                airportAdapter.setData(filterAirport)
+                            }else{
+                                airportAdapter.setData(airportData)
+                            }
                         }
-                    }
-                    Constants.SELECT_NEARBY_CITY -> {
-                        rv_nearby.adapter = cityAdapter
-                        if (p0.toString().length>0){
-                            filterCity.clear()
-                            filterCity.addAll(cityData.filter { it.cityName.toLowerCase().contains(p0.toString().toLowerCase())||it.descrip.toLowerCase().contains(p0.toString().toLowerCase())  })
-                            cityAdapter.setData(filterCity)
-                        }else{
-                            cityAdapter.setData(cityData)
+                        Constants.SELECT_NEARBY_CITY -> {
+                            rv_nearby.adapter = cityAdapter
+                            if (p0.toString().length>0){
+                                filterCity.clear()
+                                filterCity.addAll(cityData.filter { it.cityName.toLowerCase().contains(p0.toString().toLowerCase())||it.descrip.toLowerCase().contains(p0.toString().toLowerCase())  })
+                                cityAdapter.setData(filterCity)
+                            }else{
+                                cityAdapter.setData(cityData)
+                            }
                         }
-                    }
-                    Constants.SELECT_NEARBY_COUNTRY -> {
-                        rv_nearby.adapter = countryAdapter
-                        if (p0.toString().length>0){
-                            filterCountry.clear()
-                            filterCountry.addAll(countryData.filter { it.name.toLowerCase().contains(p0.toString().toLowerCase())  })
-                            countryAdapter.setData(filterCountry)
-                        }else{
-                            countryAdapter.setData(countryData)
+                        Constants.SELECT_NEARBY_COUNTRY -> {
+                            rv_nearby.adapter = countryAdapter
+                            if (p0.toString().length>0){
+                                filterCountry.clear()
+                                filterCountry.addAll(countryData.filter { it.name.toLowerCase().contains(p0.toString().toLowerCase())  })
+                                countryAdapter.setData(filterCountry)
+                            }else{
+                                countryAdapter.setData(countryData)
+                            }
                         }
-                    }
-                    Constants.SELECT_NEARBY_OFFICE -> {
-                        rv_nearby.adapter = officeAdapter
-                        if (p0.toString().length>0){
-                            filterOffice.clear()
-                            filterOffice.addAll(officeData.filter { it.nameCompany.toLowerCase().contains(p0.toString().toLowerCase())})
-                            officeAdapter.setData(filterOffice)
-                        }else {
-                            officeAdapter.setData(officeData)
+                        Constants.SELECT_NEARBY_OFFICE -> {
+                            rv_nearby.adapter = officeAdapter
+                            if (p0.toString().length>0){
+                                filterOffice.clear()
+                                filterOffice.addAll(officeData.filter { it.nameCompany.toLowerCase().contains(p0.toString().toLowerCase())})
+                                officeAdapter.setData(filterOffice)
+                            }else {
+                                officeAdapter.setData(officeData)
+                            }
                         }
-                    }
 
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
                 }
             }
 
@@ -181,6 +186,7 @@ class NearbyActivity : BaseActivity() {
         airportData.clear()
         GetDataTripPlane(getBaseUrl()).getDataAiport(getToken(),object :CallbackDataAirport{
             override fun success(data: ArrayList<NearbyAirportModel>) {
+                clearFilter()
                 airportData.clear()
                 airportData.addAll(data)
                 airportAdapter.setData(airportData)
@@ -309,6 +315,7 @@ class NearbyActivity : BaseActivity() {
         viewShowLoading()
         GetDataAccomodation(getBaseUrl()).getSearchCity(getToken(),idCountry,Globals.getConfigCompany(this).defaultTravelAgent,object : CallbackListCityHotel {
             override fun successLoad(data: ArrayList<CityHotelModel>) {
+                clearFilter()
                 cityData.clear()
                 cityData.addAll(data)
                 cityAdapter.setData(cityData)
@@ -321,10 +328,16 @@ class NearbyActivity : BaseActivity() {
         })
     }
 
+    private fun clearFilter() {
+        et_filter.setText("")
+        filterActif = false
+    }
+
     fun getDataOffice(){
         viewShowLoading()
         GetDataAccomodation(getBaseUrl()).getListCompanyHotel(getToken(),true,object : CallbackListCompany {
             override fun success(data: ArrayList<NearbyOfficeModel>) {
+                clearFilter()
                 officeData.clear()
                 officeData.addAll(data)
                 officeAdapter.setData(officeData)

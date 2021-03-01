@@ -29,6 +29,8 @@ import android.app.Activity
 import org.koin.core.inject
 import android.view.View
 import android.os.Build
+import android.text.Editable
+import android.text.TextWatcher
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewAnimation
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.Constants
@@ -51,13 +53,14 @@ class ResultSearchHotelActivity : BaseActivity(),
     var current_sort      = 0
     val nameStation       = ArrayList<String>()
     var data              = ArrayList<AccomodationResultModel>()
+    var dataFilter        = ArrayList<AccomodationResultModel>()
     val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
     var prizeMax          = 0
     var prizeMin          = 0
     val timeSelectFilterDeparture = ArrayList<String>()
     val timeSelectFilterArrival   = ArrayList<String>()
 
-    var typeDestination = 0
+    var typeDestination  = 0
     var latitude         = ""
     var longitude        = ""
     var idCountry        = ""
@@ -68,13 +71,46 @@ class ResultSearchHotelActivity : BaseActivity(),
     var nameCity         = ""
     var nameOffice       = ""
     var nameAirport      = ""
+    var filterActif      = false
 
     override fun OnMain() {
         initItemViews()
+        initSearch()
+    }
+
+    private fun initSearch() {
+        et_filter.addTextChangedListener(object :TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                filterActif = p0.toString().length>0
+                try {
+                    if (p0.toString().length>0){
+                        dataFilter.clear()
+                        dataFilter.addAll(data.filter { it.listHotelModel.nameHotel.toLowerCase().contains(p0.toString().toLowerCase()) })
+                        adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
+                    }
+                    else {
+                        adapter.setDataList(data,this@ResultSearchHotelActivity)
+                    }
+                }catch (e:Exception){
+                    e.printStackTrace()
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
+
+        imgCloseDest.setOnClickListener { et_filter.setText("") }
     }
 
     private fun initItemViews() {
         filter.callbackOnclickFilter(this)
+        filter.setTextButtonChangeDate("Pick Area")
         getDataIntent()
         setToolbar(checkIn)
         setRecyclerView()
@@ -236,7 +272,19 @@ class ResultSearchHotelActivity : BaseActivity(),
     override fun onClick(views: Int, position: Int, viewAnim: View) {
         when(views){
             -3 ->{
-                Constants.DATA_HOTEL    = Serializer.serialize(data.get(position).listHotelModel, ResultListHotelModel::class.java)
+                if (filterActif){
+                    dataFilter[position].listHotelModel.idCountry  = idCountry
+                    dataFilter[position].listHotelModel.checkIn    = checkIn.split(" ")[0]
+                    dataFilter[position].listHotelModel.checkOut   = dateCheckoutCalculation(checkIn.split(" ")[0])
+                    dataFilter[position].listHotelModel.duration   = duration
+                    Constants.DATA_HOTEL                           = Serializer.serialize(dataFilter.get(position).listHotelModel, ResultListHotelModel::class.java)
+                }else {
+                    data[position].listHotelModel.idCountry        = idCountry
+                    data[position].listHotelModel.checkIn          = checkIn.split(" ")[0]
+                    data[position].listHotelModel.duration         = duration
+                    data[position].listHotelModel.checkOut         = dateCheckoutCalculation(checkIn.split(" ")[0])
+                    Constants.DATA_HOTEL                           = Serializer.serialize(data.get(position).listHotelModel, ResultListHotelModel::class.java)
+                }
                 gotoActivityUsingTransition(viewAnim, DetailHotelActivity::class.java)
             }
         }

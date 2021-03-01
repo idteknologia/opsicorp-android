@@ -321,6 +321,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         dataFilter.clear()
         dataFilter.addAll(data.filter { it.status.equals("Draft") })
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
+//        dataFilter.sortBy { it.start_date }
+//        dataFilter.reverse()
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
     }

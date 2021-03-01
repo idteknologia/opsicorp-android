@@ -514,7 +514,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 getSyncHotel(data,position)
             }
             else if ("Pending".equals(data.status)){
-                getSyncHotel(data,position)
+//                onclick.onClick(Constants.PROGRESS_HOTEL_CALLBACK,position)
             }
 
             if (position==items.size-1){
@@ -525,12 +525,17 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }
 
             itemView.tv_status_hotel_cart.text       = data.status
-            itemView.tv_pnr_hotel_cart.text          = data.pnrHotel
+            if (data.pnrHotel.isNotEmpty()||data.pnrHotel=="null"){
+                itemView.tv_pnr_hotel_cart.text      = data.pnrHotel
+            }
+            else {
+                itemView.tv_pnr_hotel_cart.text      = "-"
+            }
             itemView.tv_type_hotel_cart.text         = data.typeHotel
             itemView.tv_description_hotel_cart.text  = data.descreption
             itemView.tv_date_booking_hotel_cart.text = DateConverter().getDate(data.dateBooking.split(" ")[0],"yyyy-MM-dd","EEEE, yyyy-MMM-dd")
             itemView.tv_name_hotel_cart.text         = data.nameHotel
-            itemView.tv_prize_hotel_cart.text        = data.price
+            itemView.tv_prize_hotel_cart.text        = Globals.formatAmount(data.price.split(".")[0])
 
             if (data.image.isNotEmpty()){
                 Picasso.get()

@@ -62,6 +62,10 @@ class FilterOpsicorp : LinearLayout, View.OnClickListener {
         drawablesDefault.add(R.drawable.ic_transparant)
     }
 
+    fun setTextButtonChangeDate(name:String){
+        tv_change_date.text  = name
+    }
+
     interface OnclickFilterListener{
         fun onFilter()
         fun onSort()

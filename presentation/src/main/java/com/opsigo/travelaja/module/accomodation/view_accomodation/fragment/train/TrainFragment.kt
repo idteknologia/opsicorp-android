@@ -73,7 +73,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         val stationTrain = ArrayList<DestinationAccomodationModel>()
         stationTrain.clear()
         stationTrain.addAll(Constants.DATA_TRAIN_STASION)
-
+        setLog(Serializer.serialize(stationTrain))
         val queryOrigin = stationTrain.filter { it.code=="BD" }.first()
         val queryDestination = stationTrain.filter { it.code=="GMR" }.first()
         tv_from.text  = queryOrigin.nameCity

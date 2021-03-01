@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.LoginEntity
+import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.signin.DataLoginModel
 
 class LoginEntityDataMapper{

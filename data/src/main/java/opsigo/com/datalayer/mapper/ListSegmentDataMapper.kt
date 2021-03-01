@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.SegmentsItem
+import opsigo.com.datalayer.model.cart.SegmentsItem
 import opsigo.com.domainlayer.Mapper
 import opsigo.com.domainlayer.model.summary.SegmentsItemModel
 

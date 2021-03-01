@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.listtripplan.ConfigEntity
+import opsigo.com.datalayer.model.profile.ConfigEntity
 import opsigo.com.domainlayer.model.ConfigModel
 
 class ConfigEntityDataMapper{

@@ -1,15 +1,18 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
-import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
-import com.opsicorp.hotel_feature.select_room.SelectRoomActivity
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
+import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.item_custom.galery.CallbackGalery
+import com.opsicorp.hotel_feature.select_room.SelectRoomActivity
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.module.item_custom.galery.MyGalery
+import kotlinx.android.synthetic.main.detail_hotel_activity.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
+import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.DefaultItemAnimator
@@ -22,11 +25,7 @@ import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
 import android.content.Intent
 import android.view.View
-import kotlinx.android.synthetic.main.detail_hotel_activity.*
-import kotlinx.android.synthetic.main.detail_hotel_layout.*
-import opsigo.com.domainlayer.model.accomodation.hotel.*
 import java.util.HashMap
-
 
 class DetailHotelActivity :BaseActivity(),
         DescriptionAndFacilityHotel.OnclickButtonListener,
@@ -69,7 +68,6 @@ class DetailHotelActivity :BaseActivity(),
     override fun btnCard() {
 
     }
-
 
     private fun initRecyclerView() {
         val layoutManagerReview = LinearLayoutManager(this)
@@ -153,15 +151,6 @@ class DetailHotelActivity :BaseActivity(),
             it.galery             = mData.galery
             it.descriptioHotel    = mData.descriptioHotel
         }
-        /*data.nameHotel          = mData.nameHotel
-        data.hotelKey           = mData.hotelKey
-        data.addressHotel       = mData.addressHotel
-        data.lat                = mData.lat
-        data.long               = mData.long
-        data.reviews            = mData.reviews
-        data.faciltyHotel       = mData.faciltyHotel
-        data.galery             = mData.galery
-        data.descriptioHotel    = mData.descriptioHotel*/
     }
 
     private fun getDataRoom() {
@@ -178,40 +167,45 @@ class DetailHotelActivity :BaseActivity(),
     }
 
     private fun mappingDataRoom(mData: ArrayList<SelectRoomModel>) {
-
         mData.forEach {
             val selectRoomModel = it
             val room = data.room.filter { it.roomKey == selectRoomModel.roomKey }.first()
-            data.room[data.room.indexOf(room)].let {
-                it.roomCodeHash = room.roomCodeHash
-                it.breakfastType = room.breakfastType
-                it.cancelLimit = room.cancelLimit
-                it.isGuaranteedBooking = room.isGuaranteedBooking
-                it.isFullCharge = room.isFullCharge
+            data.room[data.room.indexOf(room)].apply {
+                this.roomCodeHash  = selectRoomModel.roomCodeHash
+                this.breakfastType = selectRoomModel.breakfastType
+                this.cancelLimit   = selectRoomModel.cancelLimit
+                this.isGuaranteedBooking = selectRoomModel.isGuaranteedBooking
+                this.isFullCharge  = selectRoomModel.isFullCharge
             }
-
-            /*val room = data.room.filter { it.roomKey == selectRoomModel.roomKey }.first()
-            data.room[data.room.indexOf(room)].roomCodeHash = room.roomCodeHash
-            data.room[data.room.indexOf(room)].breakfastType = room.breakfastType
-            data.room[data.room.indexOf(room)].cancelLimit = room.cancelLimit
-            data.room[data.room.indexOf(room)].isGuaranteedBooking = room.isGuaranteedBooking
-            data.room[data.room.indexOf(room)].isFullCharge = room.isFullCharge*/
         }
     }
 
     private fun setDataHotel() {
-        dataFacility.addAll(this.data.faciltyHotel)
-        dataReview.addAll(this.data.reviews)
+        dataFacility.addAll(mappingImageFacility(this.data.faciltyHotel))//mappingImageFacility(this.data.faciltyHotel)
+        dataReview.addAll(data.reviews)
 
-        reviewAdapter.setData(dataReview)
-        facilityAdapter.setData(dataFacility)
+        if (dataFacility.isNotEmpty()){
+            line_facility.visibility = View.VISIBLE
+            facilityAdapter.setData(dataFacility)
+        }
+        else {
+            line_facility.visibility = View.GONE
+        }
 
-        latitude = this.data.lat.toDouble()
-        longitude = this.data.long.toDouble()
+        if (dataReview.isNotEmpty()){
+            line_riview.visibility = View.VISIBLE
+            reviewAdapter.setData(dataReview)
+        }
+        else {
+            line_riview.visibility = View.GONE
+        }
+
+        latitude = data.lat.toDouble()
+        longitude = data.long.toDouble()
         initWebview()
 
         val mList = ArrayList<FacilityHotelModel>()
-        mList.addAll(this.data.faciltyHotel.filter { it.image.isEmpty() })
+        mList.addAll(data.faciltyHotel)
         showLineDescription(mList)
 
         tv_name_hotel.text = data.nameHotel
@@ -254,6 +248,40 @@ class DetailHotelActivity :BaseActivity(),
             showGalery()
         }
         hideLoadingLayout()
+    }
+
+    private fun mappingImageFacility(faciltyHotel: ArrayList<FacilityHotelModel>): ArrayList<FacilityHotelModel> {
+        val data = ArrayList<FacilityHotelModel>()
+        data.clear()
+        faciltyHotel.forEach {
+            when(it.code){
+                "AC"-> {
+                    it.image = R.drawable.ac
+                    data.add(it)
+                }
+                "RST"-> {
+                    it.image = R.drawable.ic_meal
+                    data.add(it)
+                }
+                "WIFI"-> {
+                    it.image = R.drawable.ic_swimming_pool
+                    data.add(it)
+                }
+                "PRK"-> {
+                    it.image = R.drawable.ic_parkir
+                    data.add(it)
+                }
+                "LDRY"-> { // laundry
+                    it.image = R.drawable.ic_contact_center
+                    data.add(it)
+                }
+                "TV"-> {
+                    it.image = R.drawable.ic_fitness
+                    data.add(it)
+                }
+            }
+        }
+        return data
     }
 
     private fun dataRequestRoom(): HashMap<Any, Any> {

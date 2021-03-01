@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.PurposeEntity
+import opsigo.com.datalayer.model.create_trip_plane.trip_plan.PurposeEntity
 import opsigo.com.domainlayer.model.PurposeModel
 import org.json.JSONArray
 
@@ -11,7 +11,7 @@ class PurposeEntityDataMapper{
         val data = ArrayList<PurposeModel>()
         data.clear()
         for (i in 0 until configEntity.length()){
-            val model = Serializer.deserialize(configEntity.getString(i),PurposeEntity::class.java)
+            val model = Serializer.deserialize(configEntity.getString(i), PurposeEntity::class.java)
             val mData = PurposeModel()
             mData.value = model.value
             data.add(mData)

@@ -62,8 +62,6 @@ object MyURL {
     const val REMOVE_HOTEL         = "apiv1/RemoveHotel"
     const val REMARK_HOTEL         = "apiv1/UpdateHotelRemarks"
 
-
-
 //    const val COUNTRY            = "api/Lookup/Country"
     const val COUNTRY              = "api/MobileVersion/getcallcountry"
     const val TOTAL_APROVAL        = "api/TripPlan/GetTripPanStatus"

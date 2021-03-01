@@ -13,8 +13,6 @@ class AccomodationPresenter {
     var imageSelected = ArrayList<Int>()
     var imageTitle    = ArrayList<String>()
 
-
-
     constructor(context: Context, accomodationView: AccomodationView) {
         this.context = context
         this.accomodationView = accomodationView

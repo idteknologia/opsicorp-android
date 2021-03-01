@@ -42,32 +42,130 @@
             android:id="@+id/line_title_hotel"
             android:layout_marginBottom="11dp"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="6dp"
             android:layout_below="@+id/line_guaranted">
 
-            <TextView
-                android:maxLines="24"
-                android:id="@+id/tv_title_room"
-                style="@style/RobotoMedium"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Superior Room"
-                android:textColor="#24253d"
-                android:textSize="16dp"></TextView>
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_bed_facility"
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Twin bed or Double bed"
-                android:textColor="#939396"
-                android:textSize="12dp"></TextView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_include_breakfast"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Included Breakfast"
+                            android:textColor="#939396"
+                            android:textSize="12dp"></TextView>
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:background="@drawable/rounded_button_cyrcel_green">
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/type_booking"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Direct Booking"
+                            android:textColor="#939396"
+                            android:textSize="12dp"></TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/tv_title_room"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Superior Room"
+                        android:textColor="#24253d"
+                        android:textSize="16dp"></TextView>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4">
+                    <LinearLayout
+                        android:layout_marginRight="20dp"
+                        android:gravity="right"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true">
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tv_not_comply"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Not comply"
+                            android:textSize="10dp"
+                            android:layout_marginBottom="6dp"
+                            style="@style/RobotoBold"
+                            android:textColor="#eb0011">
+                        </TextView>
+
+                        <TextView
+                            android:layout_marginBottom="6dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total include VAT"
+                            android:textSize="10dp"
+                            style="@style/RobotoRegular"
+                            android:textColor="#939396">
+                        </TextView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/tv_prize_room"
+                                style="@style/RobotoBold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="900.000.000"
+                                android:textColor="@color/blue_dark"
+                                android:textSize="16dp"></TextView>
+
+                            <TextView
+                                android:id="@+id/tv_code_currency"
+                                style="@style/RobotoBold"
+                                android:layout_marginLeft="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="IDR"
+                                android:textColor="@color/green_cyan_info"
+                                android:textSize="10dp"></TextView>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -183,53 +281,18 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/tv_available_room"
                 android:layout_width="137dp"
+                style="@style/RobotoBold"
                 android:layout_height="29dp"
                 android:text="Select"
+                android:textColor="@color/blue_dark"
+                android:layout_marginRight="15dp"
                 android:background="@drawable/rounded_button_yellow"
                 android:gravity="center">
             </TextView>
         </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="32dp"
-            android:gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentRight="true">
 
-            <TextView
-                android:id="@+id/tv_not_comply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not comply"
-                android:textSize="10dp"
-                android:layout_marginBottom="6dp"
-                style="@style/RobotoBold"
-                android:textColor="#eb0011">
-            </TextView>
-
-            <TextView
-                android:layout_marginBottom="6dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total include VAT"
-                android:textSize="10dp"
-                style="@style/RobotoRegular"
-                android:textColor="#939396">
-            </TextView>
-
-            <TextView
-                android:id="@+id/tv_prize_room"
-                style="@style/RobotoMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="IDR 900.000.000"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16dp"></TextView>
-        </LinearLayout>
     </RelativeLayout>
 
 
