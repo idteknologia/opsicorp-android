@@ -44,7 +44,9 @@
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".ssr.BagageActivity"></activity>
+        <activity android:name=".ssr.BagageActivity">
+
+        </activity>
 
 
         <activity android:name=".ssr.SsrActivity">

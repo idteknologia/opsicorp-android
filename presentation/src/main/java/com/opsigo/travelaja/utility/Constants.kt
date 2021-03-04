@@ -1,6 +1,7 @@
 package com.opsigo.travelaja.utility
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
@@ -19,6 +20,7 @@ object Constants {
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
+    var DATA_FLIGHT_MULTI_CITY = ArrayList<OrderAccomodationModel>()
     var DATA_SSR          = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"

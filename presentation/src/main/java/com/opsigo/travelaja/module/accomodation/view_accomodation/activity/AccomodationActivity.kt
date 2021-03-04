@@ -215,6 +215,12 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
+            Constants.REQUEST_CODE_SELECT_FROM_MULTI -> {
+                flightFragment.onActivityResult(requestCode, resultCode, data)
+            }
+            Constants.REQUEST_CODE_SELECT_TO_MULTI -> {
+                flightFragment.onActivityResult(requestCode, resultCode, data)
+            }
             NewCalendarViewOpsicorp().REQUEST_CODE_CALENDAR->{
                when(positionPage){
                    FLIGHT_POSITION ->{

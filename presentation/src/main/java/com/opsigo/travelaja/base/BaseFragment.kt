@@ -64,6 +64,12 @@ abstract class BaseFragment: Fragment()  {
         }
     }
 
+    fun setLog(tag:String,s: String) {
+        if(BuildConfig.DEBUG){
+            Log.e(tag,s)
+        }
+    }
+
 
     fun getBaseUrl():String{
         return Globals.getBaseUrl(context!!)

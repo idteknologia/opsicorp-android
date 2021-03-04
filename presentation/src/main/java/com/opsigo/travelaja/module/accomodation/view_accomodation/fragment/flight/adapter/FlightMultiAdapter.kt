@@ -41,6 +41,9 @@ class FlightMultiAdapter : RecyclerView.Adapter<FlightMultiAdapter.ViewHolder>()
         } else {
             holder.itemView.tvRemoveCard.gone()
         }
+        holder.itemView.tv_departur_date.text = data.dateDeparture
+        holder.itemView.tv_from.text = data.originName
+        holder.itemView.tv_to.text = data.destinationName
         holder.itemView.tvFlightNumberMulti.text = "Flight ${position+1}"
         holder.itemView.tv_from.setOnClickListener {
             onClick.onClick(Constants.REQUEST_CODE_SELECT_FROM_MULTI,position)
