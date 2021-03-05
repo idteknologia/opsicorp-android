@@ -12,20 +12,11 @@
         android:layout_height="90dp"
         android:background="@drawable/rectangle_background"/>
 
-    <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
-        android:layout_width="match_parent"
-        android:id="@+id/top_button"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
-
     <android.support.v4.widget.NestedScrollView
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="80dp"
         android:fillViewport="true">
         <LinearLayout
             android:visibility="visible"
@@ -33,55 +24,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-            <!--<android.support.v7.widget.CardView
-                android:id="@+id/cardFlight1"
+            <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:layout_marginTop="15dp"
+                android:id="@+id/top_button"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content">
+            </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardFlightOneTrip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                app:cardCornerRadius="5dp">
-
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tvFlightNumberMulti"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginLeft="14dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Flight 1"
-                        android:textColor="#24253d"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvRemoveCard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:text="Remove"
-                        android:textColor="#2b9a8e"
-                        android:textSize="14sp"
-                        android:visibility="gone" />
 
                     <LinearLayout
                         android:id="@+id/line_depart"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:layout_marginTop="60dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginRight="25dp"
                         android:orientation="horizontal"
                         android:weightSum="1">
-
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -121,6 +95,7 @@
                                         android:paddingTop="8dp"
                                         android:paddingBottom="9dp"
                                         android:text=""
+                                        android:hint="Origin city/airport"
                                         android:textAlignment="viewStart"
                                         android:textColor="@color/colorTextHint"
                                         android:textColorHint="@color/colorTextHint"
@@ -138,26 +113,21 @@
                                     android:layout_marginRight="57dp"
                                     android:background="@color/colorLineEdittext">
 
-
                                 </LinearLayout>
-
-
                             </RelativeLayout>
-
-
                         </LinearLayout>
 
                     </LinearLayout>
 
                     <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
                         android:id="@+id/btn_switch"
+                        android:layout_marginRight="32dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="100dp"
-                        android:layout_marginRight="28dp">
-
-                    </com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth>
+                        android:layout_marginEnd="32dp"
+                        android:layout_alignParentEnd="true" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -207,6 +177,7 @@
                                         android:paddingTop="8dp"
                                         android:paddingBottom="9dp"
                                         android:text=""
+                                        android:hint="Destination city/airport"
                                         android:textAlignment="viewStart"
                                         android:textColor="@color/colorTextHint"
                                         android:textColorHint="@color/colorTextHint"
@@ -233,9 +204,9 @@
                 <LinearLayout
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_gravity="bottom"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="175dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -243,7 +214,7 @@
                         android:id="@+id/lay_end_start"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -257,6 +228,29 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:orientation="vertical"
+                                android:layout_alignParentRight="true">
+
+                                <TextView
+                                    android:text="One-way?"
+                                    android:textSize="14sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <android.support.v7.widget.SwitchCompat
+                                    android:id="@+id/flightSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:thumb="@drawable/rounded_switch2"
+                                    app:track="@drawable/track_switch_on"/>
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/lay_deaprture_date"
@@ -277,7 +271,10 @@
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
                                     android:textSize="@dimen/font_edittext"
-                                    android:layout_width="match_parent"
+                                    android:hint="Select departure date"
+                                    android:textColor="@color/colorTextHint"
+                                    android:textColorHint="@color/colorTextHint"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
 
@@ -294,39 +291,98 @@
                         </RelativeLayout>
 
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:visibility="visible"
+                        android:id="@+id/lay_return_date"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_marginRight="8dp"
+                            android:src="@drawable/ic_date_check_out"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:id="@+id/lay_end_date"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp">
+
+                                <TextView
+                                    android:text="@string/return_date"
+                                    android:textSize="14sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+
+
+                                <TextView
+                                    android:id="@+id/tv_end_date"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="9dp"
+                                    android:textAlignment="viewStart"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/font_edittext"
+                                    android:textColor="@color/colorTextHint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlCompat" />
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_below="@+id/lay_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@color/colorLineEdittext">
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
-            </android.support.v7.widget.CardView>-->
+            </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvFlightMultiCity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"/>
+
+            <Button
+                android:id="@+id/btAddOtherFlight"
+                android:layout_width="160dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_approval_green"
+                android:text="@string/add_other_flight"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="75dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_next">
+            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <Button
-        android:id="@+id/btAddOtherFlight"
-        android:layout_width="160dp"
-        android:layout_height="27dp"
-        android:layout_above="@+id/btn_next"
-        android:layout_centerInParent="true"
-        android:background="@drawable/rounded_approval_green"
-        android:text="@string/add_other_flight"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp" />
-
-    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="65dp"
-        android:layout_marginTop="25dp"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_next">
-    </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
-
 
 </RelativeLayout>

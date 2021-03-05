@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.Globals
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.gone
+import com.opsigo.travelaja.utility.visible
 import kotlinx.android.synthetic.main.select_nationality_adapter_view.view.*
 
 class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel>): RecyclerView.Adapter<SelectNationalityAdapter.ViewHolder>() {
@@ -32,7 +35,14 @@ class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel
 
         val data = items.get(position)
 
-        holder.itemView.tv_country.text = data.name
+        holder.itemView.tv_country.text = "${data.name}, ${data.country}"
+
+        if (Globals.typeAccomodation.equals("Flight")){
+            holder.itemView.rlIdCity.visible()
+            holder.itemView.tv_country2.text = data.id
+        } else {
+            holder.itemView.rlIdCity.gone()
+        }
 
         holder.itemView.setOnClickListener {
             onclick.onClick(-1,position)
