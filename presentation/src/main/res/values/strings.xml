@@ -692,4 +692,5 @@ Please add your trip item for Approval."
     <string name="title_train_feature">Train Feature</string>
     <string name="title_module_tour">Module Tour</string>
     <string name="add_other_flight">+ Add other flight</string>
+    <string name="description_reason_code">Where a seat on a lower fare option was not available even though booking request was outside deadlines.</string>
 </resources>

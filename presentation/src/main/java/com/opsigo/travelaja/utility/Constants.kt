@@ -17,6 +17,7 @@ object Constants {
 
     val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
     val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
+    val BASE_PACKAGE_FLIGHT = "com.opsicorp.travelaja.feature_flight.result."
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
@@ -53,6 +54,7 @@ object Constants {
     val PROGRESS_FLIGHT_CALLBACK = 9100
     val PROGRESS_FLIGHT_SAVED    = 9101
     val PROGRESS_HOTEL_CALLBACK  = 9088
+    val ONCLICK_DETAIL_FLIGHT = 9102
     val ONCLICK_CHANGE_SEAT_MAP_TRAIN   = 9087
     val ONCLICK_DETAIL_TRAIN     = 9086
     val PROGRESS_TRAIN_SAVED     = 9085

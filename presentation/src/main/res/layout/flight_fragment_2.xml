@@ -242,13 +242,13 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content" />
 
-                                <android.support.v7.widget.SwitchCompat
+                                <Switch
                                     android:id="@+id/flightSwitch"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:layout_gravity="center"
                                     android:thumb="@drawable/rounded_switch2"
-                                    app:track="@drawable/track_switch_on"/>
+                                    android:track="@drawable/track_switch_on"/>
 
                             </LinearLayout>
 

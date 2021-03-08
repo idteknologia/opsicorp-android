@@ -193,7 +193,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             tv_destination.text    = data.origin + " - " + data.destination
             tv_time_departure.text = data.departTime + " - " + data.arriveTime
 //            tv_price.text          = Globals.formatAmount(data.price)
-            tv_price.text          = StringUtils().setCurrency("IDR", data.price , false)
+            tv_price.text          = StringUtils().setCurrency("", data.price , false)
 
             var transit = data.totalTransit.toString()
             if(!data.isConnecting){

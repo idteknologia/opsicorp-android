@@ -43,8 +43,8 @@ import java.util.*
 class NewCartActivity : BaseActivity() , View.OnClickListener ,
         PageListBisnisTrip.Callback,
         PageDetailListTrip.Callback,
-        PageDetailPersonalTrip.Callback,ToolbarOpsicorp.OnclickButtonListener,
-        OnclickListenerRecyclerView {
+        PageDetailPersonalTrip.Callback,
+        ToolbarOpsicorp.OnclickButtonListener {
 
     override fun getLayout(): Int { return R.layout.new_cart_activity }
     override fun OnMain() {
@@ -713,13 +713,6 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         }
     }
 
-    override fun onClick(views: Int, position: Int) {
-        when(views){
-            Constants.KEY_DETAILS_CART -> {
-                
-            }
-        }
-    }
 
 
 }

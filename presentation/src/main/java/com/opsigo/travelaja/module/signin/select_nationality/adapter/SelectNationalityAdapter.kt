@@ -35,7 +35,11 @@ class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel
 
         val data = items.get(position)
 
-        holder.itemView.tv_country.text = "${data.name}, ${data.country}"
+        if (data.country.isNotEmpty()){
+            holder.itemView.tv_country.text = "${data.name}, ${data.country}"
+        } else {
+            holder.itemView.tv_country.text = data.name
+        }
 
         if (Globals.typeAccomodation.equals("Flight")){
             holder.itemView.rlIdCity.visible()

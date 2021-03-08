@@ -49,6 +49,7 @@ class CreateTripActivity : BaseActivity(),
 
     override fun OnMain() {
         setInitOnClickView()
+        Globals.typeAccomodation = ""
 
         presenter.setDataAutomatically()
         presenter.initRecyclerViewAttachment(rv_attachment)
