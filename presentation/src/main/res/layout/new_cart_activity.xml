@@ -202,11 +202,13 @@
                     android:text="Total Purchase orders "
                     style="@style/RobotoRegular"/>
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tv_total_purchase"
                     android:layout_marginTop="5dp"
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
                     android:textSize="20sp"
                     android:textColor="#009688"
                     android:text=""/>

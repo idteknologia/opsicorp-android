@@ -50,7 +50,7 @@
                 android:textColor="#5499e4"
                 android:lineSpacingExtra="6sp"
                 android:gravity="center_horizontal"
-                android:text="Please proceed your trip item for faster Approval." />
+                android:text="Please proceed your trip item for Availability." />
 
             <TextView
                 android:id="@+id/tv_time_limit"
