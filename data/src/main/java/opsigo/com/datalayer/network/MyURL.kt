@@ -84,4 +84,5 @@ object MyURL {
     const val REGISTER_BY_EMAIL    = "api/Account/RegisterCorporate"
     const val CONFIRMATION_OTP     = "api/Account/ValidateToken"
     const val COMPLITELY_REGISTER  = "api/Account/ConfirmCorporate"
+
 }

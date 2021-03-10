@@ -581,7 +581,8 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.success(SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java)))
+                        val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
+                        callback.success(data.first,data.second)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
@@ -595,24 +596,24 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
-    override fun getSearchPageHotel(token: String, data: HashMap<Any, Any>, callback: CallbackUploadFile) {
+    override fun getSearchPageHotel(token: String, data: HashMap<Any, Any>, callback: CallbackSearchHotel) {
         apiOpsicorp.getPageHotel(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                callback.failedLoad(t.message!!)
+                callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.successLoad(UploadModel())
+                        callback.success(ArrayList(), ArrayList())
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
                         val message = json.optString("error_description")
-                        callback.failedLoad(message)
+                        callback.failed(message)
                     }
                 }catch (e:Exception){
-                    callback.failedLoad(e.message!!)
+                    callback.failed(e.message!!)
                 }
             }
         })

@@ -292,9 +292,9 @@ class ConfirmationOrderHotel : BaseActivity(),
             showOrHideDetailPrize()
         }
         line_arrival.visibility   = View.GONE
-        tv_prize_departure.text   = "IDR "+Globals.formatAmount(dataHotel.prize)
-        tv_price_total.text       = "IDR "+Globals.formatAmount(dataHotel.prize)
-        tv_price.text             = "IDR "+Globals.formatAmount(dataHotel.prize)
+        tv_prize_departure.text   = "IDR "+Globals.formatAmount(dataHotel.price)
+        tv_price_total.text       = "IDR "+Globals.formatAmount(dataHotel.price)
+        tv_price.text             = "IDR "+Globals.formatAmount(dataHotel.price)
         tv_including.text         = "Including of all fares & vat"
 
         Globals.delay(100,object :Globals.DelayCallback{

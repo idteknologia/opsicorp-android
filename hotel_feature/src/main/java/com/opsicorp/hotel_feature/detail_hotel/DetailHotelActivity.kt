@@ -263,7 +263,7 @@ class DetailHotelActivity :BaseActivity(),
                     it.image = R.drawable.ic_meal
                     data.add(it)
                 }
-                "WIFI"-> {
+                "POOL"-> {
                     it.image = R.drawable.ic_swimming_pool
                     data.add(it)
                 }
@@ -271,12 +271,20 @@ class DetailHotelActivity :BaseActivity(),
                     it.image = R.drawable.ic_parkir
                     data.add(it)
                 }
-                "LDRY"-> { // laundry
+                "RSVC"-> {
                     it.image = R.drawable.ic_contact_center
                     data.add(it)
                 }
-                "TV"-> {
-                    it.image = R.drawable.ic_fitness
+                "WIFI"-> {
+                    it.image = R.drawable.ic_wi_fi
+                    data.add(it)
+                }
+                "NOSMR"-> {
+                    it.image = R.drawable.ic_no_smoking
+                    data.add(it)
+                }
+                "SDBOX"-> {
+                    it.image = R.drawable.ic_safe_deposit_box
                     data.add(it)
                 }
             }

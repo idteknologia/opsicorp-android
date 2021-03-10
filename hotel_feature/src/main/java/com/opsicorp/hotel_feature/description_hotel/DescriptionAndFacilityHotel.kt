@@ -44,7 +44,7 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
     }
 
     fun initLinePricing(data : ResultListHotelModel) {
-        tv_prize_hotel.text = "IDR "+ Globals.formatAmount(data.prize)
+        tv_prize_hotel.text = "IDR "+ Globals.formatAmount(data.price)
         btn_next_step.setOnClickListener(this)
 
         btn_next_step.setTextColor(resources.getColor(R.color.colorBlueTitle))

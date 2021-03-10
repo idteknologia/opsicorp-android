@@ -10,7 +10,7 @@ import java.util.ArrayList
 
 class SearchHotelMapper {
 
-    fun mapping(mData: SearchHotelEntity): ArrayList<AccomodationResultModel> {
+    fun mapping(mData: SearchHotelEntity): Pair<ArrayList<AccomodationResultModel>,ArrayList<String>> {
         val data = ArrayList<AccomodationResultModel>()
 
         mData.hotels.forEachIndexed { index, hotelsItem ->
@@ -24,7 +24,7 @@ class SearchHotelMapper {
             model.listHotelModel.starRating       = hotelsItem.starRating.toString()
             model.listHotelModel.rating           = hotelsItem.placeRating.toString()
             model.listHotelModel.addressHotel     = hotelsItem.address
-            model.listHotelModel.prize            = hotelsItem.price.toInt().toString()
+            model.listHotelModel.price            = hotelsItem.price.toInt().toString()
             model.listHotelModel.lat              = hotelsItem.latitude.toString()
             model.listHotelModel.long             = hotelsItem.longitude.toString()
             model.listHotelModel.city             = hotelsItem.cityName
@@ -38,7 +38,11 @@ class SearchHotelMapper {
 
             data.add(model)
         }
-        return data
+        val area = ArrayList<String>()
+        mData.areas.forEach {
+            area.add(it.area.toString())
+        }
+        return Pair(data,area)
     }
 
     private fun mappingRoom(mData: SearchHotelEntity, hotelsItem: HotelsItem): ArrayList<SelectRoomModel> {

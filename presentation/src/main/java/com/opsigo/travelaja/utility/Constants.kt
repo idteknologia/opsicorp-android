@@ -14,6 +14,12 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val RESULT_AREA_HOTEL   = "area hotel"
+    val MIN_PRICE           = "min_price"
+    val MAX_PRICE           = "max_price"
+    val RESULT_FACILITY     = "facility"
+    val RESULT_STAR         = "start"
+    val KEY_DATA_AREA       = "items"
     val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
     val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
     val IsLogin             = "login"
@@ -80,6 +86,9 @@ object Constants {
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069
+    val ONCLICK_AREA_HOTEL       = 9068
+    val REQUEST_CODE_HOTEL_AREA  = 9067
+    val REQUEST_CODE_HOTEL_FILTER = 9066
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
     val TYPE_ACCOMODATION        = "type_hotel"

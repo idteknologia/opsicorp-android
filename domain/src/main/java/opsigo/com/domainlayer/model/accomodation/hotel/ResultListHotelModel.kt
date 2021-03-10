@@ -10,7 +10,7 @@ class ResultListHotelModel {
     var typeHotel    = ""
     var starRating   = ""
     var rating       = ""
-    var prize        = ""
+    var price        = ""
     var correlationId   = ""
     var city            = ""
     var idCountry       = ""

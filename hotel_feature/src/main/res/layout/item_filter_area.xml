@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:layout_height="wrap_content">
+
+    <RadioButton
+        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:buttonTint="@color/colorPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rb_area">
+    </RadioButton>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/RobotoBold"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#24253d"
+        android:text="Pawon Cave" />
+
+</LinearLayout>

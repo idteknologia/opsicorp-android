@@ -13,7 +13,26 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        val data = "a,"
-        assertEquals(data.substring(0,data.length-1), "a")
+        val mData = ArrayList<ModelTest>()
+        val data = ModelTest("${1}000",1)
+        val data1 = ModelTest("${4}000",2)
+        val data2 = ModelTest("${6}000",3)
+        val data3 = ModelTest("${2}000",4)
+        mData.add(data)
+        mData.add(data1)
+        mData.add(data2)
+        mData.add(data3)
+        mData.sortBy { it.price.toInt() }
+        mData.forEach {
+            println(it.price)
+        }
+        mData.sortBy { it.price.toInt() }
+        mData.reverse()
+        mData.forEach {
+            println(it.price)
+        }
+
     }
+
+    class ModelTest(val price:String,val nomer:Int)
 }

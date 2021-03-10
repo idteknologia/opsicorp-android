@@ -37,10 +37,10 @@ class ListParticipantsDataMapper {
                                 dataFlight.originDeatination = segmentFlightEntity.originName+" - "+segmentFlightEntity.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
 
                                 //dataFlight.idFlight         = segmentFlightEntity.id//"Sriwijaya"
-                                dataFlight.idFlight         = segmentFlightEntity.tripFlightId//"Sriwijaya"
-                                dataFlight.airlineName      = tripFlightsItem.airlineView//"Sriwijaya"
-                                dataFlight.flightNumber     = segmentFlightEntity.flightNumber//"SJ-0412"
-                                dataFlight.seatNumber       = segmentFlightEntity.flightNumber
+                                dataFlight.idFlight         = segmentFlightEntity.tripFlightId.toString()//"Sriwijaya"
+                                dataFlight.airlineName      = tripFlightsItem.airlineView.toString()//"Sriwijaya"
+                                dataFlight.flightNumber     = segmentFlightEntity.flightNumber.toString()//"SJ-0412"
+                                dataFlight.seatNumber       = segmentFlightEntity.flightNumber.toString()
 
                                 //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
                                 dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status

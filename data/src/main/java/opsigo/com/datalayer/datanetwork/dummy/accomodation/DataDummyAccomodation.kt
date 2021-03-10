@@ -226,7 +226,7 @@ class DataDummyAccomodation {
             listHotelModel.rating       = "4.5"
             listHotelModel.addressHotel = "Jl. HOS Tjokroaminoto No. 41-43 40171 \n" + "Bandung Java Indonesia, 10250"
             listHotelModel.city         = "Arjuna, Bandung"
-            listHotelModel.prize        = "2561551"
+            listHotelModel.price        = "2561551"
             listHotelModel.lat          = "-6.175906"
             listHotelModel.long         = "106.8121863"
             listHotelModel.totalAvailable  = (index+1).toString()

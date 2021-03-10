@@ -15,7 +15,7 @@ interface AccomodationRepository {
     fun getSearchCountry(token: String,travelAgent:String,callback: CallbackArrayListCountry)
     fun getSearchCity(token: String,isoCountry:String,travelAgent:String,callback: CallbackListCityHotel)
     fun getSearchHotel(token: String,data:HashMap<Any,Any>,callback: CallbackSearchHotel)
-    fun getSearchPageHotel(token: String,data:HashMap<Any,Any>,callback: CallbackUploadFile)
+    fun getSearchPageHotel(token: String,data:HashMap<Any,Any>,callback: CallbackSearchHotel)
     fun getHotelDetail(token: String,data:HashMap<Any,Any>,callback: CallbackDetailHotel)
     fun getConfirmationHotel(token: String,data:HashMap<Any,Any>,callback: CallbackConfirmationHotel)
     fun getValidationHotel(token: String,data:HashMap<Any,Any>,callback: CallbackValidationHotel)

@@ -2,42 +2,44 @@ package com.opsicorp.hotel_feature.result
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
 import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
+import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewAnimation
+import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
 import com.opsicorp.hotel_feature.detail_hotel.DetailHotelActivity
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackSearchHotel
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.transition.TransitionManager
+import com.opsigo.travelaja.utility.DateConverter
+import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import android.support.transition.Transition
+import com.opsigo.travelaja.utility.Globals
 import org.koin.core.parameter.parametersOf
 import com.opsigo.travelaja.BaseActivity
 import android.support.transition.Fade
 import kotlin.collections.ArrayList
+import com.opsicorp.hotel_feature.R
 import org.koin.core.KoinComponent
 import java.text.SimpleDateFormat
+import android.text.TextWatcher
 import android.content.Intent
+import android.text.Editable
 import android.app.Activity
 import org.koin.core.inject
+import java.lang.Exception
 import android.view.View
 import android.os.Build
-import android.text.Editable
-import android.text.TextWatcher
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewAnimation
-import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
-import java.lang.Exception
+import android.os.Bundle
+import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelRequest
 import java.util.*
 
 class ResultSearchHotelActivity : BaseActivity(),
@@ -45,20 +47,25 @@ class ResultSearchHotelActivity : BaseActivity(),
         FilterOpsicorp.OnclickFilterListener,
         ToolbarOpsicorp.OnclickButtonListener,
         BottomSheetSort.BottomSheetListener ,
+        HotelShortByDialog.CallbackDialog,
         OnclickListenerRecyclerViewAnimation {
 
     override fun getLayout(): Int { return R.layout.detail_search_hotel_activity }
 
+    val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
     var loadingSearch     = false
     var current_sort      = 0
-    val nameStation       = ArrayList<String>()
     var data              = ArrayList<AccomodationResultModel>()
     var dataFilter        = ArrayList<AccomodationResultModel>()
-    val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
-    var prizeMax          = 0
-    var prizeMin          = 0
-    val timeSelectFilterDeparture = ArrayList<String>()
-    val timeSelectFilterArrival   = ArrayList<String>()
+    val dataArea          = ArrayList<String>()
+    var star              = ArrayList<String>()
+    var minPrice          = ""
+    var maxPrice          = ""
+    var facilitys         = ArrayList<String>()
+    var area              = ""
+    var originSelected    = ""
+    var destinationSelected = ""
+    var correlationId     = ""
 
     var typeDestination  = 0
     var latitude         = ""
@@ -198,11 +205,29 @@ class ResultSearchHotelActivity : BaseActivity(),
 
 
     override fun onFilter() {
+        if (data.isNotEmpty()&&!loadingSearch){
+            val minPrice = getPriceMinMax().first
+            val maxPrice = getPriceMinMax().second
+            val bundle = Bundle()
+            bundle.putInt(Constants.MIN_PRICE,minPrice)
+            bundle.putInt(Constants.MAX_PRICE,maxPrice)
+            gotoActivityResultWithBundle(FilterPriceActivity::class.java,bundle,Constants.REQUEST_CODE_HOTEL_FILTER)
+        }
+    }
 
+    private fun getPriceMinMax(): Pair<Int,Int> {
+        val sortingData: ArrayList<AccomodationResultModel>
+        if (filterActif) sortingData = dataFilter else sortingData = data
+        sortingData.sortBy { it.listHotelModel.price.toInt() }
+        val min = sortingData.first().listHotelModel.price.toInt()
+        val max = sortingData.last().listHotelModel.price.toInt()
+        return Pair(min,max)
     }
 
     override fun onSort() {
-
+        if (data.isNotEmpty()&&!loadingSearch){
+            HotelShortByDialog(this).create(current_sort,this)
+        }
     }
 
     override fun onOptionSortClick(text: String, sort: Int) {
@@ -210,13 +235,11 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     override fun onChangeDate() {
-        /*CalendarDialog(this).create(object :CalendarDialog.CallbackDialog{
-            override fun selected(date: Date) {
-                tv_total_data.visibility = View.GONE
-                val formatter = SimpleDateFormat("yyyy-MM-dd")
-                departureDate = formatter.format(date.time)
-            }
-        })*/
+        if (dataArea.isNotEmpty()&&!loadingSearch){
+            val bundle = Bundle()
+            bundle.putStringArrayList(Constants.KEY_DATA_AREA,dataArea)
+            gotoActivityResultWithBundle(FilterByAreaActivity::class.java,bundle,Constants.REQUEST_CODE_HOTEL_AREA)
+        }
     }
 
     override fun btnBack() {
@@ -235,7 +258,21 @@ class ResultSearchHotelActivity : BaseActivity(),
         super.onActivityResult(requestCode, resultCode, data)
         CalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
         when(requestCode){
-            Constants.GET_FILTER -> {
+            Constants.REQUEST_CODE_HOTEL_AREA -> {
+                if (resultCode==Activity.RESULT_OK){
+                    area = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
+                }
+            }
+            Constants.REQUEST_CODE_HOTEL_FILTER -> {
+                if (resultCode==Activity.RESULT_OK){
+                    minPrice = data?.getStringExtra(Constants.MIN_PRICE).toString()
+                    maxPrice = data?.getStringExtra(Constants.MAX_PRICE).toString()
+                    facilitys = data?.getStringArrayListExtra(Constants.RESULT_FACILITY)!!
+                    star      = data.getStringArrayListExtra(Constants.RESULT_STAR)!!
+                }
+            }
+
+            /*Constants.GET_FILTER -> {
                 if (resultCode==Activity.RESULT_OK){
                     setLog(Constants.dataFilterMaxPriceAccomodation.toString())
                     Constants.dataDepartureTime.forEachIndexed{
@@ -253,7 +290,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                     this.prizeMax = Constants.dataFilterMaxPriceAccomodation
                     this.prizeMin = Constants.dataFIlterMinPriceAccomodation
                 }
-            }
+            }*/
         }
     }
 
@@ -292,13 +329,14 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     fun getDataHotel(){
         addDataLoading()
-        setLog("--------------")
         setLog(Serializer.serialize(dataSearch()))
         GetDataAccomodation(getBaseUrl()).getSearchHotel(getToken(),dataSearch(),object : CallbackSearchHotel {
-            override fun success(mData: ArrayList<AccomodationResultModel>) {
+            override fun success(mData: ArrayList<AccomodationResultModel>,areas:ArrayList<String>) {
                 loadingSearch = false
                 data.clear()
+                dataArea.clear()
                 data.addAll(mData)
+                dataArea.addAll(areas)
                 adapter.setDataList(data,this@ResultSearchHotelActivity)
                 checkEmptyData()
             }
@@ -307,7 +345,6 @@ class ResultSearchHotelActivity : BaseActivity(),
                 loadingSearch = false
                 data.clear()
                 checkEmptyData()
-//                showAllert("Sorry",errorMessage)
             }
         })
     }
@@ -353,6 +390,92 @@ class ResultSearchHotelActivity : BaseActivity(),
         cal.time = sdf.parse(string)
         cal.add(Calendar.DATE, duration.split(" ")[0].toInt()-1)
         return sdf.format(cal.time)
+    }
+
+    override fun selected(int: Int) {
+        current_sort = int
+        when(int){
+            0 -> {
+                sortLowestPrice()
+            }
+            1 -> {
+                sortHighetRating()
+            }
+            2 -> {
+                sortHSSESertified()
+            }
+            3 -> {
+                sortHighestPrice()
+            }
+        }
+    }
+
+    private fun sortHSSESertified() {
+
+    }
+
+    private fun sortHighetRating() {
+        if(filterActif){
+            data.sortBy { it.listHotelModel.starRating.toDouble() }
+            data.reverse()
+        }
+        else {
+            dataFilter.sortBy { it.listHotelModel.starRating.toDouble() }
+            dataFilter.reverse()
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun sortHighestPrice() {
+        if(filterActif){
+            data.sortBy { it.listHotelModel.price.toInt() }
+            data.reverse()
+        }
+        else {
+            dataFilter.sortBy { it.listHotelModel.price.toInt() }
+            dataFilter.reverse()
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun sortLowestPrice() {
+        if(filterActif){
+            data.sortBy { it.listHotelModel.price.toInt() }
+        }
+        else {
+            dataFilter.sortBy { it.listHotelModel.price.toInt() }
+        }
+        adapter.notifyDataSetChanged()
+    }
+
+    fun getSearchPageHotel(){
+        GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(),object :CallbackSearchHotel{
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>) {
+                data.clear()
+                data.addAll(mData)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun failed(errorMessage: String) {
+
+            }
+        })
+    }
+
+    private fun dataFilterPage(): HashMap<Any, Any> {
+        val data = PageHotelRequest()
+        data.page       = 1
+        data.hotelName  = ""
+        data.star       = star.first()
+        data.minPrice   = minPrice
+        data.maxPrice   = maxPrice
+        data.orderBy    = ""
+        data.area       = area
+        data.correlationId = correlationId
+        data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
+        data.origin      = originSelected
+        data.destination = destinationSelected
+        return Globals.classToHashMap(data,PageHotelRequest::class.java)
     }
 
 }
