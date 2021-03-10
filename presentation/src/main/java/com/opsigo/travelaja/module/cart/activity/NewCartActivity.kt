@@ -205,7 +205,13 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
         val totalExpenditure = java.lang.Double.parseDouble(tripSummary.totalExpenditure)
         val totalAllowance   = java.lang.Double.parseDouble(tripSummary.totalAllowance)
+
         tv_total_purchase.text =  StringUtils().setCurrency("IDR", (totalExpenditure-totalAllowance), false)
+        if (tv_total_purchase.text.equals("IDR 0")){
+            tv_total_purchase.gone()
+        } else {
+            tv_total_purchase.visible()
+        }
 
         pagePosition = DETAIL_BISNIS_TRIP
         page_list_bisnis_trip.visibility = View.GONE
@@ -308,6 +314,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.titleFlight         = it.airlineName
                 model.dataCardFlight.numberSheet         = it.seatNumber
                 model.dataCardFlight.flightNumber        = it.flightNumber
+                model.dataCardFlight.typeFlight          = it.type
                 model.dataCardFlight.dateArrival         = it.dateArrival
                 model.dataCardFlight.dateDeparture       = it.dateDeparture
                 model.dataCardFlight.timeArrival         = it.timeArrival

@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.module.cart.activity.DetailCartActivity
 import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
 import com.opsigo.travelaja.module.cart.model.CartModel
 import com.opsigo.travelaja.utility.Constants
@@ -137,7 +138,10 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_FLIGHT -> {
-
+                val intent = Intent(context,DetailCartActivity::class.java)
+                intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
+                intent.putExtra(Constants.DATA_DETAIL_FLIGHT,Serializer.serialize(data[position]))
+                Globals.gotoActivityModule(context,intent)
             }
         }
     }

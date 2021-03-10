@@ -9,6 +9,7 @@ class ItemCardFlightModel{
 
     var flightNumber    = ""
     var subClass        = ""
+    var typeFlight      = 0
 
     var titleFlight = ""
     var numberSheet = ""

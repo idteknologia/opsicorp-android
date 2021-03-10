@@ -66,6 +66,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
+        btn_next.setTextButton("Continue")
 
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
         val datereturn = DateConverter().setDateFormat3(dataOrder.dateArrival)

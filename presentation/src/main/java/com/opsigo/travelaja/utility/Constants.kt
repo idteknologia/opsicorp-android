@@ -91,6 +91,7 @@ object Constants {
     val REQUEST_CODE_NEARBY      = 9069
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
+    val DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"
     val SELECT_REASON_CODE       = 17

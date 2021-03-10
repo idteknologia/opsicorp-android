@@ -210,6 +210,10 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name="com.opsigo.travelaja.module.cart.activity.DetailCartActivity"
+            android:screenOrientation="portrait"/>
+
         <receiver
             android:name="com.opsigo.travelaja.locale.AppLocaleChangeReceiver"
             android:enabled="true"
