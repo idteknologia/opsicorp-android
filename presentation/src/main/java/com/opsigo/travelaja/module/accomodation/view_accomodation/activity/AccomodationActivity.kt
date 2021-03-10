@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.view_accomodation.activity
 
 import com.opsigo.travelaja.module.accomodation.view_accomodation.presenter.AccomodationPresenter
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragmentNew
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.train.TrainFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.tour.TourFragment
@@ -32,6 +32,7 @@ import org.koin.core.inject
 import java.lang.Exception
 import android.view.View
 import android.util.Log
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }
@@ -39,6 +40,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
     var flightFragment = FlightFragment()
     var hotelFragment  = HotelFragment()
+//    var hotelFragment  = HotelFragmentNew()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
     var profileFragment     = ProfileFragment()
@@ -214,6 +216,12 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
+            Constants.REQUEST_CODE_SELECT_FROM_MULTI -> {
+                flightFragment.onActivityResult(requestCode, resultCode, data)
+            }
+            Constants.REQUEST_CODE_SELECT_TO_MULTI -> {
+                flightFragment.onActivityResult(requestCode, resultCode, data)
+            }
             NewCalendarViewOpsicorp().REQUEST_CODE_CALENDAR->{
                when(positionPage){
                    FLIGHT_POSITION ->{

@@ -139,5 +139,7 @@
     <color name="trainColorSoldOut">#91929e</color>
     <color name="trainColorSoldOut2">#cbcbd0</color>
 
+    <color name="switchOnColor">#a3cec9</color>
+
 
 </resources>

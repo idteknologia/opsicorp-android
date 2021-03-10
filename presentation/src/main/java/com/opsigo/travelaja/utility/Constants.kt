@@ -1,6 +1,7 @@
 package com.opsigo.travelaja.utility
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
@@ -22,9 +23,11 @@ object Constants {
     val KEY_DATA_AREA       = "items"
     val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
     val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
+    val BASE_PACKAGE_FLIGHT = "com.opsicorp.travelaja.feature_flight.result."
     val IsLogin             = "login"
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
+    var DATA_FLIGHT_MULTI_CITY = ArrayList<OrderAccomodationModel>()
     var DATA_SSR          = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
@@ -57,6 +60,7 @@ object Constants {
     val PROGRESS_FLIGHT_CALLBACK = 9100
     val PROGRESS_FLIGHT_SAVED    = 9101
     val PROGRESS_HOTEL_CALLBACK  = 9088
+    val ONCLICK_DETAIL_FLIGHT = 9102
     val ONCLICK_CHANGE_SEAT_MAP_TRAIN   = 9087
     val ONCLICK_DETAIL_TRAIN     = 9086
     val PROGRESS_TRAIN_SAVED     = 9085
@@ -80,6 +84,11 @@ object Constants {
     val REQUEST_CODE_DELETE_SEAT = 9067
     val REQUEST_CODE_DELETE_BAGGAGE  = 9066
     val KEY_DETAILS_CART         = 9065
+    val REQUEST_CODE_SELECT_FROM_MULTI = 9064
+    val REQUEST_CODE_SELECT_TO_MULTI = 9063
+    val REQUEST_CODE_SELECT_DEPARTURE = 9062
+    val REQUEST_CODE_DELETE_MULTI = 9061
+    val REQUEST_CODE_SWITCH_DATA = 9060
     val KEY_POSITION_FARE_RULES  = "keyFareRules"
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"

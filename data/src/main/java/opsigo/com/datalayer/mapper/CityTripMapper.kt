@@ -10,6 +10,7 @@ class CityTripMapper {
             val model = SelectNationalModel()
             model.name = jsonArray.getJSONObject(i).getString("Name")
             model.id   = jsonArray.getJSONObject(i).getString("Code")
+            model.country = jsonArray.getJSONObject(i).getString("CountryName")
             data.add(model)
         }
         return data

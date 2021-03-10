@@ -71,7 +71,7 @@
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="IDR 1.275.000"
+                android:text="Not Comply"
                 android:textColor="#24253d"
                 android:textSize="10sp" />
 
@@ -79,7 +79,8 @@
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp">
 
                 <TextView
                     android:id="@+id/tv_price"
@@ -93,6 +94,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/RobotoRegular"
                     android:textColor="#b2bbc6"
                     android:textSize="10sp"
@@ -103,15 +105,31 @@
 
             </LinearLayout>
 
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="end">
             <TextView
-                android:visibility="invisible"
+                android:visibility="visible"
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="IDR 1.275.000"
-                android:textColor="#24253d"
+                android:text="IDR "
+                android:textColor="@color/green_price"
                 android:textSize="10sp" />
-
+            <TextView
+                android:visibility="visible"
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" / pax"
+                android:textColor="@color/colorMaterialGrey"
+                android:textSize="10sp" />
+        </LinearLayout>
 
 
         </LinearLayout>

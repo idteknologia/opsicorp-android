@@ -348,7 +348,9 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }
 
             itemView.tvDetailsCart.setOnClickListener {
-                onclick.onClick(Constants.KEY_DETAILS_CART,position)
+                if (data.status=="Reserved"){
+                    onclick.onClick(Constants.ONCLICK_DETAIL_FLIGHT,position)
+                }
             }
 
             itemView.tv_status_flight_cart.text   = data.status
@@ -422,6 +424,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 itemView.tv_title_code_fl.text = "Booking Code (PNR)"
                 itemView.tv_progress_flight.visibility =  View.GONE
             }
+
         }
     }
 

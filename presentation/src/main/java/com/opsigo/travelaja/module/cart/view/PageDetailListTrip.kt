@@ -13,6 +13,7 @@ import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
 import com.opsigo.travelaja.module.cart.model.CartModel
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.ONCLICK_CHANGE_SEAT_MAP_TRAIN
+import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_FLIGHT
 import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_HOTEL
 import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_TRAIN
 import com.opsigo.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART
@@ -134,6 +135,9 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_HOTEL,Serializer.serialize(data[position]))
                 Globals.gotoActivityModule(context,intent)
+            }
+            ONCLICK_DETAIL_FLIGHT -> {
+
             }
         }
     }

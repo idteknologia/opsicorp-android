@@ -3,89 +3,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:id="@+id/parent_layout"
     android:layout_height="match_parent">
-
-    <!--    <include-->
-    <!--        android:id="@+id/line_contruction"-->
-    <!--        layout="@layout/contruction_view">-->
-    <!--    </include>-->
 
     <RelativeLayout
         android:id="@+id/rlExtraBackground"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
+        android:layout_height="90dp"
         android:background="@drawable/rectangle_background"/>
-
-    <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
-        android:layout_width="match_parent"
-        android:id="@+id/top_button"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
 
     <android.support.v4.widget.NestedScrollView
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginBottom="80dp"
         android:fillViewport="true">
         <LinearLayout
             android:visibility="visible"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
+                android:layout_width="match_parent"
+                android:id="@+id/top_button"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content">
+            </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/cardFlight1"
+                android:id="@+id/cardFlightOneTrip"
                 android:layout_width="match_parent"
-                android:layout_height="290dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                app:cardCornerRadius="5dp">
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:id="@+id/tvFlightNumberMulti"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="14dp"
-                        android:textSize="14sp"
-                        android:textColor="#24253d"
-                        android:text="Flight 1"
-                        android:textStyle="bold"
-                        android:layout_marginStart="14dp" />
-
-                    <TextView
-                        android:visibility="visible"
-                        android:id="@+id/tvRemoveCard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#2b9a8e"
-                        android:text="Remove"
-                        android:layout_alignParentRight="true" />
-
                     <LinearLayout
                         android:id="@+id/line_depart"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="60dp"
-                        android:weightSum="1"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="25dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -93,12 +63,12 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_marginBottom="10dp"
+                                android:layout_width="@dimen/icon_edittext"
+                                android:layout_height="@dimen/icon_edittext"
                                 android:layout_gravity="bottom"
                                 android:layout_marginRight="10dp"
-                                android:src="@drawable/flight_depart"
-                                android:layout_width="@dimen/icon_edittext"
-                                android:layout_height="@dimen/icon_edittext" />
+                                android:layout_marginBottom="10dp"
+                                android:src="@drawable/flight_depart" />
 
 
                             <RelativeLayout
@@ -107,58 +77,67 @@
 
                                 <LinearLayout
                                     android:id="@+id/layStartDate"
-                                    android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp">
+                                    android:layout_height="60dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:text="@string/from"
-                                        android:textSize="14sp"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/from"
+                                        android:textSize="14sp" />
 
                                     <TextView
-                                        android:text=""
-                                        android:textColor="@color/colorTextHint"
-                                        android:textColorHint="@color/colorTextHint"
                                         android:id="@+id/tv_from"
-                                        android:paddingTop="8dp"
-                                        android:paddingBottom="9dp"
-                                        android:textAlignment="viewStart"
-                                        android:gravity="center"
-                                        android:textSize="@dimen/font_edittext"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="9dp"
+                                        android:text=""
+                                        android:hint="Origin city/airport"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/colorTextHint"
+                                        android:textColorHint="@color/colorTextHint"
+                                        android:textSize="@dimen/font_edittext"
                                         tools:ignore="RtlCompat" />
 
 
                                 </LinearLayout>
 
+
                                 <LinearLayout
-                                    android:layout_marginRight="57dp"
-                                    android:layout_below="@+id/layStartDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
+                                    android:layout_below="@+id/layStartDate"
+                                    android:layout_marginRight="57dp"
                                     android:background="@color/colorLineEdittext">
 
                                 </LinearLayout>
-
                             </RelativeLayout>
-
-
                         </LinearLayout>
 
                     </LinearLayout>
 
+                    <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
+                        android:id="@+id/btn_switch"
+                        android:layout_marginRight="32dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:layout_alignParentEnd="true" />
+
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_below="@+id/line_depart"
-                        android:layout_marginRight="25dp"
                         android:layout_marginLeft="25dp"
                         android:layout_marginTop="20dp"
-                        android:weightSum="1"
+                        android:layout_marginRight="25dp"
                         android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:weightSum="1">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -166,12 +145,12 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:layout_marginBottom="10dp"
+                                android:layout_width="@dimen/icon_edittext"
+                                android:layout_height="@dimen/icon_edittext"
                                 android:layout_gravity="bottom"
                                 android:layout_marginRight="10dp"
-                                android:src="@drawable/flight_arrived"
-                                android:layout_width="@dimen/icon_edittext"
-                                android:layout_height="@dimen/icon_edittext" />
+                                android:layout_marginBottom="10dp"
+                                android:src="@drawable/flight_arrived" />
 
 
                             <RelativeLayout
@@ -180,37 +159,38 @@
 
                                 <LinearLayout
                                     android:id="@+id/lay_to"
-                                    android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp">
+                                    android:layout_height="60dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:text="@string/to"
-                                        android:textSize="14sp"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/to"
+                                        android:textSize="14sp" />
 
                                     <TextView
-                                        android:textColor="@color/colorTextHint"
-                                        android:textColorHint="@color/colorTextHint"
-                                        android:text=""
                                         android:id="@+id/tv_to"
-                                        android:paddingTop="8dp"
-                                        android:paddingBottom="9dp"
-                                        android:textAlignment="viewStart"
-                                        android:gravity="center"
-                                        android:textSize="@dimen/font_edittext"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="9dp"
+                                        android:text=""
+                                        android:hint="Destination city/airport"
+                                        android:textAlignment="viewStart"
+                                        android:textColor="@color/colorTextHint"
+                                        android:textColorHint="@color/colorTextHint"
+                                        android:textSize="@dimen/font_edittext"
                                         tools:ignore="RtlCompat" />
 
 
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_below="@+id/lay_to"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
+                                    android:layout_below="@+id/lay_to"
                                     android:background="@color/colorLineEdittext"></LinearLayout>
 
                             </RelativeLayout>
@@ -219,24 +199,14 @@
 
                     </LinearLayout>
 
-                    <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
-                        android:id="@+id/btn_switch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="28dp">
-
-                    </com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth>
-
                 </RelativeLayout>
-
 
                 <LinearLayout
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
-                    android:layout_gravity="bottom"
-                    android:orientation="horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="175dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -244,7 +214,7 @@
                         android:id="@+id/lay_end_start"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -258,6 +228,29 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:orientation="vertical"
+                                android:layout_alignParentRight="true">
+
+                                <TextView
+                                    android:text="One-way?"
+                                    android:textSize="14sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+
+                                <Switch
+                                    android:id="@+id/flightSwitch"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:thumb="@drawable/rounded_switch2"
+                                    android:track="@drawable/track_switch_on"/>
+
+                            </LinearLayout>
 
                             <LinearLayout
                                 android:id="@+id/lay_deaprture_date"
@@ -278,7 +271,10 @@
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
                                     android:textSize="@dimen/font_edittext"
-                                    android:layout_width="match_parent"
+                                    android:hint="Select departure date"
+                                    android:textColor="@color/colorTextHint"
+                                    android:textColorHint="@color/colorTextHint"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
 
@@ -297,11 +293,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:id="@+id/lay_return_date"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
@@ -336,6 +332,7 @@
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
                                     android:textSize="@dimen/font_edittext"
+                                    android:textColor="@color/colorTextHint"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
@@ -347,283 +344,39 @@
                                 android:layout_below="@+id/lay_end_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardFlight2"
-                android:layout_width="match_parent"
-                android:layout_height="290dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                app:cardCornerRadius="5dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tvFlightNumberMulti2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="14dp"
-                        android:textSize="14sp"
-                        android:textColor="#24253d"
-                        android:text="Flight 1"
-                        android:textStyle="bold"
-                        android:layout_marginStart="14dp" />
-
-                    <TextView
-                        android:visibility="visible"
-                        android:id="@+id/tvRemoveCard2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginTop="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#2b9a8e"
-                        android:text="Remove"
-                        android:layout_alignParentRight="true" />
-
-                    <LinearLayout
-                        android:id="@+id/line_depart2"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="60dp"
-                        android:weightSum="1"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_marginBottom="10dp"
-                                android:layout_gravity="bottom"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/flight_depart"
-                                android:layout_width="@dimen/icon_edittext"
-                                android:layout_height="@dimen/icon_edittext" />
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:id="@+id/layStartDate2"
-                                    android:orientation="vertical"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp">
-
-                                    <TextView
-                                        android:text="@string/from"
-                                        android:textSize="14sp"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-                                    <TextView
-                                        android:text=""
-                                        android:textColor="@color/colorTextHint"
-                                        android:textColorHint="@color/colorTextHint"
-                                        android:id="@+id/tv_from2"
-                                        android:paddingTop="8dp"
-                                        android:paddingBottom="9dp"
-                                        android:textAlignment="viewStart"
-                                        android:gravity="center"
-                                        android:textSize="@dimen/font_edittext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        tools:ignore="RtlCompat" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_marginRight="57dp"
-                                    android:layout_below="@+id/layStartDate2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext">
-
-                                </LinearLayout>
-
-                            </RelativeLayout>
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_below="@+id/line_depart2"
-                        android:layout_marginRight="25dp"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="20dp"
-                        android:weightSum="1"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_marginBottom="10dp"
-                                android:layout_gravity="bottom"
-                                android:layout_marginRight="10dp"
-                                android:src="@drawable/flight_arrived"
-                                android:layout_width="@dimen/icon_edittext"
-                                android:layout_height="@dimen/icon_edittext" />
-
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <LinearLayout
-                                    android:id="@+id/lay_to2"
-                                    android:orientation="vertical"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="60dp">
-
-                                    <TextView
-                                        android:text="@string/to"
-                                        android:textSize="14sp"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
-                                    <TextView
-                                        android:textColor="@color/colorTextHint"
-                                        android:textColorHint="@color/colorTextHint"
-                                        android:text=""
-                                        android:id="@+id/tv_to2"
-                                        android:paddingTop="8dp"
-                                        android:paddingBottom="9dp"
-                                        android:textAlignment="viewStart"
-                                        android:gravity="center"
-                                        android:textSize="@dimen/font_edittext"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        tools:ignore="RtlCompat" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_below="@+id/lay_to2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext"></LinearLayout>
-
-                            </RelativeLayout>
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
-                        android:id="@+id/btn_switch2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="28dp">
-
-                    </com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth>
-
-                </RelativeLayout>
-
-
-                <LinearLayout
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_gravity="bottom"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/lay_end_start2"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_marginRight="8dp"
-                            android:src="@drawable/ic_date_check_in"
-                            android:layout_width="@dimen/icon_edittext"
-                            android:layout_height="@dimen/icon_edittext" />
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:id="@+id/lay_deaprture_date2"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp">
-
-                                <TextView
-                                    android:text="@string/departure_date"
-                                    android:textSize="14sp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-
-                                <TextView
-                                    android:id="@+id/tv_departur_date2"
-                                    android:paddingTop="8dp"
-                                    android:paddingBottom="9dp"
-                                    android:textAlignment="viewStart"
-                                    android:gravity="center"
-                                    android:textSize="@dimen/font_edittext"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    tools:ignore="RtlCompat" />
-
+                                android:background="@color/colorLineEdittext">
 
                             </LinearLayout>
 
-                            <LinearLayout
-                                android:layout_below="@+id/lay_deaprture_date2"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginBottom="5dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
-
                         </RelativeLayout>
 
                     </LinearLayout>
 
-
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvFlightMultiCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"/>
 
+            <Button
+                android:id="@+id/btAddOtherFlight"
+                android:layout_width="160dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_approval_green"
+                android:text="@string/add_other_flight"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone"/>
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="33.5dp"
+                android:layout_marginTop="75dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_next">
@@ -631,6 +384,5 @@
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
 
 </RelativeLayout>

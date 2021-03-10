@@ -3,6 +3,7 @@ package opsigo.com.datalayer.datanetwork.dummy.accomodation
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.MultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
@@ -46,6 +47,22 @@ class DataDummyAccomodation {
             accomodationResultModel.listFlightModel = data
             mDataList.add(accomodationResultModel)
         }
+
+        return mDataList
+    }
+
+    fun addFlightMulti():ArrayList<MultiCityModel>{
+        val mDataList = ArrayList<MultiCityModel>()
+        val flightNumber = ArrayList<Int>()
+
+
+        mDataList.clear()
+        flightNumber.clear()
+
+        flightNumber.add(1)
+        flightNumber.add(2)
+        flightNumber.add(3)
+
 
         return mDataList
     }

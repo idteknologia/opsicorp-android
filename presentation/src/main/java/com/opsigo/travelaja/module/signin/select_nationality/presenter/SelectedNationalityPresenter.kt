@@ -77,6 +77,7 @@ class SelectedNationalityPresenter :KoinComponent {
             if (d.name.toLowerCase().contains(string.toLowerCase())) {
                 val mData = SelectNationalModel()
                 mData.name = d.name
+                mData.country = d.country
                 mData.id   = d.id
                 temp.add(mData)
             }
