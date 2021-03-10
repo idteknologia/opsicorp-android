@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:layout_height="wrap_content">
+    android:layout_height="50dp">
 
-    <RadioButton
-        android:layout_marginRight="10dp"
-        android:layout_gravity="center"
-        android:buttonTint="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/rb_area">
-    </RadioButton>
+    <LinearLayout
+        android:paddingLeft="20dp"
+        android:orientation="horizontal"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RadioButton
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:buttonTint="@color/colorPrimary"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/rb_area">
+        </RadioButton>
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/RobotoBold"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:textColor="#24253d"
-        android:text="Pawon Cave" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoBold"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            android:text="Pawon Cave" />
 
-</LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/btn_submit"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -65,13 +65,16 @@ class FilterByAreaActivity : BaseActivity() ,
 
     }
 
+    var positionSelected = 0
     override fun onClick(views: Int, position: Int) {
+        positionSelected = position
         Globals.delay(1000,object :Globals.DelayCallback{
             override fun done() {
                 val area = Intent()
-                area.putExtra(Constants.RESULT_AREA_HOTEL,data[position])
+                area.putExtra(Constants.RESULT_AREA_HOTEL,data[positionSelected])
                 Globals.finishResultOk(this@FilterByAreaActivity,area)
             }
         })
+        adapterArea.notifyDataSetChanged()
     }
 }

@@ -51,6 +51,22 @@ class DataDummyAccomodation {
         return mDataList
     }
 
+    /*fun addFlightMulti():ArrayList<MultiCityModel>{
+        val mDataList = ArrayList<MultiCityModel>()
+        val flightNumber = ArrayList<Int>()
+
+
+        mDataList.clear()
+        flightNumber.clear()
+
+        flightNumber.add(1)
+        flightNumber.add(2)
+        flightNumber.add(3)
+
+
+        return mDataList
+    }
+*/
     fun addFlightMulti():ArrayList<MultiCityModel>{
         val mDataList = ArrayList<MultiCityModel>()
         val flightNumber = ArrayList<Int>()

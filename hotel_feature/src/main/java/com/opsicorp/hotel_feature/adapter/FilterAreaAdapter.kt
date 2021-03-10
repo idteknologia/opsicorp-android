@@ -35,9 +35,12 @@ class FilterAreaAdapter (context: Context, private var items: ArrayList<String>)
 
         val data = items.get(position)
         holder.itemView.tv_name.text = data
-        holder.itemView.rb_area.isChecked = position==checkedPosition
+        holder.itemView.rb_area.isChecked = position == checkedPosition
 
-        holder.itemView.setOnClickListener {
+        /*holder.itemView.setOnClickListener {
+
+        }*/
+        holder.itemView.btn_submit.setOnClickListener {
             checkedPosition = position
             onclick.onClick(Constants.ONCLICK_AREA_HOTEL,position)
         }

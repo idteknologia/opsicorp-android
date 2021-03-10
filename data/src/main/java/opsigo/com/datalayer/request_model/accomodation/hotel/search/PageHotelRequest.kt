@@ -17,7 +17,7 @@ data class PageHotelRequest(
 	var area: Any? = null,
 
 	@field:SerializedName("Star")
-	var star: String = "",
+	var star: String? = null,
 
 	@field:SerializedName("TravelAgent")
 	var travelAgent: String? = null,
@@ -32,8 +32,8 @@ data class PageHotelRequest(
 	var correlationId: String? = null,
 
 	@field:SerializedName("MaxPrice")
-	var maxPrice: Any? = null,
+	var maxPrice: String? = null,
 
 	@field:SerializedName("MinPrice")
-	var minPrice: Any? = null
+	var minPrice: String? = null
 )

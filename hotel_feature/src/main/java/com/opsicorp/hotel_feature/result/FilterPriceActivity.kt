@@ -1,11 +1,11 @@
 package com.opsicorp.hotel_feature.result
 
-import android.text.Editable
 import android.content.Intent
-import android.text.TextWatcher
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
+
+import com.opsigo.travelaja.utility.NumberTextWatcher
 import com.opsigo.travelaja.utility.Constants
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
@@ -62,7 +62,10 @@ class FilterPriceActivity : BaseActivity(),
             }
         })
 
-        et_min.addTextChangedListener(object :TextWatcher{
+        et_min.addTextChangedListener(NumberTextWatcher(et_min))
+        et_max.addTextChangedListener(NumberTextWatcher(et_max))
+
+        /*et_min.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -98,11 +101,12 @@ class FilterPriceActivity : BaseActivity(),
             override fun afterTextChanged(p0: Editable?) {
 
             }
-        })
+        })*/
 
 
 
         btn_submit.callbackOnclickButton(this)
+        btn_submit.setTextButton("Apply")
     }
 
     private fun setDataListener() {
@@ -110,7 +114,7 @@ class FilterPriceActivity : BaseActivity(),
         maxPrice = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.MAX_PRICE)
 //        tv_min_max.text = "${Globals.formatAmount(minPrice.toString())} - ${Globals.formatAmount(maxPrice.toString())}"
 
-        for (i in 6 downTo  1){
+        for (i in 5 downTo  1){
             dataRating.add(StartSelected(i,false))
         }
 
@@ -143,12 +147,18 @@ class FilterPriceActivity : BaseActivity(),
     }
 
     override fun onClicked() {
+        parsingDataMinMax()
         val selected = Intent()
         selected.putExtra(Constants.RESULT_FACILITY,facilityCode())
         selected.putExtra(Constants.RESULT_STAR,starSelected())
         selected.putExtra(Constants.MIN_PRICE,minPrice)
         selected.putExtra(Constants.MAX_PRICE,maxPrice)
         Globals.finishResultOk(this,selected)
+    }
+
+    private fun parsingDataMinMax() {
+        minPrice = if (et_min.text.toString().isNotEmpty()) et_min.text.toString().replace(".","").toInt() else 0
+        maxPrice = if (et_max.text.toString().isNotEmpty()) et_max.text.toString().replace(".","").toInt() else 0
     }
 
     private fun starSelected(): ArrayList<String> {

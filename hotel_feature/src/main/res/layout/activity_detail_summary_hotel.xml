@@ -39,6 +39,7 @@
                 android:text="Hotels Detail"/>
 
             <TextView
+                android:id="@+id/total_night"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/RobotoRegular"
@@ -87,7 +88,7 @@
                         android:textColor="#2b9a8e"
                         android:textSize="14sp" />
                     <TextView
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
@@ -103,7 +104,7 @@
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="4dp"
                         android:gravity="end"
                         android:text="AW5CR34RGTP"
                         android:textColor="#24253d"
@@ -296,6 +297,183 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="3dp">
+
+        <LinearLayout
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoBold"
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#eb0011"
+                    android:text="Reason Code"
+                    />
+                <TextView
+                    android:id="@+id/tv_reason_code"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="CZ - Fare option not available"
+                    style="@style/RobotoBold"/>
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="17dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@drawable/background_dot_horizontal">
+            </View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoBold"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="#00776a"
+                android:text="Description :"
+                android:layout_marginTop="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoBold"
+                android:layout_marginTop="10dp"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#91929e"
+                android:lineSpacingExtra="6sp"
+                android:text="Where a seat on a lower fare option was not available even though booking request was outside deadlines."
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/shadow_top">
+        </LinearLayout>
+
+        <RelativeLayout
+            android:paddingBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingTop="30dp"
+            android:orientation="vertical"
+            android:paddingRight="20dp"
+            android:paddingLeft="23dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:textSize="14sp"
+                    android:textColor="#b324253d"
+                    android:text="Superior Room"
+                    style="@style/RobotoBold"/>
+
+                <TextView
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/RobotoBold"
+                    android:textStyle="normal"
+                    android:textSize="10sp"
+                    android:textColor="#939396"
+                    android:text="Nights x2"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_total_price_item"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoBold"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:textColor="#d9000000"
+                android:gravity="end"
+                android:text="110.800  IDR "/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:background="#f5f5f5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/RobotoBold"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="#24253d"
+                android:text="Amount to pay" />
+
+            <TextView
+                android:id="@+id/tv_total_amount"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#009688"
+                android:gravity="end"
+                android:text="221.600  IDR "
+                style="@style/RobotoBold"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
 
 
 </LinearLayout>

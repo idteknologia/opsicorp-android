@@ -1,7 +1,6 @@
 package com.opsigo.travelaja.module.accomodation.view_accomodation.activity
 
 import com.opsigo.travelaja.module.accomodation.view_accomodation.presenter.AccomodationPresenter
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragmentNew
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.train.TrainFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.tour.TourFragment
@@ -33,6 +32,7 @@ import java.lang.Exception
 import android.view.View
 import android.util.Log
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }

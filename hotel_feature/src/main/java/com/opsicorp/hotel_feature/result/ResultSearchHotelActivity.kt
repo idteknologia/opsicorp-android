@@ -63,9 +63,9 @@ class ResultSearchHotelActivity : BaseActivity(),
     var maxPrice          = ""
     var facilitys         = ArrayList<String>()
     var area              = ""
-    var originSelected    = ""
-    var destinationSelected = ""
     var correlationId     = ""
+
+    lateinit var dataTrip: SuccessCreateTripPlaneModel
 
     var typeDestination  = 0
     var latitude         = ""
@@ -159,19 +159,18 @@ class ResultSearchHotelActivity : BaseActivity(),
                 toolbar.setDoubleTitle(nameOffice,"${departing} - ${duration.split(" ")[0].toInt()} Night(s)")
             }
         }
-
     }
 
     private fun addDataLoading(){
+        tv_total_data.visibility = View.GONE
         loadingSearch = true
-        data.clear()
-        data.addAll(DataDummyAccomodation().addDataLoadingHotel())
-        adapter.setDataList(data,this)
+        adapter.setDataList(DataDummyAccomodation().addDataLoadingHotel(),this)
     }
 
-    private fun checkEmptyData() {
-        if (data.isEmpty()){
+    private fun checkEmptyData(mData: ArrayList<AccomodationResultModel>) {
+        if (mData.isEmpty()){
             empty_result.visibility = View.VISIBLE
+            tv_total_data.visibility = View.GONE
         }
         else {
             showTotalData()
@@ -260,37 +259,22 @@ class ResultSearchHotelActivity : BaseActivity(),
         when(requestCode){
             Constants.REQUEST_CODE_HOTEL_AREA -> {
                 if (resultCode==Activity.RESULT_OK){
+                    filterActif = true
                     area = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
+                    getSearchPageHotel()
                 }
             }
             Constants.REQUEST_CODE_HOTEL_FILTER -> {
                 if (resultCode==Activity.RESULT_OK){
-                    minPrice = data?.getStringExtra(Constants.MIN_PRICE).toString()
-                    maxPrice = data?.getStringExtra(Constants.MAX_PRICE).toString()
+                    filterActif = true
+                    minPrice  = data?.getIntExtra(Constants.MIN_PRICE,0).toString()
+                    maxPrice  = data?.getIntExtra(Constants.MAX_PRICE,0).toString()
                     facilitys = data?.getStringArrayListExtra(Constants.RESULT_FACILITY)!!
                     star      = data.getStringArrayListExtra(Constants.RESULT_STAR)!!
+                    area      = ""
+                    getSearchPageHotel()
                 }
             }
-
-            /*Constants.GET_FILTER -> {
-                if (resultCode==Activity.RESULT_OK){
-                    setLog(Constants.dataFilterMaxPriceAccomodation.toString())
-                    Constants.dataDepartureTime.forEachIndexed{
-                        index, accomodationPreferanceModel ->
-                        if (accomodationPreferanceModel.checked){
-                            setLog(accomodationPreferanceModel.time.trim().split("-")[0])
-                        }
-                    }
-                    timeSelectFilterArrival.clear()
-                    timeSelectFilterDeparture.clear()
-                    nameStation.clear()
-                    Constants.dataDepartureTime.forEachIndexed { index, accomodationPreferanceModel -> timeSelectFilterDeparture.add(accomodationPreferanceModel.time)}
-                    Constants.dataArrivalTime.forEachIndexed { index, accomodationPreferanceModel -> timeSelectFilterArrival.add(accomodationPreferanceModel.time)}
-                    Constants.dataNameTrainSelected.forEachIndexed { index, accomodationPreferanceModel -> nameStation.add(accomodationPreferanceModel.name) }
-                    this.prizeMax = Constants.dataFilterMaxPriceAccomodation
-                    this.prizeMin = Constants.dataFIlterMinPriceAccomodation
-                }
-            }*/
         }
     }
 
@@ -338,19 +322,23 @@ class ResultSearchHotelActivity : BaseActivity(),
                 data.addAll(mData)
                 dataArea.addAll(areas)
                 adapter.setDataList(data,this@ResultSearchHotelActivity)
-                checkEmptyData()
+                if (mData.isNotEmpty()){
+                    correlationId = mData[0].listHotelModel.correlationId
+                }
+                checkEmptyData(data)
             }
 
             override fun failed(errorMessage: String) {
                 loadingSearch = false
                 data.clear()
-                checkEmptyData()
+                adapter.notifyDataSetChanged()
+                checkEmptyData(data)
             }
         })
     }
 
     private fun dataSearch(): HashMap<Any, Any> {
-        val dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+        dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         val model = SearcHotelRequest() //Serializer.deserialize(jsonData,SearcHotelRequest::class.java) //SearcHotelRequest()
 
         model.guestPassport    = idCountry
@@ -416,48 +404,52 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     private fun sortHighetRating() {
         if(filterActif){
-            data.sortBy { it.listHotelModel.starRating.toDouble() }
-            data.reverse()
-        }
-        else {
             dataFilter.sortBy { it.listHotelModel.starRating.toDouble() }
             dataFilter.reverse()
         }
-        adapter.notifyDataSetChanged()
+        else {
+            data.sortBy { it.listHotelModel.starRating.toDouble() }
+            data.reverse()
+        }
     }
 
     private fun sortHighestPrice() {
         if(filterActif){
-            data.sortBy { it.listHotelModel.price.toInt() }
-            data.reverse()
-        }
-        else {
             dataFilter.sortBy { it.listHotelModel.price.toInt() }
             dataFilter.reverse()
+        }
+        else {
+            data.sortBy { it.listHotelModel.price.toInt() }
+            data.reverse()
         }
         adapter.notifyDataSetChanged()
     }
 
     private fun sortLowestPrice() {
         if(filterActif){
-            data.sortBy { it.listHotelModel.price.toInt() }
+            dataFilter.sortBy { it.listHotelModel.price.toInt() }
         }
         else {
-            dataFilter.sortBy { it.listHotelModel.price.toInt() }
+            data.sortBy { it.listHotelModel.price.toInt() }
         }
         adapter.notifyDataSetChanged()
     }
 
     fun getSearchPageHotel(){
+        setLog("------------- data filter page")
+        setLog(Serializer.serialize(dataFilterPage()))
+        addDataLoading()
         GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(),object :CallbackSearchHotel{
             override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>) {
-                data.clear()
-                data.addAll(mData)
-                adapter.notifyDataSetChanged()
+                dataFilter.clear()
+                dataFilter.addAll(mData)
+                adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
+                checkEmptyData(mData)
             }
 
             override fun failed(errorMessage: String) {
-
+                adapter.setDataList(ArrayList(),this@ResultSearchHotelActivity)
+                checkEmptyData(ArrayList())
             }
         })
     }
@@ -466,16 +458,27 @@ class ResultSearchHotelActivity : BaseActivity(),
         val data = PageHotelRequest()
         data.page       = 1
         data.hotelName  = ""
-        data.star       = star.first()
-        data.minPrice   = minPrice
-        data.maxPrice   = maxPrice
-        data.orderBy    = ""
+        data.star       = if (star.isNotEmpty()) star.first() else ""
+        data.minPrice   = if (minPrice!="0") minPrice else null
+        data.maxPrice   = if (maxPrice!="0") minPrice else null
+        data.orderBy    = ""//price_asc
         data.area       = area
         data.correlationId = correlationId
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
-        data.origin      = originSelected
-        data.destination = destinationSelected
+        data.origin      = dataTrip.originId
+        data.destination = dataTrip.destinationId
         return Globals.classToHashMap(data,PageHotelRequest::class.java)
+    }
+
+    override fun onBackPressed() {
+        if (filterActif){
+            filterActif = false
+            checkEmptyData(data)
+            adapter.setDataList(data,this)
+        }
+        else {
+            finish()
+        }
     }
 
 }

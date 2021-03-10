@@ -33,8 +33,6 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         this.dataList = dataList
         notifyDataSetChanged()
         this.context = context
-        this.context = context
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

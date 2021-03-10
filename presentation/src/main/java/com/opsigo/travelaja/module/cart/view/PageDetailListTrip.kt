@@ -131,7 +131,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_HOTEL -> {
-                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_TRAIN+"detail.ConfirmOrderTrainActivity"))
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_HOTEL+"detail_hotel.DetailSummaryHotelActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_HOTEL,Serializer.serialize(data[position]))
                 Globals.gotoActivityModule(context,intent)
