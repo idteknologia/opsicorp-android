@@ -38,9 +38,8 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     override fun getLayout(): Int { return R.layout.accomodation_activity }
 
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
-    var flightFragment = FlightFragment()
+    var flightFragment = FlightFragmentNew()
     var hotelFragment  = HotelFragment()
-//    var hotelFragment  = HotelFragmentNew()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
     var profileFragment     = ProfileFragment()

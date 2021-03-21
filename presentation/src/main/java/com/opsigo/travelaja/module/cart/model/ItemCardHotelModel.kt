@@ -10,10 +10,11 @@ class ItemCardHotelModel{
     var starRating  = ""
     var price       = ""
     var tripIdHotel = ""
-
-
+    var checkIn     = ""
+    var checkOut    = ""
     var pnrHotel    = ""
     var typeHotel   = ""
     var descreption = ""
+    var reasonCode  = ""
 
 }

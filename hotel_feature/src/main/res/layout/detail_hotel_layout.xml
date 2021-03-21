@@ -266,6 +266,7 @@
                 style="@style/RobotoMedium"></TextView>
 
             <TextView
+                android:id="@+id/btn_view_map"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="20dp"
                 android:layout_width="wrap_content"

@@ -946,4 +946,29 @@ object Globals {
                 " "
         )
     }
+
+    fun startViewListener(rating:Int,image:ArrayList<ImageView>){
+        image.forEachIndexed { index, imageView ->
+            if (index<=rating-1){
+                imageView.visibility = View.VISIBLE
+            }
+            else {
+                imageView.visibility = View.GONE
+            }
+        }
+    }
+
+    fun calculationDate(inputString1:String,inputString2:String,formatDateInput:String):Int{
+        val myFormat = SimpleDateFormat(formatDateInput)
+        var totalDay = 0
+        try {
+            val date1: Date = myFormat.parse(inputString1)
+            val date2: Date = myFormat.parse(inputString2)
+            val diff: Long = date2.getTime() - date1.getTime()
+            totalDay = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+        return totalDay
+    }
 }

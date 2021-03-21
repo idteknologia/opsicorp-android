@@ -334,10 +334,14 @@ class DetailHotelActivity :BaseActivity(),
 
     private fun initOnclickListener() {
         line_web.setOnClickListener(this)
+        btn_view_map.setOnClickListener(this)
     }
     override fun onClick(p0: View?) {
         when(p0){
             line_web -> {
+                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
+            }
+            btn_view_map -> {
                 Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
             }
         }

@@ -357,10 +357,13 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardHotel.status      = it.status
                 model.dataCardHotel.nameHotel   = it.nameHotel
                 model.dataCardHotel.tripIdHotel = it.tripItemId
+                model.dataCardHotel.checkIn     = it.checkIn
+                model.dataCardHotel.checkOut    = it.checkOut
                 model.dataCardHotel.address     = it.address
                 model.dataCardHotel.dateBooking = it.dateBooking
                 model.dataCardHotel.starRating  = it.starRating
                 model.dataCardHotel.price       = it.price
+                model.dataCardHotel.reasonCode  = it.reasonCode
                 model.dataCardHotel.pnrHotel    = it.pnrHotel
                 model.dataCardHotel.typeHotel   = it.typeHotel
                 model.dataCardHotel.descreption = it.description

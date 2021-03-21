@@ -185,6 +185,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="visible"
         android:background="#f6f8f8"
         android:orientation="horizontal"
         android:layout_width="match_parent"

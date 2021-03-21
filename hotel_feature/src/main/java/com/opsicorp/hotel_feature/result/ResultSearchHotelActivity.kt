@@ -164,6 +164,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun addDataLoading(){
         tv_total_data.visibility = View.GONE
         loadingSearch = true
+        empty_result.visibility = View.GONE
         adapter.setDataList(DataDummyAccomodation().addDataLoadingHotel(),this)
     }
 
@@ -201,7 +202,6 @@ class ResultSearchHotelActivity : BaseActivity(),
 
         getDataHotel()
     }
-
 
     override fun onFilter() {
         if (data.isNotEmpty()&&!loadingSearch){
@@ -260,7 +260,10 @@ class ResultSearchHotelActivity : BaseActivity(),
             Constants.REQUEST_CODE_HOTEL_AREA -> {
                 if (resultCode==Activity.RESULT_OK){
                     filterActif = true
-                    area = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
+                    minPrice  = ""
+                    maxPrice  = ""
+                    star      = ArrayList()
+                    area      = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
                     getSearchPageHotel()
                 }
             }
@@ -441,6 +444,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         addDataLoading()
         GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(),object :CallbackSearchHotel{
             override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>) {
+                loadingSearch = false
                 dataFilter.clear()
                 dataFilter.addAll(mData)
                 adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
@@ -460,7 +464,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         data.hotelName  = ""
         data.star       = if (star.isNotEmpty()) star.first() else ""
         data.minPrice   = if (minPrice!="0") minPrice else null
-        data.maxPrice   = if (maxPrice!="0") minPrice else null
+        data.maxPrice   = if (maxPrice!="0") maxPrice else null
         data.orderBy    = ""//price_asc
         data.area       = area
         data.correlationId = correlationId
