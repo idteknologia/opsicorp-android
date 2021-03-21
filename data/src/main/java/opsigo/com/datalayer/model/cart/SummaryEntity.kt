@@ -21,7 +21,7 @@ data class SummaryEntity(
 	val totalAllowance: Int = 0,
 
 	@field:SerializedName("TotalExpenditureAirline")
-	val totalExpenditureAirline: Int = 0,
+	val totalExpenditureAirline: Double = 0.0,
 
 	@field:SerializedName("TripMembers")
 	val tripMembers: List<Any?>? = null,
@@ -267,7 +267,7 @@ data class SummaryEntity(
 	val cityNameApi: Any? = null,
 
 	@field:SerializedName("TotalExpenditure")
-	val totalExpenditure: Int = 0,
+	val totalExpenditure: Double = 0.0,
 
 	@field:SerializedName("TransportationType")
 	val transportationType: Any? = null,
@@ -858,7 +858,7 @@ data class TripItemsItem(
 data class PaymentsItem(
 
 		@field:SerializedName("Amount")
-		val amount: Int = 0,
+		val amount: Double = 0.0,
 
 		@field:SerializedName("Currency")
 		val currency: String? = null,
@@ -1763,7 +1763,7 @@ data class TripPlanItemsItem(
 	val itemType: Int = 0,
 
 	@field:SerializedName("Amount")
-	val amount: Int = 0,
+	val amount: Double = 0.0,
 
 	@field:SerializedName("TripMemberId")
 	val tripMemberId: String? = null,
@@ -2196,7 +2196,7 @@ data class TripParticipantsItem(
 	val parentCompanyName: Any? = null,
 
 		@field:SerializedName("TotalTripPaidAirline")
-	val totalTripPaidAirline: Int = 0,
+	val totalTripPaidAirline: Double = 0.0,
 
 		@field:SerializedName("TripPostClaims")
 	val tripPostClaims: List<Any?>? = null,
@@ -2349,7 +2349,7 @@ data class TripParticipantsItem(
 	val credentialHash: Any? = null,
 
 		@field:SerializedName("Amount")
-	val amount: Int = 0,
+	val amount: Double = 0.0,
 
 		@field:SerializedName("LastArrivalDate")
 	val lastArrivalDate: String? = null,
@@ -2691,7 +2691,7 @@ data class FlightsItem(
 	val itemType: Int = 0,
 
 	@field:SerializedName("Amount")
-	val amount: Int = 0,
+	val amount: Double = 0.0,
 
 	@field:SerializedName("TripMemberId")
 	val tripMemberId: String? = null,
@@ -3060,7 +3060,7 @@ data class TripFlightsItem(
 	val airlineView: String? = null,
 
 	@field:SerializedName("Amount")
-	val amount: Int = 0,
+	val amount: Double = 0.0,
 
 	@field:SerializedName("DestinationAirport")
 	val destinationAirport: Any? = null,
