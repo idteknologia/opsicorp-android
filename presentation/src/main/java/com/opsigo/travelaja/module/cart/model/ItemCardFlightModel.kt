@@ -10,6 +10,8 @@ class ItemCardFlightModel{
     var flightNumber    = ""
     var subClass        = ""
     var typeFlight      = 0
+    var duration        = ""
+    var terminal        = ""
 
     var titleFlight = ""
     var numberSheet = ""
@@ -33,7 +35,7 @@ class ItemCardFlightModel{
     var codeFlight      = ""
     var departureFlight = ""
     var arrivalFlight  = ""
-    var statioDestination  = ""
+    var stationDestination  = ""
 
     var idFlight        = ""
     var tripId          = ""

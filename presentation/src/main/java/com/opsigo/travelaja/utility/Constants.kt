@@ -23,7 +23,7 @@ object Constants {
     val KEY_DATA_AREA       = "items"
     val BASE_PACKAGE_TRAIN  = "com.opsicorp.train_feature."
     val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
-    val BASE_PACKAGE_FLIGHT = "com.opsicorp.travelaja.feature_flight.result."
+    val BASE_PACKAGE_FLIGHT = "com.opsicorp.travelaja.feature_flight."
     val IsLogin             = "login"
     val SHOWCASE_ID         = ""
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()

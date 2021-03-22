@@ -69,6 +69,7 @@ class ListParticipantsDataMapper {
                                 dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
 
                                 dataFlight.isComply         = segmentFlightEntity.isComply
+                                dataFlight.duration         = segmentFlightEntity.duration.toString()
 
 //                                dataFlight.price          = "IDR 400.000/pax"
                                 dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()

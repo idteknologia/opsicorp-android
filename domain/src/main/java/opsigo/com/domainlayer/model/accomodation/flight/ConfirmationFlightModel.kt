@@ -7,10 +7,13 @@ class ConfirmationFlightModel {
     var date_arrival_deaprture = ""
     var title_flight  = ""
     var img_airline   = ""
+    var pnr_code      = ""
+    var status        = ""
 
     var flight_type   = ""
     var class_type    = ""
     var number_sheet  = ""
+    var airlineNumber = ""
 
     var timeDeparture = ""
     var dateDeparture = ""
@@ -19,6 +22,7 @@ class ConfirmationFlightModel {
     var terminal      = ""
 
     var name_stationDeparture =""
+    var name_stationArrival = ""
     var line_total_duration   =""
 
     var depatureAirportName = ""
