@@ -1,15 +1,15 @@
 package com.opsicorp.train_feature.adapter
 
 
-import android.content.Context
-import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.content.Context
+import android.view.LayoutInflater
 import com.opsicorp.train_feature.R
-import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
+import android.support.v7.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_confirmation_order_train.view.*
+import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
 
 class ConfirmationTrainAdapter (val context: Context, private var items: ArrayList<ConfirmationTrainModel>): RecyclerView.Adapter<ConfirmationTrainAdapter.ViewHolder>() {
 

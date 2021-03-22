@@ -14,31 +14,26 @@
     </dist:module>
 
     <application>
+        <activity android:name=".detail.CartTrainDetailActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".filter.TrainFilterActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".detail.DetailResultTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".booking_contact.BookingContactTrain"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".detail.ConfirmOrderTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".result.ResultSearchTrainActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".seat.SeatActivityTrain"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

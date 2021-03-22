@@ -3,19 +3,22 @@ package com.opsicorp.hotel_feature.select_room
 import android.os.Build
 import android.view.View
 import android.content.Intent
+import android.widget.TextView
+import android.widget.LinearLayout
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
-import android.support.v7.widget.DefaultItemAnimator
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.DefaultItemAnimator
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.DialogSelectDuration
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.DialogSelectDuration
 
 class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         ToolbarOpsicorp.OnclickButtonListener,CalendarViewOpsicorp.CallbackResult {
@@ -30,6 +33,8 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
     var freeMeal  = false
     var cancelation = false
     lateinit var dataHotel: ResultListHotelModel
+    val btn = ArrayList<LinearLayout>()
+    val tv  = ArrayList<TextView>()
 
     override fun OnMain() {
         dataHotel = Serializer.deserialize(Constants.DATA_HOTEL, ResultListHotelModel::class.java)
@@ -45,8 +50,11 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun guarantedListener(view: View){
-
-        if (guaranteed){
+        guaranteed = false
+        changeImageButton(0)
+        data.sortBy { it.isGuaranteedBooking }
+        adapter.notifyDataSetChanged()
+        /*if (guaranteed){
             guaranteed = false
             tv_guaranteed.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
             btn_guaranted.background = resources.getDrawable(R.drawable.rounded_button_filter)
@@ -55,11 +63,15 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
             guaranteed = true
             tv_guaranteed.setTextColor(resources.getColor(R.color.white))
             btn_guaranted.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
-        }
+        }*/
     }
 
     fun freeMealListener(view: View){
-        if (freeMeal){
+        freeMeal = false
+        changeImageButton(1)
+        data.sortBy { it.isBreakfast }
+        adapter.notifyDataSetChanged()
+        /*if (freeMeal){
             freeMeal = false
             tv_fee_meal.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
             btn_free_meal.background = resources.getDrawable(R.drawable.rounded_button_filter)
@@ -68,11 +80,15 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
             freeMeal = true
             tv_fee_meal.setTextColor(resources.getColor(R.color.white))
             btn_free_meal.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
-        }
+        }*/
     }
 
     fun freeCancelationListener(view: View){
-        if (cancelation){
+        cancelation = false
+        changeImageButton(2)
+        data.sortBy { it.isFullCharge }
+        adapter.notifyDataSetChanged()
+        /*if (cancelation){
             cancelation = false
             tv_free_cancelation.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
             btn_free_cancelation.background = resources.getDrawable(R.drawable.rounded_button_filter)
@@ -81,6 +97,19 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
             cancelation = true
             tv_free_cancelation.setTextColor(resources.getColor(R.color.white))
             btn_free_cancelation.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
+        }*/
+    }
+
+    private fun changeImageButton(position: Int) {
+        btn.forEachIndexed { index, linearLayout ->
+            if (position==index){
+                tv[index].setTextColor(ContextCompat.getColor(this,R.color.white))
+                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
+            }
+            else {
+                tv[index].setTextColor(ContextCompat.getColor(this,R.color.color_text_btn_guaranteed_select_room))
+                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter)
+            }
         }
     }
 
@@ -102,6 +131,13 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         adapter.setOnclickListener(this)
 
         getDataListRoom()
+
+        btn.add(btn_guaranted)
+        btn.add(btn_free_meal)
+        btn.add(btn_free_cancelation)
+        tv.add(tv_guaranteed)
+        tv.add(tv_fee_meal)
+        tv.add(tv_free_cancelation)
     }
 
     override fun btnBack() {

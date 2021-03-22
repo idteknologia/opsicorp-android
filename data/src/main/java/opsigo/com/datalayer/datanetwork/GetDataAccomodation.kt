@@ -605,7 +605,8 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.success(ArrayList(), ArrayList())
+                        val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
+                        callback.success(data.first,data.second)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

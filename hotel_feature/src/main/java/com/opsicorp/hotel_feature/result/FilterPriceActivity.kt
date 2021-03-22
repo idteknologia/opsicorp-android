@@ -148,6 +148,18 @@ class FilterPriceActivity : BaseActivity(),
 
     override fun onClicked() {
         parsingDataMinMax()
+        if (minPrice!=0||maxPrice!=0){
+            if (minPrice>=maxPrice){
+                Globals.showAlert("Sorry","Please input larger amount than minimal price",this)
+            }else {
+                setDataIntent()
+            }
+        }else {
+            setDataIntent()
+        }
+    }
+
+    private fun setDataIntent() {
         val selected = Intent()
         selected.putExtra(Constants.RESULT_FACILITY,facilityCode())
         selected.putExtra(Constants.RESULT_STAR,starSelected())

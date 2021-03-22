@@ -14,5 +14,8 @@ class ItemHotelModel{
     var starRating  = ""
     var price       = ""
     var employId    = ""
+    var checkIn     = ""
+    var checkOut    = ""
+    var reasonCode  = ""
 
 }

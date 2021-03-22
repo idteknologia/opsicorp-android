@@ -40,7 +40,6 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     val presenter by inject<AccomodationPresenter> { parametersOf(this) }
     var flightFragment = FlightFragmentNew()
     var hotelFragment  = HotelFragment()
-//    var hotelFragment  = HotelFragmentNew()
     var tourFragment   = TourFragment()
     var trainFragment  = TrainFragment()
     var profileFragment     = ProfileFragment()

@@ -1,12 +1,13 @@
 package com.opsicorp.train_feature.detail
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
-import com.opsicorp.train_feature.adapter.ConfirmationTrainAdapter
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import com.opsicorp.train_feature.booking_contact.BookingContactTrain
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
+import com.opsicorp.train_feature.booking_contact.BookingContactTrain
+import com.opsicorp.train_feature.adapter.ConfirmationTrainAdapter
+import kotlinx.android.synthetic.main.detail_prize_bottom_train.*
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.confirm_train_order.*
@@ -17,11 +18,11 @@ import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
-import java.text.SimpleDateFormat
-import android.view.View
 import com.opsicorp.train_feature.R
-import kotlinx.android.synthetic.main.detail_prize_bottom_train.*
+import java.text.SimpleDateFormat
 import java.lang.Exception
+import android.view.View
+import kotlinx.android.synthetic.main.confirm_train_order.line_reason_code
 
 class ConfirmOrderTrainActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -133,6 +134,8 @@ class ConfirmOrderTrainActivity : BaseActivity(),
         mData.total_prize            = dataTrain.price //"IDR "+Globals.formatAmount("")
 
         data.add(mData)
+
+
     }
 
     fun showOrHideDetailPrize(){

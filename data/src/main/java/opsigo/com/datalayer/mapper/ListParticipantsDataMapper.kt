@@ -153,6 +153,8 @@ class ListParticipantsDataMapper {
                             it?.tripHotels?.forEachIndexed { index, tripHotelsItem ->
                                 val dataHotel =  ItemHotelModel()
                                 dataHotel.image       = tripHotelsItem?.image.toString()
+                                dataHotel.checkIn     = tripHotelsItem?.checkin.toString()
+                                dataHotel.checkOut    = tripHotelsItem?.checkout.toString()
                                 dataHotel.status      = tripHotelsItem?.statusName.toString()
                                 dataHotel.nameHotel   = tripHotelsItem?.name.toString()
                                 dataHotel.address     = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address.toString()
@@ -160,6 +162,7 @@ class ListParticipantsDataMapper {
                                 dataHotel.dateBooking = tripHotelsItem?.bookedDate.toString()
                                 dataHotel.starRating  = tripHotelsItem?.rating.toString()
                                 dataHotel.price       = tripHotelsItem?.amount.toString()
+                                dataHotel.reasonCode  = it.reasonCode.toString()
                                 dataHotel.employId    = data.employeeId.toString()
                                 dataHotel.tripItemId  = tripHotelsItem?.tripItemId.toString()
 
