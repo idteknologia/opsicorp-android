@@ -25,6 +25,7 @@ object Constants {
     val BASE_PACKAGE_HOTEL  = "com.opsicorp.hotel_feature."
     val BASE_PACKAGE_FLIGHT = "com.opsicorp.travelaja.feature_flight.result."
     val IsLogin             = "login"
+    val SHOWCASE_ID         = ""
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
     var DATA_FLIGHT_MULTI_CITY = ArrayList<OrderAccomodationModel>()
@@ -92,6 +93,7 @@ object Constants {
     val KEY_POSITION_FARE_RULES  = "keyFareRules"
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
+    val KEY_POSITION_CART_FLIGHT = "keyCartFlight"
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069

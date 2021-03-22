@@ -33,7 +33,7 @@ class OtpRegisterActivity : BaseActivity(),
     }
 
     private fun parsingDataWithIntent() {
-        email = intent.getBundleExtra("data").getString("Email")
+        email = intent.getBundleExtra("data").getString("Email")!!
     }
 
     private fun initOtpListener() {

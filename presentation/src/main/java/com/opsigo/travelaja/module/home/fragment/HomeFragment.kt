@@ -1,10 +1,10 @@
 package com.opsigo.travelaja.module.home.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.opsigo.travelaja.R
-
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity
 import com.opsigo.travelaja.module.home.presenter.HomePresenter
@@ -14,12 +14,15 @@ import com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.unicode.kingmarket.Base.BaseFragment
-import opsigo.com.domainlayer.model.signin.ProfileModel
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fragment.*
+import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence
+import uk.co.deanwild.materialshowcaseview.ShowcaseConfig
+
 
 class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListener{
 
@@ -30,11 +33,31 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
     var positionImageSlider = -1
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
+        initShowcase()
         setViewOnclickListener()
         initSlider()
         initView()
         blinkCartAnimation()
         presenter.presenterInitRecyclerAdapter(rv_tour,rv_upcomming_flight)
+    }
+
+    private fun initShowcase() {
+        val config = ShowcaseConfig()
+        config.delay = 500 // half second between each showcase view
+
+
+        val sequence = MaterialShowcaseSequence(activity, Constants.SHOWCASE_ID)
+
+        sequence.setConfig(config)
+
+        sequence.addSequenceItem(img_bisnis_trip,
+                "This is button one", "GOT IT")
+
+        sequence.addSequenceItem(img_flight,
+                "This is button two", "GOT IT")
+
+
+        sequence.start()
     }
 
     private fun blinkCartAnimation() {
