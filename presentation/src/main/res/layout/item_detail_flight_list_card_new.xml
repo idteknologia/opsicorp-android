@@ -373,6 +373,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/tvDetailsCart"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_width="110dp"
@@ -383,10 +384,7 @@
                         android:layout_width="3dp"
                         android:layout_height="54dp"
                         android:background="#f5f5f5"/>
-
-
                     <TextView
-                        android:id="@+id/tvDetailsCart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"

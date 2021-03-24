@@ -175,6 +175,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         val tv_time_departure   = itemView.findViewById(R.id.tv_time_departure) as TextView
         val tv_price            = itemView.findViewById(R.id.tv_price) as TextView
         val tv_transit          = itemView.findViewById(R.id.tv_transit) as TextView
+        val flightComply        = itemView.findViewById(R.id.tv_comply) as TextView
 
 
         fun bind(data: ResultListFlightModel, position:Int) {
@@ -199,6 +200,13 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 tv_transit.text        = transit
             } else {
                 tv_transit.text        = "${transit} Transit"
+            }
+
+            if (data.isComply.equals("true")){
+                flightComply.visible()
+                flightComply.text      = "Not Comply"
+            } else {
+                flightComply.invisible()
             }
 
 

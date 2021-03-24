@@ -28,7 +28,6 @@ import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.*
 import android.content.Intent
 import android.app.Activity
-import android.widget.Toast
 import android.view.View
 import android.os.Build
 import android.support.v4.content.ContextCompat
@@ -99,7 +98,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         tv_email_contact.text       = dataProfile.email
 
         adapter.setData(dataContacts)
-        initPrize()
+        initPrice()
     }
 
     private fun getDataIdCartBooker(): IdCartModel {
@@ -137,7 +136,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         adapter.setOnclickListener(this)
     }
 
-    private fun initPrize() {
+    private fun initPrice() {
         tv_price.setOnClickListener {
             showOrHideDetailPrize()
         }
@@ -166,13 +165,15 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
             }
             else{
                 line_arrival.visibility     = View.GONE
-                tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
+                tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
             }
             dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
                 if (resultListFlightModel.dataSSR.bagaggeItemSelected.isNotEmpty()||resultListFlightModel.dataSSR.ssrSelected.isNotEmpty()){
                     rlBaggagePrice.visible()
                     rlSsrPrice.visible()
+                    tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
+                    tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
                     tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBagaggeItem,false)
                     tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsrItem,false)
                 } else {
@@ -288,7 +289,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
                 setLog("testSaveBaruBaggage",Serializer.serialize(dataList.dataFlight[0].dataSSR.bagaggeItemSelected))
                 totalPriceBaggage()
-                initPrize()
+                initPrice()
                 adapter.setData(dataContacts)
 
             }
@@ -296,7 +297,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
                 setLog("testSaveBaruSsr",Serializer.serialize(dataList.dataFlight[0].dataSSR.ssrSelected))
                 totalPriceSsr()
-                initPrize()
+                initPrice()
                 adapter.setData(dataContacts)
             }
         }

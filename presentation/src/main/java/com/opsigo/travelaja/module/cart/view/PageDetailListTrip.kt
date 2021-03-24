@@ -1,6 +1,5 @@
 package com.opsigo.travelaja.module.cart.view
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.support.v7.widget.DefaultItemAnimator
@@ -9,9 +8,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.cart.activity.DetailCartActivity
 import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
 import com.opsigo.travelaja.module.cart.model.CartModel
+import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.ONCLICK_CHANGE_SEAT_MAP_TRAIN
 import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_FLIGHT
@@ -56,6 +55,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
         View.inflate(context, R.layout.page_cart_list_detail_trip, this)
 
         initRecyclerView()
+        line_btn_add_more_item.setOnClickListener(this)
     }
 
     private fun initRecyclerView() {
@@ -93,7 +93,12 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
     override fun onClick(v: View?) {
         when(v){
-
+            line_btn_add_more_item -> {
+                val intent = Intent(context,HomeActivity::class.java)
+                intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
+                intent.putExtra(Constants.TYPE_ACCOMODATION,Constants.KEY_ACCOMODATION)
+                Globals.gotoActivityModule(context,intent)
+            }
         }
     }
 
@@ -138,7 +143,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_FLIGHT -> {
-                val intent = Intent(context,DetailCartActivity::class.java)
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_FLIGHT,Serializer.serialize(data[position]))
                 Globals.gotoActivityModule(context,intent)

@@ -71,6 +71,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".detail_cart.DetailCartActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

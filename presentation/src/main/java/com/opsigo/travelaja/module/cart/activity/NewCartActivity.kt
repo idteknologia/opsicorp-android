@@ -315,6 +315,10 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 model.dataCardFlight.numberSheet         = it.seatNumber
                 model.dataCardFlight.flightNumber        = it.flightNumber
                 model.dataCardFlight.typeFlight          = it.type
+                model.dataCardFlight.duration            = it.duration
+
+                model.dataCardFlight.stationOrigin       = it.originName
+                model.dataCardFlight.stationDestination  = it.destinationName
                 model.dataCardFlight.dateArrival         = it.dateArrival
                 model.dataCardFlight.dateDeparture       = it.dateDeparture
                 model.dataCardFlight.timeArrival         = it.timeArrival

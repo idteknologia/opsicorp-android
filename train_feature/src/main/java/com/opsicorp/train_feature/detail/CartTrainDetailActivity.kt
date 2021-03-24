@@ -68,6 +68,7 @@ class CartTrainDetailActivity : BaseActivity() {
             line_reason_code.visibility = View.GONE
         }
 
+        adapter.setData(data)
         setTotalPrice(mData)
     }
 
