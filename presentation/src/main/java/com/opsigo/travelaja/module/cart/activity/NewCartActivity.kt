@@ -62,6 +62,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     val btnList = ArrayList<TextView>()
     var mData = ArrayList<CartModelAdapter>()
     var tripSummary  = SummaryModel()
+    var addMore = Constants.REQUEST_CODE_ADD_MORE_ITEM
 
     private fun initToolbar() {
         toolbar.hidenBtnCart()
@@ -736,7 +737,6 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             e.printStackTrace()
         }
     }
-
 
 
 }

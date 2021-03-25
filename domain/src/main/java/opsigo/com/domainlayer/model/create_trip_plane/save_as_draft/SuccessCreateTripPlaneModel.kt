@@ -14,7 +14,7 @@ class SuccessCreateTripPlaneModel {
     var originName      = ""
     var startDate    = ""
     var endDate      = ""
-
+    var remark       = ""
     var buggetId     = ""
     var costCenter   = ""
 }

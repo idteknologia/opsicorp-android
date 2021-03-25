@@ -32,9 +32,15 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     val data = ArrayList<CartModel>()
     val adapter by lazy { CartAdapterNew(context) }
     lateinit var callback : Callback
+    lateinit var onclick: OnclickListenerRecyclerView
+
 
     fun callbackOnclickButton(onclickButtonListener: Callback){
         callback = onclickButtonListener
+    }
+
+    fun setOnclickListener(onclickListenerRecyclerView: OnclickListenerRecyclerView){
+        this.onclick = onclickListenerRecyclerView
     }
 
     constructor(context: Context) : super(context) {
@@ -89,12 +95,13 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     interface Callback{
         fun updateViewReserved()
         fun updateViewSaved()
+        fun onClicked(views: Int)
     }
 
     override fun onClick(v: View?) {
         when(v){
             line_btn_add_more_item -> {
-                val intent = Intent(context,HomeActivity::class.java)
+                val intent = Intent(context, HomeActivity::class.java)
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.TYPE_ACCOMODATION,Constants.KEY_ACCOMODATION)
                 Globals.gotoActivityModule(context,intent)

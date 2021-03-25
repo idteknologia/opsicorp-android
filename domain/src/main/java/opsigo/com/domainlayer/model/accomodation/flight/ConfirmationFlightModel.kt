@@ -4,7 +4,7 @@ import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 
 class ConfirmationFlightModel {
 
-    var date_arrival_deaprture = ""
+    var date_arrival_departure = ""
     var title_flight  = ""
     var img_airline   = ""
     var pnr_code      = ""

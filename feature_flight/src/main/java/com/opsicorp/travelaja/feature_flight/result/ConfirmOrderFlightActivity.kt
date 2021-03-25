@@ -42,7 +42,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     val adapter by lazy { ConfirmationFlightAdapter(this, data) }
 
     override fun OnMain() {
-        btn_next.setTextButton("Book Now")
+        btn_next.setTextButton("Book")
         btn_next.callbackOnclickButton(this)
 
         if(Globals.ONE_TRIP){
@@ -152,12 +152,13 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             val mData = ConfirmationFlightModel()
             mData.title_flight  = resultListFlightModel.titleAirline
             mData.img_airline   = resultListFlightModel.imgAirline
-            mData.class_type    = resultListFlightModel.flightNumber
+            mData.class_type    = resultListFlightModel.nameClass
             mData.flight_type    = resultListFlightModel.flightType
             mData.number_sheet  = resultListFlightModel.numberSeat
+            mData.airlineNumber = resultListFlightModel.flightNumber
             mData.terminal      = resultListFlightModel.terminal
 
-            mData.date_arrival_deaprture = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","EEEE, yyyy MMM dd")
+            mData.date_arrival_departure = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","EEE, dd MMM yyyy")
             mData.timeDeparture = resultListFlightModel.departTime
             mData.dateDeparture = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","dd MMM")
 

@@ -171,6 +171,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
             toolbar.doubleTitleGravity(toolbar.START)
         }
         toolbar.setDoubleTitle(dataHotel.nameHotel,"${dataRoom.titleRoom}")
+        btn_next.setTextButton("Continue")
     }
 
     private fun setDataContact() {

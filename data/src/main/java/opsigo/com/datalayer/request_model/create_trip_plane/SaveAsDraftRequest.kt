@@ -10,7 +10,7 @@ data class SaveAsDraftRequest(
 	var  startDate: String = "",
 
 		@field:SerializedName("Remark")
-		var  Remark: String = "",
+		var remark: String = "",
 
 		@field:SerializedName("ReturnDate")
 	var  returnDate: String = "",

@@ -223,7 +223,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
         val dataRequest             = SaveAsDraftRequest()
         dataRequest.startDate       = data.startDate
         dataRequest.returnDate      = data.endDate
-        dataRequest.Remark          = data.notes
+        dataRequest.remark          = data.notes
         dataRequest.origin          = Globals.getConfigCompany(this).defaultOrigin
         dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType
         dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent

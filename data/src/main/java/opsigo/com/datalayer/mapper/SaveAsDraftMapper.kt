@@ -13,6 +13,7 @@ class SaveAsDraftMapper {
         mData.tripCode   = data.code
         mData.idTripPlant = data.id
         mData.purpose    = data.purpose
+        mData.remark     = data.remark.toString()
         mData.destinationId   = data.destination
         mData.destinationName = data.destinationName
         mData.createDate    = data.creationDate

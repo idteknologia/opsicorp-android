@@ -1,8 +1,12 @@
 package com.opsigo.travelaja.module.create_trip.success_create_trip
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
@@ -11,7 +15,16 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
+import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import kotlinx.android.synthetic.main.success_create_trip_plane.*
+import kotlinx.android.synthetic.main.success_create_trip_plane.icCopyClipboard
+import kotlinx.android.synthetic.main.success_create_trip_plane.image_barcode
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_destination
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_end_date
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_purpose
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_start_date
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_status
+import kotlinx.android.synthetic.main.success_create_trip_plane.tv_tripcode
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
@@ -23,6 +36,16 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
 
     override fun OnMain() {
         setData()
+        icCopyClipboard.setOnClickListener {
+            copyToClip()
+        }
+    }
+
+    private fun copyToClip() {
+        val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip: ClipData = ClipData.newPlainText(android.R.attr.label.toString(), tv_tripcode.text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(applicationContext, "Copied To Clipboard", Toast.LENGTH_SHORT).show()
     }
 
     private fun setData() {

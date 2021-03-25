@@ -1,17 +1,22 @@
 package com.opsigo.travelaja.module.approval.activity
 
+import android.R.attr.label
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.NotificationManager
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
@@ -28,26 +33,25 @@ import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.ApprovalAllRequest
+import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
+import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.callback.CallbackSummary
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
-import kotlinx.android.synthetic.main.detail_trip_activity_view.*
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
-import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import opsigo.com.domainlayer.model.summary.*
+import opsigo.com.domainlayer.model.summary.SummaryModel
+import opsigo.com.domainlayer.model.summary.SummaryModelItems
+import opsigo.com.domainlayer.model.summary.TripParticipantsItemModel
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import kotlin.collections.forEachIndexed
-import kotlin.collections.isNotEmpty
 
 
 class DetailTripActivity : BaseActivity()
@@ -87,6 +91,9 @@ class DetailTripActivity : BaseActivity()
 
         tv_share_qrcode.visibility = View.GONE
 
+        icCopyClipboard.setOnClickListener {
+            copyToClip()
+        }
         tv_tripcode.setOnClickListener {
             if(isShareQR){
                 tv_share_qrcode.visibility = View.GONE
@@ -111,6 +118,13 @@ class DetailTripActivity : BaseActivity()
         if (intent.extras != null && intent.extras!!.containsKey(Constants.KEY_INTENT_TRIP_CODE)) {
             getSummary()
         }
+    }
+
+    private fun copyToClip() {
+        val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip: ClipData = ClipData.newPlainText(label.toString(), tv_tripcode.text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(applicationContext, "Copied To Clipboard", Toast.LENGTH_SHORT).show()
     }
 
     private fun getSummary() {

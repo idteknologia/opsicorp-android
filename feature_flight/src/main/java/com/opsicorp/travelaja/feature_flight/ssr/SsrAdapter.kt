@@ -1,8 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
