@@ -45,8 +45,6 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
     val resultSeat = ResultSeat()
-    var totalPriceBagaggeItem = 0.0
-    var totalPriceSsrItem  = 0.0
     val adapter by lazy { BookingContactFlightAdapter(this,dataContacts) }
     lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
@@ -160,8 +158,8 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 line_arrival.visibility     = View.VISIBLE
                 tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price , false)
                 tv_station_arrival.text     = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
-                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBagaggeItem + totalPriceSsrItem ) , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBagaggeItem + totalPriceSsrItem ) , false)
+                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price ) , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price ) , false)
             }
             else{
                 line_arrival.visibility     = View.GONE
@@ -172,10 +170,16 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 if (resultListFlightModel.dataSSR.bagaggeItemSelected.isNotEmpty()||resultListFlightModel.dataSSR.ssrSelected.isNotEmpty()){
                     rlBaggagePrice.visible()
                     rlSsrPrice.visible()
-                    tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
-                    tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBagaggeItem + totalPriceSsrItem , false)
-                    tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBagaggeItem,false)
-                    tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsrItem,false)
+                    tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBaggage()!!.toDouble(),false)
+                    tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsr()!!.toDouble(),false)
+                    if (dataListFlight.dataFlight.size>1){
+                        tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() ) , false)
+                        tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() ) , false)
+                    }
+                    else{
+                        tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
+                        tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
+                    }
                 } else {
                     rlBaggagePrice.gone()
                     rlSsrPrice.gone()
@@ -185,6 +189,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun totalPriceSsr(): String? {
+        var totalPriceSsrItem  = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
             it.dataSSR.ssrSelected.forEach {
@@ -200,6 +205,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun totalPriceBaggage(): String? {
+        var totalPriceBagaggeItem = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
             it.dataSSR.bagaggeItemSelected.forEach {

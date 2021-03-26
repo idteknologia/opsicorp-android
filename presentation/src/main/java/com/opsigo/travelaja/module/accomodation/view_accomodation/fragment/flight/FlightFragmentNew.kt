@@ -106,7 +106,7 @@ class FlightFragmentNew : BaseFragment(),
             if(model.name.toLowerCase().contains(def_origin.toLowerCase())){
                 idOrigin    = model.id
                 originName  = model.name
-                tv_from.text = originName
+                tv_from.text = "${originName} (${idOrigin})"
                 break
             }
         }
@@ -121,7 +121,7 @@ class FlightFragmentNew : BaseFragment(),
             if(model.name.equals(dataTripPlan.destinationName)){
                 idDestination    = model.id
                 destinationName  = model.name
-                tv_to.text = destinationName
+                tv_to.text = "${destinationName} (${idDestination})"
 
                 isFoundDestination = true;
 
@@ -140,7 +140,7 @@ class FlightFragmentNew : BaseFragment(),
                 if (model.id.equals(def_destinationn)) {
                     idDestination = model.id
                     destinationName = model.name
-                    tv_to.text = destinationName
+                    tv_to.text = "${destinationName} (${idDestination})"
                     break
                 }
             }
@@ -160,8 +160,8 @@ class FlightFragmentNew : BaseFragment(),
         if (first) {
             val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
             orderFlight.dateDeparture = DateConverter().getDate(data.startDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy")
-            orderFlight.originName = data.originName
-            orderFlight.destinationName = data.destinationName
+            orderFlight.originName = "${data.originName} (${data.originId})"
+            orderFlight.destinationName = "${data.destinationName} (${data.destinationId})"
         }
         mFlightMulti.add(orderFlight)
         adapter.setData(mFlightMulti)
@@ -295,6 +295,8 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     override fun btnLeft() {
+        Globals.ONE_TRIP = false
+        typeTrip = "round_trip"
         cardFlightOneTrip.visible()
         rvFlightMultiCity.gone()
         btAddOtherFlight.gone()

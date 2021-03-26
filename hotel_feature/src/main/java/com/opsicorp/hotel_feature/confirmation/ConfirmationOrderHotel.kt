@@ -51,6 +51,7 @@ class ConfirmationOrderHotel : BaseActivity(),
         initDataOrder()
         initToolbar()
         btn_next.callbackOnclickButton(this)
+        btn_next.setTextButton("Book")
         btn_info_cancelation.setOnClickListener {
             val dialog = DialogCancelationPolicy(
                     "2020-02-18")

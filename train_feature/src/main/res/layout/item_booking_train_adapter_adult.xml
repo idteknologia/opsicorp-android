@@ -331,6 +331,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_additional"
             android:layout_marginLeft="65dp"
             android:layout_below="@+id/line_card_id"
@@ -344,6 +345,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_marginLeft="60dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="18dp"
