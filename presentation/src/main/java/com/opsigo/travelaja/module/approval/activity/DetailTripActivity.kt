@@ -397,7 +397,7 @@ class DetailTripActivity : BaseActivity()
         tv_start_date.text  = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text    = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
-        if (tripSummary.statusView=="Completely Approved"){
+        if (tripSummary.statusView=="Completely Approved"||tripSummary.statusView=="Completely Rejected"){
             line_add_trip_item.visibility = View.GONE
         }
         else{

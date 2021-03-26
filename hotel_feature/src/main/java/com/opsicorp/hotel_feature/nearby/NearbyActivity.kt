@@ -129,14 +129,17 @@ class NearbyActivity : BaseActivity() {
             Constants.SELECT_NEARBY_COUNTRY -> {
                 setAdapterByCountry()
                 line_bottom.visibility = View.GONE
+                et_filter.hint = "Enter Country name"
             }
             Constants.SELECT_NEARBY_OFFICE -> {
                 setAdapterByOffice()
                 line_bottom.visibility = View.VISIBLE
+                et_filter.hint = "Enter office name"
             }
             Constants.SELECT_NEARBY_AIRPORT -> {
                 setAdapeterByAirport()
                 line_bottom.visibility = View.VISIBLE
+                et_filter.hint = "Enter Airport name"
             }
         }
 
@@ -167,6 +170,7 @@ class NearbyActivity : BaseActivity() {
     }
 
     fun setAdapterByCity(idCountry: String){
+        et_filter.hint = "Enter city name"
         typeSelect = Constants.SELECT_NEARBY_CITY
         rv_nearby.adapter = cityAdapter
         cityAdapter.setOnclickListener(onclickCity)

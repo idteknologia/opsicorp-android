@@ -252,7 +252,7 @@ class CreateTripActivity : BaseActivity(),
             Globals.showAlert("Please","Select your purpose",this)
         }
         else if(attactmentIsEmpty()){
-            Globals.showAlert("Please","upload file",this)
+            Globals.showAlert("Please","Waiting upload file",this)
         }
         else {
             gotoActivityWithBundle(SelectBudget::class.java,bundle)

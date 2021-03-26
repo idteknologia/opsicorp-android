@@ -153,8 +153,14 @@ class ConfirmationOrderHotel : BaseActivity(),
         tv_description_hotel_cart.text  = dataHotel.addressHotel
         tv_detail_facility.text         = "24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
         tv_double_bed.text              = dataValidation.typeBed
-        tv_cancelation_policy1.text     = "No charge for cancellation before ${dataTrip.startDate}"
-        tv_cancelation_policy2.text     = "Charge 100% - Start from ${dataTrip.startDate}"//22 May 2020
+        try {
+            tv_cancelation_policy2.text     = "Charge 100% - Start from ${DateConverter().getDate(dataTrip.startDate.split(" ")[0],"yyyy-mm-dd","dd MMM yyyy")}"//22 May 2020
+            tv_cancelation_policy1.text     = "No charge for cancellation before ${DateConverter().getDate(dataTrip.endDate.split(" ")[0],"yyyy-mm-dd","dd MMM yyyy")}"
+        }catch (e:Exception){
+            tv_cancelation_policy2.text     = dataTrip.endDate
+            tv_cancelation_policy1.text     = dataTrip.startDate
+            e.printStackTrace()
+        }
         tv_prize_hotel_cart.text        = "IDR ${Globals.formatAmount(dataRoom.prize.toDouble().toInt().toString())}"
 
         if(dataValidation.notcomply){

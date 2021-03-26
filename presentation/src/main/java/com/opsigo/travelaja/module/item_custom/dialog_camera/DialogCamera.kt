@@ -1,24 +1,24 @@
 package com.opsigo.travelaja.module.item_custom.dialog_camera
 
-import android.app.Activity
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.net.Uri
-import android.os.Bundle
-import android.os.Environment
-import android.os.StrictMode
-import android.provider.MediaStore
-import android.view.View
-import com.opsigo.travelaja.R
 import com.unicode.kingmarket.Base.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_camera.*
+import android.graphics.drawable.ColorDrawable
 import com.opsigo.travelaja.utility.Globals
+import android.content.ContentValues
 import com.squareup.picasso.Picasso
+import android.provider.MediaStore
 import java.text.SimpleDateFormat
 import com.yalantis.ucrop.UCrop
+import android.content.Context
+import com.opsigo.travelaja.R
+import android.content.Intent
+import android.graphics.Color
+import android.os.Environment
+import android.os.StrictMode
+import android.app.Activity
+import android.os.Bundle
+import android.view.View
+import android.net.Uri
 import java.io.File
 import java.util.*
 
@@ -28,7 +28,7 @@ class DialogCamera : BaseDialogFragment() {
     protected val CAMERA_REQUEST  = 0
     protected val GALLERY_PICTURE = 1
     var pictureImagePath          = ""
-    var pathImageOriginal         = ""
+//    var pathImageOriginal         = ""
     lateinit var callbackDialog   : DialogCameraCallback
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class DialogCamera : BaseDialogFragment() {
                 getImageFromGalery()
             }
             else {
-                callbackDialog.data(pathImageOriginal)
+                callbackDialog.data(pictureImagePath)
                 dismiss()
             }
         }
@@ -83,8 +83,10 @@ class DialogCamera : BaseDialogFragment() {
         when(requestCode){
             CAMERA_REQUEST ->{
                 if (resultCode==Activity.RESULT_OK){
-                    val imgFile = File(pictureImagePath)
-                    getCrop(Uri.parse(imgFile.toURI().toString()))
+                    changeButtonUploaded()
+                    setImage(pictureImagePath)
+//                    val imgFile = File(pictureImagePath)
+//                    getCrop(Uri.parse(imgFile.toURI().toString()))
                 }
             }
 
@@ -99,7 +101,7 @@ class DialogCamera : BaseDialogFragment() {
                     }
                 }
             }
-            UCrop.REQUEST_CROP -> {
+            /*UCrop.REQUEST_CROP -> {
                 if(resultCode==Activity.RESULT_OK){
                     val tempUri = UCrop.getOutput(data!!)
 
@@ -112,7 +114,7 @@ class DialogCamera : BaseDialogFragment() {
                         setImage(getRealPathFromURI(selectedImage))
                     }
                 }
-            }
+            }*/
         }
 
     }
@@ -154,7 +156,6 @@ class DialogCamera : BaseDialogFragment() {
         UCrop.of(tempUri, Uri.fromFile(File(Globals.getTmpDir(context), UUID.randomUUID().toString() + ".jpg")))
                 .withAspectRatio(16f, 16f)
                 .start((context as Activity))
-
     }
 
     fun getImageContentUri(context: Context, imageFile: File): Uri? {

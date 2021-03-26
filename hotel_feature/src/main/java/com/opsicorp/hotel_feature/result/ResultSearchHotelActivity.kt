@@ -2,6 +2,7 @@ package com.opsicorp.hotel_feature.result
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
+import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelRequest
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
@@ -39,7 +40,6 @@ import java.lang.Exception
 import android.view.View
 import android.os.Build
 import android.os.Bundle
-import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelRequest
 import java.util.*
 
 class ResultSearchHotelActivity : BaseActivity(),
@@ -172,17 +172,19 @@ class ResultSearchHotelActivity : BaseActivity(),
         if (mData.isEmpty()){
             empty_result.visibility = View.VISIBLE
             tv_total_data.visibility = View.GONE
+            rv_result_hotel.visibility = View.GONE
         }
         else {
             showTotalData()
             empty_result.visibility = View.GONE
+            rv_result_hotel.visibility = View.VISIBLE
         }
     }
 
     private fun showTotalData() {
         Globals.delay(1000.toLong(),object :Globals.DelayCallback{
             override fun done() {
-                tv_total_data.text = "${data.size} Best departing flights"
+                tv_total_data.text = "${data.size} Best departing Hotel"
                 val transition: Transition = Fade()
                 transition.setDuration(700)
                 transition.addTarget(R.id.tv_total_data)
@@ -195,9 +197,9 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun setRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_result_flight.layoutManager = layoutManager
-        rv_result_flight.itemAnimator = DefaultItemAnimator()
-        rv_result_flight.adapter = adapter
+        rv_result_hotel.layoutManager = layoutManager
+        rv_result_hotel.itemAnimator = DefaultItemAnimator()
+        rv_result_hotel.adapter = adapter
         adapter.setOnclickListenerWithAnimation(this)
 
         getDataHotel()
@@ -379,7 +381,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         val cal = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
         cal.time = sdf.parse(string)
-        cal.add(Calendar.DATE, duration.split(" ")[0].toInt()-1)
+        cal.add(Calendar.DATE, duration.split(" ")[0].toInt())
         return sdf.format(cal.time)
     }
 

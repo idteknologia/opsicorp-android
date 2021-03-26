@@ -1256,7 +1256,7 @@ data class TripHotelsItems(
 		val bookingNumber: Any? = null,
 
 		@field:SerializedName("BookingCode")
-		val bookingCode: Any? = null,
+		val bookingCode: String? = null,
 
 		@field:SerializedName("BookedDate")
 		val bookedDate: String? = null,

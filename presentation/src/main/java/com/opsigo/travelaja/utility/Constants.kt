@@ -104,6 +104,7 @@ object Constants {
     val DATA_DETAIL_HOTEL        = ""
     val DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"
+    val KEY_NAME_GUEST           = "name"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"
     val SELECT_REASON_CODE       = 17
     var DATA_REASON_CODE_HOTEL   = ArrayList<ReasonCodeModel>()

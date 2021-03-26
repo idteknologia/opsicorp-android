@@ -95,6 +95,7 @@ class HotelFragment : BaseFragment(),
         ic_airport.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_before_cheklist))
         typeDestination             = Constants.SELECT_NEARBY_CITY
         dataSelectCity.cityName     = "Bandung"
+        dataSelectCountry.id        = "ID"
         dataSelectCity.idCity       = "7sdn5U3LQUaiqnGJUhXQpg"
         tv_city.text                = dataSelectCity.cityName
         tv_title_destination.text   = context?.getString(R.string.title_nearby_city)

@@ -70,7 +70,7 @@
                             style="@style/RobotoBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
+                            android:layout_marginTop="4dp"
                             android:gravity="end"
                             android:text="AW5CR34RGTP"
                             android:textColor="#24253d"

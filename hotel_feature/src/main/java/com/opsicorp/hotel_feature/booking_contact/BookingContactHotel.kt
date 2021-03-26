@@ -28,6 +28,7 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
@@ -89,9 +90,11 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
 
     private fun otherTypeListener() {
         if (cb5.isChecked==false){
-            val intent =  Bundle()
-            intent.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
-            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,intent,OTHER_TYPE_REQUEST)
+            val bundle = Bundle()
+            bundle.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
+            if (et_guest.text.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,et_guest.text.toString())
+            else bundle.putString(KEY_NAME_GUEST,getProfile().name)
+            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,OTHER_TYPE_REQUEST)
         }else {
             cb5.isChecked = false
             deletRemark(5)
@@ -100,9 +103,11 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
 
     private fun bedTypeListener() {
         if (cb2.isChecked==false){
-            val intent =  Bundle()
-            intent.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
-            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,intent,BED_TYPE_REQUEST)
+            val bundle =  Bundle()
+            bundle.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
+            if (et_guest.text.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,et_guest.text.toString())
+            else bundle.putString(KEY_NAME_GUEST,getProfile().name)
+            gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,BED_TYPE_REQUEST)
         }else {
             cb2.isChecked = false
             deletRemark(2)

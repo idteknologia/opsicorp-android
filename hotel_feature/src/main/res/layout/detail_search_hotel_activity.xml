@@ -87,14 +87,14 @@
             android:id="@+id/tv_total_data"
             android:visibility="gone"
             style="@style/RobotoItalic"
-            android:text="4 Departing Flights Found"
+            android:text="4 Departing Hotel Found"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <android.support.v7.widget.RecyclerView
             android:layout_marginTop="8dp"
-            android:id="@+id/rv_result_flight"
+            android:id="@+id/rv_result_hotel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     </LinearLayout>

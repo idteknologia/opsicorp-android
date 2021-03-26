@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.mapper
 
+import android.util.Log
 import opsigo.com.datalayer.model.listtripplan.StatusTrip
 import opsigo.com.datalayer.model.approval.list_approval.ListApprovalEntity
 import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
@@ -20,7 +21,9 @@ class MapperModelListTripplan {
             approvalModel.tripCode      = dataItem.code
             approvalModel.header        = dataItem.startDate
             approvalModel.title         = dataItem.purpose
-            approvalModel.destination   = if (dataItem.destinationName==null) "" else dataItem.destinationName
+            Log.e("TAG","-----------------------")
+            Log.e("TAG",dataItem.destination)
+            approvalModel.destination   = if (dataItem.destination==null) "" else dataItem.destination
             approvalModel.isApproval    = dataItem.isApprover
             approvalModel.isParticipant = dataItem.isParticipant
 

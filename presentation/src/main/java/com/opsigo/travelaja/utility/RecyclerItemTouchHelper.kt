@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
 import com.opsigo.travelaja.module.approval.adapter.ApprovalAdapter
+import java.lang.Exception
 
 class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listener: RecyclerItemTouchHelperListener) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
 
@@ -12,10 +13,14 @@ class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listene
     }
 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
-        if (viewHolder != null) {
-            val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
+        try {
+            if (viewHolder != null) {
+                val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
 
-            ItemTouchHelper.Callback.getDefaultUIUtil().onSelected(foregroundView)
+                ItemTouchHelper.Callback.getDefaultUIUtil().onSelected(foregroundView)
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 

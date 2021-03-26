@@ -95,6 +95,8 @@ class SpecialRequestActivity : BaseActivity(),
             line_bed_type.visibility   = View.GONE
             title_bed_type.visibility  = View.GONE
         }
+        name_guest.text            = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KEY_NAME_GUEST,"")
+
     }
 
     private fun initToolbar() {
@@ -107,7 +109,7 @@ class SpecialRequestActivity : BaseActivity(),
     }
 
     override fun btnBack() {
-
+        finish()
     }
 
     override fun logoCenter() {

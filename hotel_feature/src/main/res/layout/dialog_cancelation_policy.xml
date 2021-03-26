@@ -103,6 +103,7 @@
                 </TextView>
 
                 <TextView
+                    android:id="@+id/tv_cancelation_start_from"
                     android:singleLine="true"
                     android:layout_gravity="center"
                     android:gravity="center"
