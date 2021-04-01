@@ -15,6 +15,8 @@ import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.preference.PreferenceManager
+import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.content.FileProvider
 import android.support.v4.widget.NestedScrollView
 import android.telephony.TelephonyManager
@@ -35,6 +37,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.opsigo.travelaja.BuildConfig
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.base.InitApplications
+import com.opsigo.travelaja.module.home.activity.HomeActivity
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -76,6 +79,18 @@ object Globals {
         }catch (e:Exception){
             e.printStackTrace()
         }
+    }
+
+    fun showAlertComplete(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
+        builder.setNegativeButton("Cancel") { dialogInterface, i ->
+            dialogInterface.dismiss()
+            onclikAllert.no()
+        }
+        builder.create().show()
     }
 
     fun stringToBarcodeImage(code: String): Bitmap? {
