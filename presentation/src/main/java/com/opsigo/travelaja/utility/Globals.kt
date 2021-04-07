@@ -13,8 +13,6 @@ import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.preference.PreferenceManager
-import android.support.v4.content.FileProvider
-import android.support.v4.widget.NestedScrollView
 import android.telephony.TelephonyManager
 import android.text.ClipboardManager
 import android.util.Base64
@@ -26,6 +24,8 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.*
+import androidx.core.content.FileProvider
+import androidx.core.widget.NestedScrollView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException
@@ -135,6 +135,18 @@ object Globals {
         builder.setTitle(title)
         builder.setMessage(message)
         builder.setPositiveButton("Ok") { dialog, which -> onclikAllert.onclik() }
+        builder.create().show()
+    }
+
+    fun showAlertComplete(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
+        builder.setNegativeButton("Cancel") { dialogInterface, i ->
+            dialogInterface.dismiss()
+            onclikAllert.no()
+        }
         builder.create().show()
     }
 

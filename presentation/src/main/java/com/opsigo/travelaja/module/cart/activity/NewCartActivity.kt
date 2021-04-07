@@ -120,7 +120,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     }
 
     fun setDataListCart(){
-        toolbar.hideAddMoreItem()
+        toolbar.showAddMoreItem()
         page_list_bisnis_trip.setDataOrder(mData)
     }
 

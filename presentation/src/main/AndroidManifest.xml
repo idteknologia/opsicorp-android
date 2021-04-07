@@ -67,7 +67,7 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name="com.opsigo.travelaja.module.profile.KtpCartFormActivity"
+            android:name="com.opsigo.travelaja.module.profile.KtpCardFormActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity

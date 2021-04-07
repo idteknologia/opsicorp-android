@@ -189,7 +189,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
             }
             Constants.BTN_ID_CART   -> {
                 dataContacts[position].checktype = "KTP"
-//                gotoActivityResult(KtpCartFormActivity::class.java,Constants.BTN_ID_CART)
+//                gotoActivityResult(KtpCardFormActivity::class.java,Constants.BTN_ID_CART)
             }
         }
     }

@@ -4,9 +4,6 @@ import android.annotation.SuppressLint
 import android.app.DialogFragment
 import android.content.DialogInterface
 import android.os.Build
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -26,6 +23,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     var data = ArrayList<AccomodationPreferanceModel>()
     val adapter by lazy { AccomodationPreferanceAdapter(context!!,data) }
 
+    @SuppressLint("WrongConstant")
     override fun onMain(fragment: View) {
         if (style!=0){ setStyle(DialogFragment.STYLE_NO_TITLE, style) }
 
@@ -33,7 +31,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         buttonSearch = fragment.findViewById(R.id.btn_next)
         recyclerView = fragment.findViewById(R.id.rv_select_accomodation)
 
-        toolbar.setTitleBar("Airlines Filter")
+        toolbar.setTitleBar("Airlines Preference")
         toolbar.hidenBtnCart()
         toolbar.showBtnReset()
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
@@ -42,7 +40,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         }
         toolbar.callbackOnclickToolbar(this)
         buttonSearch.callbackOnclickButton(this)
-        buttonSearch.setTextButton("See Flight")
+        buttonSearch.setTextButton("Set Flight Preference")
 
         initRecyclerView()
     }
@@ -108,7 +106,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         data.filter {
             it.checked
         }.forEachIndexed { index, accomodationPreferanceModel ->
-            dataName = dataName+" "+accomodationPreferanceModel.name
+            dataName = dataName+accomodationPreferanceModel.name+" ,"
         }
         callback.callback("${dataName}")
     }
