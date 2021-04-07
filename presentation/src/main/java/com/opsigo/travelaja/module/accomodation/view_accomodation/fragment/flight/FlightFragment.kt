@@ -7,7 +7,7 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassager
+import com.opsigo.travelaja.module.item_custom.select_passager.SelectOldPassager
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
@@ -41,7 +41,7 @@ class FlightFragment : BaseFragment(),
         ,ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener
-        ,SelectAgePassager.CallbackSelectPasanger{
+        ,SelectOldPassager.CallbackSelectPasanger{
 
     override fun getLayout(): Int { return R.layout.flight_fragment }
 
@@ -98,7 +98,7 @@ class FlightFragment : BaseFragment(),
 
     private fun checkTypeOrder() {
 
-        if (Globals.BisnisTrip){
+        if (Constants.isBisnisTrip){
             lay_parent_passager.visibility = View.GONE
             lay_air_class.gone()
             lay_air_pref.gone()
@@ -139,7 +139,7 @@ class FlightFragment : BaseFragment(),
 
         tv_passanger.setOnClickListener {
             val fm = activity?.getSupportFragmentManager()
-            var selectPassager = SelectAgePassager(true,R.style.CustomDialog)
+            var selectPassager = SelectOldPassager(true,R.style.CustomDialog)
             selectPassager.show(fm, "yesNoAlert")
             selectPassager.callback = this
             selectPassager.setLimitSelect(4,3,2)

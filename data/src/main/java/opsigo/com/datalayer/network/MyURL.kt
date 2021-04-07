@@ -1,7 +1,7 @@
 package opsigo.com.datalayer.network
 
 object MyURL {
-    val URL_TRAVELAJA         = "https://basic.travelaja.id/" //"https://travelaja.opsicorp.com/"
+    val URL_TRAVELAJA         = "https://basicqa.opsicorp.com/" //"https://travelaja.opsicorp.com/"
     const val LOGIN           = "token"
     const val PROFILE         = "api/User/Profile"
     const val UPDATE_PROFILE  = "api/User/UpdateProfile"
@@ -27,6 +27,8 @@ object MyURL {
     const val CITY             = "api/Lookup/Cities"
     const val CANCEL_TRIP_PLAN = "api/TripPlan/CancelTrip/{Id}"
     const val REMARKS          = "api/TripPlan/Remarks"
+    const val CHECK_EXIST_TRIP_PERSONAL = "api/TripPlan/GetPersonalTripProgress"
+    const val SAVE_DRAFT_PERSONAL  = "api/TripPlan/SaveAsDraftPersonal"
     //    const val CREATE_TRIP_PLAN = "api/TripPlan/CancelTrip/2ef3ae65-1797-46ca-b4c9-4e3e322c4f9d"
 
     //search flight
@@ -84,5 +86,6 @@ object MyURL {
     const val REGISTER_BY_EMAIL    = "api/Account/RegisterCorporate"
     const val CONFIRMATION_OTP     = "api/Account/ValidateToken"
     const val COMPLITELY_REGISTER  = "api/Account/ConfirmCorporate"
+
 
 }

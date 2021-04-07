@@ -15,6 +15,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val ID_PERSONAL_TRIP    = "personal trip"
     val RESULT_AREA_HOTEL   = "area hotel"
     val MIN_PRICE           = "min_price"
     val MAX_PRICE           = "max_price"
@@ -150,6 +151,7 @@ object Constants {
     val OPTION_TRAIN_REJECT      = 59
     var DATA_FLIGHT_ARIVAL       = ArrayList<AccomodationResultModel>()
     val OPTION_HOTEL_REJECT      = 76
+    var isBisnisTrip             = true
 
     //hotel
     val ONCLICK_INFO_CANCELATION_HOTEL = 8001

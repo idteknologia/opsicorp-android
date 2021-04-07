@@ -1,7 +1,6 @@
 package com.opsigo.travelaja.module.accomodation.view_accomodation.activity
 
 import com.opsigo.travelaja.module.accomodation.view_accomodation.presenter.AccomodationPresenter
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.train.TrainFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.tour.TourFragment
 import com.opsigo.travelaja.module.accomodation.view_accomodation.view.AccomodationView
@@ -62,27 +61,27 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
         try {
             data = intent.getBundleExtra("data").getInt(TYPE_ACCOMODATION)
             if (Constants.KEY_ACCOMODATION.equals(data)){
-                Globals.BisnisTrip = true
+                Constants.isBisnisTrip = true
                 btn_bottom_accomodation.visibility = View.VISIBLE
                 initButtonBottom()
             }
             else if(TYPE_FLIGHT.equals(data)){
-                Globals.BisnisTrip = false
+                Constants.isBisnisTrip = false
                 getFlightFragment()
                 btn_bottom_accomodation.visibility = View.GONE
             }
             else if(TYPE_TRAIN.equals(data)){
-                Globals.BisnisTrip = false
+                Constants.isBisnisTrip = false
                 getTrainFragment()
                 btn_bottom_accomodation.visibility = View.GONE
             }
             else if(TYPE_HOTEL.equals(data)){
-                Globals.BisnisTrip = false
+                Constants.isBisnisTrip = false
                 getHotelFragment()
                 btn_bottom_accomodation.visibility = View.GONE
             }
             else if(TYPE_TOUR.equals(data)){
-                Globals.BisnisTrip = false
+                Constants.isBisnisTrip = false
                 getTourFragment()
                 btn_bottom_accomodation.visibility = View.GONE
             }

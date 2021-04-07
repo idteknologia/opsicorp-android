@@ -124,6 +124,13 @@ interface UrlEndpoind {
     fun posDataSaveDraft(@Header("Authorization")token:String,
                          @Body body: HashMap<String,Any>): Call<ResponseBody>
 
+    @POST(MyURL.SAVE_DRAFT_PERSONAL)
+    fun posDataSaveDraftPersonal(@Header("Authorization")token:String,
+                         @Body body: HashMap<String,Any>): Call<ResponseBody>
+
+    @GET(MyURL.CHECK_EXIST_TRIP_PERSONAL)
+    fun checkExistTripPersonal(@Header("Authorization")token:String): Call<ResponseBody>
+
     @POST(MyURL.CREATE_TRIP_PLAN)
     fun submitTrip(@Header("Authorization")token:String,
                                 @Body body: HashMap<String,Any>): Call<ResponseBody>

@@ -1,7 +1,5 @@
 package com.opsigo.travelaja.utility
 
-//import com.squareup.picasso.Picasso
-//import com.squareup.picasso.Target
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -57,7 +55,7 @@ object Globals {
 
     var ALL_READY_SELECT_DEPARTING = false
     var ONE_TRIP = true
-    var BisnisTrip = true
+    var isBisnisTrip = true
     var typeAccomodation = "Train"
 
     //key save data dummy sementara untuk order accomodation

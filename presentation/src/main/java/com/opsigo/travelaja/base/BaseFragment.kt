@@ -19,6 +19,7 @@ import com.opsigo.travelaja.BuildConfig
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
 import com.opsigo.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
+import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
 import com.opsigo.travelaja.module.signin.login.activity.LoginActivity
 import com.opsigo.travelaja.utility.CallbackSnackBar
 import com.opsigo.travelaja.utility.Constants
@@ -38,6 +39,7 @@ abstract class BaseFragment: Fragment()  {
 
     protected lateinit var pDialog: ProgressDialog
     protected lateinit var pCurrentFragment: BaseFragment
+    val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
     val dialogContactAdmin = ContactAdminDialog()
 
@@ -265,5 +267,13 @@ abstract class BaseFragment: Fragment()  {
         }catch (e: Exception){
 
         }
+    }
+
+    fun showLoadingOpsicorp(disable:Boolean){
+        loading.showDialogLoading(context as Activity,disable)
+    }
+
+    fun hideLoadingOpsicorp(){
+        loading.dismiss()
     }
 }

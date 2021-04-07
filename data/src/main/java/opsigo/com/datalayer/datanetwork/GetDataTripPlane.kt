@@ -172,6 +172,33 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
 
     }
 
+    override fun saveAsDraftTripPlantPersonal(token: String, data: HashMap<String, Any>, callback: CallbackSaveAsDraft) {
+        //test
+        apiOpsicorp.posDataSaveDraftPersonal(token,data).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val data = Serializer.deserialize(responseString.toString(),SaveAsDraftEntity::class.java)
+                        callback.successLoad(SaveAsDraftMapper().mapping(data))
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+        })
+
+    }
+
     override fun submitTripPlant(token: String, data: HashMap<String, Any>, callback: CallbackSubmitTripPlant) {
         apiOpsicorp.submitTrip(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -233,6 +260,38 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                         val json = JSONObject(responseString)
                         val isSuccess = json.optBoolean("isSuccess")
                         callback.successLoad(isSuccess)
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        callback.failedLoad(json.toString())
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+        })
+    }
+
+    override fun checkExistTripPersonal(token: String, callback: CallbackString) {
+        apiOpsicorp.checkExistTripPersonal(token).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        /*if (json.getBoolean("isExist")){
+                            callback.successLoad(json.getString("tripId"))
+                        }
+                        else {
+                            callback.successLoad("")
+                        }*/
+
+                        callback.successLoad("")
+
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

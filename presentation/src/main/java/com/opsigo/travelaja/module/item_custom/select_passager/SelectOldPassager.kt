@@ -14,7 +14,7 @@ import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 
 
 @SuppressLint("ValidFragment")
-class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
+class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
 
 
     override fun getLayout(): Int {
@@ -27,6 +27,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
     var limitAdult  = 0
     var limitChild  = 0
     var limitInfant = 0
+    var isChildern  = true
     lateinit var btn_add_adult: ImageView
     lateinit var btn_add_child: ImageView
     lateinit var btn_add_infant: ImageView
@@ -38,6 +39,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
     lateinit var tv_child  : TextView
     lateinit var tv_infant : TextView
     lateinit var snackbar  : SnackBarCustomForDialog
+    lateinit var lineChildern : RelativeLayout
     var style = 0
 
     override fun onMain(fragment: View) {
@@ -60,13 +62,14 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
         tv_child         = fragment.findViewById(R.id.tv_child) as TextView
         tv_infant        = fragment.findViewById(R.id.tv_infant) as TextView
         snackbar         = fragment.findViewById(R.id.snackbar) as SnackBarCustomForDialog
+        lineChildern     = fragment.findViewById(R.id.line_btn_add_childern) as RelativeLayout
 
 
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
         toolbar.setTitleBar("Select Passengers")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        btnNext.setTextButton("Search Flight")
+        btnNext.setTextButton("Apply")
 
 
         btn_add_adult.setOnClickListener(this)
@@ -79,15 +82,21 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
 
         changeTotalView()
 
-
+        if (isChildern) {
+            lineBottomSheet.visibility = View.VISIBLE
+        }
+        else {
+            lineBottomSheet.visibility = View.GONE
+        }
     }
 
     @SuppressLint("ValidFragment")
-    constructor(fullScreen:Boolean,mStyle: Int){
+    constructor(fullScreen:Boolean,mStyle: Int,isChildern:Boolean = true){
         if (fullScreen){
             setFullScreen()
         }
         style = mStyle
+        this.isChildern  = isChildern
     }
 
     fun setLimitSelect(mLimitAdult:Int,mLimitChild:Int,mLimitInfant:Int){

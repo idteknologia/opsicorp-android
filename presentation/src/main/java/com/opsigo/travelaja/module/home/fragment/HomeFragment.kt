@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity
 import com.opsigo.travelaja.module.home.presenter.HomePresenter
@@ -16,12 +17,19 @@ import com.opsigo.travelaja.utility.Globals
 import com.unicode.kingmarket.Base.BaseFragment
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fragment.*
+import opsigo.com.datalayer.datanetwork.GetDataTripPlane
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.create_trip_plane.SaveAsDraftPersonalRequest
+import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import uk.co.deanwild.materialshowcaseview.MaterialShowcaseSequence
 import uk.co.deanwild.materialshowcaseview.ShowcaseConfig
+import java.util.HashMap
 
 
 class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListener{
@@ -124,7 +132,6 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
     }
 
     override fun onClick(v: View?) {
-        val bundle = Bundle()
         when (v){
             img_bisnis_trip->{
 
@@ -134,28 +141,19 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
                 }else{
                     showContactAdmin()
                 }
-                //setContruction()
 
             }
             img_flight->{
-//                setContruction()
-//                bundle.putInt(Constants.TYPE_ACCOMODATION,Constants.TYPE_FLIGHT)
-//                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+                chekExistPersonalTrip(Constants.TYPE_FLIGHT)
             }
             img_train ->{
-//                setContruction()
-//                bundle.putInt(Constants.TYPE_ACCOMODATION,Constants.TYPE_TRAIN)
-//                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+                chekExistPersonalTrip(Constants.TYPE_TRAIN)
             }
             img_hotel->{
-//                setContruction()
-//                bundle.putInt(Constants.TYPE_ACCOMODATION,Constants.TYPE_HOTEL)
-//                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+                chekExistPersonalTrip(Constants.TYPE_HOTEL)
             }
             img_tour ->{
-//                setContruction()
-//                bundle.putInt(Constants.TYPE_ACCOMODATION,Constants.TYPE_TOUR)
-//                gotoActivityWithBundle(FilterFlightActivity::class.java,bundle)
+                setContruction()
             }
             line_cart->{
                 gotoCart()
@@ -164,6 +162,54 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
                 gotoCart()
             }
         }
+    }
+
+    private fun chekExistPersonalTrip(type:Int) {
+        showLoadingOpsicorp(true)
+        GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(),object :CallbackString{
+            override fun successLoad(data: String) {
+                if (data.isNotEmpty()){
+                    val bundle = Bundle()
+                    bundle.putString(Constants.ID_PERSONAL_TRIP,data)
+                    gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+                }
+                else {
+                    createPersonalTrip(type)
+                }
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                setToast(message)
+            }
+        })
+
+    }
+
+    private fun createPersonalTrip(type: Int) {
+        GetDataTripPlane(getBaseUrl()).saveAsDraftTripPlantPersonal(getToken(),dataPersonalTrip(),object :CallbackSaveAsDraft{
+            override fun successLoad(data: SuccessCreateTripPlaneModel) {
+                hideLoadingOpsicorp()
+                Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data)
+                val bundle = Bundle()
+                bundle.putInt(Constants.TYPE_ACCOMODATION,type)
+                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                setToast(message)
+            }
+        })
+    }
+
+    private fun dataPersonalTrip(): HashMap<String, Any> {
+        val request= SaveAsDraftPersonalRequest()
+        request.destination = "-"
+        request.origin      = "-"
+        request.purpose     = "-"
+        request.travelAgentAccount = Globals.getConfigCompany(context!!).defaultTravelAgent
+        return Globals.classToHasMap(request,SaveAsDraftPersonalRequest::class.java)
     }
 
     private fun gotoCart() {

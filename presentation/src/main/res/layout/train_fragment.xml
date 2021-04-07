@@ -299,7 +299,7 @@
 
 
         <LinearLayout
-            android:layout_below="@+id/line_depart"
+            android:id="@+id/btn_passenger"
             android:layout_marginRight="25dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="20dp"
@@ -343,7 +343,6 @@
                             android:textColor="@color/colorTextHint"
                             android:textColorHint="@color/colorTextHint"
                             android:hint="1 Adults"
-                            android:onClick="getDateWithCalendar"
                             android:id="@+id/tv_passanger"
                             android:paddingTop="8dp"
                             android:paddingBottom="9dp"

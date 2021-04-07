@@ -369,7 +369,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
 
     private fun checkTotalTrip() {
         if (Globals.ONE_TRIP){
-            if (Globals.BisnisTrip){
+            if (Constants.isBisnisTrip){
                 saveDataListAccomodation()
                 gotoActivity(ConfirmOrderFlightActivity::class.java)
             }

@@ -32,7 +32,12 @@ class DetailResultTrainActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonLi
         setLog("data train  "+Constants.DATA_LIST_TRAIN)
         initButtonNext()
         initToolbar()
-        getValidationTrain()
+        if(Constants.isBisnisTrip){
+            getValidationTrain()
+        }
+        else {
+            setDataDetail()
+        }
 
     }
 
@@ -106,7 +111,7 @@ class DetailResultTrainActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonLi
 
     private fun checkTotalTrip() {
         if (Globals.ONE_TRIP){
-            if (Globals.BisnisTrip){
+            if (Constants.isBisnisTrip){
                 saveDataListAccomodation()
                 gotoActivity(ConfirmOrderTrainActivity::class.java)
             }

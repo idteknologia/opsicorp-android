@@ -26,6 +26,8 @@ data class SearchTrainRequest(
 
 
 	@field:SerializedName("TravelAgent")
-	var travelAgent: String = ""
+	var travelAgent: String = "",
 
+	@field:SerializedName("IsShowPolicy")
+	var IsShowPolicy: Boolean = false
 )
