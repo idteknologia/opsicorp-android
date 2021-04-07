@@ -348,10 +348,10 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }
 
             itemView.tvDetailsCart.setOnClickListener {
-                /*if (data.status=="Reserved"){
+                if (data.status=="Reserved"){
+                    onclick.onClick(Constants.ONCLICK_DETAIL_FLIGHT,position)
+                }
 
-                }*/
-                onclick.onClick(Constants.ONCLICK_DETAIL_FLIGHT,position)
             }
 
             itemView.tv_status_flight_cart.text   = data.status

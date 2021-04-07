@@ -33,7 +33,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         buttonSearch = fragment.findViewById(R.id.btn_next)
         recyclerView = fragment.findViewById(R.id.rv_select_accomodation)
 
-        toolbar.setTitleBar("Airlines Filter")
+        toolbar.setTitleBar("Airlines Preference")
         toolbar.hidenBtnCart()
         toolbar.showBtnReset()
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
@@ -42,7 +42,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         }
         toolbar.callbackOnclickToolbar(this)
         buttonSearch.callbackOnclickButton(this)
-        buttonSearch.setTextButton("See Flight")
+        buttonSearch.setTextButton("Set Flight Preference")
 
         initRecyclerView()
     }
@@ -108,7 +108,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         data.filter {
             it.checked
         }.forEachIndexed { index, accomodationPreferanceModel ->
-            dataName = dataName+" "+accomodationPreferanceModel.name
+            dataName = dataName+accomodationPreferanceModel.name+" ,"
         }
         callback.callback("${dataName}")
     }

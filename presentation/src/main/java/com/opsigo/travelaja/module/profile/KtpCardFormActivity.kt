@@ -8,7 +8,7 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.id_cart_form_layout.*
 
-class KtpCartFormActivity : BaseActivity(),View.OnClickListener {
+class KtpCardFormActivity : BaseActivity(),View.OnClickListener {
     override fun getLayout(): Int {
         return R.layout.id_cart_form_layout
     }

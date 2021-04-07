@@ -7,33 +7,33 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassager
+import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassanger
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackReasonCode
-import kotlinx.android.synthetic.main.flight_fragment.*
 import opsigo.com.domainlayer.model.signin.CountryModel
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.base.InitApplications
 import android.graphics.drawable.BitmapDrawable
 import com.unicode.kingmarket.Base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.*
 import android.view.LayoutInflater
 import android.widget.PopupWindow
 import android.widget.TextView
 import android.content.Context
 import android.view.ViewGroup
 import android.content.Intent
-import com.opsigo.travelaja.R
 import android.app.Activity
 import org.json.JSONArray
 import android.view.View
 import android.os.Bundle
 import android.util.Log
+import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.*
+import kotlinx.android.synthetic.main.flight_fragment.*
 
 class FlightFragment : BaseFragment(),
         View.OnClickListener,
@@ -41,7 +41,7 @@ class FlightFragment : BaseFragment(),
         ,ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener
-        ,SelectAgePassager.CallbackSelectPasanger{
+        ,SelectAgePassanger.CallbackSelectPasanger{
 
     override fun getLayout(): Int { return R.layout.flight_fragment }
 
@@ -139,7 +139,7 @@ class FlightFragment : BaseFragment(),
 
         tv_passanger.setOnClickListener {
             val fm = activity?.getSupportFragmentManager()
-            var selectPassager = SelectAgePassager(true,R.style.CustomDialog)
+            var selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
             selectPassager.show(fm, "yesNoAlert")
             selectPassager.callback = this
             selectPassager.setLimitSelect(4,3,2)

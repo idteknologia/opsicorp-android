@@ -33,6 +33,9 @@ import android.os.Build
 import android.support.v4.content.ContextCompat
 import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
+import com.opsigo.travelaja.module.profile.KtpCardFormActivity
+import com.opsigo.travelaja.module.profile.PassportFormActivity
+import com.opsigo.travelaja.module.profile.SimFormContactActivity
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.BagageFlightRequest
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
@@ -250,15 +253,15 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         when(views){
             Constants.BTN_SIM       -> {
                 dataContacts[position].checktype = "SIM"
-//                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
+                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
             }
             Constants.BTN_PASSPORT  -> {
                 dataContacts[position].checktype = "PASSPORT"
-//                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
+                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
             }
             Constants.BTN_ID_CART   -> {
                 dataContacts[position].checktype = "KTP"
-//                gotoActivityResult(KtpCartFormActivity::class.java,Constants.BTN_ID_CART)
+                gotoActivityResult(KtpCardFormActivity::class.java,Constants.BTN_ID_CART)
             }
 
             Constants.KEY_ACTIVITY_BAGAGE -> {

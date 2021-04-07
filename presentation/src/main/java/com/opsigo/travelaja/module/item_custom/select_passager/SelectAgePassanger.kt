@@ -14,7 +14,7 @@ import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 
 
 @SuppressLint("ValidFragment")
-class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
+class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
 
 
     override fun getLayout(): Int {
@@ -66,7 +66,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
         toolbar.setTitleBar("Select Passengers")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        btnNext.setTextButton("Search Flight")
+        btnNext.setTextButton("Done")
 
 
         btn_add_adult.setOnClickListener(this)
@@ -104,7 +104,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
                 totalAdult++
             }
             else{
-                showSanckBar("Adult",limitAdult)
+                showSnackBar("Adult",limitAdult)
             }
             changeTotalView()
         }
@@ -114,7 +114,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
             }
             else{
 
-                showSanckBar("Child",limitChild)
+                showSnackBar("Child",limitChild)
             }
 
             changeTotalView()
@@ -124,7 +124,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
                 totalInfant++
             }
             else{
-                showSanckBar("Infant",limitInfant)
+                showSnackBar("Infant",limitInfant)
             }
             changeTotalView()
         }
@@ -148,7 +148,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
         }
     }
 
-    private fun showSanckBar(s: String,limit:Int) {
+    private fun showSnackBar(s: String, limit:Int) {
         snackbar.setTextMessage("The Number of ${s} should not Exceed ${limit}")
         snackbar.showSnackBar()
     }
@@ -194,7 +194,7 @@ class SelectAgePassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
 
     private fun changeTotalView() {
         tv_adult.text  = "${totalAdult} Adult(s)"
-        tv_child.text  = "${totalChild} Childern"
+        tv_child.text  = "${totalChild} Children"
         tv_infant.text = "${totalInfant} Infant(s)"
 
         if(totalAdult==0){
