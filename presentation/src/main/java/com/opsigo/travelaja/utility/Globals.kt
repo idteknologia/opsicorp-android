@@ -366,24 +366,30 @@ object Globals {
 
         val file: File
         if (requestPicture != null) {
+
             file = File(requestPicture)
             val file_size = Integer.parseInt((file.length() / 1024).toString())
-            if (file_size > 5120) {
+            setLog("path "+requestPicture)
+            setLog("size image file after compress = "+file_size)
+            if (file_size > 2000) {
+                setLog("resize")
                 val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                 try {
                     val resizedImage = Resizer(context)
                             .setTargetLength(1000)
-                            .setQuality(72)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image")
                             .setOutputDirPath(dir.absolutePath)
                             .setSourceImage(file)
                             .getResizedFile()
                     val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
+                    setLog("size image file before compress = "+file_size_resized.toString())
                     val tsLong = System.currentTimeMillis() / 1000
                     val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
                     fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
                 } catch (e: Exception) {
+                    setLog(e.message.toString())
                     e.printStackTrace()
                 }
 
