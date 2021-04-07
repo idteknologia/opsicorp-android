@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.payment
 
 import android.content.Intent
 import android.os.Build
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.webkit.WebViewClient
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R

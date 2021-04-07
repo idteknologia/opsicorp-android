@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.detail_passanger
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -14,7 +14,7 @@ import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.detail_passanger_adapter_new.view.*
 
-class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DetailPassengerAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     lateinit var items: ArrayList<DetailPassengerModel>
@@ -24,7 +24,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
     val TYPE_INFANT = "Infant"
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return when (viewType){
 
             VIEW_TYPE_ADULT -> AdultHeader(LayoutInflater.from(parent.getContext())
@@ -46,7 +46,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
         return items.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (items.get(position).age) {
 
             TYPE_ADULT -> {
@@ -69,7 +69,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
         }
     }
 
-    inner class AdultHeader internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class AdultHeader internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: DetailPassengerModel, position: Int) {
 
@@ -95,7 +95,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
 
     }
 
-    inner class ChildHeader internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ChildHeader internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: DetailPassengerModel, position: Int) {
 
@@ -117,7 +117,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
 
     }
 
-    inner class InfantHeader internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class InfantHeader internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
 
         fun bind(data: DetailPassengerModel, position: Int) {
@@ -242,7 +242,7 @@ class DetailPassengerAdapter (val context: Context): RecyclerView.Adapter<Recycl
         notifyDataSetChanged()
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     companion object {
         val VIEW_TYPE_ADULT  = 1

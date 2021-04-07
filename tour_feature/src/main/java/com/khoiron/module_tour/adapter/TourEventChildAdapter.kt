@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import com.squareup.picasso.Target
 import com.squareup.picasso.Picasso
 import android.graphics.drawable.Drawable
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.module.home.model.TourEventModel
 import kotlinx.android.synthetic.main.item_tour.view.tv_country
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.item_promosi_hotel.view.*
 import kotlinx.android.synthetic.main.item_tour.view.tv_date_tour
 import kotlinx.android.synthetic.main.item_tour.view.tv_pricing_tour
 
-class TourEventChildAdapter (context: Context, private var items: ArrayList<TourEventModel>): RecyclerView.Adapter<TourEventChildAdapter.ViewHolder>() {
+class TourEventChildAdapter (context: Context, private var items: ArrayList<TourEventModel>): androidx.recyclerview.widget.RecyclerView.Adapter<TourEventChildAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -79,7 +79,7 @@ class TourEventChildAdapter (context: Context, private var items: ArrayList<Tour
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

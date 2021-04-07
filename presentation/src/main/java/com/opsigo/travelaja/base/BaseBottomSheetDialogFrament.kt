@@ -6,9 +6,9 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.design.widget.BottomSheetDialogFragment
-import android.support.design.widget.CoordinatorLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.*
@@ -68,7 +68,7 @@ abstract class BaseBottomSheetDialogFrament: BottomSheetDialogFragment()  {
     }
 
     fun setFullscreenView(inflatedView: View, dialog: Dialog?) {
-        val params = (inflatedView.parent as View).layoutParams as CoordinatorLayout.LayoutParams
+        val params = (inflatedView.parent as View).layoutParams as androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams
         val behavior = params.behavior
         if (behavior != null && behavior is BottomSheetBehavior<*>) {
             behavior.setBottomSheetCallback(mBottomSheetBehaviorCallback)

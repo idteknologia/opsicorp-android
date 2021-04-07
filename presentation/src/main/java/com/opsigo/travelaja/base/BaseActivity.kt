@@ -7,16 +7,16 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import android.os.Build
 import android.os.Handler
-import android.support.design.widget.Snackbar
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.TextView
 import com.opsigo.travelaja.base.InitApplications
@@ -153,7 +153,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
 
         snackbar.setActionTextColor(Color.RED)
         val sbView = snackbar.getView()
-        val textView = sbView.findViewById(android.support.design.R.id.snackbar_text) as TextView
+        val textView = sbView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.YELLOW)
         snackbar.show()
     }
@@ -310,13 +310,13 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun showDialogFragment(fragmentDialog : DialogFragment){
+    fun showDialogFragment(fragmentDialog : androidx.fragment.app.DialogFragment){
         val fm = getSupportFragmentManager()
         fragmentDialog.show(fm, "yesNoAlert")
     }
 
 
-    fun loadFragment(fragment: Fragment?, place: Int) {
+    fun loadFragment(fragment: androidx.fragment.app.Fragment?, place: Int) {
         if (fragment != null) {
             supportFragmentManager
                     .beginTransaction()
@@ -326,7 +326,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun loadFragmentWithAnimationTransaction(fragment: Fragment?, place: Int) {
+    fun loadFragmentWithAnimationTransaction(fragment: androidx.fragment.app.Fragment?, place: Int) {
 
         if (fragment != null) {
             supportFragmentManager
@@ -340,7 +340,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
 
     }
 
-    fun loadFragmentWithAnimationTransactionBack(fragment: Fragment?, place: Int) {
+    fun loadFragmentWithAnimationTransactionBack(fragment: androidx.fragment.app.Fragment?, place: Int) {
 
         if (fragment != null) {
             supportFragmentManager
@@ -353,7 +353,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
 
     }
 
-    fun loadFragmentWithBundle(fragment: Fragment?, place: Int, bundle: Bundle) {
+    fun loadFragmentWithBundle(fragment: androidx.fragment.app.Fragment?, place: Int, bundle: Bundle) {
         if (fragment != null) {
 
             fragment.setArguments(bundle)
@@ -368,7 +368,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
 
 
     @SuppressLint("CommitTransaction")
-    fun killFragment(fragment: Fragment?) {
+    fun killFragment(fragment: androidx.fragment.app.Fragment?) {
         if (fragment != null) {
             supportFragmentManager
                     .beginTransaction()

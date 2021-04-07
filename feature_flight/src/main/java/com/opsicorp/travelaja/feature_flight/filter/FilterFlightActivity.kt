@@ -1,9 +1,9 @@
 package com.opsicorp.travelaja.feature_flight.filter
 
 import android.os.Build
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
@@ -68,9 +68,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     }
 
     private fun initRecyclerView() {
-        val layoutManagerCabin = GridLayoutManager(this, 2)
+        val layoutManagerCabin = androidx.recyclerview.widget.GridLayoutManager(this, 2)
         rvCabinClass.layoutManager = layoutManagerCabin
-        rvCabinClass.itemAnimator = DefaultItemAnimator()
+        rvCabinClass.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvCabinClass.adapter = adapterCabinClass
 
         adapterCabinClass.setOnclickListener(object : OnclickListenerRecyclerView {
@@ -85,10 +85,10 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             }
         })
 
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_departure_time.layoutManager = layoutManager
-        rv_departure_time.itemAnimator = DefaultItemAnimator()
+        rv_departure_time.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_departure_time.adapter = adapterDeparture
 
         adapterDeparture.setOnclickListener(object : OnclickListenerRecyclerView {
@@ -103,10 +103,10 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             }
         })
 
-        val layoutManagerArrival = LinearLayoutManager(this)
-        layoutManagerArrival.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerArrival = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManagerArrival.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_arrival_time.layoutManager = layoutManagerArrival
-        rv_arrival_time.itemAnimator = DefaultItemAnimator()
+        rv_arrival_time.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_arrival_time.adapter = adapterArrival
 
         adapterArrival.setOnclickListener(object : OnclickListenerRecyclerView {

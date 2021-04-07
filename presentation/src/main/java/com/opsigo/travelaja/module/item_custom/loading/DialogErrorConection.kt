@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.item_custom.loading
 
 import android.app.Activity
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 

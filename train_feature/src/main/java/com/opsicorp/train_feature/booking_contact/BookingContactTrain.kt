@@ -17,8 +17,8 @@ import opsigo.com.domainlayer.callback.CallbackReservationTrain
 import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
@@ -108,10 +108,10 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
 
     private fun initRecyclerView() {
         line_select_seat_map.visibility = View.GONE
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_booking_information.layoutManager = layoutManager
-        rv_booking_information.itemAnimator = DefaultItemAnimator()
+        rv_booking_information.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_booking_information.adapter = adapter
 
         adapter.setOnclickListener(this)

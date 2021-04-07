@@ -3,8 +3,6 @@ package com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flig
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.opsicorp.sliderdatepicker.utils.Constant
@@ -17,7 +15,7 @@ import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsico
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.*
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -168,10 +166,10 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun initRecycleView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvFlightMultiCity.layoutManager = layoutManager
-        rvFlightMultiCity.itemAnimator = DefaultItemAnimator()
+        rvFlightMultiCity.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvFlightMultiCity.adapter = adapter
     }
 

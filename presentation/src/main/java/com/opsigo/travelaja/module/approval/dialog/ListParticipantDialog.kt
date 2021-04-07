@@ -4,9 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +23,7 @@ class ListParticipantDialog(var context: Context) {
     lateinit var views : View
     var alertDialog: AlertDialog? = null
     val data = ArrayList<ParticipantModel>()
-    lateinit var recyclerView : RecyclerView
+    lateinit var recyclerView : androidx.recyclerview.widget.RecyclerView
     lateinit var tv_cancel : TextView
     lateinit var tv_total_participant :TextView
     lateinit var btn_add_trip_item : TextView
@@ -70,10 +70,10 @@ class ListParticipantDialog(var context: Context) {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapterDialog
 
         adapterDialog.setOnclickListener(object : OnclickListenerRecyclerView {

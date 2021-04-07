@@ -1,8 +1,8 @@
 package com.opsicorp.train_feature.seat
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import com.opsigo.travelaja.utility.WrappableGridLayoutManager
 import kotlinx.android.synthetic.main.cabin_adapter_view.view.*
 
-class AdapterSeatMapCabin (var context: Context, var items: ArrayList<CabinModel>): RecyclerView.Adapter<AdapterSeatMapCabin.ViewHolder>() {
+class AdapterSeatMapCabin (var context: Context, var items: ArrayList<CabinModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AdapterSeatMapCabin.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
 
@@ -40,7 +40,7 @@ class AdapterSeatMapCabin (var context: Context, var items: ArrayList<CabinModel
         val adapterSeat by lazy { AdapterSeatMapTable(context,dataSeat.seatTables) }
         val mLayoutManager = WrappableGridLayoutManager(context, dataSeat.totalSeatPerRows)
         itemView.rv_seat.setLayoutManager(mLayoutManager)
-        itemView.rv_seat.setItemAnimator(DefaultItemAnimator())
+        itemView.rv_seat.setItemAnimator(androidx.recyclerview.widget.DefaultItemAnimator())
         itemView.rv_seat.setHasFixedSize(true)
         itemView.rv_seat.hasFixedSize()
         itemView.rv_seat.setAdapter(adapterSeat)
@@ -62,7 +62,7 @@ class AdapterSeatMapCabin (var context: Context, var items: ArrayList<CabinModel
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

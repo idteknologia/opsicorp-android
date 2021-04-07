@@ -43,12 +43,12 @@
             layout="@layout/empty_cart_view">
         </include>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_marginBottom="58dp"
             android:id="@+id/rv_my_booking"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"></android.support.v7.widget.RecyclerView>
+            android:visibility="visible"></androidx.recyclerview.widget.RecyclerView>
 
     </FrameLayout>
 

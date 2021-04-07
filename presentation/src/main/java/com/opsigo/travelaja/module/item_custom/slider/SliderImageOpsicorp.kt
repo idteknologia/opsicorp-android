@@ -2,10 +2,10 @@ package com.opsigo.travelaja.module.item_custom.slider
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -22,7 +22,7 @@ class SliderImageOpsicorp : LinearLayout, View.OnClickListener,KoinComponent {
 
     lateinit var callback : OnclickButtonListener
     var posisitionPage = 0
-    val snapHelper = LinearSnapHelper()
+    val snapHelper = androidx.recyclerview.widget.LinearSnapHelper()
     var dataList = ArrayList<SliderImageModel>()
     val adapter by inject<SliderImageAdapter> { parametersOf(dataList) }
 
@@ -48,20 +48,20 @@ class SliderImageOpsicorp : LinearLayout, View.OnClickListener,KoinComponent {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         rv_slider.layoutManager = layoutManager
-        rv_slider.itemAnimator = DefaultItemAnimator()
+        rv_slider.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_slider.adapter = adapter
 
         snapHelper.attachToRecyclerView(rv_slider)
 
-        rv_slider.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        rv_slider.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val centerView = snapHelper.findSnapView(layoutManager)
                 posisitionPage = layoutManager.getPosition(centerView!!)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE || (posisitionPage == 0 && newState == RecyclerView.SCROLL_STATE_DRAGGING)) {
+                if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE || (posisitionPage == 0 && newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING)) {
                     callback.onCenter(posisitionPage)
                     cancelDelay = true
                     Log.e("Tag","BINDING positionView SCROLL_STATE_IDLE: $posisitionPage")

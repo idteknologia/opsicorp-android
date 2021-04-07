@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.opsigo.travelaja.R
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.approval_fragment.*
 import android.text.Editable
 import android.text.TextWatcher

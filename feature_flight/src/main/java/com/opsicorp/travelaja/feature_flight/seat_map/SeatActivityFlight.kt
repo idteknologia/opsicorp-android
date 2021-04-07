@@ -3,7 +3,7 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import kotlinx.android.synthetic.main.seatmap_view_flight.*
 import com.opsigo.travelaja.module.cart.model.CartModel
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.*
 import kotlin.collections.ArrayList
@@ -111,7 +111,7 @@ class SeatActivityFlight : BaseActivity(),
         val adapterSeat by lazy { AdapterSeatMapFlight(this, dataAirline[posisitionPageAirline].dataSeat) }
         val mLayoutManager = WrappableGridLayoutManager(this, dataAirline[posisitionPageAirline].totalRows)
         recyclere_seatmap.setLayoutManager(mLayoutManager)
-        recyclere_seatmap.setItemAnimator(DefaultItemAnimator())
+        recyclere_seatmap.setItemAnimator(androidx.recyclerview.widget.DefaultItemAnimator())
         recyclere_seatmap.setHasFixedSize(true)
         recyclere_seatmap.hasFixedSize()
         recyclere_seatmap.setAdapter(adapterSeat)

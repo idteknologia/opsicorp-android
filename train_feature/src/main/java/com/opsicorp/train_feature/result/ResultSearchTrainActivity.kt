@@ -19,16 +19,16 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsicorp.train_feature.filter.TrainFilterActivity
 import com.opsicorp.train_feature.dialog.TrainShortByDialog
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.transition.TransitionManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionManager
 import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
-import android.support.transition.Transition
+import androidx.transition.Transition
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
-import android.support.transition.Fade
+import androidx.transition.Fade
 import kotlin.collections.ArrayList
 import com.opsicorp.train_feature.R
 import org.koin.core.KoinComponent
@@ -174,10 +174,10 @@ class ResultSearchTrainActivity : BaseActivity(),
     }
 
     private fun setRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_result_flight.layoutManager = layoutManager
-        rv_result_flight.itemAnimator = DefaultItemAnimator()
+        rv_result_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_result_flight.adapter = adapter
 
 

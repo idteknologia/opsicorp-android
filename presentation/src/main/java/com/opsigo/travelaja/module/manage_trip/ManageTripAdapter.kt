@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.manage_trip
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,7 @@ import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
 
 
 
-class ManageTripAdapter (context: Context, private var items: ArrayList<ApprovalModelAdapter>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ManageTripAdapter (context: Context, private var items: ArrayList<ApprovalModelAdapter>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -23,7 +23,7 @@ class ManageTripAdapter (context: Context, private var items: ArrayList<Approval
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
 
@@ -42,7 +42,7 @@ class ManageTripAdapter (context: Context, private var items: ArrayList<Approval
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_WAITING_APPROVAL -> (holder as DraftHolder).bind(items[position],position)
             VIEW_LIST_APPROVAL -> (holder as CompletedHolder).bind(items[position],position)
@@ -152,7 +152,7 @@ class ManageTripAdapter (context: Context, private var items: ArrayList<Approval
     }
 
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
 
     override fun getItemViewType(position: Int): Int {

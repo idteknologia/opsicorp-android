@@ -3,11 +3,11 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.Constants
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
@@ -15,7 +15,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.list_ssr_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SsrItemModel
 
-class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.ViewHolder>() {
+class SsrListAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SsrListAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     var items = ArrayList<SsrItemModel>()
@@ -47,11 +47,11 @@ class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.Vie
 
     private fun setDataRecycler(holder: ViewHolder, data: SsrItemModel, positionParent: Int) {
         val adapter by lazy { SsrListItemAdapter(context) }
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         holder.itemView.rv_list_item_ssr.layoutManager = layoutManager
-        holder.itemView.rv_list_item_ssr.itemAnimator = DefaultItemAnimator()
+        holder.itemView.rv_list_item_ssr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         holder.itemView.rv_list_item_ssr.adapter = adapter
 
         adapter.setOnclickListener(object  : OnclickListenerRecyclerView{
@@ -73,7 +73,7 @@ class SsrListAdapter (context: Context): RecyclerView.Adapter<SsrListAdapter.Vie
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.item_custom.loading
 
 import android.app.Activity
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.view.View
 import android.widget.LinearLayout
 import com.cunoraz.gifview.library.GifView

@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.my_booking.purchase_list_detail
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -46,16 +46,16 @@ class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_pree_flight_info.layoutManager = layoutManager
-        rv_pree_flight_info.itemAnimator = DefaultItemAnimator()
+        rv_pree_flight_info.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_pree_flight_info.adapter = adapterFlightInfo
 
-        val layoutManagerPassanger = LinearLayoutManager(context)
-        layoutManagerPassanger.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerPassanger = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManagerPassanger.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_passanger.layoutManager = layoutManagerPassanger
-        rv_passanger.itemAnimator = DefaultItemAnimator()
+        rv_passanger.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_passanger.adapter = adapterPassager
     }
 

@@ -14,7 +14,7 @@
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
         android:id="@+id/nested_view"
         android:layout_width="match_parent"
@@ -137,6 +137,6 @@
 
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

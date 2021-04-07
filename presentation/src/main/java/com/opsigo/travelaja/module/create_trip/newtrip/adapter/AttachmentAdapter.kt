@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.create_trip.newtrip.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import kotlinx.android.synthetic.main.attach_adapter.view.*
 
-class AttachmentAdapter (val context: Context, private var items: ArrayList<UploadModel>): RecyclerView.Adapter<AttachmentAdapter.ViewHolder>() {
+class AttachmentAdapter (val context: Context, private var items: ArrayList<UploadModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AttachmentAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -76,7 +76,7 @@ class AttachmentAdapter (val context: Context, private var items: ArrayList<Uplo
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 

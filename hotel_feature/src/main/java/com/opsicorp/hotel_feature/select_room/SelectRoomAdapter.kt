@@ -2,7 +2,7 @@ package com.opsicorp.hotel_feature.select_room
 
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.content.Context
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.item_select_room.view.*
 
-class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): RecyclerView.Adapter<SelectRoomAdapter.ViewHolder>() {
+class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): androidx.recyclerview.widget.RecyclerView.Adapter<SelectRoomAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -81,5 +81,5 @@ class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): RecyclerView.Ad
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

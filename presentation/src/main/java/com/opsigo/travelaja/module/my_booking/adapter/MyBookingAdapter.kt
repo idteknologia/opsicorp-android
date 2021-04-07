@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.my_booking.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import opsigo.com.domainlayer.model.my_booking.MyBookingModel
 import kotlinx.android.synthetic.main.item_my_booking_body.view.*
 import kotlinx.android.synthetic.main.item_my_booking_header.view.*
 
-class MyBookingAdapter (val context: Context, private var items: ArrayList<MyBookingModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MyBookingAdapter (val context: Context, private var items: ArrayList<MyBookingModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -25,7 +25,7 @@ class MyBookingAdapter (val context: Context, private var items: ArrayList<MyBoo
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType) {
 
@@ -40,7 +40,7 @@ class MyBookingAdapter (val context: Context, private var items: ArrayList<MyBoo
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             HEADER_MY_BOOKING -> (holder as HeaderHolder).bind(items[position], position)
             BODY_MY_BOOKING -> (holder as BodyHolder).bind(items[position], position)
@@ -155,7 +155,7 @@ class MyBookingAdapter (val context: Context, private var items: ArrayList<MyBoo
         val BODY_MY_BOOKING = 2
     }
 
-    open inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         return when (items.get(position).type) {

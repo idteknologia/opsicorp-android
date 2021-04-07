@@ -814,12 +814,12 @@
                     custom:gif="@mipmap/gif1" />
 
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_attachment"
                     android:background="@android:color/white"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
                 <LinearLayout
                     android:onClick="openCameraView"
@@ -1195,7 +1195,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_below="@id/lay_search"
                 android:id="@+id/rvCountry"
                 android:layout_marginTop="10dp"

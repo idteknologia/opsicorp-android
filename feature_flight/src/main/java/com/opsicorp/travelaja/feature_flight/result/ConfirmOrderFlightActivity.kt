@@ -1,9 +1,9 @@
 package com.opsicorp.travelaja.feature_flight.result
 
-import android.support.v4.app.FragmentManager
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.FragmentManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
@@ -35,7 +35,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     val data = ArrayList<ConfirmationFlightModel>()
-    lateinit var supportFragment: FragmentManager
+    lateinit var supportFragment: androidx.fragment.app.FragmentManager
     lateinit var dataFlight: ResultListFlightModel
     lateinit var dataListFlight: DataListOrderAccomodation
     var allreadySelectReasonCode = false
@@ -207,11 +207,11 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
 
         rv_confirmation_order_flight.layoutManager = layoutManager
-        rv_confirmation_order_flight.itemAnimator = DefaultItemAnimator()
+        rv_confirmation_order_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_confirmation_order_flight.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

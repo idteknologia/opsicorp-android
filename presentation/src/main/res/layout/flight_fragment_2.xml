@@ -12,7 +12,7 @@
         android:layout_height="90dp"
         android:background="@drawable/rectangle_background"/>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content">
             </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardFlightOneTrip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -353,9 +353,9 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFlightMultiCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -383,6 +383,6 @@
             </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

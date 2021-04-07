@@ -6,11 +6,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import kotlin.collections.ArrayList
 import com.opsicorp.sliderdatepicker.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.sliderdatepicker.model.HolidayModel
 import kotlinx.android.synthetic.main.item_holiday_view.view.*
 
-class HolidayAdapter (var context: Context, var items: ArrayList<HolidayModel>): RecyclerView.Adapter<HolidayAdapter.ViewHolder>() {
+class HolidayAdapter (var context: Context, var items: ArrayList<HolidayModel>): androidx.recyclerview.widget.RecyclerView.Adapter<HolidayAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -36,7 +36,7 @@ class HolidayAdapter (var context: Context, var items: ArrayList<HolidayModel>):
         holder.itemView.tv_title_holiday.text = data.name
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

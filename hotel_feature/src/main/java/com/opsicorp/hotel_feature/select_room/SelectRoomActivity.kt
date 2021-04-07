@@ -9,9 +9,9 @@ import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
@@ -122,10 +122,10 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         toolbar.setDoubleTitle(dataHotel.nameHotel,"${dataHotel.addressHotel}")
     }
     private fun initRecyclerView() {
-        val layoutManagerReview = LinearLayoutManager(this)
-        layoutManagerReview.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerReview = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManagerReview.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_list_room.layoutManager = layoutManagerReview
-        rv_list_room.itemAnimator = DefaultItemAnimator()
+        rv_list_room.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_list_room.adapter = adapter
 
         adapter.setOnclickListener(this)

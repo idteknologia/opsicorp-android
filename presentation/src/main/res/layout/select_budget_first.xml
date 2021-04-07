@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/layScroll"
             android:fillViewport="true"
             android:visibility="visible"
@@ -534,7 +534,7 @@
                 </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 

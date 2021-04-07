@@ -5,8 +5,8 @@ import com.opsigo.travelaja.module.home.activity.HomeActivity
 import kotlinx.android.synthetic.main.success_view.*
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.BaseActivity
-import android.support.transition.TransitionManager
-import android.support.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.transition.Fade
 import android.content.Intent
 import android.view.ViewGroup
 import com.opsigo.travelaja.R

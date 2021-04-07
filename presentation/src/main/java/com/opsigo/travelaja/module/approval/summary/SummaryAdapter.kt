@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.approval.summary
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,7 @@ import opsigo.com.domainlayer.model.summary.SummaryModelItems
 
 import java.util.ArrayList
 
-class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class SummaryAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -42,7 +42,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType){
 
@@ -66,7 +66,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
 
         Log.e("TAG == ${position}? ",items.get(position).typeCard)
 
@@ -87,7 +87,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun setData(data: ArrayList<SummaryModelItems>) {
         items.clear()
@@ -104,7 +104,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    inner class HeaderListCart internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HeaderListCart internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var tv_title_parent      :TextView = itemView.findViewById(R.id.tv_title_parent)
         var reason               :TextView = itemView.findViewById(R.id.tv_title_reason)
@@ -126,7 +126,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
 
     }
 
-    inner class TrainHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TrainHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var tv_train        :TextView = itemView.findViewById(R.id.tv_train)
         var tv_destination  :TextView = itemView.findViewById(R.id.tv_destination)
@@ -165,7 +165,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    inner class FlightHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var tv_dep_return_tittle :TextView = itemView.findViewById(R.id.tv_depart_return_title)
         var tv_airline      :TextView = itemView.findViewById(R.id.tv_airline)
@@ -225,7 +225,7 @@ class SummaryAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.V
 
     }
 
-    inner class HotelHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotelHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var img_hotel             :ImageView= itemView.findViewById(R.id.img_hotel)
         var tv_status_hotel       :TextView = itemView.findViewById(R.id.tv_status_hotel)

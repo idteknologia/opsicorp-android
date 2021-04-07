@@ -3,11 +3,11 @@ package com.opsigo.travelaja.module.item_custom.dasboard_approval
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.design.widget.Snackbar
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import com.google.android.material.snackbar.Snackbar
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -141,10 +141,10 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
     }
 
     private fun setInitRecyclerView() {
-        val layoutManager = LinearLayoutManager(context!!)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context!!)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_waiting_approval.layoutManager = layoutManager
-        rv_waiting_approval.itemAnimator = DefaultItemAnimator()
+        rv_waiting_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_waiting_approval.adapter = adapter
 
         val itemTouchHelperCallback = RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT, this)
@@ -408,7 +408,7 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
     }
 
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int) {
+    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int, position: Int) {
         if (viewHolder is ApprovalAdapter.ViewHolder) {
 
             val name = data.get(viewHolder.adapterPosition).title

@@ -1,6 +1,6 @@
 package com.opsigo.travelaja.module.signin.select_nationality.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.gone
 import com.opsigo.travelaja.utility.visible
 import kotlinx.android.synthetic.main.select_nationality_adapter_view.view.*
 
-class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel>): RecyclerView.Adapter<SelectNationalityAdapter.ViewHolder>() {
+class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel>): androidx.recyclerview.widget.RecyclerView.Adapter<SelectNationalityAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -59,7 +59,7 @@ class SelectNationalityAdapter (private var items: ArrayList<SelectNationalModel
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

@@ -1,9 +1,9 @@
 package com.opsigo.travelaja.module.signin.select.presenter
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.DataTemporary
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.signin.select.adapter.LookUpAdapter
@@ -28,10 +28,10 @@ class LookUpPresenter :KoinComponent {
         this.view = view
     }
 
-    fun initRecyclerView(recyclerView:RecyclerView){
-        val layoutManager = LinearLayoutManager(context)
+    fun initRecyclerView(recyclerView: androidx.recyclerview.widget.RecyclerView){
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapter
 
         val scrollListener = RecyclerViewLoadMoreScrollListener(layoutManager)

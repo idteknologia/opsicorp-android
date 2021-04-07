@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.approval.summary
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso
 
 import java.util.ArrayList
 
-class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -25,7 +25,7 @@ class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerVi
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType){
 
@@ -41,7 +41,7 @@ class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerVi
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
 
         when (items[position].isApproval){
             true -> {
@@ -53,7 +53,7 @@ class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun setData(data: ArrayList<ParticipantModel>) {
         items = data
@@ -67,7 +67,7 @@ class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerVi
         }
     }
 
-    inner class ParticipantHolderParticipant internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ParticipantHolderParticipant internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var img_participant         :ImageView= itemView.findViewById(R.id.img_participant)
         var tv_job_title            :TextView = itemView.findViewById(R.id.tv_jobtitle)
@@ -127,7 +127,7 @@ class ParticipantAdapter (val context: Context): RecyclerView.Adapter<RecyclerVi
 
     }
 
-    inner class ParticipantHolderApproval internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ParticipantHolderApproval internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         var img_participant         :ImageView= itemView.findViewById(R.id.img_participant)
         var tv_job_title            :TextView = itemView.findViewById(R.id.tv_jobtitle)

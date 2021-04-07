@@ -2,8 +2,8 @@ package com.opsigo.travelaja.module.my_booking.home_my_booking
 
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -11,7 +11,7 @@ import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.my_booking.adapter.MyBookingAdapter
 import com.opsigo.travelaja.module.my_booking.purchase_list_detail.FilterPurchaseDialog
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import opsigo.com.domainlayer.model.my_booking.MyBookingModel
 import kotlinx.android.synthetic.main.empty_cart_view.*
 import kotlinx.android.synthetic.main.my_booking_layout.*
@@ -53,10 +53,10 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_my_booking.layoutManager = layoutManager
-        rv_my_booking.itemAnimator = DefaultItemAnimator()
+        rv_my_booking.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_my_booking.adapter = adapter
 
         adapter.setOnclickListener(this)

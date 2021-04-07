@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.cart.view
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -64,10 +64,10 @@ class PageDetailPersonalTrip : LinearLayout,OnclickListenerRecyclerView{
 
     private fun initRecyclerView() {
 
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         list_item_personal.layoutManager = layoutManager
-        list_item_personal.itemAnimator = DefaultItemAnimator()
+        list_item_personal.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         list_item_personal.adapter = adapter
         adapter.setOnclickListener(this)
     }

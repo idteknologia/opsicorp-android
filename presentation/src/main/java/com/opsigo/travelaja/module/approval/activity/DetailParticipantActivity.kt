@@ -2,8 +2,8 @@ package com.opsigo.travelaja.module.approval.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -81,10 +81,10 @@ class DetailParticipantActivity : BaseActivity()
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_summary.layoutManager  = layoutManager
-        rv_summary.itemAnimator   = DefaultItemAnimator()
+        rv_summary.itemAnimator   = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_summary.adapter        = adapter
 
         adapter.setOnclickListener(object :OnclickListenerRecyclerView{

@@ -104,11 +104,11 @@
         android:layout_marginBottom="54dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:nestedScrollingEnabled="false"
             android:id="@+id/rv_waiting_approval"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
         <com.opsigo.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"

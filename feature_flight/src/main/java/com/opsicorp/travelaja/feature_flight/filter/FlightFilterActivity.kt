@@ -2,8 +2,8 @@ package com.opsicorp.travelaja.feature_flight.filter
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
@@ -67,22 +67,22 @@ class FlightFilterActivity : BaseActivity() ,
     }
 
     private fun setInitRecylerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_departure_time.layoutManager = layoutManager
-        rv_departure_time.itemAnimator = DefaultItemAnimator()
+        rv_departure_time.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_departure_time.adapter = adapterDepartureTime
 
-        val layoutManager2 = LinearLayoutManager(this)
-        layoutManager2.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager2 = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager2.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_arrival_time.layoutManager = layoutManager2
-        rv_arrival_time.itemAnimator = DefaultItemAnimator()
+        rv_arrival_time.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_arrival_time.adapter = adapterArrivalTime
 
-        val layoutManager3 = LinearLayoutManager(this)
-        layoutManager3.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager3 = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager3.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_name_train.layoutManager = layoutManager3
-        rv_name_train.itemAnimator = DefaultItemAnimator()
+        rv_name_train.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_name_train.adapter = adapterTrainName
 
         adapterTrainName.setOnclickListener(object : OnclickListenerRecyclerView {

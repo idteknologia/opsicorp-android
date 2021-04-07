@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.my_booking.purchase_list_detail
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebViewClient
@@ -110,10 +110,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_hotel_massage.layoutManager = layoutManager
-        rv_hotel_massage.itemAnimator = DefaultItemAnimator()
+        rv_hotel_massage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_hotel_massage.adapter = adapterHotelMessage
 
         adapterHotelMessage.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -122,10 +122,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
             }
         })
 
-        val layoutManagerRoom  = LinearLayoutManager(context)
-        layoutManagerRoom.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerRoom  = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManagerRoom.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_room_detail.layoutManager = layoutManagerRoom
-        rv_room_detail.itemAnimator = DefaultItemAnimator()
+        rv_room_detail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_room_detail.adapter = adapterRoomfacility
 
         adapterRoomfacility.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -134,10 +134,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
             }
         })
 
-        val layoutManegePolicy = LinearLayoutManager(context)
-        layoutManegePolicy.orientation = LinearLayoutManager.VERTICAL
+        val layoutManegePolicy = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManegePolicy.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_cancel_policy.layoutManager = layoutManegePolicy
-        rv_cancel_policy.itemAnimator  = DefaultItemAnimator()
+        rv_cancel_policy.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_cancel_policy.adapter       = adapterPolicy
 
         adapterPolicy.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -146,10 +146,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
             }
         })
 
-        val layoutManegeRemark = LinearLayoutManager(context)
-        layoutManegeRemark.orientation  = LinearLayoutManager.VERTICAL
+        val layoutManegeRemark = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManegeRemark.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_remark.layoutManager = layoutManegeRemark
-        rv_remark.itemAnimator  = DefaultItemAnimator()
+        rv_remark.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_remark.adapter       = adapterRemark
 
         adapterRemark.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -158,10 +158,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
             }
         })
 
-        val layoutManegeGuest = LinearLayoutManager(context)
-        layoutManegeGuest.orientation  = LinearLayoutManager.VERTICAL
+        val layoutManegeGuest = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManegeGuest.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_room_passanger.layoutManager = layoutManegeGuest
-        rv_room_passanger.itemAnimator  = DefaultItemAnimator()
+        rv_room_passanger.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_room_passanger.adapter       = adapterGuest
 
         adapterGuest.setOnclickListener(object :OnclickListenerRecyclerView{

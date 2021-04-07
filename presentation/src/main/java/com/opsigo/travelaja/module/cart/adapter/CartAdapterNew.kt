@@ -24,7 +24,7 @@ import com.opsigo.travelaja.utility.Globals.getToken
 import com.opsigo.travelaja.utility.Globals.setLog
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.module.cart.model.*
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
@@ -45,7 +45,7 @@ import com.opsigo.travelaja.utility.Globals.getDateNow
 import com.opsigo.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*
 
-class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CartAdapterNew(val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -55,7 +55,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType){
 
@@ -79,7 +79,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
     }
 
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
 
         when (items.get(position).typeCard) {
 
@@ -98,7 +98,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun setData(data: ArrayList<CartModel>) {
 //    fun setData(data: ArrayList<CartModelAdapter>) {
@@ -115,7 +115,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-    inner class HeaderListCart internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HeaderListCart internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: CartHeaderModel, position: Int) {
             when (data.typeHeader){
@@ -164,7 +164,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
 
 
 
-    inner class TrainHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class TrainHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: ItemCardTrainModel, position: Int) {
 
@@ -329,7 +329,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         })
     }
 
-    inner class FlightHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: ItemCardFlightModel, position: Int) {
             if (position==(items.size-1)&&items.size>1){
@@ -500,7 +500,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         })
     }
 
-    inner class HotelHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotelHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: ItemCardHotelModel, position: Int) {
 

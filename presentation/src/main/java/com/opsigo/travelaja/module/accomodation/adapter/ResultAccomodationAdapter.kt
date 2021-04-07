@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.accomodation.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +22,7 @@ import java.util.ArrayList
  * Created by khoiron on 04/09/18.
  */
 
-class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     var dataList = ArrayList<AccomodationResultModel>()
     lateinit var onclick: OnclickListenerRecyclerView
@@ -35,7 +35,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType){
 
@@ -66,7 +66,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_TYPE_TRAIN -> (holder as TrainHolder).bind(dataList[position].listTrainModel,position)
             VIEW_TYPE_FLIGT -> (holder as FlightHolder).bind(dataList[position].listFlightModel,position)
@@ -79,7 +79,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         }
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         return when (dataList[position].typeLayout){
@@ -162,7 +162,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         }
     }
 
-    inner class FlightHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
 
 
@@ -216,7 +216,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         }
     }
 
-    inner class HotelHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotelHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
             Picasso.get()
@@ -286,7 +286,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    inner class BusHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BusHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -294,7 +294,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    inner class FLightLoading internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class FLightLoading internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -302,7 +302,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    inner class HotelLoading internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HotelLoading internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -310,7 +310,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    inner class NotComplyHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class NotComplyHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -318,7 +318,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
     }
 
-    inner class SoldOutHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class SoldOutHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 

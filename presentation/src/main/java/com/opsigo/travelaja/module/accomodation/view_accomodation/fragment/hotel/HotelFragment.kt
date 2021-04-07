@@ -3,14 +3,14 @@ package com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hote
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.opsigo.travelaja.R
 import org.koin.core.KoinComponent
 import kotlin.collections.ArrayList
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsicorp.sliderdatepicker.utils.Constant
 import kotlinx.android.synthetic.main.hotel_fragment.*

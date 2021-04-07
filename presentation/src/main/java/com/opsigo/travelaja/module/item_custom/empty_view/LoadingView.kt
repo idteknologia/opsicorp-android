@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.RelativeLayout
 import com.opsigo.travelaja.R
-import android.support.transition.Fade
-import android.support.transition.TransitionManager
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.loading_layout_view.view.*
 

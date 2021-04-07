@@ -65,11 +65,11 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white">
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_shor_by"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"></android.support.v7.widget.RecyclerView>
+                    android:layout_centerHorizontal="true"></androidx.recyclerview.widget.RecyclerView>
 
             </RelativeLayout>
         </LinearLayout>

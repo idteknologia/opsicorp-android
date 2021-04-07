@@ -1,14 +1,12 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.infofragment
 
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.FacilityFlightListAdapter
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.flight_info_facility_fragment_new.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.FacilityFlightModel
@@ -66,10 +64,10 @@ class FlightInfoFacility : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_facility.layoutManager = layoutManager
-        rv_facility.itemAnimator = DefaultItemAnimator()
+        rv_facility.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_facility.adapter = adapter
     }
 }

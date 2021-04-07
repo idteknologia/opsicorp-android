@@ -16,17 +16,17 @@ import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
 import com.opsicorp.hotel_feature.detail_hotel.DetailHotelActivity
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackSearchHotel
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.transition.TransitionManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionManager
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import android.support.transition.Transition
+import androidx.transition.Transition
 import com.opsigo.travelaja.utility.Globals
 import org.koin.core.parameter.parametersOf
 import com.opsigo.travelaja.BaseActivity
-import android.support.transition.Fade
+import androidx.transition.Fade
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
 import org.koin.core.KoinComponent
@@ -195,10 +195,10 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     private fun setRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_result_hotel.layoutManager = layoutManager
-        rv_result_hotel.itemAnimator = DefaultItemAnimator()
+        rv_result_hotel.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_result_hotel.adapter = adapter
         adapter.setOnclickListenerWithAnimation(this)
 

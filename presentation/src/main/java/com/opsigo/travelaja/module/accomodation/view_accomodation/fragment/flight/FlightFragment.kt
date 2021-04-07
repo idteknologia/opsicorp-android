@@ -19,7 +19,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.base.InitApplications
 import android.graphics.drawable.BitmapDrawable
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.*
 import android.view.LayoutInflater

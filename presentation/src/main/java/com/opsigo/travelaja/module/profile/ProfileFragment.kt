@@ -15,7 +15,7 @@ import com.opsigo.travelaja.module.signin.detail_profile.activity.DataProfileAct
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
 import opsigo.com.datalayer.mapper.CountryMapper
 import opsigo.com.datalayer.mapper.Serializer

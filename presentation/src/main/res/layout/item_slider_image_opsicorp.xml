@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="210dp">
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             app:cardPreventCornerOverlap="true"
             app:cardCornerRadius="5dp"
@@ -28,7 +28,7 @@
                 android:layout_height="match_parent">
             </ImageView>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </LinearLayout>

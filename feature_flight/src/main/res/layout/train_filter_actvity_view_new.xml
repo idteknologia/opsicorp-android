@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -48,11 +48,11 @@
                 android:textColor="#24253d"
                 android:text="DEPARTURE TIME"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_departure_time">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
 
             <TextView
@@ -66,10 +66,10 @@
                 android:textColor="#24253d"
                 android:text="ARRIVAL TIME"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_arrival_time"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/rv_arrival_time"></androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_marginTop="25dp"
@@ -176,10 +176,10 @@
                     android:text="SELECT ALL" />
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_name_train"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/rv_name_train"></androidx.recyclerview.widget.RecyclerView>
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:id="@+id/btn_filter"
                 android:layout_width="match_parent"
@@ -189,6 +189,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="49dp"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

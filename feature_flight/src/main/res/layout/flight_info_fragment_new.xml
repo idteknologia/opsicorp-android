@@ -6,12 +6,12 @@
 
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="15dp"
         android:id="@+id/rv_departure_arrival"
         android:layout_below="@+id/line_name_airline"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
     <!--<LinearLayout
         android:emplaoyId="@+emplaoyId/line_depart"

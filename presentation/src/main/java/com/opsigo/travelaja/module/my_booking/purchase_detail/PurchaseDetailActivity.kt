@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.my_booking.purchase_detail
 
 import android.os.Build
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
@@ -56,9 +56,9 @@ class PurchaseDetailActivity :BaseActivity(),
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         rv_product_detail.layoutManager = layoutManager
-        rv_product_detail.itemAnimator = DefaultItemAnimator()
+        rv_product_detail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_product_detail.adapter = adapter
 
         adapter.setOnclickListener(this)

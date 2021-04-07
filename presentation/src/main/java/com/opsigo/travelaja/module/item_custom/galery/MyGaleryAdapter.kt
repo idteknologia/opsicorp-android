@@ -1,6 +1,6 @@
 package com.opsigo.travelaja.module.item_custom.galery
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.content.Context
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.my_galery_adapter_view.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.GaleryModel
 
-class MyGaleryAdapter (context: Context, var items: ArrayList<GaleryModel>): RecyclerView.Adapter<MyGaleryAdapter.ViewHolder>() {
+class MyGaleryAdapter (context: Context, var items: ArrayList<GaleryModel>): androidx.recyclerview.widget.RecyclerView.Adapter<MyGaleryAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var context = context
@@ -49,7 +49,7 @@ class MyGaleryAdapter (context: Context, var items: ArrayList<GaleryModel>): Rec
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.opsicorp.hotel_feature.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_filter_facility.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 
-class FilterFacilityAdapter (context: Context, private var items: ArrayList<FacilityHotelModel>): RecyclerView.Adapter<FilterFacilityAdapter.ViewHolder>() {
+class FilterFacilityAdapter (context: Context, private var items: ArrayList<FacilityHotelModel>): androidx.recyclerview.widget.RecyclerView.Adapter<FilterFacilityAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -45,7 +45,7 @@ class FilterFacilityAdapter (context: Context, private var items: ArrayList<Faci
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

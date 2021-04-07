@@ -7,12 +7,12 @@ import android.content.Context
 import android.widget.TextView
 import android.view.LayoutInflater
 import com.opsicorp.sliderdatepicker.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.sliderdatepicker.utils.Constant
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v4.content.res.ResourcesCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.core.content.res.ResourcesCompat
 import com.opsicorp.sliderdatepicker.model.CalendarModel
 import com.opsicorp.contact.module.StickyHeaderInterface
 import com.opsicorp.sliderdatepicker.utils.Constant.VIEW_TYPE_BODY
@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.header_calendar_vertical_view.view.*
  */
 
 class CalendarVerticalAdapter(val context: Context) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>(),StickyHeaderInterface {
+    androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>(),StickyHeaderInterface {
 
     var dataList = ArrayList<CalendarModel>()
     lateinit var onclick :OnclickListenerRecyclerViewParent
@@ -35,7 +35,7 @@ class CalendarVerticalAdapter(val context: Context) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return when (viewType){
 
             VIEW_TYPE_HEADER -> HeaderHolder(LayoutInflater.from(parent.getContext())
@@ -47,7 +47,7 @@ class CalendarVerticalAdapter(val context: Context) :
 
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
 
         when (holder.itemViewType) {
             VIEW_TYPE_HEADER -> (holder as HeaderHolder).bind(dataList[position],position)
@@ -55,7 +55,7 @@ class CalendarVerticalAdapter(val context: Context) :
         }
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         val typeLayout = dataList[position].typeLayout
@@ -120,11 +120,11 @@ class CalendarVerticalAdapter(val context: Context) :
     }
 
 
-    inner class BodyHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class BodyHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: CalendarModel, positionParent:Int) {
             val dateAdapter by lazy { DateAdapter(context,data.data) }
-            val mLayoutManager = GridLayoutManager(context, 7)
+            val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 7)
             itemView.rv_date.setLayoutManager(mLayoutManager)
             itemView.rv_date.setHasFixedSize(true)
             itemView.rv_date.setAdapter(dateAdapter)
@@ -137,9 +137,9 @@ class CalendarVerticalAdapter(val context: Context) :
             })
 
             val adapter by lazy { HolidayAdapter(context,data.dataHoliday) }
-            val layoutManager = LinearLayoutManager(context)
-            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-            itemView.rv_holiday.setItemAnimator(DefaultItemAnimator())
+            val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+            layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+            itemView.rv_holiday.setItemAnimator(androidx.recyclerview.widget.DefaultItemAnimator())
             itemView.rv_holiday.setNestedScrollingEnabled(false)
             itemView.rv_holiday.layoutManager = layoutManager
             itemView.rv_holiday.setHasFixedSize(true)

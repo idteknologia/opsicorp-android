@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.infofragment
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_adapter_time_arrival_departure_new.view.*
 
-class InfoDepartureArrivalAdapter (val context: Context, private var items: ArrayList<ModelListDepartureAndArivalAdapter>): RecyclerView.Adapter<InfoDepartureArrivalAdapter.ViewHolder>() {
+class InfoDepartureArrivalAdapter (val context: Context, private var items: ArrayList<ModelListDepartureAndArivalAdapter>): androidx.recyclerview.widget.RecyclerView.Adapter<InfoDepartureArrivalAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -60,7 +60,7 @@ class InfoDepartureArrivalAdapter (val context: Context, private var items: Arra
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

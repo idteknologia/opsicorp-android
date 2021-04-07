@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.app.DialogFragment
 import android.content.DialogInterface
 import android.os.Build
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -22,7 +22,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     var style = 0
     lateinit var toolbar : ToolbarOpsicorp
     lateinit var buttonSearch : ButtonDefaultOpsicorp
-    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     var data = ArrayList<AccomodationPreferanceModel>()
     val adapter by lazy { AccomodationPreferanceAdapter(context!!,data) }
 
@@ -48,10 +48,10 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

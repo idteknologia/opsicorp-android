@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import android.content.Context
 import com.khoiron.module_tour.R
 import android.view.LayoutInflater
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.khoiron.module_tour.model.TourEventParentModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.item_tour_parent_adapter.view.*
 
-class TourEventParentAdapter (context: Context, private var items: ArrayList<TourEventParentModel>): RecyclerView.Adapter<TourEventParentAdapter.ViewHolder>() {
+class TourEventParentAdapter (context: Context, private var items: ArrayList<TourEventParentModel>): androidx.recyclerview.widget.RecyclerView.Adapter<TourEventParentAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     val context = context
@@ -44,10 +44,10 @@ class TourEventParentAdapter (context: Context, private var items: ArrayList<Tou
         holder.itemView.tv_name.text = data.name
 
         val adapterTourEventAdapter = TourEventChildAdapter(context,data.dataList)
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_tour_child.layoutManager = layoutManager
-        holder.itemView.rv_tour_child.itemAnimator = DefaultItemAnimator()
+        holder.itemView.rv_tour_child.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         holder.itemView.rv_tour_child.adapter = adapterTourEventAdapter
 
         adapterTourEventAdapter.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -68,7 +68,7 @@ class TourEventParentAdapter (context: Context, private var items: ArrayList<Tou
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

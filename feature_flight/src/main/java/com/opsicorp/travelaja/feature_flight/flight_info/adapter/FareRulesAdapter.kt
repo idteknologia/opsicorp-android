@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.opsicorp.travelaja.feature_flight.R
 import kotlinx.android.synthetic.main.fare_rules_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.FareRulesModel
 
-class FareRulesAdapter(context: Context): RecyclerView.Adapter<FareRulesAdapter.ViewHolder>() {
+class FareRulesAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<FareRulesAdapter.ViewHolder>() {
 
     var items = ArrayList<FareRulesModel>()
     val context = context
@@ -36,7 +36,7 @@ class FareRulesAdapter(context: Context): RecyclerView.Adapter<FareRulesAdapter.
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.database
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import android.content.Context
 
 class AccessDb {

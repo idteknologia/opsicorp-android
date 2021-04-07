@@ -1,8 +1,8 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view_flight
 import kotlinx.android.synthetic.main.seatmap_spacing_left_adapter_view_flight.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SeatFlightModel
 
-class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<SeatFlightModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<SeatFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -23,7 +23,7 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
 
@@ -48,7 +48,7 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_SEAT -> (holder as SeatAdapter).bind(items[position],position)
             VIEW_NUMBER -> (holder as NumberAdapter).bind(items[position],position)
@@ -143,7 +143,7 @@ class AdapterSeatMapFlight (val context: Context, private var items: ArrayList<S
         val VIEW_SPACING_CENTER =4
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         return when (items.get(position).type){

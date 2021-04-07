@@ -4,9 +4,9 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,7 @@ class DialogSelectCabin(var context: Context) {
     var alertDialog: AlertDialog? = null
     val data = ArrayList<String>()
     var currentSort = 0
-    lateinit var recyclerView : RecyclerView
+    lateinit var recyclerView : androidx.recyclerview.widget.RecyclerView
     lateinit var apply : TextView
     lateinit var line_apply : RelativeLayout
     lateinit var close : TextView
@@ -75,10 +75,10 @@ class DialogSelectCabin(var context: Context) {
     }
 
     private fun initRecyclerView(data: ArrayList<String>) {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapter
 
         adapter.checkIn = currentSort

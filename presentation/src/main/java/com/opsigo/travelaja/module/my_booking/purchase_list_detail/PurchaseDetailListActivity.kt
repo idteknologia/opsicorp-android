@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.my_booking.purchase_list_detail
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -79,11 +79,11 @@ class PurchaseDetailListActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonL
 
 
     private fun initRecyclerView() {
-        val layoutManager: LinearLayoutManager
-        layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager: androidx.recyclerview.widget.LinearLayoutManager
+        layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_detail_flight.layoutManager = layoutManager
-        rv_detail_flight.itemAnimator = DefaultItemAnimator()
+        rv_detail_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_detail_flight.adapter = adapterFlighDetail
 
         adapterFlighDetail.setOnclickListener(object :OnclickListenerRecyclerView{

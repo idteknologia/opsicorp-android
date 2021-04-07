@@ -2,11 +2,11 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import android.app.Activity
 import android.content.Intent
-import android.support.transition.Fade
-import android.support.transition.Transition
-import android.support.transition.TransitionManager
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.transition.Fade
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
@@ -91,10 +91,10 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun setRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_result_flightnew.layoutManager = layoutManager
-        rv_result_flightnew.itemAnimator = DefaultItemAnimator()
+        rv_result_flightnew.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_result_flightnew.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

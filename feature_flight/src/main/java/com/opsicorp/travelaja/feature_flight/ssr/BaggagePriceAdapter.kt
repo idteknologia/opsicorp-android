@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.baggage_price_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
 
-class BaggagePriceAdapter (context: Context): RecyclerView.Adapter<BaggagePriceAdapter.ViewHolder>() {
+class BaggagePriceAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<BaggagePriceAdapter.ViewHolder>() {
 
     var items = ArrayList<SelectedBaggageModel>()
     val context = context
@@ -41,6 +41,6 @@ class BaggagePriceAdapter (context: Context): RecyclerView.Adapter<BaggagePriceA
         items = data
         notifyDataSetChanged()
     }
-    class ViewHolder (row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder (row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
     }
 }

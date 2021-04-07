@@ -47,13 +47,13 @@
         android:orientation="vertical">
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:nestedScrollingEnabled="false"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_pree_flight_info">
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
@@ -91,14 +91,14 @@
     </LinearLayout>
 
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:nestedScrollingEnabled="false"
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:id="@+id/rv_passanger">
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
         android:paddingRight="30dp"

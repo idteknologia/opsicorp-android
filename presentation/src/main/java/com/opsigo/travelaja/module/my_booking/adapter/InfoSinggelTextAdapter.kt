@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.my_booking.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_info_singgel_adapter.view.*
 
-class InfoSinggelTextAdapter (var context: Context, private var items: ArrayList<String>): RecyclerView.Adapter<InfoSinggelTextAdapter.ViewHolder>() {
+class InfoSinggelTextAdapter (var context: Context, private var items: ArrayList<String>): androidx.recyclerview.widget.RecyclerView.Adapter<InfoSinggelTextAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -44,5 +44,5 @@ class InfoSinggelTextAdapter (var context: Context, private var items: ArrayList
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

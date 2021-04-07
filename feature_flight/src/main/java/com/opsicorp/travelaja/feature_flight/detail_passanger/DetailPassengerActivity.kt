@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.detail_passanger
 
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
@@ -37,10 +37,10 @@ class DetailPassengerActivity : BaseActivity()
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_passanger.layoutManager = layoutManager
-        rv_passanger.itemAnimator = DefaultItemAnimator()
+        rv_passanger.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_passanger.adapter = adapterExpand
 
         adapterExpand.setOnclickListener(object : OnclickListenerRecyclerView {

@@ -10,10 +10,10 @@ import android.graphics.*
 import android.media.RingtoneManager
 import android.os.Build
 import android.os.SystemClock
-import android.support.annotation.RequiresApi
-import android.support.v4.app.NotificationCompat
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v4.app.RemoteInput
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.app.RemoteInput
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE

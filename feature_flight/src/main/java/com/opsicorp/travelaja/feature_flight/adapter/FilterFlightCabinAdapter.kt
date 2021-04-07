@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.filter_cabin_adapter_flight.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 
-class FilterFlightCabinAdapter (val context: Context, private var items: ArrayList<FilterFlightModel>): RecyclerView.Adapter<FilterFlightCabinAdapter.ViewHolder>() {
+class FilterFlightCabinAdapter (val context: Context, private var items: ArrayList<FilterFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<FilterFlightCabinAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var check = -1
@@ -54,5 +54,5 @@ class FilterFlightCabinAdapter (val context: Context, private var items: ArrayLi
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

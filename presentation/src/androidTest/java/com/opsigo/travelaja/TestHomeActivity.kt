@@ -2,16 +2,16 @@ package com.opsigo.travelaja
 
 
 import android.content.Context
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.runner.RunWith
-import android.support.test.rule.ActivityTestRule
-import android.support.test.rule.GrantPermissionRule
+import androidx.test.rule.ActivityTestRule
+import androidx.test.rule.GrantPermissionRule
 import com.opsigo.travelaja.module.home.activity.HomeActivity
 import org.junit.Before
 
 import org.junit.Rule
 import org.junit.Test
-import android.support.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import com.opsigo.travelaja.utility.GetNameCountry
 import org.hamcrest.CoreMatchers
 import org.junit.Assert

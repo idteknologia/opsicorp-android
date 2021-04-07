@@ -1,6 +1,6 @@
 package opsigo.com.datalayer.database
 
-import android.arch.persistence.room.*
+import androidx.room.*
 
 @Dao
 interface OrderDatabaseDao {

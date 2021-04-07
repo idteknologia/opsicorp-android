@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.home.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_tour_new.view.*
 
-class TourEventAdapter ( context: Context,private var items: ArrayList<TourEventModel>): RecyclerView.Adapter<TourEventAdapter.ViewHolder>() {
+class TourEventAdapter ( context: Context,private var items: ArrayList<TourEventModel>): androidx.recyclerview.widget.RecyclerView.Adapter<TourEventAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -58,7 +58,7 @@ class TourEventAdapter ( context: Context,private var items: ArrayList<TourEvent
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

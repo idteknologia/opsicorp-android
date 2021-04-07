@@ -1,6 +1,5 @@
 package com.opsigo.travelaja.module.home.fragment
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,7 +12,7 @@ import com.opsigo.travelaja.module.item_custom.slider.SliderImageModel
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import opsigo.com.domainlayer.model.signin.ProfileModel

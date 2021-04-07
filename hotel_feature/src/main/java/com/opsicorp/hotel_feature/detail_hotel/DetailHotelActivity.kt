@@ -14,8 +14,8 @@ import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
@@ -70,16 +70,16 @@ class DetailHotelActivity :BaseActivity(),
     }
 
     private fun initRecyclerView() {
-        val layoutManagerReview = LinearLayoutManager(this)
-        layoutManagerReview.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManagerReview = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManagerReview.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         rv_review.layoutManager = layoutManagerReview
-        rv_review.itemAnimator = DefaultItemAnimator()
+        rv_review.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_review.adapter = reviewAdapter
 
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         rv_facility.layoutManager = layoutManager
-        rv_facility.itemAnimator = DefaultItemAnimator()
+        rv_facility.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_facility.adapter = facilityAdapter
 
         reviewAdapter.setOnclickListener(object :OnclickListenerRecyclerView{

@@ -10,8 +10,8 @@ import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.nearby_hotel_view.*
@@ -157,10 +157,10 @@ class NearbyActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_nearby.layoutManager = layoutManager
-        rv_nearby.itemAnimator = DefaultItemAnimator()
+        rv_nearby.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
     }
 
     fun setAdapterByCountry(){

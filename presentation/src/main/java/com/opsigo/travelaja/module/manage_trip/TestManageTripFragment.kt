@@ -10,7 +10,7 @@ import com.opsigo.travelaja.R
 
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.DateConverter
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.manage_trip_fragment_test.*
 
 class TestManageTripFragment : BaseFragment()

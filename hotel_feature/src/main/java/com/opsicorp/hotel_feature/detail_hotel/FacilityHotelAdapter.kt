@@ -2,8 +2,8 @@ package com.opsicorp.hotel_feature.detail_hotel
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.squareup.picasso.Picasso
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import kotlinx.android.synthetic.main.item_facility_hotel.view.*
 
-class FacilityHotelAdapter (context: Context, var items: ArrayList<FacilityHotelModel>): RecyclerView.Adapter<FacilityHotelAdapter.ViewHolder>() {
+class FacilityHotelAdapter (context: Context, var items: ArrayList<FacilityHotelModel>): androidx.recyclerview.widget.RecyclerView.Adapter<FacilityHotelAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var context = context
@@ -71,5 +71,5 @@ class FacilityHotelAdapter (context: Context, var items: ArrayList<FacilityHotel
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

@@ -3,9 +3,9 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -56,10 +56,10 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     private fun initRecyclerViewPrice() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvPriceSsr.layoutManager = layoutManager
-        rvPriceSsr.itemAnimator = DefaultItemAnimator()
+        rvPriceSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvPriceSsr.adapter = adapter2
 
     }
@@ -121,10 +121,10 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvSsr.layoutManager = layoutManager
-        rvSsr.itemAnimator = DefaultItemAnimator()
+        rvSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvSsr.adapter = adapter
 
         adapter.setOnclickListener(this)

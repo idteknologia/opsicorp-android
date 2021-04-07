@@ -1,10 +1,10 @@
 package com.opsigo.travelaja.module.item_custom.calendar
 
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.graphics.drawable.ColorDrawable
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.Globals
 import kotlin.collections.ArrayList
 import android.widget.LinearLayout
@@ -23,7 +23,7 @@ class CalendarDialog(var context: Context) {
     lateinit var views : View
     lateinit var alertDialog: AlertDialog
     val data = ArrayList<Date>()
-    lateinit var recyclerView : RecyclerView
+    lateinit var recyclerView : androidx.recyclerview.widget.RecyclerView
     val adapterShortBy by lazy { CalendarDialogAdapter(context,data) }
     lateinit var callbackDialog : CallbackDialog
     lateinit var lineOutSideCalendar :LinearLayout
@@ -51,10 +51,10 @@ class CalendarDialog(var context: Context) {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapterShortBy
 
         adapterShortBy.setOnclickListener(object : OnclickListenerRecyclerView {

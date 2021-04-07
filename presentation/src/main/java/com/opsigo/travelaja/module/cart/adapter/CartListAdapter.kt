@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.cart.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_cart_bisnis_trip.view.*
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
 
 //class CartListAdapter (var context:Context,private var items: ArrayList<CartTripModel>): RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
-class CartListAdapter (var context:Context,private var items: ArrayList<CartModelAdapter>): RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
+class CartListAdapter (var context:Context,private var items: ArrayList<CartModelAdapter>): androidx.recyclerview.widget.RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -77,7 +77,7 @@ class CartListAdapter (var context:Context,private var items: ArrayList<CartMode
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

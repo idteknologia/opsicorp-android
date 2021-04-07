@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.my_booking.purchase_detail
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_product_detail_purchase.view.*
 
-class PurchaseDetailProductAdapter (var context: Context, private var items: ArrayList<PurchaseDetailProductModel>): RecyclerView.Adapter<PurchaseDetailProductAdapter.ViewHolder>() {
+class PurchaseDetailProductAdapter (var context: Context, private var items: ArrayList<PurchaseDetailProductModel>): androidx.recyclerview.widget.RecyclerView.Adapter<PurchaseDetailProductAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -67,7 +67,7 @@ class PurchaseDetailProductAdapter (var context: Context, private var items: Arr
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

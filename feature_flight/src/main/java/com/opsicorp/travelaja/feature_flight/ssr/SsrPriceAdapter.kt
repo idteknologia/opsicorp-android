@@ -1,9 +1,9 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.opsicorp.travelaja.feature_flight.R
 import kotlinx.android.synthetic.main.ssr_price_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
-class SsrPriceAdapter(context: Context): RecyclerView.Adapter<SsrPriceAdapter.ViewHolder>() {
+class SsrPriceAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SsrPriceAdapter.ViewHolder>() {
 
     var items = ArrayList<ResultListFlightModel>()
     val context = context
@@ -36,11 +36,11 @@ class SsrPriceAdapter(context: Context): RecyclerView.Adapter<SsrPriceAdapter.Vi
 
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel, position: Int) {
         val adapter by lazy {SsrPriceListAdapter(context)}
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         holder.itemView.rvPriceListSsr.layoutManager = layoutManager
-        holder.itemView.rvPriceListSsr.itemAnimator = DefaultItemAnimator()
+        holder.itemView.rvPriceListSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         holder.itemView.rvPriceListSsr.adapter = adapter
 
         adapter.setData(data.dataSSR.ssrSelected)
@@ -52,6 +52,6 @@ class SsrPriceAdapter(context: Context): RecyclerView.Adapter<SsrPriceAdapter.Vi
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
     }
 }

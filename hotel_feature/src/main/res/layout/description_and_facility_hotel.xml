@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:tabIndicatorColor="@color/colorPrimary"
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="39dp">
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
 
     <RelativeLayout
@@ -36,13 +36,13 @@
         </TextView>
 
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_marginLeft="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/rv_facility"
             android:visibility="gone"
-            ></android.support.v7.widget.RecyclerView>
+            ></androidx.recyclerview.widget.RecyclerView>
     </RelativeLayout>
 
 

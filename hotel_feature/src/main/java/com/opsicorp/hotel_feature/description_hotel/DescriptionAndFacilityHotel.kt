@@ -6,9 +6,9 @@ import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.utility.Globals
-import android.support.design.widget.TabLayout
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import com.google.android.material.tabs.TabLayout
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import kotlinx.android.synthetic.main.description_and_facility_hotel.view.*
 import kotlinx.android.synthetic.main.prize_layout_hotel.view.*
@@ -87,9 +87,9 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
     }
 
     private fun initRecyclerView() {
-        val mLayoutManager = GridLayoutManager(context,2)
+        val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(context, 2)
         rv_facility.layoutManager = mLayoutManager
-        rv_facility.itemAnimator = DefaultItemAnimator()
+        rv_facility.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_facility.hasFixedSize()
         rv_facility.adapter = adapter
     }

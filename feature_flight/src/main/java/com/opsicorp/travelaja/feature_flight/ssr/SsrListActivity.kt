@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import com.opsigo.travelaja.BaseActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import android.util.Log
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -65,10 +65,10 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_list_type_ssr.layoutManager = layoutManager
-        rv_list_type_ssr.itemAnimator = DefaultItemAnimator()
+        rv_list_type_ssr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_list_type_ssr.adapter = adapter
 
         adapter.setOnclickListener(this)

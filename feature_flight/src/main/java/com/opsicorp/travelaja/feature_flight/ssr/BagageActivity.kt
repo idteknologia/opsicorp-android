@@ -1,9 +1,9 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
@@ -43,10 +43,10 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     private fun initPriceRv() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvPriceBagagge.layoutManager = layoutManager
-        rvPriceBagagge.itemAnimator = DefaultItemAnimator()
+        rvPriceBagagge.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvPriceBagagge.adapter = adapter2
     }
 
@@ -99,10 +99,10 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_baggage.layoutManager = layoutManager
-        rv_baggage.itemAnimator = DefaultItemAnimator()
+        rv_baggage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_baggage.adapter = adapter
 
         adapter.setOnclickListener(this)

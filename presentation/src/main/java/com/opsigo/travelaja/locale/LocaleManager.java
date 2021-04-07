@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.v4.os.ConfigurationCompat;
+import androidx.core.os.ConfigurationCompat;
 
 //import androidx.core.os.ConfigurationCompat;
 

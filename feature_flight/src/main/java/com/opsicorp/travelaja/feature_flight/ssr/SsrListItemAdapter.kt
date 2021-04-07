@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.list_ssr_item_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 
-class SsrListItemAdapter (context: Context): RecyclerView.Adapter<SsrListItemAdapter.ViewHolder>() {
+class SsrListItemAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SsrListItemAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<DataSsrModel>()
@@ -61,7 +61,7 @@ class SsrListItemAdapter (context: Context): RecyclerView.Adapter<SsrListItemAda
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

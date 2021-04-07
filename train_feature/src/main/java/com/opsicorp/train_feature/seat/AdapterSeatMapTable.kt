@@ -1,7 +1,7 @@
 package com.opsicorp.train_feature.seat
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view.view.*
 import kotlinx.android.synthetic.main.seatmap_spacing_left_adapter_view.view.*
 import opsigo.com.domainlayer.model.SeatTableModel
 
-class AdapterSeatMapTable (val context: Context, private var items: ArrayList<SeatTableModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AdapterSeatMapTable (val context: Context, private var items: ArrayList<SeatTableModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -22,7 +22,7 @@ class AdapterSeatMapTable (val context: Context, private var items: ArrayList<Se
         return items.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
 
@@ -47,7 +47,7 @@ class AdapterSeatMapTable (val context: Context, private var items: ArrayList<Se
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_SEAT -> (holder as SeatAdapter).bind(items[position],position)
             VIEW_NUMBER -> (holder as NumberAdapter).bind(items[position],position)
@@ -141,7 +141,7 @@ class AdapterSeatMapTable (val context: Context, private var items: ArrayList<Se
         val VIEW_SPACING_CENTER =4
     }
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         return when (items.get(position).type){

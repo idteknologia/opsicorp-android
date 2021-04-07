@@ -10,8 +10,8 @@ import android.widget.LinearLayout
 import kotlin.collections.ArrayList
 import com.opsicorp.sliderdatepicker.R
 import com.opsicorp.sliderdatepicker.utils.Constant
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import com.opsicorp.sliderdatepicker.utils.DataCalendar
 import com.opsicorp.sliderdatepicker.model.CalendarModel
@@ -60,10 +60,10 @@ class CalendarVertical : LinearLayout,
 
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_calendar.layoutManager = layoutManager
-        rv_calendar.setItemAnimator(DefaultItemAnimator())
+        rv_calendar.setItemAnimator(androidx.recyclerview.widget.DefaultItemAnimator())
         rv_calendar.setHasFixedSize(true)
         rv_calendar.addItemDecoration(StickHeaderItemDecoration(adapter));
         rv_calendar.setAdapter(adapter)

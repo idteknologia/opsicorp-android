@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat
 import android.view.LayoutInflater
 import kotlin.collections.ArrayList
 import com.opsicorp.sliderdatepicker.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.sliderdatepicker.utils.Constant
-import android.support.v4.content.res.ResourcesCompat
+import androidx.core.content.res.ResourcesCompat
 import com.opsicorp.sliderdatepicker.model.DayDataModel
 import kotlinx.android.synthetic.main.item_date_view.view.*
 
-class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
+class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): androidx.recyclerview.widget.RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -98,7 +98,7 @@ class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): Rec
 
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

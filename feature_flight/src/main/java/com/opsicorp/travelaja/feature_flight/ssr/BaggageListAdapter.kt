@@ -3,17 +3,17 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.Constants
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_list_item_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 
-class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAdapter.ViewHolder>() {
+class BaggageListAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<BaggageListAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<DataSsrModel>()
@@ -60,7 +60,7 @@ class BaggageListAdapter (context: Context): RecyclerView.Adapter<BaggageListAda
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

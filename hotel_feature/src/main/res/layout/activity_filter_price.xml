@@ -13,7 +13,7 @@
         android:id="@+id/toolbar">
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -139,13 +139,13 @@
                 android:textColor="#24253d"
                 android:text="Facilities"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:nestedScrollingEnabled="false"
                 android:layout_marginBottom="34dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_facility">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,13 +165,13 @@
                 android:textColor="#24253d"
                 android:text="Star Rating"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginBottom="34dp"
                 android:layout_width="match_parent"
                 android:nestedScrollingEnabled="false"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_star_rating">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -185,5 +185,5 @@
             </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

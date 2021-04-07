@@ -1,13 +1,13 @@
 package com.opsicorp.travelaja.feature_flight.booking_contact
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.*
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.travelaja.feature_flight.R
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
@@ -15,14 +15,14 @@ import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 
-class BookingContactFlightAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BookingContactFlightAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     lateinit var datalist: DataListOrderAccomodation
 
     override fun getItemCount(): Int { return items.size }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
         return when (viewType){
 
@@ -39,7 +39,7 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
         this.onclick = onclickListenerRecyclerView
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_ADULT -> (holder as BookingAdultAdapter).bind(items[position],position)
             VIEW_INFANT -> (holder as BookingInfantAdapter).bind(items[position],position)
@@ -196,7 +196,7 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
     }
 
 
-    open inner class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
 
     override fun getItemViewType(position: Int): Int {

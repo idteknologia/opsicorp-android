@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.approval.activity
 
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.approval.summary.*
@@ -96,10 +96,10 @@ class DetailApprovalActivityOld: BaseActivity(){
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_summary.layoutManager = layoutManager
-        rv_summary.itemAnimator = DefaultItemAnimator()
+        rv_summary.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_summary.adapter = adapter
 
     }

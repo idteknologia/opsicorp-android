@@ -4,9 +4,9 @@ import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_adapter.view.*
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.Constants
 import android.view.LayoutInflater
 import android.content.Context
@@ -16,7 +16,7 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 
-class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
+class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     var items = ArrayList<ResultListFlightModel>()
@@ -59,11 +59,11 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
 
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel ,positionParent: Int) {
         val adapter by lazy { BaggageListAdapter(context) }
-        val layoutManager = LinearLayoutManager(context)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_list_item_bagage.layoutManager = layoutManager
-        holder.itemView.rv_list_item_bagage.itemAnimator = DefaultItemAnimator()
+        holder.itemView.rv_list_item_bagage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         holder.itemView.rv_list_item_bagage.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView{
@@ -87,7 +87,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

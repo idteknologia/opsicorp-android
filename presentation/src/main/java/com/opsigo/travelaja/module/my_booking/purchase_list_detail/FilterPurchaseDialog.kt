@@ -4,10 +4,10 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.support.v4.widget.NestedScrollView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +24,8 @@ import kotlin.collections.ArrayList
 
 class FilterPurchaseDialog(var context: Context) {
 
-    lateinit var rv_product_type_filter : RecyclerView
-    lateinit var rv_payment_method_filter : RecyclerView
+    lateinit var rv_product_type_filter : androidx.recyclerview.widget.RecyclerView
+    lateinit var rv_payment_method_filter : androidx.recyclerview.widget.RecyclerView
     lateinit var scrollView : NestedScrollView
     lateinit var btnShowProduct : ImageView
     lateinit var btnShowPayment : ImageView
@@ -125,10 +125,10 @@ class FilterPurchaseDialog(var context: Context) {
         rv_payment_method_filter = views.findViewById(R.id.rv_payment_method_filter)
 
         adapterProductType.positionCheckBox = "left"
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_product_type_filter.layoutManager = layoutManager
-        rv_product_type_filter.itemAnimator = DefaultItemAnimator()
+        rv_product_type_filter.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_product_type_filter.adapter = adapterProductType
 
         adapterProductType.setOnclickListener(object : OnclickListenerRecyclerView {
@@ -139,10 +139,10 @@ class FilterPurchaseDialog(var context: Context) {
 
 
         adapterPaymentMethod.positionCheckBox = "right"
-        val layoutManagerPayment = LinearLayoutManager(context)
-        layoutManagerPayment.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerPayment = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManagerPayment.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_payment_method_filter.layoutManager = layoutManagerPayment
-        rv_payment_method_filter.itemAnimator = DefaultItemAnimator()
+        rv_payment_method_filter.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_payment_method_filter.adapter = adapterPaymentMethod
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -432,7 +432,7 @@
                 android:text="Click list for participant detail"
                 />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:nestedScrollingEnabled="false"
                 android:id="@+id/rv_approval"
                 android:visibility="visible"
@@ -465,7 +465,7 @@
                 android:text="Click list for participant detail"
                 />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_participant"
                 android:layout_marginTop="20dp"
                 android:nestedScrollingEnabled="false"
@@ -492,14 +492,14 @@
                     android:text="Your Trip Items Detail (2)"/>
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f6f8f8"
                 android:nestedScrollingEnabled="false"
                 android:visibility="visible"
                 android:id="@+id/rv_item_order">
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -557,7 +557,7 @@
                 android:textColor="#00776a"
                 android:text="Attachment Files"/>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:visibility="visible"
                 android:id="@+id/rv_attachment"
                 android:background="@android:color/white"
@@ -785,4 +785,4 @@
 
     </RelativeLayout>
 
-</android.support.v4.widget.NestedScrollView>
+</androidx.core.widget.NestedScrollView>

@@ -12,8 +12,8 @@ import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.confirm_train_order.*
 import com.opsigo.travelaja.module.cart.model.CartModel
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
@@ -162,10 +162,10 @@ class ConfirmOrderTrainActivity : BaseActivity(),
 
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_confirmation_order_train.layoutManager = layoutManager
-        rv_confirmation_order_train.itemAnimator = DefaultItemAnimator()
+        rv_confirmation_order_train.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_confirmation_order_train.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.item_custom.calendar
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CalendarDialogAdapter (context: Context, private var items: ArrayList<Date>): RecyclerView.Adapter<CalendarDialogAdapter.ViewHolder>() {
+class CalendarDialogAdapter (context: Context, private var items: ArrayList<Date>): androidx.recyclerview.widget.RecyclerView.Adapter<CalendarDialogAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -102,7 +102,7 @@ class CalendarDialogAdapter (context: Context, private var items: ArrayList<Date
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

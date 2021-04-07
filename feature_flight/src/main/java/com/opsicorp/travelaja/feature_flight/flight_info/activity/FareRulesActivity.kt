@@ -1,8 +1,8 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.activity
 
 import android.os.Build
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.adapter.FareRulesAdapter
 import com.opsigo.travelaja.BaseActivity
@@ -36,10 +36,10 @@ class FareRulesActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener 
     }
 
     private fun initRecycleView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvFareRules.layoutManager = layoutManager
-        rvFareRules.itemAnimator = DefaultItemAnimator()
+        rvFareRules.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvFareRules.adapter = adapter
     }
 

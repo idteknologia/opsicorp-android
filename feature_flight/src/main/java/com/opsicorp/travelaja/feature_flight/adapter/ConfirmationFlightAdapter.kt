@@ -3,7 +3,7 @@ package com.opsicorp.travelaja.feature_flight.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.item_confirmation_order_flight_new.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 
 
-class ConfirmationFlightAdapter (val context: Context, private var items: ArrayList<ConfirmationFlightModel>): RecyclerView.Adapter<ConfirmationFlightAdapter.ViewHolder>() {
+class ConfirmationFlightAdapter (val context: Context, private var items: ArrayList<ConfirmationFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<ConfirmationFlightAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -104,5 +104,5 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

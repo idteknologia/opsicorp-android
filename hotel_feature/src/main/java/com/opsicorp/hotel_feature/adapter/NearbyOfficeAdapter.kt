@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.opsicorp.hotel_feature.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.nearby_office_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyOfficeModel
 
-class NearbyOfficeAdapter (val context: Context, private var items: ArrayList<NearbyOfficeModel>): RecyclerView.Adapter<NearbyOfficeAdapter.ViewHolder>() {
+class NearbyOfficeAdapter (val context: Context, private var items: ArrayList<NearbyOfficeModel>): androidx.recyclerview.widget.RecyclerView.Adapter<NearbyOfficeAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -71,7 +71,7 @@ class NearbyOfficeAdapter (val context: Context, private var items: ArrayList<Ne
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

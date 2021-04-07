@@ -1,7 +1,7 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.ssr_price_list_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 
-class SsrPriceListAdapter (context: Context): RecyclerView.Adapter<SsrPriceListAdapter.ViewHolder>() {
+class SsrPriceListAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SsrPriceListAdapter.ViewHolder>() {
 
     var items = ArrayList<SelectedSsrModel>()
     val context = context
@@ -40,7 +40,7 @@ class SsrPriceListAdapter (context: Context): RecyclerView.Adapter<SsrPriceListA
         items = data
         notifyDataSetChanged()
     }
-    class ViewHolder (row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder (row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
     }
 
 }

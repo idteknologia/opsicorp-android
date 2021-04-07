@@ -3,7 +3,7 @@ package com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance
 
 import android.content.Context
 import android.os.Handler
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_adapter_filter_accomodation_selected.view.*
 
 
-class AccomodationPreferanceAdapter (context: Context, private var items: ArrayList<AccomodationPreferanceModel>): RecyclerView.Adapter<AccomodationPreferanceAdapter.ViewHolder>() {
+class AccomodationPreferanceAdapter (context: Context, private var items: ArrayList<AccomodationPreferanceModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AccomodationPreferanceAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -93,7 +93,7 @@ class AccomodationPreferanceAdapter (context: Context, private var items: ArrayL
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

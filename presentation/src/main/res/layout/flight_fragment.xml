@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -535,7 +535,7 @@
                 </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
     </LinearLayout>

@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.item_custom.dialog_contact_admin
 
 import android.app.Activity
 import android.content.Context
-import android.support.v7.app.AlertDialog
+import androidx.appcompat.app.AlertDialog
 import android.widget.Button
 import com.opsigo.travelaja.R
 

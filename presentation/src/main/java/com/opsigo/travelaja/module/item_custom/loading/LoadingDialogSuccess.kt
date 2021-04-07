@@ -11,7 +11,7 @@ class LoadingDialogSuccess {
 
     fun showDialogLoading(activity: Activity) {
 
-        val dialog = android.support.v7.app.AlertDialog.Builder(activity, android.R.style.Theme_Translucent_NoTitleBar)
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(activity, android.R.style.Theme_Translucent_NoTitleBar)
 
         val dialogView = activity.getLayoutInflater().inflate(R.layout.dialog_loader_success, null)
         dialog.setView(dialogView)

@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.signin.select_nationality.activity
 
 import android.app.TaskStackBuilder
 import android.content.Intent
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem

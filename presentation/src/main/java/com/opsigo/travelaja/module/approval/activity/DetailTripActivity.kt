@@ -9,9 +9,9 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -158,18 +158,18 @@ class DetailTripActivity : BaseActivity()
 
     fun initRecyclerViewApproval(){
         tv_list_approval.visibility = View.VISIBLE
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_approval.layoutManager = layoutManager
-        rv_approval.itemAnimator = DefaultItemAnimator()
+        rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApproval
     }
 
     private fun initRecyclerViewParticipant() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_participant.layoutManager = layoutManager
-        rv_participant.itemAnimator = DefaultItemAnimator()
+        rv_participant.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_participant.adapter = adapterParticpant
 
         adapterParticpant.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -200,9 +200,9 @@ class DetailTripActivity : BaseActivity()
     }
 
     fun initRecyclerViewAttachment() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         rv_attachment.layoutManager = layoutManager
-        rv_attachment.itemAnimator = DefaultItemAnimator()
+        rv_attachment.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_attachment.adapter = adapter
 
         adapter.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -585,10 +585,10 @@ class DetailTripActivity : BaseActivity()
 
     private fun initRecyclerViewItem() {
 
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_item_order.layoutManager = layoutManager
-        rv_item_order.itemAnimator = DefaultItemAnimator()
+        rv_item_order.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_item_order.adapter = adapterItemOrder
 
 

@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.opsicorp.train_feature.R
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_confirmation_order_train.view.*
 import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
 
-class ConfirmationTrainAdapter (val context: Context, private var items: ArrayList<ConfirmationTrainModel>): RecyclerView.Adapter<ConfirmationTrainAdapter.ViewHolder>() {
+class ConfirmationTrainAdapter (val context: Context, private var items: ArrayList<ConfirmationTrainModel>): androidx.recyclerview.widget.RecyclerView.Adapter<ConfirmationTrainAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -61,7 +61,7 @@ class ConfirmationTrainAdapter (val context: Context, private var items: ArrayLi
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

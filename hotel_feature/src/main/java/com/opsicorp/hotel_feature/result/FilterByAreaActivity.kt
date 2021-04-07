@@ -4,8 +4,8 @@ import android.content.Intent
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Constants
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsicorp.hotel_feature.adapter.FilterAreaAdapter
 import kotlinx.android.synthetic.main.activity_filter_by_area.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -35,10 +35,10 @@ class FilterByAreaActivity : BaseActivity() ,
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_area.layoutManager = layoutManager
-        rv_area.itemAnimator  = DefaultItemAnimator()
+        rv_area.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_area.adapter       = adapterArea
         adapterArea.setOnclickListener(this)
     }

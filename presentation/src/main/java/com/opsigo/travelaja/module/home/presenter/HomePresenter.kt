@@ -1,9 +1,9 @@
 package com.opsigo.travelaja.module.home.presenter
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.module.home.adapter.TourEventAdapter
 import com.opsigo.travelaja.module.home.adapter.UpcommingFlightAdapter
 import com.opsigo.travelaja.module.home.model.TourEventModel
@@ -83,12 +83,12 @@ class HomePresenter : KoinComponent{
 //
 //    }
 
-    fun presenterInitRecyclerAdapter(recyclerViewFamilyTime:RecyclerView,recyclerViewUpCommingFlight:RecyclerView) {
+    fun presenterInitRecyclerAdapter(recyclerViewFamilyTime: androidx.recyclerview.widget.RecyclerView, recyclerViewUpCommingFlight: androidx.recyclerview.widget.RecyclerView) {
 
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         recyclerViewFamilyTime.layoutManager = layoutManager
-        recyclerViewFamilyTime.itemAnimator = DefaultItemAnimator()
+        recyclerViewFamilyTime.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerViewFamilyTime.adapter = adapterTourEventAdapter
 
         adapterTourEventAdapter.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -101,10 +101,10 @@ class HomePresenter : KoinComponent{
             }
         })
 
-        val layoutManagerFlight = LinearLayoutManager(context)
-        layoutManagerFlight.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManagerFlight = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManagerFlight.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         recyclerViewUpCommingFlight.layoutManager = layoutManagerFlight
-        recyclerViewUpCommingFlight.itemAnimator = DefaultItemAnimator()
+        recyclerViewUpCommingFlight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerViewUpCommingFlight.adapter = adapterUpcommingFlightAdapter
 
         adapterUpcommingFlightAdapter.setOnclickListener(object :OnclickListenerRecyclerView{

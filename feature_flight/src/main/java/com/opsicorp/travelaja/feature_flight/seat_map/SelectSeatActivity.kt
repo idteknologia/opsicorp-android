@@ -3,8 +3,8 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -44,10 +44,10 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rvSelectSeat.layoutManager = layoutManager
-        rvSelectSeat.itemAnimator = DefaultItemAnimator()
+        rvSelectSeat.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rvSelectSeat.adapter = adapter
 
         adapter.setOnclickListener(this)

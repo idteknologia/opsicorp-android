@@ -1,7 +1,7 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_review_hotel.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.RiviewHotelModel
 
-class RiviewHotelAdapter (context: Context, var items: ArrayList<RiviewHotelModel>): RecyclerView.Adapter<RiviewHotelAdapter.ViewHolder>() {
+class RiviewHotelAdapter (context: Context, var items: ArrayList<RiviewHotelModel>): androidx.recyclerview.widget.RecyclerView.Adapter<RiviewHotelAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -47,5 +47,5 @@ class RiviewHotelAdapter (context: Context, var items: ArrayList<RiviewHotelMode
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

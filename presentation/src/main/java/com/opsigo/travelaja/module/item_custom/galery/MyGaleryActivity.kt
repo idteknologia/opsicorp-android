@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.item_custom.galery
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.Globals
@@ -16,7 +16,7 @@ class MyGaleryActivity :BaseActivity(),OnclickListenerRecyclerView{
         return R.layout.galery_view
     }
 
-    val snapHelper = LinearSnapHelper()
+    val snapHelper = androidx.recyclerview.widget.LinearSnapHelper()
     var positionCenter = -1
     val adapter by lazy { MyGaleryAdapter(this,MyGalery.imagesGalery) }
 
@@ -26,20 +26,20 @@ class MyGaleryActivity :BaseActivity(),OnclickListenerRecyclerView{
 
     private fun initView() {
 
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         rv_slider_image.layoutManager = layoutManager
         rv_slider_image.setHasFixedSize(true)
         rv_slider_image.setAdapter(adapter)
 
         snapHelper.attachToRecyclerView(rv_slider_image)
 
-        rv_slider_image.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        rv_slider_image.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val centerView = snapHelper.findSnapView(layoutManager)
                 positionCenter = layoutManager.getPosition(centerView!!)
-                if (newState == RecyclerView.SCROLL_STATE_IDLE || (positionCenter == 0 && newState == RecyclerView.SCROLL_STATE_DRAGGING)) {
+                if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE || (positionCenter == 0 && newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING)) {
                     setLog("BINDING positionView SCROLL_STATE_IDLE: $positionCenter")
                     setImageHotel(positionCenter)
                 }

@@ -11,9 +11,9 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.SetSeatMapModelTrain
 import opsigo.com.domainlayer.callback.CallbackSeatMap
 import com.opsigo.travelaja.module.cart.model.CartModel
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.*
@@ -47,7 +47,7 @@ class SeatActivityTrain : BaseActivity(),
     var seatSelectTed = TrainSeat()
     var classTrain = "Economy"
     val dataCabins = ArrayList<CabinModel>()
-    val snapHelper = LinearSnapHelper()
+    val snapHelper = androidx.recyclerview.widget.LinearSnapHelper()
     val dataDialogCabin = ArrayList<String>()
     var dataItem = CartModel()
 
@@ -152,21 +152,21 @@ class SeatActivityTrain : BaseActivity(),
     }
 
     private fun initRecyclerViewCabin() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
         recyclere_seatmap_parent.layoutManager = layoutManager
         recyclere_seatmap_parent.setHasFixedSize(true)
         recyclere_seatmap_parent.setAdapter(adapterCabin)
 
         snapHelper.attachToRecyclerView(recyclere_seatmap_parent)
 
-        recyclere_seatmap_parent.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+        recyclere_seatmap_parent.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 val centerView = snapHelper.findSnapView(layoutManager)
                 posisitionPage = layoutManager.getPosition(centerView!!)
                 setTitleBtnDialogCabin(dataDialogCabin[posisitionPage])
-                if (newState == RecyclerView.SCROLL_STATE_IDLE || (posisitionPage == 0 && newState == RecyclerView.SCROLL_STATE_DRAGGING)) {
+                if (newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_IDLE || (posisitionPage == 0 && newState == androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING)) {
                     setLog("BINDING positionView SCROLL_STATE_IDLE: $posisitionPage")
                 }
             }

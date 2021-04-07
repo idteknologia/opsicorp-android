@@ -7,8 +7,8 @@ import com.opsigo.travelaja.utility.Globals
 
 import com.opsigo.travelaja.utility.NumberTextWatcher
 import com.opsigo.travelaja.utility.Constants
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_filter_price.*
 import com.opsicorp.hotel_feature.adapter.FilterRatingAdapter
 import com.opsicorp.hotel_feature.adapter.FilterFacilityAdapter
@@ -133,16 +133,16 @@ class FilterPriceActivity : BaseActivity(),
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_facility.layoutManager = layoutManager
-        rv_facility.itemAnimator  = DefaultItemAnimator()
+        rv_facility.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_facility.adapter       = adapterFacility
 
-        val layoutManagerRating = LinearLayoutManager(this)
-        layoutManagerRating.orientation = LinearLayoutManager.VERTICAL
+        val layoutManagerRating = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManagerRating.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_star_rating.layoutManager = layoutManagerRating
-        rv_star_rating.itemAnimator  = DefaultItemAnimator()
+        rv_star_rating.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_star_rating.adapter       = adapterRating
     }
 

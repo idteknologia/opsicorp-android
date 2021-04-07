@@ -3,8 +3,8 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.select_seat_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
-class SelectSeatAdapter(context: Context): RecyclerView.Adapter<SelectSeatAdapter.ViewHolder>() {
+class SelectSeatAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SelectSeatAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<ResultListFlightModel>()
@@ -89,7 +89,7 @@ class SelectSeatAdapter(context: Context): RecyclerView.Adapter<SelectSeatAdapte
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View): RecyclerView.ViewHolder(row)  {
+    class ViewHolder(row: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(row)  {
 
     }
 }

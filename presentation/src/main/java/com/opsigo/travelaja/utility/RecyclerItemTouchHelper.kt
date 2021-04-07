@@ -1,18 +1,18 @@
 package com.opsigo.travelaja.utility
 
 import android.graphics.Canvas
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.opsigo.travelaja.module.approval.adapter.ApprovalAdapter
 import java.lang.Exception
 
 class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listener: RecyclerItemTouchHelperListener) : ItemTouchHelper.SimpleCallback(dragDirs, swipeDirs) {
 
-    override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+    override fun onMove(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, target: androidx.recyclerview.widget.RecyclerView.ViewHolder): Boolean {
         return true
     }
 
-    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+    override fun onSelectedChanged(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder?, actionState: Int) {
         try {
             if (viewHolder != null) {
                 val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
@@ -24,26 +24,26 @@ class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listene
         }
     }
 
-    override fun onChildDrawOver(c: Canvas, recyclerView: RecyclerView,
-                                 viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
+    override fun onChildDrawOver(c: Canvas, recyclerView: androidx.recyclerview.widget.RecyclerView,
+                                 viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, dX: Float, dY: Float,
                                  actionState: Int, isCurrentlyActive: Boolean) {
         val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
         ItemTouchHelper.Callback.getDefaultUIUtil().onDrawOver(c, recyclerView, foregroundView, dX, dY,
                 actionState, isCurrentlyActive)
     }
 
-    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+    override fun clearView(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder) {
         val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
         ItemTouchHelper.Callback.getDefaultUIUtil().clearView(foregroundView)
     }
 
-    override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
+    override fun getSwipeDirs(recyclerView: androidx.recyclerview.widget.RecyclerView, viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder): Int {
         if (viewHolder is ApprovalAdapter.ListApprovalAdapter) return 0
         return super.getSwipeDirs(recyclerView, viewHolder)
     }
 
-    override fun onChildDraw(c: Canvas, recyclerView: RecyclerView,
-                             viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
+    override fun onChildDraw(c: Canvas, recyclerView: androidx.recyclerview.widget.RecyclerView,
+                             viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, dX: Float, dY: Float,
                              actionState: Int, isCurrentlyActive: Boolean) {
         val foregroundView = (viewHolder as ApprovalAdapter.WaitingAdapter).viewForeground
 
@@ -51,7 +51,7 @@ class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listene
                 actionState, isCurrentlyActive)
     }
 
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int) {
         listener.onSwiped(viewHolder, direction, viewHolder.adapterPosition)
     }
 
@@ -60,6 +60,6 @@ class RecyclerItemTouchHelper(dragDirs: Int, swipeDirs: Int, private val listene
     }
 
     interface RecyclerItemTouchHelperListener {
-        fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int, position: Int)
+        fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int, position: Int)
     }
 }

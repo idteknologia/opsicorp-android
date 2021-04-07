@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.item_custom.sanckbar_custom
 
 import android.app.Activity
 import android.view.View
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.opsigo.travelaja.R
 import android.widget.FrameLayout
 

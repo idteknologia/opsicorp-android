@@ -1,4 +1,4 @@
-package com.unicode.kingmarket.Base
+package com.opsigo.travelaja.base
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,8 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
+import com.google.android.material.snackbar.Snackbar
+import androidx.fragment.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -207,7 +207,7 @@ abstract class BaseFragment: Fragment()  {
 
         snackbar.setActionTextColor(resources.getColor(colorButton))
         val sbView = snackbar.getView()
-        val textView = sbView.findViewById(android.support.design.R.id.snackbar_text) as TextView
+        val textView = sbView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(resources.getColor(colorMessage))
         snackbar.show()
     }

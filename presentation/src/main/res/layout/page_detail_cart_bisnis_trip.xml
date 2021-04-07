@@ -53,12 +53,12 @@
 
 <!--    </LinearLayout>-->
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_item_personal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="38dp">
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
         android:id="@+id/line_empty"

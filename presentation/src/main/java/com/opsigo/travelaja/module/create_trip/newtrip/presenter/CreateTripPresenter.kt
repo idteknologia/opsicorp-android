@@ -6,11 +6,11 @@ import com.opsigo.travelaja.module.create_trip.newtrip.view.CreateTripView
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.domainlayer.model.PurposeModel
 import opsigo.com.domainlayer.model.BudgetModel
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import org.koin.core.parameter.parametersOf
 import opsigo.com.domainlayer.callback.*
 import com.opsigo.travelaja.utility.*
@@ -97,10 +97,10 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         })
     }
 
-    fun initRecyclerViewAttachment(recyclerView: RecyclerView) {
-        val layoutManager = LinearLayoutManager(context)
+    fun initRecyclerViewAttachment(recyclerView: androidx.recyclerview.widget.RecyclerView) {
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.adapter = adapter
 
         adapter.setOnclickListener(object :OnclickListenerRecyclerView{

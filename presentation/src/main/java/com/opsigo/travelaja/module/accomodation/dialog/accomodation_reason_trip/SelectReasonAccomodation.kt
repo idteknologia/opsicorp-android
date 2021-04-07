@@ -2,10 +2,10 @@ package com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.support.v4.app.DialogFragment
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import com.opsigo.travelaja.R
@@ -20,17 +20,17 @@ class SelectReasonAccomodation : BaseBottomSheetDialogFrament {
     override fun getLayout(): Int { return R.layout.select_reason_code_view }
 
     var style = 0
-    lateinit var rv_reason_code :RecyclerView
+    lateinit var rv_reason_code : androidx.recyclerview.widget.RecyclerView
     lateinit var ic_back : ImageView
     var data = ArrayList<ReasonCodeModel>()
     val adapter by lazy { SelectReasonAdapter(context!!,data) }
 
     override fun onMain(fragment: View) {
         if (style!=0){
-            setStyle(DialogFragment.STYLE_NO_TITLE, style)
+            setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, style)
         }
 
-        rv_reason_code = fragment.findViewById(R.id.rv_reason_code) as RecyclerView
+        rv_reason_code = fragment.findViewById(R.id.rv_reason_code) as androidx.recyclerview.widget.RecyclerView
         ic_back        = fragment.findViewById(R.id.ic_back)as ImageView
 
         ic_back.setOnClickListener {
@@ -40,10 +40,10 @@ class SelectReasonAccomodation : BaseBottomSheetDialogFrament {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_reason_code.layoutManager = layoutManager
-        rv_reason_code.itemAnimator = DefaultItemAnimator()
+        rv_reason_code.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_reason_code.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

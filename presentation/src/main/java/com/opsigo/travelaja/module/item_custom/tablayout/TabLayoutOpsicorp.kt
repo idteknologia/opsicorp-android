@@ -1,8 +1,8 @@
 package com.opsigo.travelaja.module.item_custom.tablayout
 
 import android.content.Context
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.GridLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -49,9 +49,9 @@ class TabLayoutOpsicorp: LinearLayout {
     var adapter = TabOpsicorpAdapter(context, data)
 
     private fun initRecyclerView() {
-        val mLayoutManager = GridLayoutManager(context, data.size)
+        val mLayoutManager = androidx.recyclerview.widget.GridLayoutManager(context, data.size)
         rv_tab.layoutManager = mLayoutManager
-        rv_tab.itemAnimator = DefaultItemAnimator()
+        rv_tab.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_tab.hasFixedSize()
 
         adapter.setColor(colorText)

@@ -67,11 +67,11 @@
 other than that still waiting for The first Approver."
                         />
 
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_participant"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    </android.support.v7.widget.RecyclerView>
+                    </androidx.recyclerview.widget.RecyclerView>
 
                     <LinearLayout
                         android:id="@+id/line_button_approve_reject"

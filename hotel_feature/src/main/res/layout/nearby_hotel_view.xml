@@ -119,7 +119,7 @@
             />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/layToolbar"
         android:id="@+id/rv_nearby"
         android:layout_marginTop="0dp"

@@ -14,7 +14,7 @@ import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.train_fragment.*
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.utility.DateConverter
-import com.unicode.kingmarket.Base.BaseFragment
+import com.opsigo.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals

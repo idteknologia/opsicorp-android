@@ -10,8 +10,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -267,7 +267,7 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
 
         snackbar.setActionTextColor(Color.RED)
         val sbView = snackbar.getView()
-        val textView = sbView.findViewById(android.support.design.R.id.snackbar_text) as TextView
+        val textView = sbView.findViewById(R.id.snackbar_text) as TextView
         textView.setTextColor(Color.YELLOW)
         snackbar.show()
     }

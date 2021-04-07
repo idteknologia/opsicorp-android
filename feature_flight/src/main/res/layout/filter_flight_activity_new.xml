@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
     </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -227,13 +227,13 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rvCabinClass">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -254,13 +254,13 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_departure_time">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
                 android:background="@android:color/white"
@@ -277,14 +277,14 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:background="@android:color/white"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_arrival_time">
 
-            </android.support.v7.widget.RecyclerView>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
                 android:onClick="airlinesPreferance"
@@ -374,7 +374,7 @@
 
             </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>

@@ -2,7 +2,7 @@ package com.opsigo.travelaja.module.item_custom.slider
 
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +13,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_slider_image_opsicorp.view.*
 
-class SliderImageAdapter (val context: Context, private var items: ArrayList<SliderImageModel>): RecyclerView.Adapter<SliderImageAdapter.ViewHolder>() {
+class SliderImageAdapter (val context: Context, private var items: ArrayList<SliderImageModel>): androidx.recyclerview.widget.RecyclerView.Adapter<SliderImageAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -56,5 +56,5 @@ class SliderImageAdapter (val context: Context, private var items: ArrayList<Sli
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
 }

@@ -4,10 +4,10 @@ import com.opsigo.travelaja.module.signin.select_nationality.adapter.SelectNatio
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v4.app.DialogFragment
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.DialogFragment
 import com.opsigo.travelaja.utility.Globals
 import android.content.DialogInterface
 import android.annotation.SuppressLint
@@ -24,7 +24,7 @@ class SearchDialog : BaseBottomSheetDialogFrament {
     override fun getLayout(): Int { return R.layout.search_dialog_bottom }
 
     var style = 0
-    lateinit var rv_search : RecyclerView
+    lateinit var rv_search : androidx.recyclerview.widget.RecyclerView
     var data = ArrayList<SelectNationalModel>()
     val temp = ArrayList<SelectNationalModel>()
     var isActivated  = false
@@ -37,7 +37,7 @@ class SearchDialog : BaseBottomSheetDialogFrament {
 
     override fun onMain(fragment: View) {
         if (style!=0){
-            setStyle(DialogFragment.STYLE_NO_TITLE, style)
+            setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, style)
         }
 
         initView(fragment)
@@ -85,10 +85,10 @@ class SearchDialog : BaseBottomSheetDialogFrament {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         rv_search.layoutManager = layoutManager
-        rv_search.itemAnimator = DefaultItemAnimator()
+        rv_search.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_search.adapter = adapter
         adapter.setData(data)
 

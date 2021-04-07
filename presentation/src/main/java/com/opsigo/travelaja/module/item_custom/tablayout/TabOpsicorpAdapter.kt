@@ -1,7 +1,7 @@
 package com.opsigo.travelaja.module.item_custom.tablayout
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.tab_item.view.*
 
 
-class TabOpsicorpAdapter (context: Context, private var items: ArrayList<String>): RecyclerView.Adapter<TabOpsicorpAdapter.ViewHolder>() {
+class TabOpsicorpAdapter (context: Context, private var items: ArrayList<String>): androidx.recyclerview.widget.RecyclerView.Adapter<TabOpsicorpAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -118,7 +118,7 @@ class TabOpsicorpAdapter (context: Context, private var items: ArrayList<String>
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
 
     }
 }

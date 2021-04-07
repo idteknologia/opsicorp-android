@@ -5,7 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 
 import com.opsigo.travelaja.di.component.*
 import com.opsigo.travelaja.locale.LocaleManager
