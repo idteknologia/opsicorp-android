@@ -283,12 +283,12 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
                         val json = JSONObject(responseString)
-                        /*if (json.getBoolean("isExist")){
-                            callback.successLoad(json.getString("tripId"))
-                        }
-                        else {
-                            callback.successLoad("")
-                        }*/
+//                        if (json.getBoolean("isExist")){
+//                            callback.successLoad(json.getString("tripId"))
+//                        }
+//                        else {
+//                            callback.successLoad("")
+//                        }
 
                         callback.successLoad("")
 
