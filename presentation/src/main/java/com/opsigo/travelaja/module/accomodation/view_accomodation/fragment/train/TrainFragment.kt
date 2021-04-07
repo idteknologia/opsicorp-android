@@ -5,11 +5,22 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.module.item_custom.select_passager.SelectOldPassager
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
+import kotlinx.android.synthetic.main.train_fragment.lay_parent_passager
+import kotlinx.android.synthetic.main.train_fragment.tv_departur_date
+import kotlinx.android.synthetic.main.train_fragment.lay_return_date
+import kotlinx.android.synthetic.main.train_fragment.tv_passanger
+import kotlinx.android.synthetic.main.train_fragment.tv_end_date
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
+import kotlinx.android.synthetic.main.train_fragment.btn_switch
+import kotlinx.android.synthetic.main.train_fragment.top_button
+import kotlinx.android.synthetic.main.train_fragment.btn_next
+import kotlinx.android.synthetic.main.train_fragment.tv_from
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import kotlinx.android.synthetic.main.train_fragment.tv_to
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.train_fragment.*
 import com.opsicorp.sliderdatepicker.utils.Constant
@@ -27,7 +38,8 @@ import android.os.Bundle
 class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener, ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
-        ButtonDefaultOpsicorp.OnclickButtonListener{
+        ButtonDefaultOpsicorp.OnclickButtonListener,
+        SelectOldPassager.CallbackSelectPasanger {
 
     override fun getLayout(): Int { return R.layout.train_fragment }
     var typeTrip = ""
@@ -38,6 +50,12 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     var idOrigin      = ""
     var startDate     = ""
     var endDate       = ""
+
+    var totalAdult  = 0
+    var totalInfant = 0
+    var totalChild  = 0
+
+
     lateinit var data: SuccessCreateTripPlaneModel
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
@@ -50,6 +68,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         tv_end_date.setOnClickListener(this)
         tv_from.setOnClickListener(this)
         tv_to.setOnClickListener(this)
+        btn_passenger.setOnClickListener(this)
 
         checkTypeOrder()
         setDateDefault()
@@ -59,7 +78,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
 
     fun checkTypeOrder() {
 
-        if (Globals.BisnisTrip){
+        if (Constants.isBisnisTrip){
             lay_parent_passager.visibility = View.GONE
         }
         else{
@@ -81,7 +100,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         idOrigin      = queryOrigin.code
         idDestination = queryDestination.code
 
-        if (Constants.DATA_SUCCESS_CREATE_TRIP.isNotEmpty()){
+        if (Constants.isBisnisTrip){
             data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
             startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
@@ -89,7 +108,6 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         else{
             startDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
             endDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
-
         }
     }
 
@@ -129,13 +147,10 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         setLog("typeee "+typeTrip)
 //        dataOrder.airlinePreferance = tv_airline_prreferance.text.toString()
 
-        Globals.typeAccomodation = "Train"
         Constants.DATA_ORDER_TRAIN = Serializer.serialize(dataOrder,OrderAccomodationModel::class.java)
 
-        //clear data list order dummy
+        Globals.typeAccomodation    = "Train"
         Constants.DATA_LIST_TRAIN   = ""
-//        setLog(Globals.DATA_ORDER_TRAIN)
-
         gotoActivityModule(context!!,Constants.BASE_PACKAGE_TRAIN+"result.ResultSearchTrainActivity")
     }
 
@@ -205,15 +220,28 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
                 typeSelectStation = "to"
                 selectStattionTrain()
             }
+            btn_passenger -> {
+                selectTotalPassenger()
+            }
         }
     }
 
     private fun openCalendar() {
         if (Globals.ONE_TRIP){
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+            if(Constants.isBisnisTrip) {
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+            }
+            else {
+                NewCalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",this.startDate,this.endDate, Constant.SINGGLE_SELECTED)
+            }
         }
         else{
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
+            if(Constants.isBisnisTrip) {
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
+            }
+            else {
+                NewCalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",this.startDate,this.endDate, Constant.DOUBLE_SELECTED)
+            }
         }
     }
 
@@ -238,7 +266,31 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         })
     }
 
+    fun selectTotalPassenger(){
+        val fm = activity?.getSupportFragmentManager()
+        var selectPassager = SelectOldPassager(true,R.style.CustomDialog,false)
+        selectPassager.show(fm, "yesNoAlert")
+        selectPassager.callback = this
+        selectPassager.setLimitSelect(4,3,2)
+    }
 
+    override fun total(totalInfant: Int, totalChild: Int, totalAdult: Int) {
+        if (totalAdult>0&&totalInfant>0&&totalChild>0){
+            tv_passanger.setText("${totalAdult} Adults ${totalChild} Child ${totalInfant} Infant")
+        }
+        else if(totalAdult>0&&totalInfant>0&&totalChild==0){
+            tv_passanger.setText("${totalAdult} Adults ${totalInfant} Infant")
+        }
+        else if(totalAdult>0&&totalInfant==0&&totalChild>0){
+            tv_passanger.setText("${totalAdult} Adults ${totalChild} Child")
+        }
+        else if(totalAdult>0&&totalInfant==0&&totalChild==0){
+            tv_passanger.setText("${totalAdult} Adults ")
+        }
 
+        this.totalAdult = totalAdult
+        this.totalInfant = totalInfant
+        this.totalChild = totalChild
+    }
 
 }

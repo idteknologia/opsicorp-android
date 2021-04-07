@@ -29,7 +29,6 @@ import android.util.Log
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.payment.PaymentActivity
 import com.opsigo.travelaja.utility.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
@@ -573,12 +572,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 hideLoadingOpsicorp()
                 Constants.ID_BOOKING_TEMPORARY = data.idTripPlant
                 Constants.TRIP_CODE            = data.tripCode
-                val bundle = Bundle()
-                bundle.putString(Constants.TRIP_CODE,data.tripCode)
-                bundle.putString(Constants.ID_BOOKING_TEMPORARY,data.idTripPlant)
-                bundle.putString(Constants.EXPIRED_TIME,data.timeExpired)
-                /*gotoActivity(SuccessView::class.java)*/
-                gotoActivityWithBundle(PaymentActivity::class.java,bundle)
+                gotoActivity(SuccessView::class.java)
             }
 
             override fun failedLoad(message: String) {

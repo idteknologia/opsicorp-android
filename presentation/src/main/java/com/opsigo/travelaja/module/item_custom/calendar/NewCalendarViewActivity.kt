@@ -38,7 +38,7 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
         if (intent.getStringExtra("startDate")!=null){
             calendar_view.setStartDateSelected(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("startDate")))
         }
-        if (intent.getStringExtra("endDate")!=null){
+        if (!intent.getStringExtra("endDate").isNullOrEmpty()){
             calendar_view.setEndDateSelected(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("endDate")))
         }
 

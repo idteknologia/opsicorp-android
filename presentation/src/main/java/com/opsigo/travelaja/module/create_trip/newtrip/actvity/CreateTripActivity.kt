@@ -8,7 +8,6 @@ import android.app.Activity
 import org.koin.core.inject
 import android.content.Intent
 import com.opsigo.travelaja.R
-import com.yalantis.ucrop.UCrop
 import org.koin.core.KoinComponent
 import android.content.pm.PackageManager
 import com.opsicorp.sliderdatepicker.utils.Constant
@@ -28,6 +27,7 @@ import com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudg
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import com.yalantis.ucrop.UCrop
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -97,9 +97,6 @@ class CreateTripActivity : BaseActivity(),
                 }
             }
 
-            UCrop.REQUEST_CROP -> {
-                dialogCamera.onActivityResult(requestCode, resultCode, data)
-            }
         }
     }
 

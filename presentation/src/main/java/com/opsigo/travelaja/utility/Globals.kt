@@ -1,7 +1,5 @@
 package com.opsigo.travelaja.utility
 
-//import com.squareup.picasso.Picasso
-//import com.squareup.picasso.Target
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
@@ -15,10 +13,8 @@ import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.preference.PreferenceManager
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.content.FileProvider
-import androidx.core.widget.NestedScrollView
+import android.support.v4.content.FileProvider
+import android.support.v4.widget.NestedScrollView
 import android.telephony.TelephonyManager
 import android.text.ClipboardManager
 import android.util.Base64
@@ -37,7 +33,6 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.opsigo.travelaja.BuildConfig
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.base.InitApplications
-import com.opsigo.travelaja.module.home.activity.HomeActivity
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -60,7 +55,7 @@ object Globals {
 
     var ALL_READY_SELECT_DEPARTING = false
     var ONE_TRIP = true
-    var BisnisTrip = true
+    var isBisnisTrip = true
     var typeAccomodation = "Train"
 
     //key save data dummy sementara untuk order accomodation
@@ -79,18 +74,6 @@ object Globals {
         }catch (e:Exception){
             e.printStackTrace()
         }
-    }
-
-    fun showAlertComplete(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
-        val builder = AlertDialog.Builder(activity)
-        builder.setTitle(title)
-        builder.setMessage(message)
-        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
-        builder.setNegativeButton("Cancel") { dialogInterface, i ->
-            dialogInterface.dismiss()
-            onclikAllert.no()
-        }
-        builder.create().show()
     }
 
     fun stringToBarcodeImage(code: String): Bitmap? {
@@ -383,24 +366,30 @@ object Globals {
 
         val file: File
         if (requestPicture != null) {
+
             file = File(requestPicture)
             val file_size = Integer.parseInt((file.length() / 1024).toString())
-            if (file_size > 5120) {
+            setLog("path "+requestPicture)
+            setLog("size image file after compress = "+file_size)
+            if (file_size > 2000) {
+                setLog("resize")
                 val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
                 try {
                     val resizedImage = Resizer(context)
                             .setTargetLength(1000)
-                            .setQuality(72)
+                            .setQuality(100)
                             .setOutputFormat("JPEG")
                             .setOutputFilename("resized_image")
                             .setOutputDirPath(dir.absolutePath)
                             .setSourceImage(file)
                             .getResizedFile()
                     val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
+                    setLog("size image file before compress = "+file_size_resized.toString())
                     val tsLong = System.currentTimeMillis() / 1000
                     val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
                     fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
                 } catch (e: Exception) {
+                    setLog(e.message.toString())
                     e.printStackTrace()
                 }
 

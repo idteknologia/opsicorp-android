@@ -154,6 +154,7 @@ class ResultSearchTrainActivity : BaseActivity(),
         }
         data.departDate  = departureDate
 
+        data.IsShowPolicy = Constants.isBisnisTrip
         data.returnDate  = ""
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent//"GoldenNusa"
 

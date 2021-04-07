@@ -66,7 +66,7 @@ class HotelFragment : BaseFragment(),
     }
 
     private fun checkTypeOrder() {
-        if (Globals.BisnisTrip){
+        if (Constants.isBisnisTrip){
             lay_passanger.visibility = View.GONE
         }
         else{

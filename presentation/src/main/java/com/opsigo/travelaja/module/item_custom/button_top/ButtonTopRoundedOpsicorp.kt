@@ -71,11 +71,11 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
     override fun onClick(v: View?) {
 
         if(v==line_button_left||v==title_btn_left){
-            changeImageBtn(0)
+            changeImageBtn(1)
             onclick.btnLeft()
         }
         else if(v==line_button_right||v==title_button_right){
-            changeImageBtn(1)
+            changeImageBtn(0)
             onclick.btnRight()
         }
     }

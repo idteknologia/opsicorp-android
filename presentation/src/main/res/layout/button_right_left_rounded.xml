@@ -15,7 +15,7 @@
 
         <LinearLayout
             android:id="@+id/line_button_left"
-            android:background="@drawable/rounded_button_up_flight_default_left"
+            android:background="@drawable/rounded_button_up_flight_selected_left"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="5dp"
@@ -24,7 +24,7 @@
             <TextView
                 style="@style/RobotoBlack"
                 android:id="@+id/title_btn_left"
-                android:textColor="#00776a"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
                 android:text="Round Trip"
                 android:gravity="center"
@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:id="@+id/line_button_right"
-            android:background="@drawable/rounded_button_up_flight_selected_right"
+            android:background="@drawable/rounded_button_up_flight_default_right"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
@@ -42,7 +42,7 @@
             android:layout_marginStart="5dp">
             <TextView
                 style="@style/RobotoRegular"
-                android:textColor="#ffffff"
+                android:textColor="#00776a"
                 android:id="@+id/title_button_right"
                 android:textSize="15sp"
                 android:text="One Way"

@@ -1,25 +1,28 @@
 package com.opsigo.travelaja.module.item_custom.dialog_camera
 
-import com.unicode.kingmarket.Base.BaseDialogFragment
-import kotlinx.android.synthetic.main.dialog_camera.*
-import android.graphics.drawable.ColorDrawable
-import com.opsigo.travelaja.utility.Globals
+import android.app.Activity
 import android.content.ContentValues
-import com.squareup.picasso.Picasso
-import android.provider.MediaStore
-import java.text.SimpleDateFormat
-import com.yalantis.ucrop.UCrop
 import android.content.Context
-import com.opsigo.travelaja.R
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.net.Uri
+import android.os.Bundle
 import android.os.Environment
 import android.os.StrictMode
-import android.app.Activity
-import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
-import android.net.Uri
+import com.opsigo.travelaja.R
+import com.opsigo.travelaja.utility.Globals
+import com.squareup.picasso.Picasso
+import com.unicode.kingmarket.Base.BaseDialogFragment
+import com.yalantis.ucrop.UCrop
+import kotlinx.android.synthetic.main.dialog_camera.*
 import java.io.File
+import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.*
 
 class DialogCamera : BaseDialogFragment() {
@@ -28,7 +31,6 @@ class DialogCamera : BaseDialogFragment() {
     protected val CAMERA_REQUEST  = 0
     protected val GALLERY_PICTURE = 1
     var pictureImagePath          = ""
-//    var pathImageOriginal         = ""
     lateinit var callbackDialog   : DialogCameraCallback
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
@@ -64,7 +66,6 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     fun changeButtonUploaded(){
-        setLog("test ")
         if (line_upload_file.background.constantState==resources.getDrawable(R.drawable.rounded_button_camera).constantState){
             line_upload_file.setBackgroundDrawable(resources.getDrawable(R.drawable.rounded_button_camera_uploaded))
             img_upload_file.visibility = View.GONE
@@ -81,26 +82,34 @@ class DialogCamera : BaseDialogFragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         when(requestCode){
-            CAMERA_REQUEST ->{
-                if (resultCode==Activity.RESULT_OK){
+            CAMERA_REQUEST -> {
+                if (resultCode == Activity.RESULT_OK) {
                     changeButtonUploaded()
                     setImage(pictureImagePath)
-//                    val imgFile = File(pictureImagePath)
-//                    getCrop(Uri.parse(imgFile.toURI().toString()))
                 }
             }
 
             GALLERY_PICTURE -> {
-                if(resultCode==Activity.RESULT_OK){
-                    val selectedImageUri = data?.getData()
-
-                    if (selectedImageUri != null) {
-                        getCrop(selectedImageUri)
-                    } else {
-                        setToast("No Image is selected.")
+                if (resultCode == Activity.RESULT_OK) {
+                    changeButtonUploaded()
+                    val selectedImage = data!!.data
+                    if (selectedImage.path.contains("/raw/")){
+                        pictureImagePath = selectedImage.path.toString().replace("/raw/","")
                     }
+                    else {
+                        pictureImagePath  = selectedImage.path
+                    }
+
+                    try {
+                        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, selectedImage)
+                        image_selected.setImageBitmap(bitmap)
+                    } catch (e: IOException) {
+                        Globals.setLog("TAG", "Some exception $e")
+                    }
+
                 }
             }
+
             /*UCrop.REQUEST_CROP -> {
                 if(resultCode==Activity.RESULT_OK){
                     val tempUri = UCrop.getOutput(data!!)
@@ -190,7 +199,7 @@ class DialogCamera : BaseDialogFragment() {
         return cursor?.getString(idx!!)!!
     }
 
-    fun setCallbak(callback:DialogCameraCallback){
+    fun setCallbak(callback: DialogCameraCallback){
         callbackDialog = callback
     }
 

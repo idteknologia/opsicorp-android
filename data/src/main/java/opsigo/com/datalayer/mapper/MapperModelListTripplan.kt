@@ -23,7 +23,7 @@ class MapperModelListTripplan {
             approvalModel.title         = dataItem.purpose
             Log.e("TAG","-----------------------")
             Log.e("TAG",dataItem.destination)
-            approvalModel.destination   = if (dataItem.destinationName==null) "" else dataItem.destinationName
+            approvalModel.destination   = if (dataItem.destination==null) "" else dataItem.destination
             approvalModel.isApproval    = dataItem.isApprover
             approvalModel.isParticipant = dataItem.isParticipant
 
