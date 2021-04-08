@@ -20,8 +20,6 @@ import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.domainlayer.callback.CallbackReserveFlight
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.BaseActivity
@@ -31,8 +29,13 @@ import android.app.Activity
 import android.view.View
 import android.os.Build
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
+import com.opsigo.travelaja.module.profile.KtpCardFormActivity
+import com.opsigo.travelaja.module.profile.PassportFormActivity
+import com.opsigo.travelaja.module.profile.SimFormContactActivity
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.BagageFlightRequest
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
@@ -125,10 +128,10 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
     private fun initRecyclerView() {
         line_select_seat_map.visibility = View.VISIBLE
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_booking_information.layoutManager = layoutManager
-        rv_booking_information.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_booking_information.itemAnimator = DefaultItemAnimator()
         rv_booking_information.adapter = adapter
 
         adapter.setOnclickListener(this)
@@ -250,15 +253,15 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         when(views){
             Constants.BTN_SIM       -> {
                 dataContacts[position].checktype = "SIM"
-//                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
+                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
             }
             Constants.BTN_PASSPORT  -> {
                 dataContacts[position].checktype = "PASSPORT"
-//                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
+                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
             }
             Constants.BTN_ID_CART   -> {
                 dataContacts[position].checktype = "KTP"
-//                gotoActivityResult(KtpCartFormActivity::class.java,Constants.BTN_ID_CART)
+                gotoActivityResult(KtpCardFormActivity::class.java,Constants.BTN_ID_CART)
             }
 
             Constants.KEY_ACTIVITY_BAGAGE -> {

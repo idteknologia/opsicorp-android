@@ -14,7 +14,7 @@
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:id="@+id/rv_select_accomodation"
-        android:layout_height="wrap_content">
+        android:layout_height="550dp">
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp

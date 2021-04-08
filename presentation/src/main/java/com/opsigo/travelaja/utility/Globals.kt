@@ -138,6 +138,18 @@ object Globals {
         builder.create().show()
     }
 
+    fun showAlertComplete(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
+        val builder = AlertDialog.Builder(activity)
+        builder.setTitle(title)
+        builder.setMessage(message)
+        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
+        builder.setNegativeButton("Cancel") { dialogInterface, i ->
+            dialogInterface.dismiss()
+            onclikAllert.no()
+        }
+        builder.create().show()
+    }
+
     fun showAlert(title: String, message: String, activity: Activity, onclikAllert: OnclikAllertDoubleSelected) {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)

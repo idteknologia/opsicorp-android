@@ -76,6 +76,11 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity
+            android:name=".multi_city.FlightMultiCityListActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

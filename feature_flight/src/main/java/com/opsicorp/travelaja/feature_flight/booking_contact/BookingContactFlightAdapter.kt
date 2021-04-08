@@ -55,8 +55,8 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
             radiobutton.add(itemView.checkboxPassport)
             radiobutton.add(itemView.checkSim)
 
-            onclick.onClick(Constants.BTN_ID_CART,position)
-            setCheckRadioButton(radiobutton,0)
+            /*onclick.onClick(Constants.BTN_ID_CART,position)
+            setCheckRadioButton(radiobutton,0)*/
 
             itemView.line_id_cart.setOnClickListener {
                 onclick.onClick(Constants.BTN_ID_CART,position)
@@ -111,19 +111,7 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
                 }
             }
 
-            /*if (!datalist.dataFlight[position].dataSSR.dataBagage.isNullOrEmpty()){
-                itemView.card_baggage.visibility = View.VISIBLE
-            }
-            else{
-                itemView.card_baggage.visibility = View.GONE
-            }
 
-            if (!datalist.dataFlight[position].dataSSR.dataSsr.isNullOrEmpty()){
-                itemView.card_ssr.visibility = View.VISIBLE
-            }
-            else{
-                itemView.card_ssr.visibility = View.GONE
-            }*/
 
             if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
                 itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)

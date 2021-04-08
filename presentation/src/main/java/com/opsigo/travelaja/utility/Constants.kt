@@ -58,6 +58,8 @@ object Constants {
     val GET_SEAT_MAP             = 709
     var tipeTrip                 = ""
     var TRIP_CODE                = ""
+    var EXPIRED_TIME             = ""
+    val FROM_PAYMENT             = "fromPayment"
     val PROGRESS_TRAIN_CALLBACK  = 9099
     val PROGRESS_FLIGHT_CALLBACK = 9100
     val PROGRESS_FLIGHT_SAVED    = 9101

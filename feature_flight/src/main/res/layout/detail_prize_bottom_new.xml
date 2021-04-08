@@ -50,7 +50,7 @@
                         <ImageView
                             android:id="@+id/ic_image"
                             android:layout_gravity="center"
-                            android:src="@drawable/ic_chevron_up_green"
+                            android:src="@drawable/ic_chevron_up_orange"
                             android:layout_width="12dp"
                             android:layout_height="12dp" />
                         <TextView
