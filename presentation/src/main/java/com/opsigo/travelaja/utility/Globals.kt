@@ -13,8 +13,6 @@ import android.net.Uri
 import android.os.Environment
 import android.os.Handler
 import android.preference.PreferenceManager
-import android.support.v4.content.FileProvider
-import android.support.v4.widget.NestedScrollView
 import android.telephony.TelephonyManager
 import android.text.ClipboardManager
 import android.util.Base64
@@ -26,6 +24,8 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.widget.*
+import androidx.core.content.FileProvider
+import androidx.core.widget.NestedScrollView
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.MultiFormatWriter
 import com.google.zxing.WriterException

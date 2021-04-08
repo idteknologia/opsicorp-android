@@ -142,7 +142,7 @@
                 <LinearLayout
                     android:id="@+id/btnSignIn"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="@dimen/buttonHeight"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/rounded_button_yellow"
                     android:gravity="center"

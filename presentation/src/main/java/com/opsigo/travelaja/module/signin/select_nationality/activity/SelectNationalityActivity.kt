@@ -1,7 +1,9 @@
 package com.opsigo.travelaja.module.signin.select_nationality.activity
 
+import android.app.Activity
 import android.app.TaskStackBuilder
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.widget.Toolbar
 import android.text.Editable
 import android.text.TextWatcher
@@ -25,13 +27,20 @@ import java.util.*
 
 class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLocaleChangeReceiver.AppLocaleChangeListener  {
 
+    companion object {
+        const val SELECT = "SELECT"
+    }
+
+
     var language = false
+    private var hasSelected = false
 
     override fun getLayout(): Int { return R.layout.select_nationality_view }
 
     val presenter by inject<SelectedNationalityPresenter> { parametersOf(this) }
 
     override fun OnMain() {
+        hasSelected = intent.getBundleExtra("data")?.getBoolean(SELECT,false) ?: false
         initToolbar()
         initFilter()
         presenter.initRecyclerView(rv_nationality)
@@ -133,8 +142,15 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         intent.putExtra("nameCountry",name)
         intent.putExtra("idCountry",code)
         intent.putExtra("language",language)
-        sendDataCallbackActivity(intent)
+        if (hasSelected){
+            setResult(Activity.RESULT_OK,intent)
+            finish()
+        }
+        else{
+            sendDataCallbackActivity(intent)
+        }
     }
+
 
     override fun onAppLocaleChanged(newLocale: Locale) {
 
@@ -155,5 +171,6 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 
     }
+
 
 }

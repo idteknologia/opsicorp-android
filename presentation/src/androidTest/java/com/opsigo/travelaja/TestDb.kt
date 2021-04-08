@@ -31,7 +31,7 @@ class TestDb {
 
     @Before
     fun setup() {
-        context = InstrumentationRegistry.getContext()
+//        context = InstrumentationRegistry.getContext()
 
         print("okeee")
         addOrder()

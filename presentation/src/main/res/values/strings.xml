@@ -17,7 +17,7 @@
     <string name="english">English</string>
 
 
-    <string name="opsicorp_url">Opsicorp URL</string>
+    <string name="opsicorp_url">Travel Corporate URL</string>
     <string name="address_info">This is the address you use to sign in.</string>
     <string name="total_tripplan">Total Trip Plan</string>
     <string name="travel_expense_detail">Travel Expense Detail</string>
@@ -693,4 +693,8 @@ Please add your trip item for Approval."
     <string name="title_module_tour">Module Tour</string>
     <string name="add_other_flight">+ Add other flight</string>
     <string name="description_reason_code">Where a seat on a lower fare option was not available even though booking request was outside deadlines.</string>
+    <string name="txt_content_complete_data_profile">This information of your phone number and other information can be change in Profile.</string>
+    <string name="txt_phone_number">Phone Number</string>
+    <string name="txt_select_nationality">Select Nationality</string>
+    <string name="txt_content_address_url">This is the corporate address you use to sign in.</string>
 </resources>

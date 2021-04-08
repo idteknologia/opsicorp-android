@@ -78,5 +78,7 @@
     <dimen name="WheelMargins">0dp</dimen>
     <dimen name="wheel_spacing">5dp</dimen>
 
+    <dimen name="buttonHeight">46dp</dimen>
+
 
 </resources>

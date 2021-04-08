@@ -654,4 +654,7 @@ Please add your trip item for Approval."
     <string name="et_search_manage_trip">Ketik Kode perjalanan atau nama acara</string>
     <string name="draft">Draf</string>
     <string name="completed">Lengkap</string>
+    <string name="txt_content_complete_data_profile">Informasi nomor telepon Anda ini dan informasi lainnya dapat diubah di Profil.</string>
+    <string name="txt_phone_number">Nomor Telepon</string>
+    <string name="txt_content_address_url">Ini adalah alamat url perusahaan yang Anda gunakan untuk masuk.</string>
 </resources>
