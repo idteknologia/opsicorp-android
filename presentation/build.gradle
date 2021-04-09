@@ -82,8 +82,8 @@ dependencies {
     implementation "androidx.work:work-runtime:$workRuntimeVersion"
 
     androidTestImplementation testDependencies.espresso
-//    androidTestImplementation testDependencies.testRunner
-//    androidTestImplementation testDependencies.testRules
+//  androidTestImplementation testDependencies.testRunner
+//  androidTestImplementation testDependencies.testRules
     testImplementation testDependencies.junit
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
