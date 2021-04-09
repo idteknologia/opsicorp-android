@@ -96,6 +96,6 @@ abstract class BaseDialogFragment: DialogFragment()  {
     }
 
     fun transparantBackground(){
-        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }

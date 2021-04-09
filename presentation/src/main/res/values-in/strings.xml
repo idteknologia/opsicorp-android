@@ -657,4 +657,7 @@ Please add your trip item for Approval."
     <string name="txt_content_complete_data_profile">Informasi nomor telepon Anda ini dan informasi lainnya dapat diubah di Profil.</string>
     <string name="txt_phone_number">Nomor Telepon</string>
     <string name="txt_content_address_url">Ini adalah alamat url perusahaan yang Anda gunakan untuk masuk.</string>
+    <string name="txt_content_travelaja_member">Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip.</string>
+    <string name="txt_content_login_travel_aja">The new corporate travel management in Indonesia, seamless technology according your corporate travel policy.</string>
+    <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
 </resources>

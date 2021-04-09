@@ -296,7 +296,7 @@ class FlightFragmentNew : BaseFragment(),
                 openCalendar()
             }
             lay_parent_passager -> {
-                val fm = activity?.getSupportFragmentManager()
+                val fm = requireActivity().getSupportFragmentManager()
                 val selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
                 selectPassager.show(fm, "yesNoAlert")
                 selectPassager.callback = this
@@ -316,7 +316,7 @@ class FlightFragmentNew : BaseFragment(),
         addNamesAirline()
         addDataAirPreferance()
         val selectAccomodationPreferance = SelectAccomodationPreferance(true,R.style.CustomDialog,dataPrefarance)
-        selectAccomodationPreferance.show(fragmentManager,"dialog")
+        selectAccomodationPreferance.show(requireFragmentManager(),"dialog")
 
         selectAccomodationPreferance.setCallbackListener(object : SelectAccomodationPreferance.CallbackSelectPreferance{
             override fun callback(string: String) {

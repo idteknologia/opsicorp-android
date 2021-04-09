@@ -40,6 +40,7 @@ class CompletedDataProfileActivity: BaseActivity() {
     var temp_country_name = ""
 
     override fun getLayout(): Int {
+        hideStatusBar()
         return R.layout.complete_data_profile_view
     }
 

@@ -22,7 +22,9 @@ import com.opsigo.travelaja.module.signin.login.presenter.LoginPresenter
 class LoginPremiumActivity : BaseActivity(),
         LoginView,View.OnClickListener {
 
-    override fun getLayout(): Int { return R.layout.login_activity_view }
+    override fun getLayout(): Int {
+        hideStatusBar()
+        return R.layout.login_activity_view }
 
     val presenter by inject<LoginPresenter> { parametersOf(this) }
 

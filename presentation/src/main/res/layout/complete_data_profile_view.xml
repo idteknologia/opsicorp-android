@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <View
         android:id="@+id/viewMask"
         android:layout_width="match_parent"
         android:layout_height="26dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_mask_3"/>
+        android:background="@drawable/ic_mask_3"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -20,241 +19,231 @@
         app:layout_constraintTop_toBottomOf="@+id/viewMask">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="48dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
 
             <TextView
-                style="@style/RobotoRegular"
                 android:id="@+id/tv_greeting"
+                style="@style/SubtitleTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                custom:text="Hi Mr. Dwi Wahyudi"
-                android:textColor="#24253d"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:textStyle="normal"
+                custom:text="Hi Mr. Dwi Wahyudi" />
 
             <TextView
-                style="@style/RobotoRegular"
-                android:layout_marginTop="10dp"
+                style="@style/ContentDescriptionTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/txt_content_complete_data_profile"
-                android:textColor="#939393"
-                android:textStyle="normal"
-                android:fontFamily="@font/lato_regular"
-                android:lineSpacingExtra="8sp"
-                android:textSize="14sp" />
+                android:textColor="#939393" />
 
-
-            <RelativeLayout
-                android:layout_marginTop="40dp"
+            <LinearLayout
+                android:id="@+id/lay_phone"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/lay_phone"
-                    android:orientation="vertical"
+                <TextView
+                    android:id="@+id/tvTitlePhoneNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato_regular"
+                    android:text="@string/txt_phone_number"
+                    android:textColor="#91929e"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <EditText
+                    android:id="@+id/et_phone"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
-
-                    <TextView
-                        android:id="@+id/tvTitlePhoneNumber"
-                        android:text="@string/txt_phone_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lato_regular"
-                        android:textStyle="normal"
-                        android:textSize="12sp"
-                        android:textColor="#91929e" />
-
-                    <EditText
-                        android:id="@+id/et_phone"
-                        android:background="@android:color/transparent"
-                        android:paddingTop="8dp"
-                        custom:text="085274267243"
-                        android:textSize="16sp"
-                        android:textStyle="normal"
-                        android:fontFamily="@font/lato_regular"
-                        android:inputType="phone"
-                        android:textColor="#24253d"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/lato_regular"
+                    android:inputType="phone"
+                    android:textColor="#24253d"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    custom:text="085274267243" />
 
                 <LinearLayout
-                    android:layout_below="@+id/lay_phone"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#3324253d"/>
+                    android:layout_marginTop="10dp"
+                    android:background="#3324253d" />
 
+            </LinearLayout>
 
-            </RelativeLayout>
             <RelativeLayout
-                android:layout_marginTop="19dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/lay"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="60dp"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:text="@string/language"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_regular"
-                        android:textStyle="normal"
+                        android:text="@string/language"
+                        android:textColor="#91929e"
                         android:textSize="12sp"
-                        android:textColor="#91929e" />
+                        android:textStyle="normal" />
 
                     <TextView
-                        android:textColor="#24253d"
                         android:id="@+id/tv_language"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
                         android:paddingTop="8dp"
                         android:paddingBottom="9dp"
                         android:text="ENGLISH (default)"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/lato_regular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:textColor="#24253d"
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_below="@+id/lay"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#3324253d"/>
+                    android:layout_below="@+id/lay"
+                    android:background="#3324253d" />
 
 
                 <ImageView
-                    android:layout_marginTop="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_chevron_down"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/ic_chevron_down" />
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_marginTop="19dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="19dp">
 
                 <LinearLayout
                     android:id="@+id/layPurpose"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:text="@string/nationality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/lato_regular"
-                        android:textStyle="normal"
+                        android:text="@string/nationality"
+                        android:textColor="#91929e"
                         android:textSize="12sp"
-                        android:textColor="#91929e" />
+                        android:textStyle="normal" />
 
                     <TextView
-                        android:textColor="#24253d"
                         android:id="@+id/tv_nationality"
-                        android:paddingTop="8dp"
-                        android:paddingBottom="9dp"
-                        android:text="@string/txt_select_nationality"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/lato_regular"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/lato_regular"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="10dp"
+                        android:text="@string/txt_select_nationality"
+                        android:textColor="#24253d"
+                        android:textSize="16sp" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/layPurpose"
+                        android:background="#3324253d" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_below="@+id/layPurpose"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#3324253d"/>
-
-
                 <ImageView
-                    android:layout_marginTop="35dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/ic_chevron_down"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_chevron_down"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
-                android:visibility="gone"
-                android:layout_marginTop="15dp">
-                <TextView
-                    android:textSize="12sp"
-                    android:textColor="@color/green_cyan_info"
-                    android:text="*"
-                    android:layout_marginRight="4dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                android:visibility="gone">
 
                 <TextView
-                    android:lineSpacingMultiplier="1"
-                    android:lineSpacingExtra="6dp"
-                    android:id="@+id/tvInfo"
-                    android:textSize="14sp"
-                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="4dp"
+                    android:text="*"
                     android:textColor="@color/green_cyan_info"
-                    android:text="@string/info_phone_number"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
+                    android:lineSpacingMultiplier="1"
+                    android:text="@string/info_phone_number"
+                    android:textColor="@color/green_cyan_info"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
-
 
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/lay_loader"
-            android:visibility="gone"
-            android:gravity="center"
-            android:background="@color/white_transparent"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white_transparent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:orientation="vertical">
 
                 <TextView
-                    android:textSize="19sp"
-                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/please_wait2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:text="@string/its_just_second"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/its_just_second" />
 
                 <com.cunoraz.gifview.library.GifView
                     android:id="@+id/gif1"
@@ -281,33 +270,30 @@
     -->
 
     <LinearLayout
-        android:onClick="nextListener"
-        android:background="@drawable/rounded_button_yellow"
-        android:layout_marginTop="84dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_button_yellow"
+        android:gravity="center"
+        android:onClick="nextListener"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="46dp">
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:onClick="nextListener"
-            style="@style/RobotoMedium"
-            android:textColor="#FF24253D"
-            android:textSize="17sp"
-            android:text="@string/submit"
+            style="@style/TextButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="nextListener"
+            android:text="@string/submit" />
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

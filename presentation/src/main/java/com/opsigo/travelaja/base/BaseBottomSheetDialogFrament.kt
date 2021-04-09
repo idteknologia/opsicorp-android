@@ -33,10 +33,10 @@ abstract class BaseBottomSheetDialogFrament: BottomSheetDialogFragment()  {
 
 
     @SuppressLint("RestrictedApi")
-    override fun setupDialog(dialog: Dialog?, style: Int) {
+    override fun setupDialog(dialog: Dialog, style: Int) {
         super.setupDialog(dialog, style)
         inflatedView = View.inflate(context, getLayout(), null)
-        dialog?.setContentView(inflatedView)
+        dialog.setContentView(inflatedView)
 
         onMain(inflatedView)
 

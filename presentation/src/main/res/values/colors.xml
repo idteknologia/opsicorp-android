@@ -140,6 +140,7 @@
     <color name="trainColorSoldOut2">#cbcbd0</color>
 
     <color name="switchOnColor">#a3cec9</color>
+    <color name="divider">#d8d8d8</color>
 
 
 </resources>

@@ -24,16 +24,14 @@
                 android:src="@drawable/ic_travel_aja"/>
 
             <TextView
-                style="@style/RobotoRegular"
+                style="@style/ContentDescriptionTextStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="15dp"
-                android:lineSpacingExtra="9sp"
-                android:text="The new corporate travel management in Indonesia, seamless technology according your corporate travel policy."
-                android:textColor="#707070"
-                android:textSize="14sp" />
+                android:text="@string/txt_content_login_travel_aja" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,14 +43,12 @@
 
                 <TextView
                     android:id="@+id/tvTest"
+                    style="@style/SubtitleTextStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="19dp"
                     android:onClick="insertAutoField"
-                    android:text="Travelaja Member"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorBlueTitle"
-                    android:textSize="22sp" />
+                    android:text="@string/txt_travelaja_member" />
 
                 <!--TextInput for Entering Password-->
                 <LinearLayout
@@ -66,10 +62,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:visibility="gone"
                         android:text=" Username or Email"
                         android:textColor="#91929e"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="gone" />
 
                     <EditText
                         android:id="@+id/et_username"
@@ -98,9 +94,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text=" Password"
-                        android:visibility="gone"
                         android:textColor="#91929e"
-                        android:textSize="14dp" />
+                        android:textSize="14dp"
+                        android:visibility="gone" />
 
 
                     <EditText
@@ -110,9 +106,9 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/hintPassword"
                         android:layout_marginBottom="10dp"
+                        android:hint="Password"
                         android:paddingBottom="18dp"
                         android:singleLine="true"
-                        android:hint="Password"
                         android:textColor="#24253d"
                         android:textSize="@dimen/font_edittext" />
 
@@ -150,13 +146,11 @@
 
                     <TextView
                         android:id="@+id/tvSignIn"
-                        style="@style/RobotoBold"
+                        style="@style/TextButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Sign In"
-                        android:textColor="#24253d"
-                        android:textSize="18sp" />
+                        android:text="@string/txt_sign_in" />
 
                 </LinearLayout>
 
@@ -172,7 +166,7 @@
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:layout_weight="1"
-                        android:background="#eeeeee"/>
+                        android:background="#eeeeee" />
 
                     <TextView
                         style="@style/RobotoRegular"
@@ -188,25 +182,25 @@
                         android:layout_width="0dp"
                         android:layout_height="1dp"
                         android:layout_weight="1"
-                        android:background="#eeeeee"/>
+                        android:background="#eeeeee" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:id="@+id/btn_login_premium_account"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="@dimen/buttonHeight"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/rounded_button_corner_yellow"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/RobotoBold"
+                        style="@style/SubtitleTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/sign_in_premium_user"
-                        android:textColor="#24253D"
+                        android:textColor="#000000"
                         android:textSize="14dp" />
 
                 </LinearLayout>
@@ -215,7 +209,7 @@
                 <LinearLayout
                     android:id="@+id/btn_login_with_email"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="@dimen/buttonHeight"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/rounded_button_corner_grey"
                     android:gravity="center"
@@ -232,15 +226,17 @@
                             android:layout_width="28dp"
                             android:layout_height="28dp"
                             android:layout_marginRight="21dp"
-                            android:src="@drawable/ic_login_email"></ImageView>
+                            android:src="@drawable/ic_login_email"/>
 
                         <TextView
                             style="@style/RobotoBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Continue with Email"
+                            android:text="@string/txt_continue_with_email"
                             android:textColor="#666666"
-                            android:textSize="13sp" />
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:fontFamily="@font/lato_regular" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -249,7 +245,7 @@
                 <LinearLayout
                     android:id="@+id/btn_login_with_google"
                     android:layout_width="match_parent"
-                    android:layout_height="56dp"
+                    android:layout_height="@dimen/buttonHeight"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="48dp"
                     android:background="@drawable/rounded_button_corner_grey"
@@ -267,15 +263,17 @@
                             android:layout_width="18dp"
                             android:layout_height="19dp"
                             android:layout_marginRight="21dp"
-                            android:src="@drawable/ic_google"></ImageView>
+                            android:src="@drawable/ic_google" />
 
                         <TextView
                             style="@style/RobotoBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Continue with Email"
-                            android:textColor="#666666"
-                            android:textSize="13sp" />
+                            android:text="@string/txt_contunue_with_google"
+                            android:textStyle="bold"
+                            android:textSize="13sp"
+                            android:textColor="#707070"
+                            android:fontFamily="@font/lato_regular"/>
                     </LinearLayout>
 
                 </LinearLayout>

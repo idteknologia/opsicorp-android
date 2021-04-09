@@ -15,13 +15,30 @@ import org.koin.core.parameter.parametersOf
 
 class AddressActivity : BaseActivity(), LoginView {
 
-    override fun getLayout(): Int { return R.layout.address_activity_view }
+    override fun getLayout(): Int {
+        return R.layout.address_activity_view
+    }
 
     val presenter by inject<LoginPresenter> { parametersOf(this) }
 
     override fun OnMain() {
         presenter.checkLogin()
         onClickListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideStatusBar()
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        hideStatusBar()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        hideStatusBar()
     }
 
     private fun onClickListener() {

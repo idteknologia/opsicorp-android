@@ -697,4 +697,16 @@ Please add your trip item for Approval."
     <string name="txt_phone_number">Phone Number</string>
     <string name="txt_select_nationality">Select Nationality</string>
     <string name="txt_content_address_url">This is the corporate address you use to sign in.</string>
+    <string name="txt_travelaja_member">Travelaja Member</string>
+    <string name="txt_content_travelaja_member">Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip.</string>
+    <string name="txt_join_travelaja_member">Join Travelaja Member</string>
+    <string name="txt_new_password">New Password</string>
+    <string name="txt_fullname">FullName</string>
+    <string name="txt_email_corporate_email">Email / Corporate email</string>
+    <string name="txt_continue_with_email">Continue with Email</string>
+    <string name="txt_contunue_with_google">Contunue with Google</string>
+    <string name="txt_content_login_travel_aja">The new corporate travel management in Indonesia, seamless technology according your corporate travel policy.</string>
+    <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
+    <string name="txt_welcome_back">Welcome Back!</string>
+    <string name="txt_sign_in">Sign In</string>
 </resources>

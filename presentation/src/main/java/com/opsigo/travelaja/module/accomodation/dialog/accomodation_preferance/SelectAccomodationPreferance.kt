@@ -111,7 +111,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         callback.callback("${dataName}")
     }
 
-    override fun onDismiss(dialog: DialogInterface?) {
+    override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         data.clear()
     }

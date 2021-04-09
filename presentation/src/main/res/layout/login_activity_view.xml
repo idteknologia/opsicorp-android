@@ -28,17 +28,17 @@
                 android:layout_marginRight="30dp"
                 android:orientation="vertical">
 
+                <!--TextInput for Entering Password-->
                 <TextView
                     android:id="@+id/tvTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="40dp"
-                    android:text="Welcome Back!"
-                    android:textColor="@color/colorBlueTitle"
-                    android:textSize="22sp" />
+                    android:text="@string/txt_welcome_back"
+                    style="@style/SubtitleTextStyle"
+                    android:textSize="20sp" />
 
-                <!--TextInput for Entering Password-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -134,12 +134,10 @@
 
                     <TextView
                         android:id="@+id/tvSignIn"
-                        style="@style/RobotoMedium"
+                        style="@style/TextButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/sign_in"
-                        android:textColor="#24253D"
-                        android:textSize="17sp" />
+                        android:text="@string/sign_in" />
 
                 </LinearLayout>
 

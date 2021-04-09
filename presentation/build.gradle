@@ -16,7 +16,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.opsigo.travelaja"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 14
         versionName "1.0.10"
@@ -119,6 +119,7 @@ dependencies {
     api presentationDependencies.shimmer
 //    implementation presentationDependencies.slider
     api presentationDependencies.GifView
+    implementation presentationDependencies.picassoTransformation
 
     // Koin for Android
     api rootDependencies.koin
