@@ -26,3 +26,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    constrainLayoutVersion = '2.0.4'
+    multidexVersion = '2.0.0'
+    firebaseCoreVersion = '16.0.4'
+    firebaseMessagingVersion = '18.0.0'
+    workRuntimeVersion = '2.0.1'
+}

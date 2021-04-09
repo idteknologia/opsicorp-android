@@ -75,13 +75,11 @@ dependencies {
     def rootDependencies = rootProject.ext.rootDependencies
     def testDependencies = rootProject.ext.presentationTestDependencies
 
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.multidex:multidex:2.0.0'
-
-    implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.google.firebase:firebase-messaging:18.0.0'
-
-    implementation 'androidx.work:work-runtime:2.0.1'
+    implementation "androidx.constraintlayout:constraintlayout:$constrainLayoutVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
+    implementation "com.google.firebase:firebase-core:$firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessagingVersion"
+    implementation "androidx.work:work-runtime:$workRuntimeVersion"
 
     androidTestImplementation testDependencies.espresso
 //    androidTestImplementation testDependencies.testRunner
