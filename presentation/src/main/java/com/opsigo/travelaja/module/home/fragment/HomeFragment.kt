@@ -206,7 +206,7 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
         val request= SaveAsDraftPersonalRequest()
         request.destination = "-"
         request.origin      = "-"
-        request.purpose     = "-"
+        request.purpose     = "Personal Trip"
         request.travelAgentAccount = Globals.getConfigCompany(context!!).defaultTravelAgent
         return Globals.classToHasMap(request,SaveAsDraftPersonalRequest::class.java)
     }

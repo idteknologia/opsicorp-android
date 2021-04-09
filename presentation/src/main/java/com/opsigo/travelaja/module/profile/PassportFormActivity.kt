@@ -7,13 +7,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.FormatingMonthIndonesian
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.passport_form_activity_view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class PassportFormActivity : BaseActivity(),View.OnClickListener {
+class PassportFormActivity : BaseActivity(),View.OnClickListener,ToolbarOpsicorp.OnclickButtonListener {
 
     override fun getLayout(): Int {
         return R.layout.passport_form_activity_view
@@ -37,6 +38,7 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener {
         line_btn_mr.setOnClickListener(this)
         line_btn_mrs.setOnClickListener(this)
         line_btn_ms.setOnClickListener(this)
+        toolbar.callbackOnclickToolbar(this)
 
     }
 
@@ -101,6 +103,15 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener {
         }
     }
 
+    override fun btnBack() {
+        onBackPressed()
+    }
+
+    override fun logoCenter() {
+    }
+
+    override fun btnCard() {
+    }
 
 
 }

@@ -142,7 +142,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         dataOrder.dateArrival     = endDate
         dataOrder.originStationName      = tv_from.text.toString()
         dataOrder.destinationStationName = tv_to.text.toString()
-        dataOrder.totalPassagerString = tv_passanger.text.toString()
+        dataOrder.totalPassengerString = tv_passanger.text.toString()
         Constants.tipeTrip       = typeTrip
         setLog("typeee "+typeTrip)
 //        dataOrder.airlinePreferance = tv_airline_prreferance.text.toString()

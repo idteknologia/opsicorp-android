@@ -138,6 +138,10 @@ interface UrlEndpoind {
     @POST(MyURL.CANCEL_TRIP_PLAN)
     fun postCancelTrip(@Header("Authorization")token:String, @Path("Id")id:String): Call<ResponseBody>
 
+    @GET(MyURL.GET_PAYMENT_LINK)
+    fun getPaymentLink(@Header("Authorization")token: String,
+                       @Query("id")id: String) : Call<ResponseBody>
+
 
     // flight
 //    @POST(MyURL.SEARCH_FLIGHT)

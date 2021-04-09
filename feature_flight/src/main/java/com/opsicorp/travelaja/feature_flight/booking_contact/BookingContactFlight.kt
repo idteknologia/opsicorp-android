@@ -152,22 +152,25 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
 
         if (Globals.typeAccomodation==Constants.FLIGHT){
             val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
 
-            tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
+            tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
             tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"
+            tvTotalPassenger1.text = "${dataOrder.totalPassengerString} /Pax"
 
 
             if (dataListFlight.dataFlight.size>1){
                 line_arrival.visibility     = View.VISIBLE
-                tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price , false)
+                tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
                 tv_station_arrival.text     = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
-                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price ) , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price ) , false)
+                tvTotalPassenger2.text = "${dataOrder.totalPassengerString} /Pax"
+                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant)  , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant)  , false)
             }
             else{
                 line_arrival.visibility     = View.GONE
-                tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price , false)
+                tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
             }
             dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
                 if (resultListFlightModel.dataSSR.bagaggeItemSelected.isNotEmpty()||resultListFlightModel.dataSSR.ssrSelected.isNotEmpty()){
@@ -176,12 +179,12 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                     tv_total_price_baggage.text = StringUtils().setCurrency("IDR",totalPriceBaggage()!!.toDouble(),false)
                     tv_total_price_ssr.text = StringUtils().setCurrency("IDR",totalPriceSsr()!!.toDouble(),false)
                     if (dataListFlight.dataFlight.size>1){
-                        tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() ) , false)
-                        tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() ) , false)
+                        tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble()  , false)
+                        tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble()  , false)
                     }
                     else{
-                        tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
-                        tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
+                        tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
+                        tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble() , false)
                     }
                 } else {
                     rlBaggagePrice.gone()
@@ -313,8 +316,6 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun seatMapListener(view: View){
-        /*getDataSeatMap()*/
-        /*gotoActivityResult(SeatActivityFlight::class.java,Constants.GET_SEAT_MAP)*/
         gotoActivityResult(SelectSeatActivity::class.java,Constants.GET_SEAT_MAP)
 
     }
@@ -398,7 +399,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun getPassanger(): List<PassangersFlightRequest> {
-
+        val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
         val model = ArrayList<PassangersFlightRequest>()
         model.clear()
         dataContacts.forEachIndexed { index, bookingContactAdapterModel ->
@@ -411,7 +412,7 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
             data.idNumber     = getProfile().idNumber
             data.employeeNik  = getProfile().employeeNik
             data.title        = getProfile().title
-            data.index        = index+1
+            data.index        = (dataOrder.adult + dataOrder.child + dataOrder.infant)
             data.mobilePhone  = getProfile().mobilePhone
             data.remarksPax   = ArrayList()
             data.jobTitleId   = getProfile().jobTitleId

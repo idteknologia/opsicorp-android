@@ -12,7 +12,7 @@ public class ExampleUnitTest {
 //        final CountDownLatch latch = new CountDownLatch(1);
 //        new GetDataLogin().apiOpsicorp.fetchDataJSOn("password","akzirhp","Opsicorp2019").enqueue(new Callback<ResponseBody>() {
 //            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//            public void onResponse(Call<ResponseBody> call, PaymentResponse<ResponseBody> response) {
 //
 //                latch.countDown();
 //                try {

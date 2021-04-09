@@ -12,8 +12,6 @@ import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.confirm_train_order.*
 import com.opsigo.travelaja.module.cart.model.CartModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
@@ -216,7 +214,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
                 mData.name_station_arrival = dataOrder.destinationStationName
             }
 
-            mData.total_passager = if (dataOrder.totalPassagerString.isEmpty()) "Adult x 1" else dataOrder.totalPassagerString
+            mData.total_passager = if (dataOrder.totalPassengerString.isEmpty()) "Adult x 1" else dataOrder.totalPassengerString
 //            mData.total_prize    = resultListTrainModel.price
             mData.total_prize    = "IDR "+Globals.formatAmount(resultListTrainModel.price)
 
@@ -268,7 +266,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
 
                 allreadySelectReasonCode = true
                 val dataOrder = Serializer.deserialize(Constants.DATA_ORDER_TRAIN, OrderAccomodationModel::class.java)
-                dataOrder.reaseonCode = model.codeBrief+"-"+model.description
+                dataOrder.reasonCode = model.codeBrief+"-"+model.description
 
                 Constants.DATA_ORDER_TRAIN = Serializer.serialize(dataOrder)
             }

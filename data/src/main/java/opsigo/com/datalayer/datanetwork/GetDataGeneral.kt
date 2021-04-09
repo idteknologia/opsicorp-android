@@ -128,7 +128,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
 //                callbackAirlinePreference.failedLoad(t.message.toString())
 //            }
 //
-//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                try {
 //                    if (response.isSuccessful){
 //                        callbackAirlinePreference.successLoad(AirlinePreferenceEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(), AirlinePreferenceEntity::class.java)))

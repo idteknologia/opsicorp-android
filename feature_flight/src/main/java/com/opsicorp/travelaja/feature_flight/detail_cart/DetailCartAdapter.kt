@@ -1,7 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,8 +69,8 @@ class DetailCartAdapter (val context: Context, private var items: ArrayList<Conf
         holder.itemView.tv_date_arrival.text = DateConverter().getDate(data.date_arrival,"yyyy-MM-dd","dd MMM")
         holder.itemView.tv_depart.text = data.name_stationArrival
         holder.itemView.tv_station_destination.text = data.arrivalAirportName
-        holder.itemView.tv_total_passager.text = data.total_passager
-        holder.itemView.tv_total_prize.text = "IDR ${Globals.formatAmount(data.total_prize.split(".")[0])}"
+        holder.itemView.tv_total_passager.text = data.totalPassenger
+        holder.itemView.tv_total_prize.text = "IDR ${Globals.formatAmount(data.totalPrice.split(".")[0])}"
 
     }
 

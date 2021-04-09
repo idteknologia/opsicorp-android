@@ -108,23 +108,6 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     }
 
     private fun dataFareRulesRequest(): HashMap<Any, Any> {
-        /*val temporary = "{\n" +
-                "    \"Adult\":1,\n" +
-                "    \"Child\":0,\n" +
-                "    \"Infant\":0,\n" +
-                "    \"Provider\":\"6\",\n" +
-                "    \"CompanyCode\":\"000002\",\n" +
-                "    \"TravelAgent\":\"apidev\",\n" +
-                "    \"SegmentList\":[\n" +
-                "        {\n" +
-                "            \"ClassId\":\"49eed9a9-5751-4833-bd09-cd2b6fc6a592~CGK~SIN~09:25~07/16/2020~12:15~07/16/2020~8955~GA~955~SQ~Economy~Y~0~0~||||||||||YOXCSQID||\",\n" +
-                "            \"FlightId\":\"e04aaa99-9a08-4126-a00b-25879e21049c~~6~Market~ad4ac608-b621-4073-9ad6-f4183f67c512~GA~no-code~\",\n" +
-                "            \"FareRuleKeys\":\"1298bccf-84fd-4723-ae00-5bad931f1c8a\",\n" +
-                "            \"Num\":\"0\",\n" +
-                "            \"Seq\":\"0\"\n" +
-                "        }\n" +
-                "    ]\n" +
-                "}"*/
         dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
         val dataProfile = Globals.getProfile(applicationContext)
         val data = FareRulesRequest()
@@ -167,29 +150,6 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     }
 
     private fun dataSrrRequest(): HashMap<Any, Any> {
-        /*val temporary = "{\n" +
-                "    \"Adult\":1,\n" +
-                "    \"Child\":0,\n" +
-                "    \"Infant\":0,\n" +
-                "    \"TravelAgent\":\"apidev\",\n" +
-                "    \"SegmentList\":[\n" +
-                "        {\n" +
-                "            \"Airline\":2,\n" +
-                "            \"ArriveDate\":\"2020-11-01\",\n" +
-                "            \"ArriveTime\":\"07:10\",\n" +
-                "            \"ClassCode\":\"Q\",\n" +
-                "            \"ClassId\":\"20f47466-83e1-48a6-982c-8386aae9d4f7\",\n" +
-                "            \"DepartDate\":\"2020-11-01\",\n" +
-                "            \"DepartTime\":\"05:40\",\n" +
-                "            \"Destination\":\"CGK\",\n" +
-                "            \"FlightId\":\"780faf48-7e58-4e86-9070-3d761a8ac259\",\n" +
-                "            \"FlightNumber\":\"JT 595\",\n" +
-                "            \"Num\":\"1\",\n" +
-                "            \"Origin\":\"SUB\",\n" +
-                "            \"Seq\":\"0\"\n" +
-                "        }\n" +
-                "    ]\n" +
-                "}"*/
         dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
 
         val data = SsrRequest()

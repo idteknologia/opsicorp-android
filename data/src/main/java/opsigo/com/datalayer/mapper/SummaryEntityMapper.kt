@@ -13,7 +13,7 @@ class SummaryEntityMapper() {
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
         summary.type            = from.type.toString()
-        summary.code            = from.code.toString()
+        summary.tripCode            = from.code.toString()
         Log.e("code ",from.code)
         summary.purpose         = from.purpose.toString()
         summary.origin          = if (from.origin==null) "" else from.origin

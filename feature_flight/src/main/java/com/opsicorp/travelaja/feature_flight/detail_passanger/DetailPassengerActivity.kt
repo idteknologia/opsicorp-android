@@ -1,7 +1,5 @@
 package com.opsicorp.travelaja.feature_flight.detail_passanger
 
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
@@ -111,10 +109,10 @@ class DetailPassengerActivity : BaseActivity()
 //        val totalPassangerTrain  = dataOrderTrain.totalPassangerInt.split(",")[0].toInt()+dataOrderTrain.totalPassangerInt.split(",")[1].toInt()+dataOrderTrain.totalPassangerInt.split(",")[2].toInt()
 
         if("Flight".equals(type)){
-            return Pair(dataOrderflight.totalPassangerInt,"")
+            return Pair(dataOrderflight.totalPassengerInt,"")
         }
         else{
-            return Pair("",dataOrderTrain.totalPassangerInt)
+            return Pair("",dataOrderTrain.totalPassengerInt)
         }
     }
 
@@ -186,7 +184,7 @@ class DetailPassengerActivity : BaseActivity()
         data.statusTrip       = "Waiting"
         data.typeAccomodation = "Train"
         data.dataParticipant  = Serializer.serialize(adapterExpand.items,ArrayList::class.java)
-        data.totalParticipant = dataOrder.totalPassagerString
+        data.totalParticipant = dataOrder.totalPassengerString
         data.tripCode         = System.currentTimeMillis().toString()
         data.listParticipant  = Constants.LIST_DETAIL_PASSANGER
         data.detailOrder      = Constants.DATA_ORDER_TRAIN
@@ -214,7 +212,7 @@ class DetailPassengerActivity : BaseActivity()
         data.typeAccomodation = "Flight"
         data.typeOrder        = "bisnis_trip"
         data.dataParticipant  = Serializer.serialize(adapterExpand.items,ArrayList::class.java)
-        data.totalParticipant = dataOrder.totalPassagerString
+        data.totalParticipant = dataOrder.totalPassengerString
         data.tripCode         = System.currentTimeMillis().toString()
         data.listParticipant  = Constants.LIST_DETAIL_PASSANGER
         data.detailOrder      = Globals.DATA_ORDER_FLIGHT

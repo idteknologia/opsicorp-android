@@ -210,6 +210,9 @@
             android:screenOrientation="portrait">
         </activity>
 
+        <activity android:name=".module.payment.PaymentActivity"
+            android:screenOrientation="portrait"/>
+
         <receiver
             android:name="com.opsigo.travelaja.locale.AppLocaleChangeReceiver"
             android:enabled="true"

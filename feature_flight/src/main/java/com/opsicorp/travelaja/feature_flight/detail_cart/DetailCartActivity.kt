@@ -1,7 +1,5 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
@@ -63,8 +61,8 @@ class DetailCartActivity : BaseActivity() {
         mData.name_stationDeparture = dataFlight.stationOrigin
         mData.name_stationArrival   = dataFlight.stationDestination
 
-        mData.total_passager         = if ("".isEmpty()) "Adult x 1" else ""
-        mData.total_prize            = dataFlight.price
+        mData.totalPassenger         = if ("".isEmpty()) "Adult x 1" else ""
+        mData.totalPrice            = dataFlight.price
 
         data.add(mData)
 
@@ -83,10 +81,10 @@ class DetailCartActivity : BaseActivity() {
 
     private fun setTotalPrice(mData: ConfirmationFlightModel) {
         name_flight.text = mData.title_flight
-        tv_total_price_flight1.text  = "IDR ${Globals.formatAmount(mData.total_prize.split(".")[0])}"
+        tv_total_price_flight1.text  = "IDR ${Globals.formatAmount(mData.totalPrice.split(".")[0])}"
         tv_total_price_service_fee.text = "IDR 0"
         tv_total_price_tax.text    = "IDR 0"
-        tv_total_amount.text        = "IDR ${Globals.formatAmount(mData.total_prize.split(".")[0])}"
+        tv_total_amount.text        = "IDR ${Globals.formatAmount(mData.totalPrice.split(".")[0])}"
     }
 
 

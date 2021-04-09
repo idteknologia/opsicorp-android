@@ -3,7 +3,6 @@ package com.opsicorp.travelaja.feature_flight.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,7 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
         holder.itemView.tv_origin.text = data.originDisplay
         holder.itemView.tv_depart.text = data.departureDisplay
-        holder.itemView.tv_total_prize.text = data.total_prize
+        holder.itemView.tv_total_prize.text = data.totalPrice
         holder.itemView.tvFlightDate.text = data.date_arrival_departure
         holder.itemView.tv_airline_number.text  = data.airlineNumber
 
@@ -63,6 +62,8 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
         holder.itemView.tv_station_origin.text  = data.depatureAirportName
         holder.itemView.tv_station_destination.text = data.arrivalAirportName
+
+        holder.itemView.tv_total_passager.text = data.totalPassenger
 
         holder.itemView.line_total_duration.text = "Total Duration : ${data.line_total_duration}"
 

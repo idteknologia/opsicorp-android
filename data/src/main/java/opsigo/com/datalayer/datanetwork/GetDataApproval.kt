@@ -146,7 +146,7 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                 callback.failedLoad(t.message!!)
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
                 if (response.isSuccessful){
                     val responseString = response.body()?.string()
                     val data = Serializer.deserialize(responseString.toString(),SaveAsDraftEntity::class.java)

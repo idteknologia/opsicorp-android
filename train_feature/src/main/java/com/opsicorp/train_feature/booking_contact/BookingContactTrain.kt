@@ -17,8 +17,6 @@ import opsigo.com.domainlayer.callback.CallbackReservationTrain
 import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
@@ -270,7 +268,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         dataBooking.segments                = getSegment(dataListTrain)
         dataBooking.opsigoPassengers        = getPassanger()
         if (dataListTrain.dataTrain.filter { it.notComply }.isNotEmpty()){
-            dataBooking.reasonCode          = dataOrder.reaseonCode
+            dataBooking.reasonCode          = dataOrder.reasonCode
         }
         else {
             dataBooking.reasonCode = ""

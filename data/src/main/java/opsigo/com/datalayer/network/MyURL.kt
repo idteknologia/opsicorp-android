@@ -16,6 +16,9 @@ object MyURL {
     const val SET_DEVICE_ID    = "api/User/SetPlayerId"
     const val REMOVE_DEVICE_ID = "api/User/RemovePlayerId"
 
+    //payment gateway
+    const val GET_PAYMENT_LINK = "api/Payment/GetPaymentLink"
+
     //create tripplan
     const val PURPOSE          = "api/Lookup/TravelingPurpose"
     const val AIRPORT          = "api/Lookup/Airports"

@@ -58,6 +58,7 @@ object Constants {
     val GET_SEAT_MAP             = 709
     var tipeTrip                 = ""
     var TRIP_CODE                = ""
+    var TRIP_PLAN_ID             = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
     val PROGRESS_TRAIN_CALLBACK  = 9099
@@ -349,6 +350,7 @@ object Constants {
     val TYPE_HEADER_NOT_COMPLY = 6
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
+    var TYPE_FLIGHT_BUTTON = false
 
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()

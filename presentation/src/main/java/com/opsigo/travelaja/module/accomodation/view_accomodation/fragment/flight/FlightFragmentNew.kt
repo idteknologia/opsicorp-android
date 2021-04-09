@@ -66,7 +66,7 @@ class FlightFragmentNew : BaseFragment(),
     var idDestination = ""
     var currentPosition: Int = -1
 
-    var totalAdult : Int = 0
+    var totalAdult : Int = 1
     var totalInfant: Int = 0
     var totalChild : Int = 0
 
@@ -487,9 +487,12 @@ class FlightFragmentNew : BaseFragment(),
             dataOrder.classFlightCode = idClassAirline
             dataOrder.classFlightName = nameClassAirline
 
-            dataOrder.totalPassagerString = tv_passanger_new.text.toString()
-            dataOrder.totalPassangerInt = "${totalAdult},${totalChild},${totalInfant}"
-            dataOrder.airlinePreferance = tv_airline_prreferance.text.toString()
+            dataOrder.totalPassengerString = tv_passanger_new.text.toString()
+            dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
+            dataOrder.adult = totalAdult
+            dataOrder.child = totalChild
+            dataOrder.infant = totalInfant
+            dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
 
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Globals.DATA_LIST_FLIGHT = ""
