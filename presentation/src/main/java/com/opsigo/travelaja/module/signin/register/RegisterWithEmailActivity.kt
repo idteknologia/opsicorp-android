@@ -18,6 +18,11 @@ class RegisterWithEmailActivity : BaseActivity(),ButtonDefaultOpsicorp.OnclickBu
         return R.layout.register_with_email_view
     }
 
+    override fun onResume() {
+        super.onResume()
+        hideStatusBar()
+    }
+
     override fun OnMain() {
         initOnclickListener()
     }
@@ -41,7 +46,7 @@ class RegisterWithEmailActivity : BaseActivity(),ButtonDefaultOpsicorp.OnclickBu
 
     private fun getDataField(): java.util.ArrayList<String> {
         val data = ArrayList<String>()
-        data.add(et_email.text.toString())
+        data.add(editTextEmail.text.toString())
         return data
     }
 
@@ -50,7 +55,7 @@ class RegisterWithEmailActivity : BaseActivity(),ButtonDefaultOpsicorp.OnclickBu
         GetDataLogin(MyURL.URL_TRAVELAJA).getDataRegister(emailUser(),object : CallbackString{
             override fun successLoad(data: String) {
                 val bundle = Bundle()
-                bundle.putString("Email",et_email.text.toString())
+                bundle.putString("Email",editTextEmail.text.toString())
                 gotoActivityWithBundle(OtpRegisterActivity::class.java,bundle)
                 hideLoadingOpsicorp()
             }
@@ -64,7 +69,7 @@ class RegisterWithEmailActivity : BaseActivity(),ButtonDefaultOpsicorp.OnclickBu
 
     private fun emailUser(): HashMap<Any, Any> {
         val data = EmailModel()
-        data.Email = et_email.text.toString()
+        data.Email = editTextEmail.text.toString()
         return Globals.classToHashMap(data,EmailModel::class.java)
     }
 

@@ -267,7 +267,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     }
 
     fun selectTotalPassenger(){
-        val fm = activity?.getSupportFragmentManager()
+        val fm = requireActivity().getSupportFragmentManager()
         var selectPassager = SelectOldPassager(true,R.style.CustomDialog,false)
         selectPassager.show(fm, "yesNoAlert")
         selectPassager.callback = this

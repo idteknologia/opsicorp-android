@@ -1,6 +1,5 @@
 package opsigo.com.datalayer.di
 
-import android.R
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

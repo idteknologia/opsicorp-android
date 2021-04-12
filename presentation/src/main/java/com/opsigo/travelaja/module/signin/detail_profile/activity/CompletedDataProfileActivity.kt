@@ -2,14 +2,21 @@ package com.opsigo.travelaja.module.signin.detail_profile.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.os.LocaleList
 import android.util.Log
 import android.view.View
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
+import com.opsigo.travelaja.base.InitApplications
+import com.opsigo.travelaja.locale.AppLocale
+import com.opsigo.travelaja.locale.LocaleManager
+import com.opsigo.travelaja.locale.LocalePrefrences
 import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.module.signin.detail_profile.presenter.CompletedDataProfilePresenter
 import com.opsigo.travelaja.module.signin.select.activity.LookUpActivity
+import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 //import com.opsigo.opsicorp.module.login.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.StringUtils
@@ -22,15 +29,18 @@ import opsigo.com.domainlayer.callback.CallbackSetProfile
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import java.util.*
 
 class CompletedDataProfileActivity: BaseActivity() {
 
     val presenter by inject<CompletedDataProfilePresenter> { parametersOf(this) }
     var RESULT_CODE_NATIONALITY = 78
+    private var RESULT_CODE_LANGUANGE = 79
     var temp_country_code = ""
     var temp_country_name = ""
 
     override fun getLayout(): Int {
+        hideStatusBar()
         return R.layout.complete_data_profile_view
     }
 
@@ -64,6 +74,17 @@ class CompletedDataProfileActivity: BaseActivity() {
             //gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,RESULT_CODE_NATIONALITY)
         }
 
+        tv_language.setOnClickListener {
+            selectLanguageListener()
+        }
+    }
+
+    private fun selectLanguageListener() {
+        val bundle = Bundle()
+        bundle.putString("emplaoyId","language")
+        bundle.putString("titleHeader","Select Language")
+        bundle.putBoolean(SelectNationalityActivity.SELECT,true)
+        gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,RESULT_CODE_LANGUANGE)
     }
 
     fun nextListener(view: View){
@@ -109,7 +130,6 @@ class CompletedDataProfileActivity: BaseActivity() {
                 hideLoadingOpsicorp()
             }
         })
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -123,7 +143,26 @@ class CompletedDataProfileActivity: BaseActivity() {
                     temp_country_name       = data?.getStringExtra("nameCountry").toString()
                 }
             }
+
+            RESULT_CODE_LANGUANGE -> {
+                if (resultCode == Activity.RESULT_OK){
+                    tv_language.text = data?.getStringExtra("nameCountry")
+                    setLanguage()
+                }
+            }
         }
+    }
+
+    private fun setLanguage(){
+        val local = AppLocale.English
+        LocalePrefrences.getInstance(InitApplications.appContext).selectedLocale = local
+        LocaleManager.getInstance().setCurrentLocale(InitApplications.appContext, Locale(local.lang))
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            val localList = LocaleList(Locale.ENGLISH)
+//            LocaleList.setDefault(localList)
+//            resources.configuration.setLocales(localList)
+//        }
     }
 
     override fun onBackPressed() {

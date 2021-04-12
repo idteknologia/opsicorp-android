@@ -47,6 +47,13 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
     lateinit var config: ConfigModel
     var timeSplashDelay = false
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
     val target = object :Target{
         override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
 

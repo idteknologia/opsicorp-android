@@ -35,7 +35,7 @@ class TestHomeActivity {
 
     @Before
     fun setup() {
-        instrumentationCtx = InstrumentationRegistry.getContext()
+//        instrumentationCtx = InstrumentationRegistry.getContext()
         nameCountry = GetNameCountry()
     }
 

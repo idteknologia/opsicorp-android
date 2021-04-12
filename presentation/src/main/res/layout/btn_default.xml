@@ -11,15 +11,13 @@
         android:gravity="center"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="46dp">
+        android:layout_height="@dimen/buttonHeight">
 
         <TextView
             android:layout_gravity="center"
             android:gravity="center"
-            style="@style/RobotoMedium"
+            style="@style/TextButtonStyle"
             android:id="@+id/tv_button"
-            android:textSize="18dp"
-            android:textColor="#24253D"
             android:text="@string/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

@@ -39,7 +39,14 @@ import java.util.HashMap
 class LoginActivity : BaseActivity(),
         LoginView,View.OnClickListener {
 
-    override fun getLayout(): Int { return R.layout.login_activity_view_travel_aja }
+    override fun getLayout(): Int {
+        return R.layout.login_activity_view_travel_aja
+    }
+
+    override fun onResume() {
+        super.onResume()
+        hideStatusBar()
+    }
 
     val presenter by inject<LoginPresenter> { parametersOf(this) }
     lateinit var mGoogleApiClient: GoogleApiClient

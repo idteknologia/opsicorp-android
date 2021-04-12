@@ -116,4 +116,30 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
+    <style name="ContentDescriptionTextStyle">
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#91929e</item>
+        <item name="android:lineSpacingExtra">8sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SubtitleTextStyle">
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/colorBlueTitle</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="EditTextStyle">
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textColor">#24253d</item>
+    </style>
+    <style name="TextButtonStyle">
+        <item name="fontFamily">@font/lato_regular</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#24253d</item>
+    </style>
+
 </resources>

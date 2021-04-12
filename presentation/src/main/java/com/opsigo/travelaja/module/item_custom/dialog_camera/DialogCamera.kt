@@ -60,8 +60,8 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     private fun setCornerDialog() {
-        if (getDialog() != null && getDialog().getWindow() != null) {
-            getDialog().getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        if (getDialog() != null && getDialog()?.getWindow() != null) {
+            getDialog()?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
     }
 

@@ -39,10 +39,10 @@ import org.koin.core.KoinComponent
 import java.lang.Exception
 import java.util.*
 
-abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChangeReceiver.AppLocaleChangeListener  {
+abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChangeReceiver.AppLocaleChangeListener {
 
     protected lateinit var pDialog: ProgressDialog
-    protected var statusInternet : Boolean = false
+    protected var statusInternet: Boolean = false
     val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
     val dialogError = DialogErrorConection()
@@ -50,8 +50,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         withStatusBar()
 
         setContentView(getLayout())
@@ -59,7 +58,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         pDialog.setCancelable(false)
         OnMain()
 
-        if(Globals.getDataPreferenceBolean(this,"login")){
+        if (Globals.getDataPreferenceBolean(this, "login")) {
             chekActiveIdUser()
         }
     }
@@ -74,46 +73,46 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun showDialogContruction(disable: Boolean){
-        dialogContruction.showDialogLoading(this,disable)
+    fun showDialogContruction(disable: Boolean) {
+        dialogContruction.showDialogLoading(this, disable)
     }
 
-    fun hideDialogContruction(){
+    fun hideDialogContruction() {
         try {
             dialogContruction.dismiss()
-        }catch (e:Exception){
+        } catch (e: Exception) {
 
         }
     }
 
-    fun showLoadingOpsicorp(disable:Boolean){
-        loading.showDialogLoading(this,disable)
+    fun showLoadingOpsicorp(disable: Boolean) {
+        loading.showDialogLoading(this, disable)
     }
 
-    fun hideLoadingOpsicorp(){
+    fun hideLoadingOpsicorp() {
         loading.dismiss()
     }
 
-    fun getBaseUrl():String{
+    fun getBaseUrl(): String {
         return Globals.getBaseUrl(this)
     }
 
-    fun showDialogErrorOpsicorp(disable:Boolean,callback:DialogErrorConection.CallbackErrorDialog){
-        dialogError.showDialogLoading(this,disable,callback)
+    fun showDialogErrorOpsicorp(disable: Boolean, callback: DialogErrorConection.CallbackErrorDialog) {
+        dialogError.showDialogLoading(this, disable, callback)
     }
 
 
-    fun hideDialogErrorOpsicorp(){
+    fun hideDialogErrorOpsicorp() {
         try {
             dialogError.dismiss()
-        }catch (e:Exception){
+        } catch (e: Exception) {
 
         }
     }
 
 
-    fun showAllert(title:String,message: String){
-        Globals.showAlert(title,message,this)
+    fun showAllert(title: String, message: String) {
+        Globals.showAlert(title, message, this)
     }
 
     abstract fun getLayout(): Int
@@ -130,22 +129,22 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
             pDialog.dismiss()
     }
 
-    fun setLog(message: String){
-        if(BuildConfig.DEBUG){
-            Log.e("Test",message)
+    fun setLog(message: String) {
+        if (BuildConfig.DEBUG) {
+            Log.e("Test", message)
         }
     }
 
-    fun setLog(tag:String,s: String) {
-        if(BuildConfig.DEBUG){
-            Log.e(tag,s)
+    fun setLog(tag: String, s: String) {
+        if (BuildConfig.DEBUG) {
+            Log.e(tag, s)
         }
     }
 
-    fun showSnackbar(viewParent:View,calback: CallbackSnackBar){
+    fun showSnackbar(viewParent: View, calback: CallbackSnackBar) {
         val snackbar = Snackbar
                 .make(viewParent, "No internet connection!", Snackbar.LENGTH_LONG)
-                .setAction("RETRY", object : View.OnClickListener{
+                .setAction("RETRY", object : View.OnClickListener {
                     override fun onClick(v: View?) {
                         calback.onclikRetry()
                     }
@@ -159,12 +158,11 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
     }
 
 
-
-    fun setToast(message: String){
-        Toast.makeText(applicationContext,message,Toast.LENGTH_LONG).show()
+    fun setToast(message: String) {
+        Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
     }
 
-    fun closeApplication(){
+    fun closeApplication() {
         AlertDialog.Builder(this)
                 .setMessage("Apa Anda yakin ingin menutup aplikasi?")
                 .setCancelable(false)
@@ -181,7 +179,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
                 .show()
     }
 
-    fun closeApplication(message: String){
+    fun closeApplication(message: String) {
         AlertDialog.Builder(this)
                 .setMessage(message)
                 .setCancelable(false)
@@ -198,46 +196,46 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
                 .show()
     }
 
-    fun gotoActivity(clas : Class<*>?){
-        startActivity(Intent(this,clas))
+    fun gotoActivity(clas: Class<*>?) {
+        startActivity(Intent(this, clas))
     }
 
-    fun gotoActivityResult(clas : Class<*>?,code:Int){
-        startActivityForResult(Intent(this,clas),code)
+    fun gotoActivityResult(clas: Class<*>?, code: Int) {
+        startActivityForResult(Intent(this, clas), code)
     }
 
-    fun gotoActivityResultIntent(intent: Intent,code:Int){
-        startActivityForResult(intent,code)
+    fun gotoActivityResultIntent(intent: Intent, code: Int) {
+        startActivityForResult(intent, code)
     }
 
-    fun gotoActivityResultWithBundle(clas : Class<*>?,bundle: Bundle,code:Int){
-        val intent = Intent(this,clas)
-        intent.putExtra("data",bundle)
-        startActivityForResult(intent,code)
+    fun gotoActivityResultWithBundle(clas: Class<*>?, bundle: Bundle, code: Int) {
+        val intent = Intent(this, clas)
+        intent.putExtra("data", bundle)
+        startActivityForResult(intent, code)
     }
 
 
-    fun gotoActivityWithBundle(clas : Class<*>?,bundle: Bundle){
-        val intent = Intent(this,clas)
-        intent.putExtra("data",bundle)
+    fun gotoActivityWithBundle(clas: Class<*>?, bundle: Bundle) {
+        val intent = Intent(this, clas)
+        intent.putExtra("data", bundle)
         startActivity(intent)
     }
 
-    fun sendDataCallbackActivity(intent:Intent){
+    fun sendDataCallbackActivity(intent: Intent) {
         setResult(Activity.RESULT_OK, intent)
 
-        val lang = intent.getBooleanExtra("language",false)
+        val lang = intent.getBooleanExtra("language", false)
 
         setResult(Activity.RESULT_OK, intent)
 
-        if(lang==true){
+        if (lang == true) {
 
             var selected = AppLocale.English
             val s_lang = intent.getStringExtra("nameCountry")
 
-            if(s_lang.equals("English")){
+            if (s_lang.equals("English")) {
                 selected = AppLocale.English
-            }else if(s_lang.equals("Indonesia")){
+            } else if (s_lang.equals("Indonesia")) {
                 selected = AppLocale.Bahasa
             }
 
@@ -269,20 +267,20 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
 
-    fun gotoActivityWithBundleUsingTransition(view: View,bundle:Bundle,clas : Class<*>?) {
+    fun gotoActivityWithBundleUsingTransition(view: View, bundle: Bundle, clas: Class<*>?) {
         val intent = Intent(this, clas)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val options = ActivityOptions
                     .makeSceneTransitionAnimation(this, view, "header")
-            intent.putExtra("data",bundle)
+            intent.putExtra("data", bundle)
             startActivity(intent, options.toBundle())
         } else {
-            intent.putExtra("data",bundle)
+            intent.putExtra("data", bundle)
             startActivity(intent)
         }
     }
 
-    fun gotoActivityUsingTransition(view: View,clas : Class<*>?) {
+    fun gotoActivityUsingTransition(view: View, clas: Class<*>?) {
         val intent = Intent(this, clas)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val options = ActivityOptions
@@ -299,7 +297,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
     }
 
     @SuppressLint("MissingPermission")
-    fun checkInterConection(){
+    fun checkInterConection() {
         val connMgr = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkinfo = connMgr.activeNetworkInfo
         if (networkinfo != null && networkinfo.isConnected()) {
@@ -310,7 +308,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun showDialogFragment(fragmentDialog : androidx.fragment.app.DialogFragment){
+    fun showDialogFragment(fragmentDialog: androidx.fragment.app.DialogFragment) {
         val fm = getSupportFragmentManager()
         fragmentDialog.show(fm, "yesNoAlert")
     }
@@ -376,21 +374,21 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         }
     }
 
-    fun getToken():String{
-        return Globals.getDataPreferenceString(this,"token")
+    fun getToken(): String {
+        return Globals.getDataPreferenceString(this, "token")
     }
 
-    fun getFCMToken():String{
-        return Globals.getDataPreferenceString(this,Constants.FCM_TOKEN)
+    fun getFCMToken(): String {
+        return Globals.getDataPreferenceString(this, Constants.FCM_TOKEN)
     }
 
     fun getProfile(): ProfileModel {
-        return Serializer.deserialize(Globals.getDataPreferenceString(this,"profile"), ProfileModel::class.java)
+        return Serializer.deserialize(Globals.getDataPreferenceString(this, "profile"), ProfileModel::class.java)
     }
 
-    lateinit var callbackDialogDummy :CallbackDialogDummy
+    lateinit var callbackDialogDummy: CallbackDialogDummy
 
-    fun showDialogDummy(callbackDialogDummy: CallbackDialogDummy){
+    fun showDialogDummy(callbackDialogDummy: CallbackDialogDummy) {
         showDialog("")
         Handler().postDelayed({
             hideDialog()
@@ -399,7 +397,7 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
 
     }
 
-    interface CallbackDialogDummy{
+    interface CallbackDialogDummy {
         fun done()
     }
 
@@ -408,29 +406,37 @@ abstract class BaseActivity :AppCompatActivity(),KoinComponent , AppLocaleChange
         super.attachBaseContext(localeBase)
     }
 
-    fun chekActiveIdUser(){
+    fun chekActiveIdUser() {
         GetDataGeneral(getBaseUrl()).getCheckIdDevice(getToken(),
-                Globals.getDataPreferenceString(this,Constants.FCM_TOKEN),
-                object : CallbackIdDevice{
+                Globals.getDataPreferenceString(this, Constants.FCM_TOKEN),
+                object : CallbackIdDevice {
                     override fun success(boolean: Boolean) {
-                        if (!boolean){
+                        if (!boolean) {
                             logoutListener()
                         }
                     }
 
                     override fun failed(string: String) {
-                        showAllert("Sorry",string)
+                        showAllert("Sorry", string)
                     }
                 })
     }
 
-    fun logoutListener(){
-        Globals.setDataPreferenceBolean(this,"login",false)
-        Globals.setDataPreferenceBolean(this,"first",false)
-        Globals.setDataPreferenceString(this,"login_user","")
-        Globals.setDataPreferenceString(this,"token","")
-        Globals.setDataPreferenceString(this,"username", "")
+    fun logoutListener() {
+        Globals.setDataPreferenceBolean(this, "login", false)
+        Globals.setDataPreferenceBolean(this, "first", false)
+        Globals.setDataPreferenceString(this, "login_user", "")
+        Globals.setDataPreferenceString(this, "token", "")
+        Globals.setDataPreferenceString(this, "username", "")
         gotoActivity(LoginActivity::class.java)
         finish()
     }
+
+    fun hideStatusBar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        actionBar?.hide()
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
+
 }
