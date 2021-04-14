@@ -6,58 +6,88 @@
     android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <View
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="139dp"
-        android:background="#f6f8f8"/>
+        android:layout_height="123dp"
+        android:background="#f4f4f4"/>
+
+    <TextView
+        android:id="@+id/tvAccountType"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/ic_bg_rounded_right_white"
+        android:fontFamily="@font/lato_regular"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="33dp"
+        app:layout_goneMarginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Travelaja Basic" />
+
+
+
+    <ImageView
+        android:id="@+id/img_cart"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:padding="9dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:background="@drawable/bg_circle_fill"
+        android:src="@drawable/ic_cart_home"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/blink_image"
         android:layout_width="8dp"
         android:layout_height="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_margin="5dp"
         android:src="@drawable/oval_orange"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/img_cart"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginRight="23dp"
-        android:src="@drawable/ic_cart_home"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintRight_toRightOf="@id/img_cart"
+        app:layout_constraintTop_toTopOf="@id/img_cart" />
 
     <RelativeLayout
         android:id="@+id/ivProfile"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="31dp"
         android:scaleType="fitCenter"
+        tools:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+        app:layout_constraintTop_toTopOf="@+id/tv_greeting">
+
+        <TextView
+            android:id="@+id/tvAlphabetName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:civ_border_color="#f5f5f5"
-            android:src="#f5f5f5"
-            android:id="@+id/img_profile"
-            app:civ_circle_background_color="#f5f5f5"/>
+            android:padding="6dp"
+            tools:text="JW"
+            android:fontFamily="@font/lato_regular"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#2a2a2a"
+            android:gravity="center"
+            android:background="#d8d8d8"/>
 
         <ImageView
-            android:id="@+id/img_dummy"
-            android:padding="6dp"
-            android:src="@drawable/ic_profile"
+            android:id="@+id/img_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/stroke_rounded_image_profile"/>
     </RelativeLayout>
 
 <!--    <ImageView-->
@@ -78,84 +108,96 @@
         android:id="@+id/tv_greeting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/lato_regular"
+        android:lines="1"
         android:textColor="#939393"
         android:textSize="12sp"
-        android:fontFamily="@font/lato_regular"
-        android:layout_marginRight="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:lines="1"
         app:layout_constraintEnd_toStartOf="@+id/img_cart"
         app:layout_constraintStart_toEndOf="@+id/ivProfile"
-        app:layout_constraintTop_toTopOf="@id/ivProfile"
+        app:layout_constraintTop_toBottomOf="@+id/tvAccountType"
         tools:text="Hi, Dwi Wahyudi" />
 
     <TextView
+        android:id="@+id/tvSubtitle2"
         style="@style/SubtitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/choose_your_trip"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="3dp"
         app:layout_constraintStart_toEndOf="@+id/ivProfile"
         app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="54dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="18dp"
         android:layout_marginBottom="36dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="4dp"
         app:cardElevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivProfile">
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle2">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="9dp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="41dp"
-                android:layout_marginEnd="19dp"
-                android:gravity="center"
-                android:layout_marginRight="19dp"
-                android:orientation="horizontal">
+                android:id="@+id/llBisnisTrip"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_group_14" />
 
                 <TextView
+                    style="@style/TextDarkFontLato"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="12dp"
-                    android:textColor="#f19c00"
-                    android:fontFamily="@font/lato_bold"
                     android:layout_marginLeft="12dp"
-                    android:text="Business Trip" />
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Business Trip"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <View
+                android:id="@+id/view"
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
-                android:background="@color/divider" />
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/lato_regular"
                 android:gravity="center"
                 android:paddingStart="31dp"
@@ -163,10 +205,14 @@
                 android:paddingEnd="25dp"
                 android:paddingRight="25dp"
                 android:text="Reimburstment"
-                android:textColor="#939396"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                android:textColor="@color/colorGreenFont"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.khoiron.train_feature"
-        minSdkVersion 16
+        minSdkVersion rootProject.minSdkVersion
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"

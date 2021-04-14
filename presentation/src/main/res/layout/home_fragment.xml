@@ -5,17 +5,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <LinearLayout
-            android:visibility="visible"
+            android:id="@+id/containerHome"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_height="wrap_content">
 
 
             <!--<com.daimajia.slider.library.SliderLayout-->
@@ -39,20 +33,33 @@
                 layout="@layout/header_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
+
+            <include
+                android:id="@+id/secondContent"
+                layout="@layout/home_second_content"/>
+            <include
+                android:id="@+id/tripContent"
+                layout="@layout/home_schedule_content"/>
+            <include
+                android:id="@+id/thirdContent"
+                layout="@layout/home_third_content"/>
+            <include
+                android:id="@+id/fourthContent"
+                layout="@layout/home_fourth_content"/>
 
             <com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:id="@+id/lay_slider">
             </com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp>
-
-
             <LinearLayout
                 android:id="@+id/line_title_upcomming_flight"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="#ffffff">
 
                 <RelativeLayout
@@ -286,14 +293,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:padding="0dp" />-->
-
-
             <RelativeLayout
                 android:id="@+id/line_title_family_time"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="25dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -323,6 +329,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:overScrollMode="never"
                 android:id="@+id/rv_tour"
+                android:visibility="gone"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
@@ -333,8 +340,4 @@
 
 
         </LinearLayout>
-    </LinearLayout>
-
-
-
 </androidx.core.widget.NestedScrollView>

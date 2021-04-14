@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentButtonSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="#e3effd"
+        android:paddingBottom="15dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/ic_date_checkin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSchedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="16dp"
+            android:drawableRight="@drawable/ic_chevron_right_9dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/txt_schedule"
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/ivIcon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="15dp"
+            android:fontFamily="@font/lato_regular"
+            android:text="@string/txt_all_business_trip_list_has_been_approved"
+            android:textColor="#2a2a2a"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/ivIcon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSchedule" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/contentItemSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/contentButtonSchedule">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#2a2a2a"
+            android:text="Your Upcoming Trip"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:textStyle="normal"
+            android:textSize="12sp"
+            android:textColor="#2a2a2a"
+            android:layout_marginTop="4dp"
+            android:text="All business trip list has been approved"
+            android:layout_marginBottom="20dp"
+            />
+
+        <include
+            android:id="@+id/itemSchedule1"
+            layout="@layout/home_item_upcomming" />
+
+        <include
+            android:id="@+id/itemSchedule2"
+            layout="@layout/home_item_upcomming"
+            android:layout_marginTop="10dp"
+            android:layout_height="79dp"
+            android:layout_width="match_parent"/>
+
+        <TextView
+            android:id="@+id/tvViewAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_regular"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            android:textSize="14sp"
+            android:textColor="#00776a"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="View All Schedule"
+            />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

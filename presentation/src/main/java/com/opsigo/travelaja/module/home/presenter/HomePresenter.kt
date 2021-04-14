@@ -83,7 +83,7 @@ class HomePresenter : KoinComponent{
 //
 //    }
 
-    fun presenterInitRecyclerAdapter(recyclerViewFamilyTime: androidx.recyclerview.widget.RecyclerView, recyclerViewUpCommingFlight: androidx.recyclerview.widget.RecyclerView) {
+    fun presenterInitRecyclerAdapter(recyclerViewFamilyTime: RecyclerView, recyclerViewUpCommingFlight: RecyclerView) {
 
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
@@ -101,10 +101,10 @@ class HomePresenter : KoinComponent{
             }
         })
 
-        val layoutManagerFlight = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManagerFlight.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+        val layoutManagerFlight = LinearLayoutManager(context)
+        layoutManagerFlight.orientation = LinearLayoutManager.HORIZONTAL
         recyclerViewUpCommingFlight.layoutManager = layoutManagerFlight
-        recyclerViewUpCommingFlight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        recyclerViewUpCommingFlight.itemAnimator = DefaultItemAnimator()
         recyclerViewUpCommingFlight.adapter = adapterUpcommingFlightAdapter
 
         adapterUpcommingFlightAdapter.setOnclickListener(object :OnclickListenerRecyclerView{

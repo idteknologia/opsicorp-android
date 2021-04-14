@@ -16,7 +16,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.opsigo.travelaja"
-        minSdkVersion 21
+        minSdkVersion rootProject.minSdkVersion
         targetSdkVersion 28
         versionCode 14
         versionName "1.0.10"
@@ -67,10 +67,27 @@ android {
 
     dynamicFeatures = [':feature_flight', ':hotel_feature', ':train_feature', ':tour_feature']
 
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
+    dataBinding {
+        enabled true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def presentationDependencies = rootProject.ext.presentationDependencies
     def rootDependencies = rootProject.ext.rootDependencies
     def testDependencies = rootProject.ext.presentationTestDependencies
@@ -117,7 +134,6 @@ dependencies {
     api presentationDependencies.shimmer
 //    implementation presentationDependencies.slider
     api presentationDependencies.GifView
-    implementation presentationDependencies.picassoTransformation
 
     // Koin for Android
     api rootDependencies.koin
@@ -142,6 +158,14 @@ dependencies {
 
     //showcase
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
+
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$viewModel_version"
+
+
 
 
 }
