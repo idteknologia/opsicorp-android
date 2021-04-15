@@ -1,6 +1,8 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.cart.model.CartModel
@@ -13,6 +15,7 @@ class DetailCartActivity : BaseActivity() {
 
     val data = ArrayList<ConfirmationFlightModel>()
     val adapter by lazy { DetailCartAdapter(this, data) }
+    val adapter2 by lazy { DetailCartPriceAdapter(this) }
     lateinit var dataOrder: CartModel
 
     override fun getLayout(): Int {
@@ -24,11 +27,20 @@ class DetailCartActivity : BaseActivity() {
         setDataDetail()
         initToolbar()
         initRecyclerView()
+        initPriceRv()
+    }
+
+    private fun initPriceRv() {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rvPriceItemDetail.layoutManager = layoutManager
+        rvPriceItemDetail.itemAnimator = DefaultItemAnimator()
+        rvPriceItemDetail.adapter = adapter2
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_item_flight.layoutManager = layoutManager
         rv_item_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_item_flight.adapter = adapter
@@ -76,14 +88,13 @@ class DetailCartActivity : BaseActivity() {
         }
 
         adapter.setData(data)
+        adapter2.setData(dataOrder.dataCardFlight.priceItem)
+        
         setTotalPrice(mData)
     }
 
     private fun setTotalPrice(mData: ConfirmationFlightModel) {
         name_flight.text = mData.title_flight
-        tv_total_price_flight1.text  = "IDR ${Globals.formatAmount(mData.totalPrice.split(".")[0])}"
-        tv_total_price_service_fee.text = "IDR 0"
-        tv_total_price_tax.text    = "IDR 0"
         tv_total_amount.text        = "IDR ${Globals.formatAmount(mData.totalPrice.split(".")[0])}"
     }
 

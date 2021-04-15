@@ -40,6 +40,7 @@ class ItemFlightModel{
     var timeArrival     = ""
 
     var price       = ""
+    var priceItem : ArrayList<PaymentsItemModel> = ArrayList()
     var employId    = ""
     var idFlight    = ""
     var progressFLight = ""

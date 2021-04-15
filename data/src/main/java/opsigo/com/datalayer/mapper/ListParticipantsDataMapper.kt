@@ -1,6 +1,7 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
+import opsigo.com.datalayer.model.cart.PaymentsItem
 import opsigo.com.datalayer.model.cart.SegmentsItem
 import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.summary.*
@@ -75,6 +76,10 @@ class ListParticipantsDataMapper {
                                 dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
+
+                                tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
+                                    dataFlight.priceItem.add(priceMapperData(paymentsItem))
+                                }
 
                                 dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
@@ -206,6 +211,20 @@ class ListParticipantsDataMapper {
             }
         }
 
+    }
+
+    private fun priceMapperData(payments: PaymentsItem?): PaymentsItemModel {
+        val mData = PaymentsItemModel()
+
+        mData.id = payments?.id.toString()
+        mData.code = payments?.code.toString()
+        mData.tripFlightId = payments?.tripFlightId.toString()
+        mData.title = payments?.title.toString()
+        mData.amount = payments?.amount
+        mData.currency = payments?.currency.toString()
+        mData.seq = payments?.seq
+
+        return mData
     }
 
     private fun segmentMapperData(segmentFlightEntity: SegmentsItem?): FlightSegmentItem {

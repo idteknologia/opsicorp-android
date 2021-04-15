@@ -62,13 +62,39 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
                 onclick.onClick(Constants.BTN_ID_CART,position)
                 setCheckRadioButton(radiobutton,0)
             }
+
+            if (itemView.checkboxIdCart.isChecked){
+                itemView.btn_id_cart.text = "Edit"
+                itemView.btn_id_cart.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+            } else {
+                itemView.btn_id_cart.text = "Add"
+                itemView.btn_id_cart.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
+            }
+
             itemView.line_passport.setOnClickListener {
                 onclick.onClick(Constants.BTN_PASSPORT,position)
                 setCheckRadioButton(radiobutton,1)
             }
+
+            if (itemView.checkboxPassport.isChecked){
+                itemView.btn_id_passport.text = "Edit"
+                itemView.btn_id_passport.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+            } else {
+                itemView.btn_id_passport.text = "Add"
+                itemView.btn_id_passport.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
+            }
+
             itemView.line_sim.setOnClickListener {
                 onclick.onClick(Constants.BTN_SIM,position)
                 setCheckRadioButton(radiobutton,2)
+            }
+
+            if (itemView.checkSim.isChecked){
+                itemView.btn_id_sim.text = "Edit"
+                itemView.btn_id_sim.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+            } else {
+                itemView.btn_id_sim.text = "Add"
+                itemView.btn_id_sim.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
             }
 
             if (position==(items.size-1)){
@@ -82,11 +108,11 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
 
             itemView.name_passanger_by_ktp.text      = data.idcart.fullname
             if (!data.pasport.firstName.isNullOrEmpty()){
-                itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
+                itemView.name_passanger_by_passport.setTextColor(ContextCompat.getColor(context,R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.firstName
             }
             if(!data.sim.name.isNullOrEmpty()) {
-                itemView.name_passanger_by_sim.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
+                itemView.name_passanger_by_sim.setTextColor(ContextCompat.getColor(context,R.color.gray_50_subtitle))
                 itemView.name_passanger_by_sim.text      = data.sim.name
             }
 

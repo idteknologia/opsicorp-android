@@ -14,8 +14,6 @@ import com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.base.BaseFragment
-import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
@@ -91,13 +89,13 @@ class HomeFragment : BaseFragment(),KoinComponent, HomeView, View.OnClickListene
                 positionImageSlider = position
             }
         })
+
+
     }
 
     private fun initView() {
         val dataProfile = getProfile()
         tv_greeting.text = "Hi, ${formatName(dataProfile).substring(0,1).toUpperCase()}${formatName(dataProfile).substring(1,formatName(dataProfile).length).toLowerCase()}"
-        if (dataProfile.imageUrl.isNotEmpty())
-        Picasso.get().load(dataProfile.imageUrl).transform(CropCircleTransformation()).into(img_profile)
     }
 
     private fun formatName(dataProfile: ProfileModel): String {

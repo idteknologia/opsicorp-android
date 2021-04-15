@@ -286,16 +286,19 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
                 if (requestCode==Activity.RESULT_OK){
 
                 }
+                adapter.setData(dataContacts)
             }
             Constants.BTN_PASSPORT  -> {
                 if (requestCode==Activity.RESULT_OK){
 
                 }
+                adapter.setData(dataContacts)
             }
             Constants.BTN_ID_CART   -> {
                 if (requestCode==Activity.RESULT_OK){
 
                 }
+                adapter.setData(dataContacts)
             }
             Constants.KEY_ACTIVITY_BAGAGE ->{
                 val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
@@ -634,28 +637,13 @@ class BookingContactFlight : BaseActivity(),OnclickListenerRecyclerView,
         header.idTripPlan   = dataTrip.idTripPlant
         header.codeTripPlan = dataTrip.tripCode
         header.purpose      = dataTrip.purpose
+        if (dataTrip.purpose.equals("-")){
+            header.purpose = "Personal Trip"
+        }
 
         return header
     }
 
-    /*private fun dataDummyCreateTrip() {
-        val data = SuccessCreateTripPlaneModel()
-        data.purpose          = "Meeting"
-        data.idTripPlant      = "91a7f32c-53b9-4ffb-9e0d-39768d95a586"
-        data.status           = "Draft"
-        data.tripCode         = "TP202003040001"
-        data.createDate       = "2020-03-04 09:44:57"
-        data.timeExpired      = "00:00:00"
-        data.destinationName  = "BD"
-        data.destinationId      = "BD"
-        data.originId           = "GMR"
-        data.originName       = "GMR"
-        data.startDate        = "2020-03-12 00:00:00"
-        data.endDate          = "2020-03-21 00:00:00"
-        data.buggetId         = "cb2fa51e-efd1-4f66-86f2-d9171663b70d"
-        data.costCenter       = "b4df3880-b1af-41af-89ce-a0d1b7eb5c3c"
-        Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data,SuccessCreateTripPlaneModel::class.java)
-    }*/
 
     private fun tripParticipant(): List<TripParticipantsItem> {
         val dataTrip      = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)

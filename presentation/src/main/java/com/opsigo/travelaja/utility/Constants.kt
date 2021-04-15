@@ -1,6 +1,7 @@
 package com.opsigo.travelaja.utility
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
@@ -107,7 +108,7 @@ object Constants {
     val REQUEST_CODE_HOTEL_FILTER = 9066
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
-    val DATA_DETAIL_FLIGHT       = ""
+    var DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val KEY_NAME_GUEST           = "name"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"

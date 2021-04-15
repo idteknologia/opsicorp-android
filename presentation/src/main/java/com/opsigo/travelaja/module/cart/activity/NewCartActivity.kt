@@ -31,11 +31,13 @@ import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.payment.PaymentActivity
 import com.opsigo.travelaja.utility.*
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import opsigo.com.domainlayer.callback.*
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.ItemFlightModel
 import java.text.SimpleDateFormat
@@ -53,6 +55,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     override fun OnMain() {
         initToolbar()
+        dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
     }
 
     var LIST_BISNIS_TRIP = 0
@@ -61,6 +64,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     var idTripPlant = ""
 
     val itemsTrip = ArrayList<ModelItemTrip>()
+    lateinit var dataListFlight: DataListOrderAccomodation
 
     var pagePosition = 0
     val btnList = ArrayList<TextView>()
@@ -307,6 +311,8 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
             dataAccomodation.itemFlightModel.forEach {
                 val model = CartModel()
+
+
                 model.typeCard = Constants.TYPE_FLIGHT
 
                 model.dataCardFlight.idFlight = it.idFlight
@@ -330,6 +336,8 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardFlight.isComply = it.isComply
                 model.dataCardFlight.timeDeparture = it.timeDeparture
                 model.dataCardFlight.price = it.price
+                model.dataCardFlight.priceItem = it.priceItem
+
                 model.dataCardFlight.classFlight = it.classFlight
                 model.dataCardFlight.codeFlight = it.pnrCode
                 model.dataCardFlight.departureFlight = it.originDeatination.split("-")[0]

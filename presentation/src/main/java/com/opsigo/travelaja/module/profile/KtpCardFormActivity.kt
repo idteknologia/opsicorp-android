@@ -1,5 +1,6 @@
 package com.opsigo.travelaja.module.profile
 
+import android.os.Build
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -8,14 +9,17 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.id_cart_form_layout.*
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import opsigo.com.datalayer.mapper.Serializer
 
-class KtpCardFormActivity : BaseActivity(),View.OnClickListener,ToolbarOpsicorp.OnclickButtonListener {
+class KtpCardFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp.OnclickButtonListener {
     override fun getLayout(): Int {
         return R.layout.id_cart_form_layout
     }
 
     val texts = ArrayList<TextView>()
     val lines = ArrayList<LinearLayout>()
+    lateinit var dataOrder: OrderAccomodationModel
 
 
     override fun OnMain() {
@@ -32,8 +36,22 @@ class KtpCardFormActivity : BaseActivity(),View.OnClickListener,ToolbarOpsicorp.
         line_btn_mr.setOnClickListener(this)
         line_btn_mrs.setOnClickListener(this)
         line_btn_ms.setOnClickListener(this)
-        toolbar.callbackOnclickToolbar(this)
 
+        initToolbar()
+    }
+
+    private fun initToolbar() {
+        dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+
+        toolbar.hidenBtnCart()
+        toolbar.callbackOnclickToolbar(this)
+        toolbar.setDoubleTitle("Adult Passenger","Age 3 and older ")
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            toolbar.doubleTitleGravity(toolbar.CENTER)
+        }
+
+        toolbar.changeImageBtnBack(R.drawable.ic_close_white)
     }
 
     fun discardListener(view: View){

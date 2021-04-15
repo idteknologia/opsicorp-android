@@ -1,5 +1,7 @@
 package com.opsigo.travelaja.module.profile
 
+import android.os.Build
+import android.view.Gravity.CENTER
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -7,9 +9,17 @@ import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.Globals
+import kotlinx.android.synthetic.main.passport_form_activity_view.*
 import kotlinx.android.synthetic.main.sim_form_booking_contact_view.*
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.line_btn_mr
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.line_btn_mrs
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.line_btn_ms
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.toolbar
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.tv_btn_mr
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.tv_btn_mrs
+import kotlinx.android.synthetic.main.sim_form_booking_contact_view.tv_btn_ms
 
-class SimFormContactActivity : BaseActivity(),View.OnClickListener,ToolbarOpsicorp.OnclickButtonListener {
+class SimFormContactActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp.OnclickButtonListener {
     override fun getLayout(): Int { return R.layout.sim_form_booking_contact_view }
 
     val texts = ArrayList<TextView>()
@@ -30,8 +40,18 @@ class SimFormContactActivity : BaseActivity(),View.OnClickListener,ToolbarOpsico
         line_btn_mr.setOnClickListener(this)
         line_btn_mrs.setOnClickListener(this)
         line_btn_ms.setOnClickListener(this)
-        toolbar.callbackOnclickToolbar(this)
 
+        initToolbar()
+    }
+
+    private fun initToolbar() {
+        toolbar.hidenBtnCart()
+        toolbar.callbackOnclickToolbar(this)
+        toolbar.setDoubleTitle("Adult Passenger","Age 3 and older ")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            toolbar.doubleTitleGravity(CENTER)
+        }
+        toolbar.changeImageBtnBack(R.drawable.ic_close_white)
     }
 
     fun discardListener(view: View){

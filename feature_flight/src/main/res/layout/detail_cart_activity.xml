@@ -191,7 +191,57 @@
                             style="@style/RobotoBold"/>
 
                         <TextView
-                            android:id="@+id/total_night_room"
+                            android:id="@+id/total_pax"
+                            android:layout_marginTop="4dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/RobotoBold"
+                            android:textStyle="normal"
+                            android:textSize="10sp"
+                            android:textColor="#939396"
+                            android:text="Adult x1"/>
+                    </LinearLayout>
+                    <!--<TextView
+                        android:id="@+id/tv_total_price_flight1"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/RobotoBold"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:textColor="#d9000000"
+                        android:gravity="end"
+                        android:text="0 IDR "/>-->
+                </RelativeLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPriceItemDetail"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <!--<RelativeLayout
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/name_flight2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:textSize="14sp"
+                            android:textColor="#b324253d"
+                            android:text="Gajayana"
+                            style="@style/RobotoBold"/>
+
+                        <TextView
+                            android:id="@+id/total_pax2"
                             android:layout_marginTop="4dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -203,7 +253,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_total_price_flight1"
+                        android:id="@+id/tv_total_price_flight2"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,7 +336,7 @@
                         android:textColor="#d9000000"
                         android:gravity="end"
                         android:text="0  IDR "/>
-                </RelativeLayout>
+                </RelativeLayout>-->
 
             </LinearLayout>
 

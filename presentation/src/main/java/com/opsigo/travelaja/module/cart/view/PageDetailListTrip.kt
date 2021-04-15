@@ -23,6 +23,7 @@ import com.opsigo.travelaja.utility.Constants.PROGRESS_HOTEL_CALLBACK
 import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_CALLBACK
 import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_SAVED
 import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.utility.Globals.setLog
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.page_cart_list_detail_trip.view.*
 import opsigo.com.datalayer.mapper.Serializer
@@ -153,6 +154,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_FLIGHT,Serializer.serialize(data[position]))
+                setLog("Test Detail", Serializer.serialize(data))
                 Globals.gotoActivityModule(context,intent)
             }
         }

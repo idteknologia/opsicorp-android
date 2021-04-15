@@ -276,10 +276,18 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.3">
                     <ImageView
+                        android:id="@+id/arrowOneWay"
                         android:layout_gravity="center"
                         android:layout_width="18dp"
                         android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_one_way"/>
+                        android:src="@drawable/ic_arrow_one_way"
+                        android:visibility="gone"/>
+                    <ImageView
+                        android:id="@+id/arrowRoundTrip"
+                        android:layout_gravity="center"
+                        android:layout_width="18dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_arrow_roundtrip"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
