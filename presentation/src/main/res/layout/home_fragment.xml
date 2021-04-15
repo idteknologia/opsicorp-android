@@ -5,26 +5,11 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
         <LinearLayout
-            android:visibility="visible"
+            android:id="@+id/containerHome"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-
-            <include
-                layout="@layout/header_home"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/header_line">
-            </include>
+            android:layout_height="wrap_content">
 
 
             <!--<com.daimajia.slider.library.SliderLayout-->
@@ -43,18 +28,38 @@
             <!--            android:layout_height="224dp"-->
             <!--            android:emplaoyId="@+emplaoyId/image_header"/>-->
 
+            <include
+                android:id="@+id/header_line"
+                layout="@layout/header_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <include
+                android:id="@+id/secondContent"
+                layout="@layout/home_second_content"/>
+            <include
+                android:id="@+id/tripContent"
+                layout="@layout/home_schedule_content"/>
+            <include
+                android:id="@+id/thirdContent"
+                layout="@layout/home_third_content"/>
+            <include
+                android:id="@+id/fourthContent"
+                layout="@layout/home_fourth_content"/>
+
             <com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:id="@+id/lay_slider">
             </com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp>
-
-
             <LinearLayout
                 android:id="@+id/line_title_upcomming_flight"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="#ffffff">
 
                 <RelativeLayout
@@ -91,6 +96,7 @@
                  android:textSize="14sp"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content" />
+
              <LinearLayout
                  android:layout_marginLeft="20dp"
                  android:layout_marginRight="10dp"
@@ -101,16 +107,19 @@
                  android:orientation="horizontal"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content">
+
                  <ImageView
                      android:layout_margin="10dp"
                      android:src="@drawable/ic_office_green"
                      android:layout_width="@dimen/icon_width_home"
                      android:layout_height="@dimen/icon_height_home" />
+
                  <LinearLayout
                      android:layout_weight="1"
                      android:orientation="vertical"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content">
+
                      <TextView
                          android:textColor="#FF4A4A4A"
                          android:gravity="center"
@@ -119,15 +128,20 @@
                          android:text="@string/business_trip"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content" />
+
                  </LinearLayout>
+
                  <ImageView
                      android:layout_marginRight="10dp"
                      android:paddingRight="5dp"
                      android:src="@drawable/ic_chevron_next_orange"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content" />
+
              </LinearLayout>
+
              <LinearLayout
+
                  android:layout_marginTop="15dp"
                  android:visibility="gone"
                  android:emplaoyId="@+emplaoyId/layPersonalTrip1"
@@ -135,16 +149,19 @@
                  android:orientation="horizontal"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content">
+
                  <ImageView
                      android:layout_margin="10dp"
                      android:src="@drawable/ic_vacation"
                      android:layout_width="@dimen/icon_width"
                      android:layout_height="@dimen/icon_height" />
+
                  <LinearLayout
                      android:layout_weight="1"
                      android:orientation="vertical"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content">
+
                      <TextView
                          android:textColor="@color/personal_trip"
                          android:gravity="center"
@@ -154,12 +171,15 @@
                          android:text="@string/personal_trip"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content" />
+
                  </LinearLayout>
+
                  <ImageView
                      android:paddingRight="5dp"
                      android:src="@drawable/ic_chevron_next"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content" />
+
              </LinearLayout>
     -->
             <!-- <TextView
@@ -168,12 +188,14 @@
                  android:visibility="gone"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content" />
+
              <TextView
                  android:emplaoyId="@+emplaoyId/tvInfo"
                  android:visibility="gone"
                  android:text="info"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content" />
+
              <LinearLayout
                  android:layout_marginLeft="20dp"
                  android:layout_marginRight="10dp"
@@ -186,16 +208,19 @@
                  android:orientation="horizontal"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content">
+
                  <ImageView
                      android:layout_margin="10dp"
                      android:src="@drawable/ic_vacation_green"
                      android:layout_width="@dimen/icon_width_home"
                      android:layout_height="@dimen/icon_height_home" />
+
                  <LinearLayout
                      android:layout_weight="1"
                      android:orientation="vertical"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content">
+
                      <TextView
                          android:textColor="#FF4A4A4A"
                          android:gravity="center"
@@ -205,13 +230,16 @@
                          android:text="@string/personal_trip"
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content" />
+
                  </LinearLayout>
+
                  <ImageView
                      android:layout_marginRight="10dp"
                      android:paddingRight="5dp"
                      android:src="@drawable/ic_chevron_next_orange"
                      android:layout_width="wrap_content"
                      android:layout_height="wrap_content" />
+
              </LinearLayout>
     -->
 
@@ -235,6 +263,7 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
                     android:emplaoyId="@+emplaoyId/tvUpcomingLabel"
                     android:text="@string/upcoming_flights"
@@ -243,6 +272,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content" />
+
                 <TextView
                     android:visibility="invisible"
                     android:emplaoyId="@+emplaoyId/tv_showmore_cal"
@@ -251,7 +281,9 @@
                     android:layout_weight="0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
             </LinearLayout>
+
             <android.support.v7.widget.RecyclerView
                 android:emplaoyId="@+emplaoyId/rv_upcomming_flight"
                 android:layout_marginLeft="20dp"
@@ -261,14 +293,13 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:padding="0dp" />-->
-
-
             <RelativeLayout
                 android:id="@+id/line_title_family_time"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="15dp"
                 android:layout_marginTop="25dp"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -298,6 +329,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:overScrollMode="never"
                 android:id="@+id/rv_tour"
+                android:visibility="gone"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:layout_width="match_parent"
@@ -308,8 +340,4 @@
 
 
         </LinearLayout>
-    </LinearLayout>
-
-
-
 </androidx.core.widget.NestedScrollView>

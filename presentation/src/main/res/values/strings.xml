@@ -709,4 +709,19 @@ Please add your trip item for Approval."
     <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
     <string name="txt_welcome_back">Welcome Back!</string>
     <string name="txt_sign_in">Sign In</string>
+    <string name="txt_travelaja_basic">Travelaja Basic</string>
+    <string name="txt_premium_account">Premium Account</string>
+    <string name="txt_enjoy_the_new_exprience">Enjoy the new experince Personal Trip with Corporate policy benefits!</string>
+    <string name="txt_flight">Flight</string>
+    <string name="txt_train">Train</string>
+    <string name="txt_hotel">Hotel</string>
+    <string name="txt_updated_information_for">Updated information for Flight, Hotel and Train during Covid-19 pandemic.</string>
+    <string name="txt_read_more">Read More</string>
+    <string name="txt_important_notice">Important Notice !</string>
+    <string name="txt_wonderful_indonesia">Wonderful Indonesia</string>
+    <string name="txt_recommendations_guide_for_travel">Recommendations guide for travel destination</string>
+    <string name="txt_schedule">Schedule</string>
+    <string name="txt_all_business_trip_list_has_been_approved">All business trip list has been approved</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

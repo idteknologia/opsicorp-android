@@ -5,6 +5,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import okhttp3.MultipartBody
+import opsigo.com.domainlayer.model.trip.TripResult
 import retrofit2.http.POST
 
 interface UrlEndpoind {
@@ -86,6 +87,7 @@ interface UrlEndpoind {
                         @Query("CreatedDateFrom")dateFrom:String,
                         @Query("CreatedDateTo")TripDateTo:String)
             : Call<ResponseBody>
+
 
     @GET(MyURL.LIST_CART)
     fun getListCart(@Header("Authorization")token:String,

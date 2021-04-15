@@ -660,4 +660,8 @@ Please add your trip item for Approval."
     <string name="txt_content_travelaja_member">Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip.</string>
     <string name="txt_content_login_travel_aja">The new corporate travel management in Indonesia, seamless technology according your corporate travel policy.</string>
     <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
+    <string name="txt_enjoy_the_new_exprience">Enjoy the new experince Personal Trip with Corporate policy benefits!</string>
+    <string name="txt_updated_information_for">Updated information for Flight, Hotel and Train during Covid-19 pandemic.</string>
+    <string name="txt_recommendations_guide_for_travel">Recommendations guide for travel destination</string>
+    <string name="txt_all_business_trip_list_has_been_approved">All business trip list has been approved</string>
 </resources>

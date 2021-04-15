@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="17dp"
+    android:layout_marginBottom="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/tvLaboanBajo"
+        android:layout_width="155dp"
+        android:layout_height="42dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:src="@drawable/ic_labuan_bajo"/>
+
+    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+        android:id="@+id/itemContentSunset"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLaboanBajo" />
+
+    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+        android:id="@+id/itemContentPesona"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="17dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/itemContentSunset"
+        app:layout_constraintTop_toTopOf="@+id/itemContentSunset" />
+
+    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+        android:id="@+id/itemContentEksotisme"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="17dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintRight_toRightOf="@+id/itemContentSunset"
+        app:layout_constraintTop_toBottomOf="@+id/itemContentSunset"/>
+
+    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+        android:id="@+id/itemContentKeindahan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="@+id/itemContentPesona"
+        app:layout_constraintTop_toTopOf="@+id/itemContentEksotisme"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

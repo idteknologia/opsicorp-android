@@ -10,7 +10,7 @@ import com.opsigo.travelaja.module.home.model.UpcommingFlightModel
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_upcoming_event.view.*
 
-class UpcommingFlightAdapter (var context: Context, var items: ArrayList<UpcommingFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<UpcommingFlightAdapter.ViewHolder>() {
+class UpcommingFlightAdapter (var context: Context, var items: ArrayList<UpcommingFlightModel>): RecyclerView.Adapter<UpcommingFlightAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -60,7 +60,7 @@ class UpcommingFlightAdapter (var context: Context, var items: ArrayList<Upcommi
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
         init {
 

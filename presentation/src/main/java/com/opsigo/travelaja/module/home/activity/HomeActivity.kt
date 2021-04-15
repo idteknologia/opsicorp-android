@@ -2,6 +2,7 @@ package com.opsigo.travelaja.module.home.activity
 
 import android.content.Intent
 import android.view.View
+import androidx.core.os.bundleOf
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.approval.fragment.ApprovalFragment
@@ -20,7 +21,7 @@ import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.HolidayModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 
-class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
+class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 
     override fun getLayout(): Int {
         hideStatusBar()
@@ -34,6 +35,8 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
     var homeFragment        = HomeFragment()
     var manageTripFragment  = TestManageTripFragment()
     var myBookingFragment   = MyBookingFragment()
+
+    private var isSelectApprovedAll = false
 
     var positionPage = 0
 
@@ -177,8 +180,10 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
     }
 
     fun showApprovalFragment(){
+        approvalFragment.arguments = bundleOf(ApprovalFragment.OPEN_APPROVAL to isSelectApprovedAll)
         positionPage = 3
         loadFragment(approvalFragment,R.id.place_fragment)
+        isSelectApprovedAll = false
     }
 
     fun showProfileFragment(){
@@ -231,8 +236,14 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener{
         menu_bottom.setButtonSelectedPosition(0)
     }
 
-
-
+    override fun onClick(v: View?) {
+        if (v?.id == R.id.contentButtonSchedule){
+            menu_bottom.setButtonSelectedPosition(2)
+        }else if (v?.id == R.id.tvViewAll){
+            isSelectApprovedAll = true
+            menu_bottom.setButtonSelectedPosition(2)
+        }
+    }
 
 
 }

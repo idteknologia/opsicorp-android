@@ -23,13 +23,19 @@ class ApprovalFragment : BaseFragment()
 
 
     var dasboardPage = false
+    private var isOpenApproval = false
 
     override fun getLayout(): Int { return R.layout.approval_fragment }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
+        isOpenApproval = arguments?.getBoolean(OPEN_APPROVAL) ?: false
         checkPositionAmployer()
         searchData()
         line_list_approval.setInitCallback(this)
+        if (isOpenApproval){
+            showListApprofal(line_dasboard.dateFrom,line_dasboard.dateTo,2,"")
+        }
+
     }
 
     private fun checkPositionAmployer() {
@@ -181,5 +187,7 @@ class ApprovalFragment : BaseFragment()
         }
     }
 
-
+    companion object {
+        const val OPEN_APPROVAL = "IS_OPEN_APPROVAL"
+    }
 }
