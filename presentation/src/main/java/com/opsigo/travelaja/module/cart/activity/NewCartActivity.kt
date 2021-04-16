@@ -37,7 +37,6 @@ import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import opsigo.com.domainlayer.callback.*
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.ItemFlightModel
 import java.text.SimpleDateFormat
@@ -337,11 +336,13 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardFlight.timeDeparture = it.timeDeparture
                 model.dataCardFlight.price = it.price
                 model.dataCardFlight.priceItem = it.priceItem
+                model.dataCardFlight.flightSegmentItem = it.flightSegmentItem
 
                 model.dataCardFlight.classFlight = it.classFlight
                 model.dataCardFlight.codeFlight = it.pnrCode
-                model.dataCardFlight.departureFlight = it.originDeatination.split("-")[0]
-                model.dataCardFlight.arrivalFlight = it.originDeatination.split("-")[1]
+                model.dataCardFlight.departureFlight = it.originDestination
+                model.dataCardFlight.arrivalFlight = it.nextDestination
+
                 model.dataCardFlight.departure = it.origin
                 model.dataCardFlight.arrival = it.destination
                 model.dataCardFlight.airportDeparture = it.airportDeparture

@@ -1,5 +1,6 @@
 package com.opsigo.travelaja.module.cart.model
 
+import opsigo.com.domainlayer.model.summary.FlightSegmentItem
 import opsigo.com.domainlayer.model.summary.PaymentsItemModel
 
 class ItemCardFlightModel{
@@ -32,6 +33,7 @@ class ItemCardFlightModel{
 
     var price       = ""
     var priceItem : ArrayList<PaymentsItemModel> = ArrayList()
+    var flightSegmentItem : ArrayList<FlightSegmentItem> = ArrayList()
 
     var isComply    = false
 

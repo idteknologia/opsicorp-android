@@ -67,12 +67,12 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
                 setCheckRadioButton(radiobutton,2)
             }
 
-            /*if (position==(items.size-1)){
+            if (position==(items.size-1)){
                 itemView.line_vertical.visibility = View.GONE
             }
             else{
                 itemView.line_vertical.visibility = View.VISIBLE
-            }*/
+            }
 
 
             if (!data.idcart.fullname.isEmpty()){
@@ -83,6 +83,7 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
                 itemView.name_passanger_by_ktp.text      = data.idcart.fullname
                 itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
             }
+
 
             if (!data.pasport.firstName.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))

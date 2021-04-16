@@ -1,6 +1,5 @@
 package com.opsigo.travelaja.module.home.presenter
 
-import FakeHomeRepository
 import android.content.Context
 import androidx.lifecycle.*
 import com.opsigo.travelaja.module.home.repository.HomeDefaultRepository
@@ -61,7 +60,8 @@ class DefaultViewModelFactory(private val isFake: Boolean, private val context: 
         if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
             val api = ServiceApi.createRequest(context)
             val repository: HomeRepository = if (isFake) {
-                FakeHomeRepository(context)
+                /*FakeHomeRepository(context)*/
+                HomeDefaultRepository(api)
             } else {
                 HomeDefaultRepository(api)
             }

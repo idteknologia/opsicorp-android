@@ -151,7 +151,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_FLIGHT -> {
-                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartActivity"))
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartFlightActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_FLIGHT,Serializer.serialize(data[position]))
                 setLog("Test Detail", Serializer.serialize(data))

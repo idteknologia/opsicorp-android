@@ -6,7 +6,8 @@ class ItemFlightModel{
     var typeView    = ""
     var imageFlight = ""
 
-    var originDeatination = ""
+    var originDestination = ""
+    var nextDestination = ""
 
     var num = 0
     var seq = 0

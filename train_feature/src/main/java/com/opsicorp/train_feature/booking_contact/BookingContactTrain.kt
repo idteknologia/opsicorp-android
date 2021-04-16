@@ -62,7 +62,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         mDataBooker.typeContact = Constants.ADULT
         mDataBooker.sim         = getSimDataBooker()
         mDataBooker.pasport     = getPassportDataBooker()
-        mDataBooker.idcart      = getDataIdCartBooker()
+        mDataBooker.idcard      = getDataIdCartBooker()
         dataContacts.add(mDataBooker)
 
         if(dataOrder.adult>1){

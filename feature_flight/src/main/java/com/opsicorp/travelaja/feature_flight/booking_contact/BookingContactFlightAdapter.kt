@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.*
-import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.travelaja.feature_flight.R
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
@@ -106,7 +105,7 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
                 itemView.line_vertical_aaditional.visible()
             }
 
-            itemView.name_passanger_by_ktp.text      = data.idcart.fullname
+            itemView.name_passanger_by_ktp.text      = data.idcard.fullname
             if (!data.pasport.firstName.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(ContextCompat.getColor(context,R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.firstName
@@ -138,31 +137,34 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
             }
 
 
+            if (datalist.dataFlight.size > 1){
+                if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
+                    itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
+                    itemView.tvBaggageTotalSelect.text = datalist.dataFlight[position].dataSSR.bagaggeItemSelected[position].ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
+                    itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+                } else {
+                    itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
+                    itemView.tvBaggageTotalSelect.text = "0 Kg"
+                    itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
+                }
 
-            if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
-                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
-                itemView.tvBaggageTotalSelect.text = datalist.dataFlight[0].dataSSR.bagaggeItemSelected[0].ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
-                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
-            } else {
-                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
-                itemView.tvBaggageTotalSelect.text = "0 Kg"
-                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
-            }
+                if (!datalist.dataFlight[position].dataSSR.ssrSelected.isNullOrEmpty()){
+                    itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
+                    itemView.tvSsrTotalSelect.text = "${datalist.dataFlight[position].dataSSR.ssrSelected.size} Selected"
+                    itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+                } else {
+                    itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
+                    itemView.tvSsrTotalSelect.text = "Meals, etc"
+                    itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
+                }
 
-            if (!datalist.dataFlight[position].dataSSR.ssrSelected.isNullOrEmpty()){
-                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
-                itemView.tvSsrTotalSelect.text = "${datalist.dataFlight[position].dataSSR.ssrSelected.size} Selected"
-                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+                if (datalist.dataFlight[position].titleAirline.equals("Garuda Indonesia")){
+                    itemView.card_frequency_flayer.visible()
+                } else {
+                    itemView.card_frequency_flayer.gone()
+                }
             } else {
-                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
-                itemView.tvSsrTotalSelect.text = "Meals, etc"
-                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
-            }
 
-            if (datalist.dataFlight[position].titleAirline.equals("Garuda Indonesia")){
-                itemView.card_frequency_flayer.visible()
-            } else {
-                itemView.card_frequency_flayer.gone()
             }
 
             if (itemView.card_baggage.visibility.equals(0)||itemView.card_ssr.visibility.equals(0)||itemView.card_frequency_flayer.visibility.equals(0)){
