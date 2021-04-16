@@ -42,6 +42,7 @@ class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
     lateinit var lineChildern : RelativeLayout
     var style = 0
 
+    @SuppressLint("WrongConstant")
     override fun onMain(fragment: View) {
 
         if (style!=0){
@@ -83,10 +84,10 @@ class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
         changeTotalView()
 
         if (isChildern) {
-            lineBottomSheet.visibility = View.VISIBLE
+            lineChildern.visibility = View.VISIBLE
         }
         else {
-            lineBottomSheet.visibility = View.GONE
+            lineChildern.visibility = View.GONE
         }
     }
 

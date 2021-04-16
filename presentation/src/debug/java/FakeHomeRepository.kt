@@ -11,8 +11,8 @@ class FakeHomeRepository(private val context: Context) : HomeRepository {
     private var isError = false
 
     init {
-        val resultStr = TestUtil.jsonFromRaw(context, R.raw.trip_schedule)
-        result = Gson().fromJson(resultStr,TripResult::class.java)
+//        val resultStr = TestUtil.jsonFromRaw(context, R.raw.trip_schedule)
+        result = Gson().fromJson("",TripResult::class.java)
     }
 
     override suspend fun getTrip(query: MutableMap<String, String>): Result<TripResult> {

@@ -143,32 +143,17 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         dataOrder.originStationName      = tv_from.text.toString()
         dataOrder.destinationStationName = tv_to.text.toString()
         dataOrder.totalPassengerString = tv_passanger.text.toString()
-        Constants.tipeTrip       = typeTrip
-        setLog("typeee "+typeTrip)
-//        dataOrder.airlinePreferance = tv_airline_prreferance.text.toString()
+        dataOrder.adult           = totalAdult
+        dataOrder.child           = totalChild
+        dataOrder.infant          = totalInfant
 
         Constants.DATA_ORDER_TRAIN = Serializer.serialize(dataOrder,OrderAccomodationModel::class.java)
 
         Globals.typeAccomodation    = "Train"
         Constants.DATA_LIST_TRAIN   = ""
-        gotoActivityModule(context!!,Constants.BASE_PACKAGE_TRAIN+"result.ResultSearchTrainActivity")
+        gotoActivityModule(requireContext(),Constants.BASE_PACKAGE_TRAIN+"result.ResultSearchTrainActivity")
     }
 
-    /*private fun checkData() {
-        val data = Serializer.deserialize(Globals.DATA_ORDER_TRAIN, OrderAccomodationModel::class.java)
-
-        setLog(" ==============:: ")
-        setLog("start destination")
-        setLog(idOrigin)
-        setLog(idDestination)
-        setLog("start origin")
-        setLog(data.dateArrival)
-        setLog("start date")
-        setLog(data.dateDeparture)
-
-        setLog(Globals.DATA_ORDER_TRAIN)
-    }
-*/
     override fun startDate(displayStartDate: String, startDate: String) {
         tv_departur_date.text = displayStartDate
         this.startDate = startDate
@@ -229,18 +214,18 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     private fun openCalendar() {
         if (Globals.ONE_TRIP){
             if(Constants.isBisnisTrip) {
-                NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
             }
             else {
-                NewCalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",this.startDate,this.endDate, Constant.SINGGLE_SELECTED)
+                NewCalendarViewOpsicorp().showCalendarView(requireActivity(),"yyyy-MM-dd",this.startDate,this.endDate, Constant.SINGGLE_SELECTED)
             }
         }
         else{
             if(Constants.isBisnisTrip) {
-                NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
             }
             else {
-                NewCalendarViewOpsicorp().showCalendarView(activity!!,"yyyy-MM-dd",this.startDate,this.endDate, Constant.DOUBLE_SELECTED)
+                NewCalendarViewOpsicorp().showCalendarView(requireActivity(),"yyyy-MM-dd",this.startDate,this.endDate, Constant.DOUBLE_SELECTED)
             }
         }
     }
