@@ -184,7 +184,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         mDataBooker.typeContact = Constants.ADULT
         mDataBooker.sim         = getSimDataBooker()
         mDataBooker.pasport     = getPassportDataBooker()
-        mDataBooker.idcart      = getDataIdCartBooker()
+        mDataBooker.idcard      = getDataIdCartBooker()
         dataContacts.add(mDataBooker)
 
         val dataProfile = getProfile()

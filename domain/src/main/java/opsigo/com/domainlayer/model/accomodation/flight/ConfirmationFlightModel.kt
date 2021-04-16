@@ -1,6 +1,7 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
+import opsigo.com.domainlayer.model.summary.FlightSegmentItem
 
 class ConfirmationFlightModel {
 
@@ -37,7 +38,7 @@ class ConfirmationFlightModel {
 
     var notcomply      = false
 
-
+    var flightSegmentItem : ArrayList<FlightSegmentItem> = ArrayList()
     var dataReasonCode = ReasonCodeModel()
 
 }

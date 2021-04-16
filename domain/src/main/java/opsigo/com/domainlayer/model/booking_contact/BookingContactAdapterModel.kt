@@ -6,7 +6,7 @@ import opsigo.com.domainlayer.model.summary.PassportModel
 class BookingContactAdapterModel {
     var typeContact = ""
     var checktype   = ""
-    var idcart      = IdCartModel()
+    var idcard      = IdCartModel()
     var pasport     = PassportModel()
     var sim         = SimModel()
     var infantID    = InfantIdModel()

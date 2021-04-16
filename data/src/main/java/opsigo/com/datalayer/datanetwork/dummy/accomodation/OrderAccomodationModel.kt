@@ -18,6 +18,7 @@ class OrderAccomodationModel {
     var airlinePreference     = ""
     var totalPassengerString   = ""
     var totalPassengerInt     = ""
+    var totalPassenger     = 0
     var originStationName             = ""
     var destinationStationName       = ""
     var reasonCode = ""

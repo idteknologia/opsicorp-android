@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:textColor="#91929e"
-                android:text="Age 3 and older"
+                android:text="Age 5 and older"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -475,7 +475,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:visibility="visible"
+                android:visibility="gone"
                 android:layout_margin="5dp"
                 android:id="@+id/card_frequency_flayer"
                 android:layout_width="90dp"

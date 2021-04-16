@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.detail_cart_activity.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 
-class DetailCartActivity : BaseActivity() {
+class DetailCartFlightActivity : BaseActivity() {
 
     val data = ArrayList<ConfirmationFlightModel>()
     val adapter by lazy { DetailCartAdapter(this, data) }
@@ -49,48 +49,54 @@ class DetailCartActivity : BaseActivity() {
     private fun setDataDetail() {
         data.clear()
         val dataFlight                = dataOrder.dataCardFlight
+        dataOrder.dataCardFlight.flightSegmentItem.forEach {
 
-        val mData                    = ConfirmationFlightModel()
-        mData.pnr_code               = dataFlight.pnrCode
-        mData.status                 = dataFlight.status
-        mData.title_flight            = dataFlight.titleFlight
-        mData.class_type             = dataFlight.classFlight
-        mData.airlineNumber          = dataFlight.flightNumber
-        mData.img_airline            = dataFlight.imageFlight
-        mData.number_sheet           = dataFlight.numberSheet
+            val mData                    = ConfirmationFlightModel()
 
-        mData.timeDeparture          = dataFlight.timeDeparture
-        mData.dateDeparture          = dataFlight.dateDeparture
-        mData.line_total_duration    = dataFlight.duration
+            mData.pnr_code               = dataFlight.pnrCode
+            mData.status                 = dataFlight.status
+            mData.title_flight            = dataFlight.titleFlight
+            mData.class_type             = dataFlight.classFlight
+            mData.airlineNumber          = dataFlight.flightNumber
+            mData.img_airline            = dataFlight.imageFlight
+            mData.number_sheet           = dataFlight.numberSheet
 
-        mData.time_arrival           = dataFlight.timeArrival
-        mData.date_arrival           = dataFlight.dateArrival
+            mData.timeDeparture          = dataFlight.timeDeparture
+            mData.dateDeparture          = dataFlight.dateDeparture
+            mData.line_total_duration    = dataFlight.duration
 
-        mData.depatureAirportName         = dataFlight.airportDeparture
-        mData.arrivalAirportName           = dataFlight.airportArrival
+            mData.time_arrival           = dataFlight.timeArrival
+            mData.date_arrival           = dataFlight.dateArrival
 
-        mData.notcomply              = false
-        mData.name_stationDeparture = dataFlight.stationOrigin
-        mData.name_stationArrival   = dataFlight.stationDestination
+            mData.depatureAirportName         = dataFlight.airportDeparture
+            mData.arrivalAirportName           = dataFlight.airportArrival
 
-        mData.totalPassenger         = if ("".isEmpty()) "Adult x 1" else ""
-        mData.totalPrice            = dataFlight.price
+            mData.notcomply              = false
+            mData.name_stationDeparture = dataFlight.stationOrigin
+            mData.name_stationArrival   = dataFlight.stationDestination
 
-        data.add(mData)
+            mData.totalPassenger         = if ("".isEmpty()) "Adult x 1" else ""
+            mData.totalPrice            = dataFlight.price
 
-        if (mData.notcomply){
-            line_reason_code.visibility = View.VISIBLE
-            tv_reason_code.text = mData.dataReasonCode.codeBrief
-            tv_reason_code_desc.text = mData.dataReasonCode.description
+            data.add(mData)
+
+            if (mData.notcomply){
+                line_reason_code.visibility = View.VISIBLE
+                tv_reason_code.text = mData.dataReasonCode.codeBrief
+                tv_reason_code_desc.text = mData.dataReasonCode.description
+            }
+            else {
+                line_reason_code.visibility = View.GONE
+            }
+
+            setTotalPrice(mData)
         }
-        else {
-            line_reason_code.visibility = View.GONE
-        }
+
 
         adapter.setData(data)
         adapter2.setData(dataOrder.dataCardFlight.priceItem)
         
-        setTotalPrice(mData)
+
     }
 
     private fun setTotalPrice(mData: ConfirmationFlightModel) {

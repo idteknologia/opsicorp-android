@@ -24,12 +24,78 @@ class ListParticipantsDataMapper {
                     mData.flights.filter { it?.employeeId == data?.employeeId }.first()?.tripFlights?.forEachIndexed { index, tripFlightsItem ->
 
                         var num = 0
+                        val dataFlight  = ItemFlightModel()
+
+                        dataFlight.typeView         = tripFlightsItem!!.flightTypeView.toString()
+                        dataFlight.type             = tripFlightsItem.flightType
+
+                        dataFlight.airlineName      = tripFlightsItem.airlineView.toString()//"Sriwijaya"
+
+                        //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
+
+                        dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
+
+
+                        dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
+                        dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
+
+
+                        dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
+
+
+                        tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
+                            dataFlight.priceItem.add(priceMapperData(paymentsItem))
+                        }
+
+                        tripFlightsItem.segments?.forEachIndexed { index, segmentsItem ->
+                            dataFlight.imageFlight      = segmentsItem!!.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
+                            dataFlight.originDestination = segmentsItem.originName+" - "+segmentsItem.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
+                            dataFlight.nextDestination = segmentsItem.destinationName+" - "+segmentsItem.originName
+                            dataFlight.idFlight         = segmentsItem.tripFlightId.toString()//"Sriwijaya"
+                            dataFlight.flightNumber     = segmentsItem.flightNumber.toString()//"SJ-0412"
+                            dataFlight.seatNumber       = segmentsItem.flightNumber.toString()
+
+                            dataFlight.classFlight      = segmentsItem.category + " Class"
+                            dataFlight.subClass         = "Subclass-" + segmentsItem.classCode.toString()
+
+                            dataFlight.num              = segmentsItem.num
+                            dataFlight.seq              = segmentsItem.seq
+
+                            //departure
+                            dataFlight.origin           = segmentsItem.origin.toString()
+                            dataFlight.originName       = segmentsItem.cityOrigin.toString()
+                            dataFlight.airportDeparture = segmentsItem.airportOrigin.toString()
+                            dataFlight.dateDeparture    = segmentsItem.departDate.toString()
+
+                            dataFlight.timeDeparture    = segmentsItem.departTime.toString()
+
+                            //arrival
+                            dataFlight.destination      = segmentsItem.destination.toString()
+                            dataFlight.destinationName  = segmentsItem.cityDestination.toString()
+                            dataFlight.airportArrival   = segmentsItem.airportDestination.toString()
+                            dataFlight.dateArrival      = segmentsItem.arriveDate.toString()
+                            dataFlight.timeArrival      = segmentsItem.arriveTime.toString()
+
+                            dataFlight.isComply         = segmentsItem.isComply
+                            dataFlight.duration         = segmentsItem.duration.toString()
+                        }
+
+                        dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
+
+
+                        dataFlightModel.add(dataFlight)
+                        num++
+
                         tripFlightsItem?.segments?.forEachIndexed { _, segmentFlightEntity ->
 
                             if (num==segmentFlightEntity?.num){
-                                val dataFlight  = ItemFlightModel()
 
-                                dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
+
+                                dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
+
+                                /*val dataFlight  = ItemFlightModel()*/
+
+                                /*dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
                                 dataFlight.type             = tripFlightsItem.flightType
 
                                 dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
@@ -77,14 +143,10 @@ class ListParticipantsDataMapper {
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
 
-                                tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
-                                    dataFlight.priceItem.add(priceMapperData(paymentsItem))
-                                }
-
                                 dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
                                 dataFlightModel.add(dataFlight)
-                                num++
+                                num++ */
 
                             }
                             else{

@@ -1,7 +1,6 @@
 package com.opsicorp.train_feature.booking_contact
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -74,7 +73,7 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
                 itemView.line_vertical.visibility = View.VISIBLE
             }
 
-            itemView.name_passanger_by_ktp.text      = data.idcart.fullname
+            itemView.name_passanger_by_ktp.text      = data.idcard.fullname
             if (!data.pasport.firstName.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.firstName

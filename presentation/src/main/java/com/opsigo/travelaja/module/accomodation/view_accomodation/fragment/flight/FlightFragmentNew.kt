@@ -492,6 +492,7 @@ class FlightFragmentNew : BaseFragment(),
             dataOrder.adult = totalAdult
             dataOrder.child = totalChild
             dataOrder.infant = totalInfant
+            dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
             dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
 
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
