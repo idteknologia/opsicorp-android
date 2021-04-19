@@ -37,6 +37,8 @@ import com.opsigo.travelaja.R
 import java.lang.Exception
 import android.view.View
 import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.core.view.size
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.utility.Globals.getDateNow
 import com.opsigo.travelaja.utility.Globals.getDateNowNewFormat
@@ -388,12 +390,10 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             itemView.tv_subclass_cart.text                  = data.subClass
             itemView.tv_flight_number.text                  = data.flightNumber
 
-            if (data.typeFlight==0){
-                itemView.arrowOneWay.visible()
-                itemView.arrowRoundTrip.gone()
+            if (itemView.cvCartFlight.size > 1){
+                itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
             } else {
-                itemView.arrowRoundTrip.visible()
-                itemView.arrowOneWay.gone()
+                itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_roundtrip))
             }
 
             if (data.numberSheet.isEmpty()) {

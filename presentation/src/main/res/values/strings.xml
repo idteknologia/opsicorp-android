@@ -51,7 +51,7 @@
     <string name="contact_information">Contact Information</string>
     <string name="contact_information_caps">CONTACT INFORMATION</string>
     <string name="attachment_files_">Attachment Files : </string>
-    <string name="add_attachment">Add Attachment</string>
+    <string name="add_attachment">+ Add Attachment</string>
     <string name="pdf_file">PDF File</string>
     <string name="image_file">Image File</string>
 
@@ -724,4 +724,8 @@ Please add your trip item for Approval."
     <string name="txt_all_business_trip_list_has_been_approved">All business trip list has been approved</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="domestic_internation_trip">Domestic / Internation Trip</string>
+    <string name="desc_domestic">You already activate Domestic Trip</string>
+    <string name="traveling_purpose">Traveling Purpose</string>
+    <string name="activity_type">Activity Type</string>
 </resources>

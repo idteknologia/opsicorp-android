@@ -86,7 +86,7 @@ class ListParticipantsDataMapper {
                         dataFlightModel.add(dataFlight)
                         num++
 
-                        tripFlightsItem?.segments?.forEachIndexed { _, segmentFlightEntity ->
+                        tripFlightsItem.segments?.forEachIndexed { _, segmentFlightEntity ->
 
                             if (num==segmentFlightEntity?.num){
 

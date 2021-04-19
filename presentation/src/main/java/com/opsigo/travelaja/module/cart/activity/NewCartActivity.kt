@@ -335,6 +335,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardFlight.isComply = it.isComply
                 model.dataCardFlight.timeDeparture = it.timeDeparture
                 model.dataCardFlight.price = it.price
+
                 model.dataCardFlight.priceItem = it.priceItem
                 model.dataCardFlight.flightSegmentItem = it.flightSegmentItem
 

@@ -10,6 +10,7 @@ import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.detail_cart_activity.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
+import opsigo.com.domainlayer.model.summary.PaymentsItemModel
 
 class DetailCartFlightActivity : BaseActivity() {
 
@@ -48,9 +49,8 @@ class DetailCartFlightActivity : BaseActivity() {
 
     private fun setDataDetail() {
         data.clear()
-        val dataFlight                = dataOrder.dataCardFlight
-        dataOrder.dataCardFlight.flightSegmentItem.forEach {
 
+            val dataFlight                = dataOrder.dataCardFlight
             val mData                    = ConfirmationFlightModel()
 
             mData.pnr_code               = dataFlight.pnrCode
@@ -90,12 +90,9 @@ class DetailCartFlightActivity : BaseActivity() {
             }
 
             setTotalPrice(mData)
-        }
-
 
         adapter.setData(data)
         adapter2.setData(dataOrder.dataCardFlight.priceItem)
-        
 
     }
 
