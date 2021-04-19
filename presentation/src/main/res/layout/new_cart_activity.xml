@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:visibility="gone"
                 android:layout_below="@+id/button_switch"
-                android:id="@+id/list_order_personal_trip"
+                android:id="@+id/page_detail_personal_trip"
                 android:layout_height="match_parent">
 
             </com.opsigo.travelaja.module.cart.view.PageDetailPersonalTrip>

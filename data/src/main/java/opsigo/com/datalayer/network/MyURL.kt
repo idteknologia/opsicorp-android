@@ -90,5 +90,11 @@ object MyURL {
     const val CONFIRMATION_OTP     = "api/Account/ValidateToken"
     const val COMPLITELY_REGISTER  = "api/Account/ConfirmCorporate"
 
+    //trip plan request
+    const val ACTIVITY_TYPE         = "api/Lookup/ActivityType"
+    const val GET_ESTIMATED_COST    = "apiv1/GetEstimatedCost"
+    const val SUBMIT_TRAVEL_REQUEST = "api/TripPlan/SubmitTravelRequest"
+    const val APPROVE_ALL_TRIP      = "api/TripPlan/ApprovalAct"
+    const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
 
 }

@@ -10,6 +10,7 @@ import opsigo.com.domainlayer.model.accomodation.train.ReservationTrainModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 import opsigo.com.datalayer.request_model.accomodation.train.reservation.*
+import kotlinx.android.synthetic.main.booking_contact_train_view.*
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
@@ -22,12 +23,15 @@ import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
+import com.opsicorp.train_feature.R
 import android.content.Intent
 import android.app.Activity
 import android.view.View
 import android.os.Build
-import com.opsicorp.train_feature.R
-import kotlinx.android.synthetic.main.booking_contact_train_view.*
+import android.os.Bundle
+import com.opsigo.travelaja.module.profile.KtpCardFormActivity
+import com.opsigo.travelaja.module.profile.PassportFormActivity
+import com.opsigo.travelaja.module.profile.SimFormContactActivity
 
 class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -35,27 +39,29 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     override fun getLayout(): Int { return R.layout.booking_contact_train_view }
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
+    lateinit var dataOrder: OrderAccomodationModel
     val adapter by lazy { BookingContactTrainAdapter(this,dataContacts) }
 
     override fun OnMain() {
         initRecyclerView()
-        setDataContact()
         initPrize()
         initToolbar()
+        setDataContact()
     }
 
     private fun initToolbar() {
-        val dataOrder = Serializer.deserialize(Constants.DATA_ORDER_TRAIN, OrderAccomodationModel::class.java)
+        dataOrder = Serializer.deserialize(Constants.DATA_ORDER_TRAIN, OrderAccomodationModel::class.java)
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
         val dateDeparture = if (dataOrder.dateDeparture.contains(" ")) dataOrder.dateDeparture.split(" ")[0] else dataOrder.dateDeparture
-        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","${DateConverter().getDate(dateDeparture,"yyyy-MM-dd","EEE, dd MMM |")} 1 adult") //- 1 pax , ${dataOrder.dateArrival}
+        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","${DateConverter().getDate(dateDeparture,"yyyy-MM-dd","EEE, dd MMM |")} ${dataOrder.totalPassengerString} adult") //- 1 pax , ${dataOrder.dateArrival}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.doubleTitleGravity(toolbar.START)
         }
     }
 
     private fun setDataContact() {
+
         val mDataBooker = BookingContactAdapterModel()
         mDataBooker.typeContact = Constants.ADULT
         mDataBooker.sim         = getSimDataBooker()
@@ -63,12 +69,37 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         mDataBooker.idcard      = getDataIdCartBooker()
         dataContacts.add(mDataBooker)
 
+        if(dataOrder.adult>1){
+            for (i in 0 until dataOrder.adult-1){
+                val mDataAdult = BookingContactAdapterModel()
+                mDataAdult.typeContact = Constants.ADULT
+                dataContacts.add(mDataAdult)
+            }
+        }
+        if(dataOrder.infant>0){
+            for (i in 0 until dataOrder.infant){
+                val mDataInfant = BookingContactAdapterModel()
+                mDataInfant.typeContact = Constants.INFANT
+                dataContacts.add(mDataInfant)
+            }
+        }
+        if(dataOrder.child>0){
+            for (i in 0 until dataOrder.child){
+                val mDataChild = BookingContactAdapterModel()
+                mDataChild.typeContact = Constants.CHILD
+                dataContacts.add(mDataChild)
+            }
+        }
+
+        adapter.notifyDataSetChanged()
+        contactInformationView()
+    }
+
+    private fun contactInformationView() {
         val dataProfile = getProfile()
         tv_name_contact.text        = dataProfile.name
         tv_number_contact.text      = formatNumberListener(dataProfile.homePhone)
         tv_email_contact.text       = dataProfile.email
-
-        adapter.notifyDataSetChanged()
     }
 
     private fun formatNumberListener(string: String): String {
@@ -98,7 +129,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
 
     private fun getPassportDataBooker(): PassportModel {
         val model = PassportModel()
-        model.firstName = getProfile().firstName
+        model.firstName = getProfile().name
         model.id        = getProfile().employId
         model.number    = getProfile().passport
         return model
@@ -179,15 +210,15 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         when(views){
             Constants.BTN_SIM       -> {
                 dataContacts[position].checktype = "SIM"
-//                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
+                gotoActivityResult(SimFormContactActivity::class.java,Constants.BTN_SIM)
             }
             Constants.BTN_PASSPORT  -> {
                 dataContacts[position].checktype = "PASSPORT"
-//                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
+                gotoActivityResult(PassportFormActivity::class.java,Constants.BTN_PASSPORT)
             }
             Constants.BTN_ID_CART   -> {
                 dataContacts[position].checktype = "KTP"
-//                gotoActivityResult(KtpCardFormActivity::class.java,Constants.BTN_ID_CART)
+                gotoActivityResult(KtpCardFormActivity::class.java,Constants.BTN_ID_CART)
             }
         }
     }
@@ -214,35 +245,38 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun seatMapListener(view: View){
-        getReservased(true)
+//        getReservased()
     }
 
     override fun onClicked() {
-        getReservased(false)
+        getReservased()
     }
 
-    fun getReservased(setSeatMap: Boolean){
-//        setLog(Serializer.serialize(getDataTrain()))
+    fun getReservased(){
         showLoadingOpsicorp(true)
         GetDataAccomodation(getBaseUrl()).getReservationTrain(Globals.getToken(),getDataTrain(),object : CallbackReservationTrain {
             override fun successLoad(data: ReservationTrainModel) {
-                gotoNewCart(data.idTrip,setSeatMap)
+                gotoNewCart(data.idTrip)
             }
 
             override fun failedLoad(message: String) {
+                showAllert("Sorry",message)
                 hideLoadingOpsicorp()
             }
         })
     }
 
-    private fun gotoNewCart(idTrip: String,setSeatMap:Boolean) {
-        if (setSeatMap){
-            //gotoActivity(SeatActivity::class.java)
+    private fun gotoNewCart(idTrip: String) {
+        val bundle = Bundle()
+        if (Constants.isBisnisTrip){
+            bundle.putString(Constants.ID_TRIP_PLANE,idTrip)
+            bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
         }
         else {
-            hideLoadingOpsicorp()
-            Constants.ID_BOOKING_TEMPORARY = idTrip
-            gotoActivity(NewCartActivity::class.java)
+            bundle.putString(Constants.ID_TRIP_PLANE,idTrip)
+            bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
         }
         hideLoadingOpsicorp()
     }
@@ -384,7 +418,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         header.type = 2
         header.tripParticipants= tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
-        header.idTripPlan = dataTrip.idTripPlant
+        header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan  = dataTrip.tripCode
         header.purpose = dataTrip.purpose
 
@@ -395,7 +429,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         val data = SuccessCreateTripPlaneModel()
 
         data.purpose          = "Meeting"
-        data.idTripPlant      = "91a7f32c-53b9-4ffb-9e0d-39768d95a586"
+        data.idTripPlane      = "91a7f32c-53b9-4ffb-9e0d-39768d95a586"
         data.status           = "Draft"
         data.tripCode         = "TP202003040001"
         data.createDate       = "2020-03-04 09:44:57"

@@ -22,7 +22,7 @@ class TrainShortByDialog(var context: Context) {
     var alertDialog: AlertDialog? = null
     val data = ArrayList<String>()
     var currentSort = 0
-    lateinit var recyclerView : androidx.recyclerview.widget.RecyclerView
+    lateinit var recyclerView : RecyclerView
     lateinit var background: RelativeLayout
     val adapterShortBy by lazy { TrainShorByAdapter(context,data) }
     lateinit var callbackDialog : CallbackDialog

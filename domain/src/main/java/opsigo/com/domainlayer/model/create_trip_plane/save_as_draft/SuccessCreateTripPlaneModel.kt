@@ -2,7 +2,7 @@ package opsigo.com.domainlayer.model.create_trip_plane.save_as_draft
 
 class SuccessCreateTripPlaneModel {
     var purpose     = ""
-    var idTripPlant = ""
+    var idTripPlane = ""
     var status      = ""
     var tripCode    = ""
     var createDate  = ""

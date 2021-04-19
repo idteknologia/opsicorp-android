@@ -28,6 +28,7 @@ import android.content.Intent
 import android.app.Activity
 import android.view.View
 import android.os.Build
+import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -352,11 +353,11 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
             override fun successLoad(data: ReserveFlightModel) {
                 hideLoadingOpsicorp()
-                Constants.ID_BOOKING_TEMPORARY = data.idTrip
-                setLog("-----------##################---------------")
-                setLog(Serializer.serialize(data))
                 if (data.errorMessage.equals("")) {
-                    gotoActivity(NewCartActivity::class.java)
+                    val bundle = Bundle()
+                    bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
+                    bundle.putString(Constants.ID_TRIP_PLANE,data.idTrip)
+                    gotoActivityWithBundle(NewCartActivity::class.java,bundle)
                 } else {
                     showAllert("error", data.errorMessage)
                 }
@@ -652,7 +653,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         header.type = 2
         header.tripParticipants = tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
-        header.idTripPlan = dataTrip.idTripPlant
+        header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
         if (dataTrip.purpose.equals("-")) {

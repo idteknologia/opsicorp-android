@@ -14,8 +14,7 @@ import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 
 
 @SuppressLint("ValidFragment")
-class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
-
+class SelectTotalPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
 
     override fun getLayout(): Int {
         return R.layout.fragment_bottom_sheet
@@ -42,6 +41,7 @@ class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
     lateinit var lineChildern : RelativeLayout
     var style = 0
 
+    @SuppressLint("WrongConstant")
     override fun onMain(fragment: View) {
 
         if (style!=0){
@@ -83,10 +83,10 @@ class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.Onc
         changeTotalView()
 
         if (isChildern) {
-            lineBottomSheet.visibility = View.VISIBLE
+            lineChildern.visibility = View.VISIBLE
         }
         else {
-            lineBottomSheet.visibility = View.GONE
+            lineChildern.visibility = View.GONE
         }
     }
 

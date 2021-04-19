@@ -73,7 +73,6 @@
             android:layout_height="36dp"></ImageView>
     </RelativeLayout>
 
-
     <RelativeLayout
         android:id="@+id/line_btn_add_childern"
         android:layout_below="@+id/line_btn_add_adult"

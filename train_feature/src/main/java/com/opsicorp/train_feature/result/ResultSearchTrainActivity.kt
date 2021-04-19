@@ -19,20 +19,18 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsicorp.train_feature.filter.TrainFilterActivity
 import com.opsicorp.train_feature.dialog.TrainShortByDialog
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.transition.TransitionManager
 import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
-import androidx.transition.Transition
+import androidx.transition.TransitionManager
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.BaseActivity
-import androidx.transition.Fade
+import androidx.transition.Transition
 import kotlin.collections.ArrayList
 import com.opsicorp.train_feature.R
 import org.koin.core.KoinComponent
 import java.text.SimpleDateFormat
+import androidx.transition.Fade
 import android.content.Intent
 import android.app.Activity
 import java.text.DateFormat
@@ -144,7 +142,7 @@ class ResultSearchTrainActivity : BaseActivity(),
         data.airline     = "21"
         data.jobTitleId  = getProfile().idPosition
         if (Globals.ALL_READY_SELECT_DEPARTING){
-            departureDate  = if (dataOrder.dateArrival.contains(" ")) dataOrder.dateArrival.split(" ")[0] else dataOrder.dateArrival//"2020-01-26"
+            departureDate    = if (dataOrder.dateArrival.contains(" ")) dataOrder.dateArrival.split(" ")[0] else dataOrder.dateArrival//"2020-01-26"
             data.destination = dataOrder.idOrigin//"BD"
             data.origin      = dataOrder.idDestination//"GMR"
         }else{

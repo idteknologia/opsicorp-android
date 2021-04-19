@@ -1,14 +1,14 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
 import android.view.View
+import com.opsigo.travelaja.utility.*
+import com.opsigo.travelaja.BaseActivity
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsicorp.travelaja.feature_flight.R
+import com.opsigo.travelaja.module.cart.model.CartModel
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.cart.model.CartModel
-import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.detail_cart_activity.*
-import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 import opsigo.com.domainlayer.model.summary.PaymentsItemModel
 

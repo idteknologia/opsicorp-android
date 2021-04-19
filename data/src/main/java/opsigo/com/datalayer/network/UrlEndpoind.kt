@@ -340,4 +340,20 @@ interface UrlEndpoind {
     @POST(MyURL.COMPLITELY_REGISTER)
     fun getCompletlyRegister(@Body body: HashMap<Any, Any>):Call<ResponseBody>
 
+    @GET(MyURL.ACTIVITY_TYPE)
+    fun getTypeActivity(@Header("Authorization") token:String,
+                         @Query("deviceId")deviceId:String):Call<ResponseBody>
+
+    @POST(MyURL.GET_ESTIMATED_COST)
+    fun getEstimatedCost(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+
+    @POST(MyURL.SUBMIT_TRAVEL_REQUEST)
+    fun submitTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+
+    @POST(MyURL.APPROVE_ALL_TRIP)
+    fun approveAllTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+
+    @POST(MyURL.ISSUED_ALL)
+    fun issuedAllTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+
 }

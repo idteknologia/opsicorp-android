@@ -296,6 +296,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             override fun successLoad(data: String) {
                 if (data.isNotEmpty()) {
                     val bundle = Bundle()
+                    bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
                     bundle.putString(Constants.ID_PERSONAL_TRIP, data)
                     gotoActivityWithBundle(NewCartActivity::class.java, bundle)
                 } else {
@@ -339,12 +340,10 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
 
     private fun gotoCart() {
         val dataConfig = getConfig()
-        Log.d("xconfigx", ": " + dataConfig.isShowCreateTripOnMobile)
         if (dataConfig.isShowCreateTripOnMobile) {
-
-            Constants.ID_BOOKING_TEMPORARY = ""
-            gotoActivity(NewCartActivity::class.java)
-
+            val bundle = Bundle()
+            bundle.putString(Constants.FROM_CART,Constants.FROM_HOME)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
         } else {
             showContactAdmin()
         }

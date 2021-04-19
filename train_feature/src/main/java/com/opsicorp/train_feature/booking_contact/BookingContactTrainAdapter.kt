@@ -50,7 +50,6 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             radiobutton.add(itemView.checkboxPassport)
             radiobutton.add(itemView.checkSim)
 
-            onclick.onClick(Constants.BTN_ID_CART,position)
             setCheckRadioButton(radiobutton,0)
 
             itemView.line_id_cart.setOnClickListener {
@@ -73,7 +72,17 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
                 itemView.line_vertical.visibility = View.VISIBLE
             }
 
-            itemView.name_passanger_by_ktp.text      = data.idcard.fullname
+
+            if (!data.idcard.fullname.isEmpty()){
+                itemView.name_passanger_by_ktp.text      = context.getString(R.string.string_requaired_input)
+                itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.colorRedUndo))
+            }
+            else {
+                itemView.name_passanger_by_ktp.text      = data.idcard.fullname
+                itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
+            }
+
+
             if (!data.pasport.firstName.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.firstName

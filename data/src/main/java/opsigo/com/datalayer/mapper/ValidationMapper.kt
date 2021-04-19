@@ -7,7 +7,7 @@ class ValidationMapper {
 
     fun mapper(data:ValidationTrainEntity): ValidationTrainModel {
         val mData = ValidationTrainModel()
-        mData.isSecuritySensitivity    = data.isSecurity.toString()
+        mData.isSecuritySensitivity    = data.isSecurity
         mData.descSecuritySensitivity  = if (data.bookingResult.segments[0].descSecuritySensitivity==null) "" else data.bookingResult.segments[0].descSecuritySensitivity
         mData.isViolatedTrainRules     = data.isViolated
         mData.causeViolatedTrainRules  = data.bookingResult.causeViolatedTrainRules
