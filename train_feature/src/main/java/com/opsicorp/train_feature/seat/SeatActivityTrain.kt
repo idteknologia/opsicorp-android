@@ -20,6 +20,7 @@ import com.opsigo.travelaja.utility.*
 import kotlin.collections.ArrayList
 import android.os.CountDownTimer
 import android.app.AlertDialog
+import android.content.Intent
 import android.view.View
 import android.os.Build
 import com.opsicorp.train_feature.R
@@ -422,8 +423,9 @@ class SeatActivityTrain : BaseActivity(),
             GetDataAccomodation(getBaseUrl()).setSeatMapTrain(getToken(),getDataSelectedSeatMap(),object : CallbackSetSeatMapTrain {
                 override fun successLoad(data: SetSeatMapModelTrain) {
                     hideLoadingOpsicorp()
-                    Constants.ID_BOOKING_TEMPORARY = dataItem.dataCardTrain.tripId
-                    Globals.finishResultOk(this@SeatActivityTrain)
+                    val intent = Intent()
+                    intent.putExtra(Constants.ID_TRIP_PLANE,dataItem.dataCardTrain.tripId)
+                    Globals.finishResultOk(this@SeatActivityTrain,intent)
                 }
                 override fun failedLoad(message: String) {
                     hideLoadingOpsicorp()

@@ -11,7 +11,7 @@ class SaveAsDraftMapper {
         mData.originName = data.originName
         mData.status     = data.statusView
         mData.tripCode   = data.code
-        mData.idTripPlant = data.id
+        mData.idTripPlane = data.id
         mData.purpose    = data.purpose
         mData.remark     = data.remark.toString()
         mData.destinationId   = data.destination
@@ -29,7 +29,7 @@ class SaveAsDraftMapper {
     fun mappingSuccesCheckout(responseString: String?): SuccessCreateTripPlaneModel {
         val data = Serializer.deserialize(responseString!!, SummaryEntity::class.java)
         val mData = SuccessCreateTripPlaneModel()
-        mData.idTripPlant = data.id.toString()
+        mData.idTripPlane = data.id.toString()
         mData.tripCode    = data.code.toString()
         return mData
     }

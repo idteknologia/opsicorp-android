@@ -14,8 +14,7 @@ import com.unicode.kingmarket.Base.BaseBottomSheetDialogFrament
 
 
 @SuppressLint("ValidFragment")
-class SelectOldPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
-
+class SelectTotalPassager : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.OnclickButtonListener,ToolbarOpsicorp.OnclickButtonListener,View.OnClickListener{
 
     override fun getLayout(): Int {
         return R.layout.fragment_bottom_sheet

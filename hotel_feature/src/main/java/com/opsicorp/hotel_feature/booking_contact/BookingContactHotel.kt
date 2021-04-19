@@ -333,8 +333,10 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         GetDataAccomodation(getBaseUrl()).getBookingHotel(getToken(),dataReservationHotelRequest(),object : CallbackBookingHotel {
             override fun success(data: BookingHotelModel) {
                 hideLoadingOpsicorp()
-                Constants.ID_BOOKING_TEMPORARY = dataTrip.idTripPlant
-                gotoActivity(NewCartActivity::class.java)
+                val bundle = Bundle()
+                bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
+                bundle.putString(Constants.ID_TRIP_PLANE,dataTrip.idTripPlane)
+                gotoActivityWithBundle(NewCartActivity::class.java,bundle)
             }
 
             override fun failed(message: String) {
@@ -370,7 +372,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.type               = 1
         data.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         data.purpose        = dataTrip.purpose
-        data.idTripPlan     = dataTrip.idTripPlant
+        data.idTripPlan     = dataTrip.idTripPlane
         data.code           = dataTrip.tripCode
 //        data.ID             = dataTrip.idTripPlant
         return data

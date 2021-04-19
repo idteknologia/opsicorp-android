@@ -1,7 +1,6 @@
 package com.opsicorp.train_feature.booking_contact
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +50,6 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             radiobutton.add(itemView.checkboxPassport)
             radiobutton.add(itemView.checkSim)
 
-            onclick.onClick(Constants.BTN_ID_CART,position)
             setCheckRadioButton(radiobutton,0)
 
             itemView.line_id_cart.setOnClickListener {
@@ -75,12 +73,12 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             }
 
 
-            if (!data.idcart.fullname.isEmpty()){
+            if (!data.idcard.fullname.isEmpty()){
                 itemView.name_passanger_by_ktp.text      = context.getString(R.string.string_requaired_input)
                 itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.colorRedUndo))
             }
             else {
-                itemView.name_passanger_by_ktp.text      = data.idcart.fullname
+                itemView.name_passanger_by_ktp.text      = data.idcard.fullname
                 itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
             }
 

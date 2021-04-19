@@ -49,7 +49,7 @@ data class SegmentsItemReservationTrainRequest(
 	var causeViolatedTrainRules: String = "",
 
 	@field:SerializedName("IsSecuritySensitivity")
-	var isSecuritySensitivity: String = "",
+	var isSecuritySensitivity: Boolean = false,
 
 	@field:SerializedName("DescSecuritySensitivity")
 	var descSecuritySensitivity: String = "",

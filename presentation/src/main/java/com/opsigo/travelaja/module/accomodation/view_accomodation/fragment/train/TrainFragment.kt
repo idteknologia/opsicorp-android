@@ -5,7 +5,7 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectOldPassager
+import com.opsigo.travelaja.module.item_custom.select_passager.SelectTotalPassager
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import kotlinx.android.synthetic.main.train_fragment.lay_parent_passager
@@ -39,7 +39,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener, ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener,
-        SelectOldPassager.CallbackSelectPasanger {
+        SelectTotalPassager.CallbackSelectPasanger {
 
     override fun getLayout(): Int { return R.layout.train_fragment }
     var typeTrip = ""
@@ -253,7 +253,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
 
     fun selectTotalPassenger(){
         val fm = requireActivity().getSupportFragmentManager()
-        var selectPassager = SelectOldPassager(true,R.style.CustomDialog,false)
+        var selectPassager = SelectTotalPassager(true,R.style.CustomDialog,false)
         selectPassager.show(fm, "yesNoAlert")
         selectPassager.callback = this
         selectPassager.setLimitSelect(4,3,2)

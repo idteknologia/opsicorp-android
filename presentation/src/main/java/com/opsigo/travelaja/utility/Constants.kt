@@ -16,6 +16,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val IS_PERSONAL_TRIP    = "isPersonalTrip"
     val ID_PERSONAL_TRIP    = "personal trip"
     val RESULT_AREA_HOTEL   = "area hotel"
     val MIN_PRICE           = "min_price"
@@ -116,7 +117,10 @@ object Constants {
     var DATA_REASON_CODE_HOTEL   = ArrayList<ReasonCodeModel>()
     var DATA_REASON_CODE_TRAIN   = ArrayList<ReasonCodeModel>()
     var DATA_REASON_CODE_FLIGHT  = ArrayList<ReasonCodeModel>()
-    var ID_BOOKING_TEMPORARY     = ""
+    var FROM_HOME                = "from_home"
+    var FROM_PERSONAL_TRIP       = "from_personal_trip"
+    var FROM_BISNIS_TRIP         = "from_bisnis_trip"
+    var ID_TRIP_PLANE            = "id_trip"
     var FROM_SUCCESS_CREATE      = "success_create_trip_plant"
     var FROM_DRAFT               = "draft"
     var FROM_LIST_DASBOARD       = "from_list"

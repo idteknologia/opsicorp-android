@@ -1,45 +1,44 @@
 package com.opsigo.travelaja.module.cart.activity
 
-import android.app.Activity
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
+import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
+import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.cart.view.PageDetailPersonalTrip
 import com.opsigo.travelaja.module.cart.view.PageListBisnisTrip
 import com.opsigo.travelaja.module.cart.view.PageDetailListTrip
 import com.opsigo.travelaja.module.cart.model.CartHeaderModel
 import com.opsigo.travelaja.module.home.activity.HomeActivity
+import opsigo.com.domainlayer.model.summary.ItemFlightModel
+import com.opsigo.travelaja.module.payment.PaymentActivity
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
 import kotlinx.android.synthetic.main.new_cart_activity.*
 import opsigo.com.domainlayer.model.summary.SummaryModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.empty_cart_view.*
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import com.opsigo.travelaja.module.cart.model.CartModel
-import com.opsigo.travelaja.BaseActivity
-import android.app.AlertDialog
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.datalayer.mapper.Serializer
 import android.content.BroadcastReceiver
+import com.opsigo.travelaja.BaseActivity
+import opsigo.com.domainlayer.callback.*
+import com.opsigo.travelaja.utility.*
+import android.content.IntentFilter
+import java.text.SimpleDateFormat
+import android.widget.TextView
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.widget.TextView
 import com.opsigo.travelaja.R
+import android.app.Activity
+import android.os.Bundle
 import android.view.View
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
-import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
-import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.payment.PaymentActivity
-import com.opsigo.travelaja.utility.*
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
-import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
-import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
-import opsigo.com.domainlayer.callback.*
-import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import opsigo.com.domainlayer.model.summary.ItemFlightModel
-import java.text.SimpleDateFormat
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -52,26 +51,23 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         return R.layout.new_cart_activity
     }
 
-    override fun OnMain() {
-        initToolbar()
-        dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-    }
-
+    var idTripPlant = ""
+    var pagePosition = 0
     var LIST_BISNIS_TRIP = 0
     var DETAIL_BISNIS_TRIP = 1
-    var LIST_PERSONAL_TRIP = 2
-    var idTripPlant = ""
-
-    val itemsTrip = ArrayList<ModelItemTrip>()
-    lateinit var dataListFlight: DataListOrderAccomodation
-
-    var pagePosition = 0
+    var DETAIL_PERSONAL_TRIP = 2
+    var tripSummary = SummaryModel()
     val btnList = ArrayList<TextView>()
     var mData = ArrayList<CartModelAdapter>()
-    var tripSummary = SummaryModel()
+    val itemsTrip = ArrayList<ModelItemTrip>()
     var addMore = Constants.REQUEST_CODE_ADD_MORE_ITEM
 
-    private fun initToolbar() {
+    override fun OnMain() {
+        initView()
+        checkData()
+    }
+
+    private fun initView() {
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -85,26 +81,39 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         btnList.add(btn_personal_trip)
 
         page_list_detail_trip.visibility = View.GONE
-        list_order_personal_trip.visibility = View.GONE
+        page_detail_personal_trip.visibility = View.GONE
         line_prize.visibility = View.GONE
-
-        checkData()
     }
 
     private fun checkData() {
-        if (Constants.ID_BOOKING_TEMPORARY.isEmpty()) {
-            getDataCart()
-        } else {
-            idTripPlant = Constants.ID_BOOKING_TEMPORARY
-
-            showLoadingOpsicorp(false)
-            getDataSummary(idTripPlant)
-            btn_home_page.callbackOnclickButton(object : ButtonDefaultOpsicorp.OnclickButtonListener {
-                override fun onClicked() {
-
-                }
-            })
+        when(intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.FROM_CART)){
+            Constants.FROM_HOME -> {
+                Globals.changeViewButton(btnList, 0, this)
+                pagePosition = LIST_BISNIS_TRIP
+                getDataCart()
+            }
+            Constants.FROM_BISNIS_TRIP -> {
+                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                Globals.changeViewButton(btnList, 0, this)
+                pagePosition = DETAIL_BISNIS_TRIP
+                showLoadingOpsicorp(false)
+                showDetailBisnisTrip()
+                getDataSummary(idTripPlant)
+            }
+            Constants.FROM_PERSONAL_TRIP -> {
+                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                Globals.changeViewButton(btnList, 1, this)
+                pagePosition = DETAIL_PERSONAL_TRIP
+                showLoadingOpsicorp(false)
+                getDataSummary(idTripPlant)
+            }
         }
+
+        btn_home_page.callbackOnclickButton(object : ButtonDefaultOpsicorp.OnclickButtonListener {
+            override fun onClicked() {
+
+            }
+        })
     }
 
     fun nestedScrollUp() {
@@ -120,7 +129,17 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         pagePosition = LIST_BISNIS_TRIP
         page_list_detail_trip.visibility = View.GONE
         page_list_bisnis_trip.visibility = View.VISIBLE
-        list_order_personal_trip.visibility = View.GONE
+        page_detail_personal_trip.visibility = View.GONE
+        line_prize.visibility = View.GONE
+        page_list_bisnis_trip.callbackOnclickButton(this)
+    }
+
+    private fun showDetailBisnisTrip() {
+        nestedScrollUp()
+        pagePosition = DETAIL_BISNIS_TRIP
+        page_list_detail_trip.visibility = View.VISIBLE
+        page_list_bisnis_trip.visibility = View.GONE
+        page_detail_personal_trip.visibility  = View.GONE
         line_prize.visibility = View.GONE
         page_list_bisnis_trip.callbackOnclickButton(this)
     }
@@ -186,8 +205,8 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     override fun onClicked(position: Int) {
         val data = mData.get(position)
-
         showLoadingOpsicorp(false)
+        pagePosition = DETAIL_BISNIS_TRIP
         getDataSummary(data.id)
     }
 
@@ -220,19 +239,24 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             tv_total_purchase.visible()
         }
 
-        pagePosition = DETAIL_BISNIS_TRIP
-        page_list_bisnis_trip.visibility = View.GONE
-        page_list_detail_trip.visibility = View.VISIBLE
+        when(pagePosition){
+            DETAIL_BISNIS_TRIP -> {
+                showDetailBisnisTrip()
+                page_list_detail_trip.setPurpose(tripSummary.purpose)
+                page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
+                page_list_detail_trip.setTripCode(tripSummary.tripCode)
+                page_list_detail_trip.setData(getDataTrip())
+                page_list_detail_trip.callbackOnclickButton(this)
+            }
+            DETAIL_PERSONAL_TRIP -> {
+                showPageListDataPersonalTrip()
+                page_detail_personal_trip.setData(getDataTrip())
+                page_detail_personal_trip.callbackOnclickButton(this)
+            }
+        }
+
         line_prize.visibility = View.VISIBLE
-        list_order_personal_trip.visibility = View.GONE
 
-        page_list_detail_trip.setPurpose(tripSummary.purpose)
-        page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
-        page_list_detail_trip.setTripCode(tripSummary.tripCode)
-
-        page_list_detail_trip.setData(getDataTrip())
-
-        page_list_detail_trip.callbackOnclickButton(this)
         toolbar.showAddMoreItem()
         showValidationButtonSubmit()
     }
@@ -441,8 +465,6 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             override fun successLoad(summaryModel: SummaryModel) {
                 setLog(Serializer.serialize(summaryModel))
                 tripSummary = summaryModel
-
-
                 hideLoadingOpsicorp()
                 updateViewSummary()
             }
@@ -456,56 +478,34 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     }
 
-    /* private fun showDetailItemDummy() {
-         nestedScrollUp()
-         val header    = CartHeaderModel()
-         header.titleHeader = "Train Summary"
-         header.typeTrip    = "OneWay"
-         header.typeHeader  = Constants.TYPE_TRAIN
-
-         val data = CartModel()
-         data.typeCard       = Constants.TYPE_HEADER
-         data.dataHeader     = header
-
-         val data2 = CartModel()
-         data2.typeCard       = Constants.TYPE_TRAIN
-         data2.dataHeader     = header
-
-         val list = ArrayList<CartModel>()
-         list.add(data)
-         list.add(data2)
-
-         pagePosition = DETAIL_BISNIS_TRIP
-         page_list_bisnis_trip.visibility = View.GONE
-         page_list_detail_trip.visibility = View.VISIBLE
-         line_prize.visibility            = View.VISIBLE
-         list_order_personal_trip.visibility = View.GONE
-
-         page_list_detail_trip.setData(list)
-         page_list_detail_trip.setData(list)
-
-         page_list_detail_trip.callbackOnclickButton(this)
-     }*/
-
     fun showPageListDataPersonalTrip() {
         nestedScrollUp()
+        line_prize.visibility = View.VISIBLE
         page_list_bisnis_trip.visibility = View.GONE
         page_list_detail_trip.visibility = View.GONE
-        line_prize.visibility = View.GONE
-        list_order_personal_trip.visibility = View.VISIBLE
-        list_order_personal_trip.callbackOnclickButton(this)
+        page_detail_personal_trip.visibility = View.VISIBLE
+        page_detail_personal_trip.callbackOnclickButton(this)
     }
 
     override fun updateViewReserved() {
-        Log.d("xixxx", "updateview reserve 01 : ")
-
-        idTripPlant = Constants.ID_BOOKING_TEMPORARY
-        getDataSummary(idTripPlant) //skip?
+        getDataSummary(idTripPlant)
     }
 
     override fun updateViewSaved() {
+        viewSavedListener()
+    }
+
+    override fun updateViewReservedPersonalTrip() {
+        getDataSummary(idTripPlant)
+    }
+
+    override fun updateViewSavedPersonalTrip() {
+        viewSavedListener()
+    }
+
+    private fun viewSavedListener() {
         btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
-        tv_warning_cart.text = "Please wait until your trip item status Reserved"
+        tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
         line_warning.visibility = View.VISIBLE
         line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
     }
@@ -522,8 +522,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             DETAIL_BISNIS_TRIP -> {
                 getDataCart()
             }
-            LIST_PERSONAL_TRIP -> {
-                Constants.ID_BOOKING_TEMPORARY = ""
+            DETAIL_PERSONAL_TRIP -> {
                 gotoActivity(HomeActivity::class.java)
             }
         }
@@ -590,9 +589,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         GetDataTripPlane(getBaseUrl()).submitTripPlant(getToken(), getDataTripItem(), object : CallbackSubmitTripPlant {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
                 hideLoadingOpsicorp()
-                Constants.ID_BOOKING_TEMPORARY = data.idTripPlant
-                Constants.TRIP_CODE = data.tripCode
-                gotoActivity(SuccessView::class.java)
+                val bundle = Bundle()
+                bundle.putString(Constants.TRIP_CODE,data.tripCode)
+                bundle.putString(Constants.ID_TRIP_PLANE,data.idTripPlane)
+                gotoActivityWithBundle(SuccessView::class.java,bundle)
             }
 
             override fun failedLoad(message: String) {
@@ -657,7 +657,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         if (tripSummary.contact.employeeId.equals(getProfile().employId)) {
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
-            model.idTripPlant = tripSummary.tripId
+            model.idTripPlane = tripSummary.tripId
             model.status = tripSummary.status
             model.tripCode = tripSummary.tripCode
             model.createDate = tripSummary.creationDate
@@ -680,7 +680,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             } else {
-                showAlert("Sorry", "This Trip Plant return date is expired")
+                showAlert(getString(R.string.message_sorry), getString(R.string.info_expired_trip))
             }
         }
     }
@@ -690,7 +690,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         when (requestCode) {
             Constants.GET_SEAT_MAP -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    idTripPlant = Constants.ID_BOOKING_TEMPORARY
+                    idTripPlant = intent.getStringExtra(Constants.ID_TRIP_PLANE)
                     showLoadingOpsicorp(false)
                     getDataSummary(idTripPlant)
                 }
@@ -757,6 +757,8 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             e.printStackTrace()
         }
     }
+
+
 
 
 }

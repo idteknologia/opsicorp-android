@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import com.google.gson.JsonObject
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
@@ -377,7 +378,13 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.successLoad(ReservationMapper().mapper(Serializer.deserialize(responseString!!,BookingTrainEntity::class.java)))
+                        if (responseString != null) {
+                            if (responseString.contains("\"status\":false,\"errorMessage\":\"\"")){
+                                callback.failedLoad(responseString.toString())
+                            }else {
+                                callback.successLoad(ReservationMapper().mapper(Serializer.deserialize(responseString!!,BookingTrainEntity::class.java)))
+                            }
+                        }
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
@@ -399,10 +406,6 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                       /* {
-                            "isSuccess": true,
-                            "errorMessage": ""
-                        }*/
                         val responseString = response.body()?.string()
                         callback.successLoad(SetSeatMapMapper().mapper(responseString!!))
                     }

@@ -724,4 +724,7 @@ Please add your trip item for Approval."
     <string name="txt_all_business_trip_list_has_been_approved">All business trip list has been approved</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="info_expired_trip">This Trip Plant return date is expired</string>
+    <string name="message_sorry">Sorry</string>
+    <string name="warning_status_booking_saved">Please wait until your trip item status Reserved</string>
 </resources>

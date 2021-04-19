@@ -23,7 +23,7 @@ class SelectReasonAccomodation : BaseBottomSheetDialogFrament {
     lateinit var rv_reason_code : androidx.recyclerview.widget.RecyclerView
     lateinit var ic_back : ImageView
     var data = ArrayList<ReasonCodeModel>()
-    val adapter by lazy { SelectReasonAdapter(context!!,data) }
+    val adapter by lazy { SelectReasonAdapter(requireContext(),data) }
 
     override fun onMain(fragment: View) {
         if (style!=0){

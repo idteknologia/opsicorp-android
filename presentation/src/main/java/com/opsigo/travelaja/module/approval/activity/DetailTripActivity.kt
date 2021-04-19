@@ -869,7 +869,7 @@ class DetailTripActivity : BaseActivity()
         if (tripSummary.contact.employeeId.equals(getProfile().employId)){
             val model = SuccessCreateTripPlaneModel()
             model.purpose     = tripSummary.purpose
-            model.idTripPlant = tripSummary.tripId
+            model.idTripPlane = tripSummary.tripId
             model.status      = tripSummary.status
             model.tripCode    = tripSummary.tripCode
             model.createDate  = tripSummary.creationDate
