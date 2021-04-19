@@ -78,6 +78,10 @@ class ListParticipantsDataMapper {
 
                             dataFlight.isComply         = segmentsItem.isComply
                             dataFlight.duration         = segmentsItem.duration.toString()
+
+                            dataFlight.flightSegmentItem.add(segmentMapperData(segmentsItem, tripFlightsItem.pnrCode.toString(),
+                                    tripFlightsItem.status.toString(), tripFlightsItem.amount.toString(),
+                                    tripFlightsItem.passengers?.size.toString(), tripFlightsItem.airlineView.toString(), ))
                         }
 
                         dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
@@ -86,16 +90,16 @@ class ListParticipantsDataMapper {
                         dataFlightModel.add(dataFlight)
                         num++
 
-                        tripFlightsItem.segments?.forEachIndexed { _, segmentFlightEntity ->
+                        /*tripFlightsItem.segments?.forEachIndexed { _, segmentFlightEntity ->
 
                             if (num==segmentFlightEntity?.num){
 
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
 
-                                /*val dataFlight  = ItemFlightModel()*/
+                                *//*val dataFlight  = ItemFlightModel()*//*
 
-                                /*dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
+                                *//*dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
                                 dataFlight.type             = tripFlightsItem.flightType
 
                                 dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
@@ -146,14 +150,14 @@ class ListParticipantsDataMapper {
                                 dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
                                 dataFlightModel.add(dataFlight)
-                                num++ */
+                                num++ *//*
 
                             }
                             else{
                                 dataFlightModel[num-1].flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
                             }
 
-                        }
+                        }*/
 
                     }
                 }
@@ -289,20 +293,28 @@ class ListParticipantsDataMapper {
         return mData
     }
 
-    private fun segmentMapperData(segmentFlightEntity: SegmentsItem?): FlightSegmentItem {
+    private fun segmentMapperData(segmentFlightEntity: SegmentsItem?, pnrCode: String, status: String,
+             price: String, totalPassenger: String, airlineName: String): FlightSegmentItem {
         val mData = FlightSegmentItem()
         Log.d("xixxx","on mapper 1 :" + segmentFlightEntity?.id + " - " + segmentFlightEntity?.airlineName)
 
-        mData.nameAirline = segmentFlightEntity?.airlineName.toString()
+        mData.nameAirline = airlineName
+        mData.pnrCode    = pnrCode
+        mData.status       = status
+        mData.airlineNumber = segmentFlightEntity?.flightNumber.toString()
+        mData.price = price
+        mData.totalPassenger = totalPassenger
         mData.idAirline   =   segmentFlightEntity?.id.toString()
         mData.imageAirline  = segmentFlightEntity?.airlineImageUrl.toString()
         mData.classAirline  = segmentFlightEntity?.classCode.toString()
         mData.timeDeparture = segmentFlightEntity?.departTime.toString()
         mData.timeArrival   = segmentFlightEntity?.arriveTime.toString()
         mData.cityDeparture = segmentFlightEntity?.cityOrigin.toString()
+        mData.cityCodeDeparture = segmentFlightEntity?.origin.toString()
         mData.cityArrival   = segmentFlightEntity?.cityDestination.toString()
-        mData.teminal       = ""
-        mData.estimatiTime  = ""
+        mData.cityCodeArrival = segmentFlightEntity?.destination.toString()
+        mData.terminal       = ""
+        mData.estimatiTime  = segmentFlightEntity?.duration.toString()
         mData.seatFlight    = segmentFlightEntity?.flightNumber.toString()
         mData.typeFlight    = segmentFlightEntity?.category.toString()
         mData.airportDeparture = segmentFlightEntity?.airportOrigin.toString()

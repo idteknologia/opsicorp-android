@@ -8,11 +8,13 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detail_cart_item_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
+import opsigo.com.domainlayer.model.summary.FlightSegmentItem
 
-class DetailCartAdapter (val context: Context, private var items: ArrayList<ConfirmationFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<DetailCartAdapter.ViewHolder>() {
+class DetailCartFlightAdapter (val context: Context, private var items: ArrayList<FlightSegmentItem>): androidx.recyclerview.widget.RecyclerView.Adapter<DetailCartFlightAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -35,27 +37,27 @@ class DetailCartAdapter (val context: Context, private var items: ArrayList<Conf
 
         val data = items.get(position)
 
-        holder.itemView.tv_pnr_flight_cart.text = data.pnr_code
+        holder.itemView.tv_pnr_flight_cart.text = data.pnrCode
         holder.itemView.tv_status_flight_cart.text = data.status
         holder.itemView.tv_date_departure_flight_cart_top.text = Globals.getDateNowNewFormat()
 
-        holder.itemView.tv_title_airline.text = data.title_flight
+        holder.itemView.tv_title_airline.text = data.nameAirline
         holder.itemView.tv_airline_number.text   = data.airlineNumber
 
-        if(!data.img_airline.isEmpty() && data.img_airline != null) {
+        if(!data.imageAirline.isEmpty() && data.imageAirline != null) {
             Picasso.get()
-                    .load(data.img_airline)
+                    .load(data.imageAirline)
                     .fit()
                     .centerInside()
                     .into(holder.itemView.img_flight)
         }
 
-        holder.itemView.tv_class_type.text = data.class_type
-        holder.itemView.tv_number_sheet.text = data.number_sheet
+        holder.itemView.tv_class_type.text = data.typeFlight
+        holder.itemView.tv_number_sheet.text = data.seatFlight
         holder.itemView.tv_time_origin.text = data.timeDeparture
         holder.itemView.tv_date_origin.text = DateConverter().getDate(data.dateDeparture,"yyyy-MM-dd","dd MMM")
-        holder.itemView.tv_origin.text = data.name_stationDeparture
-        holder.itemView.tv_station_origin.text = data.depatureAirportName
+        holder.itemView.tv_origin.text = data.cityCodeDeparture
+        holder.itemView.tv_station_origin.text = data.airportDeparture
 
         if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
             holder.itemView.tv_terminal.text = "Terminal - "
@@ -63,18 +65,18 @@ class DetailCartAdapter (val context: Context, private var items: ArrayList<Conf
             holder.itemView.tv_terminal.text = "Terminal "+data.terminal
         }
 
-        holder.itemView.line_total_duration.text = data.line_total_duration
+        holder.itemView.line_total_duration.text = data.estimatiTime
 
-        holder.itemView.tv_time_arrival.text = data.time_arrival
-        holder.itemView.tv_date_arrival.text = DateConverter().getDate(data.date_arrival,"yyyy-MM-dd","dd MMM")
-        holder.itemView.tv_depart.text = data.name_stationArrival
-        holder.itemView.tv_station_destination.text = data.arrivalAirportName
-        holder.itemView.tv_total_passager.text = data.totalPassenger
-        holder.itemView.tv_total_prize.text = "IDR ${Globals.formatAmount(data.totalPrice.split(".")[0])}"
+        holder.itemView.tv_time_arrival.text = data.timeArrival
+        holder.itemView.tv_date_arrival.text = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd","dd MMM")
+        holder.itemView.tv_depart.text = data.cityCodeArrival
+        holder.itemView.tv_station_destination.text = data.airportArrival
+        holder.itemView.tv_total_passager.text = "Adult x ${data.totalPassenger}"
+        holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble() / data.totalPassenger.toDouble(), false)
 
     }
 
-    fun setData(data: ArrayList<ConfirmationFlightModel>) {
+    fun setData(data: ArrayList<FlightSegmentItem>) {
         items = data
         notifyDataSetChanged()
     }

@@ -1,6 +1,5 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
-import android.view.View
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
@@ -9,13 +8,12 @@ import com.opsigo.travelaja.module.cart.model.CartModel
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.detail_cart_activity.*
-import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
-import opsigo.com.domainlayer.model.summary.PaymentsItemModel
+import opsigo.com.domainlayer.model.summary.FlightSegmentItem
 
 class DetailCartFlightActivity : BaseActivity() {
 
-    val data = ArrayList<ConfirmationFlightModel>()
-    val adapter by lazy { DetailCartAdapter(this, data) }
+    val data = ArrayList<FlightSegmentItem>()
+    val adapter by lazy { DetailCartFlightAdapter(this, data) }
     val adapter2 by lazy { DetailCartPriceAdapter(this) }
     lateinit var dataOrder: CartModel
 
@@ -51,8 +49,10 @@ class DetailCartFlightActivity : BaseActivity() {
         data.clear()
 
             val dataFlight                = dataOrder.dataCardFlight
-            val mData                    = ConfirmationFlightModel()
 
+        /*mData.flightSegmentItem.forEach {
+
+        }
             mData.pnr_code               = dataFlight.pnrCode
             mData.status                 = dataFlight.status
             mData.title_flight            = dataFlight.titleFlight
@@ -87,18 +87,15 @@ class DetailCartFlightActivity : BaseActivity() {
             }
             else {
                 line_reason_code.visibility = View.GONE
-            }
+            }*/
 
-            setTotalPrice(mData)
 
-        adapter.setData(data)
+
+        adapter.setData(dataOrder.dataCardFlight.flightSegmentItem)
         adapter2.setData(dataOrder.dataCardFlight.priceItem)
 
-    }
-
-    private fun setTotalPrice(mData: ConfirmationFlightModel) {
-        name_flight.text = mData.title_flight
-        tv_total_amount.text        = "IDR ${Globals.formatAmount(mData.totalPrice.split(".")[0])}"
+        name_flight.text = dataFlight.titleFlight
+        tv_total_amount.text        = "IDR ${Globals.formatAmount(dataFlight.price.split(".")[0])}"
     }
 
 

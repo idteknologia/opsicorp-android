@@ -73,7 +73,7 @@ abstract class BaseFragment: Fragment()  {
     }
 
     fun getBaseUrl():String{
-        return Globals.getBaseUrl(context!!)
+        return Globals.getBaseUrl(requireContext())
     }
 
     fun setToast(message: String){
@@ -159,23 +159,23 @@ abstract class BaseFragment: Fragment()  {
     }
 
     protected fun failedWarning(message:String) {
-        Globals.showAlert("Failed",message,context!!)
+        Globals.showAlert("Failed",message,requireContext())
     }
 
     fun logoutListener(){
-        Globals.setDataPreferenceBolean(context!!,"login",false)
-        Globals.setDataPreferenceBolean(context!!,"first",false)
-        Globals.setDataPreferenceString(context!!,"login_user","")
-        Globals.setDataPreferenceString(context!!,"token","")
-        Globals.setDataPreferenceString(context!!,"username", "")
-        Globals.setDataPreferenceString(context!!,Constants.IMAGE_LOGO_SPLASH,"")
-        Globals.setDataPreferenceString(context!!,Constants.IMAGE_BACKGROUND_SPLASH,"")
+        Globals.setDataPreferenceBolean(requireContext(),"login",false)
+        Globals.setDataPreferenceBolean(requireContext(),"first",false)
+        Globals.setDataPreferenceString(requireContext(),"login_user","")
+        Globals.setDataPreferenceString(requireContext(),"token","")
+        Globals.setDataPreferenceString(requireContext(),"username", "")
+        Globals.setDataPreferenceString(requireContext(),Constants.IMAGE_LOGO_SPLASH,"")
+        Globals.setDataPreferenceString(requireContext(),Constants.IMAGE_BACKGROUND_SPLASH,"")
         gotoActivity(LoginActivity::class.java)
         activity?.finish()
     }
 
     fun getToken():String{
-        return Globals.getDataPreferenceString(context!!,"token")
+        return Globals.getDataPreferenceString(requireContext(),"token")
     }
 
     fun getModelPhone():String{
@@ -183,19 +183,19 @@ abstract class BaseFragment: Fragment()  {
     }
 
     fun getUsername():String{
-        return Globals.getDataPreferenceString(context!!,"username")
+        return Globals.getDataPreferenceString(requireContext(),"username")
     }
 
     fun getFCM():String{
-        return Globals.getDataPreferenceString(context!!,Constants.FCM_TOKEN)
+        return Globals.getDataPreferenceString(requireContext(),Constants.FCM_TOKEN)
     }
 
     fun getProfile(): ProfileModel {
-        return Serializer.deserialize(Globals.getDataPreferenceString(context!!,"profile"), ProfileModel::class.java)
+        return Serializer.deserialize(Globals.getDataPreferenceString(requireContext(),"profile"), ProfileModel::class.java)
     }
 
     fun getConfig(): ConfigModel {
-        return Serializer.deserialize(Globals.getDataPreferenceString(context!!, "config"), ConfigModel::class.java)
+        return Serializer.deserialize(Globals.getDataPreferenceString(requireContext(), "config"), ConfigModel::class.java)
     }
 
     fun showSnackbar(viewParent:View,calback: CallbackSnackBar,message:String,titleButton:String,colorButton:Int,colorMessage:Int){
@@ -215,7 +215,7 @@ abstract class BaseFragment: Fragment()  {
     }
 
     fun logout(){
-        AlertDialog.Builder(activity!!)
+        AlertDialog.Builder(requireActivity())
                 .setMessage(getString(R.string.confirm_logout))
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.yes_logout)) { dialog, id ->
@@ -229,7 +229,7 @@ abstract class BaseFragment: Fragment()  {
 
         showDialog("")
 
-        GetDataGeneral(Globals.getBaseUrl(context!!)).removeDeviceId(getToken(), getUsername(), getFCM(), getModelPhone(), object : CallbackSetDeviceId {
+        GetDataGeneral(Globals.getBaseUrl(requireContext())).removeDeviceId(getToken(), getUsername(), getFCM(), getModelPhone(), object : CallbackSetDeviceId {
 
             override fun successLoad(isSuccess: Boolean) {
                 logoutListener()
@@ -246,11 +246,11 @@ abstract class BaseFragment: Fragment()  {
     }
 
     fun showDialogContruction(disable: Boolean){
-        dialogContruction.showDialogLoading(context!!,disable)
+        dialogContruction.showDialogLoading(requireContext(),disable)
     }
 
     fun showDialogContactAdmin(disable: Boolean){
-        dialogContactAdmin.showDialogLoading(context!!,disable)
+        dialogContactAdmin.showDialogLoading(requireContext(),disable)
     }
 
     fun hideDialogContruction(){

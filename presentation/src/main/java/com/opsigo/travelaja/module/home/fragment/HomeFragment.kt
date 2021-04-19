@@ -244,6 +244,9 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     private fun businessTrip() {
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
+            if (getProfile().companyCode.equals(11)){
+                gotoActivity(NewCartActivity::class.java)
+            }
             gotoActivity(CreateTripActivity::class.java)
         } else {
             showContactAdmin()

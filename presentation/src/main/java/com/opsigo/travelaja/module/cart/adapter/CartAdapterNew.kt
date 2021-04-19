@@ -377,23 +377,31 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }
 
             //departure
-            itemView.tv_origin_flight_cart.text             = data.departure
-            itemView.tv_airport_departure_cart.text         = data.airportDeparture
-            itemView.tv_date_departure_flight_cart.text     = DateConverter().setDateFormat4(data.dateDeparture)
+            itemView.tv_origin_flight_cart.text             = data.flightSegmentItem[0].cityCodeDeparture
+            itemView.tv_airport_departure_cart.text         = data.flightSegmentItem[0].airportDeparture
+            itemView.tv_date_departure_flight_cart.text     = DateConverter().setDateFormat4(data.flightSegmentItem[0].dateDeparture)
 
             //arrival
-            itemView.tv_destination_flight_cart.text        = data.arrival
-            itemView.tv_airport_arrival_cart.text           = data.airportArrival
-            itemView.tv_date_arrival_flight_cart.text       = DateConverter().setDateFormat4(data.dateArrival)
+            itemView.tv_destination_flight_cart.text        = data.flightSegmentItem[0].cityCodeArrival
+            itemView.tv_airport_arrival_cart.text           = data.flightSegmentItem[0].airportArrival
+            itemView.tv_date_arrival_flight_cart.text       = DateConverter().setDateFormat4(data.flightSegmentItem[0].dateArrival)
 
             itemView.tv_class_flight_cart.text              = data.classFlight
             itemView.tv_subclass_cart.text                  = data.subClass
             itemView.tv_flight_number.text                  = data.flightNumber
 
-            if (itemView.cvCartFlight.size > 1){
+            if (data.typeFlight.equals(0)){
                 itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
             } else {
-                itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_roundtrip))
+                if (data.flightSegmentItem.size > 1){
+                    if (data.flightSegmentItem[0].pnrCode == data.flightSegmentItem[1].pnrCode){
+                        itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_roundtrip))
+                    } else {
+                        itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+                    }
+                } else {
+                    itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+                }
             }
 
             if (data.numberSheet.isEmpty()) {
