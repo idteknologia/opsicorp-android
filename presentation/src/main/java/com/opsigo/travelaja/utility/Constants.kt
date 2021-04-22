@@ -347,6 +347,7 @@ object Constants {
     val TYPE_FLIGHT  = 2
     val TYPE_BUS     = 3
     val TYPE_HOTEL   = 4
+    val ADD_ITEM_PERSONAL_TRIP = 9
     val FLIGHT       = "Flight"
     val TRAIN        = "Train"
     val TYPE_LOADING = 5
@@ -403,11 +404,24 @@ object Constants {
         var KEY_LATITUDE         = "5"
         var KEY_LONGITUDE        = "6"
         var KEY_CHECKIN          = "7"
+        var KEY_TOTAL_GUEST      = "13"
         var KEY_CHECKOUT         = "8"
         var KEY_NAME_CITY        = "9"
         var KEY_NAME_AIRPORT     = "10"
         var KEY_NAME_OFFICE      = "11"
         var KEY_NAME_COUNTRY     = "12"
     }
+
+    val RESULT_EDIT_KTP     = "edit_ktp"
+    val RESULT_EDIT_SIM     = "edit_sim"
+    val RESULT_EDIT_PASPORT = "edit_pasport"
+    val INPUT_EDIT_KTP     = "input_ktp"
+    val INPUT_EDIT_SIM     = "input_sim"
+    val INPUT_EDIT_PASPORT = "input_pasport"
+
+    val TYPE_SIM      = "SIM"
+    val TYPE_PASSPORT = "PASSPORT"
+    val TYPE_KTP      = "KTP"
+
 
 }

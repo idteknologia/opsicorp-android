@@ -1,6 +1,5 @@
 package com.opsigo.travelaja.module.item_custom.select_passager
 
-import com.opsigo.travelaja.databinding.TrainSelectTotalPassangerBinding
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.Globals.setToast
 import android.graphics.drawable.ColorDrawable
@@ -13,64 +12,46 @@ import android.view.ViewGroup
 import com.opsigo.travelaja.R
 import android.view.Gravity
 import android.view.View
+import com.opsigo.travelaja.databinding.SelectTotalGuestHotelBinding
 
-class TotalPassangerTrain() {
+class TotalGuestHotel() {
 
-    var totalInfant = 0
-    var totalAdult  = 1
-    var limitAdult  = 0
-    var limitInfant = 0
+    var totalGuest = 0
+    var limitGuest = 0
 
     lateinit var views : View
     var alertDialog: AlertDialog? = null
     lateinit var callbackDialog : CallbackSelectPasanger
     lateinit var context : Context
-    lateinit var binding: TrainSelectTotalPassangerBinding
+    lateinit var binding: SelectTotalGuestHotelBinding
 
 
     fun create(context: Context,callbackDialog: CallbackSelectPasanger){
         val adb = AlertDialog.Builder(context)
         this.context = context
         this.callbackDialog = callbackDialog
-        binding = TrainSelectTotalPassangerBinding.inflate(LayoutInflater.from(context))
+        binding = SelectTotalGuestHotelBinding.inflate(LayoutInflater.from(context))
 
         binding.btnNext.callbackOnclickButton(object :ButtonDefaultOpsicorp.OnclickButtonListener{
             override fun onClicked() {
-                callbackDialog.total(totalInfant,totalAdult)
+                callbackDialog.total(totalGuest)
                 alertDialog?.dismiss()
             }
         })
 
         binding.btnAddAdult.setOnClickListener {
-            if (totalAdult<limitAdult){
-                totalAdult++
+            if (totalGuest<limitGuest){
+                totalGuest++
             }
             else{
-                setToast("Max Adult "+limitAdult,context)
+                setToast("Max Adult "+limitGuest,context)
             }
             changeTotalView()
         }
 
         binding.btnMinusAdult.setOnClickListener {
-            if(totalAdult!=1){
-                totalAdult--
-            }
-            changeTotalView()
-        }
-
-        binding.btnAddInfant.setOnClickListener {
-            if(totalInfant<limitInfant){
-                totalInfant++
-            }
-            else{
-                setToast("Max Infant"+limitInfant,context)
-            }
-            changeTotalView()
-        }
-
-        binding.btnMinusInfant.setOnClickListener {
-            if(totalInfant!=0){
-                totalInfant--
+            if(totalGuest!=1){
+                totalGuest--
             }
             changeTotalView()
         }
@@ -87,36 +68,25 @@ class TotalPassangerTrain() {
         changeTotalView()
     }
 
-    fun setLimitSelect(mLimitAdult:Int,mLimitInfant:Int){
-        limitAdult  = mLimitAdult
-        limitInfant = mLimitInfant
+    fun setLimitSelect(mLimitGuest:Int){
+        limitGuest  = mLimitGuest
     }
 
-    fun setCurrentSelect(totalAdult:Int,totalInfant:Int){
-        this.totalInfant  = totalInfant
-        this.totalAdult   = totalAdult
+    fun setCurrentSelect(totalGuest:Int){
+        this.totalGuest  = totalGuest
     }
 
     interface CallbackSelectPasanger{
-        fun total(totalInfant:Int,
-                  totalAdult:Int)
+        fun total(totalGuest:Int)
     }
 
     private fun changeTotalView() {
-        binding.tvAdult.text  = "${totalAdult} Adult(s)"
-        binding.tvInfant.text  = "${totalInfant} Childern"
+        binding.tvAdult.text  = "${totalGuest} Guest(s)"
 
-        if(totalAdult==0){
+        if(totalGuest==0){
             binding.btnMinusAdult.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_inactive))
         }else{
             binding.btnMinusAdult.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_active))
-        }
-
-        if(totalInfant==0){
-            binding.btnMinusInfant.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_inactive))
-        }
-        else{
-            binding.btnMinusInfant.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_active))
         }
     }
 }

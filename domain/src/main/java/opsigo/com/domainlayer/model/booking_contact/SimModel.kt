@@ -3,9 +3,9 @@ package opsigo.com.domainlayer.model.booking_contact
 class SimModel {
     var id          = ""
     var idSim       = ""
-    val title       = ""
+    var title       = ""
     var name        = ""
-    val codePos     = ""
-    val address     = ""
-    val birtDate    = ""
+    var codePos     = ""
+    var address     = ""
+    var birtDate    = ""
 }

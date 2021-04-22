@@ -158,11 +158,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:id="@+id/et_name_driver_license"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="Vody Andrian"
+                                android:text=""
                                 android:background="@color/transparent"/>
 
                             <LinearLayout
@@ -211,11 +212,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:inputType="number"
+                                android:id="@+id/et_number_driver_license"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="657546754576"
+                                android:text=""
                                 android:background="@color/transparent"/>
 
                             <LinearLayout

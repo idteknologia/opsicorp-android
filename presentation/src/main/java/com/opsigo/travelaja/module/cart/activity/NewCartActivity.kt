@@ -144,10 +144,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         page_list_bisnis_trip.callbackOnclickButton(this)
     }
 
-    fun setDataListCart() {
-        toolbar.hideAddMoreItem()
-        page_list_bisnis_trip.setDataOrder(mData)
-    }
+
 
     private fun getDataCart() {
         showListCartBisnisTrip()
@@ -168,6 +165,11 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 Globals.showAlert("Sorry", message, this@NewCartActivity)
             }
         })
+    }
+
+    fun setDataListCart() {
+        toolbar.hideAddMoreItem()
+        page_list_bisnis_trip.setDataOrder(mData)
     }
 
     private fun removeTrip(id: String) {
@@ -191,8 +193,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     override fun onClick(p0: View?) {
         when (p0) {
             btn_bisnis_trip -> {
-                showListCartBisnisTrip()
-                setDataListCart()
+                getDataCart()
                 Globals.changeViewButton(btnList, 0, this)
             }
             btn_personal_trip -> {
@@ -250,6 +251,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             }
             DETAIL_PERSONAL_TRIP -> {
                 showPageListDataPersonalTrip()
+                line_prize.visibility = View.VISIBLE
                 page_detail_personal_trip.setData(getDataTrip())
                 page_detail_personal_trip.callbackOnclickButton(this)
             }
@@ -481,7 +483,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     fun showPageListDataPersonalTrip() {
         nestedScrollUp()
-        line_prize.visibility = View.VISIBLE
+        pagePosition = DETAIL_PERSONAL_TRIP
         page_list_bisnis_trip.visibility = View.GONE
         page_list_detail_trip.visibility = View.GONE
         page_detail_personal_trip.visibility = View.VISIBLE
@@ -678,7 +680,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
                 val bundle = Bundle()
-                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
+                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.ADD_ITEM_PERSONAL_TRIP)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             } else {
                 showAlert(getString(R.string.message_sorry), getString(R.string.info_expired_trip))

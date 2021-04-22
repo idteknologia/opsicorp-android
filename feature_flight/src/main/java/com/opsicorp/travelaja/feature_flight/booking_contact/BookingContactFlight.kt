@@ -158,7 +158,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         val model = PassportModel()
         model.firstName = getProfile().firstName
         model.id = getProfile().employId
-        model.number = getProfile().passport
+        model.passporNumber = getProfile().passport
         return model
     }
 
