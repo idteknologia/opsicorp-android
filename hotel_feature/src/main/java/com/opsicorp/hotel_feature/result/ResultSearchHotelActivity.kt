@@ -78,6 +78,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     var nameCity         = ""
     var nameOffice       = ""
     var nameAirport      = ""
+    var totalGuest       = 1
     var filterActif      = false
 
     override fun OnMain() {
@@ -126,6 +127,8 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun getDataIntent() {
         try {
             typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_DESTINATION)
+            typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_DESTINATION)
+            totalGuest       = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_TOTAL_GUEST)
             latitude         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LATITUDE,"")
             longitude        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LONGITUDE,"")
             idCountry        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_ID_COUNTRY,"")
@@ -299,15 +302,18 @@ class ResultSearchHotelActivity : BaseActivity(),
         when(views){
             -3 ->{
                 if (filterActif){
+                    dataFilter[position].listHotelModel.idCity     = idCity
                     dataFilter[position].listHotelModel.idCountry  = idCountry
                     dataFilter[position].listHotelModel.checkIn    = checkIn.split(" ")[0]
                     dataFilter[position].listHotelModel.checkOut   = dateCheckoutCalculation(checkIn.split(" ")[0])
                     dataFilter[position].listHotelModel.duration   = duration
+                    dataFilter[position].listHotelModel.totalGuest = totalGuest
                     Constants.DATA_HOTEL                           = Serializer.serialize(dataFilter.get(position).listHotelModel, ResultListHotelModel::class.java)
                 }else {
                     data[position].listHotelModel.idCountry        = idCountry
                     data[position].listHotelModel.checkIn          = checkIn.split(" ")[0]
                     data[position].listHotelModel.duration         = duration
+                    data[position].listHotelModel.totalGuest       = totalGuest
                     data[position].listHotelModel.checkOut         = dateCheckoutCalculation(checkIn.split(" ")[0])
                     Constants.DATA_HOTEL                           = Serializer.serialize(data.get(position).listHotelModel, ResultListHotelModel::class.java)
                 }
@@ -356,6 +362,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         model.destination      = dataTrip.destinationId
         model.countRoom        = 1
         model.hotelName        = ""
+        model.adult            = totalGuest
 
         when (typeDestination){
             Constants.SELECT_NEARBY_CITY-> {
@@ -364,12 +371,12 @@ class ResultSearchHotelActivity : BaseActivity(),
                 model.longitude        = null
             }
             Constants.SELECT_NEARBY_OFFICE -> {
-                model.destinationKey   = ""
+                model.destinationKey   = null
                 model.latitude         = if (latitude.isNotEmpty()) latitude.toDouble() else 0.0
                 model.longitude        = if (longitude.isNotEmpty()) longitude.toDouble() else 0.0
             }
             Constants.SELECT_NEARBY_AIRPORT -> {
-                model.destinationKey   = ""
+                model.destinationKey   = null
                 model.latitude         = if (latitude.isNotEmpty()) latitude.toDouble() else 0.0
                 model.longitude        = if (longitude.isNotEmpty()) longitude.toDouble() else 0.0
             }

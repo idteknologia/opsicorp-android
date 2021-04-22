@@ -727,4 +727,5 @@ Please add your trip item for Approval."
     <string name="info_expired_trip">This Trip Plant return date is expired</string>
     <string name="message_sorry">Sorry</string>
     <string name="warning_status_booking_saved">Please wait until your trip item status Reserved</string>
+    <string name="guest">Total Guest</string>
 </resources>

@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="18sp"
                     android:textColor="#00776a"
-                    android:text="Number of Passengers"
+                    android:text="Total of Guest"
                     android:layout_marginBottom="20dp"/>
 
                 <LinearLayout
@@ -72,18 +72,19 @@
                         <LinearLayout
                             android:layout_marginLeft="8dp"
                             android:orientation="vertical"
+                            android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent">
                             <TextView
                                 android:id="@+id/tv_adult"
                                 android:textSize="16dp"
-                                android:text="0 Adult(s)"
+                                android:text="0 Guest(s)"
                                 android:textColor="#24253d"
                                 style="@style/RobotoRegular"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
 
-                            <TextView
+                            <!--<TextView
                                 android:layout_marginTop="3dp"
                                 android:textSize="12dp"
                                 android:text="Age 3 and older"
@@ -91,7 +92,7 @@
                                 style="@style/RobotoMedium"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
-
+-->
                         </LinearLayout>
                     </LinearLayout>
 
@@ -101,66 +102,6 @@
                         android:src="@drawable/plus_active"
                         android:layout_width="36dp"
                         android:layout_height="36dp"></ImageView>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/line_btn_add_infant"
-                    android:layout_below="@+id/line_btn_add_adult"
-                    android:layout_marginTop="36dp"
-                    android:layout_marginLeft="39dp"
-                    android:layout_marginRight="39dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/btn_minus_infant"
-                        android:src="@drawable/minus_inactive"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp" />
-
-                    <LinearLayout
-                        android:id="@+id/minus_infant"
-                        android:gravity="bottom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:orientation="horizontal"
-                        android:layout_centerHorizontal="true">
-                        <ImageView
-                            android:src="@drawable/infant"
-                            android:layout_width="19dp"
-                            android:layout_height="27dp"/>
-
-                        <LinearLayout
-                            android:layout_marginLeft="8dp"
-                            android:orientation="vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent">
-                            <TextView
-                                android:id="@+id/tv_infant"
-                                android:textSize="16dp"
-                                android:text="0 Infant(s)"
-                                android:textColor="#24253d"
-                                style="@style/RobotoRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textSize="12dp"
-                                android:text="Below age 3"
-                                android:textColor="#8024253d"
-                                style="@style/RobotoMedium"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/btn_add_infant"
-                        android:layout_alignParentRight="true"
-                        android:src="@drawable/plus_active"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp" />
                 </RelativeLayout>
 
                 <LinearLayout
@@ -183,7 +124,7 @@
                         android:textColor="#91929e"
                         android:lineSpacingExtra="6sp"
                         android:gravity="center_horizontal"
-                        android:text="For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth ( ddmmyyyy )." />
+                        android:text="one room can be filled by several guests, you may enter valid ID number , Passport or Driving license" />
                 </LinearLayout>
 
 

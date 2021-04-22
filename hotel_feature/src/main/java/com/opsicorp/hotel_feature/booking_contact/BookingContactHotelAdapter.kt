@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_booking_adapter_adult_hotel.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant_hotel.view.*
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 
-class BookingContactAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class BookingContactHotelAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     override fun getItemCount(): Int { return items.size }

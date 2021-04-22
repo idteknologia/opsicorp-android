@@ -9,35 +9,37 @@ import android.app.Activity
 import android.content.Intent
 import kotlin.collections.List
 import android.widget.CheckBox
+import android.widget.EditText
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackBookingHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.domainlayer.model.booking_contact.SimModel
-import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import kotlinx.android.synthetic.main.booking_contact_view_hotel.*
+import com.opsicorp.hotel_feature.adapter.HotelBookingContactAdapter
 import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
+import com.opsicorp.hotel_feature.adapter.OnclickRecyclerBookingContact
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
-class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
+class BookingContactHotelActivity : BaseActivity(),
+        OnclickRecyclerBookingContact,
         ButtonDefaultOpsicorp.OnclickButtonListener,
         ToolbarOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.booking_contact_view_hotel }
 
-    val dataContacts = ArrayList<BookingContactAdapterModel>()
-//    val adapter by lazy { BookingContactAdapter(this,dataContacts) }
+    val dataContacts = ArrayList<GuestsItemReservationHotelRequest>()
+    val adapter by lazy { HotelBookingContactAdapter(this,dataContacts) }
 
     lateinit var dataHotel: ResultListHotelModel
     lateinit var dataRoom: SelectRoomModel
@@ -53,10 +55,10 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     override fun OnMain() {
         initDataOrder()
         initToolbar()
-//        initRecyclerView()
+        initRecyclerView()
         initOnClickListener()
-        setDataContact()
         initPrize()
+        setDataContact()
     }
 
     private fun initOnClickListener() {
@@ -68,31 +70,25 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         line_cb_5.setOnClickListener { otherTypeListener() }
         btn_cb5.setOnClickListener { otherTypeListener() }
         btn_cb2.setOnClickListener { bedTypeListener() }
-        cb_guest.setOnClickListener {
-            if (cb_guest.isChecked){
-                setGuestName()
-            }
-            else {
-                emptyGuestName()
-            }
-        }
     }
 
     private fun emptyGuestName() {
-        et_guest.setText("")
-        et_guest.isEnabled = true
+        dataContacts[0].firstName = ""
+        dataContacts[0].lastName  = ""
+        adapter.notifyItemChanged(0)
     }
 
     private fun setGuestName() {
-        et_guest.isEnabled = false
-        et_guest.setText(getProfile().name)
+        dataContacts[0].firstName = getProfile().firstName
+        dataContacts[0].lastName  = getProfile().lastName
+        adapter.notifyItemChanged(0)
     }
 
     private fun otherTypeListener() {
         if (cb5.isChecked==false){
             val bundle = Bundle()
             bundle.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
-            if (et_guest.text.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,et_guest.text.toString())
+            if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
             else bundle.putString(KEY_NAME_GUEST,getProfile().name)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,OTHER_TYPE_REQUEST)
         }else {
@@ -105,7 +101,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         if (cb2.isChecked==false){
             val bundle =  Bundle()
             bundle.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
-            if (et_guest.text.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,et_guest.text.toString())
+            if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
             else bundle.putString(KEY_NAME_GUEST,getProfile().name)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,BED_TYPE_REQUEST)
         }else {
@@ -180,54 +176,59 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun setDataContact() {
-        val mDataBooker = BookingContactAdapterModel()
-        mDataBooker.typeContact = Constants.ADULT
-        mDataBooker.sim         = getSimDataBooker()
-        mDataBooker.pasport     = getPassportDataBooker()
-        mDataBooker.idcard      = getDataIdCartBooker()
-        dataContacts.add(mDataBooker)
+
+        val model = GuestsItemReservationHotelRequest()
+        model.type          = 1
+        model.homePhone     = getProfile().homePhone
+        model.remarks       = remarkGuest()
+        model.firstName     = ""
+        model.idNumber      = getProfile().idNumber
+        model.assignedRoom  = 1
+        model.orderInRoom   = 1
+        model.title         = getProfile().title
+        model.index         = 0
+        model.lastName      = ""
+        model.mobilePhone   = getProfile().mobilePhone
+        model.nationality   = getProfile().nationality
+        model.isUseLocal    = true
+        dataContacts.add(model)
+
+        for (i in 1 until dataHotel.totalGuest){
+            val mData = GuestsItemReservationHotelRequest()
+            mData.type          = 1
+            mData.homePhone     = getProfile().homePhone
+            mData.remarks       = ArrayList()
+            mData.firstName     = ""
+            mData.idNumber      = getProfile().idNumber
+            mData.assignedRoom  = 1
+            mData.orderInRoom   = 1
+            mData.title         = "Mr"
+            mData.index         = 0
+            mData.lastName      = ""
+            mData.mobilePhone   = getProfile().mobilePhone
+            mData.nationality   = getProfile().nationality
+            mData.isUseLocal    = true
+            dataContacts.add(mData)
+        }
+
+        adapter.setData(dataContacts)
 
         val dataProfile = getProfile()
         tv_name_contact.text        = dataProfile.name
         tv_number_contact.text      = dataProfile.homePhone
         tv_email_contact.text       = dataProfile.email
-
-//        adapter.notifyDataSetChanged()
     }
 
-    private fun getDataIdCartBooker(): IdCartModel {
-        val model = IdCartModel()
-        model.fullname = getProfile().name
-        model.id       = getProfile().employId
-        model.idCart   = getProfile().ktp
-        return model
-    }
 
-    private fun getSimDataBooker(): SimModel {
-        val model   = SimModel()
-        model.name  = getProfile().name
-        model.id    = getProfile().employId
-        model.idSim = getProfile().sim
-        return model
-    }
+    private fun initRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv_booking_contact.layoutManager = layoutManager
+        rv_booking_contact.itemAnimator  = DefaultItemAnimator()
+        rv_booking_contact.adapter = adapter
 
-    private fun getPassportDataBooker(): PassportModel {
-        val model = PassportModel()
-        model.firstName = getProfile().firstName
-        model.id        = getProfile().employId
-        model.number    = getProfile().passport
-        return model
+        adapter.setOnclickListener(this)
     }
-
-//    private fun initRecyclerView() {
-//        val layoutManager = LinearLayoutManager(this)
-//        layoutManager.orientation = LinearLayoutManager.VERTICAL
-//        rv_booking_information.layoutManager = layoutManager
-//        rv_booking_information.itemAnimator = DefaultItemAnimator()
-//        rv_booking_information.adapter = adapter
-//
-//        adapter.setOnclickListener(this)
-//    }
 
     private fun initPrize() {
         tv_price.setOnClickListener {
@@ -275,38 +276,36 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         body_prize.collapse()
     }
 
-    override fun onClick(views: Int, position: Int) {
-        when(views){
-            Constants.BTN_SIM       -> {
-                dataContacts[position].checktype = "SIM"
+    override fun onClick(view: Int, position: Int) {
+        when (view){
+            7-> {
+                if (dataContacts[0].firstName.isEmpty()){
+                    setGuestName()
+                }
+                else {
+                    emptyGuestName()
+                }
             }
-            Constants.BTN_PASSPORT  -> {
-                dataContacts[position].checktype = "PASSPORT"
+        }
+    }
+
+    override fun editText(view: Int, position: Int, string: String) {
+        try {
+            when(view){
+                6->{
+                    dataContacts[position].firstName = string
+                    dataContacts[position].lastName  = string
+                    adapter.notifyItemChanged(position)
+                }
             }
-            Constants.BTN_ID_CART   -> {
-                dataContacts[position].checktype = "KTP"
-            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
-            Constants.BTN_SIM       -> {
-                if (requestCode==Activity.RESULT_OK){
-
-                }
-            }
-            Constants.BTN_PASSPORT  -> {
-                if (requestCode==Activity.RESULT_OK){
-
-                }
-            }
-            Constants.BTN_ID_CART   -> {
-                if (requestCode==Activity.RESULT_OK){
-
-                }
-            }
             BED_TYPE_REQUEST -> {
                 if (resultCode==Activity.RESULT_OK){
                     cb2.isChecked = true
@@ -328,22 +327,33 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     fun getReservasedHotel(){
-        showLoadingOpsicorp(true)
-        setLog(Serializer.serialize(dataReservationHotelRequest()))
-        GetDataAccomodation(getBaseUrl()).getBookingHotel(getToken(),dataReservationHotelRequest(),object : CallbackBookingHotel {
-            override fun success(data: BookingHotelModel) {
-                hideLoadingOpsicorp()
-                val bundle = Bundle()
-                bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
-                bundle.putString(Constants.ID_TRIP_PLANE,dataTrip.idTripPlane)
-                gotoActivityWithBundle(NewCartActivity::class.java,bundle)
-            }
+        if (checkEmptyListContactName()){
+            showAllert("Sorry","Please complete input guest name")
+        }
+        else {
+            showLoadingOpsicorp(true)
+            setLog(Serializer.serialize(dataReservationHotelRequest()))
+            GetDataAccomodation(getBaseUrl()).getBookingHotel(getToken(),dataReservationHotelRequest(),object : CallbackBookingHotel {
+                override fun success(data: BookingHotelModel) {
+                    hideLoadingOpsicorp()
+                    val bundle = Bundle()
+                    bundle.putString(Constants.ID_TRIP_PLANE,dataTrip.idTripPlane)
+                    if (Constants.isBisnisTrip){
+                        bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
+                    }
+                    else {
+                        bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
+                    }
+                    gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+                }
 
-            override fun failed(message: String) {
-                hideLoadingOpsicorp()
-                showAllert("Sorry",message)
-            }
-        })
+                override fun failed(message: String) {
+                    hideLoadingOpsicorp()
+                    showAllert("Sorry",message)
+                }
+            })
+        }
+
     }
 
     private fun dataReservationHotelRequest(): HashMap<Any, Any> {
@@ -353,7 +363,7 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.confirmationId  = dataConfirmation.idConfirmation
         data.contact         = getContactHotelRequest()
         data.correlationId   = dataHotel.correlationId
-        data.destinationCity = "vOoQdQqvHE6Req8ZI8ulZA"//dataHotel.city
+        data.destinationCity = dataHotel.idCity //"vOoQdQqvHE6Req8ZI8ulZA"
         data.guestPassport   = dataHotel.idCountry
         data.guests          = dataGuest()
 //        data.travelProfileId = null!!
@@ -374,30 +384,39 @@ class BookingContactHotel : BaseActivity(),OnclickListenerRecyclerView,
         data.purpose        = dataTrip.purpose
         data.idTripPlan     = dataTrip.idTripPlane
         data.code           = dataTrip.tripCode
-//        data.ID             = dataTrip.idTripPlant
         return data
     }
 
-    private fun dataGuest(): List<GuestsItemReservationHotelRequest> {
-        val data = ArrayList<GuestsItemReservationHotelRequest>()
+    private fun dataGuest(): ArrayList<GuestsItemReservationHotelRequest> {
+        dataContacts.forEachIndexed { index, contatc ->
+            val view = rv_booking_contact.getChildAt(index)
+            val nameEditText = view.findViewById(R.id.et_guest) as EditText
+            val name = nameEditText.getText().toString()
+            if (name.isNotEmpty()){
+                if (name.contains(" ")){
+                    contatc.firstName = name.split(" ")[0]
+                    contatc.lastName  = name.split(" ")[1]
+                }
+                else {
+                    contatc.firstName = name
+                    contatc.lastName  = name
+                }
+            }
+        }
+        return dataContacts
+    }
 
-        val model = GuestsItemReservationHotelRequest()
-        model.type          = 1
-        model.homePhone     = getProfile().homePhone
-        model.remarks       = remarkGuest()
-        model.firstName     = getProfile().firstName
-        model.idNumber      = getProfile().idNumber
-        model.assignedRoom  = 1
-        model.orderInRoom   = 1
-        model.title         = getProfile().title
-        model.index         = 0
-        model.lastName      = getProfile().lastName
-        model.mobilePhone   = getProfile().mobilePhone
-        model.nationality   = getProfile().nationality
-        model.isUseLocal    = true
-
-        data.add(model)
-        return data
+    private fun checkEmptyListContactName():Boolean{
+        var empty = false
+        dataContacts.forEachIndexed { index, contatc ->
+            val view = rv_booking_contact.getChildAt(index)
+            val nameEditText = view.findViewById(R.id.et_guest) as EditText
+            val name = nameEditText.getText().toString().trim()
+            if (name.isEmpty()){
+                empty = true
+            }
+        }
+        return empty
     }
 
     private fun remarkGuest(): List<String> {

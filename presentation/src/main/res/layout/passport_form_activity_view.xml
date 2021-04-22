@@ -187,6 +187,7 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:id="@+id/tv_fullname_pasport"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -384,12 +385,15 @@
                         android:orientation="horizontal">
 
 
+
                         <LinearLayout
                             android:layout_marginTop="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
+                                android:inputType="number"
+                                android:id="@+id/et_passpor_number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -434,13 +438,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-
                         <LinearLayout
                             android:layout_marginTop="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <TextView
+                                android:id="@+id/tv_nasionality"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -507,14 +511,14 @@
                                 android:background="#b2bbc6"></LinearLayout>
 
                             <TextView
-                                android:layout_marginTop="4dp"
-                                android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp"
-                                android:textColor="#5488c1"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="4dp"
                                 android:gravity="center_horizontal"
-                                android:text="DD"/>
+                                android:text="DD"
+                                android:textColor="#5488c1"
+                                android:textSize="10sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -624,7 +628,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <EditText
+                            <TextView
+                                android:id="@+id/et_paspor_country"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"

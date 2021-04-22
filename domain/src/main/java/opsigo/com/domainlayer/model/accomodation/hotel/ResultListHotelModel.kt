@@ -9,10 +9,12 @@ class ResultListHotelModel {
     var imageHotel   = ""
     var typeHotel    = ""
     var starRating   = ""
+    var totalGuest   = 1
     var rating       = ""
     var price        = ""
     var correlationId   = ""
     var city            = ""
+    var idCity          = ""
     var idCountry       = ""
     var totalAvailable  = ""
     var nameHotel    = ""

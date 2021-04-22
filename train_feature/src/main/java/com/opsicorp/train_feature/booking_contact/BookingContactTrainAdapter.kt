@@ -50,7 +50,22 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             radiobutton.add(itemView.checkboxPassport)
             radiobutton.add(itemView.checkSim)
 
-            setCheckRadioButton(radiobutton,0)
+            when(data.checktype){
+                Constants.TYPE_KTP -> {
+                    setCheckRadioButton(radiobutton,0)
+                }
+                Constants.TYPE_PASSPORT -> {
+                    setCheckRadioButton(radiobutton,1)
+                }
+                Constants.TYPE_SIM -> {
+                    setCheckRadioButton(radiobutton,2)
+                }
+                else -> {
+                    setCheckRadioButton(radiobutton,0)
+
+                }
+            }
+
 
             itemView.line_id_cart.setOnClickListener {
                 onclick.onClick(Constants.BTN_ID_CART,position)
@@ -73,7 +88,7 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             }
 
 
-            if (!data.idcard.fullname.isEmpty()){
+            if (data.idcard.fullname.isEmpty()){
                 itemView.name_passanger_by_ktp.text      = context.getString(R.string.string_requaired_input)
                 itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.colorRedUndo))
             }

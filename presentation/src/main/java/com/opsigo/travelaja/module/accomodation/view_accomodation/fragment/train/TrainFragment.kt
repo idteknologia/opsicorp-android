@@ -5,7 +5,6 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectTotalPassager
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import kotlinx.android.synthetic.main.train_fragment.lay_parent_passager
@@ -34,12 +33,13 @@ import com.opsigo.travelaja.R
 import android.app.Activity
 import android.view.View
 import android.os.Bundle
+import com.opsigo.travelaja.module.item_custom.select_passager.TotalPassangerTrain
 
 class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener, ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         ButtonDefaultOpsicorp.OnclickButtonListener,
-        SelectTotalPassager.CallbackSelectPasanger {
+        TotalPassangerTrain.CallbackSelectPasanger {
 
     override fun getLayout(): Int { return R.layout.train_fragment }
     var typeTrip = ""
@@ -51,10 +51,8 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     var startDate     = ""
     var endDate       = ""
 
-    var totalAdult  = 0
+    var totalAdult  = 1
     var totalInfant = 0
-    var totalChild  = 0
-
 
     lateinit var data: SuccessCreateTripPlaneModel
 
@@ -77,7 +75,6 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     }
 
     fun checkTypeOrder() {
-
         if (Constants.isBisnisTrip){
             lay_parent_passager.visibility = View.GONE
         }
@@ -106,8 +103,8 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
         }
         else{
-            startDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
-            endDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
+            startDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
+            endDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
         }
     }
 
@@ -144,7 +141,6 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         dataOrder.destinationStationName = tv_to.text.toString()
         dataOrder.totalPassengerString = tv_passanger.text.toString()
         dataOrder.adult           = totalAdult
-        dataOrder.child           = totalChild
         dataOrder.infant          = totalInfant
 
         Constants.DATA_ORDER_TRAIN = Serializer.serialize(dataOrder,OrderAccomodationModel::class.java)
@@ -252,30 +248,35 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     }
 
     fun selectTotalPassenger(){
-        val fm = requireActivity().getSupportFragmentManager()
-        var selectPassager = SelectTotalPassager(true,R.style.CustomDialog,false)
+        /*val fm = requireActivity().getSupportFragmentManager()
+        val selectPassager = SelectTotalPassager(true,R.style.CustomDialog,false)
         selectPassager.show(fm, "yesNoAlert")
         selectPassager.callback = this
-        selectPassager.setLimitSelect(4,3,2)
+        selectPassager.setLimitSelect(4,3,2)*/
+
+        val totalPassangerTrain = TotalPassangerTrain()
+        totalPassangerTrain.setLimitSelect(30,30)
+        totalPassangerTrain.setCurrentSelect(totalAdult,totalInfant)
+        totalPassangerTrain.create(requireContext(),this)
     }
 
-    override fun total(totalInfant: Int, totalChild: Int, totalAdult: Int) {
-        if (totalAdult>0&&totalInfant>0&&totalChild>0){
-            tv_passanger.setText("${totalAdult} Adults ${totalChild} Child ${totalInfant} Infant")
-        }
-        else if(totalAdult>0&&totalInfant>0&&totalChild==0){
+
+    override fun total(totalInfant: Int, totalAdult: Int) {
+        if (totalAdult>0&&totalInfant>0){
             tv_passanger.setText("${totalAdult} Adults ${totalInfant} Infant")
         }
-        else if(totalAdult>0&&totalInfant==0&&totalChild>0){
-            tv_passanger.setText("${totalAdult} Adults ${totalChild} Child")
+        else if(totalAdult>0&&totalInfant>0){
+            tv_passanger.setText("${totalAdult} Adults ${totalInfant} Infant")
         }
-        else if(totalAdult>0&&totalInfant==0&&totalChild==0){
+        else if(totalAdult>0&&totalInfant==0){
+            tv_passanger.setText("${totalAdult} Adults ")
+        }
+        else if(totalAdult>0&&totalInfant==0){
             tv_passanger.setText("${totalAdult} Adults ")
         }
 
         this.totalAdult = totalAdult
         this.totalInfant = totalInfant
-        this.totalChild = totalChild
     }
 
 }

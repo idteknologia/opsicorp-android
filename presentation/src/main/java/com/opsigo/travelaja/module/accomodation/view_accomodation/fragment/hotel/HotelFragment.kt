@@ -24,19 +24,23 @@ import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsigo.travelaja.module.item_custom.select_passager.TotalGuestHotel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class HotelFragment : BaseFragment(),
         NewCalendarViewOpsicorp.CallbackResult,
         View.OnClickListener,
         KoinComponent,
-        ButtonDefaultOpsicorp.OnclickButtonListener {
+        ButtonDefaultOpsicorp.OnclickButtonListener,
+        TotalGuestHotel.CallbackSelectPasanger{
 
     override fun getLayout(): Int { return R.layout.hotel_fragment }
 
     var typeDestination     = -1
     var checkIn             = ""
     var checkOut            = ""
+    var totalGuest          = 1
+    var totalDuration       = 1
     var dataSelectCity      = CityHotelModel()
     var dataSelectCountry   = SelectNationalModel()
     var dataOffice          = NearbyOfficeModel()
@@ -60,22 +64,25 @@ class HotelFragment : BaseFragment(),
         btn_next.callbackOnclickButton(this)
         tv_city.setOnClickListener(this)
         ic_airport.setOnClickListener(this)
-
+        lay_passanger.setOnClickListener(this)
         btn_office.setOnClickListener(this)
         btn_city.setOnClickListener(this)
     }
 
     private fun checkTypeOrder() {
         if (Constants.isBisnisTrip){
+            line_nearby.visibility   = View.VISIBLE
             lay_passanger.visibility = View.GONE
         }
         else{
+            line_nearby.visibility   = View.GONE
             lay_passanger.visibility = View.VISIBLE
         }
     }
 
     private fun setDateDefault() {
-        if (Constants.DATA_SUCCESS_CREATE_TRIP.isNotEmpty()){
+        if (Constants.isBisnisTrip){
+            setLog("000000000000000000000000000000000000000000")
             data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
             startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
@@ -85,14 +92,20 @@ class HotelFragment : BaseFragment(),
             setDataCityDefault()
         }
         else{
-            startDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
-            endDate(DateConverter().getDayFormatOpsicorp(), DateConverter().getDayFormatOpsicorp2())
+            setLog("11111111111111111111111111111111111111111")
+            data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+            startDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
+            endDate(DateConverter().getAfterDay("dd MMM yyyy",1),DateConverter().getAfterDay("yyyy-MM-dd",1) )
+            checkIn  = DateConverter().getDayFormatOpsicorp2()
+            checkOut = DateConverter().getAfterDay("yyyy-MM-dd",1)
+            setDurationDate(checkIn,checkOut)
             tv_duration.text = "1 Night(s)"
+            setDataCityDefault()
         }
     }
 
     private fun setDataCityDefault() {
-        ic_airport.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_before_cheklist))
+        ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_before_cheklist))
         typeDestination             = Constants.SELECT_NEARBY_CITY
         dataSelectCity.cityName     = "Bandung"
         dataSelectCountry.id        = "ID"
@@ -117,36 +130,38 @@ class HotelFragment : BaseFragment(),
             bundle.putString(Constants.KeyBundle.KEY_ID_COUNTRY,dataSelectCountry.id)
             bundle.putString(Constants.KeyBundle.KEY_ID_CITY,dataSelectCity.idCity)
             bundle.putInt(Constants.KeyBundle.KEY_DESTINATION,typeDestination)
-            bundle.putString(Constants.KeyBundle.KEY_LATITUDE,longitude)
-            bundle.putString(Constants.KeyBundle.KEY_LONGITUDE,latitude)
+            bundle.putInt(Constants.KeyBundle.KEY_TOTAL_GUEST,totalGuest)
+            bundle.putString(Constants.KeyBundle.KEY_LATITUDE,latitude)
+            bundle.putString(Constants.KeyBundle.KEY_LONGITUDE,longitude)
             bundle.putString(Constants.KeyBundle.KEY_CHECKOUT,checkOut)
             bundle.putString(Constants.KeyBundle.KEY_CHECKIN,checkIn)
 
-            setLog("---------------------------")
+/*            setLog("---------------------------")
             setLog("1 -> "+tv_duration.text.toString())
             setLog("2 -> "+typeDestination.toString())
             setLog("3 -> "+dataAirport.nameAirport)
             setLog("4 -> "+dataSelectCity.cityName)
             setLog("6 -> "+dataSelectCity.idCity)
             setLog("5 -> "+dataOffice.nameCompany)
-            setLog("7 -> "+longitude)
-            setLog("8 -> "+dataSelectCountry.id)
+            setLog("7 -> "+dataSelectCountry.id)
+            setLog("8 -> "+longitude)
             setLog("9 -> "+latitude)
             setLog("10 ->"+checkOut)
-            setLog("11 ->"+checkIn)
+            setLog("11 ->"+checkIn)*/
 
             val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_HOTEL +"result.ResultSearchHotelActivity"))
             intent.putExtra(Constants.KEY_BUNDLE,bundle)
-            gotoActivityModule(context!!,intent)
+            gotoActivityModule(requireContext(),intent)
         }
         else{
-            Globals.showAlert("Please","Select city",context!!)
+            Globals.showAlert("Please","Select city",requireContext())
         }
     }
 
     override fun startDate(displayStartDate: String, startDate: String) {
         tv_departur_date.text = displayStartDate
         checkIn = startDate
+        if (!Constants.isBisnisTrip) checkOut = DateConverter().getAfterDate("yyyy-MM-dd","yyyy-MM-dd",checkIn,totalDuration-1)
         setDurationDate(checkIn,checkOut)
     }
 
@@ -161,12 +176,7 @@ class HotelFragment : BaseFragment(),
     override fun onClick(v: View?) {
         when(v){
             tv_departur_date -> {
-                NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
-//                if (Globals.ONE_TRIP){
-//                }
-//                else{
-//                    NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",data.startDate,data.endDate, Constant.DOUBLE_SELECTED)
-//                }
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
             }
             tv_duration -> {
                 selectDuration()
@@ -194,9 +204,15 @@ class HotelFragment : BaseFragment(),
                 }
             }
             ic_airport->{
-                if (ic_airport.drawable.constantState==ContextCompat.getDrawable(context!!,R.drawable.ic_after_checklist)?.constantState){
+                if (ic_airport.drawable.constantState==ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist)?.constantState){
                     setDataCityDefault()
                 }
+            }
+            lay_passanger-> {
+                val selectGuest = TotalGuestHotel()
+                selectGuest.setLimitSelect(30)
+                selectGuest.setCurrentSelect(1)
+                selectGuest.create(requireContext(),this)
             }
         }
     }
@@ -207,17 +223,21 @@ class HotelFragment : BaseFragment(),
                 Class.forName(Constants.BASE_PACKAGE_HOTEL +"nearby.NearbyActivity")
         )
         intent.putExtra(Constants.TYPE_SELECT_NEARBY,selectNearbyOffice)
-        gotoActivityForResultModule(context!!,intent,Constants.REQUEST_CODE_NEARBY)
+        gotoActivityForResultModule(requireContext(),intent,Constants.REQUEST_CODE_NEARBY)
     }
 
     fun selectDuration(){
-        DialogSelectDuration(context!!).create(
-                Globals.countDaysBettwenTwoDate(checkIn,checkOut,"yyyy-MM-dd"),
+//        var max = ""
+//        if (Constants.isBisnisTrip) max = checkOut else max = data.endDate
+        DialogSelectDuration(requireContext()).create(
+                Globals.countDaysBettwenTwoDate(checkIn,data.endDate,"yyyy-MM-dd"),
                 object : DialogSelectDurationHotel {
-            override fun duration(duration: String) {
-                tv_duration.text = duration+" Night(s)"
-            }
-        })
+                    override fun duration(duration: String) {
+                        tv_duration.text = duration+" Night(s)"
+                        totalDuration = duration.toInt()
+                        if (!Constants.isBisnisTrip) checkOut = DateConverter().getAfterDate("yyyy-MM-dd","yyyy-MM-dd",checkIn,duration.toInt())
+                    }
+                })
     }
 
     fun getReasonCode(){
@@ -239,15 +259,14 @@ class HotelFragment : BaseFragment(),
             Constants.REQUEST_CODE_NEARBY -> {
                 when(data?.getIntExtra(Constants.TYPE_SELECT_NEARBY,Constants.SELECT_NEARBY_CITY)){
                     Constants.SELECT_NEARBY_CITY -> {
-                        setLog("chbjkj ",data.getStringExtra(Constants.KeyBundle.KEY_ID_CITY).toString())
                         dataSelectCity.idCity     = data.getStringExtra(Constants.KeyBundle.KEY_ID_CITY).toString()
                         dataSelectCity.cityName   = data.getStringExtra(Constants.KeyBundle.KEY_NAME_CITY).toString()
                         tv_country.text           = data.getStringExtra(Constants.KeyBundle.KEY_NAME_COUNTRY).toString()
                         dataSelectCountry.id      = data.getStringExtra(Constants.KeyBundle.KEY_ID_COUNTRY).toString()
                         tv_title_destination.text = context?.getString(R.string.title_nearby_city)
-                        ic_address.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_location))
+                        ic_address.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_location))
                         typeDestination           = Constants.SELECT_NEARBY_CITY
-                        ic_airport.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_before_cheklist))
+                        ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_before_cheklist))
                         tv_city.text = dataSelectCity.cityName
                     }
                     Constants.SELECT_NEARBY_AIRPORT -> {
@@ -255,10 +274,11 @@ class HotelFragment : BaseFragment(),
                         latitude  = data.getStringExtra(Constants.KeyBundle.KEY_LATITUDE).toString()
                         longitude = data.getStringExtra(Constants.KeyBundle.KEY_LONGITUDE).toString()
                         dataSelectCountry.id      = data.getStringExtra(Constants.KeyBundle.KEY_ID_COUNTRY).toString()
+                        dataSelectCity.idCity     = data.getStringExtra(Constants.KeyBundle.KEY_ID_CITY).toString()
                         tv_title_destination.text = context?.getString(R.string.title_nearby_airport)
-                        ic_address.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.flight_arrived))
+                        ic_address.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.flight_arrived))
                         typeDestination           = Constants.SELECT_NEARBY_AIRPORT
-                        ic_airport.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_after_checklist))
+                        ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist))
                         tv_city.text = dataAirport.nameAirport
                     }
                     Constants.SELECT_NEARBY_OFFICE -> {
@@ -266,49 +286,21 @@ class HotelFragment : BaseFragment(),
                         latitude  = data.getStringExtra(Constants.KeyBundle.KEY_LATITUDE).toString()
                         longitude = data.getStringExtra(Constants.KeyBundle.KEY_LONGITUDE).toString()
                         dataSelectCountry.id      = data.getStringExtra(Constants.KeyBundle.KEY_ID_COUNTRY).toString()
+                        dataSelectCity.idCity     = data.getStringExtra(Constants.KeyBundle.KEY_ID_CITY).toString()
                         tv_title_destination.text = context?.getString(R.string.title_nearby_office)
-                        ic_address.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_tower_gray))
+                        ic_address.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_tower_gray))
                         typeDestination           = Constants.SELECT_NEARBY_OFFICE
-                        ic_airport.setImageDrawable(ContextCompat.getDrawable(context!!,R.drawable.ic_after_checklist))
+                        ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist))
                         tv_city.text = dataOffice.nameCompany
                     }
                 }
             }
         }
     }
-    /*fun getLatLongWithGprs(){
-        val location = object : MyLocation.LocationResult(){
-            override fun gotLocation(location: Location?) {
-                var latitude = location?.latitude
-                var longitude = location?.longitude
-            }
-        }
 
-        MyLocation().getLocation(context,location)
+    override fun total(totalGuest: Int) {
+        this.totalGuest = totalGuest
+        tv_guest.text = "$totalGuest Guest"
     }
-
-
-
-
-    fun checkPermissionLocation(){
-        val activity = (context as Activity)
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (activity.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) !== android.content.pm.PackageManager.PERMISSION_GRANTED &&
-                    activity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) !== android.content.pm.PackageManager.PERMISSION_GRANTED &&
-                    activity.checkSelfPermission(Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS)!== android.content.pm.PackageManager.PERMISSION_GRANTED ) {
-                requestPermissions(arrayOf(Manifest.permission.ACCESS_LOCATION_EXTRA_COMMANDS,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                        Manifest.permission.ACCESS_FINE_LOCATION),
-                        READ_REQUEST_LOCATION)
-            }
-            else {
-                getLatLongWithGprs()
-            }
-        }
-        else{
-            getLatLongWithGprs()
-        }
-    }
-*/
 
 }

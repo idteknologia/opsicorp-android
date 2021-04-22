@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class RoomsItem(
 
 		@field:SerializedName("ProviderId")
-	val providerId:String = "",
+	val providerId:String? = null,
 
 		@field:SerializedName("PriceDetails")
 	val priceDetails: List<PriceDetailsItem> = ArrayList(),
@@ -16,13 +16,13 @@ data class RoomsItem(
 	val orderPriority: Int = 0,
 
 		@field:SerializedName("CancelPolicySummaries")
-	val cancelPolicySummaries:String = "",
+	val cancelPolicySummaries:String? = null,
 
 		@field:SerializedName("MessageNotComply")
-	val messageNotComply: String = "",
+	val messageNotComply: String? = null,
 
 		@field:SerializedName("MealTypeName")
-	val mealTypeName: String = "",
+	val mealTypeName: String? = null,
 
 		@field:SerializedName("IsNotComply")
 	val isNotComply: Boolean = false,
@@ -37,19 +37,19 @@ data class RoomsItem(
 	val isFullCharge: Boolean = false,
 
 		@field:SerializedName("MealType")
-	val mealType: String = "",
+	val mealType: String? = null,
 
 		@field:SerializedName("RoomKey")
-	val roomKey: String = "",
+	val roomKey: String? = null,
 
 		@field:SerializedName("RoomSelector")
-	val roomSelector:String = "",
+	val roomSelector:String? = null,
 
 		@field:SerializedName("ProviderCode")
-	val providerCode: String = "",
+	val providerCode: String? = null,
 
 		@field:SerializedName("Currency")
-	val currency: String = "",
+	val currency: String? = null,
 
 		@field:SerializedName("IsGuaranteedBooking")
 	val isGuaranteedBooking: Boolean = false,
@@ -58,22 +58,22 @@ data class RoomsItem(
 	val status: Int = 0,
 
 		@field:SerializedName("ProviderRoomCode")
-	val providerRoomCode:String = "",
+	val providerRoomCode:String? = null,
 
 		@field:SerializedName("RoomName")
-	val roomName: String = "",
+	val roomName: String? = null,
 
 		@field:SerializedName("RateName")
-	val rateName:String = "",
+	val rateName:String? = null,
 
 		@field:SerializedName("ProviderHotelCode")
-	val providerHotelCode:String = "",
+	val providerHotelCode:String? = null,
 
 		@field:SerializedName("RoomHash")
-	val roomHash: String = "",
+	val roomHash: String? = null,
 
 		@field:SerializedName("RoomSubText")
-	val roomSubText: String = "",
+	val roomSubText: String? = null,
 
 		@field:SerializedName("AveragePrice")
 	val averagePrice: Double = 0.0,
@@ -82,7 +82,7 @@ data class RoomsItem(
 	val averagePerNight: Double = 0.0,
 
 		@field:SerializedName("RateCode")
-	val rateCode:String = "",
+	val rateCode:String? = null,
 
 		@field:SerializedName("MaxPricePerNight")
 	val maxPricePerNight: Double = 0.0,

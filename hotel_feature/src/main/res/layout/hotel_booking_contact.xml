@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/line_im_the_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp">
+            <CheckBox
+                android:buttonTint="@color/colorPrimary"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/cb_guest">
+            </CheckBox>
+            <LinearLayout
+                android:orientation="vertical"
+                android:id="@+id/disable_checklist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:text="I am the guest"
+            style="@style/RobotoBold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="21dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="40dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#91929e"
+            android:text="@string/title_guest" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:text=""
+            android:id="@+id/et_guest"
+            android:layout_marginTop="8dp"
+            android:background="@color/transparent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#b2bbc6"></LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9sp"
+            android:textColor="#5488c1"
+            android:lineSpacingExtra="6sp"
+            android:text="As on ID Card (KTP) without title and punctuation"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+</LinearLayout>

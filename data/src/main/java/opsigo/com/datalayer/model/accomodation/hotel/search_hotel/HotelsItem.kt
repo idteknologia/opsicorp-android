@@ -7,19 +7,19 @@ import com.google.gson.annotations.SerializedName
 data class HotelsItem(
 
 		@field:SerializedName("Email")
-	val email: String = "",
+	val email: String? = null,
 
 		@field:SerializedName("Address")
-	val address: String = "",
+	val address: String? = null,
 
 		@field:SerializedName("CountryName")
-	val countryName: String = "",
+	val countryName: String? = null,
 
 		@field:SerializedName("MapImageUri")
-	val mapImageUri: String = "",
+	val mapImageUri: String? = null,
 
 		@field:SerializedName("Website")
-	val website: String = "",
+	val website: String? = null,
 
 		@field:SerializedName("Latitude")
 	val latitude: Double = 0.0,
@@ -28,34 +28,34 @@ data class HotelsItem(
 	val starRating: Double = 0.0,
 
 		@field:SerializedName("Checkout")
-	val checkout: String = "",
+	val checkout: String? = null,
 
 		@field:SerializedName("Phone")
-	val phone: String = "",
+	val phone: String? = null,
 
 		@field:SerializedName("ProviderCode")
-	val providerCode: String = "",
+	val providerCode: String? = null,
 
 		@field:SerializedName("Currency")
-	val currency: String = "",
+	val currency: String? = null,
 
 		@field:SerializedName("HaveWifi")
 	val haveWifi: Boolean = false,
 
 		@field:SerializedName("Facsimile")
-	val facsimile: String = "",
+	val facsimile: String? = null,
 
 		@field:SerializedName("CorrelationId")
-	val correlationId: String = "",
+	val correlationId: String? = null,
 
 		@field:SerializedName("HotelName")
-	val hotelName: String = "",
+	val hotelName: String? = null,
 
 		@field:SerializedName("CityKey")
-	val cityKey: String = "",
+	val cityKey: String? = null,
 
 		@field:SerializedName("MapUri")
-	val mapUri: String = "",
+	val mapUri: String? = null,
 
 		@field:SerializedName("Status")
 	val status: Int = 0,
@@ -70,19 +70,19 @@ data class HotelsItem(
 	val mapped: Boolean = false,
 
 		@field:SerializedName("ProviderHotelCode")
-	val providerHotelCode: String = "",
+	val providerHotelCode: String? = null,
 
 		@field:SerializedName("ThumbUri")
-	val thumbUri: String = "",
+	val thumbUri: String? = null,
 
 		@field:SerializedName("Duration")
 	val duration: Int = 0,
 
 		@field:SerializedName("CityName")
-	val cityName: String = "",
+	val cityName: String? = null,
 
 		@field:SerializedName("ImageUri")
-	val imageUri: String = "",
+	val imageUri: String? = null,
 
 		@field:SerializedName("Longitude")
 	val longitude: Double = 0.0,
@@ -97,10 +97,10 @@ data class HotelsItem(
 	val rooms: List<RoomsItem> = ArrayList(),
 
 		@field:SerializedName("HotelKey")
-	val hotelKey: String = "",
+	val hotelKey: String? = null,
 
 		@field:SerializedName("Area")
-	val area: String = "",
+	val area: String? = null,
 
 		@field:SerializedName("LowestRoomPrice")
 	val lowestRoomPrice: Double = 0.0,
@@ -112,14 +112,14 @@ data class HotelsItem(
 	val pricePerRoomNight: Double = 0.0,
 
 		@field:SerializedName("Checkin")
-	val checkin: String = "",
+	val checkin: String? = null,
 
 		@field:SerializedName("PricePerNight")
 	val pricePerNight: Double = 0.0,
 
 		@field:SerializedName("IsoCountryCode")
-	val isoCountryCode: String = "",
+	val isoCountryCode: String? = null,
 
 		@field:SerializedName("Location")
-	val location: String = ""
+	val location: String? = null
 )

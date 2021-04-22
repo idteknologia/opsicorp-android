@@ -65,6 +65,11 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
                 btn_bottom_accomodation.visibility = View.VISIBLE
                 initButtonBottom()
             }
+            if (Constants.ADD_ITEM_PERSONAL_TRIP.equals(data)){
+                Constants.isBisnisTrip = false
+                btn_bottom_accomodation.visibility = View.VISIBLE
+                initButtonBottom()
+            }
             else if(TYPE_FLIGHT.equals(data)){
                 Constants.isBisnisTrip = false
                 getFlightFragment()
