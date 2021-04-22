@@ -4,18 +4,23 @@ import android.content.Context
 import android.preference.PreferenceManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.trip.TripResult
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface ServiceApi {
 
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripResult(@QueryMap map: MutableMap<String, String>): TripResult
+
 
     companion object {
         fun createRequest(context: Context): ServiceApi {

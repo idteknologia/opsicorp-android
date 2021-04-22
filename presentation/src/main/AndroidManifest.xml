@@ -223,6 +223,8 @@
             android:name="com.opsigo.travelaja.module.notif.YesActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".module.home.activity.HomeWebActivity"
+            android:screenOrientation="portrait"/>
 
         <service android:name="com.opsigo.travelaja.module.notif.CorpFirebaseMessagingService">
             <intent-filter>

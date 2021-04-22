@@ -24,7 +24,6 @@ import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 
     override fun getLayout(): Int {
-        hideStatusBar()
         return R.layout.home_view }
 
     var imageDefaults       = ArrayList<Int>()
