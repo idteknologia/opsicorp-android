@@ -7,12 +7,12 @@
             <size android:width="20dp"
                 android:height="20dp"/>
             <stroke android:width="3dp"
-                android:color="#009688"/>
+                android:color="#ffffff"/>
         </shape>
     </item>
     <item android:state_checked="true">
         <shape android:shape="oval">
-            <solid android:color="#009688"/>
+            <solid android:color="#ffffff"/>
             <size android:width="20dp"
                 android:height="20dp"/>
             <stroke android:width="3dp"

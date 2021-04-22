@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.toolbar_view_new.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
+import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import java.lang.Exception
 
 class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -119,6 +120,7 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
         tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
 
         val selectedItem = SelectedBaggageModel()
+        val passengerBaggage = BookingContactAdapterModel()
         selectedItem.price = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing
         selectedItem.ssrCode = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrCode
         selectedItem.curency = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.curency
@@ -135,11 +137,12 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
         datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.clear()
         datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.addAll(baggageSelected)
+        passengerBaggage.ssr.bagaggeItemSelected = datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
 
         adapter2.setData(datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected)
 
-        Log.e("testSaveBaggage", baggageSelected[0].price)
+        Log.e("testSaveBaggage", passengerBaggage.ssr.bagaggeItemSelected[0].price)
     }
 
 

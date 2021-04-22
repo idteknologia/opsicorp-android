@@ -14,6 +14,7 @@ class ResultListFlightModel {
     var destinationAirport = ""
     var airline         = 0
     var facility        = ArrayList<FacilityFlightModel>()
+    var passenger       = ArrayList<BookingContactAdapterModel>()
     var notComply       = false
 
     var titleAirline    = ""

@@ -51,9 +51,10 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
 
     val dataContacts = ArrayList<BookingContactAdapterModel>()
     val resultSeat = ResultSeat()
-    val adapter by lazy { BookingContactFlightAdapter(this, dataContacts) }
-    lateinit var dataOrder: OrderAccomodationModel
     lateinit var dataListFlight: DataListOrderAccomodation
+    val adapter by lazy { BookingContactFlightAdapter(this) }
+    lateinit var dataOrder: OrderAccomodationModel
+
     lateinit var dataFlight: ResultListFlightModel
 
     override fun OnMain() {
@@ -98,24 +99,34 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         dataListFlight.dataFlight.forEach {
             mDataBooker.ssr = it.dataSSR
         }
-        dataContacts.add(mDataBooker)
+        /*dataContacts.add(mDataBooker)*/
+        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+          resultListFlightModel.passenger.add(mDataBooker)
+        }
+
 
         for (i in 0 until dataOrder.infant) {
             val mData = BookingContactAdapterModel()
             mData.typeContact = Constants.INFANT
-            dataContacts.add(mData)
+            dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                resultListFlightModel.passenger.add(mData)
+            }
         }
         if (dataOrder.adult > 1){
             for (i in 0 until dataOrder.adult -1) {
                 val mData = BookingContactAdapterModel()
                 mData.typeContact = Constants.ADULT
-                dataContacts.add(mData)
+                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                    resultListFlightModel.passenger.add(mData)
+                }
             }
         }
         for (i in 0 until dataOrder.child) {
             val mData = BookingContactAdapterModel()
             mData.typeContact = Constants.CHILD
-            dataContacts.add(mData)
+            dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                resultListFlightModel.passenger.add(mData)
+            }
         }
 
         val dataProfile = getProfile()
@@ -123,7 +134,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         tv_number_contact.text = dataProfile.homePhone
         tv_email_contact.text = dataProfile.email
 
-        adapter.setData(dataContacts)
+        adapter.setData(dataListFlight.dataFlight[0].passenger)
         initPrice()
     }
 

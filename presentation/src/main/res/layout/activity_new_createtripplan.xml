@@ -14,6 +14,7 @@
         android:id="@+id/parentView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="10dp"
         android:fitsSystemWindows="true"
         android:background="@color/white"
         android:orientation="vertical">
@@ -35,6 +36,7 @@
                 <LinearLayout
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -49,6 +51,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/ic_back"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_back"
@@ -65,8 +68,8 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginLeft="8dp"
                             style="@style/RobotoBold"
-                            android:text="1. Create Trip Plan"
-                            android:textColor="#009688"
+                            android:text="@string/create_trip_plan"
+                            android:textColor="#91929e"
                             android:textSize="12sp"
                             android:layout_alignParentRight="true" />
 
@@ -74,10 +77,12 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:background="#f6f8f8"
+                    android:background="@drawable/rounded_button_corner_grey_97"
                     android:id="@+id/line_domestic"
                     android:layout_width="match_parent"
-                    android:layout_height="67dp">
+                    android:layout_height="67dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -95,15 +100,6 @@
                             android:textColor="#24253d"
                             android:text="@string/domestic_internation_trip"
                             style="@style/RobotoBold"/>
-                        <TextView
-                            android:id="@+id/desc_domestic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:textColor="#00776a"
-                            android:text="@string/desc_domestic"
-                            style="@style/RobotoRegular"
-                            android:layout_marginTop="4dp"/>
 
                     </LinearLayout>
 
@@ -112,10 +108,13 @@
                         android:thumb="@drawable/rounded_switch2"
                         android:track="@drawable/track_switch_on"
                         android:layout_width="wrap_content"
-                        android:layout_height="14dp"
+                        android:layout_height="20dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"/>
+                        android:layout_marginRight="20dp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -252,7 +251,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/mp_xs"
                         android:layout_marginLeft="@dimen/mp_xs"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/mp_xs">
 
                         <ImageView
                             android:layout_marginTop="7dp"
@@ -288,7 +288,7 @@
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
-                                    android:textSize="15dp"
+                                    android:textSize="15sp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
@@ -317,14 +317,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/mp_xs"
                         android:layout_marginLeft="@dimen/mp_xs"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/mp_xs">
 
                         <ImageView
                             android:layout_marginTop="7sp"
                             android:layout_marginRight="8dp"
                             android:src="@drawable/ic_date_check_out"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -352,7 +354,7 @@
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
-                                    android:textSize="15dp"
+                                    android:textSize="15sp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
@@ -389,7 +391,7 @@
                         android:layout_height="60dp">
 
                         <TextView
-                            android:text="Name Event"
+                            android:text="@string/name_event"
                             android:textSize="14sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -449,7 +451,7 @@
                             android:singleLine="true"
                             android:textColorHint="#24253d"
                             android:textColor="#24253d"
-                            android:background="@drawable/rounded_button_corner_grey_97"
+                            android:background="@drawable/rounded_button_corner_grey"
                             android:id="@+id/et_notes"
                             android:paddingTop="8dp"
                             android:paddingBottom="9dp"
@@ -464,14 +466,6 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_below="@+id/layNotes"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext">
-
-                    </LinearLayout>
-
                     <TextView
                         android:layout_below="@+id/layNotes"
                         android:layout_width="wrap_content"
@@ -480,13 +474,38 @@
                         android:textStyle="normal"
                         android:textSize="14sp"
                         android:gravity="end"
-                        android:text="0 / 100"
+                        android:text="@string/_0_100"
                         android:layout_marginTop="10dp"
                         android:textColor="#b2bbc6"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true" />
 
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#b2bbc6">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:lineSpacingExtra="7sp"
+                    tools:text="Please attach your document! \n
+e.g. invitation letter or official letter \n
+Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.\n
+Maximum file size : 1 MB"
+                    />
 
                 <LinearLayout
                     android:id="@+id/layListAttachment"
@@ -620,278 +639,6 @@
             </LinearLayout>
 
         </ScrollView>
-
-
-        <LinearLayout
-            android:id="@+id/layNavBottom"
-            android:visibility="gone"
-            android:gravity="center"
-            android:backgroundTint="@color/white"
-            android:background="@drawable/shadow_top_white_02"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingTop="0dp"
-            android:paddingBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:orientation="vertical"
-            android:layout_alignParentLeft="true">
-
-
-            <LinearLayout
-                android:weightSum="1"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/save_draft"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:gravity="center"
-                    android:background="@drawable/rounded_button_yellow"
-                    android:text="@string/save"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp" />
-
-                <TextView
-                    android:visibility="gone"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:gravity="center"
-                    android:background="@drawable/rounded_green_stroke"
-                    android:text="@string/next"
-                    android:layout_weight="0.5"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:visibility="gone"
-                android:weightSum="5"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:id="@+id/layHome"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_flight_active"
-                        android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
-                    <TextView
-                        android:id="@+id/tvHome"
-                        android:textSize="10sp"
-                        android:text="@string/flights"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layHotel"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_hotel"
-                        android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
-                    <TextView
-                        android:textSize="10sp"
-                        android:text="@string/hotels"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layTour"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_tour"
-                        android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
-                    <TextView
-                        android:id="@+id/tvTour"
-                        android:textSize="10sp"
-                        android:text="@string/tour"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layManageTrip"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_manage_trip"
-                        android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
-                    <TextView
-                        android:id="@+id/tvManageTrip"
-                        android:textSize="10sp"
-                        android:text="@string/manage_trip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layProfile"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:src="@drawable/ic_profile"
-                        android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
-                    <TextView
-                        android:id="@+id/tvProfile"
-                        android:textSize="10sp"
-                        android:text="@string/profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/design_bottom_sheet"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        app:behavior_hideable="true"
-        app:behavior_peekHeight="0dp"
-        app:elevation="4dp"
-        app:layout_behavior="@string/bottom_sheet_behavior">
-
-        <RelativeLayout
-            android:id="@+id/layPageSelectedAirline"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:id="@+id/layToolbarDestination"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_alignParentTop="true"
-                android:background="@color/green_price"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:layout_marginLeft="15dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/imgBackFromDest"
-                        android:paddingRight="10dp"
-                        android:src="@drawable/ic_back_white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="@string/destination"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lay_search"
-                android:layout_below="@id/layToolbarDestination"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@drawable/rounded_button_et_search">
-
-                <TextView
-                    android:visibility="gone"
-                    android:layout_weight="1"
-                    android:id="@+id/dialog_title"
-                    android:textColor="@color/white"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="product_title"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-
-                <EditText
-                    android:layout_weight="1"
-                    android:id="@+id/dialog_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:hint="@string/type_origin_city"
-                    android:inputType="textNoSuggestions"
-                    android:imeOptions="actionSearch"
-                    android:background="@android:color/transparent"
-                    android:textSize="16sp"
-                    android:drawablePadding="5dp"
-                    android:padding="5dp" />
-
-                <ImageView
-                    android:id="@+id/imgCloseDest"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:src="@drawable/ic_close_dark_gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_below="@id/lay_search"
-                android:id="@+id/rvCountry"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </RelativeLayout>
 
     </RelativeLayout>
 </LinearLayout>

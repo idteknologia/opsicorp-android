@@ -13,11 +13,11 @@
     </item>
     <item android:state_checked="true">
         <shape android:shape="rectangle">
-            <solid android:color="#a3cec9"/>
+            <solid android:color="#2b9a8e"/>
             <size android:width="20dp"
                 android:height="20dp"/>
             <stroke android:width="3dp"
-                android:color="#a3cec9"/>
+                android:color="#2b9a8e"/>
             <corners android:radius="8dp"/>
         </shape>
     </item>

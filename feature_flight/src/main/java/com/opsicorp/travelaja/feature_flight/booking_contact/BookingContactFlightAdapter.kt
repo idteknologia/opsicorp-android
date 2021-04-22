@@ -14,10 +14,11 @@ import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 
-class BookingContactFlightAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class BookingContactFlightAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     lateinit var datalist: DataListOrderAccomodation
+    lateinit var items: ArrayList<BookingContactAdapterModel>
 
     override fun getItemCount(): Int { return items.size }
 
@@ -54,8 +55,8 @@ class BookingContactFlightAdapter (val context: Context, private var items: Arra
             radiobutton.add(itemView.checkboxPassport)
             radiobutton.add(itemView.checkSim)
 
-            /*onclick.onClick(Constants.BTN_ID_CART,position)
-            setCheckRadioButton(radiobutton,0)*/
+            /*onclick.onClick(Constants.BTN_ID_CART,position)*/
+            setCheckRadioButton(radiobutton,0)
 
             itemView.line_id_cart.setOnClickListener {
                 onclick.onClick(Constants.BTN_ID_CART,position)

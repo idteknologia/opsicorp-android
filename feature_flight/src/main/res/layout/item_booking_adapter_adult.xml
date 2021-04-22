@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:textColor="#91929e"
-                android:text="Age 5 and older"
+                android:text="Age 15 and older"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </LinearLayout>
