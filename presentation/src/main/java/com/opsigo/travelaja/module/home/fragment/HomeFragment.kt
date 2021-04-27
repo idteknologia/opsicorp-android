@@ -19,6 +19,7 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.base.BaseFragment
 import com.opsigo.travelaja.module.approval.activity.DetailTripActivity
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
 import com.opsigo.travelaja.module.home.presenter.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
 import com.squareup.picasso.Picasso
@@ -245,12 +246,13 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
             if (getProfile().companyCode.equals(11)){
-                gotoActivity(NewCartActivity::class.java)
+                gotoActivity(CreateTripPertaminaActivity::class.java)
             }
             gotoActivity(CreateTripActivity::class.java)
         } else {
             showContactAdmin()
         }
+        /*gotoActivity(CreateTripPertaminaActivity::class.java)*/
     }
 
     override fun onClick(v: View?) {

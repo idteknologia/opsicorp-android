@@ -49,12 +49,12 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         return R.layout.booking_contact_view_flight
     }
 
-    val dataContacts = ArrayList<BookingContactAdapterModel>()
+    /*val dataContacts = ArrayList<BookingContactAdapterModel>()*/
     val resultSeat = ResultSeat()
     lateinit var dataListFlight: DataListOrderAccomodation
     val adapter by lazy { BookingContactFlightAdapter(this) }
     lateinit var dataOrder: OrderAccomodationModel
-
+    var currentPosition = 0
     lateinit var dataFlight: ResultListFlightModel
 
     override fun OnMain() {
@@ -93,12 +93,11 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
     private fun setDataContact() {
         val mDataBooker = BookingContactAdapterModel()
         mDataBooker.typeContact = Constants.ADULT
+        mDataBooker.checktype = Constants.TYPE_KTP
         mDataBooker.sim = getSimDataBooker()
         mDataBooker.pasport = getPassportDataBooker()
         mDataBooker.idcard = getDataIdCartBooker()
-        dataListFlight.dataFlight.forEach {
-            mDataBooker.ssr = it.dataSSR
-        }
+
         /*dataContacts.add(mDataBooker)*/
         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
           resultListFlightModel.passenger.add(mDataBooker)
@@ -173,6 +172,11 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         adapter.setOnclickListener(this)
     }
 
+    private fun updateDataListFlight(){
+        dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+    }
+
     private fun initPrice() {
         tv_price.setOnClickListener {
             showOrHideDetailPrize()
@@ -187,8 +191,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         btn_next.callbackOnclickButton(this)
 
         if (Globals.typeAccomodation == Constants.FLIGHT) {
-            val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+
 
             tv_prize_departure.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
             tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"
@@ -208,7 +211,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
                 tv_price.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
             }
             dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
-                if (resultListFlightModel.dataSSR.bagaggeItemSelected.isNotEmpty() || resultListFlightModel.dataSSR.ssrSelected.isNotEmpty()) {
+                if (resultListFlightModel.passenger[0].ssr.bagaggeItemSelected.isNotEmpty() || resultListFlightModel.passenger[0].ssr.ssrSelected.isNotEmpty()) {
                     rlBaggagePrice.visible()
                     rlSsrPrice.visible()
                     tv_total_price_baggage.text = StringUtils().setCurrency("IDR", totalPriceBaggage()!!.toDouble(), false)
@@ -232,7 +235,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         var totalPriceSsrItem = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
-            it.dataSSR.ssrSelected.forEach {
+            it.passenger[currentPosition].ssr.ssrSelected.forEach {
                 try {
                     totalPriceSsrItem = totalPriceSsrItem + it.price.toDouble()
                 } catch (e: Exception) {
@@ -247,7 +250,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         var totalPriceBagaggeItem = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
-            it.dataSSR.bagaggeItemSelected.forEach {
+            it.passenger[currentPosition].ssr.bagaggeItemSelected.forEach {
                 try {
                     totalPriceBagaggeItem = totalPriceBagaggeItem + it.price.toDouble()
                 } catch (e: Exception) {
@@ -284,28 +287,45 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
     }
 
     override fun onClick(views: Int, position: Int) {
-        when (views) {
-            Constants.BTN_SIM -> {
-                dataContacts[position].checktype = "SIM"
-                gotoActivityResult(SimFormContactActivity::class.java, Constants.BTN_SIM)
+        currentPosition = position
+        when(views){
+            Constants.BTN_SIM       -> {
+                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                    val bundle = Bundle()
+                    bundle.putString(Constants.INPUT_EDIT_SIM,Serializer.serialize(resultListFlightModel.passenger[position].sim))
+                    gotoActivityResultWithBundle(SimFormContactActivity::class.java,bundle,Constants.BTN_SIM)
+                }
             }
-            Constants.BTN_PASSPORT -> {
-                dataContacts[position].checktype = "PASSPORT"
-                gotoActivityResult(PassportFormActivity::class.java, Constants.BTN_PASSPORT)
-            }
-            Constants.BTN_ID_CART -> {
-                dataContacts[position].checktype = "KTP"
-                gotoActivityResult(KtpCardFormActivity::class.java, Constants.BTN_ID_CART)
-            }
+            Constants.BTN_PASSPORT  -> {
+                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                    val bundle = Bundle()
+                    bundle.putString(Constants.INPUT_EDIT_PASPORT,Serializer.serialize(resultListFlightModel.passenger[position].pasport))
+                    gotoActivityResultWithBundle(PassportFormActivity::class.java,bundle,Constants.BTN_PASSPORT)
+                }
 
+            }
+            Constants.BTN_ID_CART   -> {
+                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                    val bundle = Bundle()
+                    bundle.putString(Constants.INPUT_EDIT_KTP,Serializer.serialize(resultListFlightModel.passenger[position].idcard))
+                    gotoActivityResultWithBundle(KtpCardFormActivity::class.java,bundle,Constants.BTN_ID_CART)
+                }
+
+            }
             Constants.KEY_ACTIVITY_BAGAGE -> {
-                gotoActivityResult(BagageActivity::class.java, Constants.KEY_ACTIVITY_BAGAGE)
+                val bundle = Bundle()
+                bundle.putInt(Constants.KEY_POSITION_SELECT_PASSENGER,position)
+                gotoActivityResultWithBundle(BagageActivity::class.java, bundle, Constants.KEY_ACTIVITY_BAGAGE)
             }
             Constants.KEY_ACTIVITY_SSR -> {
-                gotoActivityResult(SsrActivity::class.java, Constants.KEY_ACTIVITY_SSR)
+                val bundle = Bundle()
+                bundle.putInt(Constants.KEY_POSITION_SELECT_PASSENGER,position)
+                gotoActivityResultWithBundle(SsrActivity::class.java, bundle, Constants.KEY_ACTIVITY_SSR)
             }
             Constants.KEY_ACTIVITY_FREQUENCE -> {
-                gotoActivityResult(FrequentFlyerActivity::class.java, Constants.KEY_ACTIVITY_FREQUENCE)
+                val bundle = Bundle()
+                bundle.putInt(Constants.KEY_POSITION_SELECT_PASSENGER,position)
+                gotoActivityResultWithBundle(FrequentFlyerActivity::class.java, bundle, Constants.KEY_ACTIVITY_FREQUENCE)
             }
         }
     }
@@ -313,38 +333,66 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
-            Constants.BTN_SIM -> {
-                if (requestCode == Activity.RESULT_OK) {
-
+            Constants.BTN_SIM       -> {
+                if (resultCode==Activity.RESULT_OK){
+                    try {
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_SIM
+                        }
+                        val dataString = data?.getStringExtra(Constants.RESULT_EDIT_SIM)
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].sim = Serializer.deserialize(dataString,SimModel::class.java)
+                        }
+                        adapter.notifyDataSetChanged()
+                    }catch (e:Exception){
+                        e.printStackTrace()
+                    }
                 }
-                adapter.setData(dataContacts)
             }
-            Constants.BTN_PASSPORT -> {
-                if (requestCode == Activity.RESULT_OK) {
-
+            Constants.BTN_PASSPORT  -> {
+                if (resultCode==Activity.RESULT_OK){
+                    try {
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_PASSPORT
+                        }
+                        val dataString = data?.getStringExtra(Constants.RESULT_EDIT_PASPORT)
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].pasport = Serializer.deserialize(dataString,PassportModel::class.java)
+                        }
+                        adapter.notifyDataSetChanged()
+                    }catch (e:Exception){}
                 }
-                adapter.setData(dataContacts)
             }
-            Constants.BTN_ID_CART -> {
-                if (requestCode == Activity.RESULT_OK) {
-
+            Constants.BTN_ID_CART   -> {
+                if (resultCode==Activity.RESULT_OK){
+                    try {
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_KTP
+                        }
+                        val dataString = data?.getStringExtra(Constants.RESULT_EDIT_KTP)
+                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].idcard = Serializer.deserialize(dataString,IdCartModel::class.java)
+                        }
+                        adapter.notifyDataSetChanged()
+                    }catch (e:Exception){}
                 }
-                adapter.setData(dataContacts)
             }
             Constants.KEY_ACTIVITY_BAGAGE -> {
                 val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                setLog("testSaveBaruBaggage", Serializer.serialize(dataList.dataFlight[0].dataSSR.bagaggeItemSelected))
+                setLog("testSaveBaruBaggage", Serializer.serialize(dataList.dataFlight[0].passenger[currentPosition].ssr.bagaggeItemSelected))
                 totalPriceBaggage()
+                updateDataListFlight()
                 initPrice()
-                adapter.setData(dataContacts)
+                adapter.setData(dataListFlight.dataFlight[0].passenger)
 
             }
             Constants.KEY_ACTIVITY_SSR -> {
                 val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                setLog("testSaveBaruSsr", Serializer.serialize(dataList.dataFlight[0].dataSSR.ssrSelected))
+                setLog("testSaveBaruSsr", Serializer.serialize(dataList.dataFlight[0].passenger[currentPosition].ssr.ssrSelected))
                 totalPriceSsr()
+                updateDataListFlight()
                 initPrice()
-                adapter.setData(dataContacts)
+                adapter.setData(dataListFlight.dataFlight[0].passenger)
             }
         }
     }
@@ -363,12 +411,8 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         showLoadingOpsicorp(true)
         GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
             override fun successLoad(data: ReserveFlightModel) {
-                hideLoadingOpsicorp()
                 if (data.errorMessage.equals("")) {
-                    val bundle = Bundle()
-                    bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
-                    bundle.putString(Constants.ID_TRIP_PLANE,data.idTrip)
-                    gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+                    goToNewCart(data.idTrip)
                 } else {
                     showAllert("error", data.errorMessage)
                 }
@@ -379,6 +423,21 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
                 showAllert("error", message)
             }
         })
+    }
+
+    private fun goToNewCart(idTrip: String) {
+        val bundle = Bundle()
+        if (Constants.isBisnisTrip){
+            bundle.putString(Constants.ID_TRIP_PLANE,idTrip)
+            bundle.putString(Constants.FROM_CART,Constants.FROM_BISNIS_TRIP)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+        }
+        else {
+            bundle.putString(Constants.ID_TRIP_PLANE,idTrip)
+            bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+        }
+        hideLoadingOpsicorp()
     }
 
     private fun getDataFlight(): HashMap<Any, Any> {
@@ -435,38 +494,80 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
         val model = ArrayList<PassangersFlightRequest>()
         model.clear()
-        dataContacts.forEachIndexed { index, bookingContactAdapterModel ->
+        dataListFlight.dataFlight[0].passenger.forEachIndexed { index, bookingContactAdapterModel ->
             val data = PassangersFlightRequest()
 
+            when(bookingContactAdapterModel.checktype){
+                Constants.TYPE_SIM -> {
+                    if (bookingContactAdapterModel.sim.name.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.sim.name.split(" ")[0]
+                        data.lastName     = bookingContactAdapterModel.sim.name.split(" ")[1]
+                    }
+                    else {
+                        data.firstName    = bookingContactAdapterModel.sim.name
+                        data.lastName     = bookingContactAdapterModel.sim.name
+                    }
+                    data.email        = getProfile().email
+                    data.mobilePhone = getProfile().mobilePhone
+                    data.homePhone   = getProfile().phone
+                    data.birthDate   = getProfile().birthDate
+                    data.title       = bookingContactAdapterModel.sim.title
+                    data.idNumber    = bookingContactAdapterModel.sim.idSim
+                    data.identityNumber = bookingContactAdapterModel.sim.idSim
+                }
+                Constants.TYPE_PASSPORT -> {
+                    data.firstName    = bookingContactAdapterModel.pasport.firstName
+                    data.lastName     = bookingContactAdapterModel.pasport.lastName
+                    data.email        = getProfile().email
+                    data.mobilePhone  = getProfile().mobilePhone
+                    data.homePhone    = getProfile().phone
+                    data.birthDate    = bookingContactAdapterModel.pasport.birtDate
+                    data.title        = bookingContactAdapterModel.pasport.title
+                    data.idNumber     =  bookingContactAdapterModel.pasport.passporNumber
+                    data.identityNumber = bookingContactAdapterModel.pasport.passporNumber
+                }
+                Constants.TYPE_KTP -> {
+                    if (bookingContactAdapterModel.sim.name.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.idcard.fullname.split(" ")[0]
+                        data.lastName     = bookingContactAdapterModel.idcard.fullname.split(" ")[1]
+                    }
+                    else {
+                        data.firstName    = bookingContactAdapterModel.idcard.fullname
+                        data.lastName     = bookingContactAdapterModel.idcard.fullname
+                    }
+                    data.email        = bookingContactAdapterModel.idcard.email
+                    data.mobilePhone  = bookingContactAdapterModel.idcard.mobileNum
+                    data.birthDate    = getProfile().birthDate
+                    data.homePhone    = bookingContactAdapterModel.idcard.mobileNum
+                    data.title        = bookingContactAdapterModel.idcard.title
+                    data.idNumber     = bookingContactAdapterModel.idcard.idCart
+                    data.identityNumber = bookingContactAdapterModel.idcard.idCart
+                }
+            }
+
+            when(bookingContactAdapterModel.typeContact){
+                Constants.ADULT -> {
+                    data.type = "1"
+                }
+                Constants.INFANT -> {
+                    data.type = "3"
+                }
+            }
+
+            data.index        = dataOrder.totalPassenger
             data.identityType = bookingContactAdapterModel.checktype
-            data.otherPhone = getProfile().phone
-            data.email = getProfile().email
-            data.firstName = getProfile().firstName
-            data.idNumber = getProfile().idNumber
-            data.employeeNik = getProfile().employeeNik
-            data.title = getProfile().title
-            data.index = dataOrder.totalPassenger
-            data.mobilePhone = getProfile().mobilePhone
-            data.remarksPax = ArrayList()
-            data.jobTitleId = getProfile().jobTitleId
-            data.type = Constants.TYPE_PASSANGGER_ADULT
-            data.homePhone = getProfile().homePhone
-            data.paxType = "ADT"
-            data.lastName = getProfile().lastName
-            data.employeeId = getProfile().employId
-            data.companyCode = getProfile().companyCode
+            data.otherPhone   = getProfile().homePhone
+            data.employeeNik  = getProfile().employeeNik
+            data.remarksPax   = ArrayList()
+            data.jobTitleId   = getProfile().jobTitleId
+            data.employeeId   = getProfile().employId
+            data.paxType      = "ADT"
+            data.companyCode  = getProfile().companyCode
 
             data.seats = getSeat()
             data.depSsr = getDepSsr()
             data.retSsr = getRetSsr()
 
-            var sDate = getProfile().birthDate
-            if (sDate.length > 10) {
-                sDate = getProfile().birthDate.substring(0, 10)
-            }
-            data.birthDate = sDate
-
-            data.identityNumber = getProfile().identityType
 
             model.add(data)
         }
@@ -523,7 +624,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         val listSsr = ArrayList<BagageFlightRequest>()
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         if (dataList.dataFlight.size > 1) {
-            dataList.dataFlight[1].dataSSR.ssrSelected.forEach {
+            dataList.dataFlight[1].passenger[1].ssr.ssrSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[1].origin
@@ -536,7 +637,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
 
                 listSsr.add(mData)
             }
-            dataList.dataFlight[1].dataSSR.bagaggeItemSelected.forEach {
+            dataList.dataFlight[1].passenger[1].ssr.bagaggeItemSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[1].origin
@@ -560,7 +661,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         val listSsr = ArrayList<BagageFlightRequest>()
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         if (dataList.dataFlight.isNotEmpty()) {
-            dataList.dataFlight[0].dataSSR.ssrSelected.forEach {
+            dataList.dataFlight[0].passenger[0].ssr.ssrSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[0].origin
@@ -573,7 +674,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
 
                 listSsr.add(mData)
             }
-            dataList.dataFlight[0].dataSSR.bagaggeItemSelected.forEach {
+            dataList.dataFlight[0].passenger[0].ssr.bagaggeItemSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[0].origin

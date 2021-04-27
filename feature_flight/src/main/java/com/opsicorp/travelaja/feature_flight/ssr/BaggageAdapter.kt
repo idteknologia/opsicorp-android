@@ -71,14 +71,14 @@ class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerVie
                 when(views){
                     Constants.KEY_BAGGAGE_ITEM_SELECTED -> {
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
-                        holder.itemView.tvTotalBaggage.text = data.dataSSR.dataBagage.get(position).ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
+                        holder.itemView.tvTotalBaggage.text = data.passenger[position].ssr.dataBagage.get(position).ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
 
                     }
                 }
             }
         })
 
-        adapter.setData(data.dataSSR.dataBagage)
+        adapter.setData(data.passenger[positionParent].ssr.dataBagage)
 
     }
 

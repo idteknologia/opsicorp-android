@@ -8,7 +8,7 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.utility.gone
-import kotlinx.android.synthetic.main.detail_prize_bottom_new.*
+import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
 
 class FlightMultiCityListActivity : BaseActivity(),

@@ -76,46 +76,118 @@
                     </RelativeLayout>
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:background="@drawable/rounded_button_corner_grey_97"
-                    android:id="@+id/line_domestic"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="67dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:background="@drawable/rounded_button_corner_grey_97"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:id="@+id/line_cbt"
+                        android:layout_width="match_parent"
+                        android:layout_height="67dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="30sp"
-                        android:layout_marginStart="30sp">
-
-                        <TextView
-                            android:id="@+id/title_domestic"
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#24253d"
-                            android:text="@string/domestic_internation_trip"
-                            style="@style/RobotoBold"/>
+                            android:orientation="vertical"
+                            android:layout_centerVertical="true">
+
+                            <TextView
+                                android:id="@+id/title_cbt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="#24253d"
+                                android:textAllCaps="true"
+                                android:text="@string/non_cbt"
+                                style="@style/RobotoBold"/>
+
+                            <TextView
+                                android:id="@+id/title_cbt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginTop="3dp"
+                                android:text="@string/personal_trip_with_reimbursment"
+                                style="@style/RobotoRegular"/>
+
+                        </LinearLayout>
+
+                        <Switch
+                            android:id="@+id/btn_switch2"
+                            android:thumb="@drawable/rounded_switch2"
+                            android:track="@drawable/track_switch_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            tools:ignore="UseSwitchCompatOrMaterialXml"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@color/colorLineEdittext">
 
                     </LinearLayout>
 
-                    <Switch
-                        android:id="@+id/btn_switch"
-                        android:thumb="@drawable/rounded_switch2"
-                        android:track="@drawable/track_switch_on"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="20dp"
-                        tools:ignore="UseSwitchCompatOrMaterialXml"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp" />
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/line_domestic"
+                        android:layout_width="match_parent"
+                        android:layout_height="67dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_centerVertical="true">
+
+                            <ImageView
+                                android:src="@drawable/ic_globe_green"
+                                android:layout_width="@dimen/icon_edittext"
+                                android:layout_height="@dimen/icon_edittext"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp" />
+
+                            <TextView
+                                android:id="@+id/title_domestic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="#24253d"
+                                android:text="@string/domestic_internation_trip"
+                                style="@style/RobotoBold"/>
+
+                        </LinearLayout>
+
+                        <Switch
+                            android:id="@+id/btn_switch"
+                            android:thumb="@drawable/rounded_switch2"
+                            android:track="@drawable/track_switch_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="20dp"
+                            tools:ignore="UseSwitchCompatOrMaterialXml"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="20dp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+
 
                 <RelativeLayout
                     android:layout_marginRight="30dp"
@@ -139,13 +211,13 @@
                         <TextView
                             android:textColorHint="#24253d"
                             android:textColor="#24253d"
-                            android:onClick="selectPurpose"
+                            android:onClick="selectTravelPurpose"
                             android:id="@+id/et_purpose"
                             android:paddingTop="8dp"
                             android:paddingBottom="9dp"
                             android:textAlignment="viewStart"
                             android:gravity="center"
-                            android:text="@string/select_your_purpose"
+                            android:text="@string/select_your_travel_purpose"
                             android:textSize="@dimen/font_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -164,7 +236,7 @@
 
 
                     <ImageView
-                        android:onClick="selectPurpose"
+                        android:onClick="selectTravelPurpose"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="5dp"
@@ -173,6 +245,136 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="5dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/line_partner"
+                    android:layout_width="match_parent"
+                    android:layout_height="67dp"
+                    android:layout_marginRight="35dp"
+                    android:layout_marginLeft="30dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:id="@+id/title_partner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="#00776a"
+                            android:text="@string/traveling_with_partner"
+                            style="@style/RobotoBold"/>
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/btn_switch3"
+                        android:thumb="@drawable/rounded_switch2"
+                        android:track="@drawable/track_switch_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        tools:ignore="UseSwitchCompatOrMaterialXml"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/layPartnerName"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_partner_name"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:singleLine="true"
+                            android:textColorHint="#24253d"
+                            android:textColor="#24253d"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/et_partner"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:hint="@string/fill_your_partner_name"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_partner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext">
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/layEvent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_event"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="@string/wbs_no"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:singleLine="true"
+                            android:textColorHint="#24253d"
+                            android:textColor="#24253d"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/et_event"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:hint="@string/please_entry_wbs_element"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_event"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"></LinearLayout>
 
                 </RelativeLayout>
 
@@ -206,7 +408,7 @@
                             android:textAlignment="viewStart"
                             android:gravity="center"
                             android:textSize="@dimen/font_edittext"
-                            android:text="@string/select_your_purpose"
+                            android:text="@string/select_trip_activity_type"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             tools:ignore="RtlCompat" />
@@ -376,55 +578,6 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/layEvent"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/lay_event"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp">
-
-                        <TextView
-                            android:text="@string/name_event"
-                            android:textSize="14sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <EditText
-                            android:singleLine="true"
-                            android:textColorHint="#24253d"
-                            android:textColor="#24253d"
-                            android:background="@android:color/transparent"
-                            android:id="@+id/et_event"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="9dp"
-                            android:textAlignment="viewStart"
-                            android:gravity="center"
-                            android:textSize="@dimen/font_edittext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:ignore="RtlCompat" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_below="@+id/lay_event"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext">
-
-                    </LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginLeft="30dp"
@@ -438,7 +591,7 @@
                         android:id="@+id/layNotes"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:text="@string/notes"
@@ -448,13 +601,14 @@
 
 
                         <EditText
-                            android:singleLine="true"
                             android:textColorHint="#24253d"
                             android:textColor="#24253d"
                             android:background="@drawable/rounded_button_corner_grey"
                             android:id="@+id/et_notes"
                             android:paddingTop="8dp"
                             android:paddingBottom="9dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
                             android:textAlignment="viewStart"
                             android:gravity="center"
                             android:textSize="@dimen/font_edittext"
@@ -467,6 +621,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_notes_count"
                         android:layout_below="@+id/layNotes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -501,17 +656,15 @@
                     android:textSize="12sp"
                     android:textColor="#666666"
                     android:lineSpacingExtra="7sp"
-                    tools:text="Please attach your document! \n
-e.g. invitation letter or official letter \n
-Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.\n
-Maximum file size : 1 MB"
+                    android:text="@string/information"
                     />
 
                 <LinearLayout
                     android:id="@+id/layListAttachment"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
 
                 </LinearLayout>
 
@@ -541,8 +694,8 @@ Maximum file size : 1 MB"
                     android:background="@drawable/rounded_attachment"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:orientation="horizontal"
                     android:layout_width="162dp"
                     android:layout_height="33dp"

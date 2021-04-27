@@ -37,7 +37,7 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
                 try {
                     if (response.isSuccessful){
                         val data = response.body()?.string()
-                        callback.success(TypeActivityMapper().mapping(Serializer.deserialize(data,TypeActivityTravelRequestEntity::class.java)))
+                        callback.success(TypeActivityMapper().mapping(data.toString()))
                     }
                     else{
                         val json = JSONObject(response.errorBody()?.string())

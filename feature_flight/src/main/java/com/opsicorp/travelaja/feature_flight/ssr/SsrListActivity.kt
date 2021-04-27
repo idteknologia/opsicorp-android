@@ -58,10 +58,10 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     private fun setDataRecyclerView() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         positionFlight = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SSR, 0)
-        /*datalist.dataFlight.forEach {
-            Log.e("testdata", Serializer.serialize(it.dataSSR.dataSsr))
-        }*/
-        adapter.setData(datalist.dataFlight[positionFlight].dataSSR.dataSsr)
+        datalist.dataFlight.forEach {
+            Log.e("testdata", Serializer.serialize(it.passenger[positionFlight].ssr.dataSsr))
+        }
+        adapter.setData(datalist.dataFlight[0].passenger[positionFlight].ssr.dataSsr)
     }
 
     private fun initRecyclerView() {
@@ -76,7 +76,7 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
 
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
-        val selectedItem = SelectedSsrModel()
+        /*val selectedItem = SelectedSsrModel()
         selectedItem.price = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].pricing
         selectedItem.ssrCode = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrCode
         selectedItem.curency = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].curency
@@ -93,7 +93,7 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
         datalist.dataFlight[positionFlight].dataSSR.ssrSelected.clear()
         datalist.dataFlight[positionFlight].dataSSR.ssrSelected.addAll(ssrSelected)
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
-        Log.e("testSave", ssrSelected[0].ssrName)
+        Log.e("testSave", ssrSelected[0].ssrName)*/
 
     }
 
@@ -101,7 +101,7 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
         val returnIntent = Intent()
         setResult(Activity.RESULT_OK,returnIntent)
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        dataList.dataFlight[0].dataSSR.ssrSelected.forEach {
+        dataList.dataFlight[0].passenger[positionFlight].ssr.ssrSelected.forEach {
             setLog("testSave2",it.ssrName)
         }
         finish()

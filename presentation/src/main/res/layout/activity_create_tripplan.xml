@@ -300,6 +300,53 @@
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/layEvent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/lay_event"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:text="Name Event"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                        <EditText
+                            android:singleLine="true"
+                            android:textColorHint="#24253d"
+                            android:textColor="#24253d"
+                            android:background="@android:color/transparent"
+                            android:id="@+id/et_event"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/lay_event"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"></LinearLayout>
+
+                </RelativeLayout>
+
                 <!--<LinearLayout-->
                 <!--android:gravity="center"-->
                 <!--android:layout_width="match_parent"-->
@@ -699,53 +746,6 @@
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:visibility="gone"
-                    android:id="@+id/layEvent"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:id="@+id/lay_event"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp">
-
-                        <TextView
-                            android:text="Name Event"
-                            android:textSize="14sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <EditText
-                            android:singleLine="true"
-                            android:textColorHint="#24253d"
-                            android:textColor="#24253d"
-                            android:background="@android:color/transparent"
-                            android:id="@+id/et_event"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="9dp"
-                            android:textAlignment="viewStart"
-                            android:gravity="center"
-                            android:textSize="@dimen/font_edittext"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            tools:ignore="RtlCompat" />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_below="@+id/lay_event"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
                     android:layout_marginLeft="30dp"
@@ -758,7 +758,7 @@
                         android:id="@+id/layNotes"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp">
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:text="@string/notes"
@@ -768,39 +768,79 @@
 
 
                         <EditText
-                            android:singleLine="true"
                             android:textColorHint="#24253d"
                             android:textColor="#24253d"
-                            android:background="@android:color/transparent"
+                            android:background="@drawable/rounded_button_corner_grey"
                             android:id="@+id/et_notes"
                             android:paddingTop="8dp"
                             android:paddingBottom="9dp"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
                             android:textAlignment="viewStart"
                             android:gravity="center"
+                            android:maxLength="100"
                             android:textSize="@dimen/font_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:ignore="RtlCompat" />
+                            tools:ignore="RtlCompat"
+                            android:paddingStart="5dp" />
 
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tv_notes_count"
+                        android:layout_below="@+id/layNotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/RobotoRegular"
+                        android:textStyle="normal"
+                        android:textSize="14sp"
+                        android:gravity="end"
+                        android:text="@string/_0_100"
+                        android:layout_marginTop="10dp"
+                        android:textColor="#b2bbc6"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true" />
+
+                    <!--<LinearLayout
                         android:layout_below="@+id/layNotes"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext">
+
+                    </LinearLayout>-->
 
                 </RelativeLayout>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#b2bbc6">
 
+                </LinearLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="25dp"
+                    style="@style/RobotoBold"
+                    android:textSize="12sp"
+                    android:textColor="#666666"
+                    android:lineSpacingExtra="7sp"
+                    android:text="@string/information" />
 
                 <LinearLayout
                     android:id="@+id/layListAttachment"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
 
                 </LinearLayout>
 
@@ -830,25 +870,19 @@
                     android:background="@drawable/rounded_attachment"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:onClick="openCameraView"
-                        android:textColor="#24253D"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:text="+"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                    android:layout_width="162dp"
+                    android:layout_height="33dp"
+                    android:layout_marginStart="30dp">
 
                     <TextView
                         android:onClick="openCameraView"
                         android:id="@+id/tvAddAttachment"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
+                        style="@style/RobotoBold"
+                        android:textColor="#24253d"
                         android:text="@string/add_attachment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

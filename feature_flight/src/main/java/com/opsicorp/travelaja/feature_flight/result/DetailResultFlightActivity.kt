@@ -361,7 +361,9 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             dataFlight.dataFareRules = dataFareRules
             setLog(dataFareRules[0].fareRulesName)
         }
-        dataFlight.dataSSR   = dataSsr
+        dataFlight.passenger.mapIndexed { index, bookingContactAdapterModel ->
+            bookingContactAdapterModel.ssr = dataSsr
+        }
         try {
             datalist.dataFlight.add(dataFlight)
         }catch (e: Exception){

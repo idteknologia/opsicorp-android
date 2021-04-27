@@ -268,7 +268,7 @@
         </FrameLayout>
 
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/line_except_pertamina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -359,7 +359,7 @@
         </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/line_pertamina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

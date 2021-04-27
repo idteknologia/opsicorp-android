@@ -11,7 +11,7 @@ import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.confirm_flight_order_new.*
-import kotlinx.android.synthetic.main.detail_prize_bottom_new.*
+import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel

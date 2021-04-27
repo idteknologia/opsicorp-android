@@ -1,16 +1,15 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.travel_request.TypeActivityTravelRequestEntity
 import opsigo.com.domainlayer.model.travel_request.TypeActivityTravelRequestModel
+import org.json.JSONArray
 
 class TypeActivityMapper {
-    fun mapping(response:TypeActivityTravelRequestEntity):ArrayList<TypeActivityTravelRequestModel>{
+    fun mapping(response:String):ArrayList<TypeActivityTravelRequestModel>{
         val data = ArrayList<TypeActivityTravelRequestModel>()
-        if (!response.typeActivityTravelRequestEntity.isNullOrEmpty()){
-            response.typeActivityTravelRequestEntity.forEach {
-                val mData = TypeActivityTravelRequestModel(it?.value.toString())
-                data.add(mData)
-            }
+        val jSon = JSONArray(response)
+        for (i in 0 until jSon.length()){
+            val mData = jSon.getJSONObject(i).getString("Value")
+            data.add(TypeActivityTravelRequestModel(mData))
         }
         return data
     }

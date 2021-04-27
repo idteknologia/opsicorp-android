@@ -17,6 +17,8 @@ import com.opsigo.travelaja.utility.*
 import org.koin.core.KoinComponent
 import android.content.Context
 import com.opsigo.travelaja.R
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.domainlayer.model.travel_request.TypeActivityTravelRequestModel
 import org.koin.core.inject
 
 class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinComponent {
@@ -34,6 +36,8 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         }
         else if(DataTemporary.dataSelectBudget.isEmpty()){
             getDataBudget()
+        } else if (DataTemporary.dataActivity.isEmpty()){
+            getDataActivity()
         }
         getDataCity()
     }
@@ -65,6 +69,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         val city          = Constants.DATA_CITY.filter { it.name.toLowerCase().contains("bandung") }.first() //"SURABAYA (SUB)"
 
         view.setDataAutomatically(startDateView,endDateView,city.name,city.id,startDate,endDate)
+        view.setDataAutomatically2(startDateView,endDateView,startDate,endDate)
     }
 
     private fun getDataCity() {
@@ -92,6 +97,19 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
 
             override fun failedLoad(message: String) {
 
+            }
+
+        })
+    }
+
+    private fun getDataActivity() {
+        GetDataTravelRequest(baseUrl).getTypeActivity(Globals.getToken(),object :CallbackTypeActivity{
+            override fun success(data: ArrayList<TypeActivityTravelRequestModel>) {
+                DataTemporary.dataActivity.clear()
+                DataTemporary.dataActivity.addAll(data)
+            }
+
+            override fun failed(message: String) {
             }
 
         })

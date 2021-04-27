@@ -101,6 +101,7 @@ object Constants {
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
     val KEY_POSITION_CART_FLIGHT = "keyCartFlight"
+    val KEY_POSITION_SELECT_PASSENGER = "keySelectPassenger"
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069

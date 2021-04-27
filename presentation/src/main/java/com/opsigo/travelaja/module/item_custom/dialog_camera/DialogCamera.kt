@@ -101,7 +101,7 @@ class DialogCamera : BaseDialogFragment() {
                     }
 
                     try {
-                        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(activity!!.contentResolver, selectedImage)
+                        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImage)
                         image_selected.setImageBitmap(bitmap)
                     } catch (e: IOException) {
                         Globals.setLog("TAG", "Some exception $e")

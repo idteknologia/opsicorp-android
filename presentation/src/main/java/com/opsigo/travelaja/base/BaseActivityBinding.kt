@@ -20,6 +20,7 @@ import android.util.Log
 import android.os.Build
 import androidx.viewbinding.BuildConfig
 import com.opsicorp.sliderdatepicker.utils.Constant
+import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
@@ -34,6 +35,7 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
 
     protected lateinit var pDialog: ProgressDialog
     protected var statusInternet: Boolean = false
+    val loading = LoadingDialog()
     protected val viewBinding: VB by lazy { bindLayout() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -181,5 +183,18 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
 
     fun getFCMToken(): String {
         return Globals.getDataPreferenceString(this, Constants.FCM_TOKEN)
+    }
+
+    fun showLoadingOpsicorp(disable: Boolean) {
+        loading.showDialogLoading(this, disable)
+    }
+
+    fun hideLoadingOpsicorp() {
+        loading.dismiss()
+    }
+
+    fun showDialogFragment(fragmentDialog: androidx.fragment.app.DialogFragment) {
+        val fm = getSupportFragmentManager()
+        fragmentDialog.show(fm, "yesNoAlert")
     }
 }

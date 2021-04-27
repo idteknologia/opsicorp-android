@@ -26,8 +26,13 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     val adapter by lazy { SsrAdapter(this) }
     val adapter2 by lazy { SsrPriceAdapter(this) }
     lateinit var datalist: DataListOrderAccomodation
+    var currentPositionPassenger = 0
 
     override fun OnMain() {
+        try {
+            currentPositionPassenger = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KEY_POSITION_SELECT_PASSENGER)
+        }
+        catch (e:Exception){ }
         btnDone.callbackOnclickButton(this)
         btnDone.setTextButton("Done")
         initToolbar()
@@ -67,7 +72,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     private fun totalPriceSelected(): String? {
         var totalSelected = 0.0
         datalist.dataFlight.forEach {
-            it.dataSSR.ssrSelected.forEach {
+            it.passenger[currentPositionPassenger].ssr.ssrSelected.forEach {
                 try {
                     totalSelected = totalSelected + it.price.toDouble()
                 } catch (e: Exception) {
@@ -114,7 +119,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
                 if (resultCode == Activity.RESULT_OK) {
                     setData()
                     val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                    setLog("testSaveKembali", dataList.dataFlight[0].dataSSR.ssrSelected.size.toString())
+                    setLog("testSaveKembali", dataList.dataFlight[0].passenger[currentPositionPassenger].ssr.ssrSelected.size.toString())
                 }
             }
         }
@@ -167,7 +172,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
                 gotoActivityResultIntent(intent,Constants.REQUEST_CODE_SELECT_SSR)
             }
             Constants.REQUEST_CODE_DELETE_SSR -> {
-                datalist.dataFlight[position].dataSSR.ssrSelected.clear()
+                datalist.dataFlight[position].passenger[currentPositionPassenger].ssr.ssrSelected.clear()
                 Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
                 adapter.setData(datalist.dataFlight)
                 adapter2.setData(datalist.dataFlight)

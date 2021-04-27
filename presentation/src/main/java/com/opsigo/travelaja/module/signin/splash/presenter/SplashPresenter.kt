@@ -9,10 +9,7 @@ import com.opsigo.travelaja.module.signin.splash.view.SplashView
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.Globals.setLog
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.datanetwork.GetDataLogin
-import opsigo.com.datalayer.datanetwork.GetDataTripPlane
+import opsigo.com.datalayer.datanetwork.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.BudgetModel
@@ -23,6 +20,7 @@ import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.signin.CheckVersionModel
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
+import opsigo.com.domainlayer.model.travel_request.TypeActivityTravelRequestModel
 import java.io.IOException
 
 
@@ -87,6 +85,7 @@ class SplashPresenter {
             override fun successLoad(data: ProfileModel) {
                 Globals.setDataPreferenceString(context,"profile",Serializer.serialize(data,ProfileModel::class.java))
                 getDataPurphose(token)
+                getDataActivity(token)
             }
 
             override fun failedLoad(message: String) {
@@ -221,6 +220,20 @@ class SplashPresenter {
             override fun failed(string: String) {
                 view.failedGetData("getAllAirline")
             }
+        })
+    }
+
+    fun getDataActivity(token: String) {
+        GetDataTravelRequest(baseUrl).getTypeActivity(token,object :CallbackTypeActivity{
+            override fun success(data: ArrayList<TypeActivityTravelRequestModel>) {
+                DataTemporary.dataActivity.clear()
+                DataTemporary.dataActivity.addAll(data)
+            }
+
+            override fun failed(message: String) {
+                view.failedGetData("activity")
+            }
+
         })
     }
 

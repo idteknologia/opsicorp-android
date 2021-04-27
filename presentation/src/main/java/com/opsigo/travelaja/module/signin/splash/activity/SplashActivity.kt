@@ -19,6 +19,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.cunoraz.gifview.library.GifView
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
@@ -146,14 +147,37 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
             getData()
         }
         else{
-            Picasso.get()
-                    .load(config.mobileLogo)
-                    .into(target)
+            if (config.mobileLogo.isNotEmpty()){
+                Picasso.get()
+                        .load(config.mobileLogo)
+                        .into(target)
+            } else {
+                Picasso.get()
+                        .load(config.imageUrl)
+                        .into(target)
+            }
+
+        }
+        if (config.mobileTextLogo.isNullOrEmpty()){
+            title_splash.text = "Corporate Travel Management"
+        } else {
+            title_splash.text = config.mobileTextLogo
         }
 
-        title_splash.text = config.mobileTextLogo
-        parent_layout.setBackgroundColor(Color.parseColor(config.mobileBackgroundColor))
-        title_splash.setTextColor(Color.parseColor(config.mobileTextColorLogo))
+        if (config.mobileBackgroundColor.isNullOrEmpty()){
+            parent_layout.setBackgroundColor(Color.WHITE)
+        } else {
+            parent_layout.setBackgroundColor(Color.parseColor(config.mobileBackgroundColor))
+        }
+
+        if (config.mobileTextColorLogo.isNullOrEmpty()){
+            title_splash.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_price))
+
+        } else {
+            title_splash.setTextColor(Color.parseColor(config.mobileTextColorLogo))
+        }
+
+
     }
 
 
@@ -225,6 +249,9 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
                     }
                     "city"->{
                         presenter.getDataCity(getToken())
+                    }
+                    "activity"->{
+                        presenter.getDataActivity(getToken())
                     }
 
 

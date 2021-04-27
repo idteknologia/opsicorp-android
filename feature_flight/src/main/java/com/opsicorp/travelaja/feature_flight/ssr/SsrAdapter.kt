@@ -43,10 +43,10 @@ class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Ad
         }
 
 
-        if (!data.dataSSR.dataSsr.filter {
+        if (!data.passenger[position].ssr.dataSsr.filter {
                     it.ssrFlightNumber == data.flightNumber
                 }.isNullOrEmpty()){
-            if (data.dataSSR.ssrSelected.isNotEmpty()){
+            if (data.passenger[position].ssr.ssrSelected.isNotEmpty()){
                 holder.itemView.rlSelectedSsr.visible()
                 holder.itemView.ivRemoveSsr.visible()
                 holder.itemView.ivRemoveSsr.setOnClickListener {
@@ -54,7 +54,7 @@ class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Ad
                 }
                 holder.itemView.tvPickSsr.text = "Change"
                 var selectedSsr = ""
-                data.dataSSR.ssrSelected.forEach {
+                data.passenger[position].ssr.ssrSelected.forEach {
                     selectedSsr = selectedSsr + "${it.ssrName}, "
                 }
                 holder.itemView.tvSelectedSsr.text = selectedSsr.substring(0,selectedSsr.length-1)

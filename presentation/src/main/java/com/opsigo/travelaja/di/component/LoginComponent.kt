@@ -1,5 +1,7 @@
 package com.opsigo.travelaja.di.component
 
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurposePresenter
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurposeView
 import com.opsigo.travelaja.module.signin.detail_profile.presenter.CompletedDataProfilePresenter
 import com.opsigo.travelaja.module.signin.detail_profile.view.CompletedDataProfileView
 import com.opsigo.travelaja.module.signin.select_nationality.presenter.SelectedNationalityPresenter
@@ -19,6 +21,7 @@ class LoginComponent {
         factory { (view: SplashView) -> SplashPresenter(androidContext(),view) }
         factory { (view: CompletedDataProfileView)-> CompletedDataProfilePresenter(androidContext(),view) }
         factory { (view: SelectNationalityView) -> SelectedNationalityPresenter(androidContext(),view) }
+        factory { (view: DialogPurposeView) -> DialogPurposePresenter(androidContext(),view) }
         factory { (view: LookUpView) -> LookUpPresenter(androidContext(),view) }
     }
 }
