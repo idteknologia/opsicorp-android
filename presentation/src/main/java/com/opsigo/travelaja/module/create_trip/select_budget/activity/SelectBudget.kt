@@ -8,6 +8,7 @@ import android.view.View
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.DataTemporary
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
 import com.opsigo.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -101,18 +102,18 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
     fun showDataBudget(view:View){
         val bundle = Bundle()
-        bundle.putString("titleHeader","Your budget")
+        bundle.putString("titleHeader","Select Budget")
         bundle.putString("emplaoyId","budget")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_BUDGET)
+        gotoActivityResultWithBundle(DialogPurpose::class.java,bundle,SELECT_BUDGET)
     }
 
     fun showDataCostCenter(view: View){
 
         if (codeSelectBudget.isNotEmpty()){
             val bundle = Bundle()
-            bundle.putString("titleHeader","Cost center")
+            bundle.putString("titleHeader","Select Cost Center")
             bundle.putString("emplaoyId","cost_center")
-            gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_COST_CENTER)
+            gotoActivityResultWithBundle(DialogPurpose::class.java,bundle,SELECT_COST_CENTER)
         }
         else{
             showAllert("Please","Select your budget")

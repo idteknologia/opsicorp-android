@@ -17,35 +17,29 @@ import com.squareup.picasso.Picasso
 class SuccessView : BaseActivity() {
     override fun getLayout(): Int { return R.layout.success_view }
 
+    var idTrip   = ""
+    var tripCode = ""
+
     override fun OnMain() {
         implementDataFromIntent()
     }
 
     private fun implementDataFromIntent() {
-//        https://i.ibb.co/j4v46MP/BT-thank-you.png
-//        https://i.ibb.co/RQC9bJj/thank-you.png
+        Picasso.get()
+                .load(R.drawable.ic_sucees_image)
+                .into(image_success)
 
-        if (intent.getBundleExtra("data")==null){
-            Picasso.get()
-                    .load(R.drawable.ic_sucees_image)
-                    .into(image_success)
-        }
-        else {
-            Picasso.get()
-                    .load(intent.getBundleExtra("data").getString("image"))
-                    .fit()
-                    .into(image_success)
-        }
+        idTrip   = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+        tripCode = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.TRIP_CODE,"")
 
         Handler().postDelayed({
-            if (Constants.ID_BOOKING_TEMPORARY.isNotEmpty()){
+            if (idTrip.isNotEmpty()){
                 Constants.FROM_SUCCESS_CHECKOUT = true
                 val intent = Intent(this, DetailTripActivity::class.java)
                 intent.putExtra(Constants.KEY_FROM, Constants.FROM_SUCCESS_CREATE)
-                intent.putExtra(Constants.KEY_INTENT_TRIPID, Constants.ID_BOOKING_TEMPORARY)
-                intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, Constants.TRIP_CODE)
+                intent.putExtra(Constants.KEY_INTENT_TRIPID, idTrip)
+                intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, tripCode)
                 startActivityForResult(intent,Constants.OPEN_DETAIL_TRIP_PLANE)
-
             }
             else {
                 gotoActivity(HomeActivity::class.java)

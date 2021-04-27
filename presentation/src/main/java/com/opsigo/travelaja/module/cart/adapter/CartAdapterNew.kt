@@ -10,7 +10,6 @@ import opsigo.com.domainlayer.model.accomodation.flight.ProgressFlightModel
 import opsigo.com.domainlayer.model.accomodation.train.ProgressTrainModel
 import kotlinx.android.synthetic.main.item_detail_header_list_card.view.*
 import kotlinx.android.synthetic.main.item_hotel_summary_card_new.view.*
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.domainlayer.callback.CallbackProgressFlight
 import opsigo.com.domainlayer.callback.CallbackProgressTrain
@@ -22,12 +21,9 @@ import com.opsigo.travelaja.utility.Constants.TYPE_HOTEL
 import com.opsigo.travelaja.utility.Globals.getBaseUrl
 import com.opsigo.travelaja.utility.Globals.getToken
 import com.opsigo.travelaja.utility.Globals.setLog
-import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.module.cart.model.*
 import androidx.recyclerview.widget.RecyclerView
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
 import kotlin.collections.ArrayList
 import com.squareup.picasso.Picasso
 import android.view.LayoutInflater
@@ -41,6 +37,9 @@ import com.opsigo.travelaja.R
 import java.lang.Exception
 import android.view.View
 import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.core.view.size
+import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.utility.Globals.getDateNow
 import com.opsigo.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*
@@ -378,18 +377,32 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }
 
             //departure
-            itemView.tv_origin_flight_cart.text             = data.departure
-            itemView.tv_airport_departure_cart.text         = data.airportDeparture
-            itemView.tv_date_departure_flight_cart.text     = DateConverter().setDateFormat4(data.dateDeparture)
+            itemView.tv_origin_flight_cart.text             = data.flightSegmentItem[0].cityCodeDeparture
+            itemView.tv_airport_departure_cart.text         = data.flightSegmentItem[0].airportDeparture
+            itemView.tv_date_departure_flight_cart.text     = DateConverter().setDateFormat4(data.flightSegmentItem[0].dateDeparture)
 
             //arrival
-            itemView.tv_destination_flight_cart.text        = data.arrival
-            itemView.tv_airport_arrival_cart.text           = data.airportArrival
-            itemView.tv_date_arrival_flight_cart.text       = DateConverter().setDateFormat4(data.dateArrival)
+            itemView.tv_destination_flight_cart.text        = data.flightSegmentItem[0].cityCodeArrival
+            itemView.tv_airport_arrival_cart.text           = data.flightSegmentItem[0].airportArrival
+            itemView.tv_date_arrival_flight_cart.text       = DateConverter().setDateFormat4(data.flightSegmentItem[0].dateArrival)
 
             itemView.tv_class_flight_cart.text              = data.classFlight
             itemView.tv_subclass_cart.text                  = data.subClass
             itemView.tv_flight_number.text                  = data.flightNumber
+
+            if (data.typeFlight.equals(0)){
+                itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+            } else {
+                if (data.flightSegmentItem.size > 1){
+                    if (data.flightSegmentItem[0].pnrCode == data.flightSegmentItem[1].pnrCode){
+                        itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_roundtrip))
+                    } else {
+                        itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+                    }
+                } else {
+                    itemView.arrowOneWay.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+                }
+            }
 
             if (data.numberSheet.isEmpty()) {
                 itemView.tv_number_seat_flight_cart.visibility = View.GONE

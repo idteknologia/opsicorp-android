@@ -1,0 +1,118 @@
+package opsigo.com.datalayer.datanetwork
+
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import opsigo.com.data.network.UrlEndpoind
+import opsigo.com.datalayer.datanetwork.BaseGetData
+import opsigo.com.datalayer.mapper.EstimatedCostMapper
+import opsigo.com.datalayer.mapper.PurposeEntityDataMapper
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.mapper.TypeActivityMapper
+import opsigo.com.datalayer.model.travel_request.EstimatedCostEntity
+import opsigo.com.datalayer.model.travel_request.TypeActivityTravelRequestEntity
+import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.callback.CallbackTypeActivity
+import opsigo.com.domainlayer.usecase.TravelRequestRepository
+import org.json.JSONArray
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.lang.Exception
+import javax.inject.Inject
+
+class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestRepository {
+    @Inject
+    lateinit var apiOpsicorp : UrlEndpoind
+
+    init {
+        BASE_URL = baseUrl
+        apiDependency().inject(this)
+    }
+
+    override fun getTypeActivity(token: String, callback: CallbackTypeActivity) {
+        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val data = response.body()?.string()
+                        callback.success(TypeActivityMapper().mapping(data.toString()))
+                    }
+                    else{
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failed(message)
+                    }
+                }catch (e: Exception){
+                    callback.failed(messageFailed)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failed(t.message.toString())
+            }
+        })
+    }
+
+    override fun getEstimatedCost(token: String, data: HashMap<Any, Any>, callback: CallbackEstimatedCostTravelRequest) {
+        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val data = response.body()?.string()
+                        callback.successLoad(EstimatedCostMapper().mapping(Serializer.deserialize(data,EstimatedCostEntity::class.java)))
+                    }
+                    else{
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e: Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message.toString())
+            }
+        })
+    }
+
+    override fun submitTravelTravelRequest(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
+        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+            }
+        })
+    }
+
+    override fun approveAllTrip(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
+        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+            }
+        })
+    }
+
+    override fun issuedAllTrip(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
+        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+
+            }
+        })
+    }
+
+}

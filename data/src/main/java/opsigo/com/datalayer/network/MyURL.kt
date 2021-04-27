@@ -16,6 +16,9 @@ object MyURL {
     const val SET_DEVICE_ID    = "api/User/SetPlayerId"
     const val REMOVE_DEVICE_ID = "api/User/RemovePlayerId"
 
+    //payment gateway
+    const val GET_PAYMENT_LINK = "api/Payment/GetPaymentLink"
+
     //create tripplan
     const val PURPOSE          = "api/Lookup/TravelingPurpose"
     const val AIRPORT          = "api/Lookup/Airports"
@@ -87,5 +90,11 @@ object MyURL {
     const val CONFIRMATION_OTP     = "api/Account/ValidateToken"
     const val COMPLITELY_REGISTER  = "api/Account/ConfirmCorporate"
 
+    //trip plan request
+    const val ACTIVITY_TYPE         = "api/Lookup/ActivityType"
+    const val GET_ESTIMATED_COST    = "apiv1/GetEstimatedCost"
+    const val SUBMIT_TRAVEL_REQUEST = "api/TripPlan/SubmitTravelRequest"
+    const val APPROVE_ALL_TRIP      = "api/TripPlan/ApprovalAct"
+    const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
 
 }

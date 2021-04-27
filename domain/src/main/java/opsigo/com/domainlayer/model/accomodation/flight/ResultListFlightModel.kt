@@ -7,13 +7,14 @@ import kotlin.collections.ArrayList
 
 class ResultListFlightModel {
 
-    var dataSSR         = SsrModel()
+    /*var dataSSR         = SsrModel()*/
     var dataFareRules   = ArrayList<FareRulesModel>()
     var dataSeat        = SeatAirlineModel()
     var originAirport   = ""
     var destinationAirport = ""
     var airline         = 0
     var facility        = ArrayList<FacilityFlightModel>()
+    var passenger       = ArrayList<BookingContactAdapterModel>()
     var notComply       = false
 
     var titleAirline    = ""

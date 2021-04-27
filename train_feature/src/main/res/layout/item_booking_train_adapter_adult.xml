@@ -77,6 +77,7 @@
             android:orientation="horizontal"></LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_below="@+id/line_vertical"
             android:id="@+id/line_vertical_aaditional"
             android:layout_width="2dp"
@@ -135,8 +136,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:textColor="#91929e"
-                            android:text="Mr. Vody Andrian" />
+                            android:textColor="#eb0011"
+                            android:text="@string/string_requaired_input" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -211,7 +212,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="#eb0011"
-                            android:text="Please add, this field is required" />
+                            android:text="@string/string_requaired_input" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -289,7 +290,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="#eb0011"
-                            android:text="Please add, this field is required" />
+                            android:text="@string/string_requaired_input" />
                     </LinearLayout>
 
                     <LinearLayout

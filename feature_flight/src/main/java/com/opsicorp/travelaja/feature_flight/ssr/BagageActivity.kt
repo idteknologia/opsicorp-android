@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.toolbar_view_new.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
+import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import java.lang.Exception
 
 class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -30,9 +31,14 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     val adapter2 by lazy { BaggagePriceAdapter(this) }
     val baggageSelected = ArrayList<SelectedBaggageModel>()
     lateinit var datalist: DataListOrderAccomodation
+    var currentPositionPassenger = 0
 
 
     override fun OnMain() {
+        try {
+            currentPositionPassenger = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KEY_POSITION_SELECT_PASSENGER)
+        }
+        catch (e:Exception){ }
         btnDone.callbackOnclickButton(this)
         btnDone.setTextButton("Done")
         initToolbar()
@@ -115,16 +121,16 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
         /*setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)*/
-        datalist.dataFlight[positionParent].dataSSR.bagaggeSelected = datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild]
+        datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.dataBagage[positionChild]
         tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
 
         val selectedItem = SelectedBaggageModel()
-        selectedItem.price = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.pricing
-        selectedItem.ssrCode = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrCode
-        selectedItem.curency = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.curency
-        selectedItem.ssrName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrName
-        selectedItem.ssrType = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrType
-        selectedItem.ssrTypeName = datalist.dataFlight[positionParent].dataSSR.bagaggeSelected.ssrTypeName
+        selectedItem.price = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.pricing
+        selectedItem.ssrCode = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.ssrCode
+        selectedItem.curency = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.curency
+        selectedItem.ssrName = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.ssrName
+        selectedItem.ssrType = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.ssrType
+        selectedItem.ssrTypeName = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected.ssrTypeName
         selectedItem.flightTitle = "${datalist.dataFlight[positionParent].origin}-${datalist.dataFlight[positionParent].destination}"
         if (!baggageSelected.filter { it.ssrType  == selectedItem.ssrType}.isNullOrEmpty()){
             baggageSelected.removeAt(baggageSelected.indexOf(baggageSelected.filter { it.ssrType  == selectedItem.ssrType }.last()))
@@ -133,13 +139,12 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
             baggageSelected.add(selectedItem)
         }
 
-        datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.clear()
-        datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected.addAll(baggageSelected)
+        datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected.clear()
+        datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected.addAll(baggageSelected)
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
 
-        adapter2.setData(datalist.dataFlight[positionParent].dataSSR.bagaggeItemSelected)
+        adapter2.setData(datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected)
 
-        Log.e("testSaveBaggage", baggageSelected[0].price)
     }
 
 
@@ -148,7 +153,7 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
         var totalSelected = 0.0
         datalist.dataFlight.forEach {
             try {
-                totalSelected = totalSelected + it.dataSSR.bagaggeSelected.pricing.toDouble()
+                totalSelected = totalSelected + it.passenger[currentPositionPassenger].ssr.bagaggeSelected.pricing.toDouble()
             } catch (e: Exception) {
                 e.printStackTrace()
             }

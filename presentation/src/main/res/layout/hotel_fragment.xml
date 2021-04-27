@@ -16,6 +16,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/line_nearby"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="53dp">
@@ -183,7 +185,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="30dp"
@@ -315,9 +316,9 @@
 
             </LinearLayout>
 
-
             <LinearLayout
-                android:visibility="gone"
+                android:id="@+id/lay_passanger"
+                android:visibility="visible"
                 android:layout_below="@+id/line_depart"
                 android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
@@ -328,8 +329,6 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-
-                    android:id="@+id/line_passanger"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -348,7 +347,7 @@
                         android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:id="@+id/lay_passanger"
+                            android:id="@+id/line_passanger"
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:orientation="vertical">
@@ -356,14 +355,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/passengers"
+                                android:text="@string/guest"
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/tv_guest"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:hint="1 Adults"
+                                android:hint="1 Guest"
                                 android:paddingTop="8dp"
                                 android:paddingBottom="9dp"
                                 android:textAlignment="viewStart"
@@ -378,7 +378,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_below="@+id/lay_passanger"
+                            android:layout_below="@+id/line_passanger"
                             android:background="@color/colorLineEdittext"></LinearLayout>
 
                     </RelativeLayout>
@@ -391,7 +391,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="43.5dp"
-                app:text="@string/search"
+                app:text="@string/search_hotel"
                 android:layout_marginBottom="33dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

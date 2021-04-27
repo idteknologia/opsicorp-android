@@ -56,6 +56,20 @@ class DateConverter {
         }
     }
 
+    fun getAfterDate(formatInput:String,formatOutput:String,stringDate: String,numberAfter:Int):String{
+        try {
+            val calendar = Calendar.getInstance()
+            val sdf = SimpleDateFormat(formatInput)//"yyyy-MM-dd"
+            calendar.setTime(sdf.parse(stringDate))
+            calendar.add(Calendar.DATE, numberAfter)
+            val mdformat = SimpleDateFormat(formatOutput)
+            val strDate = mdformat.format(calendar.getTime())
+            return strDate
+        }catch (e:Exception){
+            return errorFormating
+        }
+    }
+
     fun getNameDayFromDate(stringDate :String):String{
         try {
             val cal = Calendar.getInstance();

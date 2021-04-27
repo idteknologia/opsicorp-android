@@ -32,7 +32,7 @@ class GetDataTestCreateTriplane:KoinTest{
 //                latch.await()
 //            }
 //
-//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                latch.await()
 //            }
 //        })
@@ -54,7 +54,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -64,7 +64,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -76,7 +76,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -87,7 +87,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -98,7 +98,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -143,7 +143,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -154,7 +154,7 @@ class GetDataTestCreateTriplane:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/

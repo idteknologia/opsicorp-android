@@ -86,7 +86,7 @@ class GetDataTestAccomodation:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -97,7 +97,7 @@ class GetDataTestAccomodation:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/
@@ -110,7 +110,7 @@ class GetDataTestAccomodation:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })*/

@@ -6,17 +6,13 @@ import android.content.Context
 import android.widget.RadioButton
 import android.view.LayoutInflater
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.utility.Constants
-import opsigo.com.datalayer.mapper.Serializer
-import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_booking_adapter_adult_hotel.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant_hotel.view.*
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 
-class BookingContactAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class BookingContactHotelAdapter (val context: Context, private var items: ArrayList<BookingContactAdapterModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     override fun getItemCount(): Int { return items.size }
@@ -78,7 +74,7 @@ class BookingContactAdapter (val context: Context, private var items: ArrayList<
                 itemView.line_vertical_aditional.visibility  = View.VISIBLE
             }
 
-            itemView.name_passanger_by_ktp.text      = data.idcart.fullname
+            itemView.name_passanger_by_ktp.text      = data.idcard.fullname
             if (!data.pasport.firstName.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.firstName

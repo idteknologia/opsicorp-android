@@ -8,6 +8,7 @@ import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.usecase.CreateTripPlaneRepository
 import okhttp3.MultipartBody
 import okhttp3.ResponseBody
+import opsigo.com.datalayer.model.payment.PaymentEntity
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -301,6 +302,32 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                     callback.failedLoad(messageFailed)
                 }
             }
+        })
+    }
+
+    fun getPaymentLink(token: String,id: String, callback: CallbackPayment) {
+        apiOpsicorp.getPaymentLink(token,id).enqueue(object : Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val data = Serializer.deserialize(responseString.toString(),PaymentEntity::class.java)
+                        callback.successLoad(PaymentGatewayMapper().mapping(data))
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                } catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+
         })
     }
 }

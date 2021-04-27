@@ -30,7 +30,7 @@ class GetDataTest:KoinTest{
 //                          latch.await()
 //                      }
 //
-//                      override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                      override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                          latch.await()
 //                      }
 //                  })
@@ -42,7 +42,7 @@ class GetDataTest:KoinTest{
                   latch.await()
               }
 
-              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
                   if (response.isSuccessful){
                       latch.await()
                   }
@@ -56,7 +56,7 @@ class GetDataTest:KoinTest{
 //                  latch.await()
 //              }
 //
-//              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                  if (response.isSuccessful){
 //                      latch.await()
 //                  }
@@ -68,7 +68,7 @@ class GetDataTest:KoinTest{
                   latch.await()
               }
 
-              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
                   if (response.isSuccessful){
                       latch.await()
                   }
@@ -82,7 +82,7 @@ class GetDataTest:KoinTest{
                   latch.await()
               }
 
-              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
                   if (response.isSuccessful){
                       latch.await()
                   }
@@ -95,7 +95,7 @@ class GetDataTest:KoinTest{
                   latch.await()
               }
 
-              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
                   if (response.isSuccessful){
                       latch.await()
                   }
@@ -109,7 +109,7 @@ class GetDataTest:KoinTest{
 //                  latch.await()
 //              }
 //
-//              override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//              override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                  if (response.isSuccessful){
 //                      latch.await()
 //                  }
@@ -131,7 +131,7 @@ class GetDataTest:KoinTest{
 
             }
 
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+            override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 
             }
         })
@@ -359,7 +359,7 @@ class GetDataTest:KoinTest{
 //                            latch.await()
 //                        }
 //
-//                        override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                        override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //                            latch.await()
 //                        }
 //                    })
@@ -378,7 +378,7 @@ class GetDataTest:KoinTest{
 //
 //                }
 //
-//                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                override fun onResponse(call: Call<ResponseBody>, response: PaymentResponse<ResponseBody>) {
 //
 //                }
 //            })

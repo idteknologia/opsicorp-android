@@ -72,7 +72,7 @@
         </activity>
 
         <activity
-            android:name=".detail_cart.DetailCartActivity"
+            android:name=".detail_cart.DetailCartFlightActivity"
             android:screenOrientation="portrait">
         </activity>
 

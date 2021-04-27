@@ -50,10 +50,11 @@ data class GuestsItemReservationHotelRequest(
 	var remarks: List<String?>? = null,
 
 	@field:SerializedName("FirstName")
-	var firstName: String? = null,
+	var firstName: String = "",
 
 	@field:SerializedName("IdNumber")
 	var idNumber: String? = null,
+
 
 	@field:SerializedName("AssignedRoom")
 	var assignedRoom: Int? = null,
@@ -68,7 +69,7 @@ data class GuestsItemReservationHotelRequest(
 	var index: Int? = null,
 
 	@field:SerializedName("LastName")
-	var lastName: String? = null,
+	var lastName: String = "",
 
 	@field:SerializedName("MobilePhone")
 	var mobilePhone: String? = null,

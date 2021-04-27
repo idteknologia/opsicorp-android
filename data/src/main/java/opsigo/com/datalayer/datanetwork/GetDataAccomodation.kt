@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import com.google.gson.JsonObject
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
@@ -377,7 +378,18 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        callback.successLoad(ReservationMapper().mapper(Serializer.deserialize(responseString!!,BookingTrainEntity::class.java)))
+                        if (responseString != null) {
+                            if (responseString.contains("\"status\":false,\"errorMessage\":\"\"")){
+                                callback.failedLoad(responseString.toString())
+                            }else {
+                                if (responseString.contains("\"isSuccess\":0")){
+                                    callback.successLoad(ReservationMapper().mapper(Serializer.deserialize(responseString!!,BookingTrainEntity::class.java)))
+                                }
+                                else{
+                                    callback.failedLoad(JSONObject(responseString).getString("errorMessage"))
+                                }
+                            }
+                        }
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
@@ -399,10 +411,6 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                       /* {
-                            "isSuccess": true,
-                            "errorMessage": ""
-                        }*/
                         val responseString = response.body()?.string()
                         callback.successLoad(SetSeatMapMapper().mapper(responseString!!))
                     }
@@ -578,7 +586,7 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                try {
+            try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
                         val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))

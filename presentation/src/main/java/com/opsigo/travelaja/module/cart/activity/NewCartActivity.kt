@@ -1,70 +1,73 @@
 package com.opsigo.travelaja.module.cart.activity
 
-import android.app.Activity
+import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
+import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
+import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
 import com.opsigo.travelaja.module.cart.view.PageDetailPersonalTrip
 import com.opsigo.travelaja.module.cart.view.PageListBisnisTrip
 import com.opsigo.travelaja.module.cart.view.PageDetailListTrip
 import com.opsigo.travelaja.module.cart.model.CartHeaderModel
 import com.opsigo.travelaja.module.home.activity.HomeActivity
+import opsigo.com.domainlayer.model.summary.ItemFlightModel
+import com.opsigo.travelaja.module.payment.PaymentActivity
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
 import kotlinx.android.synthetic.main.new_cart_activity.*
 import opsigo.com.domainlayer.model.summary.SummaryModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.empty_cart_view.*
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import com.opsigo.travelaja.module.cart.model.CartModel
-import com.opsigo.travelaja.BaseActivity
-import android.app.AlertDialog
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.datalayer.mapper.Serializer
 import android.content.BroadcastReceiver
+import com.opsigo.travelaja.BaseActivity
+import opsigo.com.domainlayer.callback.*
+import com.opsigo.travelaja.utility.*
+import android.content.IntentFilter
+import java.text.SimpleDateFormat
+import android.widget.TextView
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.widget.TextView
 import com.opsigo.travelaja.R
+import android.app.Activity
+import android.os.Bundle
 import android.view.View
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
-import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
-import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.*
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
-import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
-import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
-import opsigo.com.domainlayer.callback.*
-import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import opsigo.com.domainlayer.model.summary.ItemFlightModel
-import java.text.SimpleDateFormat
 import java.util.*
 
-class NewCartActivity : BaseActivity() , View.OnClickListener ,
+class NewCartActivity : BaseActivity(), View.OnClickListener,
         PageListBisnisTrip.Callback,
         PageDetailListTrip.Callback,
         PageDetailPersonalTrip.Callback,
         ToolbarOpsicorp.OnclickButtonListener {
 
-    override fun getLayout(): Int { return R.layout.new_cart_activity }
-    override fun OnMain() {
-        initToolbar()
+    override fun getLayout(): Int {
+        return R.layout.new_cart_activity
     }
 
-    var LIST_BISNIS_TRIP   = 0
-    var DETAIL_BISNIS_TRIP = 1
-    var LIST_PERSONAL_TRIP = 2
     var idTripPlant = ""
-
-    val itemsTrip = ArrayList<ModelItemTrip>()
-
     var pagePosition = 0
+    var LIST_BISNIS_TRIP = 0
+    var DETAIL_BISNIS_TRIP = 1
+    var DETAIL_PERSONAL_TRIP = 2
+    var tripSummary = SummaryModel()
     val btnList = ArrayList<TextView>()
     var mData = ArrayList<CartModelAdapter>()
-    var tripSummary  = SummaryModel()
+    val itemsTrip = ArrayList<ModelItemTrip>()
     var addMore = Constants.REQUEST_CODE_ADD_MORE_ITEM
 
-    private fun initToolbar() {
+    override fun OnMain() {
+        initView()
+        checkData()
+    }
+
+    private fun initView() {
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -78,31 +81,43 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         btnList.add(btn_personal_trip)
 
         page_list_detail_trip.visibility = View.GONE
-        list_order_personal_trip.visibility = View.GONE
-        line_prize.visibility               = View.GONE
-
-        checkData()
+        page_detail_personal_trip.visibility = View.GONE
+        line_prize.visibility = View.GONE
     }
 
     private fun checkData() {
-        if (Constants.ID_BOOKING_TEMPORARY.isEmpty()){
-            getDataCart()
+        when(intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.FROM_CART)){
+            Constants.FROM_HOME -> {
+                Globals.changeViewButton(btnList, 0, this)
+                pagePosition = LIST_BISNIS_TRIP
+                getDataCart()
+            }
+            Constants.FROM_BISNIS_TRIP -> {
+                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                Globals.changeViewButton(btnList, 0, this)
+                pagePosition = DETAIL_BISNIS_TRIP
+                showLoadingOpsicorp(false)
+                showDetailBisnisTrip()
+                getDataSummary(idTripPlant)
+            }
+            Constants.FROM_PERSONAL_TRIP -> {
+                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                Globals.changeViewButton(btnList, 1, this)
+                pagePosition = DETAIL_PERSONAL_TRIP
+                showLoadingOpsicorp(false)
+                getDataSummary(idTripPlant)
+            }
         }
-        else{
-            idTripPlant =  Constants.ID_BOOKING_TEMPORARY
 
-            showLoadingOpsicorp(false)
-            getDataSummary(idTripPlant)
-            btn_home_page.callbackOnclickButton(object :ButtonDefaultOpsicorp.OnclickButtonListener{
-                override fun onClicked() {
+        btn_home_page.callbackOnclickButton(object : ButtonDefaultOpsicorp.OnclickButtonListener {
+            override fun onClicked() {
 
-                }
-            })
-        }
+            }
+        })
     }
 
-    fun nestedScrollUp(){
-        Globals.delay(100,object :Globals.DelayCallback{
+    fun nestedScrollUp() {
+        Globals.delay(100, object : Globals.DelayCallback {
             override fun done() {
                 nested_view.fullScroll(View.FOCUS_UP)
             }
@@ -114,20 +129,27 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         pagePosition = LIST_BISNIS_TRIP
         page_list_detail_trip.visibility = View.GONE
         page_list_bisnis_trip.visibility = View.VISIBLE
-        list_order_personal_trip.visibility = View.GONE
-        line_prize.visibility               = View.GONE
+        page_detail_personal_trip.visibility = View.GONE
+        line_prize.visibility = View.GONE
         page_list_bisnis_trip.callbackOnclickButton(this)
     }
 
-    fun setDataListCart(){
-        toolbar.showAddMoreItem()
-        page_list_bisnis_trip.setDataOrder(mData)
+    private fun showDetailBisnisTrip() {
+        nestedScrollUp()
+        pagePosition = DETAIL_BISNIS_TRIP
+        page_list_detail_trip.visibility = View.VISIBLE
+        page_list_bisnis_trip.visibility = View.GONE
+        page_detail_personal_trip.visibility  = View.GONE
+        line_prize.visibility = View.GONE
+        page_list_bisnis_trip.callbackOnclickButton(this)
     }
 
-    private fun getDataCart(){
+
+
+    private fun getDataCart() {
         showListCartBisnisTrip()
         page_list_bisnis_trip.setLoadingView()
-        GetDataGeneral(getBaseUrl()).getListCart(Globals.getToken(), "40", "1", "Code","1", object : CallbackListCart {
+        GetDataGeneral(getBaseUrl()).getListCart(Globals.getToken(), "40", "1", "Code", "1", object : CallbackListCart {
             override fun successLoad(approvalModel: ArrayList<CartModelAdapter>) {
                 if (approvalModel.isNotEmpty()) {
                     toolbar.hideAddMoreItem()
@@ -138,40 +160,45 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                     setDataListCart()
                 }
             }
+
             override fun failedLoad(message: String) {
-                Globals.showAlert("Sorry",message,this@NewCartActivity)
+                Globals.showAlert("Sorry", message, this@NewCartActivity)
             }
-        } )
+        })
     }
 
-    private fun removeTrip(id:String){
+    fun setDataListCart() {
+        toolbar.hideAddMoreItem()
+        page_list_bisnis_trip.setDataOrder(mData)
+    }
+
+    private fun removeTrip(id: String) {
 
         GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
-            override fun successLoad(boolean:Boolean) {
+            override fun successLoad(boolean: Boolean) {
 
                 if (!boolean) {
-                    Globals.showAlert("Sorry","something wrong!",applicationContext)
+                    Globals.showAlert("Sorry", "something wrong!", applicationContext)
                 }
 
             }
 
             override fun failedLoad(message: String) {
-                Globals.showAlert("Sorry",message,applicationContext)
+                Globals.showAlert("Sorry", message, applicationContext)
             }
-        } )
+        })
 
     }
 
     override fun onClick(p0: View?) {
-        when(p0){
+        when (p0) {
             btn_bisnis_trip -> {
-                showListCartBisnisTrip()
-                setDataListCart()
-                Globals.changeViewButton(btnList,0,this)
+                getDataCart()
+                Globals.changeViewButton(btnList, 0, this)
             }
             btn_personal_trip -> {
                 showPageListDataPersonalTrip()
-                Globals.changeViewButton(btnList,1,this)
+                Globals.changeViewButton(btnList, 1, this)
             }
         }
 
@@ -179,17 +206,16 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
     override fun onClicked(position: Int) {
         val data = mData.get(position)
-
         showLoadingOpsicorp(false)
+        pagePosition = DETAIL_BISNIS_TRIP
         getDataSummary(data.id)
     }
 
-    fun failedWarning(message:String) {
-        if (message.isNotEmpty()){
-            showAlert("Sorry",message)
-        }
-        else {
-            showAlert("Sorry","failed to retrieve data")
+    fun failedWarning(message: String) {
+        if (message.isNotEmpty()) {
+            showAlert("Sorry", message)
+        } else {
+            showAlert("Sorry", "failed to retrieve data")
         }
     }
 
@@ -202,141 +228,155 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         builder.create().show()
     }
 
-    private fun updateViewSummary(){
+    private fun updateViewSummary() {
 
         val totalExpenditure = java.lang.Double.parseDouble(tripSummary.totalExpenditure)
-        val totalAllowance   = java.lang.Double.parseDouble(tripSummary.totalAllowance)
+        val totalAllowance = java.lang.Double.parseDouble(tripSummary.totalAllowance)
 
-        tv_total_purchase.text =  StringUtils().setCurrency("IDR", (totalExpenditure-totalAllowance), false)
-        if (tv_total_purchase.text.equals("IDR 0")){
+        tv_total_purchase.text = StringUtils().setCurrency("IDR", (totalExpenditure - totalAllowance), false)
+        if (tv_total_purchase.text.equals("IDR 0")) {
             tv_total_purchase.gone()
         } else {
             tv_total_purchase.visible()
         }
 
-        pagePosition = DETAIL_BISNIS_TRIP
-        page_list_bisnis_trip.visibility = View.GONE
-        page_list_detail_trip.visibility = View.VISIBLE
-        line_prize.visibility            = View.VISIBLE
-        list_order_personal_trip.visibility = View.GONE
+        when(pagePosition){
+            DETAIL_BISNIS_TRIP -> {
+                showDetailBisnisTrip()
+                page_list_detail_trip.setPurpose(tripSummary.purpose)
+                page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
+                page_list_detail_trip.setTripCode(tripSummary.tripCode)
+                page_list_detail_trip.setData(getDataTrip())
+                page_list_detail_trip.callbackOnclickButton(this)
+            }
+            DETAIL_PERSONAL_TRIP -> {
+                showPageListDataPersonalTrip()
+                line_prize.visibility = View.VISIBLE
+                page_detail_personal_trip.setData(getDataTrip())
+                page_detail_personal_trip.callbackOnclickButton(this)
+            }
+        }
 
-        page_list_detail_trip.setPurpose(tripSummary.purpose)
-        page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
-        page_list_detail_trip.setTripCode(tripSummary.code)
+        line_prize.visibility = View.VISIBLE
 
-        page_list_detail_trip.setData(getDataTrip())
-
-        page_list_detail_trip.callbackOnclickButton(this)
+        toolbar.showAddMoreItem()
         showValidationButtonSubmit()
     }
 
     private fun getDataTrip(): ArrayList<CartModel> {
-        val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId==getProfile().employId }.first()
+        val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
 
         val list = ArrayList<CartModel>()
         list.clear()
         itemsTrip.clear()
 
-        if (dataAccomodation.itemTrainModel.isNotEmpty()){
+        if (dataAccomodation.itemTrainModel.isNotEmpty()) {
             val data = CartModel()
-            data.typeCard       = Constants.TYPE_HEADER
-            data.dataHeader     = headerTrain()
+            data.typeCard = Constants.TYPE_HEADER
+            data.dataHeader = headerTrain()
             list.add(data)
             dataAccomodation.itemTrainModel.forEachIndexed { index, itemTrainModel ->
                 val model = CartModel()
-                model.typeCard       = Constants.TYPE_TRAIN
+                model.typeCard = Constants.TYPE_TRAIN
 
-                model.dataCardTrain.idTrain             = itemTrainModel.idTrain
-                model.dataCardTrain.refrenceCode        = itemTrainModel.referenceCode
-                model.dataCardTrain.tripId              = itemTrainModel.tripID
-                model.dataCardTrain.tripItemId          = itemTrainModel.tripItemID
-                model.dataCardTrain.titleTrain          = itemTrainModel.titleTrain
-                model.dataCardTrain.imageTrain          = itemTrainModel.imageTrain
+                model.dataCardTrain.idTrain = itemTrainModel.idTrain
+                model.dataCardTrain.refrenceCode = itemTrainModel.referenceCode
+                model.dataCardTrain.tripId = itemTrainModel.tripID
+                model.dataCardTrain.tripItemId = itemTrainModel.tripItemID
+                model.dataCardTrain.titleTrain = itemTrainModel.titleTrain
+                model.dataCardTrain.imageTrain = itemTrainModel.imageTrain
 
-                model.dataCardTrain.status              = itemTrainModel.status
-                model.dataCardTrain.pnrCode             = itemTrainModel.pnrCode
-                model.dataCardTrain.pnrID               = itemTrainModel.pnrID
-                model.dataCardTrain.classTrain          = itemTrainModel.classTrain
+                model.dataCardTrain.status = itemTrainModel.status
+                model.dataCardTrain.pnrCode = itemTrainModel.pnrCode
+                model.dataCardTrain.pnrID = itemTrainModel.pnrID
+                model.dataCardTrain.classTrain = itemTrainModel.classTrain
 
-                model.dataCardTrain.carrierNumber       = itemTrainModel.carrierNumber
-                model.dataCardTrain.fareBasisCode       = itemTrainModel.fareBasisCode
-                model.dataCardTrain.seatNumber          = itemTrainModel.seatNumber
-                model.dataCardTrain.seatName            = itemTrainModel.seatName
-                model.dataCardTrain.seatText            = itemTrainModel.seatText
-                model.dataCardTrain.classCode           = itemTrainModel.classCode
+                model.dataCardTrain.carrierNumber = itemTrainModel.carrierNumber
+                model.dataCardTrain.fareBasisCode = itemTrainModel.fareBasisCode
+                model.dataCardTrain.seatNumber = itemTrainModel.seatNumber
+                model.dataCardTrain.seatName = itemTrainModel.seatName
+                model.dataCardTrain.seatText = itemTrainModel.seatText
+                model.dataCardTrain.classCode = itemTrainModel.classCode
 
                 //depart
-                model.dataCardTrain.origin              = itemTrainModel.originName
-                model.dataCardTrain.stationDeparture    = itemTrainModel.stationDeparture
-                model.dataCardTrain.dateDeparture       = itemTrainModel.dateDeparture
-                model.dataCardTrain.timeDeparture       = itemTrainModel.timeDeparture
+                model.dataCardTrain.origin = itemTrainModel.originName
+                model.dataCardTrain.stationDeparture = itemTrainModel.stationDeparture
+                model.dataCardTrain.dateDeparture = itemTrainModel.dateDeparture
+                model.dataCardTrain.timeDeparture = itemTrainModel.timeDeparture
 
                 //arrival
-                model.dataCardTrain.destination         = itemTrainModel.destinationName
-                model.dataCardTrain.stationArrival      = itemTrainModel.stationArrival
-                model.dataCardTrain.dateArrival         = itemTrainModel.dateArrival
-                model.dataCardTrain.timeArrival         = itemTrainModel.timeArrival
-                model.dataCardTrain.progressTrain       = itemTrainModel.progressTrain
+                model.dataCardTrain.destination = itemTrainModel.destinationName
+                model.dataCardTrain.stationArrival = itemTrainModel.stationArrival
+                model.dataCardTrain.dateArrival = itemTrainModel.dateArrival
+                model.dataCardTrain.timeArrival = itemTrainModel.timeArrival
+                model.dataCardTrain.progressTrain = itemTrainModel.progressTrain
 
                 val sPrice = StringUtils().setCurrency("IDR", java.lang.Double.parseDouble(itemTrainModel.price), false)
-                model.dataCardTrain.price               = sPrice
+                model.dataCardTrain.price = sPrice
 
-                val modelItem  = ModelItemTrip()
-                modelItem.id   = itemTrainModel.idTrain
+                val modelItem = ModelItemTrip()
+                modelItem.id = itemTrainModel.idTrain
                 modelItem.name = itemTrainModel.titleTrain
                 modelItem.progress = itemTrainModel.progressTrain
-                modelItem.status   = itemTrainModel.status
+                modelItem.status = itemTrainModel.status
 
                 itemsTrip.add(modelItem)
                 list.add(model)
             }
         }
 
-        if (dataAccomodation.itemFlightModel.isNotEmpty()){
+        if (dataAccomodation.itemFlightModel.isNotEmpty()) {
 
-            Log.d("xixxx","gohere 22" )
+            Log.d("xixxx", "gohere 22")
             val data = CartModel()
-            data.typeCard       = Constants.TYPE_HEADER
-            data.dataHeader     = headerFlight(dataAccomodation.itemFlightModel)
+            data.typeCard = Constants.TYPE_HEADER
+            data.dataHeader = headerFlight(dataAccomodation.itemFlightModel)
 
             list.add(data)
 
             dataAccomodation.itemFlightModel.forEach {
                 val model = CartModel()
-                model.typeCard       = Constants.TYPE_FLIGHT
 
-                model.dataCardFlight.idFlight            = it.idFlight
-                model.dataCardFlight.progressFlight      = it.progressFLight
-                model.dataCardFlight.imageFlight         = it.imageFlight
-                model.dataCardFlight.status              = it.status
-                model.dataCardFlight.pnrCode             = it.pnrCode
-                model.dataCardFlight.pnrId               = it.pnrId
-                model.dataCardFlight.tripId              = tripSummary.tripId
-                model.dataCardFlight.titleFlight         = it.airlineName
-                model.dataCardFlight.numberSheet         = it.seatNumber
-                model.dataCardFlight.flightNumber        = it.flightNumber
-                model.dataCardFlight.typeFlight          = it.type
-                model.dataCardFlight.duration            = it.duration
 
-                model.dataCardFlight.stationOrigin       = it.originName
-                model.dataCardFlight.stationDestination  = it.destinationName
-                model.dataCardFlight.dateArrival         = it.dateArrival
-                model.dataCardFlight.dateDeparture       = it.dateDeparture
-                model.dataCardFlight.timeArrival         = it.timeArrival
-                model.dataCardFlight.isComply            = it.isComply
-                model.dataCardFlight.timeDeparture       = it.timeDeparture
-                model.dataCardFlight.price               = it.price
-                model.dataCardFlight.classFlight         = it.classFlight
-                model.dataCardFlight.codeFlight          = it.pnrCode
-                model.dataCardFlight.departureFlight     = it.originDeatination.split("-")[0]
-                model.dataCardFlight.arrivalFlight       = it.originDeatination.split("-")[1]
-                model.dataCardFlight.departure           = it.origin
-                model.dataCardFlight.arrival             = it.destination
-                model.dataCardFlight.airportDeparture    = it.airportDeparture
-                model.dataCardFlight.airportArrival      = it.airportArrival
+                model.typeCard = Constants.TYPE_FLIGHT
 
-                val modelItem  = ModelItemTrip()
-                modelItem.id   = it.idFlight
+                model.dataCardFlight.idFlight = it.idFlight
+                model.dataCardFlight.progressFlight = it.progressFLight
+                model.dataCardFlight.imageFlight = it.imageFlight
+                model.dataCardFlight.status = it.status
+                model.dataCardFlight.pnrCode = it.pnrCode
+                model.dataCardFlight.pnrId = it.pnrId
+                model.dataCardFlight.tripId = tripSummary.tripId
+                model.dataCardFlight.titleFlight = it.airlineName
+                model.dataCardFlight.numberSheet = it.seatNumber
+                model.dataCardFlight.flightNumber = it.flightNumber
+                model.dataCardFlight.typeFlight = it.type
+                model.dataCardFlight.duration = it.duration
+
+                model.dataCardFlight.stationOrigin = it.originName
+                model.dataCardFlight.stationDestination = it.destinationName
+                model.dataCardFlight.dateArrival = it.dateArrival
+                model.dataCardFlight.dateDeparture = it.dateDeparture
+                model.dataCardFlight.timeArrival = it.timeArrival
+                model.dataCardFlight.isComply = it.isComply
+                model.dataCardFlight.timeDeparture = it.timeDeparture
+                model.dataCardFlight.price = it.price
+
+                model.dataCardFlight.priceItem = it.priceItem
+                model.dataCardFlight.flightSegmentItem = it.flightSegmentItem
+
+                model.dataCardFlight.classFlight = it.classFlight
+                model.dataCardFlight.codeFlight = it.pnrCode
+                model.dataCardFlight.departureFlight = it.originDestination
+                model.dataCardFlight.arrivalFlight = it.nextDestination
+
+                model.dataCardFlight.departure = it.origin
+                model.dataCardFlight.arrival = it.destination
+                model.dataCardFlight.airportDeparture = it.airportDeparture
+                model.dataCardFlight.airportArrival = it.airportArrival
+
+                val modelItem = ModelItemTrip()
+                modelItem.id = it.idFlight
                 modelItem.name = it.airlineName
                 modelItem.progress = it.progressFLight
                 modelItem.status = it.status
@@ -345,44 +385,42 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
                 list.add(model)
             }
         }
-        if(dataAccomodation.itemHotelModel.isNotEmpty()){
+        if (dataAccomodation.itemHotelModel.isNotEmpty()) {
 
             val data = CartModel()
-            data.typeCard       = Constants.TYPE_HEADER
-            data.dataHeader     = headerHotel()
+            data.typeCard = Constants.TYPE_HEADER
+            data.dataHeader = headerHotel()
 
 
             list.add(data)
 
             dataAccomodation.itemHotelModel.forEach {
                 val model = CartModel()
-                model.typeCard       = Constants.TYPE_HOTEL
+                model.typeCard = Constants.TYPE_HOTEL
 
-                model.dataCardHotel.image       = it.image
-                model.dataCardHotel.status      = it.status
-                model.dataCardHotel.nameHotel   = it.nameHotel
+                model.dataCardHotel.image = it.image
+                model.dataCardHotel.status = it.status
+                model.dataCardHotel.nameHotel = it.nameHotel
                 model.dataCardHotel.tripIdHotel = it.tripItemId
-                model.dataCardHotel.checkIn     = it.checkIn
-                model.dataCardHotel.checkOut    = it.checkOut
-                model.dataCardHotel.address     = it.address
+                model.dataCardHotel.checkIn = it.checkIn
+                model.dataCardHotel.checkOut = it.checkOut
+                model.dataCardHotel.address = it.address
                 model.dataCardHotel.dateBooking = it.dateBooking
-                model.dataCardHotel.starRating  = it.starRating
-                model.dataCardHotel.price       = it.price
-                model.dataCardHotel.reasonCode  = it.reasonCode
-                model.dataCardHotel.pnrHotel    = it.pnrHotel
-                model.dataCardHotel.typeHotel   = it.typeHotel
+                model.dataCardHotel.starRating = it.starRating
+                model.dataCardHotel.price = it.price
+                model.dataCardHotel.reasonCode = it.reasonCode
+                model.dataCardHotel.pnrHotel = it.pnrHotel
+                model.dataCardHotel.typeHotel = it.typeHotel
                 model.dataCardHotel.descreption = it.description
 
-                val modelItem  = ModelItemTrip()
-                modelItem.id   = it.pnrHotel
+                val modelItem = ModelItemTrip()
+                modelItem.id = it.pnrHotel
                 modelItem.name = it.nameHotel
-                if ("pending".equals(it.status.toLowerCase())){
+                if ("pending".equals(it.status.toLowerCase())) {
                     modelItem.progress = "100.00"
-                }
-                else if ("saved".equals(it.status.toLowerCase())) {
+                } else if ("saved".equals(it.status.toLowerCase())) {
                     modelItem.progress = "50.00"
-                }
-                else {
+                } else {
                     modelItem.progress = "100.00"
                 }
                 modelItem.status = it.status
@@ -397,29 +435,30 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     }
 
     private fun headerHotel(): CartHeaderModel {
-        val header    = CartHeaderModel()
+        val header = CartHeaderModel()
         header.titleHeader = "Hotel Summary"
-        header.typeTrip    = "OneWay"
-        header.typeHeader  = Constants.TYPE_HOTEL
+        header.typeTrip = "OneWay"
+        header.typeHeader = Constants.TYPE_HOTEL
         return header
     }
+
     private fun headerTrain(): CartHeaderModel {
-        val header    = CartHeaderModel()
+        val header = CartHeaderModel()
         header.titleHeader = "Train Summary"
-        header.typeTrip    = "OneWay"
-        header.typeHeader  = Constants.TYPE_TRAIN
+        header.typeTrip = "OneWay"
+        header.typeHeader = Constants.TYPE_TRAIN
         return header
     }
+
     private fun headerFlight(data: List<ItemFlightModel>): CartHeaderModel {
-        val header    = CartHeaderModel()
+        val header = CartHeaderModel()
         header.titleHeader = "Flight Summary"
-        if (data[0].type==0){
-            header.typeTrip    = "One Way"
+        if (data[0].type == 0) {
+            header.typeTrip = "One Way"
+        } else {
+            header.typeTrip = "Round Trip"
         }
-        else{
-            header.typeTrip    = "Round Trip"
-        }
-        header.typeHeader  = Constants.TYPE_FLIGHT
+        header.typeHeader = Constants.TYPE_FLIGHT
         return header
     }
 
@@ -429,8 +468,6 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             override fun successLoad(summaryModel: SummaryModel) {
                 setLog(Serializer.serialize(summaryModel))
                 tripSummary = summaryModel
-
-
                 hideLoadingOpsicorp()
                 updateViewSummary()
             }
@@ -444,56 +481,34 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
     }
 
-    /* private fun showDetailItemDummy() {
-         nestedScrollUp()
-         val header    = CartHeaderModel()
-         header.titleHeader = "Train Summary"
-         header.typeTrip    = "OneWay"
-         header.typeHeader  = Constants.TYPE_TRAIN
-
-         val data = CartModel()
-         data.typeCard       = Constants.TYPE_HEADER
-         data.dataHeader     = header
-
-         val data2 = CartModel()
-         data2.typeCard       = Constants.TYPE_TRAIN
-         data2.dataHeader     = header
-
-         val list = ArrayList<CartModel>()
-         list.add(data)
-         list.add(data2)
-
-         pagePosition = DETAIL_BISNIS_TRIP
-         page_list_bisnis_trip.visibility = View.GONE
-         page_list_detail_trip.visibility = View.VISIBLE
-         line_prize.visibility            = View.VISIBLE
-         list_order_personal_trip.visibility = View.GONE
-
-         page_list_detail_trip.setData(list)
-         page_list_detail_trip.setData(list)
-
-         page_list_detail_trip.callbackOnclickButton(this)
-     }*/
-
-    fun showPageListDataPersonalTrip(){
+    fun showPageListDataPersonalTrip() {
         nestedScrollUp()
+        pagePosition = DETAIL_PERSONAL_TRIP
         page_list_bisnis_trip.visibility = View.GONE
         page_list_detail_trip.visibility = View.GONE
-        line_prize.visibility            = View.GONE
-        list_order_personal_trip.visibility = View.VISIBLE
-        list_order_personal_trip.callbackOnclickButton(this)
+        page_detail_personal_trip.visibility = View.VISIBLE
+        page_detail_personal_trip.callbackOnclickButton(this)
     }
 
     override fun updateViewReserved() {
-        Log.d("xixxx","updateview reserve 01 : " )
-
-        idTripPlant =  Constants.ID_BOOKING_TEMPORARY
-        getDataSummary(idTripPlant) //skip?
+        getDataSummary(idTripPlant)
     }
 
     override fun updateViewSaved() {
+        viewSavedListener()
+    }
+
+    override fun updateViewReservedPersonalTrip() {
+        getDataSummary(idTripPlant)
+    }
+
+    override fun updateViewSavedPersonalTrip() {
+        viewSavedListener()
+    }
+
+    private fun viewSavedListener() {
         btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
-        tv_warning_cart.text = "Please wait until your trip item status Reserved"
+        tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
         line_warning.visibility = View.VISIBLE
         line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
     }
@@ -503,15 +518,14 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     }
 
     private fun backListener() {
-        when(pagePosition){
-            LIST_BISNIS_TRIP   -> {
+        when (pagePosition) {
+            LIST_BISNIS_TRIP -> {
                 gotoActivity(HomeActivity::class.java)
             }
             DETAIL_BISNIS_TRIP -> {
                 getDataCart()
             }
-            LIST_PERSONAL_TRIP -> {
-                Constants.ID_BOOKING_TEMPORARY = ""
+            DETAIL_PERSONAL_TRIP -> {
                 gotoActivity(HomeActivity::class.java)
             }
         }
@@ -519,26 +533,24 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
 
 
     class ModelItemTrip {
-        var id       = ""
-        var name     = ""
+        var id = ""
+        var name = ""
         var progress = ""
-        var status   = ""
+        var status = ""
     }
 
-    fun showValidationButtonSubmit(){
+    fun showValidationButtonSubmit() {
 
-        if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()){
+        if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()) {
             btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
             line_warning.visibility = View.VISIBLE
             tv_warning_cart.text = "Please wait.. We try to connecting ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
-        }
-        else {
-            if (itemsTrip.filter { it.status == "Expired" }.isNotEmpty()){
+        } else {
+            if (itemsTrip.filter { it.status == "Expired" }.isNotEmpty()) {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 line_warning.visibility = View.GONE
-            }
-            else {
-                if (itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty()){
+            } else {
+                if (itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty()) {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                     tv_warning_cart.text = "Please wait until your trip item status Reserved"
                     line_warning.visibility = View.VISIBLE
@@ -556,50 +568,62 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         }
     }
 
-    fun submitTripPlant(view: View){
-        if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState){
+    fun submitTripPlant(view: View) {
+        if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
             setLog("notReady")
-        }
-        else {
-            getSubmitTripPlant()
+        } else {
+            if (tripSummary.tripCode.contains("PT")) {
+                Constants.isBisnisTrip = false
+                if (Constants.isBisnisTrip.equals(false)) {
+                    var tripPlanId = tripSummary.tripId
+                    val bundle = Bundle()
+                    bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
+
+                    gotoActivityWithBundle(PaymentActivity::class.java, bundle)
+                } else {
+                    getSubmitTripPlant()
+                }
+            }
         }
     }
 
-    fun getSubmitTripPlant(){
+    fun getSubmitTripPlant() {
         showLoadingOpsicorp(true)
-        GetDataTripPlane(getBaseUrl()).submitTripPlant(getToken(),getDataTripItem(),object :CallbackSubmitTripPlant{
+        GetDataTripPlane(getBaseUrl()).submitTripPlant(getToken(), getDataTripItem(), object : CallbackSubmitTripPlant {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
                 hideLoadingOpsicorp()
-                Constants.ID_BOOKING_TEMPORARY = data.idTripPlant
-                Constants.TRIP_CODE            = data.tripCode
-                gotoActivity(SuccessView::class.java)
+                val bundle = Bundle()
+                bundle.putString(Constants.TRIP_CODE,data.tripCode)
+                bundle.putString(Constants.ID_TRIP_PLANE,data.idTripPlane)
+                gotoActivityWithBundle(SuccessView::class.java,bundle)
             }
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAlert("Sorry",message)
+                showAlert("Sorry", message)
             }
         })
     }
+
     private fun getDataTripItem(): HashMap<String, Any> {
         val model = SubmitTripPlant()
-        model.startDate          = tripSummary.startDate
-        model.returnDate         = tripSummary.returnDate
-        model.origin             = tripSummary.origin
-        model.destination        = tripSummary.destination
-        model.type               = tripSummary.type
-        model.tripParticipants   = getDataParticipant()
+        model.startDate = tripSummary.startDate
+        model.returnDate = tripSummary.returnDate
+        model.origin = tripSummary.origin
+        model.destination = tripSummary.destination
+        model.type = tripSummary.type
+        model.tripParticipants = getDataParticipant()
         model.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
-        model.purpose            = tripSummary.purpose
-        model.id                 = tripSummary.tripId
-        model.code               = tripSummary.code
-        model.contact            = getContactRequest()
-        return Globals.classToHasMap(model,SubmitTripPlant::class.java)
+        model.purpose = tripSummary.purpose
+        model.id = tripSummary.tripId
+        model.code = tripSummary.tripCode
+        model.contact = getContactRequest()
+        return Globals.classToHasMap(model, SubmitTripPlant::class.java)
     }
 
     private fun getContactRequest(): ContactRequest {
         val contactPerson = ContactRequest()
-        contactPerson.lastName  = getProfile().lastName
+        contactPerson.lastName = getProfile().lastName
         contactPerson.firstName = getProfile().firstName
         return contactPerson
     }
@@ -607,12 +631,12 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
     private fun getDataParticipant(): List<TripParticipantsItem> {
         val participants = ArrayList<TripParticipantsItem>()
 
-        if (tripSummary.tripParticipantModels.isNotEmpty()){
+        if (tripSummary.tripParticipantModels.isNotEmpty()) {
             tripSummary.tripParticipantModels.forEach {
                 val data = TripParticipantsItem()
-                data.budgetId     = it.budgetId
+                data.budgetId = it.budgetId
                 data.costCenterId = it.costId
-                data.employeeId   = it.employId
+                data.employeeId = it.employId
                 participants.add(data)
             }
         }
@@ -632,45 +656,44 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
         gotoAddItem()
     }
 
-    fun gotoAddItem(){
-        if (tripSummary.contact.employeeId.equals(getProfile().employId)){
+    fun gotoAddItem() {
+        if (tripSummary.contact.employeeId.equals(getProfile().employId)) {
             val model = SuccessCreateTripPlaneModel()
-            model.purpose     = tripSummary.purpose
-            model.idTripPlant = tripSummary.tripId
-            model.status      = tripSummary.status
-            model.tripCode    = tripSummary.code
-            model.createDate  = tripSummary.creationDate
+            model.purpose = tripSummary.purpose
+            model.idTripPlane = tripSummary.tripId
+            model.status = tripSummary.status
+            model.tripCode = tripSummary.tripCode
+            model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
-            model.destinationName  = tripSummary.destinationName
+            model.destinationName = tripSummary.destinationName
             model.destinationId = tripSummary.destination
-            model.originId      = tripSummary.origin
-            model.originName  = tripSummary.originName
-            model.startDate   = tripSummary.startDate
-            model.endDate     = tripSummary.returnDate
-            model.buggetId    = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
-            model.costCenter  = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
+            model.originId = tripSummary.origin
+            model.originName = tripSummary.originName
+            model.startDate = tripSummary.startDate
+            model.endDate = tripSummary.returnDate
+            model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
+            model.costCenter = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
             Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
             setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
 
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
-            if (Date().before(dateFormatter.parse(tripSummary.returnDate))){
+            if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
                 val bundle = Bundle()
-                bundle.putInt(Constants.TYPE_ACCOMODATION,Constants.KEY_ACCOMODATION)
-                gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
-            }
-            else {
-                showAlert("Sorry","This Trip Plant return date is expired")
+                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.ADD_ITEM_PERSONAL_TRIP)
+                gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
+            } else {
+                showAlert(getString(R.string.message_sorry), getString(R.string.info_expired_trip))
             }
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
+        when (requestCode) {
             Constants.GET_SEAT_MAP -> {
-                if (resultCode==Activity.RESULT_OK){
-                    idTripPlant =  Constants.ID_BOOKING_TEMPORARY
+                if (resultCode == Activity.RESULT_OK) {
+                    idTripPlant = intent.getStringExtra(Constants.ID_TRIP_PLANE)
                     showLoadingOpsicorp(false)
                     getDataSummary(idTripPlant)
                 }
@@ -720,7 +743,7 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             }
         }
 
-        if(intentFilter != null || mReceiver != null){
+        if (intentFilter != null || mReceiver != null) {
             try {
                 this.registerReceiver(mReceiver, intentFilter)
             } catch (e: Exception) {
@@ -737,6 +760,8 @@ class NewCartActivity : BaseActivity() , View.OnClickListener ,
             e.printStackTrace()
         }
     }
+
+
 
 
 }

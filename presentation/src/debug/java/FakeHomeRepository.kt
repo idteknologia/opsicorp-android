@@ -6,13 +6,14 @@ import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.trip.TripResult
 import java.io.IOException
 
+/*
 class FakeHomeRepository(private val context: Context) : HomeRepository {
     private  var result : TripResult
     private var isError = false
 
     init {
-        val resultStr = TestUtil.jsonFromRaw(context, R.raw.trip_schedule)
-        result = Gson().fromJson(resultStr,TripResult::class.java)
+//        val resultStr = TestUtil.jsonFromRaw(context, R.raw.trip_schedule)
+        result = Gson().fromJson("",TripResult::class.java)
     }
 
     override suspend fun getTrip(query: MutableMap<String, String>): Result<TripResult> {
@@ -24,4 +25,4 @@ class FakeHomeRepository(private val context: Context) : HomeRepository {
     fun getData(){
 
     }
-}
+}*/

@@ -13,9 +13,8 @@ class SummaryEntityMapper() {
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
         summary.type            = from.type.toString()
-        summary.code            = from.code.toString()
-        Log.e("code ",from.code)
-        summary.purpose         = from.purpose.toString()
+        summary.tripCode            = from.code.toString()
+        summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
         summary.destination     = if (from.destination==null) "" else from.destination
@@ -51,7 +50,6 @@ class SummaryEntityMapper() {
         summary.contact         = contactModel
         summary.tripParticipantModels   = ListParticipantsDataMapper().mapFrom(from)
 
-        Log.e("id ",from.id)
         return summary
 
     }

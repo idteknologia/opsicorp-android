@@ -28,7 +28,7 @@ class ResultListTrainModel {
     var trainName       = ""
     var durationTime    = ""
 
-    var isSecuritySensitivity = ""
+    var isSecuritySensitivity = false
     var descSecuritySensitivity = ""
     var isViolatedTrainRules = false
     var causeViolatedTrainRules = ""

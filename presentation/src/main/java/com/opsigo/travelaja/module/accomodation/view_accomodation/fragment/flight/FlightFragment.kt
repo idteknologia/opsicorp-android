@@ -7,7 +7,6 @@ import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectOldPassager
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
@@ -40,8 +39,7 @@ class FlightFragment : BaseFragment(),
         NewCalendarViewOpsicorp.CallbackResult
         ,ButtonTopRoundedOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
-        ButtonDefaultOpsicorp.OnclickButtonListener
-        ,SelectOldPassager.CallbackSelectPasanger{
+        ButtonDefaultOpsicorp.OnclickButtonListener{
 
     override fun getLayout(): Int { return R.layout.flight_fragment }
 
@@ -138,11 +136,11 @@ class FlightFragment : BaseFragment(),
         tv_to.setOnClickListener(this)
 
         tv_passanger.setOnClickListener {
-            val fm = requireActivity().getSupportFragmentManager()
-            var selectPassager = SelectOldPassager(true,R.style.CustomDialog)
-            selectPassager.show(fm, "yesNoAlert")
-            selectPassager.callback = this
-            selectPassager.setLimitSelect(4,3,2)
+//            val fm = requireActivity().getSupportFragmentManager()
+//            var selectPassager = SelectTotalPassager(true,R.style.CustomDialog)
+//            selectPassager.show(fm, "yesNoAlert")
+//            selectPassager.callback = this
+//            selectPassager.setLimitSelect(4,3,2)
         }
     }
 
@@ -177,15 +175,15 @@ class FlightFragment : BaseFragment(),
         dataOrder.classFlightCode   = idClassAirline
         dataOrder.classFlightName   = nameClassAirline
 
-        dataOrder.totalPassagerString = tv_passanger.text.toString()
-        dataOrder.airlinePreferance   = tv_airline_prreferance.text.toString()
-        dataOrder.totalPassangerInt   = "${totalAdult},${totalChild},${totalInfant}"
+        dataOrder.totalPassengerString = tv_passanger.text.toString()
+        dataOrder.airlinePreference   = tv_airline_prreferance.text.toString()
+        dataOrder.totalPassengerInt   = "${totalAdult},${totalChild},${totalInfant}"
         Globals.typeAccomodation      = "Flight"
         Globals.DATA_ORDER_FLIGHT     = Serializer.serialize(dataOrder,OrderAccomodationModel::class.java)
         Globals.DATA_LIST_FLIGHT      = ""
 
 //        setLog(Serializer.serialize(dataOrder))
-        gotoActivityModule(context!!,BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
+        gotoActivityModule(requireContext(),BASE_PACKAGE_MODULE +"ResultSearchFlightActivity")
     }
 
     override fun onClick(v: View?) {
@@ -227,10 +225,10 @@ class FlightFragment : BaseFragment(),
 
     private fun openCalendar() {
         if (Globals.ONE_TRIP){
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.SINGGLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.SINGGLE_SELECTED)
         }
         else{
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!,"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.DOUBLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",dataTripPlan.startDate,dataTripPlan.endDate,Constant.DOUBLE_SELECTED)
         }
     }
 
@@ -431,7 +429,7 @@ class FlightFragment : BaseFragment(),
     private fun addNamesAirline() {
         namesAirlines.clear()
         namesAirlines.add("Select All")
-        val dataJson = JSONArray(Globals.readJsonFromFile(context!!,Constants.FILE_NAME_ALL_CODE_AIRPORT))
+        val dataJson = JSONArray(Globals.readJsonFromFile(requireContext(),Constants.FILE_NAME_ALL_CODE_AIRPORT))
         for (i in 0 until dataJson.length()){
             namesAirlines.add(dataJson.getJSONObject(i).getString("nameAirline"))
         }
@@ -463,7 +461,7 @@ class FlightFragment : BaseFragment(),
 
     }
 
-    override fun total(mTotalInfant: Int, mTotalChild: Int, mTotalAdult: Int) {
+    /*override fun total(mTotalInfant: Int, mTotalChild: Int, mTotalAdult: Int) {
         if (mTotalAdult>0&&mTotalInfant>0&&mTotalChild>0){
             tv_passanger.setText("${mTotalAdult} Adults ${mTotalChild} Child ${mTotalInfant} Infant")
         }
@@ -480,7 +478,7 @@ class FlightFragment : BaseFragment(),
         totalAdult = mTotalAdult
         totalInfant = mTotalInfant
         totalChild = mTotalChild
-    }
+    }*/
 
     fun getReasonCode(){
         GetDataAccomodation(getBaseUrl()).getReasonCodeTrain(getToken(),Constants.TripType.Airline.toString(),object : CallbackReasonCode {

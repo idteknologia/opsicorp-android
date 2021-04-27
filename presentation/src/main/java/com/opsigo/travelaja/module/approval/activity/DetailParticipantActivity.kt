@@ -2,8 +2,6 @@ package com.opsigo.travelaja.module.approval.activity
 
 import android.app.Activity
 import android.content.Intent
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
@@ -69,7 +67,7 @@ class DetailParticipantActivity : BaseActivity()
         idParticipant = bundle.getString(Constants.ID_PARTICIPANT).toString()
         employId      = bundle.getString(Constants.EMPLOY_ID).toString()
         tripSummary = Serializer.deserialize(str,SummaryModel::class.java)
-        idTripCode = tripSummary.code.toString()
+        idTripCode = tripSummary.tripCode.toString()
         updateView()
 
         initRecyclerView()

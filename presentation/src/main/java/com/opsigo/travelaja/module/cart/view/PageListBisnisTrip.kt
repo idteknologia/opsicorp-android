@@ -92,11 +92,13 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     fun setLoadingView(){
+        line_checkbox.visibility       = View.GONE
         rv_list_bisnis_trip.visibility = View.GONE
         loading_view.show()
     }
 
     fun hideLoadingView(){
+        line_checkbox.visibility       = View.VISIBLE
         rv_list_bisnis_trip.visibility = View.VISIBLE
         loading_view.hide()
     }

@@ -6,7 +6,7 @@ data class SummaryModel(
         var tripId : String = "",
         var type : String = "",
         var idUser :String = "",
-        var code: String = "",
+        var tripCode: String = "",
         var origin: String = "",
         var originName :String = "",
         var destination: String = "",

@@ -12,7 +12,7 @@ import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ValidationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsicorp.hotel_feature.booking_contact.BookingContactHotel
+import com.opsicorp.hotel_feature.booking_contact.BookingContactHotelActivity
 import com.opsicorp.hotel_feature.select_room.DialogCancelationPolicy
 import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import kotlinx.android.synthetic.main.confirmation_order_hotel.*
@@ -258,7 +258,7 @@ class ConfirmationOrderHotel : BaseActivity(),
     override fun onClicked() {
         Constants.dataValidationHotel   = Serializer.serialize(dataValidation,ValidationHotelModel::class.java)
         Constants.dataConfirmationHotel = Serializer.serialize(dataConfirmation,ConfirmationHotelModel::class.java)
-        gotoActivity(BookingContactHotel::class.java)
+        gotoActivity(BookingContactHotelActivity::class.java)
     }
 
     private fun selectReasonCode() {

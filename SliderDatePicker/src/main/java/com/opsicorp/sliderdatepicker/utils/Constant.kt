@@ -23,6 +23,8 @@ object Constant {
     var startSelectDate    = ""
     var endSelectDate      = ""
 
+
+
     var minDate =  Date()
     var maxDate =  SimpleDateFormat("dd MM yyyy").parse("20 10 2050")
 }

@@ -12,6 +12,7 @@ import com.opsigo.travelaja.module.signin.select_nationality.adapter.SelectNatio
 import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.opsigo.travelaja.module.approval.summary.SummaryAdapter
 import com.opsigo.travelaja.module.approval.summary.SummaryFlightModelAdapter
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.adapter.DialogPurposeAdapter
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageAdapter
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageModel
 import com.opsigo.travelaja.module.signin.select.adapter.LookUpAdapter
@@ -26,6 +27,7 @@ class AdapterComponent {
         factory { (data: ArrayList<TourEventModel>) ->TourEventAdapter(androidContext(),data) }
         factory { (data: ArrayList<UpcommingFlightModel>) ->UpcommingFlightAdapter(androidContext(),data) }
         factory { (data: ArrayList<SelectNationalModel>) ->SelectNationalityAdapter(data) }
+        factory { (data: ArrayList<SelectNationalModel>) ->DialogPurposeAdapter(data) }
         factory { (data: ArrayList<SelectNationalModel>) ->LookUpAdapter(data) }
         factory { (data: ArrayList<UploadModel>) ->AttachmentAdapter(androidContext(),data) }
         factory { (data: ArrayList<ApprovalModelAdapter>) ->ApprovalAdapter(androidContext(),data) }

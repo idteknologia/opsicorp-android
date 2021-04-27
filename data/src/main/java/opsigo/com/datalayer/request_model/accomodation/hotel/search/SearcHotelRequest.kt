@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class SearcHotelRequest(
 
 	@field:SerializedName("DestinationKey")
-	var destinationKey: String = "",
+	var destinationKey: String? = null,
 
 	@field:SerializedName("Origin")
 	var origin: String = "",
@@ -43,5 +43,13 @@ data class SearcHotelRequest(
 	var latitude: Double? = null,
 
 	@field:SerializedName("Longitude")
-	var longitude: Double? =null
+	var longitude: Double? =null,
+
+	@field:SerializedName("Adult")
+	var adult: Int = 1,
+	@field:SerializedName("Child")
+	var child: Int = 0,
+	@field:SerializedName("Infant")
+	var infant: Int =0,
+
 )

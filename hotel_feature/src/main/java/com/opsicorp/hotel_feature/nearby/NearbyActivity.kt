@@ -147,7 +147,6 @@ class NearbyActivity : BaseActivity() {
             if (btn_switch.isChecked){
                 setAdapeterByAirport()
                 typeSelect = Constants.SELECT_NEARBY_AIRPORT
-
             }
             else {
                 typeSelect = Constants.SELECT_NEARBY_OFFICE
@@ -253,12 +252,14 @@ class NearbyActivity : BaseActivity() {
             val data = Intent()
             data.putExtra(Constants.TYPE_SELECT_NEARBY,Constants.SELECT_NEARBY_AIRPORT)
             if (filterActif){
+                data.putExtra(Constants.KeyBundle.KEY_ID_CITY,filterAirport[position].cityCode)
                 data.putExtra(Constants.KeyBundle.KEY_NAME_AIRPORT,filterAirport[position].nameAirport)
                 data.putExtra(Constants.KeyBundle.KEY_ID_COUNTRY,filterAirport[position].countryCode)
                 data.putExtra(Constants.KeyBundle.KEY_LATITUDE,filterAirport[position].latitude)
                 data.putExtra(Constants.KeyBundle.KEY_LONGITUDE,filterAirport[position].longitude)
             }
             else {
+                data.putExtra(Constants.KeyBundle.KEY_ID_CITY,airportData[position].cityCode)
                 data.putExtra(Constants.KeyBundle.KEY_NAME_AIRPORT,airportData[position].nameAirport)
                 data.putExtra(Constants.KeyBundle.KEY_ID_COUNTRY,airportData[position].countryCode)
                 data.putExtra(Constants.KeyBundle.KEY_LATITUDE,airportData[position].latitude)
@@ -275,12 +276,14 @@ class NearbyActivity : BaseActivity() {
             data.putExtra(Constants.KeyBundle.KEY_ID_COUNTRY,idCountry)
             data.putExtra(Constants.TYPE_SELECT_NEARBY,Constants.SELECT_NEARBY_OFFICE)
             if (filterActif){
+                data.putExtra(Constants.KeyBundle.KEY_ID_CITY,filterOffice[position].cityCode)
                 data.putExtra(Constants.KeyBundle.KEY_NAME_OFFICE,filterOffice[position].nameCompany)
                 data.putExtra(Constants.KeyBundle.KEY_ID_COUNTRY,filterOffice[position].countryCode)
                 data.putExtra(Constants.KeyBundle.KEY_LATITUDE,filterOffice[position].latitude)
                 data.putExtra(Constants.KeyBundle.KEY_LONGITUDE,filterOffice[position].longitude)
             }
             else{
+                data.putExtra(Constants.KeyBundle.KEY_ID_CITY,officeData[position].cityCode)
                 data.putExtra(Constants.KeyBundle.KEY_NAME_OFFICE,officeData[position].nameCompany)
                 data.putExtra(Constants.KeyBundle.KEY_ID_COUNTRY,officeData[position].countryCode)
                 data.putExtra(Constants.KeyBundle.KEY_LATITUDE,officeData[position].latitude)

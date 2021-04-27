@@ -43,7 +43,7 @@ class SsrPriceAdapter(context: Context): androidx.recyclerview.widget.RecyclerVi
         holder.itemView.rvPriceListSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         holder.itemView.rvPriceListSsr.adapter = adapter
 
-        adapter.setData(data.dataSSR.ssrSelected)
+        adapter.setData(data.passenger[position].ssr.ssrSelected)
     }
 
 

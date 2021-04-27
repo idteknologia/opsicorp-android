@@ -66,7 +66,7 @@ class FlightFragmentNew : BaseFragment(),
     var idDestination = ""
     var currentPosition: Int = -1
 
-    var totalAdult : Int = 0
+    var totalAdult : Int = 1
     var totalInfant: Int = 0
     var totalChild : Int = 0
 
@@ -263,7 +263,7 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun selectDate(position: Int) {
         currentPosition = position
-        NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!, "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+        NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
     }
 
     override fun onClick(v: View?) {
@@ -338,7 +338,7 @@ class FlightFragmentNew : BaseFragment(),
     private fun addNamesAirline() {
         namesAirlines.clear()
         namesAirlines.add("Select All")
-        val dataJson = JSONArray(Globals.readJsonFromFile(context!!,Constants.FILE_NAME_ALL_CODE_AIRPORT))
+        val dataJson = JSONArray(Globals.readJsonFromFile(requireContext(),Constants.FILE_NAME_ALL_CODE_AIRPORT))
         for (i in 0 until dataJson.length()){
             namesAirlines.add(dataJson.getJSONObject(i).getString("nameAirline"))
         }
@@ -395,9 +395,9 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun openCalendar() {
         if (Globals.ONE_TRIP) {
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!, "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
         } else {
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(activity!!, "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.DOUBLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.DOUBLE_SELECTED)
         }
     }
 
@@ -465,7 +465,7 @@ class FlightFragmentNew : BaseFragment(),
                     positionFlightEmpty = currentPosition + 1
                 }
             }
-            gotoActivityModule(context!!, BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
+            gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
             /*if (isDataEmptyDestination && isDateEmptyOrigin && isDataEmptyDate) {
                 Globals.showAlert("sorry", "Please Select Flight ${positionFlightEmpty}", context!!)
             } else {
@@ -487,15 +487,19 @@ class FlightFragmentNew : BaseFragment(),
             dataOrder.classFlightCode = idClassAirline
             dataOrder.classFlightName = nameClassAirline
 
-            dataOrder.totalPassagerString = tv_passanger_new.text.toString()
-            dataOrder.totalPassangerInt = "${totalAdult},${totalChild},${totalInfant}"
-            dataOrder.airlinePreferance = tv_airline_prreferance.text.toString()
+            dataOrder.totalPassengerString = tv_passanger_new.text.toString()
+            dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
+            dataOrder.adult = totalAdult
+            dataOrder.child = totalChild
+            dataOrder.infant = totalInfant
+            dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
+            dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
 
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Globals.DATA_LIST_FLIGHT = ""
             setLog("Test Reservasi",Serializer.serialize(dataOrder))
 
-            gotoActivityModule(context!!, BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
+            gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
 
         }
 

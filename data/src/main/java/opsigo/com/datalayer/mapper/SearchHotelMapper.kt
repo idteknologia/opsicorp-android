@@ -16,21 +16,21 @@ class SearchHotelMapper {
         mData.hotels.forEachIndexed { index, hotelsItem ->
             val model = AccomodationResultModel()
             model.typeLayout                      = 4
-            model.listHotelModel.addressHotel     = hotelsItem.address
-            model.listHotelModel.imageHotelSorcut = hotelsItem.thumbUri
-            model.listHotelModel.imageHotel       = hotelsItem.imageUri
-            model.listHotelModel.nameHotel        = hotelsItem.hotelName
+            model.listHotelModel.addressHotel     = hotelsItem.address.toString()
+            model.listHotelModel.imageHotelSorcut = hotelsItem.thumbUri.toString()
+            model.listHotelModel.imageHotel       = hotelsItem.imageUri.toString()
+            model.listHotelModel.nameHotel        = hotelsItem.hotelName.toString()
             model.listHotelModel.typeHotel        = "Hotel"
             model.listHotelModel.starRating       = hotelsItem.starRating.toString()
             model.listHotelModel.rating           = hotelsItem.placeRating.toString()
-            model.listHotelModel.addressHotel     = hotelsItem.address
+            model.listHotelModel.addressHotel     = hotelsItem.address.toString()
             model.listHotelModel.price            = hotelsItem.price.toInt().toString()
             model.listHotelModel.lat              = hotelsItem.latitude.toString()
             model.listHotelModel.long             = hotelsItem.longitude.toString()
-            model.listHotelModel.city             = hotelsItem.cityName
+            model.listHotelModel.city             = hotelsItem.cityName.toString()
             model.listHotelModel.reviews          = reviewsMapper()
             model.listHotelModel.faciltyHotel     = facilityMapper()
-            model.listHotelModel.hotelKey         = hotelsItem.hotelKey
+            model.listHotelModel.hotelKey         = hotelsItem.hotelKey.toString()
             model.listHotelModel.correlationId    = mData.correlationId
             model.listHotelModel.totalAvailable   = hotelsItem.rooms.size.toString()
             model.listHotelModel.room             = mappingRoom(mData,hotelsItem)
@@ -50,15 +50,15 @@ class SearchHotelMapper {
         hotelsItem.rooms.forEach {
             val model = SelectRoomModel()
             model.typeRefund        = ""
-            model.titleRoom         = it.roomName
+            model.titleRoom         = it.roomName.toString()
             model.BedFacility       = ""
             model.listFacility      = ""
             model.policyDescription = ""
             model.breakfastType     = ""
             model.cancelLimit       = ""
             model.prize             = it.totalPrice.toString()
-            model.roomCodeHash      = it.roomHash
-            model.roomKey           = it.roomKey
+            model.roomCodeHash      = it.roomHash.toString()
+            model.roomKey           = it.roomKey.toString()
             model.isGuaranteedBooking = false
             model.isFullCharge        = false
             model.isBreakfast         = it.includeBreakfast

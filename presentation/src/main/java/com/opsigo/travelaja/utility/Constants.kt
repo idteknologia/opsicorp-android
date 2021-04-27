@@ -1,6 +1,7 @@
 package com.opsigo.travelaja.utility
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.opsigo.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
@@ -15,6 +16,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val IS_PERSONAL_TRIP    = "isPersonalTrip"
     val ID_PERSONAL_TRIP    = "personal trip"
     val RESULT_AREA_HOTEL   = "area hotel"
     val MIN_PRICE           = "min_price"
@@ -58,6 +60,7 @@ object Constants {
     val GET_SEAT_MAP             = 709
     var tipeTrip                 = ""
     var TRIP_CODE                = ""
+    var TRIP_PLAN_ID             = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
     val PROGRESS_TRAIN_CALLBACK  = 9099
@@ -98,6 +101,7 @@ object Constants {
     val KEY_POSITION_SELECT_SSR  = "keySelectSsr"
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
     val KEY_POSITION_CART_FLIGHT = "keyCartFlight"
+    val KEY_POSITION_SELECT_PASSENGER = "keySelectPassenger"
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069
@@ -106,7 +110,7 @@ object Constants {
     val REQUEST_CODE_HOTEL_FILTER = 9066
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
-    val DATA_DETAIL_FLIGHT       = ""
+    var DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"
     val KEY_NAME_GUEST           = "name"
     val DATA_CREATE_TRIP_PLAN    = "data_create_trip"
@@ -114,7 +118,10 @@ object Constants {
     var DATA_REASON_CODE_HOTEL   = ArrayList<ReasonCodeModel>()
     var DATA_REASON_CODE_TRAIN   = ArrayList<ReasonCodeModel>()
     var DATA_REASON_CODE_FLIGHT  = ArrayList<ReasonCodeModel>()
-    var ID_BOOKING_TEMPORARY     = ""
+    var FROM_HOME                = "from_home"
+    var FROM_PERSONAL_TRIP       = "from_personal_trip"
+    var FROM_BISNIS_TRIP         = "from_bisnis_trip"
+    var ID_TRIP_PLANE            = "id_trip"
     var FROM_SUCCESS_CREATE      = "success_create_trip_plant"
     var FROM_DRAFT               = "draft"
     var FROM_LIST_DASBOARD       = "from_list"
@@ -341,6 +348,7 @@ object Constants {
     val TYPE_FLIGHT  = 2
     val TYPE_BUS     = 3
     val TYPE_HOTEL   = 4
+    val ADD_ITEM_PERSONAL_TRIP = 9
     val FLIGHT       = "Flight"
     val TRAIN        = "Train"
     val TYPE_LOADING = 5
@@ -349,6 +357,7 @@ object Constants {
     val TYPE_HEADER_NOT_COMPLY = 6
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
+    var TYPE_FLIGHT_BUTTON = false
 
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
@@ -396,11 +405,24 @@ object Constants {
         var KEY_LATITUDE         = "5"
         var KEY_LONGITUDE        = "6"
         var KEY_CHECKIN          = "7"
+        var KEY_TOTAL_GUEST      = "13"
         var KEY_CHECKOUT         = "8"
         var KEY_NAME_CITY        = "9"
         var KEY_NAME_AIRPORT     = "10"
         var KEY_NAME_OFFICE      = "11"
         var KEY_NAME_COUNTRY     = "12"
     }
+
+    val RESULT_EDIT_KTP     = "edit_ktp"
+    val RESULT_EDIT_SIM     = "edit_sim"
+    val RESULT_EDIT_PASPORT = "edit_pasport"
+    val INPUT_EDIT_KTP     = "input_ktp"
+    val INPUT_EDIT_SIM     = "input_sim"
+    val INPUT_EDIT_PASPORT = "input_pasport"
+
+    val TYPE_SIM      = "SIM"
+    val TYPE_PASSPORT = "PASSPORT"
+    val TYPE_KTP      = "KTP"
+
 
 }

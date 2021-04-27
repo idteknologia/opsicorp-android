@@ -9,9 +9,6 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -872,9 +869,9 @@ class DetailTripActivity : BaseActivity()
         if (tripSummary.contact.employeeId.equals(getProfile().employId)){
             val model = SuccessCreateTripPlaneModel()
             model.purpose     = tripSummary.purpose
-            model.idTripPlant = tripSummary.tripId
+            model.idTripPlane = tripSummary.tripId
             model.status      = tripSummary.status
-            model.tripCode    = tripSummary.code
+            model.tripCode    = tripSummary.tripCode
             model.createDate  = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
             model.destinationName  = tripSummary.destinationName

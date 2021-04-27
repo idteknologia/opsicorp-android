@@ -50,14 +50,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#656677"
-                android:text="Infant Passenger" />
+                android:text="Infant or Child Passenger" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:textColor="#91929e"
-                android:text="Below age 3"
+                android:text="Below age 15"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -158,7 +158,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#24253d"
-                            android:text="Narendra"
+                            android:text=""
                             android:background="@color/transparent"/>
 
                         <LinearLayout

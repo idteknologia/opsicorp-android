@@ -12,10 +12,14 @@ class OrderAccomodationModel {
     var destinationName = ""
     var dateDeparture = ""
     var dateArrival   = ""
-    var airlinePreferance     = ""
-    var totalPassagerString   = ""
-    var totalPassangerInt     = ""
+    var adult = 1
+    var child = 0
+    var infant = 0
+    var airlinePreference     = ""
+    var totalPassengerString   = ""
+    var totalPassengerInt     = ""
+    var totalPassenger     = 0
     var originStationName             = ""
     var destinationStationName       = ""
-    var reaseonCode = ""
+    var reasonCode = ""
 }

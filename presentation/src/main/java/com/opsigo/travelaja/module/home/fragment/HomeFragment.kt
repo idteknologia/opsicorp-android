@@ -20,6 +20,7 @@ import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.base.BaseFragment
 import com.opsigo.travelaja.module.approval.activity.DetailTripActivity
 import com.opsigo.travelaja.module.home.activity.HomeWebActivity
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
 import com.opsigo.travelaja.module.home.presenter.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
 import com.squareup.picasso.Picasso
@@ -252,10 +253,14 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     private fun businessTrip() {
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
+            if (getProfile().companyCode.equals(11)){
+                gotoActivity(CreateTripPertaminaActivity::class.java)
+            }
             gotoActivity(CreateTripActivity::class.java)
         } else {
             showContactAdmin()
         }
+        /*gotoActivity(CreateTripPertaminaActivity::class.java)*/
     }
 
     override fun onClick(v: View?) {
@@ -304,6 +309,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             override fun successLoad(data: String) {
                 if (data.isNotEmpty()) {
                     val bundle = Bundle()
+                    bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
                     bundle.putString(Constants.ID_PERSONAL_TRIP, data)
                     gotoActivityWithBundle(NewCartActivity::class.java, bundle)
                 } else {
@@ -347,12 +353,10 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
 
     private fun gotoCart() {
         val dataConfig = getConfig()
-        Log.d("xconfigx", ": " + dataConfig.isShowCreateTripOnMobile)
         if (dataConfig.isShowCreateTripOnMobile) {
-
-            Constants.ID_BOOKING_TEMPORARY = ""
-            gotoActivity(NewCartActivity::class.java)
-
+            val bundle = Bundle()
+            bundle.putString(Constants.FROM_CART,Constants.FROM_HOME)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
         } else {
             showContactAdmin()
         }

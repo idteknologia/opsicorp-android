@@ -6,7 +6,8 @@ class ItemFlightModel{
     var typeView    = ""
     var imageFlight = ""
 
-    var originDeatination = ""
+    var originDestination = ""
+    var nextDestination = ""
 
     var num = 0
     var seq = 0
@@ -40,6 +41,7 @@ class ItemFlightModel{
     var timeArrival     = ""
 
     var price       = ""
+    var priceItem : ArrayList<PaymentsItemModel> = ArrayList()
     var employId    = ""
     var idFlight    = ""
     var progressFLight = ""

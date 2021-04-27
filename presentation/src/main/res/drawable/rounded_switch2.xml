@@ -6,17 +6,17 @@
             <solid android:color="#ffffff"/>
             <size android:width="20dp"
                 android:height="20dp"/>
-            <stroke android:width="3dp"
-                android:color="#009688"/>
+            <stroke android:width="2dp"
+                android:color="#dddddd"/>
         </shape>
     </item>
     <item android:state_checked="true">
         <shape android:shape="oval">
-            <solid android:color="#009688"/>
+            <solid android:color="#ffffff"/>
             <size android:width="20dp"
                 android:height="20dp"/>
-            <stroke android:width="3dp"
-                android:color="#ffffff"/>
+            <stroke android:width="2dp"
+                android:color="#2b9a8e"/>
         </shape>
     </item>
 </selector>

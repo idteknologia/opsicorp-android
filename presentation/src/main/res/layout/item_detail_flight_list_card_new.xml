@@ -16,6 +16,7 @@
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvCartFlight"
         android:layout_marginRight="20dp"
         android:layout_marginTop="13dp"
         android:layout_width="match_parent"
@@ -276,10 +277,18 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.3">
                     <ImageView
+                        android:id="@+id/arrowOneWay"
                         android:layout_gravity="center"
                         android:layout_width="18dp"
                         android:layout_height="16dp"
-                        android:src="@drawable/ic_arrow_one_way"/>
+                        android:src="@drawable/ic_arrow_one_way" />
+                    <!--<ImageView
+                        android:id="@+id/arrowRoundTrip"
+                        android:layout_gravity="center"
+                        android:layout_width="18dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_arrow_roundtrip"
+                        android:visibility="gone"/>-->
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"

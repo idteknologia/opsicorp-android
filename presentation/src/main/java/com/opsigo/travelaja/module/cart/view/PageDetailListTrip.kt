@@ -1,31 +1,32 @@
 package com.opsigo.travelaja.module.cart.view
 
-import android.content.Context
+import android.view.View
+import com.opsigo.travelaja.R
 import android.content.Intent
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.LinearLayout
+import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.utility.Constants
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsigo.travelaja.utility.Globals.setLog
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.AttributeSet
-import android.view.View
-import android.widget.LinearLayout
-import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
 import com.opsigo.travelaja.module.cart.model.CartModel
 import com.opsigo.travelaja.module.home.activity.HomeActivity
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Constants.ONCLICK_CHANGE_SEAT_MAP_TRAIN
-import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_FLIGHT
+import com.opsigo.travelaja.module.cart.adapter.CartAdapterNew
+import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_HOTEL
 import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_TRAIN
-import com.opsigo.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART
-import com.opsigo.travelaja.utility.Constants.PROGRESS_FLIGHT_CALLBACK
+import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_SAVED
+import com.opsigo.travelaja.utility.Constants.ONCLICK_DETAIL_FLIGHT
 import com.opsigo.travelaja.utility.Constants.PROGRESS_FLIGHT_SAVED
 import com.opsigo.travelaja.utility.Constants.PROGRESS_HOTEL_CALLBACK
 import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_CALLBACK
-import com.opsigo.travelaja.utility.Constants.PROGRESS_TRAIN_SAVED
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.page_cart_list_detail_trip.view.*
-import opsigo.com.datalayer.mapper.Serializer
+import com.opsigo.travelaja.utility.Constants.PROGRESS_FLIGHT_CALLBACK
+import com.opsigo.travelaja.utility.Constants.ONCLICK_CHANGE_SEAT_MAP_TRAIN
+import com.opsigo.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART
 
 class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRecyclerView{
 
@@ -59,17 +60,15 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.page_cart_list_detail_trip, this)
-
         initRecyclerView()
         line_btn_add_more_item.setOnClickListener(this)
     }
 
     private fun initRecyclerView() {
-
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_list_cart_item.layoutManager = layoutManager
-        rv_list_cart_item.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_list_cart_item.itemAnimator = DefaultItemAnimator()
         rv_list_cart_item.adapter = adapter
         adapter.setOnclickListener(this)
     }
@@ -150,9 +149,10 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
             ONCLICK_DETAIL_FLIGHT -> {
-                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartActivity"))
+                val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_FLIGHT+"detail_cart.DetailCartFlightActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
                 intent.putExtra(Constants.DATA_DETAIL_FLIGHT,Serializer.serialize(data[position]))
+                setLog("Test Detail", Serializer.serialize(data))
                 Globals.gotoActivityModule(context,intent)
             }
         }

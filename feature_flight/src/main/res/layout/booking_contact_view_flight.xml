@@ -510,6 +510,7 @@
                                 android:text="Gajayana"/>
 
                             <TextView
+                                android:id="@+id/tvTotalPassenger1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="10sp"
@@ -550,6 +551,7 @@
                                 android:text="Argo Parahyangan Tambahan"/>
 
                             <TextView
+                                android:id="@+id/tvTotalPassenger2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="10sp"

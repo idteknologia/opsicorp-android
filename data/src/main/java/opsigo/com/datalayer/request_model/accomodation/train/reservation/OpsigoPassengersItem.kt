@@ -40,7 +40,7 @@ data class OpsigoPassengersItem(
 		var jobTitleId: String = "",
 
 		@field:SerializedName("Type")
-		var type: String = "",
+		var type: Int = 1,
 
 		@field:SerializedName("HomePhone")
 		var homePhone: String = "",

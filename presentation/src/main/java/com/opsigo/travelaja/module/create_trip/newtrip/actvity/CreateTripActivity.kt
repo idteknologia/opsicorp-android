@@ -10,6 +10,8 @@ import android.content.Intent
 import com.opsigo.travelaja.R
 import org.koin.core.KoinComponent
 import android.content.pm.PackageManager
+import android.text.Editable
+import android.text.TextWatcher
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Globals
@@ -26,6 +28,7 @@ import com.opsigo.travelaja.module.item_custom.dialog_camera.DialogCameraCallbac
 import com.opsigo.travelaja.module.create_trip.select_budget.activity.SelectBudget
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
+import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.yalantis.ucrop.UCrop
 
@@ -65,6 +68,24 @@ class CreateTripActivity : BaseActivity(),
         toolbar.changeImageBtnBack(R.drawable.ic_back)
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
+
+        et_notes.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var countText: Int
+                countText = s.toString().length
+                tv_notes_count.text = "${countText}/100"
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -110,7 +131,7 @@ class CreateTripActivity : BaseActivity(),
         bundle.putString("emplaoyId","purpose")
         bundle.putString("invisibleSearch","yes")
         bundle.putString("titleHeader","What is your purpose")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_CODE_PURPOSE)
+        gotoActivityResultWithBundle(DialogPurpose::class.java,bundle,SELECT_CODE_PURPOSE)
     }
 
     fun selectCountry(view: View){
@@ -168,6 +189,9 @@ class CreateTripActivity : BaseActivity(),
         idCountry           = idCity
         m_startdate         = mStartDate
         m_endate            = mEndDate
+    }
+
+    override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
     }
 
     override fun startDate(displayStartDate: String, startDate: String) {
