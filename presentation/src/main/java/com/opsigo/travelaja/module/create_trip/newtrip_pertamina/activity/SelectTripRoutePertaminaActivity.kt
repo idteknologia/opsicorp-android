@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.opsicorp.sliderdatepicker.utils.Constant
@@ -15,17 +16,22 @@ import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.TypeTran
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModelFactory
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
 
 class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener {
     private lateinit var viewModel: ItineraryViewModel
     private lateinit var binding: ActivitySelectRoutePertaminaBinding
 
+    // format 15-07-2021
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_route_pertamina)
         viewModel = ViewModelProvider(this, ItineraryViewModelFactory(this)).get(ItineraryViewModel::class.java)
         binding.viewModel = viewModel
-        val isInternational = intent.getBooleanExtra(IS_INTERNATIONAL, false)
+        val bundle = intent.getBundleExtra("data")
+        val isInternational = bundle?.getBoolean(IS_INTERNATIONAL) ?: false
         viewModel.checkedInternational(isInternational)
         setRecycler()
         binding.btnNext.setOnClickListener {
@@ -36,11 +42,11 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener 
     private fun validation() {
         if (viewModel.getItinerary().isComplete()) {
             val data = viewModel.getItinerary()
-            val intent = Intent(this,RevieBudgetPertaminaActivity::class.java)
-
-            var bundle = Bundle()
-
-
+            val bundle = intent.getBundleExtra("data")
+            val intent = Intent(this, RevieBudgetPertaminaActivity::class.java)
+            intent.putExtra("itinerary", data)
+            intent.putExtra("data",bundle)
+            startActivity(intent)
         } else {
             val warning = if (viewModel.getItinerary().isEmptyField()) "Harap isi" else "Tidak boleh sama"
             Toast.makeText(this, warning, Toast.LENGTH_SHORT).show()
@@ -65,17 +71,17 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener 
             1 -> {
                 val name = data?.getStringExtra(CityActivity.RESULT)
                 if (!name.isNullOrEmpty())
-                viewModel.setOriginFrom(name ?: "")
+                    viewModel.setOriginFrom(name ?: "")
             }
             2 -> {
                 val name = data?.getStringExtra(CityActivity.RESULT)
                 if (!name.isNullOrEmpty())
-                viewModel.setDestination(name)
+                    viewModel.setDestination(name)
             }
             else -> {
                 val date = data?.getStringExtra("displayStartDate")
                 if (!date.isNullOrEmpty())
-                viewModel.setStartDate(date ?: "")
+                    viewModel.setStartDate(date ?: "")
             }
         }
 

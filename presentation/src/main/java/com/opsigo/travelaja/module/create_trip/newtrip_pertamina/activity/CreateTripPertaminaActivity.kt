@@ -302,6 +302,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert("Please", "Waiting upload file", this)
             } else {
+                bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
                 gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
             }
         }
