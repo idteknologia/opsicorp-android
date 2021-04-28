@@ -284,4 +284,10 @@ KoinComponent, NewCalendarViewOpsicorp.CallbackResult, View.OnClickListener {
         }
     }
 
+    private fun next(){
+        val intent = Intent(this,SelectTripRoutePertaminaActivity::class.java)
+        val isInternational = typeTrip == "international_route"
+        intent.putExtra(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,isInternational)
+    }
+
 }

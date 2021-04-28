@@ -734,6 +734,7 @@ Please add your trip item for Approval."
     <string name="trip_number">Trip 1</string>
     <string name="remove">Remove</string>
     <string name="trip_type">NON-UDARA</string>
+    <string name="trip_type_air">UDARA</string>
     <string name="select_departure_date">Select departure date</string>
     <string name="origin_city_airport">Origin city/airport</string>
     <string name="destination_city_airport">Destination city/airport</string>
@@ -754,4 +755,9 @@ Please add your trip item for Approval."
     <string name="wbs_no">WBS No*</string>
     <string name="traveling_with_partner">Traveling With Partner?</string>
     <string name="fill_your_partner_name">Fill your partner name</string>
+    <string name="txt_domestic_route">Domestic Route</string>
+    <string-array name="type_transportation">
+        <item>Udara</item>
+        <item>Non-Udara</item>
+    </string-array>
 </resources>

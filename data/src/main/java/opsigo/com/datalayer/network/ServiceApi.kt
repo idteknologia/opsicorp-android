@@ -6,6 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.trip.TripResult
 import retrofit2.Call
@@ -20,6 +21,9 @@ interface ServiceApi {
 
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripResult(@QueryMap map: MutableMap<String, String>): TripResult
+
+    @GET(MyURL.CITY)
+    suspend fun getCities() : List<City>
 
 
     companion object {
