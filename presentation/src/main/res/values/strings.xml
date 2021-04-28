@@ -734,6 +734,7 @@ Please add your trip item for Approval."
     <string name="trip_number">Trip 1</string>
     <string name="remove">Remove</string>
     <string name="trip_type">NON-UDARA</string>
+    <string name="trip_type_air">UDARA</string>
     <string name="select_departure_date">Select departure date</string>
     <string name="origin_city_airport">Origin city/airport</string>
     <string name="destination_city_airport">Destination city/airport</string>

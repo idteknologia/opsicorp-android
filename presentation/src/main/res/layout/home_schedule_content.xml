@@ -3,15 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contentButtonSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:background="#e3effd"
         android:paddingBottom="15dp"
+        tools:visibility="visible"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -63,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/contentButtonSchedule">
 
         <TextView

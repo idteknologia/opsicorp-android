@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.create_trip.newtrip_pertamina.activity.CityActivity">
+    <View
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="11dp"
+        app:layout_goneMarginBottom="11dp"
+        android:background="@color/colorGreenFont"
+        app:layout_constraintBottom_toTopOf="@+id/rvCity"/>
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="11dp"
+        android:background="@drawable/bg_search_view"
+        app:defaultQueryHint="Enter city name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonClose"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryHint="Enter city name" />
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchView"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
+        android:textColor="@color/white"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/close"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="11dp"
+        tools:listitem="@layout/item_city_selected"
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

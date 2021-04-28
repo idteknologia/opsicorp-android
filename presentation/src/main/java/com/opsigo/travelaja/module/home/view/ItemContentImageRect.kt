@@ -12,14 +12,16 @@ import kotlinx.android.synthetic.main.item_content_image.view.*
 
 class ItemContentImageRect @JvmOverloads constructor(context: Context, attrs: AttributeSet, defStyle: Int = 0) :
         ConstraintLayout(context, attrs, defStyle) {
-    private lateinit var imageView : ImageView
-    private lateinit var tvTitle : TextView
+    private var imageView : ImageView
+    private var tvTitle : TextView
+    private var tvMore : TextView
 
     init {
         LayoutInflater.from(context)
                 .inflate(R.layout.item_content_image, this, true)
         imageView = findViewById(R.id.ivContent)
         tvTitle = findViewById(R.id.tvTitle)
+        tvMore = findViewById(R.id.tvReadMore)
     }
 
     fun setContent(title : String, image : Int){
@@ -27,4 +29,9 @@ class ItemContentImageRect @JvmOverloads constructor(context: Context, attrs: At
         imageView.setImageResource(image)
     }
 
+    fun setContent(title : String, image : Int,clickListener: OnClickListener){
+        tvTitle.text = title
+        imageView.setImageResource(image)
+        tvMore.setOnClickListener(clickListener)
+    }
 }

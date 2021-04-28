@@ -375,4 +375,10 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         }
     }
 
+    private fun next(){
+        val intent = Intent(this,SelectTripRoutePertaminaActivity::class.java)
+        val isInternational = typeTrip == "international_route"
+        intent.putExtra(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,isInternational)
+    }
+
 }

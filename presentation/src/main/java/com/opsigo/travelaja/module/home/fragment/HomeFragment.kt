@@ -19,6 +19,7 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.base.BaseFragment
 import com.opsigo.travelaja.module.approval.activity.DetailTripActivity
+import com.opsigo.travelaja.module.home.activity.HomeWebActivity
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
 import com.opsigo.travelaja.module.home.presenter.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
@@ -29,6 +30,7 @@ import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_item_upcomming.view.*
 import kotlinx.android.synthetic.main.home_schedule_content.*
 import kotlinx.android.synthetic.main.home_second_content.*
+import kotlinx.android.synthetic.main.home_third_content.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.network.MyURL
@@ -75,13 +77,12 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         viewModel.trip.observe(viewLifecycleOwner) {
             setScheduleTripContent(it)
         }
-        viewModel.isLoading.observe(viewLifecycleOwner){ isLoading ->
-            tripContent.isVisible = !isLoading
-        }
+
         viewModel.isError.observe(viewLifecycleOwner) { isError ->
             contentButtonSchedule.isVisible = isError
             contentItemSchedule.isVisible = !isError
         }
+        contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)
     }
 
     private fun setScheduleTripContent(result: TripResult) {
@@ -91,7 +92,6 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         itemSchedule2.isVisible = list.size > 1
         contentItemSchedule.isVisible = list.isNotEmpty()
         contentButtonSchedule.isVisible = list.isEmpty()
-        contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)
         tvViewAll.setOnClickListener((context) as View.OnClickListener)
         list.forEach {
             i++
@@ -206,10 +206,18 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun setImageContent() {
-        itemContentSunset.setContent("Sunset Gili Laba", R.drawable.bg_gili_laba)
-        itemContentPesona.setContent("Pesona Pantai Pink", R.drawable.bg_pesona)
-        itemContentEksotisme.setContent("Eksotisme Labuan Bajo", R.drawable.bg_eksotisme)
-        itemContentKeindahan.setContent("Keindahan Manta Point", R.drawable.bg_keindahan)
+        itemContentSunset.setContent("Sunset Gili Laba", R.drawable.bg_gili_laba){
+            openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/mengenang-sunset-di-gili-laba")
+        }
+        itemContentPesona.setContent("Pesona Pantai Pink", R.drawable.bg_pesona){
+            openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/pesona-pantai-pink-taklukkan-para-wisatawan-yang-datang")
+        }
+        itemContentEksotisme.setContent("Eksotisme Labuan Bajo", R.drawable.bg_eksotisme){
+            openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/jelajahi-eksotisme-labuan-bajo")
+        }
+        itemContentKeindahan.setContent("Keindahan Manta Point", R.drawable.bg_keindahan){
+            openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/keindahan-manta-point-surganya-para-pecinta-diving")
+        }
     }
 
     private fun formatName(dataProfile: ProfileModel): String {
@@ -376,6 +384,15 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         btnHotel.setOnClickListener(this)
         btnTrain.setOnClickListener(this)
         llBisnisTrip.setOnClickListener(this)
+        tvWonderfull.setOnClickListener {
+            openWebActivity("https://wonderin.id/")
+        }
+    }
+
+    private fun openWebActivity(url : String){
+        val intent = Intent(requireContext(),HomeWebActivity::class.java)
+        intent.putExtra(HomeWebActivity.URL,url)
+        requireContext().startActivity(intent)
     }
 
 }
