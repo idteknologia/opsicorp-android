@@ -756,4 +756,5 @@ Please add your trip item for Approval."
     <string name="traveling_with_partner">Traveling With Partner?</string>
     <string name="fill_your_partner_name">Fill your partner name</string>
     <string name="cash_advance">Cash Advance</string>
+    <string name="txt_domestic_route">Domestic Route</string>
 </resources>

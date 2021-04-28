@@ -302,7 +302,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert("Please", "Waiting upload file", this)
             } else {
-                gotoActivityWithBundle(RevieBudgetPertaminaActivity::class.java, bundle)
+                gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
             }
         }
     }
@@ -373,12 +373,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             }
         }
-    }
-
-    private fun next(){
-        val intent = Intent(this,SelectTripRoutePertaminaActivity::class.java)
-        val isInternational = typeTrip == "international_route"
-        intent.putExtra(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,isInternational)
     }
 
 }

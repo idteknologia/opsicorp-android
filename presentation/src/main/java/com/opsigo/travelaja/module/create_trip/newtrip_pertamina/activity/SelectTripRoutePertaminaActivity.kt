@@ -35,6 +35,11 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener 
 
     private fun validation() {
         if (viewModel.getItinerary().isComplete()) {
+            val data = viewModel.getItinerary()
+            val intent = Intent(this,RevieBudgetPertaminaActivity::class.java)
+
+            var bundle = Bundle()
+
 
         } else {
             val warning = if (viewModel.getItinerary().isEmptyField()) "Harap isi" else "Tidak boleh sama"
