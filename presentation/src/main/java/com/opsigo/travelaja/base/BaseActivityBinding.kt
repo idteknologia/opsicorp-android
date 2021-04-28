@@ -18,6 +18,7 @@ import android.os.Bundle
 import android.view.View
 import android.util.Log
 import android.os.Build
+import android.view.inputmethod.InputMethodManager
 import androidx.viewbinding.BuildConfig
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
@@ -196,5 +197,15 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
     fun showDialogFragment(fragmentDialog: androidx.fragment.app.DialogFragment) {
         val fm = getSupportFragmentManager()
         fragmentDialog.show(fm, "yesNoAlert")
+    }
+
+    fun getBaseUrl(): String {
+        return Globals.getBaseUrl(this)
+    }
+
+    fun openSoftKeyboard(context: Context, view: View) {
+        view.requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 }

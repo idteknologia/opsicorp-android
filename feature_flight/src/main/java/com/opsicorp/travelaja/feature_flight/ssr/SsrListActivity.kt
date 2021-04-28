@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import com.opsigo.travelaja.BaseActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import android.util.Log
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp

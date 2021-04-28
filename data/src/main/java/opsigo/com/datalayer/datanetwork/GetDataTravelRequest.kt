@@ -56,7 +56,7 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
     }
 
     override fun getEstimatedCost(token: String, data: HashMap<Any, Any>, callback: CallbackEstimatedCostTravelRequest) {
-        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+        apiOpsicorp.getEstimatedCost(token,data).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){

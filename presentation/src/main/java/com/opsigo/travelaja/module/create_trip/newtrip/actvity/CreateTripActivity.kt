@@ -30,7 +30,6 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.yalantis.ucrop.UCrop
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,

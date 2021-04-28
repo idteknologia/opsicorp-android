@@ -1,9 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.filter
 
 import android.os.Build
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity

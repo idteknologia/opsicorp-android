@@ -345,7 +345,8 @@ interface UrlEndpoind {
                          @Query("deviceId")deviceId:String):Call<ResponseBody>
 
     @POST(MyURL.GET_ESTIMATED_COST)
-    fun getEstimatedCost(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+    fun getEstimatedCost(@Header("Authorization")token:String,
+                         @Body body: HashMap<Any,Any>): Call<ResponseBody>
 
     @POST(MyURL.SUBMIT_TRAVEL_REQUEST)
     fun submitTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>

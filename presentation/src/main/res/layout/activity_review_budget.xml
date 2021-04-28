@@ -80,15 +80,19 @@
                     android:textColor="#91929e"
                     android:textSize="14sp" />
 
-                <TextView
+                <EditText
+                    android:singleLine="true"
                     android:id="@+id/title_cost_name"
+                    android:background="@android:color/transparent"
                     style="@style/RobotoBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Cost Name"
+                    android:textColorHint="#24253d"
                     android:textColor="#24253d"
-                    android:textSize="16sp" />
+                    android:text="@string/cost_center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="9dp"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
@@ -256,7 +260,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="End data"
+                    android:text="End Date"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -291,47 +295,59 @@
 
         </LinearLayout>
 
-        <TextView
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/layCash"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="15dp"
-            android:text="Cash Advance"
-            android:textColor="#24253d"
-            android:textSize="16sp"
-            style="@style/RobotoBold"
-            android:layout_marginLeft="20dp" />
+            android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="17dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/et_min"
-                android:layout_width="260dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/rounded_button_corner_grey_97"
-                android:inputType="number"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:singleLine="true">
-
-            </EditText>
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_cash_ad"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAllCaps="true"
                 android:layout_marginStart="20dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/cash_advance"
+                android:textColor="#24253d"
                 android:textSize="16sp"
-                android:textColor="#2b9a8e"
-                android:text="IDR"
                 style="@style/RobotoBold"
                 android:layout_marginLeft="20dp" />
-        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_cash_ad">
+
+                <EditText
+                    android:id="@+id/et_min"
+                    android:layout_width="260dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/rounded_button_corner_grey_97"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:singleLine="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="8dp">
+
+                </EditText>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:layout_marginStart="20dp"
+                    android:textSize="16sp"
+                    android:textColor="#2b9a8e"
+                    android:text="IDR"
+                    style="@style/RobotoBold"
+                    android:layout_marginLeft="20dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
     <include

@@ -133,26 +133,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/tv_station_departure"
+                        android:id="@+id/tv_flight_cost"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Gajayana"/>
+                        android:text="Flight"/>
 
-                    <TextView
-                        android:id="@+id/tvPassengerTotal1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#939396"
-                        android:text="Adult x1"
-                        style="@style/RobotoRegular"/>
+
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_prize_departure"
+                    android:id="@+id/tv_price_flight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -174,26 +167,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/tv_station_arrival"
+                        android:id="@+id/tv_hotel_cost"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Argo Parahyangan Tambahan"/>
+                        android:text="Hotel"/>
 
-                    <TextView
-                        android:id="@+id/tvPassengerTotal2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#939396"
-                        android:text="Adult x1"
-                        style="@style/RobotoRegular"/>
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tv_prize_arrival"
+                    android:id="@+id/tv_price_hotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -214,23 +199,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_transportation_cost"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Services Fee"/>
+                        android:text="Transportation"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Free"
-                        style="@style/RobotoRegular"/>
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_transportation_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -242,7 +222,6 @@
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
@@ -252,16 +231,18 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_allowance_cost"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Tax"/>
+                        android:text="Allowance"/>
 
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_allowance_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
@@ -272,30 +253,70 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:background="#f5f5f5"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="13dp"
-                android:paddingBottom="13dp">
-                <TextView
-                    android:layout_width ="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize  ="14sp"
-                    android:textColor ="#00776a"
-                    android:text      ="Amount to pay"/>
-
-                <TextView
-                    android:id="@+id/tv_price_total"
-                    android:layout_alignParentRight="true"
+                android:layout_height="wrap_content">
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#d9000000"
-                    android:text="IDR 221.600  "/>
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_allowance_event_cost"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="Allowance Event"/>
 
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_allowance_event_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentRight="true"/>
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_laundry_cost"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="Laundry"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_laundry_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
         </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
     </LinearLayout>

@@ -5,8 +5,6 @@ import android.content.Intent
 import androidx.transition.Fade
 import androidx.transition.Transition
 import androidx.transition.TransitionManager
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R

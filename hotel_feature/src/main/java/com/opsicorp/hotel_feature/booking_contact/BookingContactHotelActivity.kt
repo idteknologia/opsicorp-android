@@ -19,7 +19,6 @@ import opsigo.com.datalayer.mapper.Serializer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.accomodation.hotel.*
-import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackBookingHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST

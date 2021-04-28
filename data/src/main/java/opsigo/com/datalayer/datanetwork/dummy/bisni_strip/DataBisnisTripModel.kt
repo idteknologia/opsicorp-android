@@ -8,10 +8,15 @@ class DataBisnisTripModel {
     var idPurphose  = ""
     var id = ""
     var namePusrpose = ""
+    var wbsNumber    = ""
+    var nameActivity = ""
+    var tripPartnerName = ""
     var nameDestination = ""
     var startDate   = ""
     var endDate     = ""
     var notes       = ""
+    var golper      = 0
+    /*var routes      = ArrayList<>()*/
     var image       = ArrayList<UploadModel>()
     var statusCreateTrip = ""
     var event       = ""
@@ -19,5 +24,9 @@ class DataBisnisTripModel {
     var budget      = ""
     var costCenter  = ""
     var dateCreated = ""
+    var isCbt = false
+    var isInternational = false
+    var isWbs = false
+    var isTripPartner = false
 
 }

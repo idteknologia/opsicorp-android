@@ -5,8 +5,6 @@ import android.content.Intent
 import com.opsicorp.train_feature.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.train_filter_actvity_view.*
