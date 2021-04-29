@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
@@ -986,6 +987,12 @@ object Globals {
             e.printStackTrace()
         }
         return totalDay
+    }
+
+    fun openSoftKeyboard(context: Context, view: View) {
+        view.requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
 

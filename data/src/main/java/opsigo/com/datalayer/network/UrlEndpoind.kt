@@ -349,7 +349,8 @@ interface UrlEndpoind {
                          @Body body: HashMap<Any,Any>): Call<ResponseBody>
 
     @POST(MyURL.SUBMIT_TRAVEL_REQUEST)
-    fun submitTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>
+    fun submitTravelRequest(@Header("Authorization")token:String,
+                            @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
     @POST(MyURL.APPROVE_ALL_TRIP)
     fun approveAllTravelRequest(@Body body: HashMap<Any, Any>):Call<ResponseBody>

@@ -283,9 +283,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             dataOrderCreatTrip.startDate = m_startdate//tv_from.text.toString()
             dataOrderCreatTrip.endDate = m_endate//et_end_date.text.toString()
             dataOrderCreatTrip.notes = et_notes.text.toString()
-            dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
-
             dataOrderCreatTrip.tripcode = System.currentTimeMillis().toString()
+            dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
 
             dataOrderCreatTrip.idPurphose = idPurphose
             dataOrderCreatTrip.dateCreated = DateConverter().getDay("dd MMMM yyyy HH:mm")

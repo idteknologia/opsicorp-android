@@ -203,9 +203,7 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
         return Globals.getBaseUrl(this)
     }
 
-    fun openSoftKeyboard(context: Context, view: View) {
-        view.requestFocus()
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    fun showAllert(title: String, message: String) {
+        Globals.showAlert(title, message, this)
     }
 }
