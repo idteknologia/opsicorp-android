@@ -2,7 +2,6 @@
 <LinearLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -137,7 +136,7 @@
                         android:layout_height="1dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:background="@color/colorLineEdittext">
+                        android:background="#e0e0e1">
 
                     </LinearLayout>
 
@@ -578,62 +577,64 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_marginBottom="20dp">
 
                     <LinearLayout
+                        android:id="@+id/layNotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:id="@+id/layNotes"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:orientation="vertical">
 
                         <TextView
-                            android:text="@string/notes"
-                            android:textSize="14sp"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="11dp"
+                            android:text="@string/notes"
+                            android:textSize="14sp" />
 
 
                         <EditText
-                            android:textColorHint="#24253d"
-                            android:textColor="#24253d"
-                            android:background="@drawable/rounded_button_corner_grey"
                             android:id="@+id/et_notes"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="9dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:textAlignment="viewStart"
-                            android:gravity="center"
-                            android:textSize="@dimen/font_edittext"
-                            android:maxLength="100"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:ignore="RtlCompat" />
+                            android:background="@drawable/rounded_button_corner_grey"
+                            android:gravity="center"
+                            android:maxLength="100"
+                            android:maxLines="3"
+                            android:lines="3"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textAlignment="viewStart"
+                            android:textColor="#24253d"
+                            android:textColorHint="#24253d"
+                            android:textSize="@dimen/font_edittext"
+                            tools:ignore="RtlCompat"
+                            tools:text="@tools:sample/lorem/random" />
 
 
                     </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_notes_count"
-                        android:layout_below="@+id/layNotes"
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoRegular"
-                        android:textStyle="normal"
-                        android:textSize="14sp"
+                        android:layout_below="@+id/layNotes"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="10dp"
                         android:gravity="end"
                         android:text="@string/_0_100"
-                        android:layout_marginTop="10dp"
                         android:textColor="#b2bbc6"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true" />
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
 
                 </RelativeLayout>
 
@@ -648,16 +649,15 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvDescDoc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="25dp"
                     android:layout_marginLeft="25dp"
-                    style="@style/RobotoBold"
                     android:textSize="12sp"
                     android:textColor="#666666"
                     android:lineSpacingExtra="7sp"
-                    android:text="@string/information"
-                    />
+                    tools:text="@string/information_docs" />
 
                 <LinearLayout
                     android:id="@+id/layListAttachment"

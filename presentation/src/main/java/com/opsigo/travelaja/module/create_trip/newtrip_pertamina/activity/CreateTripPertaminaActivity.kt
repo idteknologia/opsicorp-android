@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
 import android.view.View
 import com.opsicorp.sliderdatepicker.utils.Constant
@@ -72,11 +73,20 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     override fun onMain() {
         initOnClick()
         Globals.typeAccomodation = ""
-
+        setTextDocs()
         presenter.setDataAutomatically()
         presenter.initRecyclerViewAttachment(rv_attachment)
 
         changeButtonNextGrayColor()
+    }
+
+    private fun setTextDocs(){
+        val textDocs = getString(R.string.txt_document_description)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            viewBinding.tvDescDoc.text = Html.fromHtml(textDocs,Html.FROM_HTML_MODE_COMPACT)
+        }else {
+            viewBinding.tvDescDoc.text = Html.fromHtml(textDocs)
+        }
     }
 
     private fun initOnClick() {
@@ -302,6 +312,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert("Please", "Waiting upload file", this)
             } else {
+                bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
+                bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
                 bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
                 gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
             }
