@@ -5,39 +5,41 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.opsigo.travelaja.BR
 import kotlinx.android.parcel.Parcelize
-import java.io.Serializable
 
-class Itinerary : BaseObservable(), Serializable {
-    @get:Bindable
-    var Transportation: Int = 1
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.transportation)
-        }
+@Parcelize
+class Itinerary(
+        @get:Bindable
+        var Transportation: Int = 1,
+        @get:Bindable
+        var DepartureDateView: String = "",
+        @get:Bindable
+        var Origin: String = "",
+        @get:Bindable
+        var Destination: String = ""
+) : Parcelable, BaseObservable() {
 
-    @get:Bindable
-    var DepartureDateView: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.departureDateView)
-        }
+    fun setTransport(pos: Int) {
+        Transportation = pos
+        notifyPropertyChanged(BR.transportation)
+    }
 
-    @get:Bindable
-    var Origin: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.origin)
-        }
+    fun setDate(date: String) {
+        DepartureDateView = date
+        notifyPropertyChanged(BR.departureDateView)
+    }
 
-    @get:Bindable
-    var Destination: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.destination)
-        }
+    fun setOriginFrom(origin: String) {
+        Origin = origin
+        notifyPropertyChanged(BR.origin)
+    }
+
+    fun setDestinationTo(dest : String){
+        Destination = dest
+        notifyPropertyChanged(BR.destination)
+    }
 
     fun isEmptyField(): Boolean = DepartureDateView.isEmpty() || Origin.isEmpty() || Destination.isEmpty()
-    fun isSame(): Boolean = Origin == Destination
+    private fun isSame(): Boolean = Origin == Destination
     fun isComplete() = !isEmptyField() && !isSame()
 
 

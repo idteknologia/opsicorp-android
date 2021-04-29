@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,6 +24,9 @@
         android:layout_height="37dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="11dp"
+        android:focusable="true"
+        app:searchIcon="@drawable/ic_search_orange"
+        app:iconifiedByDefault="false"
         android:background="@drawable/bg_search_view"
         app:defaultQueryHint="Enter city name"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,3 +55,4 @@
         app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

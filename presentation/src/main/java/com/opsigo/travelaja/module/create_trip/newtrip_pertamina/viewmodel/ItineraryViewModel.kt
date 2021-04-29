@@ -11,25 +11,24 @@ import opsigo.com.datalayer.network.ServiceApi
 class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
     val isInternational = ObservableBoolean(false)
 
-    private var itineraries = mutableListOf(Itinerary())
+    var itineraries = mutableListOf(Itinerary())
 
     fun getItinerary() : Itinerary  = itineraries[0]
 
     fun setOriginFrom(origin : String ){
-        getItinerary().Origin = origin
+        getItinerary().setOriginFrom(origin)
     }
 
     fun setDestination(destination : String){
-        getItinerary().Destination = destination
+        getItinerary().setDestinationTo(destination)
     }
 
     fun setTypeTransportation(pos : Int){
-        getItinerary().Transportation = pos
+        getItinerary().setTransport(pos)
     }
 
-
     fun setStartDate(date : String){
-        getItinerary().DepartureDateView = date
+        getItinerary().setDate(date)
     }
 
     fun checkedInternational(isChecked : Boolean){
@@ -42,6 +41,9 @@ class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
 
     private val _cities = MutableLiveData<List<City>>()
     val cities : LiveData<List<City>> = _cities
+
+    private val _error = MutableLiveData<Throwable>()
+    val error : LiveData<Throwable> = _error
 
 
     fun fetchCities(isInternational : Boolean){
@@ -59,10 +61,10 @@ class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
             }else {
                 _cities.postValue(result.data)
             }
+        }else {
+            _error.postValue((result as Result.Error).exception)
         }
     }
-
-
 }
 
 
