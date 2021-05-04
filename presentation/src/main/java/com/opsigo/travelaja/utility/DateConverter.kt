@@ -56,6 +56,20 @@ class DateConverter {
         }
     }
 
+    fun getNextDay(formatInput:String,formatOutput:String,date:String,numberAfter:Int):String{
+        try {
+            val calendar = Calendar.getInstance()
+            val sdf = SimpleDateFormat(formatInput)//"yyyy-MM-dd"
+            calendar.setTime(sdf.parse(date))
+            calendar.add(Calendar.DATE, numberAfter)
+            val mdformat = SimpleDateFormat(formatOutput)
+            val strDate = mdformat.format(calendar.getTime())
+            return strDate
+        }catch (e:Exception){
+            return errorFormating
+        }
+    }
+
     fun getAfterDate(formatInput:String,formatOutput:String,stringDate: String,numberAfter:Int):String{
         try {
             val calendar = Calendar.getInstance()

@@ -116,11 +116,10 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
     private fun setData() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        adapter.setData(datalist.dataFlight)
+        adapter.setData(datalist.dataFlight,currentPositionPassenger)
     }
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
-        /*setLog(datalist.dataFlight[positionParent].dataSSR.dataBagage[positionChild].pricing)*/
         datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeSelected = datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.dataBagage[positionChild]
         tvTotalPriceBaggage.text = "IDR ${Globals.currencyIDRFormat(totalPriceSelected()!!.replace(".0", "").toDouble())}"
 
@@ -162,7 +161,7 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     override fun onClicked() {
-        finish()
+        Globals.finishResultOk(this)
     }
 
     override fun btnBack() {

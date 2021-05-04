@@ -243,7 +243,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun businessTrip() {
-        val dataConfig = getConfig()
+        /*val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
             if (getProfile().companyCode.equals(11)){
                 gotoActivity(CreateTripPertaminaActivity::class.java)
@@ -251,8 +251,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             gotoActivity(CreateTripActivity::class.java)
         } else {
             showContactAdmin()
-        }
-        /*gotoActivity(CreateTripPertaminaActivity::class.java)*/
+        }*/
+        gotoActivity(CreateTripPertaminaActivity::class.java)
     }
 
     override fun onClick(v: View?) {

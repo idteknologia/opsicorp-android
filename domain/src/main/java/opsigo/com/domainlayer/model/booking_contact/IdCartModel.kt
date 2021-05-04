@@ -1,10 +1,11 @@
 package opsigo.com.domainlayer.model.booking_contact
 
 class IdCartModel  {
-    var id   = ""
+    var id          = ""
     var title       = ""
     var fullname    = ""
     var idCart      = ""
-    var mobileNum   = ""
+    var mobilePhone = ""
     var email       = ""
+    var birthDate   = ""
 }

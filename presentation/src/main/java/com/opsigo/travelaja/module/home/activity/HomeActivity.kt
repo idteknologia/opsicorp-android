@@ -1,25 +1,25 @@
 package com.opsigo.travelaja.module.home.activity
 
-import android.content.Intent
 import android.view.View
-import androidx.core.os.bundleOf
-import com.opsigo.travelaja.BaseActivity
+import android.content.Intent
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.module.approval.fragment.ApprovalFragment
-import com.opsigo.travelaja.module.home.fragment.HomeFragment
-import com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
-import com.opsigo.travelaja.module.manage_trip.TestManageTripFragment
-import com.opsigo.travelaja.module.my_booking.home_my_booking.MyBookingFragment
-import com.opsigo.travelaja.module.profile.ProfileFragment
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.home_view.*
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.mapper.Serializer
+import androidx.core.os.bundleOf
 import opsigo.com.domainlayer.callback.*
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.utility.Globals
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsigo.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.HolidayModel
+import kotlinx.android.synthetic.main.home_view.*
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import com.opsigo.travelaja.module.profile.ProfileFragment
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import com.opsigo.travelaja.module.home.fragment.HomeFragment
+import com.opsigo.travelaja.module.manage_trip.TestManageTripFragment
+import com.opsigo.travelaja.module.approval.fragment.ApprovalFragment
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
+import com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
+import com.opsigo.travelaja.module.my_booking.home_my_booking.MyBookingFragment
 
 class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 

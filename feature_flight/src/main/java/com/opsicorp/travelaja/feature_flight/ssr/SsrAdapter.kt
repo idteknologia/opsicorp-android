@@ -12,10 +12,11 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ssr_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
-class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<SsrAdapter.ViewHolder>() {
+class SsrAdapter(context: Context): RecyclerView.Adapter<SsrAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     var items = ArrayList<ResultListFlightModel>()
+    var currentPositionPassenger = 0
     val context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SsrAdapter.ViewHolder {
@@ -43,10 +44,10 @@ class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Ad
         }
 
 
-        if (!data.passenger[position].ssr.dataSsr.filter {
+        if (!data.passenger[currentPositionPassenger].ssr.dataSsr.filter {
                     it.ssrFlightNumber == data.flightNumber
                 }.isNullOrEmpty()){
-            if (data.passenger[position].ssr.ssrSelected.isNotEmpty()){
+            if (data.passenger[currentPositionPassenger].ssr.ssrSelected.isNotEmpty()){
                 holder.itemView.rlSelectedSsr.visible()
                 holder.itemView.ivRemoveSsr.visible()
                 holder.itemView.ivRemoveSsr.setOnClickListener {
@@ -54,7 +55,7 @@ class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Ad
                 }
                 holder.itemView.tvPickSsr.text = "Change"
                 var selectedSsr = ""
-                data.passenger[position].ssr.ssrSelected.forEach {
+                data.passenger[currentPositionPassenger].ssr.ssrSelected.forEach {
                     selectedSsr = selectedSsr + "${it.ssrName}, "
                 }
                 holder.itemView.tvSelectedSsr.text = selectedSsr.substring(0,selectedSsr.length-1)
@@ -84,12 +85,11 @@ class SsrAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Ad
     }
 
 
-    fun setData(data: ArrayList<ResultListFlightModel>) {
+    fun setData(data: ArrayList<ResultListFlightModel>,positionPassenger:Int) {
         items = data
+        currentPositionPassenger = positionPassenger
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
-
-    }
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
 }

@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.gone
-import com.opsigo.travelaja.utility.visible
+import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.flight_multi_city_item.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 
@@ -41,7 +38,14 @@ class FlightMultiAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<Fli
         } else {
             holder.itemView.tvRemoveCard.gone()
         }
-        holder.itemView.tv_departur_date.text = data.dateDeparture
+
+        if (data.dateDeparture.isNotEmpty()){
+            holder.itemView.tv_departur_date.text = DateConverter().getDate(data.dateDeparture, "yyyy-MM-dd", "dd MMM yyyy")
+        }
+        else {
+            holder.itemView.tv_departur_date.text = data.dateDeparture
+        }
+
         if (data.idOrigin.isNotEmpty()){
             holder.itemView.tv_from.text = "${data.originName} (${data.idOrigin})"
         } else {

@@ -8,6 +8,7 @@ import android.widget.RadioButton
 import android.view.LayoutInflater
 import com.opsigo.travelaja.utility.*
 import com.opsicorp.travelaja.feature_flight.R
+import com.opsigo.travelaja.utility.Globals.setLog
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
 import opsigo.com.datalayer.mapper.Serializer
@@ -17,7 +18,6 @@ import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomoda
 class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
-    lateinit var datalist: DataListOrderAccomodation
     lateinit var items: ArrayList<BookingContactAdapterModel>
 
     override fun getItemCount(): Int {
@@ -51,7 +51,6 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
     inner class BookingAdultAdapter internal constructor(itemView: View) : ViewHolder(itemView) {
 
         fun bind(data: BookingContactAdapterModel, position: Int) {
-            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
             val radiobutton = ArrayList<RadioButton>()
             radiobutton.add(itemView.checkboxIdCart)
             radiobutton.add(itemView.checkboxPassport)
@@ -69,8 +68,7 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
                     setCheckRadioButton(radiobutton, 2)
                 }
                 else -> {
-                    setCheckRadioButton(radiobutton, 0)
-
+                    setCheckRadioButton(radiobutton, -1)
                 }
             }
 
@@ -113,18 +111,18 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
                 itemView.btn_id_sim.setTextColor(ContextCompat.getColor(context, R.color.orange_price))
             }
 
-            if (position == (items.size - 1)) {
-                itemView.line_vertical.visibility = View.GONE
-                itemView.line_vertical_aaditional.gone()
-            } else {
-                itemView.line_vertical.visibility = View.VISIBLE
-                itemView.line_vertical_aaditional.visible()
+            if (data.idcard.fullname.isEmpty()){
+                itemView.name_passanger_by_ktp.text = context.getString(R.string.string_requaired_input)
+                itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.colorRedUndo))
+            }
+            else {
+                itemView.name_passanger_by_ktp.text = data.idcard.fullname
+                itemView.name_passanger_by_ktp.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
             }
 
-            itemView.name_passanger_by_ktp.text = data.idcard.fullname
-            if (!data.pasport.firstName.isNullOrEmpty()) {
+            if (!data.pasport.fullname.isNullOrEmpty()) {
                 itemView.name_passanger_by_passport.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
-                itemView.name_passanger_by_passport.text = data.pasport.firstName
+                itemView.name_passanger_by_passport.text = data.pasport.fullname
             }
             if (!data.sim.name.isNullOrEmpty()) {
                 itemView.name_passanger_by_sim.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
@@ -151,36 +149,52 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
                 itemView.card_ssr.visibility = View.GONE
             }
 
+            if (!data.ssr.bagaggeItemSelected.filter { it.ssrType=="1" }.isNullOrEmpty()){
+                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
+                itemView.tvBaggageTotalSelect.text = data.ssr.bagaggeItemSelected.find { it.ssrType=="1" }?.ssrName?.replace("+", "")?.replace("Baggage", "")?.replace("Checked", "")?.replace("baggage", "")
+                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+            } else {
+                itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
+                itemView.tvBaggageTotalSelect.text = "0 Kg"
+                itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
+            }
 
-            /*if (datalist.dataFlight.size > 1){
-                if (!datalist.dataFlight[position].dataSSR.bagaggeItemSelected.isNullOrEmpty()){
-                    itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_green)
-                    itemView.tvBaggageTotalSelect.text = datalist.dataFlight[position].dataSSR.bagaggeItemSelected[position].ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
-                    itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
-                } else {
-                    itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
-                    itemView.tvBaggageTotalSelect.text = "0 Kg"
-                    itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
-                }
+            if (!data.ssr.ssrSelected.isNullOrEmpty()){
+                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
+                itemView.tvSsrTotalSelect.text = "${data.ssr.ssrSelected.size} Selected"
+                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
+            } else {
+                itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
+                itemView.tvSsrTotalSelect.text = "Meals, etc"
+                itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
+            }
 
-                if (!datalist.dataFlight[position].dataSSR.ssrSelected.isNullOrEmpty()){
-                    itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
-                    itemView.tvSsrTotalSelect.text = "${datalist.dataFlight[position].dataSSR.ssrSelected.size} Selected"
-                    itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
-                } else {
-                    itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
-                    itemView.tvSsrTotalSelect.text = "Meals, etc"
-                    itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
-                }
+            if (data.ssr.dataBagage.isNotEmpty()){
+                itemView.line_baggage.visibility             = View.VISIBLE
+                itemView.line_vertical_aditional.visibility  = View.VISIBLE
+            }
+            else {
+                itemView.line_baggage.visibility            = View.GONE
+                itemView.line_vertical_aditional.visibility = View.GONE
+            }
 
-                if (datalist.dataFlight[position].titleAirline.equals("Garuda Indonesia")){
+            if (items.size-1==position) {
+                itemView.line_vertical.visibility           = View.GONE
+                itemView.line_vertical_aditional.visibility = View.GONE
+            } else {
+                itemView.line_vertical.visibility           = View.VISIBLE
+                itemView.line_vertical_aditional.visibility = View.GONE
+            }
+
+            val datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+
+            try {
+                if (datalist.dataFlight[0].titleAirline.equals("Garuda Indonesia")){
                     itemView.card_frequency_flayer.visible()
                 } else {
                     itemView.card_frequency_flayer.gone()
                 }
-            } else {
-
-            }*/
+            }catch (e:Exception){}
 
             if (itemView.card_baggage.visibility.equals(0) || itemView.card_ssr.visibility.equals(0) || itemView.card_frequency_flayer.visibility.equals(0)) {
                 itemView.tv_additional.visible()

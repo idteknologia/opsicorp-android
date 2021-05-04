@@ -754,4 +754,5 @@ Please add your trip item for Approval."
     <string name="wbs_no">WBS No*</string>
     <string name="traveling_with_partner">Traveling With Partner?</string>
     <string name="fill_your_partner_name">Fill your partner name</string>
+    <string name="warning_canot_be_empty">Field can not be empty</string>
 </resources>

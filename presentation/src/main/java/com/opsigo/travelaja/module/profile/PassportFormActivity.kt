@@ -19,6 +19,7 @@ import com.opsigo.travelaja.utility.FormatingMonthIndonesian
 import kotlinx.android.synthetic.main.passport_form_activity_view.*
 import kotlinx.android.synthetic.main.passport_form_activity_view.toolbar
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.utility.DateConverter
 import kotlinx.android.synthetic.main.passport_form_activity_view.tv_btn_mr
 import kotlinx.android.synthetic.main.passport_form_activity_view.tv_btn_ms
 import kotlinx.android.synthetic.main.passport_form_activity_view.tv_btn_mrs
@@ -34,6 +35,8 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
 
     val texts = ArrayList<TextView>()
     val lines = ArrayList<LinearLayout>()
+    var title = "Mr"
+    var month = 1
 
 
     override fun OnMain() {
@@ -62,14 +65,19 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
                 val dataPasspor = Serializer.deserialize(dataString,PassportModel::class.java)
 
                 et_passpor_number.setText(dataPasspor.passporNumber)
-//                et_paspor_country.setText(dataPasspor.originCountry)
-                tv_fullname_pasport.setText("${dataPasspor.firstName} ${dataPasspor.lastName}")
-//                tv_nasionality.setText(dataPasspor.nasionality)
+                et_mobile_phone.setText(dataPasspor.mobilePhone)
+                tv_fullname_pasport.setText(dataPasspor.fullname)
+                et_email.setText(dataPasspor.email)
+                mappingtitle(dataPasspor.title)
+
                 if (dataPasspor.birtDate.isNotEmpty()){
-                    tv_year_birtdate.setText(dataPasspor.birtDate.split("-")[0])
-                    tv_month_birtdate.setText(dataPasspor.birtDate.split("-")[1])
-                    tv_day_birtdate.setText(dataPasspor.birtDate.split("-")[2])
+                     val bd = dataPasspor.birtDate.replace("00:00:00","").trim()
+                     tv_year_birtdate.setText(bd.split("-")[0])
+                     tv_month_birtdate.setText(DateConverter().getDate(dataPasspor.birtDate,"yyyy-MM-dd","MMM"))
+                     tv_day_birtdate.setText(bd.split("-")[2])
+                     month = DateConverter().getDate(dataPasspor.birtDate,"yyyy-MM-dd","M").toInt()
                 }
+
                 if (dataPasspor.expiredDate.isNotEmpty()){
                     tv_year_expired.setText(dataPasspor.expiredDate.split("-")[0])
                     tv_month_expired.setText(dataPasspor.expiredDate.split("-")[1])
@@ -77,6 +85,22 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
                 }
             }
         }catch (e:Exception){}
+    }
+
+    private fun mappingtitle(string: String) {
+        title = string
+        when(string){
+            "Mr" -> {
+                Globals.changeViewButtonLinearlayout(texts,lines,0,this)
+            }
+            "Mrs" -> {
+                Globals.changeViewButtonLinearlayout(texts,lines,1,this)
+            }
+            "Ms" -> {
+                Globals.changeViewButtonLinearlayout(texts,lines,2,this)
+            }
+        }
+
     }
 
     private fun initToolbar() {
@@ -101,6 +125,7 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
             override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
                 tv_day_birtdate.text =  p3.toString()
                 tv_month_birtdate.text = FormatingMonthIndonesian().formatMonth(p2)
+                this@PassportFormActivity.month = p2
                 tv_year_birtdate.text = p1.toString()
             }
         })
@@ -126,47 +151,59 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
     }
 
     fun saveListener(view: View){
-        val pasport = PassportModel()
-        pasport.passengerId = ""
-        pasport.passporNumber = et_passpor_number.text.toString()
-        pasport.originCountry = et_paspor_country.text.toString()
-        pasport.id          = ""
-        pasport.title       = "Mr"
-        pasport.birtDate    = "${tv_year_birtdate.text}-${tv_month_birtdate.text}-${tv_day_birtdate.text}"
-        pasport.expiredDate = "${tv_year_expired.text}-${tv_month_expired.text}-${tv_day_expired.text}"
-        if (tv_fullname_pasport.text.toString().contains(" ")){
-            pasport.firstName     = tv_fullname_pasport.text.toString().split(" ")[0]
-            pasport.lastName      = tv_fullname_pasport.text.toString().split(" ")[1]
+        if (Globals.validatiEdittext(getDataField())){
+            val pasport = PassportModel()
+            pasport.passporNumber = et_passpor_number.text.toString()
+            pasport.email         = et_email.text.toString()
+            pasport.mobilePhone   = et_mobile_phone.text.toString()
+            pasport.id            = ""
+            pasport.title         = title
+            pasport.fullname      = tv_fullname_pasport.text.toString()
+            pasport.expiredDate   = "${tv_year_expired.text}-${tv_month_birtdate.text}-${tv_day_expired.text}"
+            val birthdate         = "${tv_year_birtdate.text}-${month}-${tv_day_birtdate.text}"
+            pasport.birtDate      = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+            val intent = Intent()
+            intent.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
+            Globals.finishResultOk(this,intent)
         }
-        else {
-            pasport.firstName     = tv_fullname_pasport.text.toString()
-            pasport.lastName      = tv_fullname_pasport.text.toString()
+        else{
+            showAllert(getString(R.string.sorry),getString(R.string.warning_canot_be_empty))
         }
-        pasport.nasionality = tv_nasionality.text.toString()
+    }
 
-        val intent = Intent()
-        intent.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
-        Globals.finishResultOk(this,intent)
+    private fun getDataField(): ArrayList<String> {
+        val data = ArrayList<String>()
+        data.add(tv_fullname_pasport.text.toString())
+        data.add(et_passpor_number.text.toString())
+        data.add(et_email.text.toString())
+        data.add(et_mobile_phone.text.toString())
+        return data
     }
 
     override fun onClick(p0: View?) {
         when (p0){
             tv_btn_mr -> {
+                title = "Mr"
                 Globals.changeViewButtonLinearlayout(texts,lines,0,this)
             }
             line_btn_mr-> {
+                title = "Mr"
                 Globals.changeViewButtonLinearlayout(texts,lines,0,this)
             }
             tv_btn_mrs -> {
+                title = "Mrs"
                 Globals.changeViewButtonLinearlayout(texts,lines,1,this)
             }
             line_btn_mrs -> {
+                title = "Mrs"
                 Globals.changeViewButtonLinearlayout(texts,lines,1,this)
             }
             tv_btn_ms -> {
+                title = "Ms"
                 Globals.changeViewButtonLinearlayout(texts,lines,2,this)
             }
             line_btn_ms -> {
+                title = "Ms"
                 Globals.changeViewButtonLinearlayout(texts,lines,2,this)
             }
         }

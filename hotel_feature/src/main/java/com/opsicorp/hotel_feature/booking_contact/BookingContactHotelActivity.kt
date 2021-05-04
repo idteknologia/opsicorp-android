@@ -19,7 +19,6 @@ import opsigo.com.datalayer.mapper.Serializer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.accomodation.hotel.*
-import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackBookingHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST
@@ -30,6 +29,7 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
 import com.opsicorp.hotel_feature.adapter.OnclickRecyclerBookingContact
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import kotlinx.android.synthetic.main.hotel_booking_contact.view.*
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class BookingContactHotelActivity : BaseActivity(),
@@ -391,7 +391,9 @@ class BookingContactHotelActivity : BaseActivity(),
         dataContacts.forEachIndexed { index, contatc ->
             val view = rv_booking_contact.getChildAt(index)
             val nameEditText = view.findViewById(R.id.et_guest) as EditText
+            val noHp = view.findViewById(R.id.et_no_hp) as EditText
             val name = nameEditText.getText().toString()
+            val hp   = noHp.text.toString()
             if (name.isNotEmpty()){
                 if (name.contains(" ")){
                     contatc.firstName = name.split(" ")[0]
@@ -402,6 +404,9 @@ class BookingContactHotelActivity : BaseActivity(),
                     contatc.lastName  = name
                 }
             }
+            if (hp.isNotEmpty()){
+                contatc.mobilePhone = hp
+            }
         }
         return dataContacts
     }
@@ -411,8 +416,13 @@ class BookingContactHotelActivity : BaseActivity(),
         dataContacts.forEachIndexed { index, contatc ->
             val view = rv_booking_contact.getChildAt(index)
             val nameEditText = view.findViewById(R.id.et_guest) as EditText
+            val noHp = view.findViewById(R.id.et_no_hp) as EditText
             val name = nameEditText.getText().toString().trim()
+            val hp   = noHp.text.toString().trim()
             if (name.isEmpty()){
+                empty = true
+            }
+            if (hp.isEmpty()){
                 empty = true
             }
         }

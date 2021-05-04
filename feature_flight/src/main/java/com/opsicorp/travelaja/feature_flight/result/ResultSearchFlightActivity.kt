@@ -1,47 +1,46 @@
 package com.opsicorp.travelaja.feature_flight.result
 
+import java.util.*
+import android.view.View
+import org.koin.core.inject
+import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
 import androidx.transition.Fade
+import kotlin.collections.HashMap
+import java.text.SimpleDateFormat
+import org.koin.core.KoinComponent
+import kotlin.collections.ArrayList
+import com.opsigo.travelaja.utility.*
 import androidx.transition.Transition
+import com.opsigo.travelaja.BaseActivity
+import org.koin.core.parameter.parametersOf
 import androidx.transition.TransitionManager
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
-import android.view.View
-import com.opsicorp.travelaja.feature_flight.R
-import com.opsicorp.travelaja.feature_flight.dialog.FlightShortByDialog
-import com.opsicorp.travelaja.feature_flight.filter.FilterFlightActivity
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
-import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.*
-import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
 import opsigo.com.domainlayer.callback.CallbackAirlinePreference
 import opsigo.com.domainlayer.callback.CallbackResultSearchFlight
+import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
+import com.opsicorp.travelaja.feature_flight.dialog.FlightShortByDialog
+import com.opsicorp.travelaja.feature_flight.filter.FilterFlightActivity
+import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
+import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
-import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
+import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
 
 class ResultSearchFlightActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult, KoinComponent,
@@ -78,23 +77,24 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun initItemViews() {
-        dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
-        setRecyclerView()
-        filter.callbackOnclickFilter(this)
-        btnChangeResult.setTextButton("Change Result")
-        btnChangeResult.callbackOnclickButton(this)
-        Log.d("data order",":" + dataOrder.toString())
+        if (!Constants.multitrip){
+            dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            setRecyclerView()
+            filter.callbackOnclickFilter(this)
+            btnChangeResult.setTextButton("Change Result")
+            btnChangeResult.callbackOnclickButton(this)
 
-        //init toolbar
-        setToolbar()
+            //init toolbar
+            setToolbar()
+        }
         getAirlineByCompany()
     }
 
     private fun setRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_result_flightnew.layoutManager = layoutManager
-        rv_result_flightnew.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_result_flightnew.itemAnimator = DefaultItemAnimator()
         rv_result_flightnew.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
@@ -122,49 +122,75 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun getAirlineByCompany() {
-        GetDataAccomodation(getBaseUrl()).getPreferedFlight(getToken(),dataRequestAirlinePref(),object : CallbackAirlinePreference {
-            override fun successLoad(data: AirlineCodeCompanyModel) {
-                clearDataListFlight()
-                dataCodeAirline = data
-                addDataLoading()
-                data.listSchedule.forEach {
-                    getDataFlight(it)
+        if (Constants.ALREADY_SEARCH_FLIGHT){
+            mappingByDate()
+        }
+        else {
+            GetDataAccomodation(getBaseUrl()).getPreferedFlight(getToken(),dataRequestAirlinePref(),object : CallbackAirlinePreference {
+                override fun successLoad(data: AirlineCodeCompanyModel) {
+                    clearDataListFlight()
+                    dataCodeAirline = data
+                    addDataLoading()
+                    Constants.ALREADY_SEARCH_FLIGHT = true
+                    data.listSchedule.forEach {
+                        getDataFlight(it)
+                    }
                 }
-            }
 
-            override fun failedLoad(message: String) {
+                override fun failedLoad(message: String) {
 
-            }
-        })
+                }
+            })
+        }
+
     }
 
     private fun dataRequestAirlinePref(): HashMap<Any, Any> {
         val data = AirlinePrefByCompanyRequest()
         data.preferredCarriers = ArrayList()
-        if (Globals.ONE_TRIP){
-            data.flightTripType    = 1
+        if (!Constants.multitrip){
+            if (Globals.ONE_TRIP){
+                data.flightTripType    = 1
+            }
+            else{
+                data.flightTripType    = 2
+            }
+            data.routes            = dataRoutesRequest()
         }
-        else{
-            data.flightTripType    = 2
+        else {
+            data.routes            = dataRoutesRequestMultiTrip()
+            data.flightTripType    = 3
         }
         data.cabinClassList    = dataCabinClass()
         data.travelAgent       = Globals.getConfigCompany(this).defaultTravelAgent
         data.adult             = 1
         data.infant            = 0
-        data.routes            = dataRoutesRequest()
         data.employeeId        = Globals.getProfile(this).employId
         data.child             = 0
         return Globals.classToHashMap(data, AirlinePrefByCompanyRequest::class.java)
 
     }
 
-    private fun dataCabinClass(): List<Int?>? {
+    private fun dataRoutesRequestMultiTrip(): List<RoutesItem?> {
+        val dataRoutes    = ArrayList<RoutesItem>()
+        val dataOrder = Constants.DATA_FLIGHT_MULTI_CITY
+        dataOrder.dataListOrderAccomodation.forEach {
+            val model         = RoutesItem()
+            model.origin      = it.idOrigin
+            model.destination = it.idDestination //"BDO"
+            model.departDate  = it.dateDeparture //"2020-08-28"
+            dataRoutes.add(addDepartureData())
+        }
+        return dataRoutes
+    }
+
+    private fun dataCabinClass(): List<Int?> {
         val dataCabin = ArrayList<Int>()
         dataCabin.add(dataOrder.classFlightCode.toInt())
         return dataCabin
     }
 
-    private fun dataRoutesRequest(): List<RoutesItem?>? {
+    private fun dataRoutesRequest(): List<RoutesItem?> {
         val dataRoutes    = ArrayList<RoutesItem>()
         when (dataOrder.typeTrip){
             "one_trip"->{
@@ -206,26 +232,27 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun getDataFlight(airlineCode: ListScheduleItem) {
         GetDataAccomodation(getBaseUrl()).getSearchFlight(getToken(),dataSearchFlight(airlineCode),object : CallbackResultSearchFlight {
             override fun success(mData: ArrayList<AccomodationResultModel>) {
-
-                totalGetDataFlight++
-                mData.filter { it.listFlightModel.isFlightArrival == false }.forEach {
-                    dataFromServer.add(it)
+                if (Constants.multitrip){
+                    Constants.DATA_RESULT_FLIGHT_MULTI_CITY.addAll(mData)
+                    mappingByDate()
                 }
-                mData.filter { it.listFlightModel.isFlightArrival == true }.forEach {
-                    Constants.DATA_FLIGHT_ARIVAL.add(it)
-                }
-                data.clear()
-                data.addAll(dataFromServer)
-                empty_result.gone()
-                if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
-                    checkEmptyData()
-
-                    /*setLog("-----------------------------------------")
-                    setLog("${DATA_FLIGHT_ARIVAL.size}")
-                    setLog("${DATA_FLIGHT_ARIVAL[0].listFlightModel.isFlightArrival}")*/
-                }
-                else{
-                    addDataLoading()
+                else {
+                    totalGetDataFlight++
+                    mData.filter { it.listFlightModel.isFlightArrival == false }.forEach {
+                        dataFromServer.add(it)
+                    }
+                    mData.filter { it.listFlightModel.isFlightArrival == true }.forEach {
+                        Constants.DATA_FLIGHT_ARIVAL.add(it)
+                    }
+                    data.clear()
+                    data.addAll(dataFromServer)
+                    empty_result.gone()
+                    if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
+                        checkEmptyData()
+                    }
+                    else{
+                        addDataLoading()
+                    }
                 }
             }
 
@@ -233,6 +260,11 @@ class ResultSearchFlightActivity : BaseActivity(),
                 showAllert("Sorry",error)
             }
         })
+    }
+
+    private fun mappingByDate() {
+        data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY)
+        adapter.setDataList(data,this)
     }
 
     private fun dataSearchFlight(airlineCode: ListScheduleItem): HashMap<Any, Any> {
@@ -279,12 +311,11 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     override fun onResume() {
-        /*if (Globals.ALL_READY_SELECT_DEPARTING){
-            getAirlineByCompany()
-        }*/
+        if (Globals.ALL_READY_SELECT_DEPARTING){
+            setDataArrival()
+        }
         super.onResume()
         setToolbar()
-        setDataArrival()
     }
 
     private fun setToolbar(mDate : String = "") {

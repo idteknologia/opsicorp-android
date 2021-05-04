@@ -1,6 +1,5 @@
 package opsigo.com.datalayer.mapper
 
-import com.google.gson.annotations.SerializedName
 import opsigo.com.datalayer.model.accomodation.flight.ailine_code.AirlineCodeEntity
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel

@@ -16,11 +16,12 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 
-class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
+class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerViewParent
     var items = ArrayList<ResultListFlightModel>()
     val context = context
+    var currentPositionPassenger = 0
 
     override fun getItemCount(): Int {
         return items.size
@@ -59,11 +60,11 @@ class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerVie
 
     private fun setDataRecycler(holder: ViewHolder, data: ResultListFlightModel ,positionParent: Int) {
         val adapter by lazy { BaggageListAdapter(context) }
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+        val layoutManager = LinearLayoutManager(context)
 
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         holder.itemView.rv_list_item_bagage.layoutManager = layoutManager
-        holder.itemView.rv_list_item_bagage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        holder.itemView.rv_list_item_bagage.itemAnimator = DefaultItemAnimator()
         holder.itemView.rv_list_item_bagage.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView{
@@ -71,8 +72,7 @@ class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerVie
                 when(views){
                     Constants.KEY_BAGGAGE_ITEM_SELECTED -> {
                         onclick.onClick(Constants.KEY_BAGGAGE_ITEM_SELECTED,positionParent,Constants.KEY_BAGGAGE_ITEM_SELECTED,position)
-                        holder.itemView.tvTotalBaggage.text = data.passenger[position].ssr.dataBagage.get(position).ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
-
+                        holder.itemView.tvTotalBaggage.text = data.passenger[currentPositionPassenger].ssr.dataBagage.get(position).ssrName.replace("+", "").replace("Baggage", "").replace("Checked", "").replace("baggage", "")
                     }
                 }
             }
@@ -82,12 +82,11 @@ class BaggageAdapter(context: Context): androidx.recyclerview.widget.RecyclerVie
 
     }
 
-    fun setData(data: ArrayList<ResultListFlightModel>) {
+    fun setData(data: ArrayList<ResultListFlightModel>,positionPassanger:Int) {
         items = data
+        currentPositionPassenger = positionPassanger
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
-
-    }
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
 }

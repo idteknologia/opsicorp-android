@@ -678,5 +678,7 @@ Please add your trip item for Approval."
     <string name="please_choose_the_information_for_fastest_approval" translatable="false">Please choose the information for fastest Approval</string>
     <string name="transit">TRANSIT</string>
     <string name="price_pax">PRICE/PAX</string>
+    <string name="booking_contact_not_empty">Please complete input data passenger</string>
+    <string name="string_requaired_input">Please add, this field is required</string>
 
 </resources>

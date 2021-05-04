@@ -66,7 +66,6 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
                 }
             }
 
-
             itemView.line_id_cart.setOnClickListener {
                 onclick.onClick(Constants.BTN_ID_CART,position)
                 setCheckRadioButton(radiobutton,0)
@@ -98,9 +97,9 @@ class BookingContactTrainAdapter (val context: Context, private var items: Array
             }
 
 
-            if (!data.pasport.firstName.isNullOrEmpty()){
+            if (!data.pasport.fullname.isNullOrEmpty()){
                 itemView.name_passanger_by_passport.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))
-                itemView.name_passanger_by_passport.text = data.pasport.firstName
+                itemView.name_passanger_by_passport.text = data.pasport.fullname
             }
             if(!data.sim.name.isNullOrEmpty()) {
                 itemView.name_passanger_by_sim.setTextColor(context.resources.getColor(R.color.gray_50_subtitle))

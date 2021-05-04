@@ -1,12 +1,12 @@
 package com.opsigo.travelaja.module.item_custom.circle_image
 
+import android.graphics.Paint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Matrix
-import android.graphics.Paint
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.BitmapDrawable
 
 import com.opsigo.travelaja.R
 

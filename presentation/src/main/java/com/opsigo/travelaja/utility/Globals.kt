@@ -45,6 +45,8 @@ import java.text.*
 import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import kotlin.collections.ArrayList
 
 /**
@@ -62,6 +64,7 @@ object Globals {
     var DATA_ORDER_FLIGHT = ""
     var DATA_FLIGHT       = ""
     var DATA_LIST_FLIGHT  = ""
+    var DATA_ORDER_MULTI_TRIP    = ""
     var DATA_LIST_TRAIN   = ""
 
     fun showAlert(title: String, message: String, activity: Activity) {
@@ -986,6 +989,16 @@ object Globals {
             e.printStackTrace()
         }
         return totalDay
+    }
+
+
+    private fun originCodeSplit(string: String): String {
+        val m: Matcher = Pattern.compile("\\(([^)]+)\\)").matcher(string)
+        var str = ""
+        while (m.find()) {
+            str = m.group(1)
+        }
+        return str
     }
 
 
