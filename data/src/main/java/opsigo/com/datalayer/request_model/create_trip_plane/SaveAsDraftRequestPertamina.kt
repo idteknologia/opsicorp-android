@@ -19,7 +19,7 @@ data class SaveAsDraftRequestPertamina (
         var  destination: String = "",
 
         @field:SerializedName("Type")
-        var  type: String = "",
+        var  type: Int = 0,
 
         @field:SerializedName("WbsNo")
         var  wbsNo: String = "",

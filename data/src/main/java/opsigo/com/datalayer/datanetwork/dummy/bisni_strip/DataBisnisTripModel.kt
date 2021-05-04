@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork.dummy.bisni_strip
 
+import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 
@@ -19,6 +20,7 @@ class DataBisnisTripModel {
     var golper      = 0
     var routes      = ArrayList<RoutesItinerary>()
     var image       = ArrayList<UploadModel>()
+    var participant = ArrayList<ParticipantPertamina>()
     var statusCreateTrip = ""
     var event       = ""
     var tripcode    = ""

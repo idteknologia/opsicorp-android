@@ -10,12 +10,10 @@ import android.widget.Toast
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
+import com.opsigo.travelaja.module.approval.fragment.ApprovalFragment
 import com.opsigo.travelaja.module.home.activity.HomeActivity
-import com.opsigo.travelaja.utility.Constants
+import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.utility.Constants.TYPE_ACCOMODATION
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import kotlinx.android.synthetic.main.success_create_trip_plane.*
 import kotlinx.android.synthetic.main.success_create_trip_plane.icCopyClipboard
 import kotlinx.android.synthetic.main.success_create_trip_plane.image_barcode
@@ -25,19 +23,42 @@ import kotlinx.android.synthetic.main.success_create_trip_plane.tv_purpose
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_start_date
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_status
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_tripcode
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.network.MyURL
+import opsigo.com.datalayer.request_model.create_trip_plane.RoutesItem
+import opsigo.com.datalayer.request_model.create_trip_plane.SaveAsDraftRequestPertamina
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
+import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsPertaminaItem
+import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import java.util.HashMap
 
 
-class SucessCreateTripPlaneActivity : BaseActivity(){
+class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
     override fun getLayout(): Int { return R.layout.success_create_trip_plane }
 
     var data = SuccessCreateTripPlaneModel()
+    lateinit var dataDraft : DataBisnisTripModel
 
     override fun OnMain() {
+        setTypeTravelRequest()
         setData()
         icCopyClipboard.setOnClickListener {
             copyToClip()
+        }
+        line_submit.setOnClickListener(this)
+        btn_submit.setOnClickListener(this)
+    }
+
+    private fun setTypeTravelRequest() {
+        if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+            button_pertamina.visible()
+            button_except_pertamina.gone()
+        } else {
+            button_pertamina.gone()
+            button_except_pertamina.visible()
         }
     }
 
@@ -50,6 +71,8 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
 
     private fun setData() {
         data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
+        dataDraft = Serializer.deserialize(Constants.DATA_CREATE_TRIP,DataBisnisTripModel::class.java)
+        setLog("Data Draft", Serializer.serialize(dataDraft))
         if(data.tripCode!=null) {
             image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
         }else{
@@ -62,7 +85,12 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
         tv_created_date.text = "Created Date ${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
-        tv_destination.text = data.destinationName
+        if (data.destinationName.isNullOrEmpty()){
+            tv_destination.text = data.originName
+        } else {
+            tv_destination.text = "${data.originName} - ${data.destinationName}"
+        }
+
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
@@ -100,9 +128,98 @@ class SucessCreateTripPlaneActivity : BaseActivity(){
         gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
     }
 
+
     override fun onBackPressed() {
         /*backListerner()*/
         later()
+    }
+
+
+    override fun onClick(v: View?) {
+        when(v){
+            line_submit -> {
+                submitTripPlan()
+            }
+            btn_submit -> {
+                submitTripPlan()
+            }
+        }
+    }
+
+    private fun submitTripPlan() {
+        showLoadingOpsicorp(true)
+        GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(),dataRequest(),object : CallbackSaveAsDraft{
+            override fun successLoad(data: SuccessCreateTripPlaneModel) {
+                hideLoadingOpsicorp()
+                later()
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                showAllert("Sorry",message)
+            }
+
+        })
+    }
+
+
+    private fun dataRequest(): HashMap<String, Any> {
+        val dataRequest     = SaveAsDraftRequestPertamina()
+        dataRequest.origin = dataDraft.routes[0].Origin
+        dataRequest.destination = dataDraft.routes[0].Destination
+        dataRequest.golper = 2
+        dataRequest.purpose = dataDraft.namePusrpose
+        dataRequest.businessTripType = dataDraft.nameActivity
+        dataRequest.startDate = dataDraft.startDate
+        dataRequest.returnDate = dataDraft.endDate
+        dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
+        dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
+        dataRequest.isDomestic = !dataDraft.isInternational
+        dataRequest.remark = dataDraft.notes
+        dataRequest.wbsNo = dataDraft.wbsNumber
+
+        dataRequest.routes = ArrayList()
+        val mDataRoutes = ArrayList<RoutesItem>()
+        dataDraft.routes.forEachIndexed { index, routesItinerary ->
+            val dataRoutes = RoutesItem()
+            dataRoutes.transportation = routesItinerary.Transportation
+            dataRoutes.departureDate = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "yyyy-MM-dd")
+            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
+            dataRoutes.origin   = routesItinerary.Origin
+            dataRoutes.destination = routesItinerary.Destination
+            mDataRoutes.add(dataRoutes)
+        }
+        dataRequest.routes = mDataRoutes
+
+        val attachments = ArrayList<TripAttachmentsItemRequest>()
+        dataDraft.image.forEachIndexed { index, uploadModel ->
+            val mDataAttachments = TripAttachmentsItemRequest()
+            mDataAttachments.description = uploadModel.nameImage
+            mDataAttachments.url         = uploadModel.url
+            attachments.add(mDataAttachments)
+        }
+        dataRequest.tripAttachments = attachments
+
+        dataRequest.tripParticipants = ArrayList()
+        val participants = ArrayList<TripParticipantsPertaminaItem>()
+        val mDataParticipants = TripParticipantsPertaminaItem()
+        mDataParticipants.employeeId = getProfile().employId
+        mDataParticipants.useCostCenterOther = dataDraft.participant[0].useCostCenterOther
+        mDataParticipants.useCashAdvance = dataDraft.participant[0].useCashAdvance
+        mDataParticipants.cashAdvance = dataDraft.participant[0].cashAdvance
+        mDataParticipants.costCenterCode = dataDraft.participant[0].costCenterCode
+        mDataParticipants.estFlight = dataDraft.participant[0].estFlight
+        mDataParticipants.estTransportation = dataDraft.participant[0].estTransportation
+        mDataParticipants.estTotal = dataDraft.participant[0].estTotal
+        mDataParticipants.estAllowance = dataDraft.participant[0].estAllowance
+        mDataParticipants.estAllowanceEvent = dataDraft.participant[0].estAllowanceEvent
+        mDataParticipants.estLaundry = dataDraft.participant[0].estLaundry
+        mDataParticipants.estHotel = dataDraft.participant[0].estHotel
+        participants.add(mDataParticipants)
+        dataRequest.tripParticipants = participants
+
+
+        return Globals.classToHasMap(dataRequest,SaveAsDraftRequestPertamina::class.java)
     }
 
     /*private fun backListerner() {

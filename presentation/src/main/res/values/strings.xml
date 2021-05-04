@@ -762,5 +762,7 @@ Please add your trip item for Approval."
     <string name="information_docs">Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
+    <string name="trip_plan_info2">You can add trip item later in <font color='#009688'><b>Manage Trip</b></font> menu, expired in 1 day and will be deleted.</string>
+    <string name="trip_plan_info1">You will get the best price for all trip item, match with your Travel Policy, Budget and Availability.</string>
 
 </resources>
