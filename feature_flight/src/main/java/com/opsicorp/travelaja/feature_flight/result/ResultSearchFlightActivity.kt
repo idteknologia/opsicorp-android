@@ -58,7 +58,6 @@ class ResultSearchFlightActivity : BaseActivity(),
     val nameStation = ArrayList<String>()
     lateinit var dataOrder: OrderAccomodationModel
     var data = ArrayList<AccomodationResultModel>()
-    var dataFromServer = ArrayList<AccomodationResultModel>()
     var dataFilter = ArrayList<AccomodationResultModel>()
     val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
     var departureDate = ""
@@ -224,7 +223,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun clearDataListFlight() {
         data.clear()
-        dataFromServer.clear()
+//        dataFromServer.clear()
         Constants.DATA_FLIGHT_ARIVAL.clear()
         dataFilter.clear()
     }
@@ -233,19 +232,29 @@ class ResultSearchFlightActivity : BaseActivity(),
         GetDataAccomodation(getBaseUrl()).getSearchFlight(getToken(),dataSearchFlight(airlineCode),object : CallbackResultSearchFlight {
             override fun success(mData: ArrayList<AccomodationResultModel>) {
                 if (Constants.multitrip){
+                    totalGetDataFlight++
                     Constants.DATA_RESULT_FLIGHT_MULTI_CITY.addAll(mData)
-                    mappingByDate()
+                    empty_result.gone()
+                    if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
+                        mappingByDate()
+                    }
+                    else{
+                        addDataLoading()
+                    }
                 }
                 else {
                     totalGetDataFlight++
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        data.removeIf { it.typeLayout==5 }
+                    }
                     mData.filter { it.listFlightModel.isFlightArrival == false }.forEach {
-                        dataFromServer.add(it)
+                        data.add(it)
                     }
                     mData.filter { it.listFlightModel.isFlightArrival == true }.forEach {
                         Constants.DATA_FLIGHT_ARIVAL.add(it)
                     }
-                    data.clear()
-                    data.addAll(dataFromServer)
+                    /*data.clear()
+                    data.addAll(dataFromServer)*/
                     empty_result.gone()
                     if (totalGetDataFlight==dataCodeAirline.listSchedule.size){
                         checkEmptyData()
@@ -263,8 +272,9 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun mappingByDate() {
+        data.clear()
         data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY)
-        adapter.setDataList(data,this)
+        checkEmptyData()
     }
 
     private fun dataSearchFlight(airlineCode: ListScheduleItem): HashMap<Any, Any> {
@@ -272,7 +282,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun checkEmptyData() {
-        if (dataFromServer.isEmpty()){
+        if (data.isEmpty()){
             empty_result.visibility = View.VISIBLE
             rv_result_flightnew.gone()
         }

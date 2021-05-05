@@ -221,27 +221,19 @@ class BookingContactFlight : BaseActivity(),
         currentPosition = position
         when(views){
             Constants.BTN_SIM       -> {
-                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                    val bundle = Bundle()
-                    bundle.putString(Constants.INPUT_EDIT_SIM,Serializer.serialize(resultListFlightModel.passenger[position].sim))
-                    gotoActivityResultWithBundle(SimFormContactActivity::class.java,bundle,Constants.BTN_SIM)
-                }
+                val bundle = Bundle()
+                bundle.putString(Constants.INPUT_EDIT_SIM,Serializer.serialize(dataListFlight.dataFlight.first().passenger[position].sim))
+                gotoActivityResultWithBundle(SimFormContactActivity::class.java,bundle,Constants.BTN_SIM)
             }
             Constants.BTN_PASSPORT  -> {
-                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                    val bundle = Bundle()
-                    bundle.putString(Constants.INPUT_EDIT_PASPORT,Serializer.serialize(resultListFlightModel.passenger[position].pasport))
-                    gotoActivityResultWithBundle(PassportFormActivity::class.java,bundle,Constants.BTN_PASSPORT)
-                }
-
+                val bundle = Bundle()
+                bundle.putString(Constants.INPUT_EDIT_PASPORT,Serializer.serialize(dataListFlight.dataFlight.first().passenger[position].pasport))
+                gotoActivityResultWithBundle(PassportFormActivity::class.java,bundle,Constants.BTN_PASSPORT)
             }
             Constants.BTN_ID_CART   -> {
-                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                    val bundle = Bundle()
-                    bundle.putString(Constants.INPUT_EDIT_KTP,Serializer.serialize(resultListFlightModel.passenger[position].idcard))
-                    gotoActivityResultWithBundle(KtpCardFormActivity::class.java,bundle,Constants.BTN_ID_CART)
-                }
-
+                val bundle = Bundle()
+                bundle.putString(Constants.INPUT_EDIT_KTP,Serializer.serialize(dataListFlight.dataFlight.first().passenger[position].idcard))
+                gotoActivityResultWithBundle(KtpCardFormActivity::class.java,bundle,Constants.BTN_ID_CART)
             }
             Constants.KEY_ACTIVITY_BAGAGE -> {
                 val bundle = Bundle()
