@@ -57,6 +57,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     lateinit var data: SuccessCreateTripPlaneModel
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
+        data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
         top_button.callbackOnclickToolbar(this)
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton("Search Train")
@@ -98,7 +99,6 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         idDestination = queryDestination.code
 
         if (Constants.isBisnisTrip){
-            data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
             startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
         }
@@ -147,6 +147,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
 
         Globals.typeAccomodation    = "Train"
         Constants.DATA_LIST_TRAIN   = ""
+        Constants.isBisnisTrip = !data.tripCode.contains("PT")
         gotoActivityModule(requireContext(),Constants.BASE_PACKAGE_TRAIN+"result.ResultSearchTrainActivity")
     }
 

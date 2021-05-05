@@ -251,16 +251,16 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun businessTrip() {
-        /*val dataConfig = getConfig()
+        val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
-            if (getProfile().companyCode.equals(11)){
+            if (Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/"){
                 gotoActivity(CreateTripPertaminaActivity::class.java)
+            } else {
+                gotoActivity(CreateTripActivity::class.java)
             }
-            gotoActivity(CreateTripActivity::class.java)
         } else {
             showContactAdmin()
-        }*/
-        gotoActivity(CreateTripPertaminaActivity::class.java)
+        }
     }
 
     override fun onClick(v: View?) {

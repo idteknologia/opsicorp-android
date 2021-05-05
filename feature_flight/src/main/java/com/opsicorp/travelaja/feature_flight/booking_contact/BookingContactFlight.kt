@@ -567,8 +567,8 @@ class BookingContactFlight : BaseActivity(),
     private fun getRetSsr(): ArrayList<BagageFlightRequest> {
         val listSsr = ArrayList<BagageFlightRequest>()
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        if (dataList.dataFlight.size > 1) {
-            dataList.dataFlight[1].passenger[1].ssr.ssrSelected.forEach {
+        if (dataList.dataFlight[0].passenger.size > 1) {
+            dataList.dataFlight[0].passenger[1].ssr.ssrSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[1].origin
@@ -581,7 +581,7 @@ class BookingContactFlight : BaseActivity(),
 
                 listSsr.add(mData)
             }
-            dataList.dataFlight[1].passenger[1].ssr.bagaggeItemSelected.forEach {
+            dataList.dataFlight[0].passenger[1].ssr.bagaggeItemSelected.forEach {
                 val mData = BagageFlightRequest()
                 mData.ssrCode = it.ssrCode
                 mData.originCode = dataList.dataFlight[1].origin

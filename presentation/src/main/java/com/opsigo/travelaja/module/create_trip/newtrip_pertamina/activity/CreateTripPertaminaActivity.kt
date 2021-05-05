@@ -302,6 +302,11 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             dataOrderCreatTrip.isCbt = nonCbt
             dataOrderCreatTrip.isInternational = typeTrip
+            if (typeTrip.equals(true)){
+                dataOrderCreatTrip.statusCreateTrip = "International Route"
+            } else {
+                dataOrderCreatTrip.statusCreateTrip = "Domestic Route"
+            }
 
 
             val bundle = Bundle()

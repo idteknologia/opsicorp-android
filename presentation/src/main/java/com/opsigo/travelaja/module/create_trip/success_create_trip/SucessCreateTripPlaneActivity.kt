@@ -36,11 +36,13 @@ import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreat
 import java.util.HashMap
 
 
-class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
-    override fun getLayout(): Int { return R.layout.success_create_trip_plane }
+class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
+    override fun getLayout(): Int {
+        return R.layout.success_create_trip_plane
+    }
 
     var data = SuccessCreateTripPlaneModel()
-    lateinit var dataDraft : DataBisnisTripModel
+    lateinit var dataDraft: DataBisnisTripModel
 
     override fun OnMain() {
         setTypeTravelRequest()
@@ -56,10 +58,43 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
         if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
             button_pertamina.visible()
             button_except_pertamina.gone()
+            setDataPertamina()
         } else {
+            setData()
             button_pertamina.gone()
             button_except_pertamina.visible()
         }
+    }
+
+    private fun setDataPertamina() {
+        dataDraft = Serializer.deserialize(Constants.DATA_CREATE_TRIP, DataBisnisTripModel::class.java)
+        setLog("Data Draft", Serializer.serialize(dataDraft))
+        if (dataDraft.tripcode != null) {
+            image_barcode.setImageBitmap(Globals.stringToBarcodeImage(dataDraft.tripcode))
+        }
+        tv_status.text = dataDraft.statusCreateTrip
+        tv_tripcode.text = "TP${dataDraft.tripcode}"
+        tv_purpose.text = dataDraft.namePusrpose
+        tv_created_date.text = "Created Date ${dataDraft.dateCreated.replace("Current Date","")}"
+        //tv_expired_date.text = "1 days left to expired"
+        tv_expired_date.visibility = View.GONE //don't need expire for draft
+        tv_destination.text = "${dataDraft.routes[0].Origin} - ${dataDraft.routes[0].Destination}"
+
+
+        tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(dataDraft.startDate)
+        tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(dataDraft.endDate)
+
+
+        setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
+
+        Globals.delay(1500, object : Globals.DelayCallback {
+            override fun done() {
+                nested_view.post(Runnable {
+//                    nested_view.fullScroll(View.FOCUS_DOWN)
+                    nested_view.smoothScrollBy(0, nested_view.bottom)
+                })
+            }
+        })
     }
 
     private fun copyToClip() {
@@ -70,22 +105,18 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
     }
 
     private fun setData() {
-        data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
-        dataDraft = Serializer.deserialize(Constants.DATA_CREATE_TRIP,DataBisnisTripModel::class.java)
-        setLog("Data Draft", Serializer.serialize(dataDraft))
-        if(data.tripCode!=null) {
+        data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+
+        if (data.tripCode != null) {
             image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
-        }else{
-
         }
-
         tv_status.text = data.status
         tv_tripcode.text = data.tripCode
-        tv_purpose.text  = data.purpose
+        tv_purpose.text = data.purpose
         tv_created_date.text = "Created Date ${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
-        if (data.destinationName.isNullOrEmpty()){
+        if (data.destinationName.isNullOrEmpty()) {
             tv_destination.text = data.originName
         } else {
             tv_destination.text = "${data.originName} - ${data.destinationName}"
@@ -94,24 +125,23 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
-
         setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
 
-        Globals.delay(1500,object :Globals.DelayCallback{
+        Globals.delay(1500, object : Globals.DelayCallback {
             override fun done() {
                 nested_view.post(Runnable {
 //                    nested_view.fullScroll(View.FOCUS_DOWN)
-                    nested_view.smoothScrollBy(0,nested_view.bottom)
+                    nested_view.smoothScrollBy(0, nested_view.bottom)
                 })
             }
         })
     }
 
-    fun laterListener(view: View){
+    fun laterListener(view: View) {
         later()
     }
 
-    fun later(){
+    fun later() {
         finish()
 
         val exit = Intent(this, HomeActivity::class.java)
@@ -121,11 +151,11 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
         startActivity(exit)
     }
 
-    fun addTripPlaneListener(view: View){
-        Globals.setDataPreferenceString(this,Constants.DATA_CREATE_TRIP_PLAN,Serializer.serialize(data,SuccessCreateTripPlaneModel::class.java))
+    fun addTripPlaneListener(view: View) {
+        Globals.setDataPreferenceString(this, Constants.DATA_CREATE_TRIP_PLAN, Serializer.serialize(data, SuccessCreateTripPlaneModel::class.java))
         val bundle = Bundle()
-        bundle.putInt(TYPE_ACCOMODATION,Constants.KEY_ACCOMODATION)
-        gotoActivityWithBundle(AccomodationActivity::class.java,bundle)
+        bundle.putInt(TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
+        gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
     }
 
 
@@ -136,7 +166,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
 
 
     override fun onClick(v: View?) {
-        when(v){
+        when (v) {
             line_submit -> {
                 submitTripPlan()
             }
@@ -148,7 +178,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
 
     private fun submitTripPlan() {
         showLoadingOpsicorp(true)
-        GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(),dataRequest(),object : CallbackSaveAsDraft{
+        GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(), dataRequest(), object : CallbackSaveAsDraft {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
                 hideLoadingOpsicorp()
                 later()
@@ -156,7 +186,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry",message)
+                showAllert("Sorry", message)
             }
 
         })
@@ -164,7 +194,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
 
 
     private fun dataRequest(): HashMap<String, Any> {
-        val dataRequest     = SaveAsDraftRequestPertamina()
+        val dataRequest = SaveAsDraftRequestPertamina()
         dataRequest.origin = dataDraft.routes[0].Origin
         dataRequest.destination = dataDraft.routes[0].Destination
         dataRequest.golper = 2
@@ -172,7 +202,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
         dataRequest.businessTripType = dataDraft.nameActivity
         dataRequest.startDate = dataDraft.startDate
         dataRequest.returnDate = dataDraft.endDate
-        dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
+        dataRequest.type = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
         dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         dataRequest.isDomestic = !dataDraft.isInternational
         dataRequest.remark = dataDraft.notes
@@ -185,7 +215,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
             dataRoutes.transportation = routesItinerary.Transportation
             dataRoutes.departureDate = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "yyyy-MM-dd")
             dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
-            dataRoutes.origin   = routesItinerary.Origin
+            dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
         }
@@ -195,7 +225,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
         dataDraft.image.forEachIndexed { index, uploadModel ->
             val mDataAttachments = TripAttachmentsItemRequest()
             mDataAttachments.description = uploadModel.nameImage
-            mDataAttachments.url         = uploadModel.url
+            mDataAttachments.url = uploadModel.url
             attachments.add(mDataAttachments)
         }
         dataRequest.tripAttachments = attachments
@@ -219,7 +249,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener{
         dataRequest.tripParticipants = participants
 
 
-        return Globals.classToHasMap(dataRequest,SaveAsDraftRequestPertamina::class.java)
+        return Globals.classToHasMap(dataRequest, SaveAsDraftRequestPertamina::class.java)
     }
 
     /*private fun backListerner() {

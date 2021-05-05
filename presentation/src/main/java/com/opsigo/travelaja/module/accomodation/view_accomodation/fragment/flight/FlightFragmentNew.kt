@@ -510,6 +510,7 @@ class FlightFragmentNew : BaseFragment(),
 
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Globals.DATA_LIST_FLIGHT = ""
+            Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
             setLog("Test Reservasi",Serializer.serialize(dataOrder))
 
             gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")

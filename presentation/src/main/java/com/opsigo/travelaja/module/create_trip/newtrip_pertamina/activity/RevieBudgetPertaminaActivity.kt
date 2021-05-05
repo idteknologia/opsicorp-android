@@ -233,7 +233,15 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     override fun onClicked() {
-        saveAsDraft()
+        /*saveAsDraft()*/
+        succesCreateTrip()
+    }
+
+    private fun succesCreateTrip() {
+        Constants.DATA_CREATE_TRIP = Serializer.serialize(dataTrip,DataBisnisTripModel::class.java)
+        setLog("Test Save",Serializer.serialize(dataTrip))
+        val bundle = Bundle()
+        gotoActivity(SucessCreateTripPlaneActivity::class.java)
     }
 
     private fun saveAsDraft() {
