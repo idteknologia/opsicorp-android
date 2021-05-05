@@ -1,28 +1,28 @@
 package com.opsicorp.travelaja.feature_flight.result
 
-import androidx.core.content.ContextCompat
 import android.util.Log
 import android.view.View
-import com.opsicorp.travelaja.feature_flight.R
-import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
-import com.opsigo.travelaja.BaseActivity
-import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.utility.*
-import kotlinx.android.synthetic.main.confirm_flight_order_new.*
-import kotlinx.android.synthetic.main.detail_price_bottom_new.*
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.BaseActivity
+import androidx.core.content.ContextCompat
 import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.accomodation.flight.reservation.SegmentFlightsRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
+import com.opsicorp.travelaja.feature_flight.R
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
+import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
-import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import kotlinx.android.synthetic.main.confirm_flight_order_new.*
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
+import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
+import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.SegmentFlightsRequest
+import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 
 class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -67,15 +67,14 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         showDialog("Checking Available Seat")
         GetDataAccomodation(getBaseUrl()).getSeatMapFlight(getToken(),dataRequestSeatMap(),object : CallbackSeatMapFlight {
             override fun success(data: ArrayList<SeatAirlineModel>) {
-                setLog("--------------------------")
                 Constants.DATA_SEAT_AIRLINE.clear()
                 Constants.DATA_SEAT_AIRLINE.addAll(data)
-                Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
+                /*Constants.DATA_SEAT_AIRLINE.forEachIndexed { index, seatAirlineModel ->
                     setLog(seatAirlineModel.nameFlight)
                     setLog(seatAirlineModel.nameAirCraft)
                     setLog(seatAirlineModel.totalRows.toString())
                     setLog(Serializer.serialize(seatAirlineModel.dataSeat))
-                }
+                }*/
                 hideDialog()
             }
 

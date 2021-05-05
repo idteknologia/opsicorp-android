@@ -17,7 +17,7 @@
             style="@style/RobotoBold"
             android:textColor="#00776a"
             android:text="Flight 1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp" />
 
@@ -29,14 +29,15 @@
             style="@style/RobotoBold"
             android:textColor="#24253d"
             android:text="17 Jan 2021"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
 
 
     </RelativeLayout>
 
-    <LinearLayout
+    <!--<LinearLayout
         android:id="@+id/layout_before_pick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,122 +108,117 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="15dp"/>
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 
-    <LinearLayout
+    <RelativeLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/layout_after_pick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
+        android:background="#f5f5f5"
         android:visibility="visible">
 
-        <RelativeLayout
-            android:layout_marginTop="10dp"
-            android:paddingTop="11dp"
-            android:paddingBottom="11dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f5f5f5">
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/img_airline2"
+            android:layout_marginLeft="19dp"
+            android:layout_width="30dp"
+            android:layout_marginTop="18dp"
+            android:layout_height="22dp"
+            android:src="@drawable/background_slider"
+            android:layout_marginStart="26dp"/>
 
-            <ImageView
+
+        <LinearLayout
+            android:layout_toEndOf="@+id/img_airline2"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/img_airline2">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_flight_code2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#91929e"
+                    style="@style/RobotoBold"
+                    android:text="@string/flightRoute"/>
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:id="@+id/dotFlight"
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:background="@drawable/ic_oval_green"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:id="@+id/tv_flight_time"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/dotFlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#24253d"
+                    style="@style/RobotoBold"
+                    android:text="04:00 - 06:00"
+                    android:layout_toRightOf="@+id/dotFlight" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:singleLine="true"
                 android:visibility="visible"
-                android:id="@+id/img_airline2"
-                android:layout_marginLeft="26dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="30dp"
-                android:layout_height="22dp"
-                android:src="@drawable/background_slider"
-                android:layout_marginStart="26dp"
-                android:layout_marginEnd="10dp"/>
-
-            <TextView
-                android:id="@+id/tv_flight_code2"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/img_airline2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#91929e"
-                style="@style/RobotoBold"
-                android:text="@string/flightRoute"
-                android:layout_toRightOf="@+id/img_airline2"
-                android:layout_marginLeft="10dp"/>
-
-            <ImageView
-                android:id="@+id/dotFlight"
-                android:layout_width="6dp"
-                android:layout_height="6dp"
-                android:background="@drawable/ic_oval_green"
-                android:layout_centerInParent="true"
-                android:layout_toRightOf="@+id/tv_flight_code2"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"/>
-
-            <TextView
-                android:id="@+id/tv_flight_time"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@+id/dotFlight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                style="@style/RobotoBold"
-                android:text="04:00 - 06:00"/>
-
-
-            <TextView
-                style="@style/RobotoBold"
-                android:id="@+id/tvSelectFlight2"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#91929e"
-                android:gravity="end"
-                android:text="Change"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f5f5f5">
-
-            <TextView
+                android:layout_marginTop="10dp"
                 android:id="@+id/tv_flight_airline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#91929e"
                 style="@style/RobotoBold"
-                android:text="Sriwijaya Air - Economy - Subclass-X"
-                android:layout_marginLeft="75dp"/>
+                android:text="Sriwijaya Air - Economy - Subclass-X" />
+            <TextView
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#24253d"
+                style="@style/RobotoBold"/>
 
-
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#f5f5f5">
-
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/tv_flight_price"
+                style="@style/RobotoBold"
+                android:id="@+id/tvSelectFlight2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#91929e"
-                style="@style/RobotoBold"
-                android:text="Sub Total - 472.000 IDR/pax"
-                android:layout_marginLeft="75dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"/>
+                android:gravity="end"
+                android:text="Change"/>
 
         </RelativeLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

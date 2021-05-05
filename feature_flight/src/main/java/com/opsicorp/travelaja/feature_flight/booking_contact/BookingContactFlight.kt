@@ -1,56 +1,52 @@
 package com.opsicorp.travelaja.feature_flight.booking_contact
 
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.BagageFlightRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ContactFlightRequest
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 import opsigo.com.domainlayer.model.accomodation.flight.ReserveFlightModel
-import opsigo.com.datalayer.model.accomodation.flight.seat.ResultSeat
+import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
+import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
 import kotlinx.android.synthetic.main.booking_contact_view_flight.*
-import com.opsicorp.travelaja.feature_flight.ssr.BagageActivity
+import com.opsigo.travelaja.module.profile.SimFormContactActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
+import com.opsicorp.travelaja.feature_flight.ssr.BagageActivity
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
+import com.opsigo.travelaja.module.profile.PassportFormActivity
+import com.opsigo.travelaja.module.profile.KtpCardFormActivity
 import com.opsicorp.travelaja.feature_flight.ssr.SsrActivity
-import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.domainlayer.callback.CallbackReserveFlight
+import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.mapper.Serializer
+import androidx.core.content.ContextCompat
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.*
 import android.content.Intent
 import android.app.Activity
-import android.view.View
-import android.os.Build
-import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
-import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
-import com.opsigo.travelaja.module.profile.KtpCardFormActivity
-import com.opsigo.travelaja.module.profile.PassportFormActivity
-import com.opsigo.travelaja.module.profile.SimFormContactActivity
-import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.BagageFlightRequest
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import java.lang.Exception
+import android.view.View
+import android.os.Bundle
+import android.os.Build
 
-class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
+class BookingContactFlight : BaseActivity(),
+        OnclickListenerRecyclerView,
         ButtonDefaultOpsicorp.OnclickButtonListener,
         ToolbarOpsicorp.OnclickButtonListener {
-    override fun getLayout(): Int {
-        return R.layout.booking_contact_view_flight
-    }
 
-    /*val dataContacts = ArrayList<BookingContactAdapterModel>()*/
-    val resultSeat = ResultSeat()
+    override fun getLayout(): Int { return R.layout.booking_contact_view_flight }
+
     lateinit var dataListFlight: DataListOrderAccomodation
     val adapter by lazy { BookingContactFlightAdapter(this) }
     lateinit var dataOrder: OrderAccomodationModel
@@ -64,7 +60,6 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         initRecyclerView()
         setDataContact()
         initToolbar()
-
     }
 
     private fun initToolbar() {
@@ -74,9 +69,6 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         btn_next.setTextButton("Continue")
 
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
-        val datereturn = DateConverter().setDateFormat3(dataOrder.dateArrival)
-
-        /*toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}"," ${datedepar} , ${datereturn}")*/ //- 1 pax
         toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}", " ${datedepar}") //- 1 pax
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -91,74 +83,13 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
     }
 
     private fun setDataContact() {
-        val mDataBooker = BookingContactAdapterModel()
-        mDataBooker.typeContact = Constants.ADULT
-        mDataBooker.checktype = Constants.TYPE_KTP
-        mDataBooker.sim = getSimDataBooker()
-        mDataBooker.pasport = getPassportDataBooker()
-        mDataBooker.idcard = getDataIdCartBooker()
-
-        /*dataContacts.add(mDataBooker)*/
-        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-          resultListFlightModel.passenger.add(mDataBooker)
-        }
-
-
-        for (i in 0 until dataOrder.infant) {
-            val mData = BookingContactAdapterModel()
-            mData.typeContact = Constants.INFANT
-            dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                resultListFlightModel.passenger.add(mData)
-            }
-        }
-        if (dataOrder.adult > 1){
-            for (i in 0 until dataOrder.adult -1) {
-                val mData = BookingContactAdapterModel()
-                mData.typeContact = Constants.ADULT
-                dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                    resultListFlightModel.passenger.add(mData)
-                }
-            }
-        }
-        for (i in 0 until dataOrder.child) {
-            val mData = BookingContactAdapterModel()
-            mData.typeContact = Constants.CHILD
-            dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                resultListFlightModel.passenger.add(mData)
-            }
-        }
-
         val dataProfile = getProfile()
-        tv_name_contact.text = dataProfile.name
         tv_number_contact.text = dataProfile.homePhone
         tv_email_contact.text = dataProfile.email
+        tv_name_contact.text = dataProfile.name
 
         adapter.setData(dataListFlight.dataFlight[0].passenger)
         initPrice()
-    }
-
-    private fun getDataIdCartBooker(): IdCartModel {
-        val model = IdCartModel()
-        model.fullname = getProfile().name
-        model.id = getProfile().employId
-        model.idCart = getProfile().ktp
-        return model
-    }
-
-    private fun getSimDataBooker(): SimModel {
-        val model = SimModel()
-        model.name = getProfile().name
-        model.id = getProfile().employId
-        model.idSim = getProfile().sim
-        return model
-    }
-
-    private fun getPassportDataBooker(): PassportModel {
-        val model = PassportModel()
-        model.firstName = getProfile().firstName
-        model.id = getProfile().employId
-        model.passporNumber = getProfile().passport
-        return model
     }
 
     private fun initRecyclerView() {
@@ -231,7 +162,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         }
     }
 
-    private fun totalPriceSsr(): String? {
+    private fun totalPriceSsr(): String {
         var totalPriceSsrItem = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
@@ -246,7 +177,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
         return totalPriceSsrItem.toString()
     }
 
-    private fun totalPriceBaggage(): String? {
+    private fun totalPriceBaggage(): String {
         var totalPriceBagaggeItem = 0.0
         val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         dataList.dataFlight.forEach {
@@ -336,59 +267,48 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
             Constants.BTN_SIM       -> {
                 if (resultCode==Activity.RESULT_OK){
                     try {
-                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_SIM
-                        }
                         val dataString = data?.getStringExtra(Constants.RESULT_EDIT_SIM)
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_SIM
                             resultListFlightModel.passenger[currentPosition].sim = Serializer.deserialize(dataString,SimModel::class.java)
                         }
-                        adapter.notifyDataSetChanged()
                     }catch (e:Exception){
                         e.printStackTrace()
                     }
                 }
+                adapter.notifyDataSetChanged()
             }
             Constants.BTN_PASSPORT  -> {
                 if (resultCode==Activity.RESULT_OK){
                     try {
-                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_PASSPORT
-                        }
                         val dataString = data?.getStringExtra(Constants.RESULT_EDIT_PASPORT)
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_PASSPORT
                             resultListFlightModel.passenger[currentPosition].pasport = Serializer.deserialize(dataString,PassportModel::class.java)
                         }
-                        adapter.notifyDataSetChanged()
                     }catch (e:Exception){}
                 }
+                adapter.notifyDataSetChanged()
             }
             Constants.BTN_ID_CART   -> {
                 if (resultCode==Activity.RESULT_OK){
                     try {
-                        dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
-                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_KTP
-                        }
                         val dataString = data?.getStringExtra(Constants.RESULT_EDIT_KTP)
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
+                            resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_KTP
                             resultListFlightModel.passenger[currentPosition].idcard = Serializer.deserialize(dataString,IdCartModel::class.java)
                         }
-                        adapter.notifyDataSetChanged()
                     }catch (e:Exception){}
                 }
+                adapter.notifyDataSetChanged()
             }
             Constants.KEY_ACTIVITY_BAGAGE -> {
-                val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                setLog("testSaveBaruBaggage", Serializer.serialize(dataList.dataFlight[0].passenger[currentPosition].ssr.bagaggeItemSelected))
                 totalPriceBaggage()
                 updateDataListFlight()
                 initPrice()
                 adapter.setData(dataListFlight.dataFlight[0].passenger)
-
             }
             Constants.KEY_ACTIVITY_SSR -> {
-                val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                setLog("testSaveBaruSsr", Serializer.serialize(dataList.dataFlight[0].passenger[currentPosition].ssr.ssrSelected))
                 totalPriceSsr()
                 updateDataListFlight()
                 initPrice()
@@ -407,23 +327,41 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
     }
 
     fun getReservased() {
-        setLog("Test Reservasi", Serializer.serialize(getDataFlight()))
-        showLoadingOpsicorp(true)
-        GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
-            override fun successLoad(data: ReserveFlightModel) {
-                if (data.errorMessage.equals("")) {
-                    goToNewCart(data.idTrip)
-                } else {
-                    showAllert("error", data.errorMessage)
+        setLog("Test Reservasi",Serializer.serialize(getDataFlight()))
+        if (bookingContactIsEmpty()){
+            showAllert("Sorry",getString(R.string.booking_contact_not_empty))
+        }
+        else {
+            showLoadingOpsicorp(true)
+            GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
+                override fun successLoad(data: ReserveFlightModel) {
+                    if (data.errorMessage.equals("")) {
+                        goToNewCart(data.idTrip)
+                    } else {
+                        showAllert("error", data.errorMessage)
+                        hideLoadingOpsicorp()
+                    }
                 }
-            }
 
-            override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
-                showAllert("error", message)
-            }
-        })
+                override fun failedLoad(message: String) {
+                    showAllert("error", message)
+                    hideLoadingOpsicorp()
+                }
+            })
+        }
     }
+
+    private fun bookingContactIsEmpty(): Boolean {
+        var isEmpty = false
+        val bookingContact = dataListFlight.dataFlight.first().passenger
+        bookingContact.forEach {
+            if (it.checktype.isEmpty()){
+                isEmpty = true
+            }
+        }
+        return isEmpty
+    }
+
 
     private fun goToNewCart(idTrip: String) {
         val bundle = Bundle()
@@ -500,47 +438,53 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
             when(bookingContactAdapterModel.checktype){
                 Constants.TYPE_SIM -> {
                     if (bookingContactAdapterModel.sim.name.contains(" ")){
-                        data.firstName    = bookingContactAdapterModel.sim.name.split(" ")[0]
-                        data.lastName     = bookingContactAdapterModel.sim.name.split(" ")[1]
+                        data.firstName    = bookingContactAdapterModel.sim.name.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.sim.name.split(" ").last()
                     }
                     else {
                         data.firstName    = bookingContactAdapterModel.sim.name
                         data.lastName     = bookingContactAdapterModel.sim.name
                     }
-                    data.email        = getProfile().email
-                    data.mobilePhone = getProfile().mobilePhone
-                    data.homePhone   = getProfile().phone
-                    data.birthDate   = getProfile().birthDate
-                    data.title       = bookingContactAdapterModel.sim.title
-                    data.idNumber    = bookingContactAdapterModel.sim.idSim
+                    data.email          = bookingContactAdapterModel.sim.email
+                    data.mobilePhone    = bookingContactAdapterModel.sim.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.sim.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.sim.birthDate
+                    data.title          = bookingContactAdapterModel.sim.title
+                    data.idNumber       = bookingContactAdapterModel.sim.idSim
                     data.identityNumber = bookingContactAdapterModel.sim.idSim
                 }
                 Constants.TYPE_PASSPORT -> {
-                    data.firstName    = bookingContactAdapterModel.pasport.firstName
-                    data.lastName     = bookingContactAdapterModel.pasport.lastName
-                    data.email        = getProfile().email
-                    data.mobilePhone  = getProfile().mobilePhone
-                    data.homePhone    = getProfile().phone
-                    data.birthDate    = bookingContactAdapterModel.pasport.birtDate
-                    data.title        = bookingContactAdapterModel.pasport.title
-                    data.idNumber     =  bookingContactAdapterModel.pasport.passporNumber
+                    if (bookingContactAdapterModel.pasport.fullname.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.pasport.fullname.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.pasport.fullname.split(" ").last()
+                    }
+                    else {
+                        data.firstName    = bookingContactAdapterModel.pasport.fullname
+                        data.lastName     = bookingContactAdapterModel.pasport.fullname
+                    }
+                    data.email          = bookingContactAdapterModel.pasport.email
+                    data.mobilePhone    = bookingContactAdapterModel.pasport.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.pasport.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.pasport.birtDate
+                    data.title          = bookingContactAdapterModel.pasport.title
+                    data.idNumber       = bookingContactAdapterModel.pasport.passporNumber
                     data.identityNumber = bookingContactAdapterModel.pasport.passporNumber
                 }
                 Constants.TYPE_KTP -> {
-                    if (bookingContactAdapterModel.sim.name.contains(" ")){
-                        data.firstName    = bookingContactAdapterModel.idcard.fullname.split(" ")[0]
-                        data.lastName     = bookingContactAdapterModel.idcard.fullname.split(" ")[1]
+                    if (bookingContactAdapterModel.idcard.fullname.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.idcard.fullname.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.idcard.fullname.split(" ").last()
                     }
                     else {
                         data.firstName    = bookingContactAdapterModel.idcard.fullname
                         data.lastName     = bookingContactAdapterModel.idcard.fullname
                     }
-                    data.email        = bookingContactAdapterModel.idcard.email
-                    data.mobilePhone  = bookingContactAdapterModel.idcard.mobileNum
-                    data.birthDate    = getProfile().birthDate
-                    data.homePhone    = bookingContactAdapterModel.idcard.mobileNum
-                    data.title        = bookingContactAdapterModel.idcard.title
-                    data.idNumber     = bookingContactAdapterModel.idcard.idCart
+                    data.email          = bookingContactAdapterModel.idcard.email
+                    data.mobilePhone    = bookingContactAdapterModel.idcard.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.idcard.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.idcard.birthDate
+                    data.title          = bookingContactAdapterModel.idcard.title
+                    data.idNumber       = bookingContactAdapterModel.idcard.idCart
                     data.identityNumber = bookingContactAdapterModel.idcard.idCart
                 }
             }
@@ -554,7 +498,7 @@ class BookingContactFlight : BaseActivity(), OnclickListenerRecyclerView,
                 }
             }
 
-            data.index        = dataOrder.totalPassenger
+            data.index        = index+1
             data.identityType = bookingContactAdapterModel.checktype
             data.otherPhone   = getProfile().homePhone
             data.employeeNik  = getProfile().employeeNik

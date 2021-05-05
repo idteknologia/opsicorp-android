@@ -357,6 +357,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
+                            android:visibility="invisible"
                             android:textColor="#91929e"
                             android:gravity="end"
                             android:text="2 Years Old"
@@ -431,7 +432,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Nationality" />
+                        android:text="Email" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -443,13 +444,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tv_nasionality"
+                            <EditText
+                                android:id="@+id/et_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="INDONESIA"
+                                android:text="vody@gmail.com"
                                 android:background="@color/transparent"/>
 
                             <LinearLayout
@@ -615,7 +616,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Passport Issuing Country" />
+                        android:text="Mobile Phone" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -628,13 +629,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/et_paspor_country"
+                            <EditText
+                                android:inputType="number"
+                                android:id="@+id/et_mobile_phone"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="INDONESIA"
+                                android:text="0812436823"
                                 android:background="@color/transparent"/>
 
                             <LinearLayout

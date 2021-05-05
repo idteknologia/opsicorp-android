@@ -34,10 +34,10 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     lateinit var datalist: DataListOrderAccomodation
     val ssrSelected = ArrayList<SelectedSsrModel>()
     var positionFlight: Int = 0
+    var positionPassanger : Int = 0
 
     override fun OnMain() {
         btnApply.callbackOnclickButton(this)
-        btnApply.setTextButton("Apply")
         initToolbar()
         initRecyclerView()
         setDataRecyclerView()
@@ -56,17 +56,15 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     private fun setDataRecyclerView() {
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         positionFlight = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SSR, 0)
-        datalist.dataFlight.forEach {
-            Log.e("testdata", Serializer.serialize(it.passenger[positionFlight].ssr.dataSsr))
-        }
+        positionPassanger = intent.getIntExtra(Constants.KEY_POSITION_SELECT_PASSENGER, 0)
         adapter.setData(datalist.dataFlight[0].passenger[positionFlight].ssr.dataSsr)
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_list_type_ssr.layoutManager = layoutManager
-        rv_list_type_ssr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_list_type_ssr.itemAnimator = DefaultItemAnimator()
         rv_list_type_ssr.adapter = adapter
 
         adapter.setOnclickListener(this)
@@ -74,13 +72,13 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
 
 
     override fun onClick(viewsParent: Int, positionParent: Int, viewsChild: Int, positionChild: Int) {
-        /*val selectedItem = SelectedSsrModel()
-        selectedItem.price = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].pricing
-        selectedItem.ssrCode = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrCode
-        selectedItem.curency = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].curency
-        selectedItem.ssrName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrName
-        selectedItem.ssrType = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrType
-        selectedItem.ssrTypeName = datalist.dataFlight[positionFlight].dataSSR.dataSsr[positionParent].ssrItem[positionChild].ssrTypeName
+        val selectedItem = SelectedSsrModel()
+        selectedItem.price = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].pricing
+        selectedItem.ssrCode = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].ssrCode
+        selectedItem.curency = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].curency
+        selectedItem.ssrName = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].ssrName
+        selectedItem.ssrType = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].ssrType
+        selectedItem.ssrTypeName = datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.dataSsr[positionParent].ssrItem[positionChild].ssrTypeName
         if (!ssrSelected.filter { it.ssrType  == selectedItem.ssrType}.isNullOrEmpty()){
             ssrSelected.removeAt(ssrSelected.indexOf(ssrSelected.filter { it.ssrType  == selectedItem.ssrType }.last()))
             ssrSelected.add(selectedItem)
@@ -88,20 +86,15 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
             ssrSelected.add(selectedItem)
         }
         ssrSelected.distinct()
-        datalist.dataFlight[positionFlight].dataSSR.ssrSelected.clear()
-        datalist.dataFlight[positionFlight].dataSSR.ssrSelected.addAll(ssrSelected)
+        datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.ssrSelected.clear()
+        datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.ssrSelected.addAll(ssrSelected)
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
-        Log.e("testSave", ssrSelected[0].ssrName)*/
 
     }
 
     override fun onClicked() {
         val returnIntent = Intent()
         setResult(Activity.RESULT_OK,returnIntent)
-        val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        dataList.dataFlight[0].passenger[positionFlight].ssr.ssrSelected.forEach {
-            setLog("testSave2",it.ssrName)
-        }
         finish()
     }
 

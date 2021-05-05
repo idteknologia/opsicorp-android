@@ -3,8 +3,6 @@ package com.opsicorp.hotel_feature.adapter
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import com.opsicorp.hotel_feature.R
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +37,7 @@ class HotelBookingContactAdapter (context: Context, private var items: ArrayList
             holder.itemView.line_im_the_guest.visibility = View.VISIBLE
         }
         else {
+            holder.itemView.et_guest.setText("TBA")
             holder.itemView.line_im_the_guest.visibility = View.GONE
         }
 
@@ -57,6 +56,8 @@ class HotelBookingContactAdapter (context: Context, private var items: ArrayList
         else{
             holder.itemView.et_guest.setText("${data.firstName}")
         }
+
+        holder.itemView.et_no_hp.setText(data.mobilePhone)
 
         holder.itemView.disable_checklist.setOnClickListener {
 

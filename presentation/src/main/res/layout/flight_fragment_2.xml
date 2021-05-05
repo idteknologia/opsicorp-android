@@ -16,7 +16,6 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:fillViewport="true">
         <LinearLayout
             android:visibility="visible"
@@ -566,7 +565,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvFlightMultiCity"
-                android:layout_width="match_parent"
+                android:layouPt_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"/>
 
@@ -586,6 +585,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="75dp"
+                android:layout_marginBottom="80dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_next">
