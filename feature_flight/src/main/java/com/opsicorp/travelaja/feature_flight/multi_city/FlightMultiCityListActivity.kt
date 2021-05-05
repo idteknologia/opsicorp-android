@@ -7,15 +7,15 @@ import com.opsigo.travelaja.utility.gone
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsigo.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
-import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
+import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataMultiTripOrder
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 

@@ -370,7 +370,6 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             datalist.dataFlight.add(dataFlight)
         }
 
-        //add booking contact
         val mDataBooker = BookingContactAdapterModel()
         mDataBooker.typeContact = Constants.ADULT
         mDataBooker.checktype   = Constants.TYPE_KTP
@@ -378,8 +377,40 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         mDataBooker.pasport     = getPassportDataBooker()
         mDataBooker.idcard      = getDataIdCartBooker()
 
+        datalist.dataFlight.last().passenger.clear()
+        datalist.dataFlight.last().passenger.add(mDataBooker)
+
+        for (i in 0 until dataOrder.infant) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.INFANT
+            datalist.dataFlight.last().passenger.add(mData)
+        }
+        if (dataOrder.adult > 1){
+            for (i in 0 until dataOrder.adult -1) {
+                val mData = BookingContactAdapterModel()
+                mData.typeContact = Constants.ADULT
+                datalist.dataFlight.last().passenger.add(mData)
+            }
+        }
+        for (i in 0 until dataOrder.child) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.CHILD
+            datalist.dataFlight.last().passenger.add(mData)
+        }
+
+        datalist.dataFlight.last().passenger.mapIndexed { index, bookingContactAdapterModel ->
+            bookingContactAdapterModel.ssr = dataSsr
+        }
+
+        datalist.dataFlight.last().notComply = isNotComply
+
+        if (datalist.dataFlight.last().flightType.equals("GdsBfm")){
+            datalist.dataFlight.last().dataFareRules = dataFareRules
+        }
+
         /*dataContacts.add(mDataBooker)*/
-        datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+        /*datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+            resultListFlightModel.passenger.clear()
             resultListFlightModel.passenger.add(mDataBooker)
         }
 
@@ -407,15 +438,21 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             }
         }
 
-        dataFlight.notComply = isNotComply
-        if (dataFlight.flightType.equals("GdsBfm")){
-            dataFlight.dataFareRules = dataFareRules
-            setLog(dataFareRules[0].fareRulesName)
-        }
-        dataFlight.passenger.mapIndexed { index, bookingContactAdapterModel ->
-            bookingContactAdapterModel.ssr = dataSsr
+        datalist.dataFlight.forEach {
+            it.passenger.mapIndexed { index, bookingContactAdapterModel ->
+                bookingContactAdapterModel.ssr = dataSsr
+            }
         }
 
+        datalist.dataFlight.forEach {
+            it.notComply = isNotComply
+        }
+
+        datalist.dataFlight.forEach {
+            if (it.flightType.equals("GdsBfm")){
+                it.dataFareRules = dataFareRules
+            }
+        }*/
 
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist, DataListOrderAccomodation::class.java)
     }
