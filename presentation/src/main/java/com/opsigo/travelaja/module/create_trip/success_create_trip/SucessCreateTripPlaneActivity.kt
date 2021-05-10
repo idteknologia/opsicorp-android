@@ -46,7 +46,6 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
 
     override fun OnMain() {
         setTypeTravelRequest()
-        setData()
         icCopyClipboard.setOnClickListener {
             copyToClip()
         }
