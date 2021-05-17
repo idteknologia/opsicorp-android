@@ -8,6 +8,9 @@ import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.result.Result
+import opsigo.com.domainlayer.model.ResultList
+import opsigo.com.domainlayer.model.settlement.Settlement
+import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -21,6 +24,12 @@ interface ServiceApi {
 
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripResult(@QueryMap map: MutableMap<String, String>): TripResult
+
+    @GET(MyURL.LIST_APPROVE)
+    suspend fun getTripList(@QueryMap map: MutableMap<String, Any>): ResultList<Trip>
+
+    @GET("Settlement/ManageTrip/Gets")
+    suspend fun getSettlement(@QueryMap map: MutableMap<String, Any>) : ResultList<Settlement>
 
     @GET(MyURL.CITY)
     suspend fun getCities() : List<City>

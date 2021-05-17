@@ -27,7 +27,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".module.create_trip.newtrip_pertamina.activity.CityActivity"></activity>
+        <activity android:name=".module.settlement.SettlementActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.settlement.TripSearchActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".module.create_trip.newtrip_pertamina.activity.CityActivity" android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -35,38 +37,38 @@
 
         <activity
             android:name=".module.signin.splash.activity.SplashActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.signin.login.activity.AddressActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".module.item_custom.map.TestActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.accomodation.view_accomodation.activity.AccomodationActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.item_custom.galery.MyGaleryActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.profile.SimFormContactActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.profile.KtpCardFormActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.profile.PassportFormActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.signin.login.activity.LoginPremiumActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.profile.OtherFormActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.cart.activity.NewCartActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.signin.login.activity.LoginActivity"
             android:screenOrientation="portrait"
@@ -81,13 +83,13 @@
         </activity>
         <activity
             android:name=".module.signin.login.activity.OtpRegisterActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.item_custom.calendar.NewCalendarViewActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.home.activity.HomeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.signin.select_nationality.activity.SelectNationalityActivity"
             android:screenOrientation="portrait" />
@@ -105,38 +107,38 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.item_custom.calendar.CalendarViewActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.my_booking.purchase_detail.PurchaseDetailActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.my_booking.purchase_list_detail.PurchaseDetailListActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.profile.JoinTripActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.item_custom.map.MapActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.approval.activity.DetailTripActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.approval.activity.DetailParticipantActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.create_trip.newtrip.actvity.CreateTripActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".module.create_trip.select_budget.activity.SelectBudget"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.approval.activity.DetailApprovalActivityOld"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
             android:screenOrientation="portrait" />
@@ -157,10 +159,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".locale.ApplyLanguageActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.create_trip.success_create_trip.SucessCreateTripPlaneActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.payment.PaymentActivity"
             android:screenOrientation="portrait" />
@@ -176,9 +178,12 @@
 
         <activity
             android:name=".module.notif.YesActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.home.activity.HomeWebActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".base.SearchActivity"
             android:screenOrientation="portrait" />
 
         <service android:name=".module.notif.CorpFirebaseMessagingService">

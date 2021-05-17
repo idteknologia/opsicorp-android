@@ -3,14 +3,12 @@ package com.opsigo.travelaja.module.home.fragment
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
-import com.opsigo.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity
 import com.opsigo.travelaja.module.home.presenter.HomePresenter
 import com.opsigo.travelaja.module.home.view.HomeView
 import com.opsigo.travelaja.module.item_custom.slider.SliderImageModel
@@ -23,6 +21,7 @@ import com.opsigo.travelaja.module.home.activity.HomeWebActivity
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
 import com.opsigo.travelaja.module.home.presenter.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
+import com.opsigo.travelaja.module.settlement.SettlementActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fourth_content.*
@@ -83,6 +82,14 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             contentItemSchedule.isVisible = !isError
         }
         contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)
+        tvReimbursement.setOnClickListener {
+//            openReimbursement()
+        }
+    }
+
+    private fun openReimbursement(){
+        val intent = Intent(context,SettlementActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setScheduleTripContent(result: TripResult) {
@@ -187,8 +194,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         if (Globals.getBaseUrl(requireContext()) == MyURL.URL_TRAVELAJA) {
             tvAccountType.text = getString(R.string.txt_travelaja_basic)
             tvAccountType.setTextColor(Color.parseColor("#da2128"))
-            textView3.isEnabled = false
-            textView3.setTextColor(Color.parseColor("#EFEFEF"))
+            tvReimbursement.isEnabled = false
+            tvReimbursement.setTextColor(Color.parseColor("#EFEFEF"))
         } else {
             tvAccountType.text = getString(R.string.txt_premium_account)
             tvAccountType.setTextColor(Color.parseColor("#009688"))

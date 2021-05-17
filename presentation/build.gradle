@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 
 android {
     signingConfigs {
@@ -13,11 +15,11 @@ android {
             keyPassword 'opsicorp'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.opsigo.travelaja"
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 14
         versionName "1.0.10"
         multiDexEnabled true
@@ -58,6 +60,9 @@ android {
         exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
         exclude 'lib/x86_64/libopencv_core.so'
         exclude 'lib/x86_64/libopencv_imgproc.so'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 
     lintOptions {
@@ -169,10 +174,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$viewModel_version"
-
-
-
-
-
-
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
 }
