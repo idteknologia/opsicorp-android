@@ -48,7 +48,7 @@
 
     <LinearLayout
         android:id="@+id/layToolbar"
-        android:background="#00776a"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal"
         android:layout_marginTop="0dp"
         android:layout_marginLeft="0dp"

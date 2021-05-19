@@ -141,7 +141,7 @@
         <item name="fontFamily">@font/lato_regular</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#24253d</item>
+        <item name="android:textColor">@color/textButtonColor</item>
     </style>
 
     <style name="TextInputLayout_Label">
@@ -159,5 +159,13 @@
         <item name="android:textColorHint">#24253d</item>
         <item name="backgroundTint">#b2bbc6</item>
     </style>
+
+    <style name="ButtonStyle">
+        <item name="android:layout_height">@dimen/buttonHeight</item>
+        <item name="android:background">@drawable/rounded_button_approve</item>
+        <item name="android:textAppearance">@style/TextButtonStyle</item>
+    </style>
+
+
 
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="40dp">
 
     <CheckBox
-        android:buttonTint="@color/colorPrimary"
+        android:buttonTint="@color/checkbox"
         android:layout_marginLeft="29dp"
         android:layout_marginRight="10dp"
         android:id="@+id/checkbox"
@@ -31,7 +31,7 @@
     <CheckBox
         android:visibility="gone"
         android:layout_alignParentRight="true"
-        android:buttonTint="@color/colorPrimary"
+        android:buttonTint="@color/checkbox"
         android:layout_marginRight="30dp"
         android:id="@+id/checkbox_right"
         android:layout_centerVertical="true"

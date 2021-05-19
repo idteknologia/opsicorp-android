@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -119,7 +120,8 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_gravity="center"
@@ -207,7 +209,7 @@
             android:visibility="gone"
             android:textSize="16dp"
             style="@style/RobotoRegular"
-            android:textColor="#f8b945"
+            android:textColor="@color/tintTextView"
             android:text="Reset"
             android:id="@+id/btn_reset"
             android:layout_alignParentRight="true"

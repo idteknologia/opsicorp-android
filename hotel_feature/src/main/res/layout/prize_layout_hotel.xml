@@ -76,6 +76,7 @@
             android:layout_below="@+id/tv_available_room"
             android:layout_width="137dp"
             android:layout_height="37dp"
+            android:textColor="@color/textButtonColor"
             android:text="On Request"
             android:background="@drawable/rounded_button_yellow"
             android:gravity="center">

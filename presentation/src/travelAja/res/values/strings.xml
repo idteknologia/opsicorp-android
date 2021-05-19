@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Travel aja</string>
+    <string name="opsicorp_url">Travel Corporate URL</string>
+
+</resources>

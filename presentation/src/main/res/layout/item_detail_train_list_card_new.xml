@@ -330,7 +330,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
-                            android:textColor="#f19c00"
+                            android:textColor="@color/tintTextView"
                             android:letterSpacing="0.1"
                             android:text="DETAILS"/>
                     </LinearLayout>

@@ -108,7 +108,7 @@
                 android:layout_marginRight="15dp"
                 android:text="Change"
                 android:textAllCaps="true"
-                android:textColor="#ffb733"
+                android:textColor="@color/tintTextView"
                 android:textSize="14sp" />
         </RelativeLayout>
 

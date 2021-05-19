@@ -71,8 +71,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".module.signin.login.activity.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait">
 
             <!-- this main -->
             <intent-filter>

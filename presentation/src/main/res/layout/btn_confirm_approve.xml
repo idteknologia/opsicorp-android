@@ -30,7 +30,7 @@
                 style="@style/RobotoMedium"
                 android:id="@+id/tv_button_reject_all"
                 android:textSize="17sp"
-                android:textColor="#24253D"
+                android:textColor="@color/textColorButtonOutline"
                 android:text="Reject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -58,7 +58,7 @@
                 style="@style/RobotoMedium"
                 android:id="@+id/tv_button_approve_all"
                 android:textSize="17sp"
-                android:textColor="#24253D"
+                android:textColor="@color/textButtonColor"
                 android:text="Approve Participant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

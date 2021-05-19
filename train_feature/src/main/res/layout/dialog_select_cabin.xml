@@ -55,7 +55,7 @@
 
                         <RelativeLayout
                             android:id="@+id/line_close"
-                            android:background="@drawable/rounded_orange_stroke_1"
+                            android:background="@drawable/rounded_orange_stroke_2"
                             android:layout_marginRight="3dp"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
@@ -68,7 +68,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/colorAccent"
                                 android:gravity="center_horizontal"
                                 android:text="Close"
                                 style="@style/RobotoBold"/>
@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/white"
                                 android:gravity="center_horizontal"
                                 android:text="Apply"
                                 style="@style/RobotoBold"/>

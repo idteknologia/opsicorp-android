@@ -284,7 +284,7 @@
                 style="@style/RobotoBold"
                 android:layout_height="29dp"
                 android:text="Select"
-                android:textColor="@color/blue_dark"
+                android:textColor="@color/textButtonColor"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/rounded_button_yellow"
                 android:gravity="center">

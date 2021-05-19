@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:textColor="#f19c00"
+                android:textColor="@color/tintTextView"
                 android:text="Booking details"/>
 
             <TextView
@@ -370,7 +370,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:id="@+id/cb1">
@@ -411,7 +411,7 @@
                         android:layout_height="32dp">
 
                         <CheckBox
-                            android:buttonTint="@color/colorPrimary"
+                            android:buttonTint="@color/checkbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/cb2">
@@ -455,7 +455,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:id="@+id/cb3">
@@ -489,7 +489,7 @@
                     android:layout_weight="1">
 
                     <CheckBox
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:id="@+id/cb4">
@@ -536,7 +536,7 @@
                         android:layout_width="32dp"
                         android:layout_height="32dp">
                         <CheckBox
-                            android:buttonTint="@color/colorPrimary"
+                            android:buttonTint="@color/checkbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/cb5">

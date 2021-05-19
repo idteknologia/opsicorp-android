@@ -78,6 +78,7 @@
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_1"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">
@@ -119,6 +120,7 @@
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_2"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">
@@ -160,6 +162,7 @@
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_3"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">

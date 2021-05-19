@@ -12,6 +12,7 @@
         android:layout_marginTop="31dp">
         <CheckBox
             android:id="@+id/cb_select_all"
+            android:buttonTint="@color/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </CheckBox>

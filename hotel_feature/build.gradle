@@ -24,6 +24,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions 'default'
+    productFlavors {
+        travelAja{
+            dimension 'default'
+            applicationId "com.mobile.travelaja"
+            versionCode 1
+            versionName "1.0.10"
+        }
+        opsicorp{
+            dimension 'default'
+            applicationId "com.opsigo.travelaja"
+            versionCode 1
+            versionName "1.0.10"
+        }
+    }
 }
 
 dependencies {

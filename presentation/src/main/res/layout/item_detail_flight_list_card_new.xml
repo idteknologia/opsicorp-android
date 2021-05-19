@@ -401,7 +401,7 @@
                         android:gravity="end"
                         android:textSize="10sp"
                         android:fontFamily="@font/lato_black"
-                        android:textColor="#f19c00"
+                        android:textColor="@color/tintTextView"
                         android:letterSpacing="0.1"
                         android:text="DETAILS"
                         />

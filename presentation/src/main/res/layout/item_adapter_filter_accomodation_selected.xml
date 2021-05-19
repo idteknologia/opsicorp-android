@@ -8,7 +8,7 @@
     android:layout_height="40dp">
 
     <CheckBox
-        android:buttonTint="@color/colorPrimary"
+        android:buttonTint="@color/checkbox"
         android:layout_marginLeft="11dp"
         android:layout_marginRight="10dp"
         android:id="@+id/checkbox"

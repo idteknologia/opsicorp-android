@@ -95,7 +95,7 @@ class FilterOpsicorp : LinearLayout, View.OnClickListener {
         textNames.forEachIndexed { index, text ->
             if(index==i){
                 images[index].setImageDrawable(resources.getDrawable(drawablesSelected[i]))
-                text.setTextColor(resources.getColor(R.color.colorPrimary))
+                text.setTextColor(resources.getColor(R.color.active_icon))
             }
             else{
                 images[index].setImageDrawable(resources.getDrawable(drawablesDefault[index]))

@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="17sp"
                 android:id="@+id/btn_submit_trip_plant"
-                android:textColor="#24253d"
+                android:textColor="@color/textButtonColor"
                 style="@style/RobotoBold"
                 android:gravity="center"
                 android:text="Checkout"

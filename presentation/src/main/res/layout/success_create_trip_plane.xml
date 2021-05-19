@@ -444,7 +444,7 @@
                 <TextView
                     android:onClick="laterListener"
                     android:id="@+id/btn_later"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textColorButtonOutline"
                     android:textSize="14sp"
                     style="@style/RobotoMedium"
                     android:text="Later"
@@ -465,7 +465,7 @@
                 <TextView
                     android:onClick="addTripPlaneListener"
                     android:id="@+id/btn_add_trip_item"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
                     android:text="Add Trip Item"
@@ -496,7 +496,7 @@
                 <TextView
                     android:onClick="addTripPlaneListener"
                     android:id="@+id/btn_submit"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
                     android:text="Submit"

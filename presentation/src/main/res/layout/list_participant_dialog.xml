@@ -94,7 +94,7 @@ other than that still waiting for The first Approver."
 
                             <TextView
                                 android:id="@+id/btn_add_trip_item"
-                                android:textColor="#24253d"
+                                android:textColor="@color/textButtonColor"
                                 android:textSize="16sp"
                                 style="@style/RobotoMedium"
                                 android:text="Approve All"
@@ -154,7 +154,7 @@ other than that still waiting for The first Approver."
 
                     <TextView
                         android:onClick="addTripItemListener"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
                         android:text="@string/add_trip_item"

@@ -14,7 +14,7 @@
             android:layout_gravity="center"
             android:id="@+id/cb_rating"
             android:layout_marginLeft="30dp"
-            android:buttonTint="@color/colorPrimary"
+            android:buttonTint="@color/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </CheckBox>

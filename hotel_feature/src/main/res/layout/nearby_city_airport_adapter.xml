@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:visibility="gone"
-        android:background="#2b9a8e"
+        android:background="@color/headerList"
         android:id="@+id/layToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -359,7 +359,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/textColorButtonOutline"
                                 android:gravity="center_horizontal"
                                 android:text="Reset"
                                 style="@style/RobotoBold"/>
@@ -377,7 +377,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/textButtonColor"
                                 android:gravity="center_horizontal"
                                 android:text="Apply"
                                 style="@style/RobotoBold"/>

@@ -404,7 +404,7 @@
             <TextView
                 android:onClick="discardListener"
                 android:id="@+id/btn_later"
-                android:textColor="#24253d"
+                android:textColor="@color/textColorButtonOutline"
                 android:textSize="14sp"
                 style="@style/RobotoMedium"
                 android:text="Discard"
@@ -425,7 +425,7 @@
             <TextView
                 android:onClick="saveListener"
                 android:id="@+id/btn_add_trip_item"
-                android:textColor="#24253d"
+                android:textColor="@color/textButtonColor"
                 android:textSize="16sp"
                 style="@style/RobotoMedium"
                 android:text="Save"

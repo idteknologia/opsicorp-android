@@ -353,7 +353,7 @@
                         style="@style/RobotoMedium"
                         android:id="@+id/tv_button"
                         android:textSize="16sp"
-                        android:textColor="#24253D"
+                        android:textColor="@color/textButtonColor"
                         android:text="Apply"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

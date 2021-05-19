@@ -174,7 +174,7 @@
                         android:id="@+id/tv_prize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#f19c00"
+                        android:textColor="@color/tintTextView"
                         android:textSize="14dp"
                         style="@style/RobotoBold"
                         android:text="IDR 1.275.000">
