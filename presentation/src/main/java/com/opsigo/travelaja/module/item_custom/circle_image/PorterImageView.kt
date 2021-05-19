@@ -1,5 +1,6 @@
 package com.opsigo.travelaja.module.item_custom.circle_image
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -14,6 +15,7 @@ import android.widget.ImageView
 import com.opsigo.travelaja.R
 
 
+@SuppressLint("AppCompatCustomView")
 abstract class PorterImageView : ImageView {
 
     private var maskCanvas: Canvas? = null

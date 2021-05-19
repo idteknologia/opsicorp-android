@@ -683,4 +683,5 @@ Please add your trip item for Approval."
     <string name="title_popular_city">Popular Cities</string>
     <string name="title_hotel_feature">Module Title</string>
     <string name="string_requaired_input">Please add, this field is required</string>
+    <string name="booking_contact_not_empty">Please complete input data passenger</string>
 </resources>

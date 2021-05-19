@@ -4,15 +4,11 @@ import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.datanetwork.BaseGetData
-import opsigo.com.datalayer.mapper.EstimatedCostMapper
-import opsigo.com.datalayer.mapper.PurposeEntityDataMapper
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.mapper.TypeActivityMapper
+import opsigo.com.datalayer.mapper.*
+import opsigo.com.datalayer.model.create_trip_plane.save_as_daft.SaveAsDraftEntity
 import opsigo.com.datalayer.model.travel_request.EstimatedCostEntity
 import opsigo.com.datalayer.model.travel_request.TypeActivityTravelRequestEntity
-import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
-import opsigo.com.domainlayer.callback.CallbackString
-import opsigo.com.domainlayer.callback.CallbackTypeActivity
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.usecase.TravelRequestRepository
 import org.json.JSONArray
 import org.json.JSONObject
@@ -79,14 +75,27 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
         })
     }
 
-    override fun submitTravelTravelRequest(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
-        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+    override fun submitTravelRequest(token: String, data: HashMap<String, Any>, callback: CallbackSaveAsDraft) {
+        apiOpsicorp.submitTravelRequest(token,data).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val data = Serializer.deserialize(responseString.toString(), SaveAsDraftEntity::class.java)
+                        callback.successLoad(SaveAsDraftMapper().mapping(data))
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-
+                callback.failedLoad(t.message!!)
             }
         })
     }

@@ -349,12 +349,12 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                        val responseString = response.body()?.string()
+                        val responseString = response.body()?.string().toString()
                         if (responseString=="{\"status\":false,\"errorMessage\":\"\"}"){
-                            callback.failedLoad(responseString)
+                            callback.failedLoad(JSONObject(responseString).getString("errorMessage"))
                         }
                         else{
-                            callback.successLoad(ReserveFlightMapper().mapper(Serializer.deserialize(responseString!!, ReservationFlightEntity::class.java)))
+                            callback.successLoad(ReserveFlightMapper().mapper(Serializer.deserialize(responseString, ReservationFlightEntity::class.java)))
                         }
                     }
                     else {
@@ -363,7 +363,7 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                         callback.failedLoad(message)
                     }
                 }catch (e:Exception){
-                    callback.failedLoad(e.message!!)
+                    callback.failedLoad(e.message.toString())
                 }
             }
         })

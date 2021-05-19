@@ -1,11 +1,13 @@
 package com.opsicorp.train_feature.booking_contact
 
+
 import opsigo.com.datalayer.request_model.accomodation.train.validation.ContactValidationTrainRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
+import opsigo.com.domainlayer.model.accomodation.train.ReservationTrainModel
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 import opsigo.com.datalayer.request_model.accomodation.train.reservation.*
@@ -13,10 +15,12 @@ import kotlinx.android.synthetic.main.booking_contact_train_view.*
 import com.opsigo.travelaja.module.profile.SimFormContactActivity
 import com.opsigo.travelaja.module.cart.activity.NewCartActivity
 import com.opsigo.travelaja.module.profile.PassportFormActivity
+import opsigo.com.domainlayer.callback.CallbackReservationTrain
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
 import com.opsigo.travelaja.module.profile.KtpCardFormActivity
 import opsigo.com.domainlayer.model.booking_contact.SimModel
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
 import com.opsigo.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
@@ -26,13 +30,10 @@ import com.opsigo.travelaja.BaseActivity
 import com.opsicorp.train_feature.R
 import android.content.Intent
 import android.app.Activity
+import java.lang.Exception
 import android.os.Bundle
 import android.view.View
 import android.os.Build
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.domainlayer.callback.CallbackReservationTrain
-import opsigo.com.domainlayer.model.accomodation.train.ReservationTrainModel
-import java.lang.Exception
 
 class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -99,10 +100,10 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun contactInformationView() {
-        val dataProfile = getProfile()
-        tv_name_contact.text        = dataProfile.name
+        val dataProfile             = getProfile()
         tv_number_contact.text      = formatNumberListener(dataProfile.homePhone)
         tv_email_contact.text       = dataProfile.email
+        tv_name_contact.text        = dataProfile.name
     }
 
     private fun formatNumberListener(string: String): String {
@@ -115,32 +116,40 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     }
 
     private fun getDataIdCartBooker(): IdCartModel {
-        val model = IdCartModel()
-        model.fullname = getProfile().name
-        model.id       = getProfile().employId
-        model.idCart   = getProfile().ktp
-        model.email    = getProfile().email
-        model.mobileNum = getProfile().mobilePhone
-        model.title    = getProfile().title
+        val model           = IdCartModel()
+        model.id            = getProfile().employId
+        model.title         = getProfile().title
+        model.fullname      = getProfile().name
+        model.idCart        = getProfile().idNumber
+        model.mobilePhone   = getProfile().mobilePhone
+        model.email         = getProfile().email
+        model.birthDate     = getProfile().birthDate
+
         return model
     }
 
     private fun getSimDataBooker(): SimModel {
-        val model = SimModel()
-        model.name = getProfile().name
-        model.id   = getProfile().employId
-        model.idSim = getProfile().sim
-        model.address = getProfile().address
+        val model         = SimModel()
+        model.id          = getProfile().employId
+        model.idSim       = getProfile().sim
+        model.title       = getProfile().title
+        model.name        = getProfile().name
+        model.email       = getProfile().email
+        model.birthDate   = getProfile().birthDate
+        model.mobilePhone = getProfile().mobilePhone
         return model
     }
 
     private fun getPassportDataBooker(): PassportModel {
         val model = PassportModel()
-        model.firstName = getProfile().firstName
-        model.lastName  = getProfile().lastName
-        model.id        = getProfile().employId
-        model.birtDate  = getProfile().birthDate
-        model.passporNumber    = getProfile().passport
+        model.passporNumber = getProfile().passport
+        model.id            = getProfile().employId
+        model.fullname      = getProfile().name
+        model.title         = getProfile().title
+        model.birtDate      = getProfile().birthDate
+        model.nasionality   = getProfile().nationality
+        model.mobilePhone   = getProfile().mobilePhone
+
         return model
     }
 
@@ -284,17 +293,33 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
 
     fun getReservased(){
         setLog(Serializer.serialize(getPassanger()))
-        showLoadingOpsicorp(true)
-        GetDataAccomodation(getBaseUrl()).getReservationTrain(Globals.getToken(),getDataTrain(),object : CallbackReservationTrain {
-            override fun successLoad(data: ReservationTrainModel) {
-                gotoNewCart(data.idTrip)
-            }
+        if (bookingContactIsEmpty()){
+            showAllert("Sorry",getString(R.string.booking_contact_not_empty))
+        }
+        else {
+            showLoadingOpsicorp(true)
+            GetDataAccomodation(getBaseUrl()).getReservationTrain(Globals.getToken(),getDataTrain(),object : CallbackReservationTrain {
+                override fun successLoad(data: ReservationTrainModel) {
+                    gotoNewCart(data.idTrip)
+                }
 
-            override fun failedLoad(message: String) {
-                showAllert("Sorry",message)
-                hideLoadingOpsicorp()
+                override fun failedLoad(message: String) {
+                    showAllert("Sorry",message)
+                    hideLoadingOpsicorp()
+                }
+            })
+        }
+
+    }
+
+    private fun bookingContactIsEmpty(): Boolean {
+        var isEmpty = false
+        dataContacts.forEach {
+            if (it.checktype.isEmpty()){
+                isEmpty = true
             }
-        })
+        }
+        return isEmpty
     }
 
     private fun gotoNewCart(idTrip: String) {
@@ -382,47 +407,53 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
             when(bookingContactAdapterModel.checktype){
                 Constants.TYPE_SIM -> {
                     if (bookingContactAdapterModel.sim.name.contains(" ")){
-                        data.firstName    = bookingContactAdapterModel.sim.name.split(" ")[0]
-                        data.lastName     = bookingContactAdapterModel.sim.name.split(" ")[1]
+                        data.firstName    = bookingContactAdapterModel.sim.name.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.sim.name.split(" ").last()
                     }
                     else {
                         data.firstName    = bookingContactAdapterModel.sim.name
                         data.lastName     = bookingContactAdapterModel.sim.name
                     }
-                    data.email        = getProfile().email
-                    data.mobilePhone = getProfile().mobilePhone
-                    data.homePhone   = getProfile().phone
-                    data.birthDate   = getProfile().birthDate
-                    data.title       = bookingContactAdapterModel.sim.title
-                    data.idNumber    = bookingContactAdapterModel.sim.idSim
+                    data.email          = bookingContactAdapterModel.sim.email
+                    data.mobilePhone    = bookingContactAdapterModel.sim.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.sim.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.sim.birthDate
+                    data.title          = bookingContactAdapterModel.sim.title
+                    data.idNumber       = bookingContactAdapterModel.sim.idSim
                     data.identityNumber = bookingContactAdapterModel.sim.idSim
                 }
                 Constants.TYPE_PASSPORT -> {
-                    data.firstName    = bookingContactAdapterModel.pasport.firstName
-                    data.lastName     = bookingContactAdapterModel.pasport.lastName
-                    data.email        = getProfile().email
-                    data.mobilePhone  = getProfile().mobilePhone
-                    data.homePhone    = getProfile().phone
-                    data.birthDate    = bookingContactAdapterModel.pasport.birtDate
-                    data.title        = bookingContactAdapterModel.pasport.title
-                    data.idNumber     =  bookingContactAdapterModel.pasport.passporNumber
+                    if (bookingContactAdapterModel.pasport.fullname.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.pasport.fullname.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.pasport.fullname.split(" ").last()
+                    }
+                    else {
+                        data.firstName    = bookingContactAdapterModel.pasport.fullname
+                        data.lastName     = bookingContactAdapterModel.pasport.fullname
+                    }
+                    data.email          = bookingContactAdapterModel.pasport.email
+                    data.mobilePhone    = bookingContactAdapterModel.pasport.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.pasport.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.pasport.birtDate
+                    data.title          = bookingContactAdapterModel.pasport.title
+                    data.idNumber       = bookingContactAdapterModel.pasport.passporNumber
                     data.identityNumber = bookingContactAdapterModel.pasport.passporNumber
                 }
                 Constants.TYPE_KTP -> {
-                    if (bookingContactAdapterModel.sim.name.contains(" ")){
-                        data.firstName    = bookingContactAdapterModel.idcard.fullname.split(" ")[0]
-                        data.lastName     = bookingContactAdapterModel.idcard.fullname.split(" ")[1]
+                    if (bookingContactAdapterModel.idcard.fullname.contains(" ")){
+                        data.firstName    = bookingContactAdapterModel.idcard.fullname.split(" ").first()
+                        data.lastName     = bookingContactAdapterModel.idcard.fullname.split(" ").last()
                     }
                     else {
                         data.firstName    = bookingContactAdapterModel.idcard.fullname
                         data.lastName     = bookingContactAdapterModel.idcard.fullname
                     }
-                    data.email        = bookingContactAdapterModel.idcard.email
-                    data.mobilePhone  = bookingContactAdapterModel.idcard.mobileNum
-                    data.birthDate    = getProfile().birthDate
-                    data.homePhone    = bookingContactAdapterModel.idcard.mobileNum
-                    data.title        = bookingContactAdapterModel.idcard.title
-                    data.idNumber     = bookingContactAdapterModel.idcard.idCart
+                    data.email          = bookingContactAdapterModel.idcard.email
+                    data.mobilePhone    = bookingContactAdapterModel.idcard.mobilePhone
+                    data.homePhone      = bookingContactAdapterModel.idcard.mobilePhone
+                    data.birthDate      = bookingContactAdapterModel.idcard.birthDate
+                    data.title          = bookingContactAdapterModel.idcard.title
+                    data.idNumber       = bookingContactAdapterModel.idcard.idCart
                     data.identityNumber = bookingContactAdapterModel.idcard.idCart
                 }
             }

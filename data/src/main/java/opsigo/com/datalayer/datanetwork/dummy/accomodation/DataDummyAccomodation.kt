@@ -306,9 +306,8 @@ class DataDummyAccomodation {
         val data = ArrayList<FilterFlightModel>()
 
         val names = ArrayList<String>()
-        names.add("Economy")
+        names.add("Economy Class")
         names.add("Business")
-        names.add("Premium Economy")
         names.add("First Class")
 
         names.forEachIndexed { index, s ->

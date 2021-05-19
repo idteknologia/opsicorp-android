@@ -24,10 +24,25 @@ import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import com.opsigo.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
 import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassanger
+import com.opsigo.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.*
+import kotlinx.android.synthetic.main.flight_fragment.*
 import kotlinx.android.synthetic.main.flight_fragment_2.*
+import kotlinx.android.synthetic.main.flight_fragment_2.btn_next
+import kotlinx.android.synthetic.main.flight_fragment_2.btn_switch
+import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_class
+import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_pref
+import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
+import kotlinx.android.synthetic.main.flight_fragment_2.lay_return_date
+import kotlinx.android.synthetic.main.flight_fragment_2.top_button
+import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
+import kotlinx.android.synthetic.main.flight_fragment_2.tv_departur_date
+import kotlinx.android.synthetic.main.flight_fragment_2.tv_end_date
+import kotlinx.android.synthetic.main.flight_fragment_2.tv_from
+import kotlinx.android.synthetic.main.flight_fragment_2.tv_to
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
@@ -45,7 +60,8 @@ class FlightFragmentNew : BaseFragment(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         NewCalendarViewOpsicorp.CallbackResult,
-        SelectAgePassanger.CallbackSelectPasanger{
+        TotalPassengerFlight.CallbackSelectPasanger,
+        CabisClassDialog.CallbackSelectCabin{
 
     override fun getLayout(): Int {
         return R.layout.flight_fragment_2
@@ -87,8 +103,7 @@ class FlightFragmentNew : BaseFragment(),
         setOnClick()
         initRecycleView()
         setDataDefaultOneTrip()
-        setData(true)
-        setData(false)
+        setDataDefault()
         getReasonCode()
     }
 
@@ -116,8 +131,8 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun setDefaultDate() {
         val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-        startDate(DateConverter().getDate(data.startDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy"), data.startDate)
-        endDate(DateConverter().getDate(data.endDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy"), data.endDate)
+        startDate(DateConverter().getDate(data.startDate, "yyyy-MM-dd", "dd MMM yyyy"), data.startDate)
+        endDate(DateConverter().getDate(data.endDate, "yyyy-MM-dd", "dd MMM yyyy"), data.endDate)
     }
 
     private fun setDefaultOriginDestination() {
@@ -187,15 +202,26 @@ class FlightFragmentNew : BaseFragment(),
         }
     }
 
-    private fun setData(first: Boolean) {
-        val orderFlight = OrderAccomodationModel()
-        if (first) {
+    private fun setDataDefault(){
+        for (i in 0 until 2){
+            val orderFlight = OrderAccomodationModel()
             val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-            orderFlight.dateDeparture = DateConverter().getDate(data.startDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy")
-            orderFlight.originName = "${data.originName} (${data.originId})"
-            orderFlight.destinationName = "${data.destinationName} (${data.destinationId})"
+            if (i==0){
+                orderFlight.dateDeparture   = data.startDate
+                orderFlight.originName      = originName
+                orderFlight.idOrigin        = idOrigin
+                orderFlight.destinationName = destinationName
+                orderFlight.idDestination   = idDestination
+            }
+            else {
+                orderFlight.dateDeparture   = DateConverter().getNextDay("yyyy-MM-dd","yyyy-MM-dd",data.startDate,3)
+                orderFlight.originName      = destinationName
+                orderFlight.idOrigin        = idDestination
+                orderFlight.destinationName = originName
+                orderFlight.idDestination   = idOrigin
+            }
+            mFlightMulti.add(orderFlight)
         }
-        mFlightMulti.add(orderFlight)
         adapter.setData(mFlightMulti)
     }
 
@@ -296,14 +322,21 @@ class FlightFragmentNew : BaseFragment(),
                 openCalendar()
             }
             lay_parent_passager -> {
-                val fm = requireActivity().getSupportFragmentManager()
+                /*val fm = requireActivity().getSupportFragmentManager()
                 val selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
                 selectPassager.show(fm, "yesNoAlert")
                 selectPassager.callback = this
-                selectPassager.setLimitSelect(4,3,2)
+                selectPassager.setLimitSelect(4,3,2)*/
+                val totalPassangerFlight = TotalPassengerFlight()
+                totalPassangerFlight.setLimitSelect(5,2,3)
+                totalPassangerFlight.setCurrentSelect(totalAdult,totalInfant,totalChild)
+                totalPassangerFlight.create(requireContext(),this)
             }
             lay_air_class -> {
-                airlineClass()
+                /*airlineClass()*/
+                val cabinClass = CabisClassDialog()
+                cabinClass.setCurrentSelect(nameClassAirline)
+                cabinClass.create(requireContext(),this)
             }
             lay_air_pref -> {
                 airlinePref()
@@ -421,7 +454,9 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun addOtherFlight() {
-        setData(false)
+        val orderFlight = OrderAccomodationModel()
+        mFlightMulti.add(orderFlight)
+        adapter.setData(mFlightMulti)
     }
 
     override fun btnLeft() {
@@ -447,32 +482,20 @@ class FlightFragmentNew : BaseFragment(),
 
     override fun onClicked() {
         if (typeTrip.equals("multi_city")) {
-            var isDataEmptyDestination = false
-            var isDateEmptyOrigin = false
-            var isDataEmptyDate = false
-            var positionFlightEmpty = 0
-            mFlightMulti.forEach {
-                if (it.destinationName.isNotEmpty()) {
-                    isDataEmptyDestination = true
-                    positionFlightEmpty = currentPosition + 1
-                }
-                if (it.originName.isNotEmpty()) {
-                    isDateEmptyOrigin = true
-                    positionFlightEmpty = currentPosition + 1
-                }
-                if (it.dateDeparture.isNotEmpty()) {
-                    isDataEmptyDate = true
-                    positionFlightEmpty = currentPosition + 1
-                }
-            }
-            gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
-            /*if (isDataEmptyDestination && isDateEmptyOrigin && isDataEmptyDate) {
-                Globals.showAlert("sorry", "Please Select Flight ${positionFlightEmpty}", context!!)
+            Constants.ALREADY_SEARCH_FLIGHT = false
+            Constants.multitrip             = true
+
+            if (isEmptyMulticity().first) {
+                Globals.showAlert("sorry", "Please Select Flight ${isEmptyMulticity().second}", requireActivity())
             } else {
-                Constants.DATA_FLIGHT_MULTI_CITY.addAll(mFlightMulti)
-                gotoActivityModule(context!!, BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
-            }*/
+                Constants.DATA_FLIGHT_MULTI_CITY.dataListOrderAccomodation.clear()
+                Constants.DATA_FLIGHT_MULTI_CITY.dataListOrderAccomodation.addAll(mFlightMulti)
+                gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
+            }
         } else {
+            Constants.ALREADY_SEARCH_FLIGHT = false
+            Constants.multitrip             = false
+
             val dataOrder = OrderAccomodationModel()
             dataOrder.typeTrip = typeTrip
 
@@ -497,6 +520,7 @@ class FlightFragmentNew : BaseFragment(),
 
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Globals.DATA_LIST_FLIGHT = ""
+            Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
             setLog("Test Reservasi",Serializer.serialize(dataOrder))
 
             gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
@@ -505,11 +529,39 @@ class FlightFragmentNew : BaseFragment(),
 
     }
 
+    private fun isEmptyMulticity(): Pair<Boolean,Int> {
+        var isDataEmptyDestination = false
+        var isDateEmptyOrigin = false
+        var isDataEmptyDate = false
+        var positionFlightEmpty = 0
+        mFlightMulti.forEachIndexed { index, it ->
+            setLog(Serializer.serialize(it))
+            if (it.destinationName.isEmpty()) {
+                isDataEmptyDestination = true
+                positionFlightEmpty = index+1
+            }
+            if (it.originName.isEmpty()) {
+                isDateEmptyOrigin = true
+                positionFlightEmpty = index+1
+            }
+            if (it.dateDeparture.isEmpty()) {
+                isDataEmptyDate = true
+                positionFlightEmpty = index+1
+            }
+        }
+        if (isDataEmptyDestination || isDateEmptyOrigin || isDataEmptyDate){
+            return Pair(true,positionFlightEmpty)
+        }
+        else {
+            return Pair(false,positionFlightEmpty)
+        }
+    }
+
     override fun startDate(displayStartDate: String, startDate: String) {
         if (typeTrip.equals("multi_city")) {
-            mFlightMulti[currentPosition].dateDeparture = DateConverter().getDate(startDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy")
+            mFlightMulti[currentPosition].dateDeparture = startDate
         } else {
-            tv_departur_date.text = DateConverter().getDate(startDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy")
+            tv_departur_date.text = displayStartDate
         }
 
         if (startDate.length > 10) {
@@ -523,7 +575,7 @@ class FlightFragmentNew : BaseFragment(),
 
     override fun endDate(displayEndDate: String, endDate: String) {
         if (endDate.isNotEmpty()){
-            tv_end_date.text = DateConverter().getDate(endDate, "yyyy-MM-dd", "EEEE, dd MMM yyyy")
+            tv_end_date.text = displayEndDate
         } else {
             tv_end_date.text = "Select Return Date"
         }
@@ -677,5 +729,10 @@ class FlightFragmentNew : BaseFragment(),
         totalAdult = mTotalAdult
         totalInfant = mTotalInfant
         totalChild = mTotalChild
+    }
+
+    override fun select(selectedClass: String) {
+        tv_airline_class_new.setText(selectedClass)
+        nameClassAirline = selectedClass
     }
 }

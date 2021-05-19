@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.opsigo.travelaja.utility.gone
+import com.opsigo.travelaja.utility.visible
 import kotlinx.android.synthetic.main.dialog_purpose_item.view.*
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 
@@ -33,10 +35,10 @@ class DialogPurposeAdapter (private var items: ArrayList<SelectNationalModel>): 
         holder.itemView.tv_purpose.text = data.name
 
         if (position==checkPosition){
-            holder.itemView.iv_checked.visibility = View.VISIBLE
+            holder.itemView.iv_checked.visible()
         }
         else {
-            holder.itemView.iv_checked.visibility = View.GONE
+            holder.itemView.iv_checked.gone()
         }
 
         holder.itemView.setOnClickListener {

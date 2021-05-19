@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -21,10 +23,10 @@ import java.lang.Exception
 class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerView {
 
+    var currentPositionPassenger = 0
     val adapter by lazy { SsrAdapter(this) }
     val adapter2 by lazy { SsrPriceAdapter(this) }
     lateinit var datalist: DataListOrderAccomodation
-    var currentPositionPassenger = 0
 
     override fun OnMain() {
         try {
@@ -59,10 +61,10 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     private fun initRecyclerViewPrice() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rvPriceSsr.layoutManager = layoutManager
-        rvPriceSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rvPriceSsr.itemAnimator = DefaultItemAnimator()
         rvPriceSsr.adapter = adapter2
 
     }
@@ -105,7 +107,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
         datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataProfile = Globals.getProfile(applicationContext)
         tvPassengerSsr.text = "${dataProfile.title}.${dataProfile.name}"
-        adapter.setData(datalist.dataFlight)
+        adapter.setData(datalist.dataFlight,currentPositionPassenger)
         adapter2.setData(datalist.dataFlight)
         initPrice()
     }
@@ -116,18 +118,16 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
             Constants.REQUEST_CODE_SELECT_SSR -> {
                 if (resultCode == Activity.RESULT_OK) {
                     setData()
-                    val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                    setLog("testSaveKembali", dataList.dataFlight[0].passenger[currentPositionPassenger].ssr.ssrSelected.size.toString())
                 }
             }
         }
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rvSsr.layoutManager = layoutManager
-        rvSsr.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rvSsr.itemAnimator = DefaultItemAnimator()
         rvSsr.adapter = adapter
 
         adapter.setOnclickListener(this)
@@ -149,7 +149,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     override fun onClicked() {
-        finish()
+        Globals.finishResultOk(this)
     }
 
     override fun btnBack() {
@@ -167,12 +167,13 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
             Constants.REQUEST_CODE_SELECT_SSR -> {
                 val intent = Intent(this, SsrListActivity::class.java)
                 intent.putExtra(Constants.KEY_POSITION_SELECT_SSR, position)
+                intent.putExtra(Constants.KEY_POSITION_SELECT_PASSENGER,currentPositionPassenger)
                 gotoActivityResultIntent(intent,Constants.REQUEST_CODE_SELECT_SSR)
             }
             Constants.REQUEST_CODE_DELETE_SSR -> {
                 datalist.dataFlight[position].passenger[currentPositionPassenger].ssr.ssrSelected.clear()
                 Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
-                adapter.setData(datalist.dataFlight)
+                adapter.setData(datalist.dataFlight,currentPositionPassenger)
                 adapter2.setData(datalist.dataFlight)
                 initPrice()
             }

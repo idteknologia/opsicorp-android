@@ -16,7 +16,6 @@
         android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:fillViewport="true">
         <LinearLayout
             android:visibility="visible"
@@ -332,6 +331,8 @@
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
                                     android:textSize="@dimen/font_edittext"
+                                    android:hint="Select departure date"
+                                    android:textColorHint="@color/colorTextHint"
                                     android:textColor="@color/colorTextHint"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -352,10 +353,60 @@
 
                     </LinearLayout>
 
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFlightMultiCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"/>
+
+            <Button
+                android:id="@+id/btAddOtherFlight"
+                android:layout_width="160dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/rounded_approval_green"
+                android:text="@string/add_other_flight"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:visibility="gone"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardExtras"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvPassengerClass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="14dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/passengers_class"
+                        android:textColor="#24253d"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
                     <LinearLayout
                         android:id="@+id/lay_parent_passager"
-                        android:layout_below="@+id/line_depart"
-                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/tvPassengerClass"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
                         android:weightSum="1"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -383,7 +434,7 @@
                                     android:id="@+id/lay_passanger"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp">
+                                    android:layout_height="wrap_content">
 
                                     <TextView
                                         android:text="@string/passengers"
@@ -421,8 +472,11 @@
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lay_air_class"
-                        android:layout_below="@+id/line_depart"
+                        android:layout_below="@+id/lay_parent_passager"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="30dp"
                         android:weightSum="1"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -437,7 +491,7 @@
                                 android:layout_marginBottom="10dp"
                                 android:layout_gravity="bottom"
                                 android:layout_marginRight="10dp"
-                                android:src="@drawable/ic_chair"
+                                android:src="@drawable/ic_booking_contact_seat"
                                 android:layout_width="@dimen/icon_edittext"
                                 android:layout_height="@dimen/icon_edittext" />
 
@@ -450,14 +504,27 @@
                                     android:id="@+id/lay_airline_class"
                                     android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="60dp">
+                                    android:layout_height="wrap_content">
 
+
+                                    <TextView
+                                        android:textColor="#91929e"
+                                        android:text="@string/cabin_class"
+                                        android:id="@+id/tv_titile_airline_class"
+                                        android:paddingBottom="9dp"
+                                        android:textAlignment="viewStart"
+                                        android:gravity="center"
+                                        android:textSize="14sp"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        tools:ignore="RtlCompat" />
 
                                     <TextView
                                         android:textColor="@color/colorTextHint"
                                         android:textColorHint="@color/colorTextHint"
-                                        android:hint="Airline Class"
-                                        android:id="@+id/tv_titile_airline_class"
+                                        android:text="Select Cabin Class"
+                                        android:id="@+id/tv_airline_class_new"
+                                        android:paddingTop="8dp"
                                         android:paddingBottom="9dp"
                                         android:textAlignment="viewStart"
                                         android:gravity="center"
@@ -466,15 +533,6 @@
                                         android:layout_height="wrap_content"
                                         tools:ignore="RtlCompat" />
 
-                                    <TextView
-                                        android:singleLine="true"
-                                        android:id="@+id/tv_airline_class_new"
-                                        android:textColor="#009688"
-                                        android:text="Economy Class"
-                                        android:textSize="14sp"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" />
-
 
                                 </LinearLayout>
 
@@ -482,7 +540,9 @@
                                     android:layout_below="@+id/lay_airline_class"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext"></LinearLayout>
+                                    android:background="@color/colorLineEdittext">
+
+                                </LinearLayout>
 
                             </RelativeLayout>
 
@@ -492,7 +552,8 @@
 
                     <LinearLayout
                         android:id="@+id/lay_air_pref"
-                        android:layout_below="@+id/line_depart"
+                        android:visibility="gone"
+                        android:layout_below="@+id/lay_air_class"
                         android:layout_marginTop="10dp"
                         android:weightSum="1"
                         android:orientation="horizontal"
@@ -553,7 +614,9 @@
                                     android:layout_below="@+id/lay_airline_prreferance"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext"></LinearLayout>
+                                    android:background="@color/colorLineEdittext">
+
+                                </LinearLayout>
 
                             </RelativeLayout>
 
@@ -561,31 +624,15 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
+
             </androidx.cardview.widget.CardView>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvFlightMultiCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"/>
-
-            <Button
-                android:id="@+id/btAddOtherFlight"
-                android:layout_width="160dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/rounded_approval_green"
-                android:text="@string/add_other_flight"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:visibility="gone"/>
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="75dp"
+                android:layout_marginBottom="80dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_next">

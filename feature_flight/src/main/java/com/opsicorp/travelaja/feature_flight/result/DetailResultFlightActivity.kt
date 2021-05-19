@@ -1,39 +1,43 @@
 package com.opsicorp.travelaja.feature_flight.result
 
-import android.view.View
-import com.opsicorp.travelaja.feature_flight.R
-import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.StringUtils
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.*
-import kotlinx.android.synthetic.main.layout_card_detail_flight_new.*
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.SegmentFareRulesRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.validation.SegmentsItemRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
-import opsigo.com.domainlayer.callback.CallbackGetFareRules
-import opsigo.com.domainlayer.callback.CallbackGetSsr
-import opsigo.com.domainlayer.callback.CallbackValidationFlight
-import opsigo.com.domainlayer.model.accomodation.flight.FareRulesModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
-import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
-import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
-import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import java.lang.Exception
 import java.util.HashMap
+import android.view.View
+import java.lang.Exception
+import com.squareup.picasso.Picasso
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.utility.Constants
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsicorp.travelaja.feature_flight.R
+import com.opsigo.travelaja.utility.StringUtils
+import com.opsigo.travelaja.utility.DateConverter
+import opsigo.com.domainlayer.callback.CallbackGetSsr
+import opsigo.com.domainlayer.model.summary.PassportModel
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import opsigo.com.domainlayer.callback.CallbackGetFareRules
+import opsigo.com.domainlayer.model.booking_contact.SimModel
+import opsigo.com.domainlayer.model.booking_contact.IdCartModel
+import opsigo.com.domainlayer.callback.CallbackValidationFlight
+import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
+import kotlinx.android.synthetic.main.layout_card_detail_flight_new.*
+import opsigo.com.domainlayer.model.accomodation.flight.FareRulesModel
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.*
+import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
+import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.validation.SegmentsItemRequest
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.SegmentFareRulesRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
 
 class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener, View.OnClickListener {
 
@@ -46,6 +50,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     lateinit var dataFlight: ResultListFlightModel
     lateinit var dataSsr : SsrModel
     lateinit var dataFareRules : ArrayList<FareRulesModel>
+    lateinit var dataOrder: OrderAccomodationModel
 
     override fun OnMain() {
         getValidationFlight()
@@ -190,28 +195,28 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         }
 
         if(Globals.DATA_FLIGHT.isNotEmpty()){
-            val data = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
-            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
+            dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
 
-            tv_airport_name.text = data.originAirport
-            title_airline.text   = data.titleAirline
-            tv_number.text       = data.flightNumber
-            tv_type_class.text   = data.nameClass + " (" + data.code + ")"
+            tv_airport_name.text = dataFlight.originAirport
+            title_airline.text   = dataFlight.titleAirline
+            tv_number.text       = dataFlight.flightNumber
+            tv_type_class.text   = dataFlight.nameClass + " (" + dataFlight.code + ")"
 
 
-            tv_duration.text     = data.durationView
-            if(data.isConnecting){
+            tv_duration.text     = dataFlight.durationView
+            if(dataFlight.isConnecting){
                 tv_transit.visibility   = View.GONE
             }else{
                 tv_transit.visibility   = View.GONE
             }
 
 
-            tv_time_departure.text   = data.departTime
-            tv_time_arrival.text     = data.arriveTime
+            tv_time_departure.text   = dataFlight.departTime
+            tv_time_arrival.text     = dataFlight.arriveTime
 
-            tv_date_departure.text  = DateConverter().setDateFormat4(data.departDate)
-            tv_date_arrival.text    = DateConverter().setDateFormat4(data.arrivalDate)
+            tv_date_departure.text  = DateConverter().setDateFormat4(dataFlight.departDate)
+            tv_date_arrival.text    = DateConverter().setDateFormat4(dataFlight.arrivalDate)
 //            tv_departure.text       = "${data.originName} (${data.origin})"
 //            tv_arrival.text         = "${data.destinationName} (${data.destination})"
 
@@ -226,7 +231,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             }
 
             Picasso.get()
-                    .load(data.imgAirline)
+                    .load(dataFlight.imgAirline)
                     .fit()
                     .centerInside()
                     .into(img_flight_icon)
@@ -356,21 +361,139 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun saveDataListAccomodation() {
         var datalist   = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
-        dataFlight.notComply = isNotComply
-        if (dataFlight.flightType.equals("GdsBfm")){
-            dataFlight.dataFareRules = dataFareRules
-            setLog(dataFareRules[0].fareRulesName)
-        }
-        dataFlight.passenger.mapIndexed { index, bookingContactAdapterModel ->
-            bookingContactAdapterModel.ssr = dataSsr
-        }
+
+        //save flight
         try {
             datalist.dataFlight.add(dataFlight)
         }catch (e: Exception){
             datalist = DataListOrderAccomodation()
             datalist.dataFlight.add(dataFlight)
         }
+
+        val mDataBooker = BookingContactAdapterModel()
+        mDataBooker.typeContact = Constants.ADULT
+        mDataBooker.checktype   = Constants.TYPE_KTP
+        mDataBooker.sim         = getSimDataBooker()
+        mDataBooker.pasport     = getPassportDataBooker()
+        mDataBooker.idcard      = getDataIdCartBooker()
+
+        datalist.dataFlight.last().passenger.clear()
+        datalist.dataFlight.last().passenger.add(mDataBooker)
+
+        for (i in 0 until dataOrder.infant) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.INFANT
+            datalist.dataFlight.last().passenger.add(mData)
+        }
+        if (dataOrder.adult > 1){
+            for (i in 0 until dataOrder.adult -1) {
+                val mData = BookingContactAdapterModel()
+                mData.typeContact = Constants.ADULT
+                datalist.dataFlight.last().passenger.add(mData)
+            }
+        }
+        for (i in 0 until dataOrder.child) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.CHILD
+            datalist.dataFlight.last().passenger.add(mData)
+        }
+
+        datalist.dataFlight.last().passenger.mapIndexed { index, bookingContactAdapterModel ->
+            bookingContactAdapterModel.ssr = dataSsr
+        }
+
+        datalist.dataFlight.last().notComply = isNotComply
+
+        if (datalist.dataFlight.last().flightType.equals("GdsBfm")){
+            datalist.dataFlight.last().dataFareRules = dataFareRules
+        }
+
+        /*dataContacts.add(mDataBooker)*/
+        /*datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+            resultListFlightModel.passenger.clear()
+            resultListFlightModel.passenger.add(mDataBooker)
+        }
+
+        for (i in 0 until dataOrder.infant) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.INFANT
+            datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+                resultListFlightModel.passenger.add(mData)
+            }
+        }
+        if (dataOrder.adult > 1){
+            for (i in 0 until dataOrder.adult -1) {
+                val mData = BookingContactAdapterModel()
+                mData.typeContact = Constants.ADULT
+                datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+                    resultListFlightModel.passenger.add(mData)
+                }
+            }
+        }
+        for (i in 0 until dataOrder.child) {
+            val mData = BookingContactAdapterModel()
+            mData.typeContact = Constants.CHILD
+            datalist.dataFlight.mapIndexed { index, resultListFlightModel ->
+                resultListFlightModel.passenger.add(mData)
+            }
+        }
+
+        datalist.dataFlight.forEach {
+            it.passenger.mapIndexed { index, bookingContactAdapterModel ->
+                bookingContactAdapterModel.ssr = dataSsr
+            }
+        }
+
+        datalist.dataFlight.forEach {
+            it.notComply = isNotComply
+        }
+
+        datalist.dataFlight.forEach {
+            if (it.flightType.equals("GdsBfm")){
+                it.dataFareRules = dataFareRules
+            }
+        }*/
+
         Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist, DataListOrderAccomodation::class.java)
+    }
+
+
+    private fun getDataIdCartBooker(): IdCartModel {
+        val model           = IdCartModel()
+        model.id            = getProfile().employId
+        model.title         = getProfile().title
+        model.fullname      = getProfile().name
+        model.idCart        = getProfile().idNumber
+        model.mobilePhone   = getProfile().mobilePhone
+        model.email         = getProfile().email
+        model.birthDate     = getProfile().birthDate
+
+        return model
+    }
+
+    private fun getSimDataBooker(): SimModel {
+        val model         = SimModel()
+        model.id          = getProfile().employId
+        model.idSim       = getProfile().sim
+        model.title       = getProfile().title
+        model.name        = getProfile().name
+        model.email       = getProfile().email
+        model.birthDate   = getProfile().birthDate
+        model.mobilePhone = getProfile().mobilePhone
+        return model
+    }
+
+    private fun getPassportDataBooker(): PassportModel {
+        val model = PassportModel()
+        model.passporNumber = getProfile().passport
+        model.fullname      = getProfile().name
+        model.id            = getProfile().employId
+        model.title         = getProfile().title
+        model.birtDate      = getProfile().birthDate
+        model.nasionality   = getProfile().nationality
+        model.mobilePhone   = getProfile().mobilePhone
+
+        return model
     }
 
     override fun onClick(v: View?) {

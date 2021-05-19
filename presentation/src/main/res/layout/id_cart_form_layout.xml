@@ -298,6 +298,7 @@
                             android:orientation="vertical"
                             android:layout_marginLeft="10dp">
                             <EditText
+                                android:inputType="number"
                                 android:id="@+id/et_no_hp"
                                 android:layout_marginLeft="9dp"
                                 android:layout_width="match_parent"
@@ -378,33 +379,180 @@
                         android:text="e.g email@example.com"
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
-            </LinearLayout>
 
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#91929e"
+                        android:text="Birth Date" />
 
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:layout_marginTop="160dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <RelativeLayout
-            android:onClick="discardListener"
-            android:id="@+id/line_btn_later"
-            android:background="@drawable/rounded_button_corner_yellow"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="4sp"
-            android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:onClick="getDatePickerBirtday"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_day_birtdate"
+                                    android:onClick="getDatePickerBirtday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="#24253d"
+                                    android:text="29"
+                                    android:background="@color/transparent"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="80dp"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:background="#b2bbc6"></LinearLayout>
+
+                            <TextView
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:textColor="#5488c1"
+                                android:gravity="center_horizontal"
+                                android:text="DD"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:onClick="getDatePickerBirtday"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_month_birtdate"
+                                    android:onClick="getDatePickerBirtday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="#24253d"
+                                    android:text="October"
+                                    android:background="@color/transparent"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="80dp"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:background="#b2bbc6"></LinearLayout>
+
+                            <TextView
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:textColor="#5488c1"
+                                android:gravity="center_horizontal"
+                                android:text="MM"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:onClick="getDatePickerBirtday"
+                            android:layout_marginTop="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/tv_year_birtdate"
+                                    android:onClick="getDatePickerBirtday"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="#24253d"
+                                    android:text="2020"
+                                    android:background="@color/transparent"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="80dp"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:background="#b2bbc6"></LinearLayout>
+
+                            <TextView
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="10sp"
+                                android:textColor="#5488c1"
+                                android:gravity="center_horizontal"
+                                android:text="YYYY"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:textColor="#91929e"
+                            android:gravity="end"
+                            android:text="2 Years Old"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:onClick="discardListener"
+                        android:id="@+id/line_btn_later"
+                        android:background="@drawable/rounded_button_corner_yellow"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_marginRight="4sp"
+                        android:layout_height="match_parent">
 
             <TextView
                 android:onClick="discardListener"
                 android:id="@+id/btn_later"
-                android:textColor="@color/textColorButtonOutline"
+                android:textColor="#24253d"
                 android:textSize="14sp"
                 style="@style/RobotoMedium"
                 android:text="Discard"
@@ -413,14 +561,14 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:onClick="saveListener"
-            android:id="@+id/line_add_trip_item"
-            android:background="@drawable/rounded_button_yellow"
-            android:layout_marginLeft="4dp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:onClick="saveListener"
+                        android:id="@+id/line_add_trip_item"
+                        android:background="@drawable/rounded_button_yellow"
+                        android:layout_marginLeft="4dp"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent">
 
             <TextView
                 android:onClick="saveListener"
@@ -434,6 +582,12 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
-    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
 
 </RelativeLayout>

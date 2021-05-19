@@ -2,6 +2,7 @@ package com.opsigo.travelaja.utility
 
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.opsigo.travelaja.module.cart.model.CartModel
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataMultiTripOrder
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.DestinationAccomodationModel
 import opsigo.com.domainlayer.model.HolidayModel
@@ -16,6 +17,8 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    var ALREADY_SEARCH_FLIGHT = false
+    var multitrip           = false
     val IS_PERSONAL_TRIP    = "isPersonalTrip"
     val ID_PERSONAL_TRIP    = "personal trip"
     val RESULT_AREA_HOTEL   = "area hotel"
@@ -30,9 +33,9 @@ object Constants {
     val IsLogin             = "login"
     val SHOWCASE_ID         = ""
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
-    var DATA_SEAT_AIRLINE = ArrayList<SeatAirlineModel>()
-    var DATA_FLIGHT_MULTI_CITY = ArrayList<OrderAccomodationModel>()
-    var DATA_SSR          = ArrayList<SsrModel>()
+    var DATA_SEAT_AIRLINE   = ArrayList<SeatAirlineModel>()
+    var DATA_FLIGHT_MULTI_CITY = DataMultiTripOrder()
+    var DATA_SSR            = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
     val TYPE_PASSANGGER_ADULT    = "1"
@@ -108,6 +111,8 @@ object Constants {
     val ONCLICK_AREA_HOTEL       = 9068
     val REQUEST_CODE_HOTEL_AREA  = 9067
     val REQUEST_CODE_HOTEL_FILTER = 9066
+    val SELECT_FLIGHT            = 9065
+    val REQUEST_CODE_SELECT_FLIGHT = 9064
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
     var DATA_DETAIL_FLIGHT       = ""
@@ -159,6 +164,7 @@ object Constants {
 
     val OPTION_TRAIN_REJECT      = 59
     var DATA_FLIGHT_ARIVAL       = ArrayList<AccomodationResultModel>()
+    var DATA_RESULT_FLIGHT_MULTI_CITY    = ArrayList<AccomodationResultModel>()
     val OPTION_HOTEL_REJECT      = 76
     var isBisnisTrip             = true
 

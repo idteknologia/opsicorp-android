@@ -8,23 +8,8 @@ import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.Ba
 @Generated("com.robohorse.robopojogenerator")
 data class PassangersFlightRequest(
 
-		@field:SerializedName("IdentityType")
-	var identityType: String? = null,
-
-		@field:SerializedName("OtherPhone")
-	var otherPhone: Any? = null,
-
-		@field:SerializedName("Email")
-	var email: String? = null,
-
 		@field:SerializedName("RetSsr")
 	var retSsr: ArrayList<BagageFlightRequest> = ArrayList(),
-
-		@field:SerializedName("FirstName")
-	var firstName: String? = null,
-
-		@field:SerializedName("IdNumber")
-	var idNumber: String? = null,
 
 		@field:SerializedName("EmployeeNik")
 	var employeeNik: String? = null,
@@ -34,9 +19,6 @@ data class PassangersFlightRequest(
 
 		@field:SerializedName("Index")
 	var index: Int? = null,
-
-		@field:SerializedName("MobilePhone")
-	var mobilePhone: String? = null,
 
 		@field:SerializedName("Seats")
 	var seats: ArrayList<SeatFlightRequest> = ArrayList(),
@@ -53,23 +35,42 @@ data class PassangersFlightRequest(
 		@field:SerializedName("Type")
 	var type: String? = null,
 
-		@field:SerializedName("HomePhone")
-	var homePhone: String? = null,
-
 		@field:SerializedName("PaxType")
 	var paxType: String? = null,
 
 		@field:SerializedName("Id")
 	var id: String? = null,
 
-		@field:SerializedName("LastName")
-	var lastName: String? = null,
-
 		@field:SerializedName("EmployeeId")
 	var employeeId: String? = null,
 
 		@field:SerializedName("CompanyCode")
 	var companyCode: String? = null,
+
+		@field:SerializedName("LastName")
+		var lastName: String? = null,
+
+		@field:SerializedName("HomePhone")
+		var homePhone: String? = null,
+
+
+		@field:SerializedName("MobilePhone")
+		var mobilePhone: String? = null,
+
+		@field:SerializedName("FirstName")
+		var firstName: String? = null,
+
+		@field:SerializedName("IdNumber")
+		var idNumber: String? = null,
+
+		@field:SerializedName("IdentityType")
+		var identityType: String? = null,
+
+		@field:SerializedName("OtherPhone")
+		var otherPhone: Any? = null,
+
+		@field:SerializedName("Email")
+		var email: String? = null,
 
 		@field:SerializedName("BirthDate")
 	var birthDate: String? = null,

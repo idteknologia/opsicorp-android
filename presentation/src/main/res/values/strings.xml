@@ -90,7 +90,7 @@
 
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="passengers">Passengers</string>
+    <string name="passengers">Select Passengers</string>
     <string name="select_payment">Select Payment</string>
     <string name="checkout">Checkout</string>
 
@@ -764,5 +764,11 @@ Please add your trip item for Approval."
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>
     <string name="txt_enter_trip_code">Enter Trip Code</string>
+    <string name="trip_plan_info2">You can add trip item later in <font color='#009688'><b>Manage Trip</b></font> menu, expired in 1 day and will be deleted.</string>
+    <string name="trip_plan_info1">You will get the best price for all trip item, match with your Travel Policy, Budget and Availability.</string>
 
+    <string name="warning_canot_be_empty">Field can not be empty</string>
+    <string name="cabin_class">Cabin Class</string>
+    <string name="passengers_class"><![CDATA[Passengers & Class]]></string>
+    <string name="text_desc_passenger">For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth (<font color='#009688'><b> dd-mm-yyyy</b></font> ).</string>
 </resources>

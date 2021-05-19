@@ -69,6 +69,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var wbsIsEmpty = true
     var partnerIsEmpty = true
     var notesIsEmpty = true
+    var attachmentIsEmpty = true
 
     override fun onMain() {
         initOnClick()
@@ -268,16 +269,16 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
         if (isWbs) {
             if (et_event.text.isNotEmpty()) {
-                gotoSelectBudget()
+                gotoSelectRoutes()
             } else {
                 Globals.showAlert(sorry, input_event, this)
             }
         } else {
-            gotoSelectBudget()
+            gotoSelectRoutes()
         }
     }
 
-    private fun gotoSelectBudget() {
+    private fun gotoSelectRoutes() {
         if (btn_next.isClickable.equals(true)) {
             val dataOrderCreatTrip = DataBisnisTripModel()
             dataOrderCreatTrip.namePusrpose = et_purpose.text.toString()
@@ -293,15 +294,19 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             dataOrderCreatTrip.startDate = m_startdate//tv_from.text.toString()
             dataOrderCreatTrip.endDate = m_endate//et_end_date.text.toString()
             dataOrderCreatTrip.notes = et_notes.text.toString()
-            dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
-
             dataOrderCreatTrip.tripcode = System.currentTimeMillis().toString()
+            dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
 
             dataOrderCreatTrip.idPurphose = idPurphose
             dataOrderCreatTrip.dateCreated = DateConverter().getDay("dd MMMM yyyy HH:mm")
 
             dataOrderCreatTrip.isCbt = nonCbt
             dataOrderCreatTrip.isInternational = typeTrip
+            if (typeTrip.equals(true)){
+                dataOrderCreatTrip.statusCreateTrip = "International Route"
+            } else {
+                dataOrderCreatTrip.statusCreateTrip = "Domestic Route"
+            }
 
 
             val bundle = Bundle()
@@ -309,6 +314,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             if (et_purpose.text == resources.getString(R.string.select_your_purpose)) {
                 Globals.showAlert("Please", "Select your purpose", this)
+            } else if (presenter.dataAttachment.size <= 0) {
+                Globals.showAlert("Please", "Attach your document", this)
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert("Please", "Waiting upload file", this)
             } else {
@@ -365,12 +372,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 onBackPressed()
             }
             btn_switch -> {
-                /*if (btn_switch.isChecked) {
-                    typeTrip = "international_route"
-                } else {
-                    typeTrip = "domestic_route"
-
-                }*/
                 typeTrip = btn_switch.isChecked
             }
             btn_switch2 -> {
