@@ -138,6 +138,8 @@
         <activity
             android:name=".module.approval.activity.DetailApprovalActivityOld"
             android:screenOrientation="portrait" />
+        <activity android:name=".module.create_trip.newtrip_travelaja.CreateTripTravelAjaActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
             android:screenOrientation="portrait" />

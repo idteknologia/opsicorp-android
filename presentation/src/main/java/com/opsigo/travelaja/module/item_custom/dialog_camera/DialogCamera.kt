@@ -93,11 +93,12 @@ class DialogCamera : BaseDialogFragment() {
                 if (resultCode == Activity.RESULT_OK) {
                     changeButtonUploaded()
                     val selectedImage = data!!.data
-                    if (selectedImage.path.contains("/raw/")){
-                        pictureImagePath = selectedImage.path.toString().replace("/raw/","")
-                    }
-                    else {
-                        pictureImagePath  = selectedImage.path
+                    if (selectedImage != null) {
+                        if (selectedImage.path!!.contains("/raw/")){
+                            pictureImagePath = selectedImage.path.toString().replace("/raw/","")
+                        } else {
+                            pictureImagePath  = selectedImage.path!!
+                        }
                     }
 
                     try {
