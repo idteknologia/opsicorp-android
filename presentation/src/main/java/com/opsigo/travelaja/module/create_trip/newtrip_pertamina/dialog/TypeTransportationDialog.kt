@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.databinding.TypeTransportationDialogBinding
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel
-import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModelFactory
+import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 
 class TypeTransportationDialog : DialogFragment(){
     private lateinit var binding : TypeTransportationDialogBinding
@@ -40,7 +40,7 @@ class TypeTransportationDialog : DialogFragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity(), ItineraryViewModelFactory(requireContext())).get(ItineraryViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity(), DefaultViewModelFactory(false,requireContext())).get(ItineraryViewModel::class.java)
 
     }
 

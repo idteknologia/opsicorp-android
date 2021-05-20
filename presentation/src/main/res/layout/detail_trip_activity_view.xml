@@ -588,7 +588,7 @@
                     <TextView
                         android:onClick="rejectListener"
                         android:id="@+id/btn_later"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textColorButtonOutline"
                         android:textSize="14sp"
                         style="@style/RobotoMedium"
                         android:text="Reject All"
@@ -609,7 +609,7 @@
                     <TextView
                         android:onClick="showApproveAllDialog"
                         android:id="@+id/btn_add_trip_item"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
                         android:text="Approve All"

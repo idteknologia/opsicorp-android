@@ -584,6 +584,8 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                     getSubmitTripPlant()
                 }
             }
+            getSubmitTripPlant()
+
         }
     }
 

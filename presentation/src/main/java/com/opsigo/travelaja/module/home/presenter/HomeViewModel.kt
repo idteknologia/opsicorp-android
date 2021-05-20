@@ -54,21 +54,3 @@ class HomeViewModel(val repository: HomeRepository) : ViewModel() {
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-class DefaultViewModelFactory(private val isFake: Boolean, private val context: Context) :
-        ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            val api = ServiceApi.createRequest(context)
-            val repository: HomeRepository = if (isFake) {
-                /*FakeHomeRepository(context)*/
-                HomeDefaultRepository(api)
-            } else {
-                HomeDefaultRepository(api)
-            }
-            return HomeViewModel(repository) as T
-        } else {
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-}

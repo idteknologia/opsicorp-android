@@ -1,12 +1,10 @@
 package com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel
 
-import android.content.Context
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.result.Result
-import opsigo.com.datalayer.network.ServiceApi
 
 class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
     val isInternational = ObservableBoolean(false)
@@ -67,17 +65,3 @@ class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
     }
 }
 
-
-@Suppress("UNCHECKED_CAST")
-class ItineraryViewModelFactory(private val context: Context) :
-        ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ItineraryViewModel::class.java)) {
-            val api = ServiceApi.createRequest(context)
-            val repository = CityDefaultRepository(api)
-            return ItineraryViewModel(repository) as T
-        } else {
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-}

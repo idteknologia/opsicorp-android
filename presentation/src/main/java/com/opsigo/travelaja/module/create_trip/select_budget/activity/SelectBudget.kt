@@ -121,7 +121,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
 
     private fun changeButtonNextOrangeColor() {
-        btn_next.changeTextColorButton(R.color.colorTextHint)
+        btn_next.changeTextColorButton(R.color.textButtonColor)
         btn_next.changeBackgroundDrawable(R.drawable.rounded_button_yellow)
     }
 

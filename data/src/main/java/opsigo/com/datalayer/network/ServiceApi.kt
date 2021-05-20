@@ -36,35 +36,26 @@ interface ServiceApi {
 
 
     companion object {
-        fun createRequest(context: Context): ServiceApi {
+        fun createRequest(token: String, baseUrl : String ): ServiceApi {
             val interceptor = HttpLoggingInterceptor()
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
             val httpClient = OkHttpClient.Builder().apply {
-                getDataPref(context, "token").let {
                     addInterceptor(Interceptor { chain ->
                         val builder = chain.request().newBuilder()
-                        builder.header("Authorization", it)
+                        builder.header("Authorization", token)
                         builder.header("Content-Type","application/json")
 
                         return@Interceptor chain.proceed(builder.build())
                     })
 
-                }
                 addInterceptor(interceptor)
             }
-
-            val baseUrl = getDataPref(context,"BASE_URL")
             val retrofit = Retrofit.Builder().apply {
                 baseUrl(baseUrl)
-                        .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
                 client(httpClient.build())
             }
             return retrofit.build().create(ServiceApi::class.java)
-        }
-
-        private fun getDataPref(context: Context, key: String): String {
-            val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-            return sharedPref.getString(key, "") ?: ""
         }
     }
 }

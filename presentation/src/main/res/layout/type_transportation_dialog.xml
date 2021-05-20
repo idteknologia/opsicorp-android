@@ -55,12 +55,14 @@
 
                     <RadioButton
                         android:id="@+id/radio_air"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/trip_type_air" />
 
                     <RadioButton
                         android:id="@+id/radio_non_air"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"

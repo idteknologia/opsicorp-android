@@ -16,8 +16,8 @@ import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.adapter.Itinera
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.dialog.TypeTransportationDialog
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itinerary
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel
-import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModelFactory
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
@@ -33,7 +33,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_route_pertamina)
-        viewModel = ViewModelProvider(this, ItineraryViewModelFactory(this)).get(ItineraryViewModel::class.java)
+        viewModel = ViewModelProvider(this, DefaultViewModelFactory(false,this)).get(ItineraryViewModel::class.java)
         binding.viewModel = viewModel
         val bundle = intent.getBundleExtra("data")
         val isInternational = bundle?.getBoolean(IS_INTERNATIONAL) ?: false

@@ -13,8 +13,8 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.databinding.ActivityCityBinding
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.adapter.CityAdapter
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel
-import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModelFactory
 import com.opsigo.travelaja.utility.Utils
+import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 
 class CityActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCityBinding
@@ -24,7 +24,7 @@ class CityActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_city)
-        viewModel  = ViewModelProvider(this, ItineraryViewModelFactory(this)).get(ItineraryViewModel::class.java)
+        viewModel  = ViewModelProvider(this, DefaultViewModelFactory(false,this)).get(ItineraryViewModel::class.java)
         setRecycler()
         val isInternational = intent.getBooleanExtra(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,false)
         viewModel.fetchCities(isInternational)

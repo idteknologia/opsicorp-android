@@ -17,11 +17,12 @@ import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.Globals
 import com.opsigo.travelaja.base.BaseFragment
 import com.opsigo.travelaja.module.approval.activity.DetailTripActivity
+import com.opsigo.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity
 import com.opsigo.travelaja.module.home.activity.HomeWebActivity
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
-import com.opsigo.travelaja.module.home.presenter.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
 import com.opsigo.travelaja.module.settlement.SettlementActivity
+import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_home.*
 import kotlinx.android.synthetic.main.home_fourth_content.*
