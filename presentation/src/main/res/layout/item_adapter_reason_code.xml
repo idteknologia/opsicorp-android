@@ -15,7 +15,7 @@
             android:textSize="14sp"
             android:textColor="#24253d"
             android:text="AC - Alternate carrier refused"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="19dp"
             android:layout_marginBottom="19dp"
             style="@style/RobotoRegular"/>
@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/ic_check"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_centerVertical="true"
             android:layout_width="20dp"
             android:layout_height="14dp"

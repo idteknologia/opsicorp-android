@@ -3,8 +3,8 @@
     android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
+    android:paddingLeft="@dimen/margin_default"
+    android:paddingRight="@dimen/margin_default"
     android:layout_height="40dp">
 
     <CheckBox

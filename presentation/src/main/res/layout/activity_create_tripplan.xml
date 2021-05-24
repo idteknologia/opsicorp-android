@@ -63,8 +63,8 @@
 
 
                 <LinearLayout
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="30dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -247,8 +247,8 @@
                     android:layout_height="wrap_content" />
 
                 <RelativeLayout
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -493,8 +493,8 @@
 
                 <RelativeLayout
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -600,8 +600,8 @@
 
 
                 <LinearLayout
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:weightSum="1"
                     android:orientation="horizontal"
@@ -747,8 +747,8 @@
 
                 <RelativeLayout
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -817,18 +817,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="20dp"
                     android:background="#b2bbc6">
 
                 </LinearLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     style="@style/RobotoBold"
                     android:textSize="12sp"
                     android:textColor="#666666"
@@ -863,19 +863,18 @@
 
                 <LinearLayout
                     android:onClick="openCameraView"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:id="@+id/layAddAttachment"
                     android:background="@drawable/rounded_attachment"
-                    android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:orientation="horizontal"
                     android:layout_width="162dp"
                     android:layout_height="33dp"
-                    android:layout_marginStart="30dp">
+                    android:layout_marginStart="@dimen/margin_default">
 
                     <TextView
                         android:onClick="openCameraView"
@@ -960,8 +959,8 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp">
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default">
 
                 </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 

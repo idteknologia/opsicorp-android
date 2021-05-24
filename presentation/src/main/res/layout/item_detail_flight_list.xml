@@ -14,8 +14,8 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginTop="15sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -146,8 +146,8 @@
 
     <include
         android:layout_marginBottom="8dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginTop="10dp"
         layout="@layout/layout_card_detail_flight"
         android:layout_height="wrap_content"

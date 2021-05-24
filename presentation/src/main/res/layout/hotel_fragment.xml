@@ -14,7 +14,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_default"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#00776a"
+                android:visibility="gone"/>
+
             <LinearLayout
                 android:visibility="gone"
                 android:id="@+id/line_nearby"
@@ -109,14 +118,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#00776a"></LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/line_city"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -186,8 +188,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -320,8 +320,6 @@
                 android:id="@+id/lay_passanger"
                 android:visibility="visible"
                 android:layout_below="@+id/line_depart"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -388,8 +386,6 @@
             </LinearLayout>
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="43.5dp"
                 app:text="@string/search_hotel"
                 android:layout_marginBottom="33dp"

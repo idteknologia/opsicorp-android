@@ -17,7 +17,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCartFlight"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginTop="13dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

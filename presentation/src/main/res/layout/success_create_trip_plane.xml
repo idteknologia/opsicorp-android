@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:orientation="horizontal"
             android:layout_marginLeft="20dp">
 
@@ -64,8 +65,8 @@
             <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:id="@+id/ticketView"
                 app:ticketCornerType="rounded"
                 app:ticketOrientation="horizontal"
@@ -392,21 +393,21 @@
 
         <TextView
             style="@style/RobotoBold"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#24253d"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_default"
             android:text="Trip Plan Info"
-            android:layout_marginStart="20dp" />
+            android:textColor="#24253d"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="34dp">
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -427,8 +428,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="34dp">
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -451,8 +452,8 @@
             android:visibility="gone"
             android:id="@+id/button_except_pertamina"
             android:layout_marginBottom="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_default"
+            android:paddingRight="@dimen/margin_default"
             android:layout_marginTop="160dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -503,8 +504,8 @@
             android:visibility="visible"
             android:id="@+id/button_pertamina"
             android:layout_marginBottom="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_default"
+            android:paddingRight="@dimen/margin_default"
             android:layout_marginTop="160dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -512,7 +513,6 @@
             <RelativeLayout
                 android:id="@+id/line_submit"
                 android:background="@drawable/rounded_button_yellow"
-                android:layout_marginLeft="4dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">

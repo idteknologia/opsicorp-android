@@ -23,16 +23,15 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="20dp"
-                    android:src="@drawable/ic_back_dark_blue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:src="@drawable/ic_back"
+                    android:scaleType="center"
+                    android:layout_width="@dimen/size_image_back"
+                    android:layout_height="@dimen/size_image_back" />
 
                 <TextView
                     style="@style/RobotoRegular"
                     android:layout_marginTop="30dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24sp"
@@ -52,8 +51,8 @@
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:fontFamily="sans-serif-medium"
                         android:textStyle="normal"
                         android:textColor="#24253d"
@@ -64,8 +63,8 @@
                         android:id="@+id/tv_amount"
                         style="@style/RobotoMedium"
                         android:layout_marginTop="6dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -98,8 +97,8 @@
 
                         <LinearLayout
                             android:gravity="center"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="@dimen/margin_default"
+                            android:layout_marginLeft="@dimen/margin_default"
                             android:orientation="vertical"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -277,7 +276,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="33dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -323,7 +323,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="9dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -369,7 +370,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="9dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -415,7 +417,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="9dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -461,7 +464,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="9dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -507,7 +511,8 @@
 
                     <LinearLayout
                         android:layout_marginTop="9dp"
-                        android:layout_marginLeft="33dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -626,8 +631,8 @@
 
             <LinearLayout
                 android:layout_marginBottom="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

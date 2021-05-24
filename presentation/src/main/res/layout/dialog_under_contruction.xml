@@ -41,9 +41,9 @@
             android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
             style="@style/ButtonStyle"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:text="Close" />
     </LinearLayout>
 </RelativeLayout>

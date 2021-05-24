@@ -27,37 +27,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingRight="10dp"
-                    android:paddingBottom="5dp">
 
-                    <ImageView
-                        android:id="@+id/ic_back"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_back" />
+                <ImageView
+                    android:id="@+id/ic_back"
+                    android:layout_width="@dimen/size_image_back"
+                    android:layout_height="@dimen/size_image_back"
+                    android:layout_gravity="center"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_back" />
 
                     <TextView
                         android:id="@+id/label_create_tripplan"
                         style="@style/RobotoBold"
-                        android:layout_width="wrap_content"
+                        android:gravity="end"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:focusable="true"
@@ -65,15 +55,14 @@
                         android:textColor="#91929e"
                         android:textSize="12sp" />
 
-                </RelativeLayout>
             </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/line_domestic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="35dp">
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -146,8 +135,8 @@
                 android:layout_height="@dimen/buttonHeight"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:background="@drawable/rounded_button_yellow"
                 android:gravity="center"
                 android:orientation="vertical">

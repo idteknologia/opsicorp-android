@@ -13,8 +13,8 @@
         android:elevation="3dp"
         android:background="@drawable/card_background_corner_orange"
         android:layout_marginTop="9dp"
-        android:layout_marginRight="22dp"
-        android:layout_marginLeft="22dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="69dp">
 
@@ -106,8 +106,8 @@
 
     <LinearLayout
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
         android:elevation="5dp"
         android:background="@drawable/card_background"
         android:orientation="vertical"

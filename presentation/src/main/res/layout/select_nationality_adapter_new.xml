@@ -24,8 +24,8 @@
 
             <TextView
                 android:singleLine="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:paddingTop="17dp"
@@ -53,15 +53,15 @@
             style="@style/RobotoBold"
             android:gravity="center_horizontal"
             android:text="+1264"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
 
     <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:background="@color/gray_line"
         android:layout_width="match_parent"
         android:layout_height="1dp" />

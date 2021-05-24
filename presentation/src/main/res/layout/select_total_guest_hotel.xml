@@ -107,8 +107,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
+                    android:paddingLeft="@dimen/margin_default"
+                    android:paddingRight="@dimen/margin_default"
                     android:paddingTop="14dp"
                     android:paddingBottom="14dp"
                     android:layout_marginTop="34dp"
@@ -133,8 +133,8 @@
                     app:text="Apply"
                     android:layout_width="match_parent"
                     android:id="@+id/btn_next"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>

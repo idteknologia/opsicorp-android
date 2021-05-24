@@ -19,8 +19,8 @@
 
     <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginBottom="30dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/btn_next"

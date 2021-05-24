@@ -1,197 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:padding="5dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
 
     <LinearLayout
-        android:layout_marginTop="19dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:orientation="horizontal">
+
         <TextView
-            android:text="@string/sort_by"
-            android:textSize="15sp"
-            android:layout_marginLeft="19dp"
-            android:layout_marginBottom="13dp"
-            android:textStyle="bold"
-            android:textColor="@color/green_price"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginBottom="13dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content" />
+            android:text="@string/sort_by"
+            android:textColor="@color/green_price"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_close"
-            android:text="@string/close"
-            android:textSize="15sp"
-            android:paddingRight="19dp"
-            android:paddingLeft="19dp"
-            android:paddingBottom="13dp"
-            android:textStyle="bold"
-            android:textColor="#c0c4ca"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:paddingLeft="19dp"
+            android:paddingRight="@dimen/margin_default"
+            android:paddingBottom="13dp"
+            android:text="@string/close"
+            android:textColor="#c0c4ca"
+            android:textSize="15sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:background="#e0e0e1"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/lowestPrice"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_weight="1"
-            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:drawablePadding="10dp"
+            android:gravity="center_vertical"
             android:text="@string/lowest_price"
             android:textColor="#24253d"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/imgLowestPrice"
-            android:src="@drawable/ic_check_orange"
-            android:layout_marginRight="22dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/margin_default"
+            android:src="@drawable/ic_check_orange" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:background="#e0e0e1"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/earliestDeparture"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_weight="1"
-            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:drawablePadding="10dp"
+            android:gravity="center_vertical"
             android:text="@string/earliest_departure"
             android:textColor="#24253d"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/imgEarliestDeparture"
-            android:visibility="gone"
-            android:src="@drawable/ic_check_orange"
-            android:layout_marginRight="22dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/margin_default"
+            android:src="@drawable/ic_check_orange"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="#e0e0e1"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/latestDeparture"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_weight="1"
-            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:drawablePadding="10dp"
+            android:gravity="center_vertical"
             android:text="@string/latest_departure"
             android:textColor="#24253d"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/imgLatestDeparture"
-            android:visibility="gone"
-            android:src="@drawable/ic_check_orange"
-            android:layout_marginRight="22dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/margin_default"
+            android:src="@drawable/ic_check_orange"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:background="#e0e0e1"></LinearLayout>
 
     <LinearLayout
         android:id="@+id/shortestDuration"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_weight="1"
-            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:drawablePadding="10dp"
+            android:gravity="center_vertical"
             android:text="@string/shortest_duration"
             android:textColor="#24253d"
-            android:textSize="17sp"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textSize="17sp" />
 
         <ImageView
             android:id="@+id/imgShortestDuration"
-            android:visibility="gone"
-            android:src="@drawable/ic_check_orange"
-            android:layout_marginRight="22dp"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/margin_default"
+            android:src="@drawable/ic_check_orange"
+            android:visibility="gone" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginBottom="24dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="24dp"
         android:background="#e0e0e1"></LinearLayout>
 
 

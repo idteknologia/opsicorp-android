@@ -31,8 +31,8 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             style="@style/TextButtonStyle"
             android:text="Create Reimburstment"/>
         <TextView
