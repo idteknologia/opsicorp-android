@@ -7,7 +7,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_marginLeft="28dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="4dp"
         android:layout_width="250dp"
         android:layout_height="120dp"

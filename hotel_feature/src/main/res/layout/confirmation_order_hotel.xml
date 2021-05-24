@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="#F7F7F7"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -13,17 +14,16 @@
             android:layout_height="match_parent">
             <RelativeLayout
                 android:background="@android:color/transparent"
-                android:layout_marginTop="21dp"
                 android:id="@+id/line_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/ic_back"
-                    android:layout_marginLeft="20dp"
                     android:src="@drawable/ic_back"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp">
+                    android:layout_width="@dimen/size_image_back"
+                    android:layout_height="@dimen/size_image_back"
+                    android:scaleType="center">
                 </ImageView>
 
                 <LinearLayout
@@ -31,6 +31,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
                     android:layout_marginRight="35dp">
                     <TextView
                         android:layout_width="wrap_content"
@@ -59,8 +60,8 @@
                 android:layout_below="@+id/line_header"
                 android:layout_marginBottom="100dp"
                 android:id="@+id/line_body"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="13dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -462,7 +463,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
@@ -525,6 +526,7 @@
         android:id="@+id/line_prize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:visibility="gone"
         layout="@layout/detail_prize_bottom_hotel"></include>
 
 </RelativeLayout>
