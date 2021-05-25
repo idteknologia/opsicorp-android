@@ -185,7 +185,7 @@
                         android:layout_gravity="right"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/chevron_down"></ImageView>
+                        android:src="@drawable/ic_chevron_down"/>
 
                 </RelativeLayout>
             </LinearLayout>

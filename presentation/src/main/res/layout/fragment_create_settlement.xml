@@ -59,6 +59,7 @@
         <EditText
             android:id="@+id/etBank"
             style="@style/TextInputLayout_Input"
+            app:tint="@color/tintTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_chevron_down"

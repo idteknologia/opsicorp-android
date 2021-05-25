@@ -132,6 +132,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/tintTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

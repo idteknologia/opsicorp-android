@@ -137,7 +137,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
                 SELECT_BUDGET -> {
                     if (resultCode==Activity.RESULT_OK){
                         budgetIsEmpty = false
-                        img_budget.setImageDrawable(resources.getDrawable(R.drawable.chevron_down))
+                        img_budget.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
                         checkEmpetyField()
                         tv_budget.text = data?.getStringExtra("nameCountry")
                         idBudget       = data?.getStringExtra("idCountry").toString()
@@ -150,7 +150,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
                         costCenterIsEmpty = false
                         val amount = data?.getStringExtra("nameCountry")
                         idCostCenter = data?.getStringExtra("idCountry").toString()
-                        img_cost_center.setImageDrawable(resources.getDrawable(R.drawable.chevron_down))
+                        img_cost_center.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
                         checkEmpetyField()
                         tv_cost_center.text = amount.toString()
                         tv_cost_avaibility.text = "IDR ${amount.toString()}"

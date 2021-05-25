@@ -444,7 +444,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="10sp"
-                                android:textColor="#f19c00"
+                                android:textColor="@color/tintTextView"
                                 android:gravity="end"
                                 android:text="Detail"
                                 style="@style/RobotoBold"/>

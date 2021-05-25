@@ -31,7 +31,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    minSdkVersion = 16
+    minSdkVersion = 21
 
     constrainLayoutVersion = '2.0.4'
     multidexVersion = '2.0.0'
