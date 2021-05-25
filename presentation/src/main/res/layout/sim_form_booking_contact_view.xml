@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="@dimen/margin_default">
 
                 <ImageView
                     android:layout_marginTop="3dp"
@@ -59,8 +59,8 @@
 
             <LinearLayout
                 android:layout_marginTop="47dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:orientation="vertical"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"
@@ -486,8 +486,6 @@
                 <LinearLayout
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="30dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
                     android:layout_marginTop="160dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -504,7 +502,7 @@
                         <TextView
                             android:onClick="discardListener"
                             android:id="@+id/btn_later"
-                            android:textColor="#24253d"
+                            android:textColor="@color/textColorButtonOutline"
                             android:textSize="14sp"
                             style="@style/RobotoMedium"
                             android:text="Discard"
@@ -525,7 +523,7 @@
                         <TextView
                             android:onClick="saveListener"
                             android:id="@+id/btn_add_trip_item"
-                            android:textColor="#24253d"
+                            android:textColor="@color/textButtonColor"
                             android:textSize="16sp"
                             style="@style/RobotoMedium"
                             android:text="Save"

@@ -34,8 +34,8 @@
                 android:layout_height="wrap_content">
                 <LinearLayout
                     android:id="@+id/line_depart"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:weightSum="1"
                     android:orientation="horizontal"
@@ -105,8 +105,8 @@
 
                 <LinearLayout
                     android:layout_below="@+id/line_depart"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:weightSum="1"
                     android:orientation="horizontal"
@@ -187,8 +187,8 @@
 
 
             <LinearLayout
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -311,8 +311,8 @@
             <LinearLayout
                 android:id="@+id/lay_parent_passager"
                 android:layout_below="@+id/line_depart"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -380,8 +380,8 @@
 
             <LinearLayout
                 android:layout_below="@+id/line_depart"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -452,8 +452,8 @@
 
             <LinearLayout
                 android:layout_below="@+id/line_depart"
-                android:layout_marginRight="25dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
                 android:weightSum="1"
                 android:orientation="horizontal"
@@ -523,8 +523,8 @@
             </LinearLayout>
 
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginBottom="70dp"
                 android:layout_marginTop="33.5dp"
                 android:layout_width="match_parent"

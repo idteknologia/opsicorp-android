@@ -19,7 +19,8 @@
             android:textColor="#24253d"
             style="@style/RobotoRegular"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:text="Trip plan status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -32,7 +33,8 @@
             android:textColor="#91929e"
             style="@style/RobotoRegular"
             android:layout_marginTop="7dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:text="Click list to see your trip detail"
             android:layout_width="match_parent"
             android:layout_height="32dp"
@@ -41,8 +43,8 @@
         
         <RelativeLayout
             android:id="@+id/line_search"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:background="@drawable/rounded_search_edittext"
             android:layout_marginTop="35dp"
             android:layout_width="match_parent"

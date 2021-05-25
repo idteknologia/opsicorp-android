@@ -6,8 +6,8 @@
 
 
     <RelativeLayout
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
+        android:paddingRight="@dimen/margin_default"
+        android:paddingLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="37dp">
         <TextView
@@ -25,7 +25,7 @@
         android:layout_marginTop="10dp"
         android:id="@+id/rv_detail_flight"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"/>
 
 
     <LinearLayout
@@ -33,8 +33,8 @@
         android:layout_marginTop="15sp"
         android:visibility="visible"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -89,8 +89,8 @@
         android:layout_marginTop="15sp"
         android:visibility="visible"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
@@ -119,8 +119,8 @@
         android:id="@+id/line_information_person"
         android:layout_marginBottom="60dp"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView

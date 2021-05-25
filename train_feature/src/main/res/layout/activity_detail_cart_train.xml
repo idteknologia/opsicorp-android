@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_close_black"></ImageView>
@@ -61,9 +61,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_item_train"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginBottom="3dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -73,9 +73,9 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/line_reason_code"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginBottom="3dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="4dp"
@@ -169,8 +169,8 @@
                 android:background="@android:color/white"
                 android:paddingTop="30dp"
                 android:orientation="vertical"
-                android:paddingRight="20dp"
-                android:paddingLeft="23dp">
+                android:paddingRight="@dimen/margin_default"
+                android:paddingLeft="@dimen/margin_default">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -290,8 +290,8 @@
             </LinearLayout>
 
             <RelativeLayout
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingRight="@dimen/margin_default"
                 android:paddingBottom="13dp"
                 android:paddingTop="13dp"
                 android:background="#f5f5f5"

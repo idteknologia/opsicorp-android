@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.tabs.TabLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         app:tabIndicatorColor="@color/colorPrimary"
         app:tabGravity="center"
         android:id="@+id/tablayout"

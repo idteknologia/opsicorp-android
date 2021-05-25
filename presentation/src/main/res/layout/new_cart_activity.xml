@@ -73,8 +73,8 @@
                 android:id="@+id/button_switch"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
+                android:paddingRight="@dimen/margin_default"
+                android:paddingLeft="@dimen/margin_default"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="37dp">
@@ -185,8 +185,8 @@
 
         <RelativeLayout
             android:background="@android:color/white"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:paddingRight="@dimen/margin_default"
+            android:paddingLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="90dp">
             <LinearLayout

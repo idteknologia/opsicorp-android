@@ -19,7 +19,7 @@
             <TextView
                 style="@style/RobotoBold"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
@@ -34,9 +34,9 @@
                     android:paddingTop="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="19dp"
+                    android:paddingLeft="@dimen/margin_default"
                     android:orientation="vertical"
-                    android:paddingRight="19dp"
+                    android:paddingRight="@dimen/margin_default"
                     android:paddingBottom="20dp"
                     android:background="@android:color/white">
 

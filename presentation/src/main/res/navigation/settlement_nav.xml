@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/settlement_nav"
+    app:startDestination="@id/createSettlement">
+    <fragment
+        android:id="@+id/tripFragment"
+        android:name="com.opsigo.travelaja.module.settlement.view.TripFragment"
+        android:label="fragment_one"
+        tools:layout="@layout/page_list_fragment" >
+        <argument
+            android:name="status"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="selectedCode"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/twoFragment"
+        android:name="com.opsigo.travelaja.module.settlement.TwoFragment"
+        android:label="fragment_two"
+        tools:layout="@layout/fragment_two" />
+    <fragment
+        android:id="@+id/createSettlement"
+        android:name="com.opsigo.travelaja.module.settlement.view.CreateSettlementFragment"
+        android:label="Create Settlement"
+        tools:layout="@layout/fragment_create_settlement"/>
+    <fragment android:id="@+id/settlements"
+        android:name="com.opsigo.travelaja.module.settlement.view.SettlementsFragment"
+        android:label="Settlement"/>
+
+</navigation>

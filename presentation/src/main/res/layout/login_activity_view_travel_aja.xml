@@ -19,7 +19,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="53dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="47dp"
                 android:src="@drawable/ic_travel_aja"/>
 
@@ -27,18 +27,18 @@
                 style="@style/ContentDescriptionTextStyle"
                 android:layout_width="340dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:text="@string/txt_content_login_travel_aja" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:orientation="vertical">
 
                 <TextView

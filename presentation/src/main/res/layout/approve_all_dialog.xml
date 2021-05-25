@@ -13,6 +13,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_alignParentBottom="true">
             <TextView
                 android:layout_gravity="right"
@@ -21,7 +23,6 @@
                 android:textSize="18sp"
                 style="@style/RobotoBold"
                 android:layout_marginBottom="20dp"
-                android:layout_marginRight="20dp"
                 android:textColor="@color/white"
                 android:gravity="end"
                 android:text="Cancel" />
@@ -34,14 +35,10 @@
                     android:paddingTop="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="19dp"
                     android:orientation="vertical"
-                    android:paddingRight="19dp"
                     android:background="@android:color/white">
 
                     <RelativeLayout
-                        android:paddingRight="23dp"
-                        android:paddingLeft="19dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
@@ -64,7 +61,6 @@
 
                     <TextView
                         android:layout_marginTop="5dp"
-                        android:paddingLeft="19dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="15sp"
@@ -80,8 +76,6 @@
                         android:layout_marginTop="17dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
                         android:orientation="vertical">
 
 
@@ -93,7 +87,6 @@
 
 
                         <RelativeLayout
-                            android:paddingLeft="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="52dp">
 
@@ -252,8 +245,6 @@
                         android:layout_marginBottom="17dp"
                         android:layout_marginTop="15dp"
                         android:background="@android:color/white"
-                        android:paddingRight="23dp"
-                        android:paddingLeft="19dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
@@ -297,8 +288,6 @@
                         android:layout_marginBottom="17dp"
                         android:layout_marginTop="15dp"
                         android:background="@android:color/white"
-                        android:paddingRight="23dp"
-                        android:paddingLeft="19dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
@@ -342,8 +331,6 @@
 
                     <LinearLayout
                         android:layout_marginBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">

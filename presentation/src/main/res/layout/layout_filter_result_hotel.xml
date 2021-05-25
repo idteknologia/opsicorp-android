@@ -11,8 +11,8 @@
         app:cardElevation="2dp"
         app:cardCornerRadius="5dp"
         android:background="@android:color/white"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                         android:layout_gravity="right"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/chevron_down"></ImageView>
+                        android:src="@drawable/ic_chevron_down"/>
 
                 </RelativeLayout>
             </LinearLayout>

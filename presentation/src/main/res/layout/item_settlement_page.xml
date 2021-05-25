@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/lato_regular"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:textColor="#91929e"
         android:textSize="12sp"
         android:textStyle="normal"
@@ -24,7 +24,7 @@
         android:id="@+id/tvType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
         app:layout_constraintTop_toBottomOf="@+id/tvIdReq"
         tools:text="@tools:sample/lorem"/>
 

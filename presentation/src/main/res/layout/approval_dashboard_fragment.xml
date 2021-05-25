@@ -18,32 +18,32 @@
             android:textColor="#24253d"
             style="@style/RobotoRegular"
             android:layout_marginTop="63dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:text="Hi, Approver"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
 
-
         <TextView
             android:id="@+id/tv_date"
-            android:textAlignment="textStart"
-            android:gravity="center"
-            android:textSize="17dp"
-            android:textColor="#91929e"
             style="@style/RobotoRegular"
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="20dp"
-            android:text="Today: 1 September 2019"
             android:layout_width="match_parent"
             android:layout_height="32dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:text="Today: 1 September 2019"
+            android:textAlignment="textStart"
+            android:textColor="#91929e"
+            android:textSize="17dp"
             tools:ignore="RtlCompat" />
-        
-        
+
         <RelativeLayout
             android:id="@+id/line_search"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:background="@drawable/rounded_search_edittext"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
@@ -105,9 +105,9 @@
                     android:background="@drawable/ic_waiting_bg"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="13dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="match_parent"
                     android:layout_height="144dp">
 
@@ -144,7 +144,7 @@
                         android:orientation="vertical"
                         android:gravity="center|start"
                         android:layout_marginRight="6.5dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="@dimen/margin_default"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="146dp">
@@ -176,7 +176,7 @@
                         android:background="@drawable/ic_approved_bg"
                         android:orientation="vertical"
                         android:gravity="center|end"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:layout_marginLeft="6.5dp"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
@@ -219,7 +219,7 @@
                         android:orientation="vertical"
                         android:gravity="center|end"
                         android:layout_marginRight="6.5dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="@dimen/margin_default"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
                         android:layout_height="146dp">
@@ -251,7 +251,7 @@
                         android:background="@drawable/ic_partially_approved_bg"
                         android:orientation="vertical"
                         android:gravity="center|start"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:layout_marginLeft="6.5dp"
                         android:layout_weight="0.5"
                         android:layout_width="0dp"
@@ -285,9 +285,9 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="43dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="match_parent"
                     android:layout_height="68dp">
 

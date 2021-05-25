@@ -20,7 +20,7 @@
                 style="@style/RobotoBold"
                 android:layout_gravity="right"
                 android:paddingBottom="15dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:layout_width="wrap_content"
@@ -44,8 +44,8 @@
                     android:background="@drawable/rounded_top_white_dialog">
 
                     <TextView
-                        android:paddingLeft="19dp"
-                        android:paddingRight="19dp"
+                        android:paddingLeft="@dimen/margin_default"
+                        android:paddingRight="@dimen/margin_default"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16sp"
@@ -54,8 +54,8 @@
                         android:text="Selected Participant (2)" />
 
                     <TextView
-                        android:paddingRight="19dp"
-                        android:paddingLeft="19dp"
+                        android:paddingRight="@dimen/margin_default"
+                        android:paddingLeft="@dimen/margin_default"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
@@ -78,8 +78,8 @@ other than that still waiting for The first Approver."
                         android:visibility="visible"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
+                        android:paddingLeft="@dimen/margin_default"
+                        android:paddingRight="@dimen/margin_default"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:orientation="horizontal">

@@ -14,8 +14,8 @@
         android:textStyle="bold"
         android:text="Departure Flight"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default" />
 
     <RelativeLayout
         android:layout_marginTop="15dp"

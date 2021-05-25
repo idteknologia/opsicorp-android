@@ -7,12 +7,10 @@
     <RelativeLayout
         android:layout_marginTop="10sp"
         android:background="@drawable/rounded_line_attch"
-        android:paddingLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:paddingRight="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="31dp">
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default">
 
         <TextView
             android:id="@+id/tx_name_document"

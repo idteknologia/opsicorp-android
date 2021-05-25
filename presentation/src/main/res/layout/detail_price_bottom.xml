@@ -33,7 +33,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:paddingLeft="20dp"
+                android:paddingLeft="@dimen/margin_default"
                 android:paddingBottom="14dp"
                 android:orientation="vertical"
                 android:layout_width="0dp"
@@ -98,7 +98,7 @@
                     android:id="@+id/btn_next"
                     app:text="Book"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
@@ -124,8 +124,8 @@
 
             <RelativeLayout
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -158,8 +158,8 @@
             <RelativeLayout
                 android:id="@+id/line_arrival"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -190,8 +190,8 @@
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -222,8 +222,8 @@
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -254,8 +254,8 @@
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -286,8 +286,8 @@
 
             <RelativeLayout
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginBottom="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
