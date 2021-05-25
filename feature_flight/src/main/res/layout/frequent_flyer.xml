@@ -26,7 +26,7 @@
             android:id="@+id/tvPassengerFf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="22dp"
             android:layout_marginBottom="20dp"
             android:text="Passenger"
@@ -38,8 +38,8 @@
         <RelativeLayout
             android:paddingTop="11dp"
             android:paddingBottom="11dp"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:paddingRight="@dimen/margin_default"
+            android:paddingLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -92,8 +92,8 @@
         <RelativeLayout
             android:paddingTop="11dp"
             android:paddingBottom="11dp"
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:paddingRight="@dimen/margin_default"
+            android:paddingLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -159,9 +159,9 @@
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginBottom="29dp"
                 android:id="@+id/btnApply"
                 app:text="Apply">

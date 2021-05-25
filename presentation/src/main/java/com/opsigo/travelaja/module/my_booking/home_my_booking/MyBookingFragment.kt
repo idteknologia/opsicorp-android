@@ -43,7 +43,6 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
 
 
     private fun initToolbar() {
-        toolbar.changeImageBtnBack(R.drawable.back)
         toolbar.setTitleBar("Purchase List")
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)

@@ -6,8 +6,8 @@
     android:orientation="vertical"
     android:layout_marginBottom="9dp"
     android:layout_marginTop="2dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
+    android:layout_marginRight="@dimen/margin_default"
+    android:layout_marginLeft="@dimen/margin_default"
     android:clipToPadding="false"
     android:background="@drawable/card_background_under_api_21">
     

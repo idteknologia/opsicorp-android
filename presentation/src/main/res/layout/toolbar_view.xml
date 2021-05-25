@@ -31,10 +31,10 @@
         <TextView
             android:singleLine="true"
             android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
             android:visibility="visible"
             android:id="@+id/logo_center"
             android:gravity="center"
+            android:layout_toRightOf="@+id/btn_back"
             android:layout_centerVertical="true"
             android:textSize="18sp"
             style="@style/RobotoRegular"

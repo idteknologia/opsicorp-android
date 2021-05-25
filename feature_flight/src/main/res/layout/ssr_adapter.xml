@@ -13,7 +13,7 @@
         android:textColor="#00776a"
         android:text="Departure Flight"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="@dimen/margin_default"/>
 
     <RelativeLayout
         android:layout_marginTop="15dp"
@@ -25,13 +25,13 @@
 
         <ImageView
             android:id="@+id/img_airline"
-            android:layout_marginLeft="26dp"
-            android:layout_marginRight="10dp"
-            android:layout_width="20dp"
-            android:layout_height="22dp"
-            android:src="@drawable/background_slider"
+            android:layout_width="10dp"
+            android:layout_height="16dp"
             android:layout_marginStart="26dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginLeft="26dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/background_slider" />
 
         <TextView
             android:id="@+id/tv_airline_name"
