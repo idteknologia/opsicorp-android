@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.opsigo.travelaja.R
-import com.opsigo.travelaja.base.SearchActivity/*
-import com.opsigo.travelaja.module.settlement.view.TripFragmentArgs*/
+import com.opsigo.travelaja.base.SearchActivity
+import com.opsigo.travelaja.module.settlement.view.TripFragmentArgs
 import com.opsigo.travelaja.module.settlement.viewmodel.TripViewModel
 import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 
-/*
+
 class TripSearchActivity : SearchActivity() {
     private lateinit var viewModel : TripViewModel
 
@@ -46,4 +46,4 @@ class TripSearchActivity : SearchActivity() {
     companion object {
         const val SELECTED = "SELECTED_CODE"
     }
-}*/
+}
