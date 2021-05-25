@@ -181,8 +181,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tripSummary.routes.forEachIndexed { index, routesItinerary ->
             val dataRoutes = RoutesItem()
             dataRoutes.transportation = routesItinerary.transportation
-            dataRoutes.departureDate = routesItinerary.departureDateView
-            dataRoutes.departureDateView = routesItinerary.departureDateView
+            dataRoutes.departureDate = DateConverter().getDate(routesItinerary.departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
+            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
             dataRoutes.origin = routesItinerary.origin
             dataRoutes.destination = routesItinerary.destination
             mDataRoutes.add(dataRoutes)
@@ -798,14 +798,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     private fun saveToDraft() {
-        showLoadingOpsicorp(true)
         GetDataTripPlane(getBaseUrl()).saveAsDraftTripPlant(Globals.getToken(), dataRequest(), object : CallbackSaveAsDraft {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
-                hideLoadingOpsicorp()
+
             }
 
             override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
                 showAllert("Sorry", message)
             }
 
@@ -832,7 +830,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tripSummary.routes.forEachIndexed { index, routesItinerary ->
             val dataRoutes = RoutesItem()
             dataRoutes.transportation = routesItinerary.transportation
-            dataRoutes.departureDate = routesItinerary.departureDateView
+            dataRoutes.departureDate = DateConverter().getDate(routesItinerary.departureDateView, "dd-MM-yyyy", "yyyy-MM-dd")
             dataRoutes.departureDateView = routesItinerary.departureDateView
             dataRoutes.origin = routesItinerary.origin
             dataRoutes.destination = routesItinerary.destination

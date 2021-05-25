@@ -583,9 +583,9 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 } else {
                     getSubmitTripPlant()
                 }
+            } else {
+                getSubmitTripPlant()
             }
-            getSubmitTripPlant()
-
         }
     }
 
@@ -736,7 +736,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 tvpnrid.text = vPnrId
                 tvpnrcode.text = PnrCode
 
-                val prog = (vProgress.toDouble()).toInt()
+                val prog = (vProgress!!.toDouble()).toInt()
                 progress_flight.progress = prog
 
 //                tv_status_test.text = vText

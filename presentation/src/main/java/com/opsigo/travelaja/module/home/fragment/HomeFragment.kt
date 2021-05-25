@@ -20,6 +20,7 @@ import com.opsigo.travelaja.module.approval.activity.DetailTripActivity
 import com.opsigo.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity
 import com.opsigo.travelaja.module.home.activity.HomeWebActivity
 import com.opsigo.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
+import com.opsigo.travelaja.module.create_trip.newtrip_travelaja.CreateTripTravelAjaActivity
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
 import com.opsigo.travelaja.module.settlement.SettlementActivity
 import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
@@ -263,6 +264,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         if (dataConfig.isShowCreateTripOnMobile) {
             if (Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/"){
                 gotoActivity(CreateTripPertaminaActivity::class.java)
+            } else if (Globals.getBaseUrl(requireContext()) == "https://basicqa.opsicorp.com/") {
+                gotoActivity(CreateTripTravelAjaActivity::class.java)
             } else {
                 gotoActivity(CreateTripActivity::class.java)
             }

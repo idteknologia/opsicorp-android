@@ -22,8 +22,8 @@ class SettlementActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 9 && resultCode== Activity.RESULT_OK) {
-            val selectedCode = data?.getStringExtra(TripSearchActivity.SELECTED)
-            viewModel.selectedCode.set(selectedCode)
+            /*val selectedCode = data?.getStringExtra(TripSearchActivity.SELECTED)
+            viewModel.selectedCode.set(selectedCode)*/
         }
     }
 }

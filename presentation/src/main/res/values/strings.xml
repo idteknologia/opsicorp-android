@@ -147,7 +147,7 @@
     <string name="select_accomodation">Select Accommodation</string>
     <string name="select_all">Select All</string>
     <string name="select_for_accomodation">Select For Accommodation</string>
-    <string name="select_your_purpose">Select your purpose</string>
+    <string name="select_your_purpose">Select your travel purpose</string>
     <string name="select_your_budget">Select your budget</string>
     <string name="select_budget">Select Budget</string>
     <string name="select_cost_center">Select Cost Center</string>
@@ -771,4 +771,6 @@ Please add your trip item for Approval."
     <string name="cabin_class">Cabin Class</string>
     <string name="passengers_class"><![CDATA[Passengers & Class]]></string>
     <string name="text_desc_passenger">For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth (<font color='#009688'><b> dd-mm-yyyy</b></font> ).</string>
+    <string name="create_business_trip">Create Business Trip</string>
+    <string name="please_fill_all_trip_information_below">Please fill all trip information below.</string>
 </resources>

@@ -11,7 +11,7 @@ import com.opsigo.travelaja.R
 import com.opsigo.travelaja.databinding.FragmentCreateSettlementBinding
 import com.opsigo.travelaja.viewmodel.DefaultViewModelFactory
 import com.opsigo.travelaja.module.home.presenter.HomeViewModel
-import com.opsigo.travelaja.module.settlement.TripSearchActivity
+
 import com.opsigo.travelaja.module.settlement.viewmodel.SettlementViewModel
 
 class CreateSettlementFragment : Fragment() {
@@ -30,11 +30,11 @@ class CreateSettlementFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity(), DefaultViewModelFactory(false, requireContext())).get(SettlementViewModel::class.java)
         binding.viewModel = viewModel
-        binding.etTripCode.setOnClickListener {
+        /*binding.etTripCode.setOnClickListener {
             val intent = Intent(requireContext(),TripSearchActivity::class.java)
             intent.putExtra(TripSearchActivity.SELECTED,viewModel.selectedCode.get())
             requireActivity().startActivityForResult(intent,9)
-        }
+        }*/
     }
 
 
