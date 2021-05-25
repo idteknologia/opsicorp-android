@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/tools"
-    android:layout_gravity="center"
-    android:background="@android:color/white">
+    xmlns:custom="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:id="@+id/parentView"
@@ -15,8 +10,7 @@
         android:layout_height="match_parent"
         android:paddingTop="10dp"
         android:fitsSystemWindows="true"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/white">
 
         <ScrollView
             android:id="@+id/layScroll"
@@ -231,7 +225,6 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
                         android:onClick="selectTravelPurpose"
-                        app:tint="@color/tintTextView"
                         android:src="@drawable/ic_chevron_down" />
 
                 </RelativeLayout>
@@ -420,7 +413,6 @@
                         android:layout_marginEnd="5dp"
                         android:layout_marginRight="5dp"
                         android:onClick="selectActivityType"
-                        app:tint="@color/tintTextView"
                         android:src="@drawable/ic_chevron_down" />
 
                 </RelativeLayout>
