@@ -7,6 +7,9 @@ import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.R
 import android.content.Context
 import android.widget.TextView
@@ -17,11 +20,9 @@ import com.opsigo.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import android.graphics.drawable.BitmapDrawable
 import com.opsigo.travelaja.base.InitApplications
-import com.opsicorp.sliderdatepicker.utils.Constant
 import opsigo.com.domainlayer.model.signin.CountryModel
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.callback.CallbackReasonCode
+import kotlinx.android.synthetic.main.flight_fragment.*
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_to
@@ -58,7 +59,8 @@ class FlightFragmentNew : BaseFragment(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
         ButtonSwicth.OnclickButtonSwitch,
         NewCalendarViewOpsicorp.CallbackResult,
-        SelectAgePassanger.CallbackSelectPasanger{
+        TotalPassengerFlight.CallbackSelectPasanger,
+        CabisClassDialog.CallbackSelectCabin{
 
     override fun getLayout(): Int {
         return R.layout.flight_fragment_2
@@ -321,14 +323,21 @@ class FlightFragmentNew : BaseFragment(),
                 openCalendar()
             }
             lay_parent_passager -> {
-                val fm = requireActivity().getSupportFragmentManager()
+                /*val fm = requireActivity().getSupportFragmentManager()
                 val selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
                 selectPassager.show(fm, "yesNoAlert")
                 selectPassager.callback = this
-                selectPassager.setLimitSelect(4,3,2)
+                selectPassager.setLimitSelect(4,3,2)*/
+                val totalPassangerFlight = TotalPassengerFlight()
+                totalPassangerFlight.setLimitSelect(5,2,3)
+                totalPassangerFlight.setCurrentSelect(totalAdult,totalInfant,totalChild)
+                totalPassangerFlight.create(requireContext(),this)
             }
             lay_air_class -> {
-                airlineClass()
+                /*airlineClass()*/
+                val cabinClass = CabisClassDialog()
+                cabinClass.setCurrentSelect(nameClassAirline)
+                cabinClass.create(requireContext(),this)
             }
             lay_air_pref -> {
                 airlinePref()
@@ -513,6 +522,10 @@ class FlightFragmentNew : BaseFragment(),
             Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Constants.ALREADY_SEARCH_FLIGHT = false
             Constants.multitrip             = false
+            Globals.DATA_LIST_FLIGHT = ""
+            Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
+            setLog("Test Reservasi",Serializer.serialize(dataOrder))
+
             gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
         }
         setLog("Test Reservasi",Serializer.serialize(Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)))
@@ -718,5 +731,10 @@ class FlightFragmentNew : BaseFragment(),
         totalAdult = mTotalAdult
         totalInfant = mTotalInfant
         totalChild = mTotalChild
+    }
+
+    override fun select(selectedClass: String) {
+        tv_airline_class_new.setText(selectedClass)
+        nameClassAirline = selectedClass
     }
 }

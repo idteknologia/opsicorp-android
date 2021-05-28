@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content">
 
                     <RadioButton
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"
@@ -264,7 +264,7 @@
 
 
                     <RadioButton
-                        android:buttonTint="@color/colorPrimary"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="14dp"

@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Travel aja</string>
 
     <string name="SENDER_ID">370202765925</string>
     <string name="notifications_admin_channel_name">Shirohige</string>
@@ -664,4 +663,12 @@ Please add your trip item for Approval."
     <string name="txt_updated_information_for">Updated information for Flight, Hotel and Train during Covid-19 pandemic.</string>
     <string name="txt_recommendations_guide_for_travel">Recommendations guide for travel destination</string>
     <string name="txt_all_business_trip_list_has_been_approved">All business trip list has been approved</string>
+    <string name="txt_domestic_route">Domestic Route</string>
+    <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
+    <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
+    <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
+    <string name="txt_try_again">Try Again</string>
+    <string name="txt_reimburstment">Reimbursement</string>
+    <string name="txt_enter_trip_code">Enter Trip Code</string>
+    <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>

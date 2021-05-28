@@ -111,7 +111,7 @@
                 android:gravity="center"
                 android:layout_height="45dp"
                 android:text="Batal"
-                android:textColor="@color/colorYellowButton_2"
+                android:textColor="@color/textColorButtonOutline"
                 style="@style/RobotoBold">
             </TextView>
 

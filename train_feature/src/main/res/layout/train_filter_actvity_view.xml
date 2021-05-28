@@ -41,7 +41,7 @@
                 style="@style/RobotoBold"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
@@ -59,7 +59,7 @@
                 style="@style/RobotoBold"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
@@ -85,7 +85,7 @@
                 <TextView
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
@@ -100,7 +100,7 @@
                     android:gravity="end"
                     android:layout_marginBottom="14dp"
                     android:layout_marginTop="14dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_alignParentRight="true"
                     android:text="50.000 - 500.000" />
 
@@ -124,7 +124,7 @@
                     android:text="IDR 50.000"
                     android:layout_below="@+id/rangebar"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginBottom="21dp"/>
 
                 <TextView
@@ -136,7 +136,7 @@
                     android:layout_below="@+id/rangebar"
                     android:text="IDR 300.000"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="20dp"/>
             </RelativeLayout>
 
@@ -153,7 +153,7 @@
                     style="@style/RobotoBold"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -165,12 +165,12 @@
                     style="@style/RobotoBold"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="24dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:textColor="#f19c00"
+                    android:textColor="@color/tintTextView"
                     android:lineSpacingExtra="6sp"
                     android:gravity="end"
                     android:text="SELECT ALL" />

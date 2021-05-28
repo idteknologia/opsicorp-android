@@ -17,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:orientation="horizontal"
             android:layout_marginLeft="20dp">
 
@@ -64,8 +65,8 @@
             <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:id="@+id/ticketView"
                 app:ticketCornerType="rounded"
                 app:ticketOrientation="horizontal"
@@ -90,6 +91,7 @@
                     android:layout_height="wrap_content">
 
                     <LinearLayout
+                        android:id="@+id/line_detail"
                         android:paddingLeft="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -115,11 +117,11 @@
                             android:textColor="#91929e"
                             android:gravity="center_horizontal"
                             android:text="Trip Code:"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="20dp"
                             style="@style/RobotoRegular"/>
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
@@ -170,7 +172,7 @@
                             android:id="@+id/tv_purpose"
                             style="@style/RobotoBold"
                             android:textColor="#009688"
-                            android:layout_marginTop="57dp"
+                            android:layout_marginTop="35dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
@@ -178,7 +180,7 @@
                             android:text="IBM Workshop " />
 
                         <LinearLayout
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
@@ -204,16 +206,16 @@
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_marginTop="7dp"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
-                            <ImageView
+                            <!--<ImageView
                                 android:layout_gravity="center"
                                 android:src="@drawable/ic_date_depart"
                                 android:layout_width="14dp"
-                                android:layout_height="10dp" />
+                                android:layout_height="10dp" />-->
 
                             <TextView
                                 android:id="@+id/tv_start_date"
@@ -230,8 +232,9 @@
 
                             <ImageView
                                 android:layout_marginLeft="15dp"
+                                android:layout_marginRight="15dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_date_return"
+                                android:src="@drawable/ic_arrow_one_way"
                                 android:layout_width="15dp"
                                 android:layout_height="11dp" />
 
@@ -252,13 +255,36 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="3dp"
+                        android:layout_height="105dp"
+                        android:layout_toRightOf="@+id/line_detail"
+                        android:background="#f5f5f5"/>
+
                     <ImageView
                         android:id="@+id/image_barcode"
                         android:layout_marginTop="20dp"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="22dp"></ImageView>
+                        android:layout_marginRight="22dp">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="32dp"
+                        android:text="Share QR"
+                        android:textColor="#939396"
+                        android:textSize="12sp"
+                        style="@style/RobotoBold"
+                        android:layout_below="@+id/image_barcode"
+                        android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
 
@@ -367,21 +393,21 @@
 
         <TextView
             style="@style/RobotoBold"
-            android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#24253d"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginLeft="@dimen/margin_default"
             android:text="Trip Plan Info"
-            android:layout_marginStart="20dp" />
+            android:textColor="#24253d"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="34dp">
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -394,7 +420,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#24253d"
-                android:text="You will get the best price for all trip item, match with your Travel Policy, Budget and Availability." />
+                android:text="@string/trip_plan_info1" />
         </LinearLayout>
 
         <LinearLayout
@@ -402,8 +428,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="34dp">
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -416,18 +442,18 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#24253d"
-                android:text="You can add trip item later in Manage Trip menu, expired in 1 day and will be deleted." />
+                android:text="@string/trip_plan_info2" />
         </LinearLayout>
 
     </LinearLayout>
 
 
         <LinearLayout
-            android:visibility="visible"
+            android:visibility="gone"
             android:id="@+id/button_except_pertamina"
             android:layout_marginBottom="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_default"
+            android:paddingRight="@dimen/margin_default"
             android:layout_marginTop="160dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -444,7 +470,7 @@
                 <TextView
                     android:onClick="laterListener"
                     android:id="@+id/btn_later"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textColorButtonOutline"
                     android:textSize="14sp"
                     style="@style/RobotoMedium"
                     android:text="Later"
@@ -465,7 +491,7 @@
                 <TextView
                     android:onClick="addTripPlaneListener"
                     android:id="@+id/btn_add_trip_item"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
                     android:text="Add Trip Item"
@@ -475,28 +501,25 @@
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/button_pertamina"
             android:layout_marginBottom="30dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_default"
+            android:paddingRight="@dimen/margin_default"
             android:layout_marginTop="160dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal">
             <RelativeLayout
-                android:onClick="addTripPlaneListener"
                 android:id="@+id/line_submit"
                 android:background="@drawable/rounded_button_yellow"
-                android:layout_marginLeft="4dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:onClick="addTripPlaneListener"
                     android:id="@+id/btn_submit"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
                     android:text="Submit"

@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 
 android {
     signingConfigs {
@@ -13,14 +15,15 @@ android {
             keyPassword 'opsicorp'
         }
     }
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.opsigo.travelaja"
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 14
         versionName "1.0.10"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         signingConfig signingConfigs.releases
     }
@@ -33,7 +36,24 @@ android {
         }
     }
 
-    packagingOptions {
+    flavorDimensions 'default'
+    productFlavors {
+        travelAja{
+            dimension 'default'
+            applicationId "com.mobile.travelaja"
+            versionCode 14
+            versionName "1.0.10"
+        }
+        opsicorp{
+            dimension 'default'
+            applicationId "com.opsigo.travelaja"
+            versionCode 14
+            versionName "1.0.10"
+        }
+    }
+
+
+        packagingOptions {
         exclude 'META-INF/rxjava.properties'
         exclude 'AndroidManifest.xml'
         exclude 'lib/arm64-v8a/libcardioDecider.so'
@@ -58,6 +78,9 @@ android {
         exclude 'lib/x86_64/libcardioRecognizer_tegra2.so'
         exclude 'lib/x86_64/libopencv_core.so'
         exclude 'lib/x86_64/libopencv_imgproc.so'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
     }
 
     lintOptions {
@@ -108,6 +131,7 @@ dependencies {
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
     testImplementation testDependencies.robolectric
+    testImplementation 'androidx.test:core:1.0.0'
     testImplementation 'org.json:json:20140107'
 
 
@@ -115,6 +139,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test:rules:1.1.1'
     androidTestImplementation testDependencies.testRule
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
 //    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
     debugImplementation 'androidx.test.ext:junit:1.1.1'
     implementation 'androidx.annotation:annotation:1.0.0'
@@ -167,8 +192,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$viewModel_version"
-
-
-
-
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
+    androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
 }

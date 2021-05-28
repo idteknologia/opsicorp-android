@@ -7,14 +7,14 @@
 
     <LinearLayout
         android:visibility="gone"
-        android:background="#2b9a8e"
+        android:background="@color/headerList"
         android:id="@+id/layToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
             android:id="@+id/tv_title"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
     <TextView
         android:id="@+id/tv_country"
         android:visibility="visible"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="17dp"
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp">
         <TextView

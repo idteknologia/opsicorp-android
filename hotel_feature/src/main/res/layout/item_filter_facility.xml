@@ -13,8 +13,8 @@
         <CheckBox
             android:layout_gravity="center"
             android:id="@+id/cb_facility"
-            android:layout_marginLeft="30dp"
-            android:buttonTint="@color/colorPrimary"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:buttonTint="@color/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         </CheckBox>

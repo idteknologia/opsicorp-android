@@ -85,7 +85,7 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
         lineButtons.forEachIndexed { index, lineView ->
             if (index==position){
                 lineView.background = (resources.getDrawable(lineSelected[position]))
-                textButtons.get(index).setTextColor(resources.getColor(R.color.green_price))
+                textButtons.get(index).setTextColor(resources.getColor(R.color.colorPrimary))
 
                 val face = Typeface.createFromAsset(context.getAssets(),
                         "font/Roboto_Black.ttf")

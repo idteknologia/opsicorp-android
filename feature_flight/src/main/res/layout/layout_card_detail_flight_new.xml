@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -240,7 +240,7 @@
             <ImageView
                 android:src="@drawable/ic_chevron_next_orange"
                 android:layout_width="9dp"
-                android:layout_height="15dp"/>
+                android:layout_height="15dp" />
         </LinearLayout>
     </RelativeLayout>
 

@@ -1,0 +1,9 @@
+package opsigo.com.domainlayer.model.create_trip_plane
+
+
+data class RoutesItinerary  (
+    var Transportation: Int = 1,
+    var DepartureDateView: String = "",
+    var Origin: String = "",
+    var Destination: String = ""
+)

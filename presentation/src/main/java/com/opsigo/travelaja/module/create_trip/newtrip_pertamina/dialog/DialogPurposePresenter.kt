@@ -43,6 +43,7 @@ class DialogPurposePresenter : KoinComponent {
             override fun onClick(views: Int, position: Int) {
                 when (views) {
                     -1 -> {
+                        adapter.notifyDataSetChanged()
                         Globals.delay(1000,object : Globals.DelayCallback{
                             override fun done() {
                                 if (filterActivated) {

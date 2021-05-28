@@ -13,8 +13,8 @@
     <RelativeLayout
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="@dimen/margin_default"
+        android:paddingRight="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white">
@@ -76,6 +76,7 @@
             android:layout_below="@+id/tv_available_room"
             android:layout_width="137dp"
             android:layout_height="37dp"
+            android:textColor="@color/textButtonColor"
             android:text="On Request"
             android:background="@drawable/rounded_button_yellow"
             android:gravity="center">

@@ -64,9 +64,9 @@
 
                     <TextView
                         android:layout_centerVertical="true"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         style="@style/RobotoMedium"
-                        android:textColor="#f19c00"
+                        android:textColor="@color/tintTextView"
                         android:text="@string/upcoming_trip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -305,7 +305,7 @@
                     android:id="@+id/tvFamilyTimeLabel"
                     style="@style/RobotoMedium"
                     android:text="@string/special_promo"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 

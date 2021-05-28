@@ -13,5 +13,11 @@ data class ApprovalAllRequest(
 	var employeeId: String = "",
 
 	@field:SerializedName("TripId")
-	var tripId: String = ""
+	var tripId: String = "",
+
+	@field:SerializedName("TripType")
+	var tripType: String = "",
+
+	@field:SerializedName("TripParticipantId")
+	var tripParticipantId: String = ""
 )

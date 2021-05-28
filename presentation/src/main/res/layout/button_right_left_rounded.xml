@@ -7,8 +7,8 @@
 
     <LinearLayout
         android:background="@color/transparent"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:orientation="horizontal">
@@ -24,7 +24,7 @@
             <TextView
                 style="@style/RobotoBlack"
                 android:id="@+id/title_btn_left"
-                android:textColor="#ffffff"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:text="Round Trip"
                 android:gravity="center"
@@ -42,7 +42,7 @@
             android:layout_marginStart="5dp">
             <TextView
                 style="@style/RobotoRegular"
-                android:textColor="#00776a"
+                android:textColor="@color/colorPrimary"
                 android:id="@+id/title_button_right"
                 android:textSize="15sp"
                 android:text="One Way"

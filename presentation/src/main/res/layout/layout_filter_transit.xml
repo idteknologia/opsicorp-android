@@ -10,8 +10,8 @@
         <RelativeLayout
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:layout_marginLeft="19dp"
-            android:layout_marginStart="19dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginStart="@dimen/margin_default"
             android:layout_width="wrap_content"
             android:layout_height="match_parent">
             <LinearLayout

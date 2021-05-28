@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Travel aja</string>
+    <string name="app_name">Opsicorp</string>
 
     <string name="map" translatable="false">AIzaSyB1KjdguRy_PjJH9EHrf9I1WUc0-EPVJ_c</string>
 
@@ -90,7 +90,7 @@
 
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="passengers">Passengers</string>
+    <string name="passengers">Select Passengers</string>
     <string name="select_payment">Select Payment</string>
     <string name="checkout">Checkout</string>
 
@@ -147,7 +147,7 @@
     <string name="select_accomodation">Select Accommodation</string>
     <string name="select_all">Select All</string>
     <string name="select_for_accomodation">Select For Accommodation</string>
-    <string name="select_your_purpose">Select your purpose</string>
+    <string name="select_your_purpose">Select your travel purpose</string>
     <string name="select_your_budget">Select your budget</string>
     <string name="select_budget">Select Budget</string>
     <string name="select_cost_center">Select Cost Center</string>
@@ -734,6 +734,7 @@ Please add your trip item for Approval."
     <string name="trip_number">Trip 1</string>
     <string name="remove">Remove</string>
     <string name="trip_type">NON-UDARA</string>
+    <string name="trip_type_air">UDARA</string>
     <string name="select_departure_date">Select departure date</string>
     <string name="origin_city_airport">Origin city/airport</string>
     <string name="destination_city_airport">Destination city/airport</string>
@@ -754,5 +755,22 @@ Please add your trip item for Approval."
     <string name="wbs_no">WBS No*</string>
     <string name="traveling_with_partner">Traveling With Partner?</string>
     <string name="fill_your_partner_name">Fill your partner name</string>
+    <string name="cash_advance">Cash Advance</string>
+    <string name="txt_domestic_route">Domestic Route</string>
+    <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
+    <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
+    <string name="information_docs">Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br />  <b>Maximum file size : 1 MB</b></string>
+    <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
+    <string name="txt_try_again">Try Again</string>
+    <string name="txt_reimburstment">Reimbursement</string>
+    <string name="txt_enter_trip_code">Enter Trip Code</string>
+    <string name="trip_plan_info2">You can add trip item later in <font color='#009688'><b>Manage Trip</b></font> menu, expired in 1 day and will be deleted.</string>
+    <string name="trip_plan_info1">You will get the best price for all trip item, match with your Travel Policy, Budget and Availability.</string>
+
     <string name="warning_canot_be_empty">Field can not be empty</string>
+    <string name="cabin_class">Cabin Class</string>
+    <string name="passengers_class"><![CDATA[Passengers & Class]]></string>
+    <string name="text_desc_passenger">For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth (<font color='#009688'><b> dd-mm-yyyy</b></font> ).</string>
+    <string name="create_business_trip">Create Business Trip</string>
+    <string name="please_fill_all_trip_information_below">Please fill all trip information below.</string>
 </resources>

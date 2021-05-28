@@ -32,7 +32,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:paddingLeft="20dp"
+                android:paddingLeft="@dimen/margin_default"
                 android:paddingBottom="14dp"
                 android:orientation="vertical"
                 android:layout_width="0dp"

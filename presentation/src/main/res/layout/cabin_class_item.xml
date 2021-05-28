@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="@dimen/margin_default"
+    android:layout_marginRight="@dimen/margin_default"
+    android:layout_height="50dp">
+
+    <RadioButton
+        android:buttonTint="@color/checkbox"
+        android:layout_marginRight="10dp"
+        android:id="@+id/radioButton"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/tvCabinClass"
+        android:layout_toEndOf="@+id/radioButton"
+        android:layout_centerVertical="true"
+        android:layout_alignBaseline="@+id/radioButton"
+        style="@style/RobotoBold"
+        android:text="Economy Class"
+        android:textSize="18sp"
+        android:textColor="#24253d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/radioButton" />
+
+
+</RelativeLayout>

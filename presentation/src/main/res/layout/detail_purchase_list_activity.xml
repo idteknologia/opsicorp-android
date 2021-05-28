@@ -40,8 +40,8 @@
                     <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:orientation="vertical"
                         android:id="@+id/ticketView"
                         app:ticketCornerType="rounded"
@@ -59,8 +59,8 @@
                     <LinearLayout
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="@dimen/margin_default"
+                        android:layout_marginLeft="@dimen/margin_default"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">

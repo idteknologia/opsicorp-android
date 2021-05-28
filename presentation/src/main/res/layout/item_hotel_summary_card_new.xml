@@ -22,7 +22,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_marginBottom="3dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_marginTop="13dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
-                            android:textColor="#f19c00"
+                            android:textColor="@color/tintTextView"
                             android:gravity="end"
                             android:text="Detail"
                             style="@style/RobotoBold"/>

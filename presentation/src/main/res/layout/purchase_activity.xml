@@ -31,8 +31,8 @@
                     android:layout_marginTop="39dp"
                     app:cardElevation="4dp"
                     app:cardCornerRadius="4dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -442,7 +442,7 @@
 
 
             <TextView
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:text="Product Details"
                 android:textColor="#24253d"
                 android:textSize="14dp"
@@ -456,7 +456,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="3dp"
                 app:cardBackgroundColor="@android:color/white"
@@ -499,7 +499,7 @@
 
             <TextView
                 android:layout_marginTop="26dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:text="Contact Golden Nusa"
                 android:textColor="#24253d"
                 android:textSize="14dp"
@@ -519,8 +519,8 @@
                 android:orientation="vertical"
                 android:background="@android:color/white">
                 <TextView
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:text="@string/dummy_purchase_contact"
                     android:textColor="#24253d"
                     android:textSize="14dp"
@@ -531,8 +531,8 @@
                 </TextView>
 
                 <RelativeLayout
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="19dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

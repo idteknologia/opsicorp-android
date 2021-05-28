@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:orientation="horizontal"
-                android:layout_marginLeft="20dp">
+                android:layout_marginLeft="@dimen/margin_default">
 
                 <ImageView
                     android:layout_marginTop="3dp"
@@ -48,7 +48,7 @@
                         android:text="Other"/>
 
                     <LinearLayout
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -96,8 +96,8 @@
 
             <LinearLayout
                 android:layout_marginTop="47dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:orientation="vertical"
                 android:background="@android:color/white"
                 android:layout_width="match_parent"

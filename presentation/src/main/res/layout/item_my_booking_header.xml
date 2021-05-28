@@ -9,7 +9,8 @@
     <TextView
         android:id="@+id/tv_date_my_booking"
         android:layout_marginTop="24dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         style="@style/RobotoMedium"
         android:textColor="#24253d"
         android:layout_width="wrap_content"

@@ -13,6 +13,7 @@ class CostCenterDataMapper {
             mData.idCost   = model.id
             mData.idBudget = model.budgetId
             mData.value    = model.amount
+            mData.code     = model.code
             data.add(mData)
         }
         return data

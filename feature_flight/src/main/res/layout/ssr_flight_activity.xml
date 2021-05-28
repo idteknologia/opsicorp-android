@@ -26,7 +26,7 @@
             android:id="@+id/tvPassengerSsr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="22dp"
             android:text="Passenger"
             android:textColor="#24253d"
@@ -146,8 +146,8 @@
                     android:id="@+id/tvTitleSsr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="@string/ssr_charge"
@@ -162,7 +162,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="42dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:gravity="end"
                     android:text="@string/total_price"
                     android:textColor="#24253d"
@@ -186,8 +186,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:background="#d8d8d8"></LinearLayout>
 
             <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout

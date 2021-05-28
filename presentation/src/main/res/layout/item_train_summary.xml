@@ -6,8 +6,8 @@
 
     <LinearLayout
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
         android:elevation="5dp"
         android:background="@drawable/card_background"
         android:orientation="vertical"

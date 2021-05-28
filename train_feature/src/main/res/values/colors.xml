@@ -1,143 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#009688</color>-->
     <color name="colorPrimary">#00776a</color>
     <color name="colorPrimaryDark">#00776A</color>
     <color name="colorAccent">#F19C00</color>
-    <color name="colorAccentPink">#D81B60</color>
-    <color name="colorRedDateCalendar">#99eb0011</color>
+<!--    <color name="colorAccentPink">#D81B60</color>-->
+<!--    <color name="colorRedDateCalendar">#99eb0011</color>-->
 
-    <color name="ucrop_color_toolbar">#009688</color>
-    <color name="ucrop_color_statusbar">#009688</color>
+<!--    <color name="ucrop_color_toolbar">#009688</color>-->
+<!--    <color name="ucrop_color_statusbar">#009688</color>-->
 
-    <color name="ucrop_color_widget_active">#009688</color>
-    <color name="ucrop_color_active_controls_color">#FFFFFF</color>
-    <color name="ucrop_color_widget_rotate_mid_line">#009688</color>
-    <color name="ucrop_color_widget_background">#009688</color>
+<!--    <color name="ucrop_color_widget_active">#009688</color>-->
+<!--    <color name="ucrop_color_active_controls_color">#FFFFFF</color>-->
+<!--    <color name="ucrop_color_widget_rotate_mid_line">#009688</color>-->
+<!--    <color name="ucrop_color_widget_background">#009688</color>-->
 
-    <color name="color_text_btn_guaranteed_select_room">#8894a2</color>
-    <color name="colorPrimaryCalendar">#1BA0E2</color>
+<!--    <color name="color_text_btn_guaranteed_select_room">#8894a2</color>-->
+<!--    <color name="colorPrimaryCalendar">#1BA0E2</color>-->
 
     <color name="white">#FFFFFF</color>
-    <color name="white_transparent">#ddffffff</color>
-    <color name="transparent">#00FFFFFF</color>
+<!--    <color name="white_transparent">#ddffffff</color>-->
+<!--    <color name="transparent">#00FFFFFF</color>-->
 
 
-    <color name="black">#000000</color>
-    <color name="personal_trip">#F1A00B </color>
+<!--    <color name="black">#000000</color>-->
+<!--    <color name="personal_trip">#F1A00B </color>-->
 
-    <color name="gray_separator">#CBCBD0</color>
-    <color name="gray_wall3">#EDEEDE</color>
-    <color name="gray_wall1">#F6F8F8</color>
-    <color name="gray_wall2">#5DBCD2</color>
-    <color name="gray_center_border">#F5F5F5</color>
-    <color name="gray_info_citycode">#CBCBD0</color>
-    <color name="gray_total">#939396</color>
+<!--    <color name="gray_separator">#CBCBD0</color>-->
+<!--    <color name="gray_wall3">#EDEEDE</color>-->
+<!--    <color name="gray_wall1">#F6F8F8</color>-->
+<!--    <color name="gray_wall2">#5DBCD2</color>-->
+<!--    <color name="gray_center_border">#F5F5F5</color>-->
+<!--    <color name="gray_info_citycode">#CBCBD0</color>-->
+<!--    <color name="gray_total">#939396</color>-->
     <color name="blue_info_time">#24253D</color>
-    <color name="blue_dark">#24253D</color>
+<!--    <color name="blue_dark">#24253D</color>-->
 
-    <color name="orange_price">#F19C00</color>
-    <color name="green_price">#00776A</color>
-    <color name="color_gray_blue">#b2bbc6</color>
-    <color name="green_cyan_info">#2B9A8E</color>
+<!--    <color name="orange_price">#F19C00</color>-->
+<!--    <color name="green_price">#00776A</color>-->
+<!--    <color name="color_gray_blue">#b2bbc6</color>-->
+<!--    <color name="green_cyan_info">#2B9A8E</color>-->
 
     <color name="gray_50_subtitle">#24253D</color>
 
-    <color name="gray_wall">#F6F8F7</color>
-    <color name="gray_line">#e0e0e1</color>
-    <color name="gray_wall_bak">#eee</color>
-    <color name="gray_aaa">#aaa</color>
-    <color name="gray_ddd">#dddddd</color>
-    <color name="gray_333">#333333</color>
-    <color name="orange_button">#ffb733</color>
+<!--    <color name="gray_wall">#F6F8F7</color>-->
+<!--    <color name="gray_line">#e0e0e1</color>-->
+<!--    <color name="gray_wall_bak">#eee</color>-->
+<!--    <color name="gray_aaa">#aaa</color>-->
+<!--    <color name="gray_ddd">#dddddd</color>-->
+<!--    <color name="gray_333">#333333</color>-->
+<!--    <color name="orange_button">#ffb733</color>-->
 
-    <color name="selected_tab">#00776a</color>
+<!--    <color name="selected_tab">#00776a</color>-->
 
-    <color name="waiting_for_approval">#FFB733</color>
-    <color name="approved">#009688</color>
-    <color name="partially_rejected">#F96D74</color>
+<!--    <color name="waiting_for_approval">#FFB733</color>-->
+<!--    <color name="approved">#009688</color>-->
+<!--    <color name="partially_rejected">#F96D74</color>-->
 
-    <color name="green_approved">#86CC3A</color>
+<!--    <color name="green_approved">#86CC3A</color>-->
 
-    <color name="label_waiting">#F5A623</color>
-    <color name="label_rejected">#E73F3F</color>
-    <color name="label_completed">#86CC3A</color>
-    <color name="label_ready">#58CFC9</color>
-    <color name="label_cancelled">#B6B6B6</color>
+<!--    <color name="label_waiting">#F5A623</color>-->
+<!--    <color name="label_rejected">#E73F3F</color>-->
+<!--    <color name="label_completed">#86CC3A</color>-->
+<!--    <color name="label_ready">#58CFC9</color>-->
+<!--    <color name="label_cancelled">#B6B6B6</color>-->
 
 
-    <color name="colorPureWhite">#ffffff</color>
+<!--    <color name="colorPureWhite">#ffffff</color>-->
     <color name="colorPureBlack">#000000</color>
     <color name="colorWhite">#f3f3f3</color>
-    <color name="colorBlack">#005500</color>
+<!--    <color name="colorBlack">#005500</color>-->
     <color name="colorGray">#777777</color>
-    <color name="colorBrightGray">#DDDDDD</color>
-    <color name="colorBrokenCreme">#f7fedf</color>
-    <color name="colorSunset">#ffcc11</color>
-    <color name="colorDarkSunset">#e7420b</color>
-    <color name="colorRed">#e53934</color>
+<!--    <color name="colorBrightGray">#DDDDDD</color>-->
+<!--    <color name="colorBrokenCreme">#f7fedf</color>-->
+<!--    <color name="colorSunset">#ffcc11</color>-->
+<!--    <color name="colorDarkSunset">#e7420b</color>-->
+<!--    <color name="colorRed">#e53934</color>-->
     <color name="colorRedUndo">#eb0011</color>
 
-    <color name="colorBackgroundSelected">#f5f5f5</color>
+<!--    <color name="colorBackgroundSelected">#f5f5f5</color>-->
 
 
-    <color name="colorDarkGrayRound">#4A4A4A</color>
+<!--    <color name="colorDarkGrayRound">#4A4A4A</color>-->
     <color name="colorGrayRound">#B2BBC6</color>
 
-    <color name="colorDisabled">#999</color>
-    <color name="colorSuccess">#ff669900</color>
-    <color name="colorError">#ffcc0000</color>
-    <color name="colorLineGray">#CABBBBBB</color>
-    <color name="colorMaterialGrey">#bdbdbd</color>
+<!--    <color name="colorDisabled">#999</color>-->
+<!--    <color name="colorSuccess">#ff669900</color>-->
+<!--    <color name="colorError">#ffcc0000</color>-->
+<!--    <color name="colorLineGray">#CABBBBBB</color>-->
+<!--    <color name="colorMaterialGrey">#bdbdbd</color>-->
 
-    <color name="red_alert">#BB000E</color>
+<!--    <color name="red_alert">#BB000E</color>-->
 
-    <color name="active_icon">#00776A</color>
-    <color name="colorGreenButton">#009688</color>
-    <color name="colorGreenFont">#00776A</color>
-    <color name="colorGrayButton">#F5F5F5</color>
-    <color name="colorYellowButton">#FFB733</color>
-    <color name="colorYellowButton_2">#F8B945</color>
-    <color name="colorBlueTitle">#24253D</color>
+<!--    <color name="active_icon">#00776A</color>-->
+<!--    <color name="colorGreenButton">#009688</color>-->
+<!--    <color name="colorGreenFont">#00776A</color>-->
+<!--    <color name="colorGrayButton">#F5F5F5</color>-->
+<!--    <color name="colorYellowButton">#FFB733</color>-->
+<!--    <color name="colorYellowButton_2">#F8B945</color>-->
+<!--    <color name="colorBlueTitle">#24253D</color>-->
 
-    <color name="blue_button_yes">#E7ECF3</color>
-    <color name="blue_button_no">#00BAF5</color>
-    <color name="blue_button_call_us">#0093d9</color>
-    <color name="blue_gray_dialog">#e7ecf3</color>
-    <color name="rejected_partially">#F96D74</color>
+<!--    <color name="blue_button_yes">#E7ECF3</color>-->
+<!--    <color name="blue_button_no">#00BAF5</color>-->
+<!--    <color name="blue_button_call_us">#0093d9</color>-->
+<!--    <color name="blue_gray_dialog">#e7ecf3</color>-->
+<!--    <color name="rejected_partially">#F96D74</color>-->
 
-    <color name="buttonBackground">#B6B6B6</color>
+<!--    <color name="buttonBackground">#B6B6B6</color>-->
 
-    <color name="color_header_calendar_primary">#1BA0E2</color>
-    <color name="color_header_calendar_secondary">#0A72CD</color>
-    <color name="color_bottom_calendar">#E6EAED</color>
-    <color name="color_text_bottom_calendar">#ffa0a1a1</color>
+<!--    <color name="color_header_calendar_primary">#1BA0E2</color>-->
+<!--    <color name="color_header_calendar_secondary">#0A72CD</color>-->
+<!--    <color name="color_bottom_calendar">#E6EAED</color>-->
+<!--    <color name="color_text_bottom_calendar">#ffa0a1a1</color>-->
 
-    <color name="colorLineEdittext">#3324253d</color>
-    <color name="cornerRounded">#3324253d</color>
+<!--    <color name="colorLineEdittext">#3324253d</color>-->
+<!--    <color name="cornerRounded">#3324253d</color>-->
 
-    <color name="colorGrayRoundWhite">#f5f5f5</color>
-    <color name="colorGrayTextButtonFlight">#cc939396</color>
-    <color name="colorTextHint">#24253d</color>
+<!--    <color name="colorGrayRoundWhite">#f5f5f5</color>-->
+<!--    <color name="colorGrayTextButtonFlight">#cc939396</color>-->
+<!--    <color name="colorTextHint">#24253d</color>-->
 
-    <color name="colorRedApproval">#bf171f</color>
-    <color name="colorOrangeApproval">#ffbe47</color>
-    <color name="colorGreenApproval">#009688</color>
+<!--    <color name="colorRedApproval">#bf171f</color>-->
+<!--    <color name="colorOrangeApproval">#ffbe47</color>-->
+<!--    <color name="colorGreenApproval">#009688</color>-->
 
-    <color name="colorLine">#888888</color>
-
-
-    <color name="colorBackgroundEdittextSearch">#f7f7f7</color>
-
-    <color name="backgroundConfirmInformation">#f6f8f8</color>
-
-    <color name="pickSeatMap">#f19c00</color>
-    <color name="selectedSeatMap">#2275b7</color>
-    <color name="occupiedSeatMap">#d3d3d8</color>
+<!--    <color name="colorLine">#888888</color>-->
 
 
-    <color name="trainColorSoldOut">#91929e</color>
-    <color name="trainColorSoldOut2">#cbcbd0</color>
+<!--    <color name="colorBackgroundEdittextSearch">#f7f7f7</color>-->
+
+<!--    <color name="backgroundConfirmInformation">#f6f8f8</color>-->
+
+<!--    <color name="pickSeatMap">#f19c00</color>-->
+<!--    <color name="selectedSeatMap">#2275b7</color>-->
+<!--    <color name="occupiedSeatMap">#d3d3d8</color>-->
+
+
+<!--    <color name="trainColorSoldOut">#91929e</color>-->
+<!--    <color name="trainColorSoldOut2">#cbcbd0</color>-->
 
 
 </resources>

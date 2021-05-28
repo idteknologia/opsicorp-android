@@ -14,7 +14,6 @@ import com.opsigo.travelaja.module.home.activity.HomeActivity
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsigo.travelaja.module.item_custom.loading.DialogErrorConection
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.Constants
 import com.opsigo.travelaja.utility.DateConverter
 import com.opsigo.travelaja.utility.Globals
@@ -122,7 +121,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
 
     private fun changeButtonNextOrangeColor() {
-        btn_next.changeTextColorButton(R.color.colorTextHint)
+        btn_next.changeTextColorButton(R.color.textButtonColor)
         btn_next.changeBackgroundDrawable(R.drawable.rounded_button_yellow)
     }
 
@@ -138,7 +137,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
                 SELECT_BUDGET -> {
                     if (resultCode==Activity.RESULT_OK){
                         budgetIsEmpty = false
-                        img_budget.setImageDrawable(resources.getDrawable(R.drawable.chevron_down))
+                        img_budget.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
                         checkEmpetyField()
                         tv_budget.text = data?.getStringExtra("nameCountry")
                         idBudget       = data?.getStringExtra("idCountry").toString()
@@ -151,7 +150,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
                         costCenterIsEmpty = false
                         val amount = data?.getStringExtra("nameCountry")
                         idCostCenter = data?.getStringExtra("idCountry").toString()
-                        img_cost_center.setImageDrawable(resources.getDrawable(R.drawable.chevron_down))
+                        img_cost_center.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down))
                         checkEmpetyField()
                         tv_cost_center.text = amount.toString()
                         tv_cost_avaibility.text = "IDR ${amount.toString()}"

@@ -36,6 +36,7 @@ class HomeViewModel(val repository: HomeRepository) : ViewModel() {
             val query = mutableMapOf("Size" to "5", "Index" to "1", "OrderBy" to "Code", "Direction" to "1")
             query["CreatedDateFrom"] = dateNow
             query["CreatedDateTo"] = dateNow
+            query["Status"] = "4"
             val result = repository.getTrip(query)
             computeTripResult(result)
         }
@@ -53,21 +54,3 @@ class HomeViewModel(val repository: HomeRepository) : ViewModel() {
     }
 }
 
-@Suppress("UNCHECKED_CAST")
-class DefaultViewModelFactory(private val isFake: Boolean, private val context: Context) :
-        ViewModelProvider.Factory {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-            val api = ServiceApi.createRequest(context)
-            val repository: HomeRepository = if (isFake) {
-                /*FakeHomeRepository(context)*/
-                HomeDefaultRepository(api)
-            } else {
-                HomeDefaultRepository(api)
-            }
-            return HomeViewModel(repository) as T
-        } else {
-            throw IllegalArgumentException("Unknown ViewModel class")
-        }
-    }
-}

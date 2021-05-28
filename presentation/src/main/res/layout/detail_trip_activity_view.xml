@@ -53,8 +53,8 @@
                 <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:id="@+id/ticketView"
                     app:ticketCornerType="rounded"
                     app:ticketOrientation="horizontal"
@@ -318,8 +318,8 @@
                 android:layout_marginTop="20dp"
                 android:visibility="visible"
                 android:orientation="vertical"
-                android:paddingTop="19dp"
-                android:paddingLeft="20dp"
+                android:paddingTop="@dimen/margin_default"
+                android:paddingLeft="@dimen/margin_default"
                 android:paddingBottom="24dp"
                 android:background="#f9f9f9"
                 android:layout_width="match_parent"
@@ -411,7 +411,7 @@
             <TextView
                 android:id="@+id/tv_list_approval"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -422,7 +422,7 @@
 
             <TextView
                 android:id="@+id/tv_notice_title"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -444,7 +444,7 @@
             <TextView
                 android:id="@+id/tv_list_participant_num"
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -455,7 +455,7 @@
 
             <TextView
                 android:id="@+id/tv_notice_participant"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="6dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -488,7 +488,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#f6f8f8"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:text="Your Trip Items Detail (2)"/>
             </RelativeLayout>
 
@@ -512,7 +512,7 @@
                 android:id="@+id/titleNotes"
                 android:layout_marginTop="30dp"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
@@ -524,10 +524,10 @@
                 android:layout_marginTop="15dp"
                 android:id="@+id/tv_notes"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="38dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:textSize="12sp"
                 android:textColor="#212121"
                 android:lineSpacingExtra="8sp"
@@ -541,15 +541,15 @@
                 android:layout_height="5dp"
                 android:background="@drawable/background_dot_horizontal"
                 android:layout_marginTop="22dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:orientation="horizontal"></LinearLayout>
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:orientation="horizontal"/>
 
 
             <TextView
                 android:id="@+id/title_attachment"
                 android:layout_marginTop="22dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -571,8 +571,8 @@
                 android:visibility="gone"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="30dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
@@ -588,7 +588,7 @@
                     <TextView
                         android:onClick="rejectListener"
                         android:id="@+id/btn_later"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textColorButtonOutline"
                         android:textSize="14sp"
                         style="@style/RobotoMedium"
                         android:text="Reject All"
@@ -609,7 +609,7 @@
                     <TextView
                         android:onClick="showApproveAllDialog"
                         android:id="@+id/btn_add_trip_item"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
                         android:text="Approve All"
@@ -625,8 +625,8 @@
                 android:id="@+id/line_button_submit_trip"
                 android:visibility="gone"
                 android:layout_marginTop="53dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
@@ -664,7 +664,7 @@
 
                     <TextView
                         android:onClick="addTripItemListener"
-                        android:textColor="#24253d"
+                        android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
                         android:text="@string/add_trip_item"

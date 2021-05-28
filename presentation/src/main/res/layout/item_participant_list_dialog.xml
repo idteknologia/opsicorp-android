@@ -33,7 +33,7 @@
             android:paddingBottom="10dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -142,7 +142,7 @@
                 android:src="@drawable/ic_time_red"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_below="@+id/tv_status"
                 android:layout_alignParentRight="true"
                 android:layout_height="wrap_content"/>

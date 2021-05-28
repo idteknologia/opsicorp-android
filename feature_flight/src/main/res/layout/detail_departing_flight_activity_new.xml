@@ -20,8 +20,8 @@
         android:layout_below="@+id/toolbar">
 
         <LinearLayout
-            android:paddingRight="20dp"
-            android:paddingLeft="20dp"
+            android:paddingRight="@dimen/margin_default"
+            android:paddingLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -69,7 +69,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:paddingLeft="15dp"
+            android:paddingLeft="@dimen/margin_default"
             android:paddingBottom="14dp"
             android:orientation="vertical"
             android:layout_width="0dp"

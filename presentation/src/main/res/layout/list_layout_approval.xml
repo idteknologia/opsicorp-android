@@ -35,9 +35,9 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp">
                     <CheckBox
-                        android:outlineAmbientShadowColor="@color/colorPrimary"
-                        android:outlineSpotShadowColor="@color/colorPrimary"
-                        android:shadowColor="@color/colorPrimary"
+                        android:outlineAmbientShadowColor="@color/checkbox"
+                        android:outlineSpotShadowColor="@color/checkbox"
+                        android:shadowColor="@color/checkbox"
                         android:id="@+id/checkbox"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" />

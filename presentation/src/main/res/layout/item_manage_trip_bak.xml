@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="130dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -61,13 +62,12 @@
         <RelativeLayout
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_status"
-                android:layout_marginLeft="23dp"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/white"
                 android:background="@drawable/rounded_approval_orange"
@@ -100,7 +100,6 @@
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_below="@+id/tv_status"
-                android:layout_marginLeft="23dp"
                 android:layout_marginTop="10dp"
                 android:textColor="#24253d"
                 android:textSize="18sp"
@@ -114,7 +113,6 @@
                 android:src="@drawable/departure_date"
                 android:id="@+id/img_city"
                 android:layout_below="@+id/tv_title"
-                android:layout_marginLeft="23dp"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:gravity="center"
@@ -141,7 +139,6 @@
                 android:src="@drawable/departure_date"
                 android:id="@+id/img_date"
                 android:layout_below="@+id/tv_city"
-                android:layout_marginLeft="23dp"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:gravity="center"
@@ -190,7 +187,7 @@
                     style="@style/RobotoMedium"
                     android:id="@+id/tv_button"
                     android:textSize="9.1dp"
-                    android:textColor="#24253d"
+                    android:textColor="@color/textButtonColor"
                     android:text="@string/next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

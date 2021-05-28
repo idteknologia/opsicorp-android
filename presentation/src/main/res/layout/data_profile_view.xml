@@ -13,8 +13,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -132,6 +132,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="5dp"
                     android:src="@drawable/ic_chevron_down"
+                    app:tint="@color/tintTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -176,7 +177,7 @@
 
                 <TextView
                     style="@style/RobotoMedium"
-                    android:textColor="#FF24253D"
+                    android:textColor="@color/textButtonColor"
                     android:textSize="17sp"
                     android:text="@string/save"
                     android:layout_width="wrap_content"

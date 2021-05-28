@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:background="@color/colorPrimary"
         android:id="@+id/line_toolbar"
         android:layout_width="match_parent"
         android:layout_height="59dp">
 
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_back"
+            android:src="@drawable/ic_arrow_back_white"
+            android:scaleType="center"
+            android:layout_width="@dimen/size_image_back"
+            android:layout_height="@dimen/size_image_back" />
+
         <RelativeLayout
             android:id="@+id/line_back"
             android:layout_centerVertical="true"
             android:layout_width="50dp"
             android:layout_height="50dp">
-            <ImageView
-                android:layout_centerVertical="true"
-                android:id="@+id/btn_back"
-                android:src="@drawable/ic_arrow_back_white"
-                android:layout_width="20dp"
-                android:layout_height="20dp" />
+
         </RelativeLayout>
 
         <TextView
             android:singleLine="true"
             android:layout_marginRight="40dp"
-            android:layout_marginLeft="40dp"
             android:visibility="visible"
             android:id="@+id/logo_center"
             android:gravity="center"
+            android:layout_toRightOf="@+id/btn_back"
             android:layout_centerVertical="true"
             android:textSize="18sp"
             style="@style/RobotoRegular"
@@ -43,12 +46,12 @@
         <LinearLayout
             android:visibility="gone"
             android:id="@+id/line_title_round_trip_left"
-            android:layout_toEndOf="@+id/line_back"
+            android:layout_toEndOf="@+id/btn_back"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_toRightOf="@+id/line_back">
+            android:layout_toRightOf="@+id/btn_back">
 
             <TextView
                 android:singleLine="true"
@@ -119,7 +122,8 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:layout_gravity="center"
@@ -207,7 +211,7 @@
             android:visibility="gone"
             android:textSize="16dp"
             style="@style/RobotoRegular"
-            android:textColor="#f8b945"
+            android:textColor="@color/tintTextView"
             android:text="Reset"
             android:id="@+id/btn_reset"
             android:layout_alignParentRight="true"

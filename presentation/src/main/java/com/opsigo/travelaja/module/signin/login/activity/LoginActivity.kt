@@ -40,11 +40,17 @@ class LoginActivity : BaseActivity(),
         LoginView,View.OnClickListener {
 
     override fun getLayout(): Int {
+        hideStatusBar()
         return R.layout.login_activity_view_travel_aja
     }
 
     override fun onResume() {
         super.onResume()
+        hideStatusBar()
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
         hideStatusBar()
     }
 

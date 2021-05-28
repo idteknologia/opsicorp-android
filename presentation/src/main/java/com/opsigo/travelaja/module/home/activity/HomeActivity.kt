@@ -24,7 +24,6 @@ import com.opsigo.travelaja.module.my_booking.home_my_booking.MyBookingFragment
 class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 
     override fun getLayout(): Int {
-        hideStatusBar()
         return R.layout.home_view }
 
     var imageDefaults       = ArrayList<Int>()

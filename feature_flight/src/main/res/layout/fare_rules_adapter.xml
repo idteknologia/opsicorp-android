@@ -13,8 +13,8 @@
         android:textStyle="bold"
         android:text="Test"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default" />
     <TextView
         android:id="@+id/tvFareRulesValue"
         android:layout_width="wrap_content"
@@ -23,8 +23,8 @@
         android:textColor="#939396"
         android:text="Test"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp" />
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default" />
 
 
 </LinearLayout>

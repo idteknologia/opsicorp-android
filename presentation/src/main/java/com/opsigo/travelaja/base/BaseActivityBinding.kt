@@ -18,6 +18,7 @@ import android.os.Bundle
 import android.view.View
 import android.util.Log
 import android.os.Build
+import android.view.inputmethod.InputMethodManager
 import androidx.viewbinding.BuildConfig
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.module.item_custom.loading.LoadingDialog
@@ -40,8 +41,8 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        /*requestWindowFeature(Window.FEATURE_NO_TITLE)
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)*/
         setContentView(viewBinding.root)
 
         pDialog = ProgressDialog(this)
@@ -196,5 +197,13 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
     fun showDialogFragment(fragmentDialog: androidx.fragment.app.DialogFragment) {
         val fm = getSupportFragmentManager()
         fragmentDialog.show(fm, "yesNoAlert")
+    }
+
+    fun getBaseUrl(): String {
+        return Globals.getBaseUrl(this)
+    }
+
+    fun showAllert(title: String, message: String) {
+        Globals.showAlert(title, message, this)
     }
 }

@@ -15,7 +15,7 @@
             android:layout_gravity="center"
             android:layout_width="161dp"
             android:layout_height="119dp"
-            android:src="@drawable/under_contruction"></ImageView>
+            android:src="@drawable/under_contruction"/>
 
         <TextView
             android:layout_marginTop="20dp"
@@ -38,15 +38,12 @@
             android:text="This feature is under construction" />
 
         <Button
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:text="Close"
-            android:textStyle="bold"
-            android:background="@color/colorOrangeApproval"
             android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_height="wrap_content"></Button>
+            style="@style/ButtonStyle"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/margin_default"
+            android:text="Close" />
     </LinearLayout>
 </RelativeLayout>

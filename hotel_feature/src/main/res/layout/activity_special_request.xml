@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:textColor="#b2bbc6"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 style="@style/RobotoBold"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="#24253d"
@@ -71,13 +71,14 @@
                 android:orientation="vertical">
                 <LinearLayout
                     android:id="@+id/line_rb_1"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_1"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">
@@ -112,13 +113,14 @@
 
                 <LinearLayout
                     android:id="@+id/line_rb_2"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_2"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">
@@ -153,13 +155,14 @@
 
                 <LinearLayout
                     android:id="@+id/line_rb_3"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <RadioButton
                         android:id="@+id/rb_3"
+                        android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="8dp">
@@ -209,7 +212,7 @@
                     android:textColor="#009688"
                     android:text="Specific request in detail"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="25dp"/>
+                    android:layout_marginLeft="@dimen/margin_default"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -219,7 +222,8 @@
                     android:textSize="14sp"
                     android:textColor="#b2bbc6"
                     android:text="Please write in English or in accommodation&apos;s local language (max. 100 character)."
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="10dp"/>
 
                 <EditText
@@ -229,9 +233,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="152dp"
                     android:maxLength="100"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:background="@drawable/rounded_button_corner_grey">
                 </EditText>
 
@@ -243,7 +247,7 @@
                     android:textSize="14sp"
                     android:gravity="end"
                     android:text="0 / 100"
-                    android:layout_marginRight="21dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="10dp"
                     android:textColor="#b2bbc6"
                     android:layout_gravity="right"/>

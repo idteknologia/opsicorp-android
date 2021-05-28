@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/parentView"
@@ -39,8 +39,8 @@
 
 
                 <LinearLayout
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
@@ -194,7 +194,8 @@
 
 
                 <LinearLayout
-                    android:layout_marginLeft="28dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="32dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -414,8 +415,8 @@
                     android:layout_marginTop="31dp"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp">
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default">
                     <LinearLayout
                         android:layout_marginLeft="9dp"
                         android:layout_centerVertical="true"
@@ -451,7 +452,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
-                        android:src="@drawable/chevron_down"/>
+                        android:src="@drawable/ic_chevron_down"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -460,8 +461,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp">
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default">
                     <LinearLayout
                         android:onClick="showDataCostCenter"
                         android:layout_marginLeft="9dp"
@@ -506,7 +507,7 @@
                     style="@style/RobotoRegular"
                     android:textColor="#00776a"
                     android:layout_marginTop="28dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:text="Available Cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -516,7 +517,7 @@
                     android:id="@+id/tv_cost_avaibility"
                     style="@style/RobotoMedium"
                     android:textSize="22dp"
-                    android:layout_marginRight="22dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="10dp"
                     android:textColor="#24253d"
                     android:gravity="end"
@@ -530,8 +531,8 @@
                     android:layout_width="match_parent"
                     android:layout_marginBottom="50dp"
                     android:layout_height="56dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="20dp">
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default">
                 </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>

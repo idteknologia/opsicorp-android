@@ -7,9 +7,8 @@
 
     <LinearLayout
         android:background="@color/transparent"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:paddingBottom="0dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -30,7 +29,7 @@
                 style="@style/RobotoMedium"
                 android:id="@+id/tv_button_reject_all"
                 android:textSize="17sp"
-                android:textColor="#24253D"
+                android:textColor="@color/textColorButtonOutline"
                 android:text="Reject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -58,7 +57,7 @@
                 style="@style/RobotoMedium"
                 android:id="@+id/tv_button_approve_all"
                 android:textSize="17sp"
-                android:textColor="#24253D"
+                android:textColor="@color/textButtonColor"
                 android:text="Approve Participant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

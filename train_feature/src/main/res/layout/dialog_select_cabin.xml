@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true">
             <TextView
-                android:layout_marginLeft="19dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginBottom="20dp"
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
@@ -47,15 +47,15 @@
                     <LinearLayout
                         android:layout_marginTop="50dp"
                         android:layout_marginBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
+                        android:paddingLeft="@dimen/margin_default"
+                        android:paddingRight="@dimen/margin_default"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RelativeLayout
                             android:id="@+id/line_close"
-                            android:background="@drawable/rounded_orange_stroke_1"
+                            android:background="@drawable/rounded_orange_stroke_2"
                             android:layout_marginRight="3dp"
                             android:layout_width="0dp"
                             android:layout_height="50dp"
@@ -68,7 +68,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/colorAccent"
                                 android:gravity="center_horizontal"
                                 android:text="Close"
                                 style="@style/RobotoBold"/>
@@ -88,7 +88,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
-                                android:textColor="#24253d"
+                                android:textColor="@color/white"
                                 android:gravity="center_horizontal"
                                 android:text="Apply"
                                 style="@style/RobotoBold"/>

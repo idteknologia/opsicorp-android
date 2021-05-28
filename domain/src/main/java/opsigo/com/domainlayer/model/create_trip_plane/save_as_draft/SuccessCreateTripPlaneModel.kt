@@ -17,4 +17,5 @@ class SuccessCreateTripPlaneModel {
     var remark       = ""
     var buggetId     = ""
     var costCenter   = ""
+    
 }

@@ -7,8 +7,6 @@ import com.opsigo.travelaja.utility.Globals
 
 import com.opsigo.travelaja.utility.NumberTextWatcher
 import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_filter_price.*
 import com.opsicorp.hotel_feature.adapter.FilterRatingAdapter
 import com.opsicorp.hotel_feature.adapter.FilterFacilityAdapter

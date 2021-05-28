@@ -8,8 +8,8 @@
     <TextView
         android:id="@+id/tv_header_month"
         style="@style/RobotoBold"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
@@ -64,8 +64,8 @@
                 android:layout_marginTop="1dp"
                 android:background="@drawable/card_background_under_api_21"
                 android:layout_marginBottom="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="87dp">
 

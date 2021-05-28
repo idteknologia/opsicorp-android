@@ -1,14 +1,14 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.os.Build
-import java.lang.Exception
 import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.BaseActivity
 import androidx.core.content.ContextCompat
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_bagage.*
 import kotlinx.android.synthetic.main.activity_bagage.btnDone
 import kotlinx.android.synthetic.main.activity_bagage.toolbar
@@ -17,6 +17,7 @@ import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import java.lang.Exception
 
 class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {

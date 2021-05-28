@@ -3,8 +3,8 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:paddingLeft="18dp"
-    android:paddingRight="18dp"
+    android:paddingLeft="@dimen/margin_default"
+    android:paddingRight="@dimen/margin_default"
     android:layout_height="wrap_content">
 
     <RelativeLayout

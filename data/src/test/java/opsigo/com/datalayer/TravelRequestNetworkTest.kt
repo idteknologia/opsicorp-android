@@ -18,8 +18,8 @@ class TravelRequestNetworkTest {
     fun getActivityTypeTest(){
         val latch = CountDownLatch(1)
         val baseUrl = "https://opsicorp-per-dtm.azurewebsites.net"
-        val token   = "Bearer EplXdIaWFeIoL-L5M9wU4wmP4dAbNVz4XvspgxCsulcsMP3nroa5vYiIZCPwch0d5GN9j20qGXYk3h04Jzn0_eet7Lpl7G4e6s46Aws9DQ16SKmUeRJ5dki3VkrXEboy1ei42mMio0h24nBa08muXn2MtrFxRJYhKFjITtXHTvrZrvA3DEkDA7R71J5CfTFfc7hUQv0UO55BjSSWD0_zTQ1KiE7f1oAEP_IDo616T9uS7Ul3uMWYU8d5gQYdIVX67n0T7tjVhmHZZigXqfPVb3Kk5qQ8xPDhT_Q-sP9oFxBHp_Gfzx1UUX5kGDN8lfmOlgX8kaXzwqD8Td3tDTlPHcsHtvJNr7Qts4i51CCzNgL986CFJDFbfr6vzy11UqUqeJ8VMSFp8zlOB_7uVuAy-sd_v1HOARGuAPlytaeW9GqUxKiApvJiDIv6Axr0nnVcqKCuSsZWy2TVIRtffsf8y_InVYieFbw6WRT8UWODaOdZbMYbwIhzUYJx11DK5_GcbcoqYzeRB53-bzOgZ5-fxNmDhXjr_94OFrukwKDgqCVGlFfCa-S2cDUSa3XF5iaWYjNs3G1C_4FJb-8jiV7NiQ"
-        GetDataTravelRequest(baseUrl).getTypeActivity(token,object :CallbackTypeActivity{
+        val token   = "Bearer tpygpvGKmd5_POTQSwy4DdBsEr_zeied42-d0nzgdbyClHFw6nq3FS-7B4yNpqJiufyhqVOYuKFGId8P6A_QPIGGYxvxlzIwV4cek1oWO4Z-zYwj7xa5HGzO8AbCdOPiY5jxiIk3MXB8adRlsU9lv_jgLBZx-rPqFdcQREGesGQAZA7LYzEpfYNBHrEEcMqmYgauO-Hg7irgT3zShwCkBla97U-kB3Um89qYw8s2g2IGie1w9EKd3wGfqvuw-4sw0djlZkWNkeJo4ermlb5ydJeXTcZhvaeT3EhX0135lmqvyk9bqDa9miAPG9euKdksNmr2c8r_1Ae2G6IdMqo5OiNgINHSXITTQuz63h8B_Ea1epq5iYPCr6hREWkWheldQsG5Jv7g0tLFBuKV3gasOn-6XOFj0pDLq4Xb8e3Q5j0eeHSyrwHVUi4wHd0V0UePXePxJO-bGXWkG7NitTxIk82hdEV06exnbw2tbBxAqZczMYvDVfrp_e5cGpqDxdXc-sw_ai8FOr3NGaN91OJaLLKxNEC6D5WJUZmndaIwq-VFySAhD0vCgYjVEj9NMtoSJPqy-T2AI9S8dtvO-7aKtQ"
+        /*GetDataTravelRequest(baseUrl).getTypeActivity(token,object :CallbackTypeActivity{
             override fun success(data: ArrayList<TypeActivityTravelRequestModel>) {
                 println(data.size)
                 data.forEach {
@@ -31,9 +31,9 @@ class TravelRequestNetworkTest {
             override fun failed(message: String) {
                 latch.await()
             }
-        })
+        })*/
 
-        /*GetDataTravelRequest(baseUrl).getEstimatedCost(token,dataPurpose(),object :CallbackEstimatedCostTravelRequest{
+        GetDataTravelRequest(baseUrl).getEstimatedCost(token,dataPurpose(),object :CallbackEstimatedCostTravelRequest{
             override fun successLoad(data: EstimatedCostTravelRequestModel) {
                 println(data.estAllowance)
                 println(Serializer.serialize(data))
@@ -43,7 +43,7 @@ class TravelRequestNetworkTest {
             override fun failedLoad(message: String) {
                 latch.await()
             }
-        })*/
+        })
 
         try {
             latch.await()

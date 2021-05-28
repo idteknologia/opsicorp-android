@@ -23,6 +23,7 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
@@ -166,43 +167,49 @@ object Globals {
     }
 
     fun setDataPreferenceLong(context: Context, key: String, value: Long?) {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPref.edit()
-        editor.putLong(key, value!!)
+        editor.putLong(name, value!!)
         editor.apply()
     }
 
     fun setDataPreferenceFloat(context: Context, key: String, value: Float?) {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPref.edit()
-        editor.putFloat(key, value!!)
+        editor.putFloat(name, value!!)
         editor.apply()
     }
 
     fun setDataPreferenceInteger(context: Context, key: String, value: Int?) {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPref.edit()
-        editor.putInt(key, value!!)
+        editor.putInt(name, value!!)
         editor.apply()
     }
 
     fun setDataPreferenceString(context: Context, key: String, value: String) {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPref.edit()
-        editor.putString(key, value)
+        editor.putString(name, value)
         editor.apply()
     }
 
     fun setDataPreferenceBolean(context: Context, key: String, value: Boolean?) {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = sharedPref.edit()
-        editor.putBoolean(key, value!!)
+        editor.putBoolean(name, value!!)
         editor.apply()
     }
 
     fun getDataPreferenceBolean(context: Context, key: String): Boolean {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getBoolean(key, false)
+        return sharedPref.getBoolean(name, false)
     }
 
     fun toDp(context: Context, sizeInDP: Int): Int {
@@ -212,8 +219,9 @@ object Globals {
     }
 
     fun getDataPreferenceString(context: Context, key: String): String {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getString(key, "")
+        return sharedPref.getString(name, "")
     }
 
     fun getDataPreferenceFloat(context: Context, key: String): Float {
@@ -222,13 +230,15 @@ object Globals {
     }
 
     fun getDataPreferenceInteger(context: Context, key: String): Int {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getInt(key, 0)
+        return sharedPref.getInt(name, 0)
     }
 
     fun getDataPreferenceLong(context: Context, key: String): Long {
+        val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getLong(key, 0)
+        return sharedPref.getLong(name, 0)
     }
 
     fun validatiEdittext(s: ArrayList<String>): Boolean {
@@ -989,6 +999,12 @@ object Globals {
             e.printStackTrace()
         }
         return totalDay
+    }
+
+    fun openSoftKeyboard(context: Context, view: View) {
+        view.requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
 

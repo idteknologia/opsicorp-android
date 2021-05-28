@@ -2,8 +2,6 @@ package com.opsigo.travelaja.module.my_booking.home_my_booking
 
 import android.os.Build
 import android.os.Bundle
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -45,7 +43,6 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
 
 
     private fun initToolbar() {
-        toolbar.changeImageBtnBack(R.drawable.back)
         toolbar.setTitleBar("Purchase List")
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)

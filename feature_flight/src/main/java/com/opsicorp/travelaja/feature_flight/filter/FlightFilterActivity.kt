@@ -2,8 +2,6 @@ package com.opsicorp.travelaja.feature_flight.filter
 
 import android.app.Activity
 import android.content.Intent
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter

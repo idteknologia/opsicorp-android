@@ -17,6 +17,6 @@
             <corners android:radius="2dp"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_chevron_right_fill_round" android:gravity="right" android:bottom="53dp">
-    </item>
+<!--    <item android:drawable="@drawable/ic_chevron_right_fill_round" android:gravity="right" android:bottom="53dp">-->
+<!--    </item>-->
 </layer-list>

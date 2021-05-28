@@ -17,18 +17,17 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="20dp"
+                android:layout_width="@dimen/size_image_back"
+                android:layout_height="@dimen/size_image_back"
+                android:layout_marginBottom="10dp"
+                android:scaleType="center"
                 android:id="@+id/btn_back"
-                android:src="@drawable/ic_back"></ImageView>
+                android:src="@drawable/ic_back"/>
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="53dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:src="@drawable/ic_travel_aja" />
 
             <TextView
@@ -39,17 +38,17 @@
                 android:lineSpacingExtra="9sp"
                 android:text="Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip."
                 android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="14dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginBottom="25dp"
                 style="@style/RobotoRegular"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/margin_default"
                 android:orientation="vertical">
 
                 <TextView

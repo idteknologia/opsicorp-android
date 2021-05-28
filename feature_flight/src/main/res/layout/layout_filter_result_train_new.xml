@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginBottom="9dp"
     android:layout_marginTop="2dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginLeft="20dp"
+    android:layout_marginRight="@dimen/margin_default"
+    android:layout_marginLeft="@dimen/margin_default"
     android:elevation="3dp"
     android:background="@drawable/card_background">
 
@@ -153,7 +154,8 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:src="@drawable/ic_chevron_down"
-                android:layout_marginLeft="5dp"></ImageView>
+                android:layout_marginLeft="5dp"
+                app:tint="@color/tintTextView"/>
         </LinearLayout>
 
     </RelativeLayout>

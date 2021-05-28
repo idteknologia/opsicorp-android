@@ -10,8 +10,6 @@ import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
@@ -104,7 +102,7 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         btn.forEachIndexed { index, linearLayout ->
             if (position==index){
                 tv[index].setTextColor(ContextCompat.getColor(this,R.color.white))
-                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
+                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter_selected_hotel)
             }
             else {
                 tv[index].setTextColor(ContextCompat.getColor(this,R.color.color_text_btn_guaranteed_select_room))

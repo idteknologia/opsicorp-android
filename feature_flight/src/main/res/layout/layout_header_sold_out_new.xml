@@ -5,8 +5,8 @@
     android:background="@color/white"
     android:paddingTop="14dp"
     android:paddingBottom="14dp"
-    android:paddingLeft="37dp"
-    android:paddingRight="14dp"
+    android:paddingLeft="@dimen/margin_default"
+    android:paddingRight="@dimen/margin_default"
     android:layout_marginBottom="10dp">
 
     <TextView
@@ -41,7 +41,7 @@
             android:textSize="12dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="3dp"
-            android:textColor="#24253D"
+            android:textColor="@color/white"
             android:text="Flights"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

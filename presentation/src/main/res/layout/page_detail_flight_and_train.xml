@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,8 +8,8 @@
     <RelativeLayout
 
         android:background="@android:color/white"
-        android:paddingRight="23dp"
-        android:paddingLeft="20dp"
+        android:paddingRight="@dimen/margin_default"
+        android:paddingLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <TextView
@@ -61,8 +61,8 @@
     <RelativeLayout
 
         android:background="@android:color/white"
-        android:paddingRight="23dp"
-        android:paddingLeft="20dp"
+        android:paddingRight="@dimen/margin_default"
+        android:paddingLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <TextView
@@ -108,7 +108,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginRight="-10dp"
         android:background="@drawable/rounded_button_green"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="@dimen/margin_default">
 
 
         <TextView
@@ -135,8 +135,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+        android:paddingLeft="@dimen/margin_default"
+        android:paddingRight="@dimen/margin_default">
         <TextView
             android:id="@+id/tv_tittle_prize"
             android:layout_width="wrap_content"

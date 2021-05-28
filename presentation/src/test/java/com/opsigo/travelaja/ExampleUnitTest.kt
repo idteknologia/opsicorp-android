@@ -1,5 +1,8 @@
 package com.opsigo.travelaja
 
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
+import opsigo.com.datalayer.model.result.City
 import org.junit.Assert
 import org.junit.Test
 import java.text.SimpleDateFormat
@@ -11,6 +14,9 @@ import java.util.*
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
+    private var context = ApplicationProvider.getApplicationContext<Context>()
+
+
     @Test
     @Throws(Exception::class)
     fun addition_isCorrect() {
@@ -47,6 +53,12 @@ class ExampleUnitTest {
         val now = sdfOutput.format(Date())
         val dInput = sdfOutput.format(sdf.parse(date))
         println(now.equals(dInput))
+    }
+
+    @Test
+    fun getCities(){
+        val cities = TestUtil.getListObject<City>(context,R.raw.cities)
+        assert(cities.isNotEmpty())
     }
 
 

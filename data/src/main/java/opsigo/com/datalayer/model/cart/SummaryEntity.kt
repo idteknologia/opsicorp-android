@@ -69,7 +69,7 @@ data class SummaryEntity(
 	val creationDateRelativeView: String? = null,
 
 	@field:SerializedName("Routes")
-	val routes: List<Any?>? = null,
+	val routes: List<RoutesItem?>? = null,
 
 	@field:SerializedName("ReffIdHotel")
 	val reffIdHotel: Any? = null,
@@ -363,6 +363,12 @@ data class RoutesItem(
 
 	@field:SerializedName("Destination")
 	val destination: String? = null,
+
+	@field:SerializedName("Transportation")
+	val transportation: Double = 0.0,
+
+	@field:SerializedName("DepartureDateView")
+	val departureDateView: String? = null,
 
 	@field:SerializedName("DepartureDate")
 	val departureDate: String? = null,

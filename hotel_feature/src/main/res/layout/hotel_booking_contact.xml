@@ -8,13 +8,13 @@
         android:id="@+id/line_im_the_guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="@dimen/margin_default"
         android:orientation="horizontal">
         <RelativeLayout
             android:layout_width="30dp"
             android:layout_height="30dp">
             <CheckBox
-                android:buttonTint="@color/colorPrimary"
+                android:buttonTint="@color/checkbox"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:id="@+id/cb_guest">

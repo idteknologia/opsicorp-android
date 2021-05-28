@@ -2,6 +2,7 @@ package opsigo.com.datalayer.mapper
 
 import android.util.Log
 import opsigo.com.datalayer.model.cart.SummaryEntity
+import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.summary.*
 
@@ -15,6 +16,7 @@ class SummaryEntityMapper() {
         summary.type            = from.type.toString()
         summary.tripCode            = from.code.toString()
         summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
+        summary.businessTripType         = if (from.businessTripType==null) "" else from.businessTripType.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
         summary.destination     = if (from.destination==null) "" else from.destination
@@ -33,6 +35,7 @@ class SummaryEntityMapper() {
 //        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
+        summary.isDomestic        = from.isDomestic!!
         
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()
@@ -42,6 +45,18 @@ class SummaryEntityMapper() {
             uplaodModel.pathLocalImage = tripAttachmentsItem.description.toString()
             uplaodModel.statusUploaded = "success"
             summary.attactment.add(uplaodModel)
+        }
+
+        from.routes?.forEachIndexed { index, routesItem ->
+            val routesItinerary = RoutesItemPertamina()
+            if (routesItem != null) {
+                routesItinerary.transportation = routesItem.transportation.toInt()
+                routesItinerary.origin = routesItem.origin.toString()
+                routesItinerary.destination = routesItem.destination.toString()
+                routesItinerary.departureDate = routesItem.departureDate.toString()
+                routesItinerary.departureDateView = routesItem.departureDateView.toString()
+                summary.routes.add(routesItinerary)
+            }
         }
 
 

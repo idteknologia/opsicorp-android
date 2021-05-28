@@ -47,7 +47,6 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
         tv_prize_hotel.text = "IDR "+ Globals.formatAmount(data.price)
         btn_next_step.setOnClickListener(this)
 
-        btn_next_step.setTextColor(resources.getColor(R.color.colorBlueTitle))
         tv_available_room.visibility = View.GONE
 
         /*if (data.totalAvailable.toInt()!=0){

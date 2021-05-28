@@ -22,7 +22,7 @@
             android:text="Jakarta"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="13dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="@dimen/margin_default"/>
 
     </LinearLayout>
 
@@ -33,7 +33,7 @@
         <RelativeLayout
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="@dimen/margin_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
@@ -65,7 +65,7 @@
                 android:gravity="end"
                 android:text="8,5 KM"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/margin_default"
                 style="@style/RobotoRegular"/>
         </RelativeLayout>
     </LinearLayout>

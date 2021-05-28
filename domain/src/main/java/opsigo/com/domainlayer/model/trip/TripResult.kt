@@ -1,12 +1,17 @@
 package opsigo.com.domainlayer.model.trip
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
 data class TripResult(
         @SerializedName("data")
-        val data: MutableList<Trip>
+        val data: MutableList<Trip>,
+        @SerializedName("total")
+        val total: Int,
+        @SerializedName("page")
+        val page: Int
 )
 
 data class Trip(
@@ -32,11 +37,11 @@ data class Trip(
         return convertDate("MMM")
     }
 
-    fun getDay() : String {
+    fun getDay(): String {
         return convertDate("EEEE")
     }
 
-    fun isToday() : Boolean {
+    fun isToday(): Boolean {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val sdfOutput = SimpleDateFormat("yyyy-MM-dd")
         val now = sdfOutput.format(Date())
@@ -44,7 +49,18 @@ data class Trip(
         return now.equals(dInput)
     }
 
-    private fun convertDate(format : String): String {
+    fun sDate(): String = convertDate(startDate, "EEE, d MMM yyyy", Locale.getDefault())
+
+    fun eDate(): String = convertDate(returnDate, "EEE, d MMM yyyy", Locale.getDefault())
+
+    private fun convertDate(date: String, format: String, local: Locale): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", local)
+        val sdfOutput = SimpleDateFormat(format, local)
+        val dInput = sdf.parse(startDate)
+        return sdfOutput.format(dInput)
+    }
+
+    private fun convertDate(format: String): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in"))
         val sdfOutput = SimpleDateFormat(format, Locale("in"))
         val dInput = sdf.parse(startDate)

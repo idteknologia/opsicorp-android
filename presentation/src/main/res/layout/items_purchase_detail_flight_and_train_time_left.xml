@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:background="@drawable/rounded_blue_stroke_50_persen"
-        android:layout_marginRight="18dp"
+        android:layout_marginRight="@dimen/margin_default"
         android:layout_height="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"

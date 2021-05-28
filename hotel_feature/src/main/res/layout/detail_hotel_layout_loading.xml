@@ -13,8 +13,8 @@
             android:orientation="vertical"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="@dimen/margin_default"
+            android:paddingRight="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -97,16 +97,16 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#d3d3d8">
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,8 +167,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
                 <LinearLayout
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_centerVertical="true"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -211,8 +211,8 @@
                     android:layout_width="match_parent"
                     android:background="#dddddd"
                     android:textColor="#dddddd"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_centerVertical="true"
                     android:layout_height="50dp">
 
@@ -242,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Location"
@@ -252,7 +252,7 @@
 
                 <TextView
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="View Larger Map"
@@ -270,8 +270,8 @@
                     android:background="#dddddd"
                     android:textColor="#dddddd"
                     android:clickable="false"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginTop="17dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

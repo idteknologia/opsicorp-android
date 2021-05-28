@@ -8,51 +8,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
             android:layout_marginBottom="15dp"
             android:orientation="horizontal">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp">
 
                 <ImageView
                     android:id="@+id/ic_back"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/size_image_back"
+                    android:layout_height="@dimen/size_image_back"
                     android:layout_gravity="center"
+                    android:scaleType="center"
                     android:src="@drawable/ic_back" />
 
                 <TextView
                     android:id="@+id/label_create_tripplan"
                     style="@style/RobotoBold"
-                    android:layout_width="wrap_content"
+                    android:gravity="end"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
                     android:focusable="true"
                     android:text="@string/review_budget"
                     android:textColor="#91929e"
                     android:textSize="12sp" />
 
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -60,8 +46,8 @@
             android:id="@+id/line_domestic"
             android:layout_width="match_parent"
             android:layout_height="67dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:background="@drawable/rounded_button_corner_grey_97">
 
             <LinearLayout
@@ -80,15 +66,21 @@
                     android:textColor="#91929e"
                     android:textSize="14sp" />
 
-                <TextView
+                <EditText
+                    android:singleLine="true"
                     android:id="@+id/title_cost_name"
+                    android:background="@android:color/transparent"
                     style="@style/RobotoBold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Cost Name"
+                    android:textColorHint="#24253d"
                     android:textColor="#24253d"
-                    android:textSize="16sp" />
+                    android:focusable="false"
+                    android:imeOptions="actionDone"
+                    android:text="@string/cost_center"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="9dp"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
 
@@ -104,14 +96,15 @@
                 android:layout_marginRight="15dp"
                 android:text="Change"
                 android:textAllCaps="true"
-                android:textColor="#ffb733"
+                android:textColor="@color/tintTextView"
                 android:textSize="14sp" />
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             android:layout_marginTop="32dp"
             android:orientation="vertical">
 
@@ -142,6 +135,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingBottom="8dp"
                     android:text="New"
                     android:textColor="#24253d"
                     android:textSize="14sp" />
@@ -175,7 +169,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Meeting"
+                    android:paddingBottom="8dp"
+                    android:text="Dinas Residensial di tempat kedudukan"
                     android:textColor="#24253d"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -208,6 +203,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:paddingBottom="8dp"
                     android:text="Yogayakarta"
                     android:textColor="#24253d"
                     android:textSize="14sp" />
@@ -256,7 +252,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="End data"
+                    android:text="End Date"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -281,57 +277,72 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/lineCash"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="25dp"
             android:layout_marginBottom="20dp"
-            android:background="#b2bbc6">
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="15dp"
-            android:text="Cash Advance"
-            android:textColor="#24253d"
-            android:textSize="16sp"
-            style="@style/RobotoBold"
-            android:layout_marginLeft="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="17dp"
+            android:background="#b2bbc6"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/et_min"
-                android:layout_width="260dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/rounded_button_corner_grey_97"
-                android:inputType="number"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:singleLine="true">
+        </LinearLayout>
 
-            </EditText>
+        <RelativeLayout
+            android:visibility="gone"
+            android:id="@+id/layCash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_cash_ad"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAllCaps="true"
                 android:layout_marginStart="20dp"
+                android:layout_marginBottom="15dp"
+                android:text="@string/cash_advance"
+                android:textColor="#24253d"
                 android:textSize="16sp"
-                android:textColor="#2b9a8e"
-                android:text="IDR"
                 style="@style/RobotoBold"
                 android:layout_marginLeft="20dp" />
-        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="17dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/tv_cash_ad">
+
+                <EditText
+                    android:id="@+id/et_min"
+                    android:layout_width="260dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@drawable/rounded_button_corner_grey_97"
+                    android:inputType="number"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:singleLine="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="8dp">
+
+                </EditText>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="true"
+                    android:layout_marginStart="20dp"
+                    android:textSize="16sp"
+                    android:textColor="#2b9a8e"
+                    android:text="IDR"
+                    style="@style/RobotoBold"
+                    android:layout_marginLeft="20dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 
     <include

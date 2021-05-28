@@ -22,11 +22,11 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:background="@android:color/white"
-                android:paddingLeft="20dp"
-                android:paddingEnd="20dp"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingEnd="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
-                android:paddingStart="20dp">
+                android:paddingStart="@dimen/margin_default">
                 <TextView
                     android:layout_centerVertical="true"
                     style="@style/RobotoBold"
@@ -206,7 +206,7 @@
 
             <RelativeLayout
                 android:background="@android:color/white"
-                android:paddingLeft="15dp"
+                android:paddingLeft="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="43dp">
                 <ImageView
@@ -224,7 +224,8 @@
                     android:layout_toRightOf="@id/ivChair"
                     android:layout_marginStart="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -241,7 +242,7 @@
             </LinearLayout>
             <RelativeLayout
                 android:background="@android:color/white"
-                android:paddingLeft="20dp"
+                android:paddingLeft="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="43dp">
                 <TextView
@@ -264,7 +265,7 @@
 
             <RelativeLayout
                 android:background="@android:color/white"
-                android:paddingLeft="20dp"
+                android:paddingLeft="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="43dp">
                 <TextView
