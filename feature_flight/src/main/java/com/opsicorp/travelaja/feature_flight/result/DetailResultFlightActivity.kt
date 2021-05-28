@@ -260,7 +260,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         return Globals.classToHashMap(data, ValidationFlightRequest::class.java)
     }
 
-    private fun getRemark(): List<String?>? {
+    private fun getRemark(): List<String?> {
         val data = ArrayList<String>()
 
         data.add(getProfile().title)

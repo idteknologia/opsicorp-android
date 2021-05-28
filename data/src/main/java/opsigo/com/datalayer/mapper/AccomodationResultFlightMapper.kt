@@ -257,6 +257,115 @@ class AccomodationResultFlightMapper {
                 data.add(mData)
             }
         }
+
+        model.result.multiCity?.forEachIndexed { index, returnFlight ->
+            returnFlight?.outgoingFlight?.forEach {
+                it?.classesView?.forEachIndexed { _ , classView ->
+                    val model = ResultListFlightModel()
+                    model.isFlightArrival   = false
+                    model.airline           = it.airline //11
+                    model.imgAirline        = it.airlineImageUrl.toString()
+                    model.titleAirline      = it.airlineName.toString()
+                    model.arrivalDate       = it.arrivalDate.toString()
+                    model.arriveDate        = it.arriveDate.toString()
+                    model.arriveDateTimeView    = it.arriveDateTimeView.toString()
+                    model.arriveTime        = it.arriveTime.toString()
+
+                    //model.category          = departureflightItem.categoryxxx
+                    model.nameClass          = classView.category.toString()
+
+                    model.classCode         = it.classCode.toString()
+                    model.classId           = it.classId.toString()
+                    model.code              = classView.code.toString()
+
+                    model.departDate        = it.departDate.toString()
+                    model.departTime        = it.departTime.toString()
+                    model.departureDate     = it.departureDate.toString()
+
+                    //model.duration        = departureflightItem.duration
+
+                    model.duration        = it.duration.toString()
+                    model.durationView    = it.durationView.toString()
+                    model.durationIncludeTransit        = it.durationIncludeTransit.toString()
+                    model.durationIncludeTransitView    = it.durationIncludeTransitView.toString()
+
+                    model.price            = classView.fare
+                    model.fareBasisCode    = classView.fareBasisCode.toString()
+                    model.fareRuleKeys      = classView.fareRuleKeys.toString()
+                    model.flightId          = classView.flightId.toString()
+                    model.flightNumber      = it.flightNumber.toString()
+                    model.flightType        = it.flightType.toString()
+                    model.flightTypeView    = it.flightTypeView.toString()
+
+                    model.id                = it.id.toString()
+                    model.isAvailable       = it.isAvailable
+                    model.isComply          = it.isComply
+                    model.isConnecting      = it.isConnecting
+                    model.isMultiClass      = it.isMultiClass
+                    model.isHolderFlight    = it.isHolderFlight
+
+                    model.sequence      = it.sequence
+
+                    model.number        = it.number.toString()
+
+                    model.origin            = it.origin.toString()
+                    model.originName        = it.originCity.toString()
+                    model.destination       = it.destination.toString()
+                    model.destinationName   = it.destinationCity.toString()
+
+                    model.originAirport     = it.originAirport.toString()
+                    model.destinationAirport= it.destinationAirport.toString()
+
+                    model.totalTransit      = it.totalTransit
+
+                    model.numberSeat        = classView.seat.toString()
+                    model.terminal          = it.originTerminal.toString()
+
+                    if (it.isConnecting){
+                        val transitFlight  = ArrayList<TransiteFlight>()
+                        it.connectingFlights?.forEachIndexed { index, transitFlightsEntity ->
+                            val transit =  TransiteFlight()
+                            transit.numberFlight = transitFlightsEntity.flightNumber.toString()
+                            transit.originId     = transitFlightsEntity.origin.toString()
+                            transit.destinationId = transitFlightsEntity.destination.toString()
+                            transit.priceTotal    = transitFlightsEntity.classesView[0].totalFare.toString() //2598000.0
+                            transit.isMultiClass =  false
+                            transit.isAvailable  = false
+                            transit.departDate   = transitFlightsEntity.departDate.toString()// "2020-09-22"
+                            transit.departTime   = transitFlightsEntity.departTime.toString()//05:25
+                            transit.arriveDate   = transitFlightsEntity.arriveDate.toString() //: "2020-09-22",
+                            transit.arriveTime   = transitFlightsEntity.arriveTime.toString() //""//07:00"
+                            transit.duration     = transitFlightsEntity.duration.toString() //""//01:35:00",
+                            transit.durationView = transitFlightsEntity.durationView.toString() //""//1h 35m",
+                            transit.transitDuration = transitFlightsEntity.transitDuration.toString()//00:45:00",
+                            transit.transitDurationView = transitFlightsEntity.transitDurationView.toString()//0h 45m"
+
+                            transit.operatingNumber = transitFlightsEntity.operatingNumber.toString() //GA
+                            transit.titleAirline    = transitFlightsEntity.airlineName.toString() //Garuda Indonesia
+                            transit.classFlight     = transitFlightsEntity.classesView[0].category.toString()
+                            transit.seatNumber      = transitFlightsEntity.classesView[0].seat.toString()
+                            transit.originTerminal  = transitFlightsEntity.originTerminal.toString()//1
+                            transit.destinationTerminal = transitFlightsEntity.destinationTerminal.toString()//2
+                            transit.originCity      = transitFlightsEntity.originCity.toString()//Surabaya
+                            transit.originAirport   = transitFlightsEntity.originAirport.toString()//"Juanda Airport"
+                            transit.destinationCity = transitFlightsEntity.destinationCity.toString()//Jakarta",
+                            transit.destinationAirport = transitFlightsEntity.destinationAirport.toString()//Soekarno Hatta",
+                            transit.crossDay        = transitFlightsEntity.crossDay.toString()// 0.0,
+                            transit.airlineName     = transitFlightsEntity.airlineName.toString()//Garuda Indonesia",
+                            transitFlight.add(transit)
+                        }
+
+                        model.transiteFlight.addAll(transitFlight)
+                    }
+
+                    val mData = AccomodationResultModel()
+                    mData.typeLayout        = 2 //flight = 2
+                    mData.listFlightModel   = model
+                    data.add(mData)
+                }
+            }
+        }
+
         return data
     }
 }

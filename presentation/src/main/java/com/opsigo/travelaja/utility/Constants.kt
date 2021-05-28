@@ -17,6 +17,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val positionFlightMulticity = "position flight multicity"
     var ALREADY_SEARCH_FLIGHT = false
     var multitrip           = false
     val IS_PERSONAL_TRIP    = "isPersonalTrip"
@@ -34,7 +35,7 @@ object Constants {
     val SHOWCASE_ID         = ""
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE   = ArrayList<SeatAirlineModel>()
-    var DATA_FLIGHT_MULTI_CITY = DataMultiTripOrder()
+//    var DATA_FLIGHT_MULTI_CITY = DataMultiTripOrder()
     var DATA_SSR            = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
@@ -113,6 +114,7 @@ object Constants {
     val REQUEST_CODE_HOTEL_FILTER = 9066
     val SELECT_FLIGHT            = 9065
     val REQUEST_CODE_SELECT_FLIGHT = 9064
+    var KEY_INTENT_SELECT_FLIGHT = "key_intent_result_ok_select_flight"
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
     val DATA_DETAIL_HOTEL        = ""
     var DATA_DETAIL_FLIGHT       = ""

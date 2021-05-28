@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.ssr_flight_activity.btnDone
 import kotlinx.android.synthetic.main.ssr_flight_activity.line_shadow
 import kotlinx.android.synthetic.main.ssr_flight_activity.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
 import java.lang.Exception
 
@@ -104,7 +105,16 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
     }
 
     private fun setData() {
-        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.forEach {
+                datalist.dataFlight.add(it.flightResult)
+            }
+        }
+        else {
+            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        }
+
         val dataProfile = Globals.getProfile(applicationContext)
         tvPassengerSsr.text = "${dataProfile.title}.${dataProfile.name}"
         adapter.setData(datalist.dataFlight,currentPositionPassenger)

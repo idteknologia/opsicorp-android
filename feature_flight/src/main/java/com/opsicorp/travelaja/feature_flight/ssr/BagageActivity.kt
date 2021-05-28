@@ -1,24 +1,22 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.os.Build
+import java.lang.Exception
+import com.opsigo.travelaja.utility.*
+import com.opsigo.travelaja.BaseActivity
 import androidx.core.content.ContextCompat
+import opsigo.com.datalayer.mapper.Serializer
+import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
-import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_bagage.*
 import kotlinx.android.synthetic.main.activity_bagage.btnDone
 import kotlinx.android.synthetic.main.activity_bagage.toolbar
-import kotlinx.android.synthetic.main.toolbar_view_new.view.*
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.mapper.Serializer
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedBaggageModel
-import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
-import java.lang.Exception
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 
 class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener,
         OnclickListenerRecyclerViewParent {
@@ -49,10 +47,10 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     private fun initPriceRv() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rvPriceBagagge.layoutManager = layoutManager
-        rvPriceBagagge.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rvPriceBagagge.itemAnimator = DefaultItemAnimator()
         rvPriceBagagge.adapter = adapter2
     }
 
@@ -68,10 +66,6 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
         }
         line_shadow.setOnClickListener {
             showOrHideDetailPrice()
-        }
-        if (Globals.typeAccomodation == Constants.FLIGHT) {
-            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-
         }
     }
 
@@ -105,17 +99,25 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_baggage.layoutManager = layoutManager
-        rv_baggage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_baggage.itemAnimator = DefaultItemAnimator()
         rv_baggage.adapter = adapter
 
         adapter.setOnclickListener(this)
     }
 
     private fun setData() {
-        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.forEach {
+                datalist.dataFlight.add(it.flightResult)
+            }
+        }
+        else {
+            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        }
         adapter.setData(datalist.dataFlight,currentPositionPassenger)
     }
 
@@ -140,15 +142,24 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
         datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected.clear()
         datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected.addAll(baggageSelected)
-        Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.mapIndexed { index, routeMultiCityModel ->
+                routeMultiCityModel.flightResult = datalist.dataFlight[index]
+            }
+            Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder)
+        }
+        else {
+            Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+        }
 
         adapter2.setData(datalist.dataFlight[positionParent].passenger[currentPositionPassenger].ssr.bagaggeItemSelected)
-
     }
 
 
 
-    private fun totalPriceSelected(): String? {
+    private fun totalPriceSelected(): String {
         var totalSelected = 0.0
         datalist.dataFlight.forEach {
             try {

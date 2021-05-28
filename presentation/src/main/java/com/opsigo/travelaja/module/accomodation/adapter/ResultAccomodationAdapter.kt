@@ -1,22 +1,21 @@
 package com.opsigo.travelaja.module.accomodation.adapter
 
-import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
+import java.util.ArrayList
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import com.opsigo.travelaja.R
+import android.content.Context
+import android.widget.TextView
+import android.widget.ImageView
+import android.view.LayoutInflater
+import com.squareup.picasso.Picasso
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.utility.Globals.setLog
-import com.squareup.picasso.Picasso
-import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
-import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
 import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
-import java.util.ArrayList
+import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
+import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 /**
  * Created by khoiron on 04/09/18.
@@ -190,7 +189,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
             tv_duration.text       = data.durationView
             tv_type_class.text     = data.nameClass + " (" + data.code + ")"
             tv_destination.text    = data.origin + " - " + data.destination
-            tv_time_departure.text = data.departTime + " - " + data.arriveTime
+            tv_time_departure.text = "${data.departDate}" //data.departTime + " - " + data.arriveTime
 //            tv_price.text          = Globals.formatAmount(data.price)
             tv_price.text          = StringUtils().setCurrency("", data.price , false)
 

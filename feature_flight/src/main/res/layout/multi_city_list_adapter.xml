@@ -131,6 +131,7 @@
 
 
         <LinearLayout
+            android:id="@+id/line_description"
             android:layout_toEndOf="@+id/img_airline2"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
@@ -189,18 +190,24 @@
                 android:textColor="#91929e"
                 style="@style/RobotoBold"
                 android:text="Sriwijaya Air - Economy - Subclass-X" />
-            <TextView
-                android:singleLine="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                style="@style/RobotoBold"/>
 
         </LinearLayout>
+
+        <TextView
+            android:layout_marginRight="20dp"
+            android:layout_toEndOf="@+id/img_airline2"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@+id/line_description"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:id="@+id/tv_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            style="@style/RobotoBold"
+            android:layout_toRightOf="@+id/img_airline2" />
+
 
         <RelativeLayout
             android:layout_alignParentRight="true"

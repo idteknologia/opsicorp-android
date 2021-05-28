@@ -1,9 +1,9 @@
 package com.opsigo.travelaja.utility
 
+import java.util.*
 import java.lang.Exception
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 class DateConverter {
