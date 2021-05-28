@@ -7,9 +7,6 @@ import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.opsicorp.sliderdatepicker.utils.Constant
 import com.opsigo.travelaja.R
 import android.content.Context
 import android.widget.TextView
@@ -20,9 +17,11 @@ import com.opsigo.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import android.graphics.drawable.BitmapDrawable
 import com.opsigo.travelaja.base.InitApplications
+import com.opsicorp.sliderdatepicker.utils.Constant
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.callback.CallbackReasonCode
-import kotlinx.android.synthetic.main.flight_fragment.*
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_to
@@ -43,8 +42,9 @@ import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassanger
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
+import com.opsigo.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
+import com.opsigo.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
@@ -69,7 +69,6 @@ class FlightFragmentNew : BaseFragment(),
     var typeTrip = ""
     val adapter by lazy { FlightMultiAdapter() }
     var mFlightMulti   = OrderAccomodationModel()
-//    var mFlightMulti = ArrayList<OrderAccomodationModel>()
 
     var startDate = ""
     var endDate = ""
@@ -511,8 +510,11 @@ class FlightFragmentNew : BaseFragment(),
             if (isEmptyMulticity().first) {
                 Globals.showAlert("sorry", "Please Select Flight ${isEmptyMulticity().second}", requireActivity())
             } else {
-                mFlightMulti.adult = 1
-                mFlightMulti.totalPassenger = 1
+
+                mFlightMulti.adult = totalAdult
+                mFlightMulti.child = totalChild
+                mFlightMulti.infant = totalInfant
+                mFlightMulti.totalPassenger = totalAdult + totalChild + totalInfant
                 mFlightMulti.classFlightCode = "1"
                 Globals.DATA_ORDER_FLIGHT = Serializer.serialize(mFlightMulti, OrderAccomodationModel::class.java)
                 gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
