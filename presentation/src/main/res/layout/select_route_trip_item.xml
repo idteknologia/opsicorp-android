@@ -5,6 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
+        <variable
+            name="position"
+            type="Integer" />
         <variable
             name="viewModel"
             type="com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel" />
@@ -32,7 +36,6 @@
                 android:layout_marginStart="14dp"
                 android:layout_marginLeft="14dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/trip_number"
                 android:textColor="#24253d"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -50,7 +53,7 @@
                 android:drawableRight="@drawable/ic_baseline_arrow_drop_down_24"
                 android:drawablePadding="10dp"
                 android:gravity="center"
-                android:text="@{viewModel.itinerary.transportation == 1 ? @string/trip_type_air : @string/trip_type}"
+                android:text="@{viewModel.getItinerary(position).transportation == 1 ? @string/trip_type_air : @string/trip_type}"
                 android:textColor="#2b9a8e"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -108,7 +111,7 @@
                                     android:hint="@string/select_departure_date"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"
-                                    android:text="@{viewModel.itinerary.departureDateView}"
+                                    android:text="@{viewModel.getItinerary(position).departureDateView}"
                                     android:textAlignment="viewStart"
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
@@ -164,7 +167,7 @@
                                     android:hint="Origin city"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"
-                                    android:text="@{viewModel.itinerary.origin}"
+                                    android:text="@{viewModel.getItinerary(position).origin}"
                                     android:textAlignment="viewStart"
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
@@ -211,9 +214,9 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginBottom="25dp"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_goneMarginBottom="@dimen/margin_default"
+                    app:layout_constraintBottom_toTopOf="@+id/btnRemove"
                     app:layout_constraintTop_toBottomOf="@+id/line_depart"
                     android:weightSum="1">
 
@@ -252,7 +255,7 @@
                                     android:hint="Destination city"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"
-                                    android:text="@{viewModel.itinerary.destination}"
+                                    android:text="@{viewModel.getItinerary(position).destination}"
                                     android:textAlignment="viewStart"
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
@@ -273,8 +276,18 @@
 
                 </LinearLayout>
 
-
-
+            <TextView
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line_arrive"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textColor="@color/textColorButtonOutline"
+                tools:visibility="visible"
+                android:visibility="@{viewModel.isRemoveVisible() ? View.VISIBLE : View.GONE}"
+                android:text="@string/remove"
+                android:layout_margin="16dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

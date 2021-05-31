@@ -22,11 +22,13 @@ class ItineraryAdapter(val viewModel : ItineraryViewModel) : RecyclerView.Adapte
         holder.onBind(position)
     }
 
-    override fun getItemCount(): Int = 1
+    override fun getItemCount(): Int = viewModel.itineraries.size
 
     inner class ItineraryViewHolder(val v: SelectRouteTripItemBinding) : RecyclerView.ViewHolder(v.root) {
         fun onBind(position: Int) {
             v.viewModel = viewModel
+            v.position = position
+            v.tvTripNumber.text = "Trip  ${position+1}"
 
 
             v.layDeaprtureDate.setOnClickListener {
@@ -43,6 +45,10 @@ class ItineraryAdapter(val viewModel : ItineraryViewModel) : RecyclerView.Adapte
 
             v.tvTypeTransport.setOnClickListener {
                 (it.context as ItineraryListener).clickItemItinerary(position,3)
+            }
+
+            v.btnRemove.setOnClickListener {
+                (it.context as ItineraryListener).clickItemItinerary(position,4)
             }
         }
     }
