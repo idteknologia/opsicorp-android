@@ -1,296 +1,306 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_prize"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/line_shadow"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#cc000000"></LinearLayout>
+        android:background="#cc000000"
+        android:orientation="vertical" />
 
     <LinearLayout
-        android:elevation="3dp"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:elevation="3dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top" />
 
         <LinearLayout
-            android:background="@android:color/white"
             android:id="@+id/header_prize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:paddingLeft="@dimen/margin_default"
-                android:paddingBottom="14dp"
-                android:orientation="vertical"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_height="wrap_content">
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingBottom="14dp">
 
-                <RelativeLayout
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ic_image"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_chevron_up_green" />
+
+                    <TextView
+                        android:id="@+id/tv_title_prize"
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            android:id="@+id/ic_image"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_chevron_up_green"
-                            android:layout_width="12dp"
-                            android:layout_height="12dp" />
-                        <TextView
-                            android:id="@+id/tv_title_prize"
-                            style="@style/RobotoRegular"
-                            android:layout_marginLeft="6dp"
-                            android:text="Total price for 1 pax"
-                            android:textSize="12sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                </RelativeLayout>
+                        android:layout_marginLeft="6dp"
+                        android:text="@string/txt_total_price_for_1_pax"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_price"
-                    android:gravity="left"
-                    android:text="IDR 719.000"
-                    android:textSize="20dp"
                     style="@style/RobotoMedium"
-                    android:textColor="#00776a"
-                    android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="start"
+                    android:textColor="#00776a"
+                    android:textSize="20sp"
+                    tools:text="IDR 719.000" />
 
                 <TextView
                     android:id="@+id/tv_including"
-                    android:textSize="12sp"
-                    android:textColor="#939396"
                     style="@style/RobotoRegular"
-                    android:text="Including of all fares &amp; vat"
-                    android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
-                    android:gravity="left"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="start"
+                    android:text="@string/txt_including_off_all"
+                    android:textColor="#939396"
+                    android:textSize="12sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
                 <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-                    android:layout_width="match_parent"
-                    android:layout_gravity="center"
                     android:id="@+id/btn_next"
-                    app:text="Book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                    app:text="Book" />
 
             </LinearLayout>
         </LinearLayout>
 
 
         <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
-            android:background="@android:color/white"
+            android:id="@+id/body_prize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
             app:ael_duration="200"
             app:ael_expanded="true"
-            android:id="@+id/body_prize"
-            app:ael_interpolator="accelerateDecelerate"
-            android:orientation="vertical">
+            app:ael_interpolator="accelerateDecelerate">
+
             <LinearLayout
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:background="#e0e0e1"
                 android:layout_width="match_parent"
-                android:layout_height="1.5dp">
-            </LinearLayout>
+                android:layout_height="1.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="#e0e0e1"/>
 
             <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/margin_default">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_station_departure"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Gajayana"/>
+                        android:textSize="14sp"
+                        tools:text="Gajayana" />
 
                     <TextView
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#939396"
                         android:text="Adult x1"
-                        style="@style/RobotoRegular"/>
+                        android:textColor="#939396"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_prize_departure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
+                    android:layout_alignParentRight="true"
                     android:gravity="end"
-                    android:text="IDR 110.800"
-                    android:layout_alignParentRight="true"/>
+                    android:textColor="#d9000000"
+                    android:textSize="14sp"
+                    tools:text="IDR 110.800" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/line_arrival"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_default">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_station_arrival"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Argo Parahyangan Tambahan"/>
+                        android:textSize="14sp"
+                        tools:text="Argo Parahyangan Tambahan" />
 
                     <TextView
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="#939396"
                         android:text="Adult x1"
-                        style="@style/RobotoRegular"/>
+                        android:textColor="#939396"
+                        android:textSize="10sp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_prize_arrival"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
+                    android:layout_alignParentRight="true"
                     android:gravity="end"
-                    android:text="IDR 110.800"
-                    android:layout_alignParentRight="true"/>
+                    android:textColor="#d9000000"
+                    android:textSize="14sp"
+                    tools:text="IDR 110.800" />
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Services Fee"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Free"
-                        style="@style/RobotoRegular"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Tax"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:background="#f5f5f5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="13dp"
-                android:paddingBottom="13dp">
-                <TextView
-                    android:layout_width ="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_default">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize  ="14sp"
-                    android:textColor ="#00776a"
-                    android:text      ="Amount to pay"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_services_fee"
+                        android:textColor="#b324253d"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_free"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:textColor="#d9000000"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginBottom="25dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tax"
+                        android:textColor="#b324253d"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:textColor="#d9000000"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f5f5f5"
+                android:paddingLeft="20dp"
+                android:paddingTop="13dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="13dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_amount_to_pay"
+                    android:textColor="#00776a"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tv_price_total"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:layout_alignParentRight="true"
+                    tools:text="IDR 221.600  "
                     android:textColor="#d9000000"
-                    android:text="IDR 221.600  "/>
+                    android:textSize="16sp" />
 
             </RelativeLayout>
         </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>

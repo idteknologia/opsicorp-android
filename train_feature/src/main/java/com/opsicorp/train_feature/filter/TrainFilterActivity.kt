@@ -42,7 +42,7 @@ class TrainFilterActivity : BaseActivity() ,
     }
 
     private fun initButtonFilter() {
-        btn_filter.setTextButton("See ${totalTrain} Ticket(s)")
+        btn_filter.setTextButton("${getString(R.string.txt_see)} $totalTrain ${getString(R.string.txt_ticket)}(s)")
         btn_filter.callbackOnclickButton(this)
     }
 

@@ -19,9 +19,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
                 <RelativeLayout
                     android:background="@android:color/transparent"
@@ -50,18 +47,18 @@
                             android:textSize="18sp"
                             android:textColor="#24253d"
                             android:gravity="end"
-                            android:text="Train Summary"
+                            android:text="@string/txt_train_summary"
                             style="@style/RobotoBold"/>
 
                         <TextView
-                            android:layout_gravity="right"
+                            android:layout_gravity="end"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="#91929e"
                             android:gravity="end"
                             style="@style/RobotoRegular"
-                            android:text="Roundtrip"
+                            android:text="@string/round_trip"
                             android:layout_marginTop="2dp"/>
                     </LinearLayout>
                 </RelativeLayout>
@@ -112,7 +109,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="#24253d"
-                                android:text="CZ - Fare option not available"
+                                android:text="@string/txt_cz_fare_option_not_available"
                                 style="@style/RobotoBold"/>
                             <TextView
                                 android:layout_marginTop="2dp"
@@ -120,7 +117,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="10sp"
                                 android:textColor="#91929e"
-                                android:text="Please choose the information for fastest Approval"
+                                android:text="@string/txt_please_choose_the_information_for_fastest_approval"
                                 style="@style/RobotoRegular"/>
                         </LinearLayout>
 
@@ -138,7 +135,6 @@
                 </androidx.cardview.widget.CardView>
 
 
-            </RelativeLayout>
 
         </LinearLayout>
 
@@ -151,7 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="visible"
-        layout="@layout/detail_prize_bottom_train"></include>
+        layout="@layout/detail_prize_bottom_train"/>
 
 
 </RelativeLayout>

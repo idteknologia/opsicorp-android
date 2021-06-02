@@ -33,7 +33,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
     val adapter by lazy { ConfirmationTrainAdapter(this, data) }
 
     override fun OnMain() {
-        btn_next.setTextButton("Book")
+        btn_next.setTextButton(getString(R.string.book))
         btn_next.callbackOnclickButton(this)
         ic_back.setOnClickListener(this)
 
@@ -128,7 +128,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
         mData.name_station_departure = dataTrain.stationDeparture
         mData.name_station_arrival   = dataTrain.stationArrival
 
-        mData.total_passager         = if ("".isEmpty()) "Adult x 1" else ""
+        mData.total_passager         = if ("".isEmpty()) "${getString(R.string.txt_adult)} x 1" else ""
         mData.total_prize            = dataTrain.price //"IDR "+Globals.formatAmount("")
 
         data.add(mData)
@@ -214,7 +214,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
                 mData.name_station_arrival = dataOrder.destinationStationName
             }
 
-            mData.total_passager = if (dataOrder.totalPassengerString.isEmpty()) "Adult x 1" else dataOrder.totalPassengerString
+            mData.total_passager = if (dataOrder.totalPassengerString.isEmpty()) "${getString(R.string.txt_adult)} x 1" else dataOrder.totalPassengerString
 //            mData.total_prize    = resultListTrainModel.price
             mData.total_prize    = "IDR "+Globals.formatAmount(resultListTrainModel.price)
 
@@ -244,7 +244,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
                 gotoActivity(BookingContactTrain::class.java)
             }
             else {
-                showAllert("Sorry","Please Select ReasonCode")
+                showAllert(getString(R.string.sorry),getString(R.string.txt_please_select_reasoncode))
             }
         }
         else{

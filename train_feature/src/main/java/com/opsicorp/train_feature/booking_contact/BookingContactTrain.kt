@@ -294,7 +294,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
     fun getReservased(){
         setLog(Serializer.serialize(getPassanger()))
         if (bookingContactIsEmpty()){
-            showAllert("Sorry",getString(R.string.booking_contact_not_empty))
+            showAllert(getString(R.string.sorry),getString(R.string.booking_contact_not_empty))
         }
         else {
             showLoadingOpsicorp(true)
@@ -304,7 +304,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
                 }
 
                 override fun failedLoad(message: String) {
-                    showAllert("Sorry",message)
+                    showAllert(getString(R.string.sorry),message)
                     hideLoadingOpsicorp()
                 }
             })

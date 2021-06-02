@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="3dp"
@@ -48,7 +49,7 @@
                             android:textSize="14sp"
                             android:textColor="#2b9a8e"
                             android:gravity="end"
-                            android:text="Reserved" />
+                            android:text="@string/txt_reserved" />
 
                         <TextView
                             android:layout_marginTop="5dp"
@@ -57,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="8sp"
                             android:textColor="#91929e"
-                            android:text="Booking Code (PNR)"
+                            android:text="@string/txt_booking_code_pnr"
                             />
                         <TextView
                             android:id="@+id/tv_pnr_code"
@@ -67,7 +68,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="14dp"
                             android:textColor="#24253d"
-                            android:text="AW5CRP"/>
+                            tools:text="AW5CRP"/>
 
                     </LinearLayout>
 
@@ -78,7 +79,7 @@
                         android:layout_centerVertical="true"
                         android:background="#e0e0e1"
                         android:layout_marginRight="12dp"
-                        android:layout_toLeftOf="@+id/tv_date_arrival_deaprture"></LinearLayout>
+                        android:layout_toLeftOf="@+id/tv_date_arrival_deaprture"/>
 
                     <TextView
                         android:layout_marginRight="15dp"
@@ -89,7 +90,7 @@
                         android:layout_alignParentRight="true"
                         android:gravity="end"
                         android:id="@+id/tv_date_arrival_deaprture"
-                        android:text="SUN, 27 Apr 2019"
+                        tools:text="SUN, 27 Apr 2019"
                         android:layout_centerVertical="true"/>
                 </RelativeLayout>
 
@@ -132,7 +133,7 @@
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sriwijaya Air"
+                        tools:text="Sriwijaya Air"
                         android:textColor="#212121"
                         android:textSize="14dp" />
 
@@ -141,7 +142,7 @@
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Economy Class"
+                        tools:text="Economy Class"
                         android:textColor="#8024253d"
                         android:textSize="12dp" />
 
@@ -156,7 +157,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="20dp"
                     android:gravity="end"
-                    android:text="KAI-20A"
+                    tools:text="KAI-20A"
                     android:textColor="#91929e"
                     android:textSize="12sp" />
 
@@ -189,7 +190,7 @@
                         android:textSize="12.5sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="13:00"
+                        tools:text="13:00"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -197,7 +198,7 @@
                         android:textSize="11.3sp"
                         android:textColor="#8024253d"
                         style="@style/RobotoMedium"
-                        android:text="27 Apr"
+                        tools:text="27 Apr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -217,7 +218,7 @@
                         android:textSize="12.5sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="Jakarta (CGK)"
+                        tools:text="Jakarta (CGK)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -225,7 +226,7 @@
                         android:textSize="11.3sp"
                         android:textColor="#8024253d"
                         style="@style/RobotoMedium"
-                        android:text="Soekarno Hatta International Airport"
+                        tools:text="Soekarno Hatta International Airport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -243,7 +244,7 @@
                             android:layout_gravity="center"
                             android:layout_width="10dp"
                             android:layout_height="10dp"
-                            android:src="@drawable/ic_clock_black"></ImageView>
+                            android:src="@drawable/ic_clock_black"/>
 
                         <TextView
                             android:layout_margin="2dp"
@@ -252,18 +253,11 @@
                             android:textSize="10sp"
                             android:textColor="#212121"
                             style="@style/RobotoMedium"
-                            android:text="Total Duration : 1h 35m"
+                            tools:text="Total Duration : 1h 35m"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
-
-
-
-
-
                 </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_toEndOf="@+id/line_depart"
                     android:layout_marginLeft="14dp"
@@ -293,9 +287,7 @@
                         android:orientation="vertical"
                         android:background="@drawable/line_dot"
                         android:layout_width="1dp"
-                        android:layout_height="55dp">
-
-                    </View>
+                        android:layout_height="55dp"/>
 
                     <LinearLayout
                         android:visibility="gone"
@@ -310,7 +302,7 @@
                         android:visibility="visible"
                         android:background="@drawable/point_arrival"
                         android:layout_width="9dp"
-                        android:layout_height="9dp"></ImageView>
+                        android:layout_height="9dp"/>
 
                 </LinearLayout>
 
@@ -329,7 +321,7 @@
                         android:textSize="12.5sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="Jakarta (CGK)"
+                        tools:text="Jakarta (CGK)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -337,7 +329,7 @@
                         android:textSize="11.3sp"
                         android:textColor="#8024253d"
                         style="@style/RobotoMedium"
-                        android:text="Soekarno Hatta International Airport"
+                        tools:text="Soekarno Hatta International Airport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -357,7 +349,7 @@
                         android:textSize="12.5sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="13:00"
+                        tools:text="13:00"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
@@ -365,7 +357,7 @@
                         android:textSize="11.3sp"
                         android:textColor="#8024253d"
                         style="@style/RobotoMedium"
-                        android:text="27 Apr"
+                        tools:text="27 Apr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -396,9 +388,9 @@
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Price Details"
+                    android:text="@string/txt_price_details"
                     android:textColor="#00776a"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
 
 
@@ -423,9 +415,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="IDR 110.000"
+                    tools:text="IDR 110.000"
                     android:textColor="#d9000000"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
             </RelativeLayout>
 

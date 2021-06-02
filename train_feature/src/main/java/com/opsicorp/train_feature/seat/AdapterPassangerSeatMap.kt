@@ -61,7 +61,7 @@ class AdapterPassangerSeatMap (var context: Context, var items: ArrayList<Passan
                     R.drawable.rounded_seatmap_pick)
         }
 
-        holder.itemView.title_passanger.text  = "Passanger ${position+1}"
+        holder.itemView.title_passanger.text  = "${context.getString(R.string.txt_passanger)} ${position+1}"
         holder.itemView.name_passanger.text   = data.namePassanger
         holder.itemView.number_seat.text      = data.numberSeatSelected
 

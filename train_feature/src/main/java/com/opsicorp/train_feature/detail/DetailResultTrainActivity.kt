@@ -89,14 +89,14 @@ class DetailResultTrainActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonLi
     private fun initButtonNext() {
         btn_next.callbackOnclickButton(this)
         if (Globals.ONE_TRIP){
-            btn_next.setTextButton("Select Departing")
+            btn_next.setTextButton(getString(R.string.txt_select_departing))
         }
         else{
             if (Globals.ALL_READY_SELECT_DEPARTING){
-                btn_next.setTextButton("Select Returning")
+                btn_next.setTextButton(getString(R.string.txt_select_returning))
             }
             else {
-                btn_next.setTextButton("Select Departing ")
+                btn_next.setTextButton(getString(R.string.txt_select_departing))
             }
         }
     }

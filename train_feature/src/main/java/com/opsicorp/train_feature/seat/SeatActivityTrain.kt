@@ -84,7 +84,7 @@ class SeatActivityTrain : BaseActivity(),
                 val hour: Long = diff / (60 * 60 * 1000) % 24
                 val minutes: Long = diff / (60 * 1000) % 60
                 val seconds: Long = diff / 1000 % 60
-                timeExpired.text = "Pick Seat Time ${minutes} : ${seconds}"
+                timeExpired.text = "${getString(R.string.txt_pick_seat_time)} ${minutes} : ${seconds}"
             }
         }.start()
     }
@@ -109,7 +109,7 @@ class SeatActivityTrain : BaseActivity(),
 
             override fun failed(errorMessage: String) {
                 val builder = AlertDialog.Builder(this@SeatActivityTrain)
-                builder.setTitle("Sorry")
+                builder.setTitle(getString(R.string.sorry))
                 builder.setMessage(errorMessage)
                 builder.setPositiveButton("Ok") { dialog, which -> finish() }
                 builder.create().show()
@@ -415,7 +415,7 @@ class SeatActivityTrain : BaseActivity(),
 //        })
 
         if (seatSelectTed.X.isNullOrEmpty()){
-            showAllert("Please","Select Seat")
+            showAllert(getString(R.string.txt_please),getString(R.string.select_seat))
         }
         else {
             setLog(Serializer.serialize(getDataSelectedSeatMap()))
@@ -429,7 +429,7 @@ class SeatActivityTrain : BaseActivity(),
                 }
                 override fun failedLoad(message: String) {
                     hideLoadingOpsicorp()
-                    showAllert("Sorry",message)
+                    showAllert(getString(R.string.sorry),message)
                 }
             })
         }

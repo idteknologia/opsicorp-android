@@ -91,7 +91,7 @@ class ResultSearchTrainActivity : BaseActivity(),
         val departing = if (depart.contains(" ")) DateConverter().getDate(depart.split(" ")[0],"yyyy-MM-dd","EEE, yyyy MMM dd") else DateConverter().getDate(departureDate,"yyyy-MM-dd","EEE, yyyy MMM dd")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","Depart Date : ${departing} - 1 pax")
+        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","${getString(R.string.txt_depart_date)} : ${departing} - 1 pax")
     }
 
     private fun addDataDummyFlight() {
@@ -123,7 +123,7 @@ class ResultSearchTrainActivity : BaseActivity(),
 
             override fun failed(error: String) {
                 loadingSearch = false
-                showAllert("Sorry",error)
+                showAllert(getString(R.string.sorry),error)
             }
         })
     }
@@ -162,7 +162,7 @@ class ResultSearchTrainActivity : BaseActivity(),
     private fun showTotalData() {
         Globals.delay(1000.toLong(),object :Globals.DelayCallback{
             override fun done() {
-                tv_total_data.text = "${data.size} Tickets Found"
+                tv_total_data.text = "${data.size} ${getString(R.string.txt_tickets_found)}"
                 val transition: Transition = Fade()
                 transition.setDuration(700)
                 transition.addTarget(R.id.tv_total_data)

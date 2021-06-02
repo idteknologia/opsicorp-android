@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Opsicorp</string>
 
@@ -773,4 +774,70 @@ Please add your trip item for Approval."
     <string name="text_desc_passenger">For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth (<font color='#009688'><b> dd-mm-yyyy</b></font> ).</string>
     <string name="create_business_trip">Create Business Trip</string>
     <string name="please_fill_all_trip_information_below">Please fill all trip information below.</string>
+    <string name="txt_adult">Adult</string>
+    <string name="txt_please_select_reasoncode">Please Select ReasonCode</string>
+    <string name="txt_select_departing">Select Departing</string>
+    <string name="txt_select_returning">Select Returning</string>
+    <string name="txt_see">see</string>
+    <string name="txt_ticket">Ticket</string>
+    <string name="txt_tickets_found">Tickets Found</string>
+    <string name="txt_depart_date">Depart Date</string>
+    <string name="txt_passanger">Passanger</string>
+    <string name="txt_please">Please</string>
+    <string name="txt_train_detail">Train Detail</string>
+    <string name="txt_services_fee">Services Fee</string>
+    <string name="txt_free">Free</string>
+    <string name="txt_amount_to_pay">Amount to pay</string>
+    <string name="txt_booking_details">Booking details</string>
+    <string name="txt_fill_passenger">Fill passenger and contact information in details.</string>
+    <string name="txt_passenger_information">Passenger Information</string>
+    <string name="txt_booking_contact">Booking Contact</string>
+    <string name="txt_contacts_name">Contacts Name</string>
+    <string name="txt_without_degree_or_special">(without degree or special characters)</string>
+    <string name="txt_contact_number">Contact Number</string>
+    <string name="txt_economy_class">Economy Class</string>
+    <string name="txt_services_free">Services Free</string>
+    <string name="txt_including_off_all">Including of all fares &amp; vat</string>
+    <string name="txt_email_example">e.g email@example.com</string>
+    <string name="txt_vat">VAT</string>
+    <string name="txt_train_summary">Train Summary</string>
+    <string name="txt_cz_fare_option_not_available">CZ - Fare option not available</string>
+    <string name="txt_please_choose_the_information_for_fastest_approval">Please choose the information for fastest Approval</string>
+    <string name="txt_total_price_for_1_pax">Total price for 1 pax</string>
+    <string name="txt_departure_train">Departure Train</string>
+    <string name="txt_price_details">Price Details</string>
+    <string name="txt_select_coach">Select Coach</string>
+    <string name="txt_adult_passenger">Adult Passenger</string>
+    <string name="txt_age_3_and_older">Age 3 and older</string>
+    <string name="txt_id_card_ktp">ID Card (KTP)</string>
+    <string name="txt_edit">Edit</string>
+    <string name="txt_passport">PASSPORT</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_driving_license_sim">Driving License (SIM)</string>
+    <string name="txt_additional_flights_services">Additional Flights Services</string>
+    <string name="txt_ssr">SSR</string>
+    <string name="txt_meals_etc">Meals,etc</string>
+    <string name="txt_frequent">Frequent</string>
+    <string name="txt_flyer">Flyer</string>
+    <string name="txt_infant_passenger">Infant Passenger</string>
+    <string name="txt_below_age_3">Below age 3</string>
+    <string name="txt_mstr">Mstr.</string>
+    <string name="txt_ms">Ms.</string>
+    <string name="txt_passenger_name">Passenger Name</string>
+    <string name="txt_as_on_birth_certificate">As on Birth Certificate</string>
+    <string name="txt_yyyy">YYYY</string>
+    <string name="txt_reserved">Reserved</string>
+    <string name="txt_booking_code_pnr">Booking Code (PNR)</string>
+    <string name="txt_whoops">Whoops!</string>
+    <string name="txt_no_train_please_search">No train, please search again before 30 days.</string>
+    <string name="txt_pick">Pick</string>
+    <string name="txt_selected">Selected</string>
+    <string name="txt_occupied">Occupied</string>
+    <string name="txt_selected_seat">Selected Seat</string>
+    <string name="txt_no_selected">No selected</string>
+    <string name="txt_pick_seat_time">Pick Seat Time</string>
+    <string name="txt_departure_time">DEPARTURE TIME</string>
+    <string name="txt_arrival_time">ARRIVAL TIME</string>
+    <string name="txt_price_pax">PRICE / PAX</string>
+    <string name="txt_train_name">Train Name</string>
 </resources>

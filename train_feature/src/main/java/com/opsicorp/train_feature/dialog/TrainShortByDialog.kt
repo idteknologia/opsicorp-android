@@ -73,10 +73,10 @@ class TrainShortByDialog(var context: Context) {
     }
 
     fun addData() {
-        data.add("Lowest Price")
-        data.add("Earliest Departure")
-        data.add("Latest Departure")
-        data.add("Shortest Durations")
+        data.add(context.getString(R.string.lowest_price))
+        data.add(context.getString(R.string.earliest_departure))
+        data.add(context.getString(R.string.latest_departure))
+        data.add(context.getString(R.string.shortest_duration))
 
         adapterShortBy.setData(data)
     }

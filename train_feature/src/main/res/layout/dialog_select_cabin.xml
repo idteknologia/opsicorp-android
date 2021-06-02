@@ -1,108 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    android:fillViewport="true"
-    android:background="@android:color/transparent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/scroll"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:background="@android:color/transparent"
+    android:fillViewport="true">
 
-    <RelativeLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/RobotoBold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-            <TextView
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginBottom="20dp"
-                style="@style/RobotoBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="#ffffff"
-                android:text="Select Coach" />
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
+            android:layout_marginBottom="20dp"
+            android:text="@string/txt_select_coach"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_calendar_inside_top"
+            android:orientation="vertical"
+            android:paddingTop="30dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_cabin_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/margin_default"
+                android:paddingRight="@dimen/margin_default">
 
-                <LinearLayout
-                    android:background="@drawable/rounded_calendar_inside_top"
-                    android:orientation="vertical"
-                    android:paddingTop="30dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <RelativeLayout
+                    android:id="@+id/line_close"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_orange_stroke_2">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_cabin_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
-                    <LinearLayout
-                        android:layout_marginTop="50dp"
-                        android:layout_marginBottom="20dp"
-                        android:paddingLeft="@dimen/margin_default"
-                        android:paddingRight="@dimen/margin_default"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/close"
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_centerInParent="true"
+                        android:gravity="center_horizontal"
+                        android:text="@string/close"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="17sp" />
+                </RelativeLayout>
 
-                        <RelativeLayout
-                            android:id="@+id/line_close"
-                            android:background="@drawable/rounded_orange_stroke_2"
-                            android:layout_marginRight="3dp"
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_weight="1">
+                <RelativeLayout
+                    android:id="@+id/line_apply"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_button_yellow">
 
-
-                            <TextView
-                                android:id="@+id/close"
-                                android:layout_centerInParent="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="17sp"
-                                android:textColor="@color/colorAccent"
-                                android:gravity="center_horizontal"
-                                android:text="Close"
-                                style="@style/RobotoBold"/>
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:id="@+id/line_apply"
-                            android:background="@drawable/rounded_button_yellow"
-                            android:layout_marginLeft="3dp"
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_weight="1">
-
-                            <TextView
-                                android:id="@+id/apply"
-                                android:layout_centerInParent="true"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="17sp"
-                                android:textColor="@color/white"
-                                android:gravity="center_horizontal"
-                                android:text="Apply"
-                                style="@style/RobotoBold"/>
-                        </RelativeLayout>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-
+                    <TextView
+                        android:id="@+id/apply"
+                        style="@style/RobotoBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center_horizontal"
+                        android:text="@string/apply"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 
+        </LinearLayout>
+    </LinearLayout>
 
 
 </androidx.core.widget.NestedScrollView>

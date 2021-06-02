@@ -54,7 +54,7 @@ class CartTrainDetailActivity : BaseActivity() {
         mData.name_station_departure = dataTrain.stationDeparture
         mData.name_station_arrival   = dataTrain.stationArrival
 
-        mData.total_passager         = if ("".isEmpty()) "Adult x 1" else ""
+        mData.total_passager         = if ("".isEmpty()) "${getString(R.string.txt_adult)} x 1" else ""
         mData.total_prize            = dataTrain.price //"IDR "+Globals.formatAmount("")
 
         data.add(mData)
