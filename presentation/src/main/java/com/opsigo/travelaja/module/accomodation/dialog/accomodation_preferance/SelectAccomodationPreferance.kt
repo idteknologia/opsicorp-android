@@ -31,16 +31,14 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         buttonSearch = fragment.findViewById(R.id.btn_next)
         recyclerView = fragment.findViewById(R.id.rv_select_accomodation)
 
-        toolbar.setTitleBar("Airlines Preference")
+        toolbar.setTitleBar(getString(R.string.airlines_preferences))
         toolbar.hidenBtnCart()
         toolbar.showBtnReset()
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
         toolbar.callbackOnclickToolbar(this)
         buttonSearch.callbackOnclickButton(this)
-        buttonSearch.setTextButton("Set Flight Preference")
+        buttonSearch.setTextButton(getString(R.string.set_flight_preference))
 
         initRecyclerView()
     }

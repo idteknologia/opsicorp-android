@@ -25,11 +25,9 @@ import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
 import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.opsigo.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
-import com.opsigo.travelaja.module.item_custom.select_passager.SelectAgePassanger
 import com.opsigo.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.opsigo.travelaja.utility.*
-import kotlinx.android.synthetic.main.flight_fragment.*
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import kotlinx.android.synthetic.main.flight_fragment_2.btn_next
 import kotlinx.android.synthetic.main.flight_fragment_2.btn_switch
@@ -54,14 +52,14 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 import org.json.JSONArray
 
 class FlightFragmentNew : BaseFragment(),
-        OnclickListenerRecyclerView,
-        View.OnClickListener,
-        ButtonTopRoundedOpsicorp.OnclickButtonListener,
-        ButtonDefaultOpsicorp.OnclickButtonListener,
-        ButtonSwicth.OnclickButtonSwitch,
-        NewCalendarViewOpsicorp.CallbackResult,
-        TotalPassengerFlight.CallbackSelectPasanger,
-        CabisClassDialog.CallbackSelectCabin{
+    OnclickListenerRecyclerView,
+    View.OnClickListener,
+    ButtonTopRoundedOpsicorp.OnclickButtonListener,
+    ButtonDefaultOpsicorp.OnclickButtonListener,
+    ButtonSwicth.OnclickButtonSwitch,
+    NewCalendarViewOpsicorp.CallbackResult,
+    TotalPassengerFlight.CallbackSelectPasanger,
+    CabisClassDialog.CallbackSelectCabin {
 
     override fun getLayout(): Int {
         return R.layout.flight_fragment_2
@@ -82,21 +80,24 @@ class FlightFragmentNew : BaseFragment(),
     var idDestination = ""
     var currentPosition: Int = -1
 
-    var totalAdult : Int = 1
+    var totalAdult: Int = 1
     var totalInfant: Int = 0
-    var totalChild : Int = 0
+    var totalChild: Int = 0
 
     var SELECT_CODE_COUNTRY_FROM = 28
     var SELECT_CODE_COUNTRY_TO = 26
 
-    var namesAirlines  = ArrayList<String>()
+    var namesAirlines = ArrayList<String>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
 
     val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.result."
     val BASE_PACKAGE_MODULE_MULTI_CITY = "com.opsicorp.travelaja.feature_flight.multi_city."
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
-        dataTripPlan = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+        dataTripPlan = Serializer.deserialize(
+            Constants.DATA_SUCCESS_CREATE_TRIP,
+            SuccessCreateTripPlaneModel::class.java
+        )
         Globals.typeAccomodation = "Flight"
 
         /*checkTypeOrder()*/
@@ -108,12 +109,11 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun checkTypeOrder() {
-        if (Constants.isBisnisTrip){
+        if (Constants.isBisnisTrip) {
             lay_parent_passager.visibility = View.GONE
             lay_air_class.gone()
             lay_air_pref.gone()
-        }
-        else{
+        } else {
             lay_parent_passager.visibility = View.VISIBLE
             lay_air_class.visible()
             lay_air_pref.visible()
@@ -130,8 +130,14 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun setDefaultDate() {
-        val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-        startDate(DateConverter().getDate(data.startDate, "yyyy-MM-dd", "dd MMM yyyy"), data.startDate)
+        val data = Serializer.deserialize(
+            Constants.DATA_SUCCESS_CREATE_TRIP,
+            SuccessCreateTripPlaneModel::class.java
+        )
+        startDate(
+            DateConverter().getDate(data.startDate, "yyyy-MM-dd", "dd MMM yyyy"),
+            data.startDate
+        )
         endDate(DateConverter().getDate(data.endDate, "yyyy-MM-dd", "dd MMM yyyy"), data.endDate)
     }
 
@@ -139,44 +145,45 @@ class FlightFragmentNew : BaseFragment(),
         val listdata = JSONArray(Serializer.serialize(Constants.DATA_CITY))
 
         val def_origin = Globals.getConfigCompany(InitApplications.appContext).defaultOrigin
-        val def_destinationn = Globals.getConfigCompany(InitApplications.appContext).defaultDestination
+        val def_destinationn =
+            Globals.getConfigCompany(InitApplications.appContext).defaultDestination
 
-        for (i in 0 until listdata.length()){
+        for (i in 0 until listdata.length()) {
             val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
             val model = SelectNationalModel()
             model.name = mData.name
-            model.id   = mData.id
+            model.id = mData.id
 
             setLog(model.name)
             setLog(model.id)
 
-            if(model.name.toLowerCase().contains(def_origin.toLowerCase())){
-                idOrigin    = model.id
-                originName  = model.name
-                tv_from.text = "${originName} (${idOrigin})"
+            if (model.name.toLowerCase().contains(def_origin.toLowerCase())) {
+                idOrigin = model.id
+                originName = model.name
+                tv_from.text = "$originName (${idOrigin})"
                 break
             }
         }
 
         var isFoundDestination = false
-        for (i in 0 until listdata.length()){
+        for (i in 0 until listdata.length()) {
             val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
             val model = SelectNationalModel()
             model.name = mData.name
-            model.id   = mData.id
+            model.id = mData.id
 
-            if(model.name.equals(dataTripPlan.destinationName)){
-                idDestination    = model.id
-                destinationName  = model.name
-                tv_to.text = "${destinationName} (${idDestination})"
+            if (model.name.equals(dataTripPlan.destinationName)) {
+                idDestination = model.id
+                destinationName = model.name
+                tv_to.text = "$destinationName (${idDestination})"
 
                 isFoundDestination = true;
 
-                Log.d("xfligx","desti trip : " + dataTripPlan.destinationId);
+                Log.d("xfligx", "desti trip : " + dataTripPlan.destinationId);
                 break
             }
         }
-        if(!isFoundDestination) {
+        if (!isFoundDestination) {
 
             for (i in 0 until listdata.length()) {
                 val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
@@ -187,7 +194,7 @@ class FlightFragmentNew : BaseFragment(),
                 if (model.id.equals(def_destinationn)) {
                     idDestination = model.id
                     destinationName = model.name
-                    tv_to.text = "${destinationName} (${idDestination})"
+                    tv_to.text = "$destinationName (${idDestination})"
                     break
                 }
             }
@@ -202,23 +209,26 @@ class FlightFragmentNew : BaseFragment(),
         }
     }
 
-    private fun setDataDefault(){
-        for (i in 0 until 2){
+    private fun setDataDefault() {
+        for (i in 0 until 2) {
             val orderFlight = OrderAccomodationModel()
-            val data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-            if (i==0){
-                orderFlight.dateDeparture   = data.startDate
-                orderFlight.originName      = originName
-                orderFlight.idOrigin        = idOrigin
+            val data = Serializer.deserialize(
+                Constants.DATA_SUCCESS_CREATE_TRIP,
+                SuccessCreateTripPlaneModel::class.java
+            )
+            if (i == 0) {
+                orderFlight.dateDeparture = data.startDate
+                orderFlight.originName = originName
+                orderFlight.idOrigin = idOrigin
                 orderFlight.destinationName = destinationName
-                orderFlight.idDestination   = idDestination
-            }
-            else {
-                orderFlight.dateDeparture   = DateConverter().getNextDay("yyyy-MM-dd","yyyy-MM-dd",data.startDate,3)
-                orderFlight.originName      = destinationName
-                orderFlight.idOrigin        = idDestination
+                orderFlight.idDestination = idDestination
+            } else {
+                orderFlight.dateDeparture =
+                    DateConverter().getNextDay("yyyy-MM-dd", "yyyy-MM-dd", data.startDate, 3)
+                orderFlight.originName = destinationName
+                orderFlight.idOrigin = idDestination
                 orderFlight.destinationName = originName
-                orderFlight.idDestination   = idOrigin
+                orderFlight.idDestination = idOrigin
             }
             mFlightMulti.add(orderFlight)
         }
@@ -235,14 +245,14 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun setOnClick() {
         top_button.callbackOnclickToolbar(this)
-        top_button.setTextBtnLeft("Round trip/ Oneway")
-        top_button.setTextBtnRight("Multi City")
+        top_button.setTextBtnLeft(getString(R.string.round_trip_or_oneway))
+        top_button.setTextBtnRight(getString(R.string.multi_city))
 
         btn_next.callbackOnclickButton(this)
-        btn_next.setTextButton("Search Flight")
+        btn_next.setTextButton(getString(R.string.search_flights))
 
         btn_switch.callbackOnclickButtonSwicht(this)
-        btn_switch.setItemSwicth(tv_from,tv_to)
+        btn_switch.setItemSwicth(tv_from, tv_to)
 
         tv_from.setOnClickListener(this)
         tv_to.setOnClickListener(this)
@@ -289,7 +299,13 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun selectDate(position: Int) {
         currentPosition = position
-        NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+        NewCalendarViewOpsicorp().showCalendarViewMinMax(
+            requireActivity(),
+            "yyyy-MM-dd",
+            dataTripPlan.startDate,
+            dataTripPlan.endDate,
+            Constant.SINGGLE_SELECTED
+        )
     }
 
     override fun onClick(v: View?) {
@@ -328,15 +344,15 @@ class FlightFragmentNew : BaseFragment(),
                 selectPassager.callback = this
                 selectPassager.setLimitSelect(4,3,2)*/
                 val totalPassangerFlight = TotalPassengerFlight()
-                totalPassangerFlight.setLimitSelect(5,2,3)
-                totalPassangerFlight.setCurrentSelect(totalAdult,totalInfant,totalChild)
-                totalPassangerFlight.create(requireContext(),this)
+                totalPassangerFlight.setLimitSelect(5, 2, 3)
+                totalPassangerFlight.setCurrentSelect(totalAdult, totalInfant, totalChild)
+                totalPassangerFlight.create(requireContext(), this)
             }
             lay_air_class -> {
                 /*airlineClass()*/
                 val cabinClass = CabisClassDialog()
                 cabinClass.setCurrentSelect(nameClassAirline)
-                cabinClass.create(requireContext(),this)
+                cabinClass.create(requireContext(), this)
             }
             lay_air_pref -> {
                 airlinePref()
@@ -348,10 +364,12 @@ class FlightFragmentNew : BaseFragment(),
     private fun airlinePref() {
         addNamesAirline()
         addDataAirPreferance()
-        val selectAccomodationPreferance = SelectAccomodationPreferance(true,R.style.CustomDialog,dataPrefarance)
-        selectAccomodationPreferance.show(requireFragmentManager(),"dialog")
+        val selectAccomodationPreferance =
+            SelectAccomodationPreferance(true, R.style.CustomDialog, dataPrefarance)
+        selectAccomodationPreferance.show(requireFragmentManager(), "dialog")
 
-        selectAccomodationPreferance.setCallbackListener(object : SelectAccomodationPreferance.CallbackSelectPreferance{
+        selectAccomodationPreferance.setCallbackListener(object :
+            SelectAccomodationPreferance.CallbackSelectPreferance {
             override fun callback(string: String) {
                 tv_airline_prreferance.text = string
             }
@@ -361,7 +379,7 @@ class FlightFragmentNew : BaseFragment(),
     private fun addDataAirPreferance() {
         namesAirlines.forEachIndexed { index, names ->
             val mData = AccomodationPreferanceModel()
-            mData.id = "${index+1}"
+            mData.id = "${index + 1}"
             mData.checked = false
             mData.name = names
             dataPrefarance.add(mData)
@@ -370,9 +388,14 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun addNamesAirline() {
         namesAirlines.clear()
-        namesAirlines.add("Select All")
-        val dataJson = JSONArray(Globals.readJsonFromFile(requireContext(),Constants.FILE_NAME_ALL_CODE_AIRPORT))
-        for (i in 0 until dataJson.length()){
+        namesAirlines.add(getString(R.string.select_all))
+        val dataJson = JSONArray(
+            Globals.readJsonFromFile(
+                requireContext(),
+                Constants.FILE_NAME_ALL_CODE_AIRPORT
+            )
+        )
+        for (i in 0 until dataJson.length()) {
             namesAirlines.add(dataJson.getJSONObject(i).getString("nameAirline"))
         }
     }
@@ -382,21 +405,23 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun showPopUpRemove(option: TextView) {
-        val layoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater =
+            context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout = layoutInflater.inflate(R.layout.menu_popup_class_airline, null)
         val btnEconomy = layout.findViewById(R.id.btn_economy_class) as TextView
         val btnBisnis = layout.findViewById(R.id.btn_bisnis_class) as TextView
         val btnFirst = layout.findViewById(R.id.btn_first_class) as TextView
 
         val popupWindow = PopupWindow(
-                layout,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT)
+            layout,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
 
         popupWindow.setBackgroundDrawable(BitmapDrawable())
-        popupWindow.setOutsideTouchable(true)
-        popupWindow.setOnDismissListener(object : PopupWindow.OnDismissListener{
+        popupWindow.isOutsideTouchable = true
+        popupWindow.setOnDismissListener(object : PopupWindow.OnDismissListener {
             override fun onDismiss() {
 
             }
@@ -405,21 +430,21 @@ class FlightFragmentNew : BaseFragment(),
         btnFirst.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "1"
-            nameClassAirline = "First Class"
+            nameClassAirline = getString(R.string.first_class)
             tv_airline_class_new.text = nameClassAirline
         }
 
         btnEconomy.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "3"
-            nameClassAirline = "Economy Class"
+            nameClassAirline = getString(R.string.txt_economy_class)
             tv_airline_class_new.text = nameClassAirline
         }
 
         btnBisnis.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "2"
-            nameClassAirline = "Business Class"
+            nameClassAirline = getString(R.string.business_class)
             tv_airline_class_new.text = nameClassAirline
         }
 
@@ -428,9 +453,21 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun openCalendar() {
         if (Globals.ONE_TRIP) {
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(
+                requireActivity(),
+                "yyyy-MM-dd",
+                dataTripPlan.startDate,
+                dataTripPlan.endDate,
+                Constant.SINGGLE_SELECTED
+            )
         } else {
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", dataTripPlan.startDate, dataTripPlan.endDate, Constant.DOUBLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarViewMinMax(
+                requireActivity(),
+                "yyyy-MM-dd",
+                dataTripPlan.startDate,
+                dataTripPlan.endDate,
+                Constant.DOUBLE_SELECTED
+            )
         }
     }
 
@@ -440,7 +477,11 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select Cities and Airports")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java, bundle, SELECT_CODE_COUNTRY_FROM)
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            SELECT_CODE_COUNTRY_FROM
+        )
 
     }
 
@@ -450,7 +491,11 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select Cities and Airports")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java, bundle, SELECT_CODE_COUNTRY_TO)
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            SELECT_CODE_COUNTRY_TO
+        )
     }
 
     private fun addOtherFlight() {
@@ -483,18 +528,25 @@ class FlightFragmentNew : BaseFragment(),
     override fun onClicked() {
         if (typeTrip.equals("multi_city")) {
             Constants.ALREADY_SEARCH_FLIGHT = false
-            Constants.multitrip             = true
+            Constants.multitrip = true
 
             if (isEmptyMulticity().first) {
-                Globals.showAlert("sorry", "Please Select Flight ${isEmptyMulticity().second}", requireActivity())
+                Globals.showAlert(
+                    getString(R.string.sorry),
+                    "${getString(R.string.please_select_flight)} ${isEmptyMulticity().second}",
+                    requireActivity()
+                )
             } else {
                 Constants.DATA_FLIGHT_MULTI_CITY.dataListOrderAccomodation.clear()
                 Constants.DATA_FLIGHT_MULTI_CITY.dataListOrderAccomodation.addAll(mFlightMulti)
-                gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
+                gotoActivityModule(
+                    requireContext(),
+                    BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity"
+                )
             }
         } else {
             Constants.ALREADY_SEARCH_FLIGHT = false
-            Constants.multitrip             = false
+            Constants.multitrip = false
 
             val dataOrder = OrderAccomodationModel()
             dataOrder.typeTrip = typeTrip
@@ -518,10 +570,11 @@ class FlightFragmentNew : BaseFragment(),
             dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
             dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
 
-            Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
+            Globals.DATA_ORDER_FLIGHT =
+                Serializer.serialize(dataOrder, OrderAccomodationModel::class.java)
             Globals.DATA_LIST_FLIGHT = ""
             Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
-            setLog("Test Reservasi",Serializer.serialize(dataOrder))
+            setLog("Test Reservasi", Serializer.serialize(dataOrder))
 
             gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
 
@@ -529,7 +582,7 @@ class FlightFragmentNew : BaseFragment(),
 
     }
 
-    private fun isEmptyMulticity(): Pair<Boolean,Int> {
+    private fun isEmptyMulticity(): Pair<Boolean, Int> {
         var isDataEmptyDestination = false
         var isDateEmptyOrigin = false
         var isDataEmptyDate = false
@@ -538,22 +591,21 @@ class FlightFragmentNew : BaseFragment(),
             setLog(Serializer.serialize(it))
             if (it.destinationName.isEmpty()) {
                 isDataEmptyDestination = true
-                positionFlightEmpty = index+1
+                positionFlightEmpty = index + 1
             }
             if (it.originName.isEmpty()) {
                 isDateEmptyOrigin = true
-                positionFlightEmpty = index+1
+                positionFlightEmpty = index + 1
             }
             if (it.dateDeparture.isEmpty()) {
                 isDataEmptyDate = true
-                positionFlightEmpty = index+1
+                positionFlightEmpty = index + 1
             }
         }
-        if (isDataEmptyDestination || isDateEmptyOrigin || isDataEmptyDate){
-            return Pair(true,positionFlightEmpty)
-        }
-        else {
-            return Pair(false,positionFlightEmpty)
+        if (isDataEmptyDestination || isDateEmptyOrigin || isDataEmptyDate) {
+            return Pair(true, positionFlightEmpty)
+        } else {
+            return Pair(false, positionFlightEmpty)
         }
     }
 
@@ -574,10 +626,10 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
-        if (endDate.isNotEmpty()){
+        if (endDate.isNotEmpty()) {
             tv_end_date.text = displayEndDate
         } else {
-            tv_end_date.text = "Select Return Date"
+            tv_end_date.text = getString(R.string.select_return_date)
         }
         if (endDate.length > 10) {
             val sDate = endDate.substring(0, 10)
@@ -601,7 +653,11 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java, bundle, Constants.REQUEST_CODE_SELECT_TO_MULTI)
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            Constants.REQUEST_CODE_SELECT_TO_MULTI
+        )
     }
 
     private fun openCityFrom(position: Int) {
@@ -611,7 +667,11 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
-        gotoActivityResultWithBundle(SelectNationalityActivity::class.java, bundle, Constants.REQUEST_CODE_SELECT_FROM_MULTI)
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            Constants.REQUEST_CODE_SELECT_FROM_MULTI
+        )
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -621,8 +681,10 @@ class FlightFragmentNew : BaseFragment(),
         when (requestCode) {
             Constants.REQUEST_CODE_SELECT_FROM_MULTI -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    mFlightMulti[currentPosition].originName = data?.getStringExtra("nameCountry").toString()
-                    mFlightMulti[currentPosition].idOrigin = data?.getStringExtra("idCountry").toString()
+                    mFlightMulti[currentPosition].originName =
+                        data?.getStringExtra("nameCountry").toString()
+                    mFlightMulti[currentPosition].idOrigin =
+                        data?.getStringExtra("idCountry").toString()
                     originName = data?.getStringExtra("nameCountry").toString()
                     idOrigin = data?.getStringExtra("idCountry").toString()
                     adapter.notifyDataSetChanged()
@@ -632,8 +694,10 @@ class FlightFragmentNew : BaseFragment(),
             }
             Constants.REQUEST_CODE_SELECT_TO_MULTI -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    mFlightMulti[currentPosition].destinationName = data?.getStringExtra("nameCountry").toString()
-                    mFlightMulti[currentPosition].idDestination = data?.getStringExtra("idCountry").toString()
+                    mFlightMulti[currentPosition].destinationName =
+                        data?.getStringExtra("nameCountry").toString()
+                    mFlightMulti[currentPosition].idDestination =
+                        data?.getStringExtra("idCountry").toString()
                     destinationName = data?.getStringExtra("nameCountry").toString()
                     idDestination = data?.getStringExtra("idCountry").toString()
                     adapter.notifyDataSetChanged()
@@ -643,7 +707,9 @@ class FlightFragmentNew : BaseFragment(),
             }
             SELECT_CODE_COUNTRY_FROM -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    tv_from.text = "${data?.getStringExtra("nameCountry")} (${data?.getStringExtra("idCountry").toString()})"
+                    tv_from.text = "${data?.getStringExtra("nameCountry")} (${
+                        data?.getStringExtra("idCountry").toString()
+                    })"
                     originName = data?.getStringExtra("nameCountry").toString()
                     idOrigin = data?.getStringExtra("idCountry").toString()
                 } else {
@@ -652,7 +718,9 @@ class FlightFragmentNew : BaseFragment(),
             }
             SELECT_CODE_COUNTRY_TO -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    tv_to.text = "${data?.getStringExtra("nameCountry")} (${data?.getStringExtra("idCountry").toString()})"
+                    tv_to.text = "${data?.getStringExtra("nameCountry")} (${
+                        data?.getStringExtra("idCountry").toString()
+                    })"
                     destinationName = data?.getStringExtra("nameCountry").toString()
                     idDestination = data?.getStringExtra("idCountry").toString()
                 } else {
@@ -674,57 +742,57 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun getReasonCode() {
-        GetDataAccomodation(getBaseUrl()).getReasonCodeTrain(getToken(), Constants.TripType.Airline.toString(), object : CallbackReasonCode {
-            override fun success(reasonCodeModel: ArrayList<ReasonCodeModel>) {
-                Constants.DATA_REASON_CODE_FLIGHT = reasonCodeModel
-            }
+        GetDataAccomodation(getBaseUrl()).getReasonCodeTrain(
+            getToken(),
+            Constants.TripType.Airline.toString(),
+            object : CallbackReasonCode {
+                override fun success(reasonCodeModel: ArrayList<ReasonCodeModel>) {
+                    Constants.DATA_REASON_CODE_FLIGHT = reasonCodeModel
+                }
 
-            override fun failed(string: String) {
+                override fun failed(string: String) {
 
-            }
-        })
+                }
+            })
     }
 
     override fun total(mTotalInfant: Int, mTotalChild: Int, mTotalAdult: Int) {
-        if (mTotalAdult==1&&mTotalInfant==1&&mTotalChild==1){
-            tv_passanger_new.setText("${mTotalAdult} Adult, ${mTotalChild} Child, ${mTotalInfant} Infant")
+        val txtChild = getString(R.string.child)
+        val txtInfant = getString(R.string.infant)
+        val txtAdult = getString(R.string.txt_adult)
+        val txtChildren = getString(R.string.children)
+        val txtAdults = getString(R.string.adults)
+        val txtInfants = getString(R.string.infants)
+        var text = ""
+        if (mTotalAdult == 1 && mTotalInfant == 1 && mTotalChild == 1) {
+            text = "$mTotalAdult $txtAdult, $mTotalChild $txtChild, $mTotalInfant $txtInfant"
+        } else if (mTotalAdult == 1 && mTotalInfant == 1 && mTotalChild == 0) {
+            text = "$mTotalAdult $txtAdult, $mTotalInfant $txtInfant"
+        } else if (mTotalAdult > 1 && mTotalInfant == 1 && mTotalChild == 0) {
+            text = "$mTotalAdult $txtAdults, $mTotalInfant $txtInfant"
+        } else if (mTotalAdult > 1 && mTotalInfant > 1 && mTotalChild == 0) {
+            text = "$mTotalAdult $txtAdults, $mTotalInfant $txtInfants"
+        } else if (mTotalAdult == 1 && mTotalInfant == 0 && mTotalChild == 1) {
+            text = "$mTotalAdult $txtAdult, $mTotalChild $txtChild"
+        } else if (mTotalAdult > 1 && mTotalInfant == 0 && mTotalChild == 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChild"
+        } else if (mTotalAdult > 1 && mTotalInfant == 0 && mTotalChild > 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChildren"
+        } else if (mTotalAdult == 1 && mTotalInfant == 0 && mTotalChild == 0) {
+            text = "$mTotalAdult $txtAdult "
+        } else if (mTotalAdult > 1 && mTotalInfant == 0 && mTotalChild == 0) {
+            text = "$mTotalAdult $txtAdults "
+        } else if (mTotalAdult > 1 && mTotalChild > 1 && mTotalInfant > 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChildren, $mTotalInfant $txtInfants"
+        } else if (mTotalAdult > 1 && mTotalChild > 1 && mTotalInfant == 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChildren, $mTotalInfant $txtInfant"
+        } else if (mTotalAdult > 1 && mTotalChild == 1 && mTotalInfant > 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChild, $mTotalInfant $txtInfants"
+        } else if (mTotalAdult > 1 && mTotalChild == 1 && mTotalInfant == 1) {
+            text = "$mTotalAdult $txtAdults, $mTotalChild $txtChild, $mTotalInfant $txtInfant"
         }
-        else if(mTotalAdult==1&&mTotalInfant==1&&mTotalChild==0){
-            tv_passanger_new.setText("${mTotalAdult} Adult, ${mTotalInfant} Infant")
-        }
-        else if(mTotalAdult>1&&mTotalInfant==1&&mTotalChild==0){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalInfant} Infant")
-        }
-        else if(mTotalAdult>1&&mTotalInfant>1&&mTotalChild==0){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalInfant} Infants")
-        }
-        else if(mTotalAdult==1&&mTotalInfant==0&&mTotalChild==1){
-            tv_passanger_new.setText("${mTotalAdult} Adult, ${mTotalChild} Child")
-        }
-        else if(mTotalAdult>1&&mTotalInfant==0&&mTotalChild==1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Child")
-        }
-        else if(mTotalAdult>1&&mTotalInfant==0&&mTotalChild>1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Children")
-        }
-        else if(mTotalAdult==1&&mTotalInfant==0&&mTotalChild==0){
-            tv_passanger_new.setText("${mTotalAdult} Adult ")
-        }
-        else if (mTotalAdult>1&&mTotalInfant==0&&mTotalChild==0){
-            tv_passanger_new.setText("${mTotalAdult} Adults ")
-        }
-        else if(mTotalAdult>1&&mTotalChild>1&&mTotalInfant>1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Children, ${mTotalInfant} Infants")
-        }
-        else if(mTotalAdult>1&&mTotalChild>1&&mTotalInfant==1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Children, ${mTotalInfant} Infant")
-        }
-        else if(mTotalAdult>1&&mTotalChild==1&&mTotalInfant>1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Child, ${mTotalInfant} Infants")
-        }
-        else if(mTotalAdult>1&&mTotalChild==1&&mTotalInfant==1){
-            tv_passanger_new.setText("${mTotalAdult} Adults, ${mTotalChild} Child, ${mTotalInfant} Infant")
-        }
+
+        tv_passanger_new.text = text
 
         totalAdult = mTotalAdult
         totalInfant = mTotalInfant
@@ -732,7 +800,7 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     override fun select(selectedClass: String) {
-        tv_airline_class_new.setText(selectedClass)
+        tv_airline_class_new.text = selectedClass
         nameClassAirline = selectedClass
     }
 }

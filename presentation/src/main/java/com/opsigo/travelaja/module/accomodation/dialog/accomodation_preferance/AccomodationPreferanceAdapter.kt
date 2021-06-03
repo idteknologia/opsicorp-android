@@ -12,7 +12,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_adapter_filter_accomodation_selected.view.*
 
 
-class AccomodationPreferanceAdapter (context: Context, private var items: ArrayList<AccomodationPreferanceModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AccomodationPreferanceAdapter.ViewHolder>() {
+class AccomodationPreferanceAdapter (context: Context, private var items: ArrayList<AccomodationPreferanceModel>): RecyclerView.Adapter<AccomodationPreferanceAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -93,7 +93,7 @@ class AccomodationPreferanceAdapter (context: Context, private var items: ArrayL
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
     }
 }

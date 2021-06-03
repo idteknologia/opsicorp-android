@@ -10,7 +10,7 @@ import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_adapter_reason_code.view.*
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 
-class SelectReasonAdapter (context: Context, private var items: ArrayList<ReasonCodeModel>): androidx.recyclerview.widget.RecyclerView.Adapter<SelectReasonAdapter.ViewHolder>() {
+class SelectReasonAdapter (context: Context, private var items: ArrayList<ReasonCodeModel>): RecyclerView.Adapter<SelectReasonAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
@@ -58,7 +58,7 @@ class SelectReasonAdapter (context: Context, private var items: ArrayList<Reason
     }
 
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row) {
 
     }
 }

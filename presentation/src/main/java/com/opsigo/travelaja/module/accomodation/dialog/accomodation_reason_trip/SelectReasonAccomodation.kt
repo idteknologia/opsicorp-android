@@ -20,17 +20,17 @@ class SelectReasonAccomodation : BaseBottomSheetDialogFrament {
     override fun getLayout(): Int { return R.layout.select_reason_code_view }
 
     var style = 0
-    lateinit var rv_reason_code : androidx.recyclerview.widget.RecyclerView
+    lateinit var rv_reason_code : RecyclerView
     lateinit var ic_back : ImageView
     var data = ArrayList<ReasonCodeModel>()
     val adapter by lazy { SelectReasonAdapter(requireContext(),data) }
 
     override fun onMain(fragment: View) {
         if (style!=0){
-            setStyle(androidx.fragment.app.DialogFragment.STYLE_NO_TITLE, style)
+            setStyle(DialogFragment.STYLE_NO_TITLE, style)
         }
 
-        rv_reason_code = fragment.findViewById(R.id.rv_reason_code) as androidx.recyclerview.widget.RecyclerView
+        rv_reason_code = fragment.findViewById(R.id.rv_reason_code) as RecyclerView
         ic_back        = fragment.findViewById(R.id.ic_back)as ImageView
 
         ic_back.setOnClickListener {
@@ -40,10 +40,10 @@ class SelectReasonAccomodation : BaseBottomSheetDialogFrament {
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_reason_code.layoutManager = layoutManager
-        rv_reason_code.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_reason_code.itemAnimator = DefaultItemAnimator()
         rv_reason_code.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {

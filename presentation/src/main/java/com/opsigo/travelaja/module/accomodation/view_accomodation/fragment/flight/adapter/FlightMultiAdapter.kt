@@ -9,7 +9,7 @@ import com.opsigo.travelaja.utility.*
 import kotlinx.android.synthetic.main.flight_multi_city_item.view.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 
-class FlightMultiAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<FlightMultiAdapter.ViewHolder>() {
+class FlightMultiAdapter : RecyclerView.Adapter<FlightMultiAdapter.ViewHolder>() {
 
     lateinit var onClick : OnclickListenerRecyclerView
     var items = ArrayList<OrderAccomodationModel>()
@@ -79,6 +79,6 @@ class FlightMultiAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<Fli
         notifyDataSetChanged()
     }
 
-    class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
+    class ViewHolder(row: View) : RecyclerView.ViewHolder(row)
 
 }

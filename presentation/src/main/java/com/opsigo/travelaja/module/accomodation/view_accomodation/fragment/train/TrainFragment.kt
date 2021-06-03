@@ -60,7 +60,7 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
         data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP,SuccessCreateTripPlaneModel::class.java)
         top_button.callbackOnclickToolbar(this)
         btn_next.callbackOnclickButton(this)
-        btn_next.setTextButton("Search Train")
+        btn_next.setTextButton(getString(R.string.search_train))
         btn_switch.callbackOnclickButtonSwicht(this)
         btn_switch.setItemSwicth(tv_from,tv_to)
         tv_departur_date.setOnClickListener(this)
@@ -263,17 +263,19 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
 
 
     override fun total(totalInfant: Int, totalAdult: Int) {
+        val txtAdults = getString(R.string.adults)
+        val txtInfant = getString(R.string.infant)
         if (totalAdult>0&&totalInfant>0){
-            tv_passanger.setText("${totalAdult} Adults ${totalInfant} Infant")
+            tv_passanger.setText("${totalAdult} $txtAdults ${totalInfant} $txtInfant")
         }
         else if(totalAdult>0&&totalInfant>0){
-            tv_passanger.setText("${totalAdult} Adults ${totalInfant} Infant")
+            tv_passanger.setText("${totalAdult} $txtAdults ${totalInfant} $txtInfant")
         }
         else if(totalAdult>0&&totalInfant==0){
-            tv_passanger.setText("${totalAdult} Adults ")
+            tv_passanger.setText("${totalAdult} $txtAdults ")
         }
         else if(totalAdult>0&&totalInfant==0){
-            tv_passanger.setText("${totalAdult} Adults ")
+            tv_passanger.setText("${totalAdult} $txtAdults ")
         }
 
         this.totalAdult = totalAdult

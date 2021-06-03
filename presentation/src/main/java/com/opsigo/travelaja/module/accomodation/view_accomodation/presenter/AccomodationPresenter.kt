@@ -38,11 +38,11 @@ class AccomodationPresenter {
         imageSelected.add(R.drawable.ic_profile_selected)
 
         imageTitle.clear()
-        imageTitle.add("Flights")
-        imageTitle.add("Hotels")
-        imageTitle.add("Train")
-        imageTitle.add("Car & Bus")
-        imageTitle.add("Profile")
+        imageTitle.add(context.getString(R.string.flights))
+        imageTitle.add(context.getString(R.string.hotels))
+        imageTitle.add(context.getString(R.string.train))
+        imageTitle.add(context.getString(R.string.car_and_bus))
+        imageTitle.add(context.getString(R.string.profile))
 
         btnBottomAccomodation.setDataImage(imageDefaults)
         btnBottomAccomodation.setDataImageSelected(imageSelected)

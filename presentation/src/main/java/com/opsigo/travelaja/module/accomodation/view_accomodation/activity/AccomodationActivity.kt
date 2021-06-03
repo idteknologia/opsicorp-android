@@ -168,14 +168,14 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     private fun getTrainFragment() {
         Log.d("xcekx",": here trainn " )
         toolbar.visibility = View.VISIBLE
-        toolbar.setTitleBar("Find Train")
+        toolbar.setTitleBar(getString(R.string.find_train))
         loadFragment(trainFragment,place_fragment.id)
         positionPage = TRAIN_POSITION
     }
 
     private fun getHotelFragment() {
         toolbar.visibility = View.VISIBLE
-        toolbar.setTitleBar("Find Hotel")
+        toolbar.setTitleBar(getString(R.string.find_hotel))
         loadFragment(hotelFragment,place_fragment.id)
         positionPage = HOTEL_POSITION
     }
@@ -183,7 +183,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     private fun getFlightFragment() {
         Log.d("xcekx",": here flightx " )
         toolbar.visibility = View.VISIBLE
-        toolbar.setTitleBar("Find Flight")
+        toolbar.setTitleBar(getString(R.string.find_flights))
         loadFragment(flightFragment,place_fragment.id)
         positionPage = FLIGHT_POSITION
     }
@@ -256,7 +256,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
             finish()
         }
         else{
-            Globals.showAlert("Maaf","Apakah anda yakin ingin meninggalkan halaman ini?",this,object : OnclikAllertDoubleSelected {
+            Globals.showAlert(getString(R.string.sorry),getString(R.string.notif_leave_page),this,object : OnclikAllertDoubleSelected {
                 override fun yes() {
                     finish()
                 }

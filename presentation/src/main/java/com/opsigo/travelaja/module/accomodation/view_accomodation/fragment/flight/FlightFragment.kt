@@ -120,7 +120,7 @@ class FlightFragment : BaseFragment(),
     private fun setOnClickListener() {
         top_button.callbackOnclickToolbar(this)
         btn_next.callbackOnclickButton(this)
-        btn_next.setTextButton("Search Flight")
+        btn_next.setTextButton(getString(R.string.search_flights))
         btn_switch.callbackOnclickButtonSwicht(this)
         btn_switch.setItemSwicth(tv_from,tv_to)
         tv_departur_date.setOnClickListener(this)
@@ -260,19 +260,19 @@ class FlightFragment : BaseFragment(),
         btnFirst.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "1"
-            nameClassAirline = "First"
+            nameClassAirline = getString(R.string.first)
         }
 
         btnEconomy.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "3"
-            nameClassAirline = "Economy"
+            nameClassAirline = getString(R.string.economy)
         }
 
         btnBisnis.setOnClickListener {
             popupWindow.dismiss()
             idClassAirline = "2"
-            nameClassAirline = "Business"
+            nameClassAirline = getString(R.string.business_trip)
         }
 
         popupWindow.showAsDropDown(option)
@@ -333,9 +333,9 @@ class FlightFragment : BaseFragment(),
                 destinationName  = model.name
                 tv_to.text = destinationName
 
-                isFoundDestination = true;
+                isFoundDestination = true
 
-                Log.d("xfligx","desti trip : " + dataTripPlan.destinationId);
+                Log.d("xfligx","desti trip : " + dataTripPlan.destinationId)
                 break
             }
         }
@@ -428,7 +428,7 @@ class FlightFragment : BaseFragment(),
 
     private fun addNamesAirline() {
         namesAirlines.clear()
-        namesAirlines.add("Select All")
+        namesAirlines.add(getString(R.string.select_all))
         val dataJson = JSONArray(Globals.readJsonFromFile(requireContext(),Constants.FILE_NAME_ALL_CODE_AIRPORT))
         for (i in 0 until dataJson.length()){
             namesAirlines.add(dataJson.getJSONObject(i).getString("nameAirline"))

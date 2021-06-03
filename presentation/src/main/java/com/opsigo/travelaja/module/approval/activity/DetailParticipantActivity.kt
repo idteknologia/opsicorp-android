@@ -167,7 +167,7 @@ class DetailParticipantActivity : BaseActivity()
         adapter.setData(data)
 
         val totalAccomdation = data.filter { it.typeCard != "HEADER" }.size
-        tv_trip_items_detail.text = "Your Trip Items Detail (${totalAccomdation})"
+        tv_trip_items_detail.text = "${getString(R.string.your_trip_items_detail)} (${totalAccomdation})"
 
 /*        nested_view.smoothScrollTo(0,0)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -406,7 +406,7 @@ class DetailParticipantActivity : BaseActivity()
 
             override fun failedLoad(message: String) {
                 hideDialog()
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
         })
     }
@@ -441,7 +441,7 @@ class DetailParticipantActivity : BaseActivity()
 
             override fun failedLoad(message: String) {
                 hideDialog()
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
         })
     }

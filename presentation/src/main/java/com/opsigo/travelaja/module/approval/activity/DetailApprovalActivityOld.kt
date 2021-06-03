@@ -96,10 +96,10 @@ class DetailApprovalActivityOld: BaseActivity(){
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_summary.layoutManager = layoutManager
-        rv_summary.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_summary.itemAnimator = DefaultItemAnimator()
         rv_summary.adapter = adapter
 
     }

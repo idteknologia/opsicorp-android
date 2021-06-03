@@ -22,7 +22,7 @@ import java.util.ArrayList
  * Created by khoiron on 04/09/18.
  */
 
-class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var dataList = ArrayList<AccomodationResultModel>()
     lateinit var onclick: OnclickListenerRecyclerView
@@ -35,38 +35,38 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
         this.context = context
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecyclerView.ViewHolder {
 
         return when (viewType){
 
-            VIEW_TYPE_TRAIN -> TrainHolder(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_TRAIN -> TrainHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_train, parent, false))
 
-            VIEW_TYPE_FLIGT -> FlightHolder(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_FLIGT -> FlightHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_flight, parent, false))
 
-            VIEW_TYPE_HOTEL -> HotelHolder(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_HOTEL -> HotelHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_hotel, parent, false))
 
-            VIEW_TYPE_LOADING -> FLightLoading(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_LOADING -> FLightLoading(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_flight_loading, parent, false))
 
-            VIEW_TYPE_LOADING_HOTEL -> HotelLoading(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_LOADING_HOTEL -> HotelLoading(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_hotel_loading, parent, false))
 
-            VIEW_TYPE_HEADER_NOT_COMPLY -> NotComplyHolder(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_HEADER_NOT_COMPLY -> NotComplyHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_header_not_comply, parent, false))
 
-            VIEW_TYPE_HEADER_SOLD_OUT -> SoldOutHolder(LayoutInflater.from(parent.getContext())
+            VIEW_TYPE_HEADER_SOLD_OUT -> SoldOutHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_header_sold_out, parent, false))
 
-            else -> BusHolder(LayoutInflater.from(parent.getContext())
+            else -> BusHolder(LayoutInflater.from(parent.context)
                     .inflate(R.layout.layout_filter_result_flight, parent, false))
         }
 
     }
 
-    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             VIEW_TYPE_TRAIN -> (holder as TrainHolder).bind(dataList[position].listTrainModel,position)
             VIEW_TYPE_FLIGT -> (holder as FlightHolder).bind(dataList[position].listFlightModel,position)
@@ -79,7 +79,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
         }
     }
 
-    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     override fun getItemViewType(position: Int): Int {
         return when (dataList[position].typeLayout){
@@ -120,11 +120,13 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
             Log.d("xreus","here05 " + Titiletrain)
 //            tv_destination.text     = data.nameStation
             tv_type_class.text      = data.className + " (${data.subClass.toUpperCase()})"
-            if(data.totalSeat == "0"){
-                tv_number_sheet.text    = data.totalSeat+" seat(s)"
+            val seat = if(data.totalSeat == "0"){
+                "${data.totalSeat} ${context.getString(R.string.seat)}(s)"
             }else{
-                tv_number_sheet.text    = data.totalSeat+" seat(s) left"
+                "${data.totalSeat} ${context.getString(R.string.seat)}(s) ${context.getString(R.string.left)}"
             }
+            tv_number_sheet.text = seat
+
 //            tv_number_sheet.text    = data.totalSeat+" seat(s) left"
             tv_price.text           = Globals.formatAmount(data.price)
             tv_duration.text        = data.duration
@@ -162,7 +164,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
         }
     }
 
-    inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class FlightHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
 
@@ -199,12 +201,12 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
                 transit = "Direct"
                 tv_transit.text        = transit
             } else {
-                tv_transit.text        = "${transit} Transit"
+                tv_transit.text        = "$transit ${context.getString(R.string.transit)}"
             }
 
             if (data.isComply.equals("true")){
                 flightComply.visible()
-                flightComply.text      = "Not Comply"
+                flightComply.text      = context.getString(R.string.not_comply)
             } else {
                 flightComply.invisible()
             }
@@ -216,7 +218,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
         }
     }
 
-    inner class HotelHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class HotelHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
             Picasso.get()
@@ -228,8 +230,8 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
             itemView.tv_name_hotel.text         = data.listHotelModel.nameHotel
             itemView.tv_type_hotel.text         = data.listHotelModel.typeHotel
             itemView.tv_city.text               = data.listHotelModel.city
-            itemView.tv_available.text          = data.listHotelModel.totalAvailable +" Room(s) available"
-            itemView.tv_prize.text              = "IDR ${Globals.formatAmount(data.listHotelModel.price)} /room/night"
+            itemView.tv_available.text          = "${data.listHotelModel.totalAvailable} ${context.getString(R.string.room_s_available)} "
+            itemView.tv_prize.text              = "IDR ${Globals.formatAmount(data.listHotelModel.price)} ${context.getString(R.string.slice_room_night)}"
 
             setLog(data.listHotelModel.nameHotel)
             setLog(data.listHotelModel.starRating)
@@ -286,7 +288,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     }
 
-    inner class BusHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class BusHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -294,7 +296,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     }
 
-    inner class FLightLoading internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class FLightLoading internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -302,7 +304,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     }
 
-    inner class HotelLoading internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class HotelLoading internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -310,7 +312,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     }
 
-    inner class NotComplyHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class NotComplyHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -318,7 +320,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     }
 
-    inner class SoldOutHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class SoldOutHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(data: AccomodationResultModel, position: Int) {
 
@@ -335,13 +337,13 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
     }
 
     companion object {
-        val VIEW_TYPE_TRAIN   = 1
-        val VIEW_TYPE_FLIGT   = 2
-        val VIEW_TYPE_BUS     = 3
-        val VIEW_TYPE_HOTEL   = 4
-        val VIEW_TYPE_LOADING = 5
-        val VIEW_TYPE_HEADER_NOT_COMPLY = 6
-        val VIEW_TYPE_HEADER_SOLD_OUT   = 7
-        val VIEW_TYPE_LOADING_HOTEL = 8
+        const val VIEW_TYPE_TRAIN   = 1
+        const val VIEW_TYPE_FLIGT   = 2
+        const val VIEW_TYPE_BUS     = 3
+        const val VIEW_TYPE_HOTEL   = 4
+        const val VIEW_TYPE_LOADING = 5
+        const val VIEW_TYPE_HEADER_NOT_COMPLY = 6
+        const val VIEW_TYPE_HEADER_SOLD_OUT   = 7
+        const val VIEW_TYPE_LOADING_HOTEL = 8
     }
 }

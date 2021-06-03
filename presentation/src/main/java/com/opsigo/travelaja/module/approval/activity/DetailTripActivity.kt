@@ -272,9 +272,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     fun failedWarning(message: String) {
         if (message.isNotEmpty()) {
-            showAlert("Sorry", message)
+            showAlert(getString(R.string.sorry), message)
         } else {
-            showAlert("Sorry", "failed to retrieve data")
+            showAlert(getString(R.string.sorry), getString(R.string.failed_to_retrieve_data))
         }
     }
 
@@ -304,7 +304,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             adapter.setData(dataAttachment)
             title_attachment.visibility = View.VISIBLE
             line_dot_attacthment.visibility = View.VISIBLE
-            title_attachment.text = "Attachment Files"
+            title_attachment.text = getString(R.string.attachment_files)
         } else {
             rv_attachment.visibility = View.GONE
 //            title_attachment.text = "No attachment Files"
@@ -377,7 +377,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_list_approval.visibility = View.VISIBLE
             tv_notice_title.visibility = View.VISIBLE
             rv_approval.visibility = View.VISIBLE
-            tv_list_approval.text = "List Approver (${dataApproval.size})"
+            tv_list_approval.text = "${getString(R.string.list_approver)} (${dataApproval.size})"
             adapterApproval.setData(dataApproval)
         } else {
             rv_approval.visibility = View.GONE
@@ -389,7 +389,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_list_participant_num.visibility = View.VISIBLE
             tv_notice_participant.visibility = View.VISIBLE
             rv_participant.visibility = View.VISIBLE
-            tv_list_participant_num.text = "List Participant (${dataParticipant.size})"
+            tv_list_participant_num.text = "${getString(R.string.list_participant)} (${dataParticipant.size})"
             adapterParticpant.setData(dataParticipant)
         } else {
             rv_participant.visibility = View.GONE
@@ -436,11 +436,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_total_amount.visibility = View.GONE
         } else if (tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.WaitingForApproval) {
             validationButtonApproval()
-            tv_status.text = "Waiting"
+            tv_status.text = getString(R.string.waiting)
         }
 
-        id_tv_create_date.text = "Created Date : ${tripSummary.creationDate}"
-        tv_expired.text = "${tripSummary.expiredRemaining} left to expired"
+        id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
+        tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
         tv_destination.text = tripSummary.destinationName
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
@@ -515,7 +515,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         dataItems.clear()
         val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
         val totalAccomdation = dataAccomodation.itemFlightModel.size + dataAccomodation.itemTrainModel.size + dataAccomodation.itemHotelModel.size
-        title_trip_total.text = "Your Trip Items Detail (${totalAccomdation})"
+        title_trip_total.text = "${getString(R.string.your_trip_items_detail )} (${totalAccomdation})"
 
         var number = 1
 

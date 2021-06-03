@@ -154,7 +154,7 @@ class HotelFragment : BaseFragment(),
             gotoActivityModule(requireContext(),intent)
         }
         else{
-            Globals.showAlert("Please","Select city",requireContext())
+            Globals.showAlert(getString(R.string.txt_please),getString(R.string.select_city),requireContext())
         }
     }
 
@@ -300,7 +300,7 @@ class HotelFragment : BaseFragment(),
 
     override fun total(totalGuest: Int) {
         this.totalGuest = totalGuest
-        tv_guest.text = "$totalGuest Guest"
+        tv_guest.text = "$totalGuest ${getString(R.string.guest)}"
     }
 
 }
