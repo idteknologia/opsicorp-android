@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/line_name_airline"
-        android:paddingLeft="15dp"
-        android:paddingRight="13dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="13dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="15dp"
@@ -22,7 +23,7 @@
             android:src="@drawable/background_slider" />
 
         <LinearLayout
-            android:layout_toRightOf="@+id/icon_train"
+            android:layout_toEndOf="@+id/icon_train"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -32,18 +33,18 @@
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sriwijaya Air"
+                tools:text="Sriwijaya Air"
                 android:textColor="#212121"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_class_type"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Economy Class"
+                tools:text="Economy Class"
                 android:textColor="#8024253d"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
 
         </LinearLayout>
@@ -53,11 +54,11 @@
             android:id="@+id/tv_number_sheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:gravity="end"
             style="@style/RobotoBold"
-            android:text="SA-110"
+            tools:text="SA-110"
             android:textColor="#212121"
             android:textSize="12sp" />
 
@@ -83,7 +84,7 @@
 
         <LinearLayout
             android:id="@+id/line_depart"
-            android:layout_marginLeft="59dp"
+            android:layout_marginStart="59dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -93,16 +94,16 @@
                 android:layout_marginBottom="5dp"
                 android:textColor="#24253d"
                 style="@style/RobotoMedium"
-                android:text="13:00"
+                tools:text="13:00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:layout_marginBottom="5dp"
                 android:id="@+id/tv_date_departure"
-                android:textSize="11.3sp"
+                android:textSize="12sp"
                 android:textColor="#8024253d"
                 style="@style/RobotoMedium"
-                android:text="27 Apr"
+                tools:text="27 Apr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -112,26 +113,25 @@
         <LinearLayout
             android:layout_toEndOf="@+id/line_depart"
             android:id="@+id/line_detail_depart"
-            android:layout_marginLeft="36dp"
+            android:layout_marginStart="36dp"
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/line_depart">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_name_departure"
                 android:textSize="12.5sp"
                 android:textColor="#666666"
                 style="@style/RobotoMedium"
                 android:layout_marginBottom="5dp"
-                android:text="Jakarta (CGK)"
+                tools:text="Jakarta (CGK)"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/tv_airport_departure"
-                android:textSize="11.3sp"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 style="@style/RobotoMedium"
-                android:text="Soekarno Hatta International Airport"
+                tools:text="Soekarno Hatta International Airport"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -141,7 +141,7 @@
                 android:textColor="#666666"
                 style="@style/RobotoMedium"
                 android:layout_marginTop="5dp"
-                android:text="Terminal"
+                tools:text="Terminal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -149,7 +149,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingRight="9dp"
+                android:paddingEnd="9dp"
+                android:paddingStart="9dp"
                 android:layout_marginTop="6dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
@@ -161,16 +162,16 @@
                     android:layout_gravity="center"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/ic_clock_black"></ImageView>
+                    android:src="@drawable/ic_clock_black"/>
 
                 <TextView
                     android:layout_margin="2dp"
                     android:id="@+id/line_total_duration"
                     android:gravity="center"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textColor="#212121"
                     style="@style/RobotoMedium"
-                    android:text="Total Duration : 1h 35m"
+                    tools:text="Total Duration : 1h 35m"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

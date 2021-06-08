@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@android:color/white"
     android:layout_width="match_parent"
@@ -18,25 +19,25 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
-            android:layout_marginLeft="11dp"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="13sp"
             android:layout_marginBottom="13sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_title"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 style="@style/RobotoRegular"
                 android:textColor="#24253d"
-                android:text="Adult 1"
+                android:text="@string/text_adult_pax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:layout_centerVertical="true"
                 android:id="@+id/img_down"
-                android:layout_marginRight="9dp"
+                android:layout_marginEnd="9dp"
                 android:src="@drawable/ic_chevron_down_green"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
@@ -56,15 +57,15 @@
                 style="@style/RobotoRegular"
                 android:text="Title"
                 android:textColor="#8024253d"
-                android:layout_marginLeft="14dp"
+                android:layout_marginStart="14dp"
                 android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
             <RelativeLayout
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginLeft="14sp"
+                android:layout_marginStart="14sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -103,7 +104,7 @@
 
                 <RelativeLayout
                     android:id="@+id/line_ms"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:background="@drawable/rounded_button_gray_passanger_button"
                     android:layout_width="93.8dp"
                     android:layout_height="40dp">
@@ -121,11 +122,12 @@
 
 
             <RelativeLayout
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="17dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
@@ -147,7 +149,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="9dp"
                     android:textColor="#24253d"
-                    android:hint="Jaja"
+                    tools:hint="Jaja"
                     style="@style/RobotoRegular"
                     android:textSize="17sp"
                     android:layout_width="match_parent"
@@ -157,17 +159,18 @@
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:background="#e0e0e1"
-                    android:layout_height="1dp"></LinearLayout>
+                    android:layout_height="1dp"/>
 
             </RelativeLayout>
 
 
             <RelativeLayout
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
 
@@ -188,7 +191,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="9dp"
                     android:textColor="#24253d"
-                    android:hint="Ardianto"
+                    tools:hint="Ardianto"
                     style="@style/RobotoRegular"
                     android:textSize="17sp"
                     android:layout_width="match_parent"
@@ -198,17 +201,18 @@
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:background="#e0e0e1"
-                    android:layout_height="1dp"></LinearLayout>
+                    android:layout_height="1dp"/>
 
             </RelativeLayout>
 
 
             <RelativeLayout
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginBottom="20dp"
-                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
 
@@ -231,7 +235,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="9dp"
                     android:textColor="#24253d"
-                    android:hint="0857328748"
+                    tools:hint="0857328748"
                     style="@style/RobotoRegular"
                     android:textSize="17sp"
                     android:layout_width="match_parent"
@@ -248,10 +252,11 @@
 
 
             <RelativeLayout
-                android:layout_marginRight="15dp"
-                android:paddingLeft="10dp"
+                android:layout_marginEnd="15dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
 
@@ -272,7 +277,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginTop="9dp"
                     android:textColor="#24253d"
-                    android:hint="m.jaja@gmail.com"
+                    tools:hint="m.jaja@gmail.com"
                     style="@style/RobotoRegular"
                     android:textSize="17sp"
                     android:layout_width="match_parent"
@@ -282,7 +287,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:background="#e0e0e1"
-                    android:layout_height="1dp"></LinearLayout>
+                    android:layout_height="1dp"/>
 
             </RelativeLayout>
 

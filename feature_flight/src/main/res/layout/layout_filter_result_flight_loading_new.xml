@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <com.facebook.shimmer.ShimmerFrameLayout
@@ -29,38 +30,37 @@
                 android:layout_height="62.5dp">
 
                 <LinearLayout
-                    android:paddingLeft="10dp"
-                    android:layout_toEndOf="@+id/img_flight_icon"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
                     android:layout_width="wrap_content"
                     android:orientation="vertical"
-                    android:layout_height="match_parent"
-                    android:layout_toRightOf="@+id/img_flight_icon">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/tv_title_train"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Garuda Indonesia"
+                        tools:text="Garuda Indonesia"
                         android:background="#dddddd"
                         android:textColor="#dddddd"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginRight="14dp"
+                    android:layout_marginEnd="14dp"
                     android:gravity="end"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/tv_type_class"
-                        android:text="Economy (C)"
+                        tools:text="Economy (C)"
                         android:background="#dddddd"
                         android:textColor="#dddddd"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -71,7 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
 
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
 
@@ -81,21 +81,21 @@
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="26dp"
-                    android:layout_marginRight="37dp"
-                    android:text="IDR 1.275.000"
+                    android:layout_marginEnd="37dp"
+                    android:text="@string/hargaTotal"
                     android:background="#dddddd"
                     android:textColor="#dddddd"
                     android:textSize="14sp" />
 
                 <TextView
                     style="@style/RobotoRegular"
-                    android:textSize="10sp"
-                    android:layout_marginRight="14dp"
-                    android:layout_alignParentRight="true"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="14dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="28.5dp"
-                    android:text="/pax"
+                    android:text="@string/text_pax"
                     android:background="#dddddd"
                     android:textColor="#dddddd"
                     android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
 
                 <LinearLayout
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -134,8 +134,8 @@
                         android:textColor="#dddddd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CGK - JOG"
-                        android:textSize="11dp" />
+                        tools:text="CGK - JOG"
+                        android:textSize="11sp" />
 
                     <TextView
                         android:layout_marginTop="2dp"
@@ -143,10 +143,10 @@
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="06:40 - 08:35"
+                        tools:text="06:40 - 08:35"
                         android:background="#dddddd"
                         android:textColor="#dddddd"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
 
@@ -154,8 +154,8 @@
                 <LinearLayout
                     android:layout_centerVertical="true"
                     android:gravity="end"
-                    android:layout_marginRight="14sp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="14sp"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -163,10 +163,10 @@
                         style="@style/RobotoBold"
                         android:background="#dddddd"
                         android:textColor="#dddddd"
-                        android:text="Duration"
+                        android:text="@string/text_duration"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="11dp"/>
+                        android:textSize="11sp"/>
 
                     <TextView
                         android:layout_marginTop="2dp"
@@ -176,8 +176,8 @@
                         android:textColor="#dddddd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1h, 30m"
-                        android:textSize="14dp" />
+                        tools:text="1h, 30m"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
 

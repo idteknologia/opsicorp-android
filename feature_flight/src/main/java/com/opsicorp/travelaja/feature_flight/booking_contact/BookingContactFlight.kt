@@ -7,7 +7,6 @@ import opsigo.com.datalayer.request_model.accomodation.flight.reservation.Contac
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
@@ -38,7 +37,6 @@ import android.app.Activity
 import java.lang.Exception
 import android.view.View
 import android.os.Bundle
-import android.os.Build
 
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
@@ -78,9 +76,7 @@ class BookingContactFlight : BaseActivity(),
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
         toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}", " ${datedepar}") //- 1 pax
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.doubleTitleGravity(toolbar.START)
-        }
+        toolbar.doubleTitleGravity(toolbar.START)
 
         if (Constants.DATA_SEAT_AIRLINE.isNotEmpty()) {
             line_select_seat_map.visible()
@@ -95,8 +91,12 @@ class BookingContactFlight : BaseActivity(),
         tv_email_contact.text = dataProfile.email
         tv_name_contact.text = dataProfile.name
 
+        if (Constants.multitrip == true){
+            adapter.setData(dataOrder.routes.first().flightResult.passenger)
+        } else {
+            adapter.setData(dataListFlight.dataFlight[0].passenger)
+        }
 
-        adapter.setData(dataOrder.routes.first().flightResult.passenger)
         initPrice()
     }
 
@@ -140,14 +140,14 @@ class BookingContactFlight : BaseActivity(),
         if (Globals.typeAccomodation == Constants.FLIGHT) {
             tv_prize_departure.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
             tv_station_departure.text = "${dataListFlight.dataFlight.first().origin} - ${dataListFlight.dataFlight.first().destination}"
-            tvTotalPassenger1.text = "${dataOrder.totalPassengerString} /Pax"
+            tvTotalPassenger1.text = "${dataOrder.totalPassengerString} ${getString(R.string.text_pax)}"
 
 
             if (dataListFlight.dataFlight.size > 1) {
                 line_arrival.visibility = View.VISIBLE
                 tv_prize_arrival.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
                 tv_station_arrival.text = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
-                tvTotalPassenger2.text = "${dataOrder.totalPassengerString} /Pax"
+                tvTotalPassenger2.text = "${dataOrder.totalPassengerString} ${getString(R.string.text_pax)}"
                 tv_price_total.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
                 tv_price.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
             } else {
@@ -323,7 +323,7 @@ class BookingContactFlight : BaseActivity(),
         }
     }
 
-    fun seatMapListener(view: View) {
+    fun seatMapListener() {
         gotoActivityResult(SelectSeatActivity::class.java, Constants.GET_SEAT_MAP)
     }
 

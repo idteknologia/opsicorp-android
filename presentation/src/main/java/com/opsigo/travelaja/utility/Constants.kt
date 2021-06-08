@@ -337,6 +337,8 @@ object Constants {
         val FinishFollowUpPerPax = 2
         val SubmitTripPan        = 3
         val Approval             = 4
+        val Info = 5
+        val PaymentCompleted = 6
     }
 
     object StatusTrip {

@@ -78,10 +78,10 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
             }
 
             if (itemView.checkboxIdCart.isChecked) {
-                itemView.btn_id_cart.text = "Edit"
+                itemView.btn_id_cart.text = context.getString(R.string.text_edit)
                 itemView.btn_id_cart.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
-                itemView.btn_id_cart.text = "Add"
+                itemView.btn_id_cart.text = context.getString(R.string.text_add)
                 itemView.btn_id_cart.setTextColor(ContextCompat.getColor(context, R.color.orange_price))
             }
 
@@ -91,10 +91,10 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
             }
 
             if (itemView.checkboxPassport.isChecked) {
-                itemView.btn_id_passport.text = "Edit"
+                itemView.btn_id_passport.text = context.getString(R.string.text_edit)
                 itemView.btn_id_passport.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
-                itemView.btn_id_passport.text = "Add"
+                itemView.btn_id_passport.text = context.getString(R.string.text_add)
                 itemView.btn_id_passport.setTextColor(ContextCompat.getColor(context, R.color.orange_price))
             }
 
@@ -104,27 +104,27 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
             }
 
             if (itemView.checkSim.isChecked) {
-                itemView.btn_id_sim.text = "Edit"
+                itemView.btn_id_sim.text = context.getString(R.string.text_edit)
                 itemView.btn_id_sim.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
-                itemView.btn_id_sim.text = "Add"
+                itemView.btn_id_sim.text = context.getString(R.string.text_add)
                 itemView.btn_id_sim.setTextColor(ContextCompat.getColor(context, R.color.orange_price))
             }
 
             if (data.idcard.fullname.isEmpty()){
                 itemView.name_passanger_by_ktp.text = context.getString(R.string.string_requaired_input)
-                itemView.name_passanger_by_ktp.setTextColor(context.resources.getColor(R.color.colorRedUndo))
+                itemView.name_passanger_by_ktp.setTextColor(ContextCompat.getColor(context,R.color.colorRedUndo))
             }
             else {
                 itemView.name_passanger_by_ktp.text = data.idcard.fullname
                 itemView.name_passanger_by_ktp.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
             }
 
-            if (!data.pasport.fullname.isNullOrEmpty()) {
+            if (!data.pasport.fullname.isEmpty()) {
                 itemView.name_passanger_by_passport.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
                 itemView.name_passanger_by_passport.text = data.pasport.fullname
             }
-            if (!data.sim.name.isNullOrEmpty()) {
+            if (!data.sim.name.isEmpty()) {
                 itemView.name_passanger_by_sim.setTextColor(ContextCompat.getColor(context, R.color.gray_50_subtitle))
                 itemView.name_passanger_by_sim.text = data.sim.name
             }
@@ -155,17 +155,17 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
                 itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
                 itemView.card_baggage.setBackgroundResource(R.drawable.card_background_corner_grey)
-                itemView.tvBaggageTotalSelect.text = "0 Kg"
+                itemView.tvBaggageTotalSelect.text = context.getString(R.string.text_0_kg)
                 itemView.tvBaggageBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
 
             if (!data.ssr.ssrSelected.isNullOrEmpty()){
                 itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_green)
-                itemView.tvSsrTotalSelect.text = "${data.ssr.ssrSelected.size} Selected"
+                itemView.tvSsrTotalSelect.text = "${data.ssr.ssrSelected.size} ${context.getString(R.string.text_selected)}"
                 itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.green_price))
             } else {
                 itemView.card_ssr.setBackgroundResource(R.drawable.card_background_corner_grey)
-                itemView.tvSsrTotalSelect.text = "Meals, etc"
+                itemView.tvSsrTotalSelect.text = context.getString(R.string.text_meals_etc)
                 itemView.tvSsrBooking.setTextColor(ContextCompat.getColor(context, R.color.black))
             }
 

@@ -24,7 +24,7 @@
             <com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
                 android:id="@+id/tablayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp>
+                android:layout_height="wrap_content"/>
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

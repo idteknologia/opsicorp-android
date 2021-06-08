@@ -39,6 +39,9 @@ data class SummaryModel(
         var costCenter :String = "",
         var isDomestic :Boolean = false,
 
+        var paymentStatus: String = "",
+        var paymentStatusView : String = "",
+
         var contact: ContactModel = ContactModel(),
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),
         var attactment :ArrayList<UploadModel> = ArrayList(),

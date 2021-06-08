@@ -14,6 +14,8 @@ class DataBisnisTripModel {
     var nameActivity = ""
     var tripPartnerName = ""
     var nameDestination = ""
+    var origin = ""
+    var destination = ""
     var startDate   = ""
     var endDate     = ""
     var notes       = ""

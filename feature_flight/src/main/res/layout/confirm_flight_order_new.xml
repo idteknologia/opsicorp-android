@@ -41,8 +41,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginTop="21dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="35dp">
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="35dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
                     android:layout_below="@+id/rv_confirmation_order_flight"
                     android:layout_marginBottom="20dp"
                     android:background="@android:color/white"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <RelativeLayout
@@ -97,8 +97,8 @@
                         <ImageView
                             android:id="@+id/ic_reason_code"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="13dp"
-                            android:layout_marginLeft="15dp"
+                            android:layout_marginEnd="13dp"
+                            android:layout_marginStart="15dp"
                             android:layout_width="30dp"
                             android:layout_height="30dp">
                         </ImageView>
@@ -109,8 +109,7 @@
                             android:layout_marginTop="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_toRightOf="@+id/ic_reason_code">
+                            android:orientation="vertical">
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -133,8 +132,8 @@
                             android:layout_height="20dp"
                             android:src="@drawable/ic_chevron_next_orange"
                             android:layout_centerVertical="true"
-                            android:layout_marginRight="20dp"
-                            android:layout_alignParentRight="true">
+                            android:layout_marginEnd="20dp"
+                            android:layout_alignParentEnd="true">
 
                         </ImageView>
 

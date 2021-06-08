@@ -38,7 +38,7 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginStart="3dp"
                     android:id="@+id/tv_airport_name"
                     style="@style/RobotoRegular"
                     android:textSize="14sp"
@@ -69,7 +69,8 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:paddingLeft="@dimen/margin_default"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingEnd="20dp"
             android:paddingBottom="14dp"
             android:orientation="vertical"
             android:layout_width="0dp"
@@ -114,7 +115,7 @@
                 android:text="@string/including_of_all_fares"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
-                android:gravity="left"
+                android:gravity="start"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
@@ -127,8 +128,8 @@
                 android:layout_gravity="center"
                 android:id="@+id/btn_next"
                 app:text="Detail Departing"
-                android:layout_marginLeft="0dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="20dp"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>

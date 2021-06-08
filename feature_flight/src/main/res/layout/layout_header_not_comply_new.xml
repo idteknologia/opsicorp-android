@@ -17,7 +17,7 @@
         android:textSize="14sp"
         style="@style/RobotoBold"
         android:textColor="#ffffff"
-        android:text="Didn&apos;t find the train ?"/>
+        android:text="@string/text_didn_apos_t_find_the_train"/>
 
     <TextView
         style="@style/RobotoRegular"
@@ -27,7 +27,6 @@
         android:textSize="12sp"
         android:textColor="#ffffff"
         android:lineSpacingExtra="6sp"
-        android:text="If you don&apos;t find any train match with your budget or travel policy.
-You can select not comply list of train, with specific notes." />
+        android:text="@string/text_didnt_fint_train_desc" />
 
 </LinearLayout>

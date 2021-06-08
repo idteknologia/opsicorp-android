@@ -36,6 +36,10 @@ class SummaryEntityMapper() {
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
+        summary.paymentStatus     = from.paymentStatus.toString()
+        summary.paymentStatusView = from.paymentStatusView.toString()
+
+
         
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()

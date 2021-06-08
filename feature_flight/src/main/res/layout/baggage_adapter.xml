@@ -2,8 +2,7 @@
 <LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
 
     <TextView
@@ -14,7 +13,6 @@
         android:textColor="#00776a"
         android:text="@string/departure_flight"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_default" />
 
 
@@ -28,8 +26,6 @@
 
         <ImageView
             android:id="@+id/img_airline"
-            android:layout_marginLeft="26dp"
-            android:layout_marginRight="10dp"
             android:layout_width="30dp"
             android:layout_height="22dp"
             android:src="@drawable/background_slider"
@@ -45,17 +41,15 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#24253d"
-            android:text="@string/flightRoute"
-            android:layout_toRightOf="@+id/img_airline"/>
+            android:text="@string/flightRoute"/>
 
         <ImageView
             android:visibility="gone"
             android:id="@+id/ivRemoveBaggage"
             android:layout_width="30dp"
             android:layout_height="20dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:src="@drawable/ic_delete"/>
 
     </RelativeLayout>
@@ -65,7 +59,6 @@
 
         <TextView
             android:id="@+id/tv_name_passanger"
-            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="15dp"
             style="@style/RobotoBold"
             android:layout_width="wrap_content"
@@ -80,10 +73,10 @@
             style="@style/RobotoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="15dp"
-            android:text="kg"
+            android:text="@string/text_kg"
             android:textColor="#939396"
             android:textSize="14sp" />
     </RelativeLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#f6f8f8"
     android:layout_width="match_parent"
@@ -50,7 +51,7 @@
                         style="@style/RobotoMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="The Trans Luxury Bandung"
+                        tools:text="The Trans Luxury Bandung"
                         android:textColor="#dddddd"
                         android:background="#dddddd">
 
@@ -71,9 +72,9 @@
                             style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Hotels"
+                            tools:text="Hotels"
                             android:textColor="#dddddd"
-                            android:textSize="8dp"></TextView>
+                            android:textSize="12sp"/>
 
                     </LinearLayout>
 
@@ -106,10 +107,10 @@
                             style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="2dp"
-                            android:text="Cibangkong, Bandung"
+                            android:layout_marginStart="2dp"
+                            tools:text="Cibangkong, Bandung"
                             android:textColor="#dddddd"
-                            android:textSize="12dp">
+                            android:textSize="12sp">
 
                         </TextView>
                     </LinearLayout>
@@ -121,9 +122,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:text="4 Room(s) available"
+                        tools:text="4 Room(s) available"
                         android:textColor="#dddddd"
-                        android:textSize="12dp"></TextView>
+                        android:textSize="12sp"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -135,30 +136,29 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#dddddd"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             style="@style/RobotoBold"
-                            android:text="IDR 1.275.000">
+                            android:text="@string/hargaTotal">
                         </TextView>
 
                         <TextView
                             android:layout_toEndOf="@+id/tv_prize"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="2dp"
-                            android:textSize="10dp"
+                            android:layout_marginStart="2dp"
+                            android:textSize="12sp"
                             android:background="#dddddd"
-                            android:text="/room/night"
+                            android:text="@string/text_room_night"
                             android:textColor="#dddddd"
-                            style="@style/RobotoRegular"
-                            android:layout_toRightOf="@+id/tv_prize">
+                            style="@style/RobotoRegular">
                         </TextView>
 
                         <ImageView
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="right"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="end"
                             android:layout_width="14dp"
                             android:layout_height="14dp"
-                            android:src="#dddddd"></ImageView>
+                            android:src="#dddddd"/>
 
                     </RelativeLayout>
                 </LinearLayout>

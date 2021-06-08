@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="#00776a"
-        android:text="Departure Flight"
+        android:text="@string/text_departure_flight"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="@dimen/margin_default"/>
+        android:layout_marginStart="@dimen/margin_default"/>
 
     <RelativeLayout
         android:layout_marginTop="15dp"
@@ -28,9 +28,7 @@
             android:layout_width="10dp"
             android:layout_height="16dp"
             android:layout_marginStart="26dp"
-            android:layout_marginLeft="26dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
             android:src="@drawable/background_slider" />
 
         <TextView
@@ -41,15 +39,12 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#24253d"
-            android:text="@string/flightRoute"
-            android:layout_toRightOf="@+id/img_airline"/>
+            android:text="@string/flightRoute" />
 
         <TextView
             style="@style/RobotoBold"
             android:id="@+id/tvPickSsr"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#009688"
@@ -62,8 +57,8 @@
             android:id="@+id/ivRemoveSsr"
             android:layout_width="30dp"
             android:layout_height="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/tvPickSsr"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/tvPickSsr"
             android:src="@drawable/ic_delete"/>
 
     </RelativeLayout>
@@ -80,7 +75,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:textColor="#24253d"
