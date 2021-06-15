@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent">
 
@@ -34,19 +35,19 @@
                     android:textSize="14sp"
                     android:textColor="#00776a"
                     android:layout_centerInParent="true"
-                    android:text="107 Ticket(s) found" />
+                    android:text="@string/text_107_ticket_s_found" />
             </RelativeLayout>
 
             <TextView
                 style="@style/RobotoBold"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="#24253d"
-                android:text="DEPARTURE TIME"/>
+                android:text="@string/text_departure_time"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -59,17 +60,17 @@
                 style="@style/RobotoBold"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="14dp"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="#24253d"
-                android:text="ARRIVAL TIME"/>
+                android:text="@string/text_arrival_time"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_arrival_time"></androidx.recyclerview.widget.RecyclerView>
+                android:id="@+id/rv_arrival_time"/>
 
             <LinearLayout
                 android:layout_marginTop="25dp"
@@ -85,12 +86,12 @@
                 <TextView
                     android:layout_marginTop="14dp"
                     android:layout_marginBottom="14dp"
-                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#24253d"
-                    android:text="PRICE / PAX" />
+                    android:text="@string/text_price_pax" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -100,9 +101,9 @@
                     android:gravity="end"
                     android:layout_marginBottom="14dp"
                     android:layout_marginTop="14dp"
-                    android:layout_marginRight="@dimen/margin_default"
-                    android:layout_alignParentRight="true"
-                    android:text="50.000 - 500.000" />
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/text_filter_price_range" />
 
                 <it.sephiroth.android.library.rangeseekbar.RangeSeekBar
                     android:layout_marginTop="60dp"
@@ -121,10 +122,10 @@
                     android:layout_height="wrap_content"
                     android:textSize="13sp"
                     android:textColor="#939396"
-                    android:text="IDR 50.000"
+                    android:text="@string/text_filter_price_min"
                     android:layout_below="@+id/rangebar"
                     android:layout_marginTop="20dp"
-                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginBottom="21dp"/>
 
                 <TextView
@@ -134,9 +135,9 @@
                     android:textColor="#939396"
                     android:gravity="end"
                     android:layout_below="@+id/rangebar"
-                    android:text="IDR 300.000"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/margin_default"
+                    android:text="@string/text_filter_price_max"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_default"
                     android:layout_marginTop="20dp"/>
             </RelativeLayout>
 
@@ -153,33 +154,33 @@
                     style="@style/RobotoBold"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="25dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#24253d"
                     android:lineSpacingExtra="2sp"
-                    android:text="Train Name"/>
+                    tools:text="Train Name"/>
 
                 <TextView
                     style="@style/RobotoBold"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="24dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginEnd="20dp"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColor="#f19c00"
                     android:lineSpacingExtra="6sp"
                     android:gravity="end"
-                    android:text="SELECT ALL" />
+                    android:text="@string/text_select_all" />
             </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/rv_name_train"></androidx.recyclerview.widget.RecyclerView>
+                android:id="@+id/rv_name_train"/>
             <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:id="@+id/btn_filter"
                 android:layout_width="match_parent"
@@ -187,7 +188,7 @@
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="@dimen/margin_default"
-                android:layout_marginTop="49dp"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                android:layout_marginTop="49dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

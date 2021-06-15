@@ -9,10 +9,9 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_train_short_by_adapter_new.view.*
 
-class FlightShortByAdapter (context: Context, private var items: ArrayList<String>): androidx.recyclerview.widget.RecyclerView.Adapter<FlightShortByAdapter.ViewHolder>() {
+class FlightShortByAdapter (val context: Context, private var items: ArrayList<String>): androidx.recyclerview.widget.RecyclerView.Adapter<FlightShortByAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
-    val context = context
     var checkIn = 0
     override fun onCreateViewHolder(parent: ViewGroup, viewtype: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)

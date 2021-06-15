@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -47,8 +48,7 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/line_back">
+            android:orientation="horizontal">
 
             <TextView
                 android:singleLine="true"
@@ -58,7 +58,7 @@
                 android:textSize="18sp"
                 android:textColor="#ffffff"
                 style="@style/RobotoRegular"
-                android:text="Jakarta" />
+                tools:text="Jakarta" />
 
 
             <ImageView
@@ -67,7 +67,7 @@
                 android:src="@drawable/panah_double"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"></ImageView>
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:singleLine="true"
@@ -77,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="#ffffff"
-                android:text="Jakarta" />
+                tools:text="Jakarta" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,7 +96,7 @@
                 android:textSize="16sp"
                 style="@style/RobotoRegular"
                 android:textColor="@android:color/white"
-                android:text="Jakarta - Yogyakarta"
+                tools:text="Jakarta - Yogyakarta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -107,7 +107,7 @@
                 style="@style/RobotoRegular"
                 android:layout_marginTop="3dp"
                 android:textColor="@android:color/white"
-                android:text="Depart Date : Sun, 27 Mar 2018 - 1 pax"
+                tools:text="Depart Date : Sun, 27 Mar 2018 - 1 pax"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:gravity="end"
-                    android:text="Soekarno Hatta"
+                    tools:text="Soekarno Hatta"
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 
@@ -148,7 +148,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="2dp"
                     android:gravity="end"
-                    android:text="International Airport"
+                    tools:text="International Airport"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -166,7 +166,7 @@
                     android:layout_width="18dp"
                     android:layout_marginRight="8dp"
                     android:layout_height="13dp"
-                    android:background="@drawable/panah_detail_product"></ImageView>
+                    android:background="@drawable/panah_detail_product"/>
             </LinearLayout>
 
             <LinearLayout
@@ -181,7 +181,7 @@
                     style="@style/RobotoRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ngurah Rai"
+                    tools:text="Ngurah Rai"
                     android:textColor="#ffffff"
                     android:textSize="14sp" />
 
@@ -192,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
-                    android:text="International Airport"
+                    tools:text="International Airport"
                     android:textColor="#ffffff"
                     android:textSize="12sp" />
 
@@ -205,12 +205,12 @@
         <TextView
             android:singleLine="true"
             android:visibility="gone"
-            android:textSize="16dp"
+            android:textSize="16sp"
             style="@style/RobotoRegular"
             android:textColor="#f8b945"
-            android:text="Reset"
+            android:text="@string/reset"
             android:id="@+id/btn_reset"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_cart_white"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
@@ -219,7 +219,7 @@
 
         <ImageView
             android:visibility="gone"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_cart_white"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
@@ -228,7 +228,7 @@
         <ImageView
             android:id="@+id/btn_card"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/cart_home"
             android:layout_width="22dp"
             android:layout_height="22dp">
@@ -239,7 +239,7 @@
             android:id="@+id/line_btn_filter"
             android:background="@drawable/rounded_white_stroke"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:paddingLeft="13dp"
             android:paddingRight="13dp"
@@ -251,7 +251,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
-                android:text="Filter" />
+                android:text="@string/filter" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -259,7 +259,7 @@
             android:id="@+id/line_btn_add_more_item"
             android:background="@drawable/rounded_orange_stroke"
             android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:paddingLeft="13dp"
             android:paddingRight="13dp"
@@ -269,9 +269,9 @@
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="9dp"
+                android:textSize="12sp"
                 android:textColor="#ffffff"
-                android:text="+Add more item" />
+                android:text="@string/text_add_more_item" />
         </RelativeLayout>
 
     </RelativeLayout>

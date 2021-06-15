@@ -34,11 +34,16 @@ class SummaryEntityMapper() {
         summary.statusView      = from.statusView.toString()
         summary.creationDate    = from.creationDateView.toString()
         summary.idUser          = from.contact?.id.toString()
+//        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
         summary.golper            = from.golper
         summary.wbsNo             = from.wbsNo.toString()
+        summary.paymentStatus     = from.paymentStatus.toString()
+        summary.paymentStatusView = from.paymentStatusView.toString()
+
+
 
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()
@@ -50,7 +55,7 @@ class SummaryEntityMapper() {
             summary.attactment.add(uplaodModel)
         }
 
-        from.routes.forEachIndexed { index, routesItem ->
+        from.routes?.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
                 routesItinerary.transportation = routesItem.transportation.toInt()

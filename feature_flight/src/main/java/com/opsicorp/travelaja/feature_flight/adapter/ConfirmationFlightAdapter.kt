@@ -40,7 +40,7 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
         holder.itemView.tv_title_airline.text = data.title_flight
         Globals.setLog(data.img_airline)
 
-        if(!data.img_airline.isEmpty() && data.img_airline != null) {
+        if(!data.img_airline.isEmpty()) {
             Picasso.get()
                     .load(data.img_airline)
                     .fit()
@@ -66,7 +66,7 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
         holder.itemView.tv_total_passager.text = data.totalPassenger
 
-        holder.itemView.line_total_duration.text = "Total Duration : ${data.line_total_duration}"
+        holder.itemView.line_total_duration.text = "${context.getString(R.string.total_duration)} : ${data.line_total_duration}"
 
         if (data.flight_type.equals("NonGds")){
             holder.itemView.rlFareRules.gone()
@@ -80,17 +80,17 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
             (context as Activity).startActivityForResult(intent,Constants.REQUEST_CODE_FARE_RULES)
         }
 
-        if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
-            holder.itemView.tv_terminal.text = "Terminal - "
+        if (data.terminal.isEmpty()||"null".equals(data.terminal)){
+            holder.itemView.tv_terminal.text = context.getString(R.string.text_terminal)
         }else{
-            holder.itemView.tv_terminal.text = "Terminal "+data.terminal
+            holder.itemView.tv_terminal.text = "${context.getString(R.string.text_terminal)} "+data.terminal
         }
 
         if (position==0){
-            holder.itemView.title_trip.text = "Departure date"
+            holder.itemView.title_trip.text = context.getString(R.string.departure_date)
         }
         else{
-            holder.itemView.title_trip.text = "Arrival date"
+            holder.itemView.title_trip.text = context.getString(R.string.arrival_date)
         }
 
         if (data.notcomply){

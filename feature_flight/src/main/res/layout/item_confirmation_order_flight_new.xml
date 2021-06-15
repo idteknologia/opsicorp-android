@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="3dp"
@@ -24,7 +25,7 @@
 
             <LinearLayout
                 android:paddingTop="20dp"
-                android:paddingLeft="15dp"
+                android:paddingStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -48,7 +49,7 @@
                             android:textSize="12sp"
                             android:textColor="#00776a"
                             android:gravity="end"
-                            android:text="Departure date" />
+                            android:text="@string/departure_date" />
 
                         <TextView
                             android:id="@+id/tvFlightDate"
@@ -56,9 +57,9 @@
                             style="@style/RobotoBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textColor="#24253d"
-                            android:text="Booking Code (PNR) "
+                            android:text="@string/text_booking_code_pnr"
                             />
                     </LinearLayout>
 
@@ -79,8 +80,8 @@
 
             <RelativeLayout
                 android:id="@+id/line_name_airline"
-                android:paddingLeft="15dp"
-                android:paddingRight="13dp"
+                android:paddingStart="15dp"
+                android:paddingEnd="13dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="15dp"
@@ -90,14 +91,14 @@
                     android:layout_centerVertical="true"
                     android:adjustViewBounds="true"
                     android:src="@drawable/sriwijaya"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:id="@+id/img_flight"
                     android:layout_width="62dp"
                     android:layout_height="24dp" />
 
                 <LinearLayout
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/img_flight"
+                    android:layout_toEndOf="@+id/img_flight"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -107,18 +108,18 @@
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sriwijaya Air"
+                        tools:text="Sriwijaya Air"
                         android:textColor="#212121"
-                        android:textSize="14dp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_class_type"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Economy Class"
+                        tools:text="Economy Class"
                         android:textColor="#8024253d"
-                        android:textSize="12dp" />
+                        android:textSize="12sp" />
 
 
                 </LinearLayout>
@@ -131,10 +132,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:layout_alignParentEnd="true"
-                    android:text="GA-670"
+                    tools:text="GA-670"
                     android:textColor="#212121"
-                    android:textSize="14sp"
-                    android:layout_alignParentRight="true" />
+                    android:textSize="14sp" />
 
             </RelativeLayout>
 
@@ -156,26 +156,26 @@
 
                 <LinearLayout
                     android:id="@+id/line_depart"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_time_origin"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="13:00"
+                        tools:text="13:00"
                         android:layout_marginBottom="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/tv_date_origin"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:layout_marginBottom="3dp"
                         android:textColor="#8024253d"
                         style="@style/RobotoBold"
-                        android:text="27 Apr"
+                        tools:text="27 Apr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -185,35 +185,34 @@
                 <LinearLayout
                     android:layout_toEndOf="@+id/line_depart"
                     android:id="@+id/line_detail_depart"
-                    android:layout_marginLeft="36dp"
+                    android:layout_marginStart="36dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/line_depart">
+                    android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/tv_origin"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#666666"
                         style="@style/RobotoMedium"
-                        android:text="Jakarta (CGK)"
+                        tools:text="Jakarta (CGK)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_marginBottom="3dp"
                         android:id="@+id/tv_station_origin"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#212121"
                         style="@style/RobotoBold"
-                        android:text="Soekarno Hatta International Airport"
+                        tools:text="Soekarno Hatta International Airport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:id="@+id/tv_terminal"
-                        android:textSize="10dp"
+                        android:textSize="12sp"
                         android:textColor="#939396"
                         style="@style/RobotoRegular"
-                        android:text="Terminal 2F"
+                        tools:text="Terminal 2F"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -221,26 +220,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingRight="9dp"
+                        android:paddingEnd="9dp"
+                        android:paddingStart="9dp"
                         android:layout_marginTop="6dp"
                         android:background="@drawable/rounded_green_stroke_50_persen">
 
                         <ImageView
-                            android:layout_marginRight="6dp"
-                            android:layout_marginLeft="9dp"
+                            android:layout_marginEnd="6dp"
+                            android:layout_marginStart="9dp"
                             android:layout_gravity="center"
                             android:layout_width="10dp"
                             android:layout_height="10dp"
-                            android:src="@drawable/ic_clock_black"></ImageView>
+                            android:src="@drawable/ic_clock_black"/>
 
                         <TextView
                             android:layout_margin="2dp"
                             android:id="@+id/line_total_duration"
                             android:gravity="center"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             android:textColor="#212121"
                             style="@style/RobotoMedium"
-                            android:text="Total Duration : 1h 35m"
+                            tools:text="Total Duration : 1h 35m"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -255,12 +255,11 @@
 
                 <LinearLayout
                     android:layout_toEndOf="@+id/line_depart"
-                    android:layout_marginLeft="14dp"
+                    android:layout_marginStart="14dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/line_depart">
+                    android:layout_height="wrap_content">
                     <LinearLayout
                         android:visibility="gone"
                         android:id="@+id/line_before_dote_progress"
@@ -298,7 +297,7 @@
                         android:visibility="visible"
                         android:background="@drawable/point_arrival"
                         android:layout_width="12dp"
-                        android:layout_height="15dp"></ImageView>
+                        android:layout_height="15dp"/>
 
                 </LinearLayout>
 
@@ -307,26 +306,25 @@
                     android:layout_marginTop="8dp"
                     android:layout_toEndOf="@+id/line_depart"
                     android:layout_below="@+id/line_detail_depart"
-                    android:layout_marginLeft="36dp"
+                    android:layout_marginStart="36dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/line_depart">
+                    android:layout_height="wrap_content">
                     <TextView
                         android:layout_marginBottom="3dp"
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#666666"
                         style="@style/RobotoMedium"
                         android:id="@+id/tv_depart"
-                        android:text="Jakarta (CGK)"
+                        tools:text="Jakarta (CGK)"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#212121"
                         style="@style/RobotoBold"
                         android:id="@+id/tv_station_destination"
-                        android:text="Soekarno Hatta International Airport"
+                        tools:text="Soekarno Hatta International Airport"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -337,25 +335,25 @@
                 <LinearLayout
                     android:layout_marginTop="35dp"
                     android:layout_below="@+id/line_depart"
-                    android:layout_marginLeft="40dp"
+                    android:layout_marginStart="40dp"
                     android:orientation="vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         android:textColor="#24253d"
                         style="@style/RobotoMedium"
-                        android:text="13:00"
+                        tools:text="13:00"
                         android:layout_marginBottom="3dp"
                         android:id="@+id/tv_time_arrival"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                     <TextView
-                        android:textSize="12dp"
+                        android:textSize="12sp"
                         android:textColor="#8024253d"
                         style="@style/RobotoBold"
                         android:id="@+id/tv_date_arrival"
-                        android:text="27 Apr"
+                        tools:text="27 Apr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
 
@@ -375,20 +373,17 @@
                     android:id="@+id/tvToFareRules"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fare Rules"
+                    android:text="@string/text_fare_rules"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="20dp"
                     android:layout_marginStart="222dp"
                     android:textStyle="bold"
                     android:textSize="14sp"
-                    android:textColor="#009688"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginLeft="222dp" />
+                    android:textColor="#009688" />
                 <ImageView
                     android:id="@+id/btToFareRules"
                     android:layout_width="10dp"
                     android:layout_height="16dp"
-                    android:layout_toRightOf="@+id/tvToFareRules"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_next_green"
                     android:layout_toEndOf="@+id/tvToFareRules" />
@@ -396,7 +391,6 @@
 
 
             <RelativeLayout
-                android:layout_below="@+id/tv_title_prize_detail"
                 android:id="@+id/line_prize_detail"
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
@@ -410,21 +404,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Price Details"
+                    android:text="@string/text_price_details"
                     android:textColor="#00776a"
-                    android:textSize="14dp" />
+                    android:textSize="14sp" />
 
 
                 <TextView
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:id="@+id/tv_not_comply"
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Not Comply"
+                    android:text="@string/not_comply"
                     android:textColor="#d0021b"
-                    android:textSize="12dp" />
+                    android:textSize="12sp" />
 
 
 
@@ -436,9 +430,9 @@
                     style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Adult x1"
+                    android:text="@string/text_adult_pax"
                     android:textColor="#939396"
-                    android:textSize="15dp" />
+                    android:textSize="15sp" />
 
 
                 <TextView
@@ -448,10 +442,10 @@
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="IDR 110.000"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/hargaTotal"
                     android:textColor="#d9000000"
-                    android:textSize="16dp"/>
+                    android:textSize="16sp"/>
 
             </RelativeLayout>
 

@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <RelativeLayout
@@ -23,14 +24,14 @@
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:textColor="#b324253d"
-                android:text="Gajayana"
+                tools:text="Gajayana"
                 style="@style/RobotoBold"/>
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/priceItemValue"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/RobotoBold"
@@ -38,7 +39,7 @@
             android:textSize="14sp"
             android:textColor="#d9000000"
             android:gravity="end"
-            android:text="0 IDR "/>
+            android:text="@string/hargaTotal"/>
     </RelativeLayout>
 
 

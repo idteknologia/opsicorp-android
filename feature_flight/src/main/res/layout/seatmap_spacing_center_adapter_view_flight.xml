@@ -9,7 +9,7 @@
         android:textColor="@android:color/white"
         android:layout_width="20dp"
         android:layout_height="match_parent"
-        android:id="@+id/textSpaceCenter"></TextView>
+        android:id="@+id/textSpaceCenter"/>
 
 
 </RelativeLayout>

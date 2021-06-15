@@ -299,7 +299,13 @@ data class SummaryEntity(
 		@field:SerializedName("PaymentType")
 	val paymentType: Int = 0,
 
-		@field:SerializedName("StartDateView")
+	@field:SerializedName("PaymentStatus")
+	val paymentStatus: Int = 0,
+
+	@field:SerializedName("PaymentStatusView")
+	val paymentStatusView : String? = null,
+
+	@field:SerializedName("StartDateView")
 	val startDateView: String? = null,
 
 		@field:SerializedName("PolicyCause")

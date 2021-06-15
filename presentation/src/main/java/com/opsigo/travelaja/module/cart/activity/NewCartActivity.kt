@@ -570,7 +570,12 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
             setLog("notReady")
         } else {
-            if (tripSummary.tripCode.contains("PT")) {
+            var tripPlanId = tripSummary.tripId
+            val bundle = Bundle()
+            bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
+
+            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
+            /*if (tripSummary.tripCode.contains("PT")) {
                 Constants.isBisnisTrip = false
                 if (Constants.isBisnisTrip.equals(false)) {
                     var tripPlanId = tripSummary.tripId
@@ -583,7 +588,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 }
             } else {
                 getSubmitTripPlant()
-            }
+            }*/
         }
     }
 

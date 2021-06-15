@@ -41,6 +41,9 @@ data class SummaryModel(
         var wbsNo : String = "",
         var golper : Int = 0,
 
+        var paymentStatus: String = "",
+        var paymentStatusView : String = "",
+
         var contact: ContactModel = ContactModel(),
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),
         var attactment :ArrayList<UploadModel> = ArrayList(),
