@@ -7,7 +7,6 @@ import opsigo.com.datalayer.request_model.accomodation.flight.reservation.Contac
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
@@ -39,6 +38,10 @@ import java.lang.Exception
 import android.view.View
 import android.os.Bundle
 import android.os.Build
+import android.util.Log
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
+import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
+import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
@@ -95,8 +98,12 @@ class BookingContactFlight : BaseActivity(),
         tv_email_contact.text = dataProfile.email
         tv_name_contact.text = dataProfile.name
 
-
-        adapter.setData(dataOrder.routes.first().flightResult.passenger)
+        if (Constants.multitrip){
+            adapter.setData(dataOrder.routes.first().flightResult.passenger)
+        }
+        else {
+            adapter.setData(dataListFlight.dataFlight.first().passenger)
+        }
         initPrice()
     }
 
@@ -384,10 +391,51 @@ class BookingContactFlight : BaseActivity(),
     }
 
     private fun getDataFlight(): HashMap<Any, Any> {
-        val model = ReserveFlightRequest()
-        model.dataBooking = getDataBooking()
-        model.header = getHeader()
-        return Globals.classToHashMap(model, ReserveFlightRequest::class.java)
+        if(getProfile().companyCode=="000002"){
+            val model = ReserveFlightMulticityRequest()
+            model.dataBooking = getDataBooking()
+            model.header = getHeaderMulticity()
+            return Globals.classToHashMap(model, ReserveFlightMulticityRequest::class.java)
+        }
+        else {
+            val model = ReserveFlightRequest()
+            model.dataBooking = getDataBooking()
+            model.header = getHeader()
+            return Globals.classToHashMap(model, ReserveFlightRequest::class.java)
+        }
+    }
+
+    private fun getHeaderMulticity(): HeaderReserveFlightMulticityRequest {
+        val dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+
+        val header = HeaderReserveFlightMulticityRequest()
+        header.startDate = dataTrip.startDate
+        header.returnDate = dataTrip.endDate
+        header.origin = dataTrip.originId
+        header.destination = dataTrip.destinationId
+        header.tripParticipants = tripParticipant()
+        header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
+        header.idTripPlan = dataTrip.idTripPlane
+        header.codeTripPlan = dataTrip.tripCode
+        header.purpose = dataTrip.purpose
+
+        header.businessTripType = dataTrip.businessTripType
+        header.remark           = dataTrip.remark
+        header.wbsNo            = dataTrip.wbsNo
+        header.isDomestic       = dataTrip.isDomestik
+        header.golper           = dataTrip.golper
+
+        header.type = 2
+        if (dataTrip.purpose.equals("-")) {
+            header.purpose = "Personal Trip"
+        }
+        dataTrip.route.forEach {
+            header.routes.add(addRoute(it))
+        }
+        dataTrip.attachment.forEach {
+            header.attachments.add((addAttactment(it)))
+        }
+        return header
     }
 
     private fun getDataBooking(): DataBookingFlightRequest {
@@ -403,9 +451,12 @@ class BookingContactFlight : BaseActivity(),
         if (dataListFlight.dataFlight.size == 1) {
             dataBooking.flightTripType = 1
         } else if (dataListFlight.dataFlight.size == 2) {
-            dataBooking.flightTripType = 2
-        } else {
-            dataBooking.flightTripType = 3
+            if(Constants.multitrip){
+                dataBooking.flightTripType = 3
+            }
+            else {
+                dataBooking.flightTripType = 2
+            }
         }
 
         dataBooking.contact = getContactValidationFlightRequest()
@@ -522,15 +573,6 @@ class BookingContactFlight : BaseActivity(),
     private fun getSeat(): ArrayList<SeatFlightRequest> {
         val listSeat = ArrayList<SeatFlightRequest>()
         val dataList = dataListFlight
-        /*if (Constants.multitrip){
-            dataListFlight = DataListOrderAccomodation()
-            dataOrder.routes.forEach {
-                dataListFlight.dataFlight.add(it.flightResult)
-            }
-        }
-        else {
-            dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-        }*/
         if (dataList.dataFlight.isNotEmpty()) {
             dataList.dataFlight.first().dataSeat.dataSeat.forEach {
                 val mData = SeatFlightRequest()
@@ -615,7 +657,7 @@ class BookingContactFlight : BaseActivity(),
     private fun getDepSsr(): ArrayList<BagageFlightRequest> {
         val listSsr = ArrayList<BagageFlightRequest>()
         val dataList = dataListFlight
-//        val dataList = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+
         if (dataList.dataFlight.isNotEmpty()) {
             dataList.dataFlight.first().passenger.first().ssr.ssrSelected.forEach {
                 val mData = BagageFlightRequest()
@@ -726,8 +768,24 @@ class BookingContactFlight : BaseActivity(),
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
-
         return header
+    }
+
+    private fun addAttactment(tripAttachmentItemModel: TripAttachmentItemModel): TripAttachmentsItemRequest {
+        val dataAttactment = TripAttachmentsItemRequest()
+        dataAttactment.description = tripAttachmentItemModel.description
+        dataAttactment.url         = tripAttachmentItemModel.url
+        return dataAttactment
+    }
+
+    private fun addRoute(routeMultiCityModel: RouteMultiCityModel): RoutestRequest {
+        val data = RoutestRequest()
+        data.DepartureDateView = routeMultiCityModel.dateDeparture
+        data.departureDate     = routeMultiCityModel.dateDeparture
+        data.destination       = routeMultiCityModel.destinationName
+        data.origin            = routeMultiCityModel.originName
+        data.transportation    = 1
+        return data
     }
 
 
@@ -735,8 +793,8 @@ class BookingContactFlight : BaseActivity(),
         val dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         val data = ArrayList<TripParticipantsItem>()
         val model = TripParticipantsItem()
-        model.budgetId = dataTrip.buggetId
-        model.costCenterId = dataTrip.costCenter
+        model.budgetId = if (dataTrip.buggetId.isEmpty()||dataTrip.buggetId=="null") null else dataTrip.buggetId
+        model.costCenterId = if (dataTrip.costCenter.isEmpty()||dataTrip.costCenter=="null") null else dataTrip.costCenter
         model.employeeId = getProfile().employId
         data.add(model)
         return data
@@ -753,6 +811,5 @@ class BookingContactFlight : BaseActivity(),
     override fun btnCard() {
 
     }
-
 
 }

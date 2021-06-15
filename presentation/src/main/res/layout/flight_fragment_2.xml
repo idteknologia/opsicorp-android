@@ -362,17 +362,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/btAddOtherFlight"
-                android:layout_width="160dp"
-                android:layout_height="27dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/rounded_approval_green"
                 android:text="@string/add_other_flight"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                android:visibility="gone"/>
+                android:textSize="10dp"
+                android:visibility="visible"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardExtras"

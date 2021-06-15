@@ -248,10 +248,6 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
 
 
     }
-
-
-
-
     override fun onClick(views: Int, position: Int) {
         when(views){
             -1 ->{

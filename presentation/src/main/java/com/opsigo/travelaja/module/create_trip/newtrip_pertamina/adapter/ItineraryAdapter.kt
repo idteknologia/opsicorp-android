@@ -3,8 +3,6 @@ package com.opsigo.travelaja.module.create_trip.newtrip_pertamina.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.opsigo.travelaja.R
 import com.opsigo.travelaja.databinding.SelectRouteTripItemBinding
@@ -29,7 +27,6 @@ class ItineraryAdapter(val viewModel : ItineraryViewModel) : RecyclerView.Adapte
             v.viewModel = viewModel
             v.position = position
             v.tvTripNumber.text = "Trip  ${position+1}"
-
 
             v.layDeaprtureDate.setOnClickListener {
                 (it.context as ItineraryListener).clickItemItinerary(position,0)
