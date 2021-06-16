@@ -16,7 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:src="@drawable/ic_labuan_bajo"/>
 
-    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+    <com.mobile.travelaja.module.home.view.ItemContentImageRect
         android:id="@+id/itemContentSunset"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -25,7 +25,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLaboanBajo" />
 
-    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+    <com.mobile.travelaja.module.home.view.ItemContentImageRect
         android:id="@+id/itemContentPesona"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toEndOf="@+id/itemContentSunset"
         app:layout_constraintTop_toTopOf="@+id/itemContentSunset" />
 
-    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+    <com.mobile.travelaja.module.home.view.ItemContentImageRect
         android:id="@+id/itemContentEksotisme"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -45,7 +45,7 @@
         app:layout_constraintRight_toRightOf="@+id/itemContentSunset"
         app:layout_constraintTop_toBottomOf="@+id/itemContentSunset"/>
 
-    <com.opsigo.travelaja.module.home.view.ItemContentImageRect
+    <com.mobile.travelaja.module.home.view.ItemContentImageRect
         android:id="@+id/itemContentKeindahan"
         android:layout_width="0dp"
         android:layout_height="0dp"

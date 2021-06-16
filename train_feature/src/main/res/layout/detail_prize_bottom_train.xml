@@ -92,7 +92,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:id="@+id/btn_next"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
         </LinearLayout>
 
 
-        <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+        <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
             android:id="@+id/body_prize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                     android:textSize="16sp" />
 
             </RelativeLayout>
-        </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+        </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
     </LinearLayout>
 

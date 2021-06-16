@@ -3,15 +3,12 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.view.View
 import android.view.ViewGroup
 import android.content.Context
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
-import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.list_ssr_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SsrItemModel
 

@@ -1,13 +1,12 @@
 package com.opsicorp.train_feature.detail
 
 import android.view.View
-import java.text.SimpleDateFormat
 import com.opsicorp.train_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.module.cart.model.CartModel
 import com.opsicorp.train_feature.adapter.ConfirmationTrainAdapter
 import kotlinx.android.synthetic.main.activity_detail_cart_train.*
 import kotlinx.android.synthetic.main.confirm_train_order.line_reason_code

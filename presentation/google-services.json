@@ -100,7 +100,37 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370202765925:android:c0430adbc929b6720ef48c",
+        "android_client_info": {
+          "package_name": "com.opsigo.opsicorp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiCZgb_IbId9BQTSzVcvdNX198SRQ7leQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
+
   ],
   "configuration_version": "1"
 }

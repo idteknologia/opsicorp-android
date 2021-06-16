@@ -4,9 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.opsicorp.hotel_feature.R
 import com.opsicorp.hotel_feature.adapter.HotelShorByAdapter
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 
 class HotelShortByDialog(var context: Context) {
 

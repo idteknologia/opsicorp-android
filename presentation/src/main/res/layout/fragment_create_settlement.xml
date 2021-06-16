@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.opsigo.travelaja.module.settlement.viewmodel.SettlementViewModel" />
+            type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

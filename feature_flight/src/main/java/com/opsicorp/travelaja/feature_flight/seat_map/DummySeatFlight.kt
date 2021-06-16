@@ -1,6 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.accomodation.flight.SeatFlightModel
 
 class DummySeatFlight {

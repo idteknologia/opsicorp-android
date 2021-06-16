@@ -9,8 +9,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
-import com.opsigo.travelaja.utility.DialogSelectGuestRoomCallback
+import com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice
+import com.mobile.travelaja.utility.DialogSelectGuestRoomCallback
 
 class DialogSelectGuestRoom {
     var context : Context

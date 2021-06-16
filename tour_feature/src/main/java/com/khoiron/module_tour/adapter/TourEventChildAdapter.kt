@@ -12,9 +12,9 @@ import com.squareup.picasso.Target
 import com.squareup.picasso.Picasso
 import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.module.home.model.TourEventModel
+import com.mobile.travelaja.module.home.model.TourEventModel
 import kotlinx.android.synthetic.main.item_tour.view.tv_country
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_promosi_hotel.view.*
 import kotlinx.android.synthetic.main.item_tour.view.tv_date_tour
 import kotlinx.android.synthetic.main.item_tour.view.tv_pricing_tour

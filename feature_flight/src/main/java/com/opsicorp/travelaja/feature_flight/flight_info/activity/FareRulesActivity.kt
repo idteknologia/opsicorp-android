@@ -1,19 +1,15 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.activity
 
 import android.os.Build
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.adapter.FareRulesAdapter
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.rules_fare_rules_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 class FareRulesActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener {
 

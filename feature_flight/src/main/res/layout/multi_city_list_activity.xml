@@ -20,12 +20,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+                <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
                     android:layout_width="match_parent"
                     android:id="@+id/toolbar"
                     android:layout_height="wrap_content">
 
-                </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+                </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:background="@color/transparent"

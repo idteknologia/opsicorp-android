@@ -1,13 +1,13 @@
 package com.opsicorp.travelaja.feature_flight.detail_passanger
 
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.cart.activity.NewCartActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.cart.activity.NewCartActivity
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.detail_passanger_activity_new.*
 import opsigo.com.datalayer.database.AccessDb
 import opsigo.com.datalayer.database.OrderDbEntity

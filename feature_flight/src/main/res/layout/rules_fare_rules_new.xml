@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <RelativeLayout
         android:layout_width="match_parent"

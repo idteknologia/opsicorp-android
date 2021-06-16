@@ -6,7 +6,7 @@
     android:id="@+id/parent_layout"
     android:background="#f6f8f8">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -87,7 +87,7 @@
 
     </RelativeLayout>
 
-    <com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+    <com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/filter"
         android:layout_alignParentBottom="true"

@@ -2,18 +2,18 @@ package com.opsicorp.hotel_feature.result
 
 import android.content.Intent
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
 
-import com.opsigo.travelaja.utility.NumberTextWatcher
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.NumberTextWatcher
+import com.mobile.travelaja.utility.Constants
 import kotlinx.android.synthetic.main.activity_filter_price.*
 import com.opsicorp.hotel_feature.adapter.FilterRatingAdapter
 import com.opsicorp.hotel_feature.adapter.FilterFacilityAdapter
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.StartSelected
 
 class FilterPriceActivity : BaseActivity(),
@@ -198,7 +198,7 @@ class FilterPriceActivity : BaseActivity(),
         }
         toolbar.hidenBtnCart()
         toolbar.setTitleBar("Filter")
-        toolbar.changeImageBtnBack(com.opsigo.travelaja.R.drawable.ic_close_white)
+        toolbar.changeImageBtnBack(com.mobile.travelaja.R.drawable.ic_close_white)
     }
 
     override fun btnBack() {

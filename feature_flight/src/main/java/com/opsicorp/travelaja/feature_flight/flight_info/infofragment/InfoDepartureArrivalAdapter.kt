@@ -1,12 +1,11 @@
 package com.opsicorp.travelaja.feature_flight.flight_info.infofragment
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_adapter_time_arrival_departure_new.view.*
 

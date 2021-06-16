@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.opsigo.travelaja">
+    package="com.mobile.travelaja">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.location"
@@ -17,11 +17,12 @@
     <uses-feature
         android:name="android.hardware.location.gps"
         android:required="true" />
-    <uses-feature android:name="android.hardware.camera"
+    <uses-feature
+        android:name="android.hardware.camera"
         android:required="true" />
 
     <application
-        android:name=".base.InitApplications"
+        android:name="com.mobile.travelaja.base.InitApplications"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -30,50 +31,70 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".module.settlement.SettlementActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".module.settlement.TripSearchActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".module.create_trip.newtrip_pertamina.activity.CityActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name="com.mobile.travelaja.module.signin.login.activity.OpenIdDirectlySuccess"
+            android:label="@string/title_activity_open_id_directly_success"
+            android:theme="@style/AppTheme.NoActionBar">
+<!--                <intent-filter android:autoVerify="true">-->
+<!--                    <action android:name="android.intent.action.VIEW" />-->
+<!--                    <category android:name="android.intent.category.DEFAULT" />-->
+<!--                    <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                    <data android:scheme="https"-->
+<!--                        android:host="opsicorp-per-dtm.azurewebsites.net"-->
+<!--                        android:pathPattern="Ssoc/signin-oidc"/>-->
+<!--                </intent-filter>-->
+        </activity>
+        <activity
+            android:name="com.mobile.travelaja.module.settlement.SettlementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mobile.travelaja.module.settlement.TripSearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.CityActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map" />
 
+
         <activity
-            android:name=".module.signin.splash.activity.SplashActivity"
+            android:name="com.mobile.travelaja.module.signin.splash.activity.SplashActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.login.activity.AddressActivity"
+            android:name="com.mobile.travelaja.module.signin.login.activity.AddressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".module.item_custom.map.TestActivity"
+            android:name="com.mobile.travelaja.module.item_custom.map.TestActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.accomodation.view_accomodation.activity.AccomodationActivity"
+            android:name="com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.item_custom.galery.MyGaleryActivity"
+            android:name="com.mobile.travelaja.module.item_custom.galery.MyGaleryActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.profile.SimFormContactActivity"
+            android:name="com.mobile.travelaja.module.profile.SimFormContactActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.profile.KtpCardFormActivity"
+            android:name="com.mobile.travelaja.module.profile.KtpCardFormActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.profile.PassportFormActivity"
+            android:name="com.mobile.travelaja.module.profile.PassportFormActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.login.activity.LoginPremiumActivity"
+            android:name="com.mobile.travelaja.module.signin.login.activity.LoginPremiumActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.profile.OtherFormActivity"
+            android:name="com.mobile.travelaja.module.profile.OtherFormActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.cart.activity.NewCartActivity"
+            android:name="com.mobile.travelaja.module.cart.activity.NewCartActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.login.activity.LoginActivity"
+            android:name="com.mobile.travelaja.module.signin.login.activity.LoginActivity"
             android:screenOrientation="portrait">
 
             <!-- this main -->
@@ -84,95 +105,96 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".module.signin.login.activity.OtpRegisterActivity"
+            android:name="com.mobile.travelaja.module.signin.login.activity.OtpRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.item_custom.calendar.NewCalendarViewActivity"
+            android:name="com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.home.activity.HomeActivity"
+            android:name="com.mobile.travelaja.module.home.activity.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.select_nationality.activity.SelectNationalityActivity"
+            android:name="com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.create_trip.newtrip_pertamina.dialog.DialogPurpose"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.select.activity.LookUpActivity"
+            android:name="com.mobile.travelaja.module.signin.select.activity.LookUpActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.detail_profile.activity.CompletedDataProfileActivity"
+            android:name="com.mobile.travelaja.module.signin.detail_profile.activity.CompletedDataProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.detail_profile.activity.DataProfileActivity"
+            android:name="com.mobile.travelaja.module.signin.detail_profile.activity.DataProfileActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.item_custom.calendar.CalendarViewActivity"
+            android:name="com.mobile.travelaja.module.item_custom.calendar.CalendarViewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.my_booking.purchase_detail.PurchaseDetailActivity"
+            android:name="com.mobile.travelaja.module.my_booking.purchase_detail.PurchaseDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.my_booking.purchase_list_detail.PurchaseDetailListActivity"
+            android:name="com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.profile.JoinTripActivity"
+            android:name="com.mobile.travelaja.module.profile.JoinTripActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.item_custom.map.MapActivity"
+            android:name="com.mobile.travelaja.module.item_custom.map.MapActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.approval.activity.DetailTripActivity"
+            android:name="com.mobile.travelaja.module.approval.activity.DetailTripActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.approval.activity.DetailParticipantActivity"
+            android:name="com.mobile.travelaja.module.approval.activity.DetailParticipantActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.create_trip.newtrip.actvity.CreateTripActivity"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip.actvity.CreateTripActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".module.create_trip.select_budget.activity.SelectBudget"
+            android:name="com.mobile.travelaja.module.create_trip.select_budget.activity.SelectBudget"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.approval.activity.DetailApprovalActivityOld"
-            android:screenOrientation="portrait" />
-        <activity android:name=".module.create_trip.newtrip_travelaja.CreateTripTravelAjaActivity"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
+            android:name="com.mobile.travelaja.module.approval.activity.DetailApprovalActivityOld"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.create_trip.newtrip_pertamina.activity.SelectTripRoutePertaminaActivity"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_travelaja.CreateTripTravelAjaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.create_trip.newtrip_pertamina.activity.RevieBudgetPertaminaActivity"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.register.ComplitelyRegisterActivity"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.SelectTripRoutePertaminaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.signin.register.RegisterWithEmailActivity"
+            android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.RevieBudgetPertaminaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.item_custom.success_view.SuccessView"
+            android:name="com.mobile.travelaja.module.signin.register.ComplitelyRegisterActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".locale.ApplyLanguageActivity"
+            android:name="com.mobile.travelaja.module.signin.register.RegisterWithEmailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.create_trip.success_create_trip.SucessCreateTripPlaneActivity"
+            android:name="com.mobile.travelaja.module.item_custom.success_view.SuccessView"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.payment.PaymentActivity"
+            android:name="com.mobile.travelaja.locale.ApplyLanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mobile.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mobile.travelaja.module.payment.PaymentActivity"
             android:screenOrientation="portrait" />
 
         <receiver
-            android:name=".locale.AppLocaleChangeReceiver"
+            android:name="com.mobile.travelaja.locale.AppLocaleChangeReceiver"
             android:enabled="true"
             android:exported="true" />
 
@@ -181,29 +203,38 @@
             android:value="false" />
 
         <activity
-            android:name=".module.notif.YesActivity"
+            android:name="com.mobile.travelaja.module.notif.YesActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.home.activity.HomeWebActivity"
+            android:name="com.mobile.travelaja.module.home.activity.HomeWebActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".base.SearchActivity"
+            android:name="com.mobile.travelaja.base.SearchActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".module.notif.CorpFirebaseMessagingService">
+        <service android:name="com.mobile.travelaja.module.notif.CorpFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
         <receiver
-            android:name=".module.notif.NotificationReceiver"
+            android:name="com.mobile.travelaja.module.notif.NotificationReceiver"
             android:enabled="true"
             android:exported="false" />
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
-    </application>
 
+        <activity
+            android:name="net.openid.appauth.RedirectUriReceiverActivity" tools:node="replace">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="${applicationId}" />
+            </intent-filter>
+        </activity>
+    </application>
 </manifest>

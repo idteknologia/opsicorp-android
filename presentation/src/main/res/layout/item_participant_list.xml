@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="38dp">
 
-                <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
                     android:layout_width="42dp"
                     android:id="@+id/img_participant"
                     android:layout_height="42dp"

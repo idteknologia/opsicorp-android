@@ -35,11 +35,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
+        <com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
             android:layout_width="match_parent"
             android:id="@+id/menu_bottom"
             android:layout_height="wrap_content">
-        </com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
+        </com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
 
     </LinearLayout>
 

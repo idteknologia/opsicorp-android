@@ -68,7 +68,7 @@
                         android:text="25/06/2019 - 23/09/2019"
                         />
 
-                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                    <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
                         android:id="@+id/expand_purchase_date"
                         app:ael_duration="200"
                         app:ael_expanded="true"
@@ -238,7 +238,7 @@
 
                         </LinearLayout>
 
-                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+                    </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
 
                     <RelativeLayout
@@ -265,7 +265,7 @@
                         </ImageView>
                     </RelativeLayout>
 
-                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                    <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/expand_product_type"
@@ -281,7 +281,7 @@
                             android:id="@+id/rv_product_type_filter">
                         </androidx.recyclerview.widget.RecyclerView>
 
-                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+                    </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
 
                     <RelativeLayout
@@ -308,7 +308,7 @@
                         </ImageView>
                     </RelativeLayout>
 
-                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                    <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
@@ -323,7 +323,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/rv_payment_method_filter">
                         </androidx.recyclerview.widget.RecyclerView>
-                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+                    </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
 
 

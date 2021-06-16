@@ -3,9 +3,9 @@ package com.opsicorp.travelaja.feature_flight.flight_info.infofragment
 import android.os.Bundle
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.base.BaseFragment
+import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.flight_info_fragment_new.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel

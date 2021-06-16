@@ -761,7 +761,7 @@
 
                 </LinearLayout>
 
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:id="@+id/btn_next"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -770,7 +770,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp">
 
-                </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
 

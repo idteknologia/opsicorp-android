@@ -9,9 +9,8 @@ import android.widget.ImageView
 import com.squareup.picasso.Picasso
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals.setLog
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.multi_city_list_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 

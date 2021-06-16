@@ -5,10 +5,10 @@ import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FareRulesFragment
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FlightInfoFacility
 import com.opsicorp.travelaja.feature_flight.flight_info.infofragment.FlightInfoFragment
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.item_custom.tablayout.TabLayoutOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.flight_info_activity_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer

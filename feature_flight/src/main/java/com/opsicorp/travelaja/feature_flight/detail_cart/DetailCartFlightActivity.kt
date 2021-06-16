@@ -1,10 +1,10 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.module.cart.model.CartModel
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.detail_cart_activity.*

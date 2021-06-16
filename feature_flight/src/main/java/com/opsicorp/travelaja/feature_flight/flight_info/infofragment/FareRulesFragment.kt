@@ -3,7 +3,7 @@ package com.opsicorp.travelaja.feature_flight.flight_info.infofragment
 import android.os.Bundle
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.base.BaseFragment
+import com.mobile.travelaja.base.BaseFragment
 
 class FareRulesFragment : BaseFragment() {
     override fun getLayout(): Int {

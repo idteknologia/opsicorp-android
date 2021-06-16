@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.utility.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.ssr_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel

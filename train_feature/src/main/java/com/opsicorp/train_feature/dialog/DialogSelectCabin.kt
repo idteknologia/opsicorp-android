@@ -4,9 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +12,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.opsicorp.train_feature.R
 import com.opsicorp.train_feature.adapter.TrainShorByAdapter
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 
 class DialogSelectCabin(var context: Context) {
 

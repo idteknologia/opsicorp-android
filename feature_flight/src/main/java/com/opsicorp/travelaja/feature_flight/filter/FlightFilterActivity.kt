@@ -3,13 +3,13 @@ package com.opsicorp.travelaja.feature_flight.filter
 import android.app.Activity
 import android.content.Intent
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
 import kotlinx.android.synthetic.main.train_filter_actvity_view_new.*
 

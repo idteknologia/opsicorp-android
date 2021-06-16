@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.view.LayoutInflater
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.utility.*
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Globals.setLog
 import kotlinx.android.synthetic.main.item_booking_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
 import opsigo.com.datalayer.mapper.Serializer

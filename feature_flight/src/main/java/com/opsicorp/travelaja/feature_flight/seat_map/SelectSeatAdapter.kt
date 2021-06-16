@@ -1,18 +1,15 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.gone
-import com.opsigo.travelaja.utility.visible
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.select_seat_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel

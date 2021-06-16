@@ -2,15 +2,13 @@ package com.opsicorp.hotel_feature.result
 
 import android.content.Intent
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.hotel_feature.adapter.FilterAreaAdapter
 import kotlinx.android.synthetic.main.activity_filter_by_area.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 
 class FilterByAreaActivity : BaseActivity() ,
         ToolbarOpsicorp.OnclickButtonListener,
@@ -50,7 +48,7 @@ class FilterByAreaActivity : BaseActivity() ,
         }
         toolbar.hidenBtnCart()
         toolbar.setTitleBar("Filter Area")
-        toolbar.changeImageBtnBack(com.opsigo.travelaja.R.drawable.ic_close_white)
+        toolbar.changeImageBtnBack(com.mobile.travelaja.R.drawable.ic_close_white)
     }
 
     override fun btnBack() {

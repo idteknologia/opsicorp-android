@@ -3,10 +3,10 @@ package com.opsicorp.travelaja.feature_flight.ssr
 import android.os.Build
 import androidx.core.content.ContextCompat
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_bagage.*
 import kotlinx.android.synthetic.main.activity_bagage.btnDone
 import kotlinx.android.synthetic.main.activity_bagage.toolbar

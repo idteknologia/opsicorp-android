@@ -5,10 +5,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import com.google.android.material.tabs.TabLayout
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import kotlinx.android.synthetic.main.description_and_facility_hotel.view.*
 import kotlinx.android.synthetic.main.prize_layout_hotel.view.*

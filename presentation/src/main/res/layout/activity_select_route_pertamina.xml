@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.opsigo.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel" />
+            type="com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

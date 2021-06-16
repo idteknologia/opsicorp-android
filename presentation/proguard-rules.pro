@@ -47,10 +47,10 @@
 #-keep public class khoiron.com.datalayer.model.** {
 #  public protected *;
 #}
--keep public class com.opsigo.opsicorp.utility.** {
+-keep public class com.mobile.opsicorp.utility.** {
   public protected *;
 }
--keep public class com.opsigo.opsicorp.module.approval.** {
+-keep public class com.mobile.opsicorp.module.approval.** {
   public protected *;
 }
 

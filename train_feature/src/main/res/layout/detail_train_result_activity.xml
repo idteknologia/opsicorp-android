@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -476,7 +476,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:id="@+id/btn_next"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -843,7 +843,6 @@ Please add your trip item for Approval."
     <string name="seat">seat</string>
     <string name="left">left</string>
     <string name="transit">Transit</string>
-    <string name="not_comply">Not Comply</string>
     <string name="room_s_available">Room(s) available</string>
     <string name="slice_room_night">/room/night</string>
     <string name="set_flight_preference">Set Flight Preference</string>
@@ -863,9 +862,7 @@ Please add your trip item for Approval."
     <string name="children">Children</string>
     <string name="adults">Adults</string>
     <string name="infants">Infants</string>
-    <string name="txt_please">Please</string>
     <string name="select_city">Select city</string>
-    <string name="guest">Guest</string>
     <string name="search_train">Search Train</string>
     <string name="car_and_bus"><![CDATA[Car & Bus]]></string>
     <string name="your_trip_items_detail">Your Trip Items Detail</string>
@@ -874,6 +871,17 @@ Please add your trip item for Approval."
     <string name="list_approver">List Approver</string>
     <string name="list_participant">List Participant</string>
     <string name="waiting">Waiting</string>
-    <string name="created_date">Created Date</string>
     <string name="left_to_expired">left to expired</string>
+    <string name="title_activity_open_id_directly_success">OpenIdDirectlySuccess</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+<!--config SSO Pertamina-->
+    <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
+    <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
 </resources>

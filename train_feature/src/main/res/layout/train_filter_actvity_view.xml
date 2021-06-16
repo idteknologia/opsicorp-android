@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
         android:layout_height="wrap_content"/>
@@ -179,7 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/rv_name_train"/>
-            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:id="@+id/btn_filter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

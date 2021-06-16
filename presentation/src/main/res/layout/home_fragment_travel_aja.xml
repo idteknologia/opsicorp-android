@@ -43,11 +43,11 @@
             <!--            android:layout_height="224dp"-->
             <!--            android:emplaoyId="@+emplaoyId/image_header"/>-->
 
-            <com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
+            <com.mobile.travelaja.module.item_custom.slider.SliderImageOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lay_slider">
-            </com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp>
+            </com.mobile.travelaja.module.item_custom.slider.SliderImageOpsicorp>
 
 
             <LinearLayout

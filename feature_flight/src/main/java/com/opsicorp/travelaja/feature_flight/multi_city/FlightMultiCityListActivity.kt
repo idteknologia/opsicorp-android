@@ -2,21 +2,21 @@ package com.opsicorp.travelaja.feature_flight.multi_city
 
 import android.os.Build
 import android.content.Intent
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.gone
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.gone
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.DefaultItemAnimator
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataMultiTripOrder
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 
 class FlightMultiCityListActivity : BaseActivity(),
@@ -79,12 +79,12 @@ class FlightMultiCityListActivity : BaseActivity(),
 
     private fun changeButtonBookGrayColor() {
         btn_next.changeTextColorButton(R.color.colorPureBlack)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_dark_select_budget)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_dark_select_budget)
     }
 
     private fun changeButtonBookOrangeColor() {
         btn_next.changeTextColorButton(R.color.colorPureBlack)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_yellow)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_yellow)
     }
 
     override fun btnBack() {
