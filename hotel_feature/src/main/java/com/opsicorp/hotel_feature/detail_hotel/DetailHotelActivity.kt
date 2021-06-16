@@ -3,23 +3,21 @@ package com.opsicorp.hotel_feature.detail_hotel
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.item_custom.galery.CallbackGalery
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.galery.CallbackGalery
 import com.opsicorp.hotel_feature.select_room.SelectRoomActivity
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.module.item_custom.galery.MyGalery
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.module.item_custom.galery.MyGalery
 import kotlinx.android.synthetic.main.detail_hotel_activity.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
@@ -27,7 +25,7 @@ import android.content.Intent
 import android.view.View
 import java.util.HashMap
 
-class DetailHotelActivity :BaseActivity(),
+class DetailHotelActivity : BaseActivity(),
         DescriptionAndFacilityHotel.OnclickButtonListener,
         View.OnClickListener,
         ToolbarOpsicorp.OnclickButtonListener,

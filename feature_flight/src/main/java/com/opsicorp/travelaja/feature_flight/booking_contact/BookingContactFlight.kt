@@ -4,22 +4,25 @@ import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ssr.Ba
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.seat.SeatFlightRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ContactFlightRequest
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 import opsigo.com.domainlayer.model.accomodation.flight.ReserveFlightModel
 import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
+import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import kotlinx.android.synthetic.main.booking_contact_view_flight.*
-import com.opsigo.travelaja.module.profile.SimFormContactActivity
-import com.opsigo.travelaja.module.cart.activity.NewCartActivity
+import com.mobile.travelaja.module.profile.SimFormContactActivity
+import com.mobile.travelaja.module.cart.activity.NewCartActivity
 import com.opsicorp.travelaja.feature_flight.ssr.BagageActivity
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.opsigo.travelaja.module.profile.PassportFormActivity
-import com.opsigo.travelaja.module.profile.KtpCardFormActivity
+import com.mobile.travelaja.module.profile.PassportFormActivity
+import com.mobile.travelaja.module.profile.KtpCardFormActivity
 import com.opsicorp.travelaja.feature_flight.ssr.SsrActivity
 import opsigo.com.domainlayer.callback.CallbackReserveFlight
 import opsigo.com.domainlayer.model.booking_contact.SimModel
@@ -30,8 +33,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.*
 import android.content.Intent
 import android.app.Activity
 import java.lang.Exception
@@ -42,6 +45,8 @@ import android.util.Log
 import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
+import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
@@ -54,6 +59,8 @@ class BookingContactFlight : BaseActivity(),
     val adapter by lazy { BookingContactFlightAdapter(this) }
     lateinit var dataOrder: OrderAccomodationModel
     var currentPosition = 0
+    val dataFligt = ArrayList<ResultListFlightModel>()
+    val adapterPrice by lazy { TotalPriceAdapter(this) }
 
     override fun OnMain() {
         dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
@@ -113,6 +120,12 @@ class BookingContactFlight : BaseActivity(),
         rv_booking_information.itemAnimator = DefaultItemAnimator()
         rv_booking_information.adapter = adapter
 
+        val lm = LinearLayoutManager(this)
+        lm.orientation = LinearLayoutManager.VERTICAL
+        rv_detail_prize.layoutManager = lm
+        rv_detail_prize.itemAnimator = DefaultItemAnimator()
+        rv_detail_prize.adapter = adapterPrice
+
         adapter.setOnclickListener(this)
     }
 
@@ -142,41 +155,53 @@ class BookingContactFlight : BaseActivity(),
 
         btn_next.callbackOnclickButton(this)
 
-        if (Globals.typeAccomodation == Constants.FLIGHT) {
-            tv_prize_departure.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-            tv_station_departure.text = "${dataListFlight.dataFlight.first().origin} - ${dataListFlight.dataFlight.first().destination}"
-            tvTotalPassenger1.text = "${dataOrder.totalPassengerString} ${getString(R.string.text_pax)}"
-
-
-            if (dataListFlight.dataFlight.size > 1) {
-                line_arrival.visibility = View.VISIBLE
-                tv_prize_arrival.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-                tv_station_arrival.text = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
-                tvTotalPassenger2.text = "${dataOrder.totalPassengerString} ${getString(R.string.text_pax)}"
-                tv_price_total.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-                tv_price.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-            } else {
-                line_arrival.visibility = View.GONE
-                tv_price_total.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-                tv_price.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
+        //total price
+        if (Constants.multitrip){
+            dataFligt.clear()
+            dataOrder.routes.forEach {
+                dataFligt.add(it.flightResult)
             }
-            dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
-                if (resultListFlightModel.passenger.first().ssr.bagaggeItemSelected.isNotEmpty() || resultListFlightModel.passenger.first().ssr.ssrSelected.isNotEmpty()) {
-                    rlBaggagePrice.visible()
-                    rlSsrPrice.visible()
-                    tv_total_price_baggage.text = StringUtils().setCurrency("IDR", totalPriceBaggage()!!.toDouble(), false)
-                    tv_total_price_ssr.text = StringUtils().setCurrency("IDR", totalPriceSsr()!!.toDouble(), false)
-                    if (dataListFlight.dataFlight.size > 1) {
-                        tv_price_total.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble(), false)
-                        tv_price.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble(), false)
-                    } else {
-                        tv_price_total.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble(), false)
-                        tv_price.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage()!!.toDouble() + totalPriceSsr()!!.toDouble(), false)
-                    }
+            adapterPrice.setData(dataFligt)
+            var totalPrice              = 0.0
+            dataOrder.routes.forEach {
+                totalPrice =  totalPrice+it.flightResult.price
+            }
+            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataOrder.routes.size} pax"
+            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
+        }
+        else {
+            dataFligt.clear()
+            dataListFlight.dataFlight.forEach {
+                dataFligt.add(it)
+            }
+            adapterPrice.setData(dataFligt)
+            var totalPrice              = 0.0
+            dataListFlight.dataFlight.forEach {
+                totalPrice =  totalPrice+it.price
+            }
+            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataListFlight.dataFlight.size} pax"
+            tv_price_total.text         = "${Globals.formatAmount((totalPrice+totalPriceBaggage().toDouble()))} IDR"
+            tv_price.text               = "${Globals.formatAmount((totalPrice+totalPriceBaggage().toDouble()))} IDR"
+        }
+
+        //total baggage
+        dataListFlight.dataFlight.forEachIndexed { index, resultListFlightModel ->
+            if (resultListFlightModel.passenger.first().ssr.bagaggeItemSelected.isNotEmpty() || resultListFlightModel.passenger.first().ssr.ssrSelected.isNotEmpty()) {
+                rlBaggagePrice.visible()
+                rlSsrPrice.visible()
+                tv_total_price_baggage.text = StringUtils().setCurrency("IDR", totalPriceBaggage().toDouble(), false)
+                tv_total_price_ssr.text = StringUtils().setCurrency("IDR", totalPriceSsr().toDouble(), false)
+                if (dataListFlight.dataFlight.size > 1) {
+                    tv_price_total.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage().toDouble() + totalPriceSsr()!!.toDouble(), false)
+                    tv_price.text = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight.first().price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage().toDouble() + totalPriceSsr()!!.toDouble(), false)
                 } else {
-                    rlBaggagePrice.gone()
-                    rlSsrPrice.gone()
+                    tv_price_total.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage().toDouble() + totalPriceSsr().toDouble(), false)
+                    tv_price.text = StringUtils().setCurrency("IDR", dataListFlight.dataFlight.first().price * (dataOrder.adult + dataOrder.child + dataOrder.infant) + totalPriceBaggage().toDouble() + totalPriceSsr().toDouble(), false)
                 }
+            } else {
+                rlBaggagePrice.gone()
+                rlSsrPrice.gone()
             }
         }
     }
@@ -427,8 +452,10 @@ class BookingContactFlight : BaseActivity(),
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
-        dataTrip.route.forEach {
-            header.routes.add(addRoute(it))
+        if (Constants.multitrip){
+            dataTrip.route.forEach {
+                header.routes.add(addRoute(it))
+            }
         }
         dataTrip.attachment.forEach {
             header.attachments.add((addAttactment(it)))
@@ -448,7 +475,7 @@ class BookingContactFlight : BaseActivity(),
         dataBooking.flightType = dataListFlight.dataFlight.first().flightType
         if (dataListFlight.dataFlight.size == 1) {
             dataBooking.flightTripType = 1
-        } else if (dataListFlight.dataFlight.size == 2) {
+        } else if (dataListFlight.dataFlight.size > 1) {
             if(Constants.multitrip){
                 dataBooking.flightTripType = 3
             }
@@ -765,6 +792,11 @@ class BookingContactFlight : BaseActivity(),
         header.purpose = dataTrip.purpose
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
+        }
+        if (Constants.multitrip){
+            dataTrip.route.forEach {
+                header.routes.add(addRoute(it))
+            }
         }
         return header
     }

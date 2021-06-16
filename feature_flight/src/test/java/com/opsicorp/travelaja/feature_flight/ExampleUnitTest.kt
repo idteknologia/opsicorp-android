@@ -1,10 +1,7 @@
 package com.opsicorp.travelaja.feature_flight
 
-import com.opsigo.travelaja.utility.DateConverter
-import org.junit.Assert.*
+import com.mobile.travelaja.utility.DateConverter
 import org.junit.Test
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 
 /**
  * Example local unit test, which will execute on the development machine (host).

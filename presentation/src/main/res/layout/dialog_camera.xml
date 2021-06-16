@@ -60,7 +60,7 @@
 
             </RelativeLayout>
 
-            <com.opsigo.travelaja.module.item_custom.circle_image.PorterShapeImageView
+            <com.mobile.travelaja.module.item_custom.circle_image.PorterShapeImageView
                 android:id="@+id/image_selected"
                 android:layout_width="match_parent"
                 android:layout_height="322dp"

@@ -5,12 +5,9 @@ import android.view.ViewGroup
 import android.content.Context
 import com.khoiron.module_tour.R
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.DefaultItemAnimator
 import com.khoiron.module_tour.model.TourEventParentModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.item_tour_parent_adapter.view.*
 
 class TourEventParentAdapter (context: Context, private var items: ArrayList<TourEventParentModel>): androidx.recyclerview.widget.RecyclerView.Adapter<TourEventParentAdapter.ViewHolder>() {

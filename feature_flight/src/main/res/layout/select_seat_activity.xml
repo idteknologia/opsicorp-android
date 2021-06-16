@@ -7,12 +7,12 @@
     android:background="@color/white"
     android:layout_height="wrap_content">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
         android:layout_height="wrap_content">
 
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
 
     <LinearLayout
@@ -83,7 +83,7 @@
             </LinearLayout>
 
 
-            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -93,7 +93,7 @@
                 android:id="@+id/btnDone"
                 app:text="Done">
 
-            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+            </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

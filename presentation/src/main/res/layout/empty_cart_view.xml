@@ -41,7 +41,7 @@
         android:layout_height="wrap_content">
     </TextView>
 
-    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+    <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
         android:layout_marginTop="56dp"
         app:text="Go to Homepage"
         android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+    </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
 </LinearLayout>

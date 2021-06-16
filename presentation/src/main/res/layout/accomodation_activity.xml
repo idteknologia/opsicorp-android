@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:id="@+id/rootLayout">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"></com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+        android:id="@+id/toolbar"></com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <FrameLayout
         android:id="@+id/place_fragment"
@@ -18,12 +18,12 @@
         android:layout_height="match_parent">
     </FrameLayout>
 
-    <com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
+    <com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
         android:id="@+id/btn_bottom_accomodation"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
+    </com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
 
 
 

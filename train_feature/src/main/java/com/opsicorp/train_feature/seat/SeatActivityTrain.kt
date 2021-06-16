@@ -4,19 +4,16 @@ import opsigo.com.datalayer.request_model.accomodation.train.seatmap_train.getse
 import opsigo.com.datalayer.request_model.accomodation.train.seatmap_train.getseat.GetSeatMapTrainRequest
 import opsigo.com.datalayer.request_model.accomodation.train.seatmap_train.seatseat.SetSeatTrainRequest
 import opsigo.com.datalayer.request_model.accomodation.train.seatmap_train.seatseat.TrainSeat
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.train.CabinModel
 import opsigo.com.domainlayer.callback.CallbackSetSeatMapTrain
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.SetSeatMapModelTrain
 import opsigo.com.domainlayer.callback.CallbackSeatMap
-import com.opsigo.travelaja.module.cart.model.CartModel
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.*
 import kotlin.collections.ArrayList
 import android.os.CountDownTimer
 import android.app.AlertDialog
@@ -84,7 +81,7 @@ class SeatActivityTrain : BaseActivity(),
                 val hour: Long = diff / (60 * 60 * 1000) % 24
                 val minutes: Long = diff / (60 * 1000) % 60
                 val seconds: Long = diff / 1000 % 60
-                timeExpired.text = "Pick Seat Time ${minutes} : ${seconds}"
+                timeExpired.text = "${getString(R.string.txt_pick_seat_time)} ${minutes} : ${seconds}"
             }
         }.start()
     }
@@ -109,7 +106,7 @@ class SeatActivityTrain : BaseActivity(),
 
             override fun failed(errorMessage: String) {
                 val builder = AlertDialog.Builder(this@SeatActivityTrain)
-                builder.setTitle("Sorry")
+                builder.setTitle(getString(R.string.sorry))
                 builder.setMessage(errorMessage)
                 builder.setPositiveButton("Ok") { dialog, which -> finish() }
                 builder.create().show()
@@ -415,7 +412,7 @@ class SeatActivityTrain : BaseActivity(),
 //        })
 
         if (seatSelectTed.X.isNullOrEmpty()){
-            showAllert("Please","Select Seat")
+            showAllert(getString(R.string.txt_please),getString(R.string.select_seat))
         }
         else {
             setLog(Serializer.serialize(getDataSelectedSeatMap()))
@@ -429,7 +426,7 @@ class SeatActivityTrain : BaseActivity(),
                 }
                 override fun failedLoad(message: String) {
                     hideLoadingOpsicorp()
-                    showAllert("Sorry",message)
+                    showAllert(getString(R.string.sorry),message)
                 }
             })
         }

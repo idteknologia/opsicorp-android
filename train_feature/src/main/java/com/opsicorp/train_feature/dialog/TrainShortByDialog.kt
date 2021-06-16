@@ -4,8 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -14,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.opsicorp.train_feature.R
 import com.opsicorp.train_feature.adapter.TrainShorByAdapter
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 
 class TrainShortByDialog(var context: Context) {
 
@@ -73,10 +71,10 @@ class TrainShortByDialog(var context: Context) {
     }
 
     fun addData() {
-        data.add("Lowest Price")
-        data.add("Earliest Departure")
-        data.add("Latest Departure")
-        data.add("Shortest Durations")
+        data.add(context.getString(R.string.lowest_price))
+        data.add(context.getString(R.string.earliest_departure))
+        data.add(context.getString(R.string.latest_departure))
+        data.add(context.getString(R.string.shortest_duration))
 
         adapterShortBy.setData(data)
     }

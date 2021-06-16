@@ -93,20 +93,20 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
                     android:id="@+id/btn_next"
                     app:text="Book"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
         </LinearLayout>
 
 
-        <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+        <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -123,154 +123,13 @@
                 android:layout_height="1.5dp">
             </LinearLayout>
 
-            <RelativeLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_total_price"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tv_station_departure"
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        tools:text="Gajayana"/>
-
-                    <TextView
-                        android:id="@+id/tvPassengerTotal1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#939396"
-                        tools:text="Adult x1"
-                        style="@style/RobotoRegular"/>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_prize_departure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="@string/hargaTotal"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/line_arrival"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tv_station_arrival"
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        tools:text="Argo Parahyangan Tambahan"/>
-
-                    <TextView
-                        android:id="@+id/tvPassengerTotal2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#939396"
-                        tools:text="Adult x1"
-                        style="@style/RobotoRegular"/>
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_prize_arrival"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="@string/hargaTotal"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Services Fee"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="@color/colorPrimary"
-                        android:text="Free"
-                        style="@style/RobotoRegular"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="25dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#b324253d"
-                        android:text="Tax"/>
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#d9000000"
-                    android:gravity="end"
-                    android:text="IDR 0"
-                    android:layout_alignParentEnd="true"/>
-            </RelativeLayout>
+            </androidx.recyclerview.widget.RecyclerView>
 
             <RelativeLayout
                 android:background="#f5f5f5"
@@ -297,7 +156,7 @@
                     android:text="@string/hargaTotal"/>
 
             </RelativeLayout>
-        </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+        </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
     </LinearLayout>
 

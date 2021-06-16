@@ -684,4 +684,18 @@ Please add your trip item for Approval."
     <string name="title_hotel_feature">Module Title</string>
     <string name="string_requaired_input">Please add, this field is required</string>
     <string name="booking_contact_not_empty">Please complete input data passenger</string>
+    <string name="txt_adult">Adult</string>
+    <string name="txt_please_select_reasoncode">Please Select ReasonCode</string>
+    <string name="txt_select_departing">Select Departing</string>
+    <string name="txt_select_returning">Select Returning</string>
+    <string name="txt_see">see</string>
+    <string name="txt_ticket">Ticket</string>
+    <string name="txt_depart_date">Depart Date</string>
+    <string name="txt_tickets_found">Tickets Found</string>
+    <string name="txt_passanger">Passanger</string>
+    <string name="txt_pick_seat_time">Pick Seat Time</string>
+    <string name="txt_please">Please</string>
+    <string name="select_seat">Select Seat</string>
+
+
 </resources>

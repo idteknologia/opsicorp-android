@@ -1,0 +1,52 @@
+package com.mobile.travelaja.module.accomodation.view_accomodation.presenter
+
+import com.mobile.travelaja.module.accomodation.view_accomodation.view.AccomodationView
+import com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
+import android.content.Context
+import com.mobile.travelaja.R
+
+class AccomodationPresenter {
+
+    val context:Context
+    val accomodationView : AccomodationView
+    var imageDefaults = ArrayList<Int>()
+    var imageSelected = ArrayList<Int>()
+    var imageTitle    = ArrayList<String>()
+
+    constructor(context: Context, accomodationView: AccomodationView) {
+        this.context = context
+        this.accomodationView = accomodationView
+    }
+
+    fun setDataButton(btnBottomAccomodation: MenuBottomOpsicorp) {
+        imageDefaults.clear()
+        imageDefaults.add(R.drawable.ic_fligh_up)
+        imageDefaults.add(R.drawable.ic_hotel)
+        imageDefaults.add(R.drawable.ic_train)
+        imageDefaults.add(R.drawable.ic_car)
+        imageDefaults.add(R.drawable.ic_profile)
+
+        imageSelected.clear()
+//        imageSelected.add(R.drawable.ic_flight_up_selected)
+//        imageSelected.add(R.drawable.ic_hotel_selected)
+//        imageSelected.add(R.drawable.ic_train_selected)
+        imageSelected.add(R.drawable.bottom_bar_airlines)
+        imageSelected.add(R.drawable.bottom_bar_hotel)
+        imageSelected.add(R.drawable.bottom_bar_train)
+        imageSelected.add(R.drawable.ic_car_green)
+
+        imageSelected.add(R.drawable.ic_profile_selected)
+
+        imageTitle.clear()
+        imageTitle.add(context.getString(R.string.flights))
+        imageTitle.add(context.getString(R.string.hotels))
+        imageTitle.add(context.getString(R.string.train))
+        imageTitle.add(context.getString(R.string.car_and_bus))
+        imageTitle.add(context.getString(R.string.profile))
+
+        btnBottomAccomodation.setDataImage(imageDefaults)
+        btnBottomAccomodation.setDataImageSelected(imageSelected)
+        btnBottomAccomodation.setDataTitle(imageTitle)
+    }
+
+}

@@ -25,5 +25,5 @@ data class ReservationFlightEntity(
 	val tripId: String = "",
 
 	@field:SerializedName("isSuccess")
-	val isSuccess: Boolean = false
+	val isSuccess: Int = 0
 )

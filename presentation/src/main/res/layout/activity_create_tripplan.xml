@@ -55,11 +55,11 @@
                 android:layout_centerInParent="true"
                 android:padding="0dp">
 
-                <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+                <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/toolbar">
-                </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+                </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
 
                 <LinearLayout
@@ -954,7 +954,7 @@
 
                 </LinearLayout>
 
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:id="@+id/btn_next"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -963,7 +963,7 @@
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default">
 
-                </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
 

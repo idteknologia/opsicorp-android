@@ -7,12 +7,12 @@ import android.content.Context
 import android.widget.ImageView
 import android.view.LayoutInflater
 import com.squareup.picasso.Picasso
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Constants.SELECT_FLIGHT
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.Constants.SELECT_FLIGHT
+import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.multi_city_list_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 

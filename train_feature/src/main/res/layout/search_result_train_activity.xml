@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:background="#f6f8f8">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_below="@id/toolbar"
@@ -24,7 +24,7 @@
             android:id="@+id/tv_total_data"
             android:visibility="gone"
             style="@style/RobotoItalic"
-            android:text="4 Departing Flights Found"
+            tools:text="4 Departing Flights Found"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:id="@+id/rv_result_flight"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -66,7 +66,7 @@
                 android:textSize="22sp"
                 android:textColor="#24253d"
                 android:gravity="center_horizontal"
-                android:text="Whoops!"
+                android:text="@string/txt_whoops"
                 style="@style/RobotoBold"/>
 
             <TextView
@@ -79,7 +79,7 @@
                 android:layout_gravity="center"
                 style="@style/RobotoRegular"
                 android:layout_marginTop="10dp"
-                android:text="No train, please search again before 30 days."
+                android:text="@string/txt_no_train_please_search"
                 />
         </LinearLayout>
 
@@ -87,9 +87,9 @@
 
     </RelativeLayout>
 
-    <com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+    <com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/filter"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

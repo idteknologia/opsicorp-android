@@ -1,19 +1,19 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerViewParent
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_adapter.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import android.view.LayoutInflater
 import android.content.Context
 import android.view.ViewGroup
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 
 class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.ViewHolder>() {

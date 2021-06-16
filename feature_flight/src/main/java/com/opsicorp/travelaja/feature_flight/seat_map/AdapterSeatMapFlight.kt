@@ -2,13 +2,12 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.seat_adapter_view_flight.view.*
 import kotlinx.android.synthetic.main.seatmap_number_adapter_view_flight.view.*
 import kotlinx.android.synthetic.main.seatmap_spacing_center_adapter_view_flight.view.*

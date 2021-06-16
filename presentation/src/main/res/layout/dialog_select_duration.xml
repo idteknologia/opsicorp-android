@@ -34,7 +34,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
+        <com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice
             android:layout_width="0dp"
             android:layout_weight="1"
             app:scroll_selected_item_background="@android:color/white"
@@ -48,7 +48,7 @@
             app:scroll_background_color="@android:color/transparent"
             android:layout_height="wrap_content"
             android:id="@+id/duration_select">
-        </com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice>
+        </com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice>
 
     </LinearLayout>
     <LinearLayout

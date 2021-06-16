@@ -6,14 +6,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import kotlinx.android.synthetic.main.activity_special_request.*
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
 
 class SpecialRequestActivity : BaseActivity(),
@@ -73,13 +73,13 @@ class SpecialRequestActivity : BaseActivity(),
     }
 
     private fun unActiveButtonSubmit() {
-        btn_submit.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_dark_select_budget)
+        btn_submit.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_dark_select_budget)
         activeButton           = false
         btn_submit.isClickable = activeButton
     }
 
     private fun activeButtonSubmit() {
-        btn_submit.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_yellow )
+        btn_submit.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_yellow )
         activeButton           = true
         btn_submit.isClickable = activeButton
     }

@@ -5,8 +5,7 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.opsicorp.hotel_feature.R
-import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_filter_facility.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 

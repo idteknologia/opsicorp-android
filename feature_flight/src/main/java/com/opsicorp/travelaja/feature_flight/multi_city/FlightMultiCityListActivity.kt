@@ -5,15 +5,18 @@ import android.os.Bundle
 import java.util.HashMap
 import android.app.Activity
 import android.content.Intent
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.gone
-import com.opsigo.travelaja.utility.Globals
+import android.view.View
+import androidx.core.content.ContextCompat
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.domainlayer.callback.CallbackGetSsr
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.DefaultItemAnimator
+import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import com.opsicorp.travelaja.feature_flight.result.ConfirmOrderFlightActivity
 import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackGetFareRules
@@ -21,18 +24,18 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.domainlayer.callback.CallbackValidationFlight
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
 import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
@@ -41,6 +44,7 @@ import opsigo.com.datalayer.request_model.accomodation.flight.validation.Segment
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
+import java.lang.Exception
 
 class FlightMultiCityListActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -51,6 +55,8 @@ class FlightMultiCityListActivity : BaseActivity(),
         return R.layout.multi_city_list_activity
     }
 
+    val dataFligt = ArrayList<ResultListFlightModel>()
+    val adapterPrice by lazy { TotalPriceAdapter(this) }
     val adapter          = FlightMultiCityListAdapter(this@FlightMultiCityListActivity)
     var dataOrder        = OrderAccomodationModel()
     val dataFLigt        = DataListOrderAccomodation()
@@ -103,18 +109,18 @@ class FlightMultiCityListActivity : BaseActivity(),
             toolbar.singgleTitleGravity(toolbar.START)
         }
         btn_next.callbackOnclickButton(this)
-        tv_price.setText("IDR 0")
+        tv_price.setText("0 IDR")
         line_shadow.gone()
     }
 
     private fun changeButtonBookGrayColor() {
         btn_next.changeTextColorButton(R.color.colorPureBlack)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_dark_select_budget)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_dark_select_budget)
     }
 
     private fun changeButtonBookOrangeColor() {
         btn_next.changeTextColorButton(R.color.colorWhite)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_yellow)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_yellow)
     }
 
     override fun btnBack() {
@@ -166,6 +172,7 @@ class FlightMultiCityListActivity : BaseActivity(),
                     if (getProfile().companyCode=="000002"){
                         dataOrder.routes[currentPosition].flightResult = data
                         dataOrder.routes[currentPosition].flightResult.notComply = false
+                        setTotalprice()
                         getFareRules(dataOrder.routes[currentPosition].flightResult)
                         getSsr(dataOrder.routes[currentPosition].flightResult)
                     }else {
@@ -184,6 +191,7 @@ class FlightMultiCityListActivity : BaseActivity(),
                 val isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
                 dataOrder.routes[currentPosition].flightResult = dataFlight
                 dataOrder.routes[currentPosition].flightResult.notComply = isNotComply
+                setTotalprice()
 //                getFareRules(dataOrder.routes[currentPosition].flightResult)
                 getSsr(dataOrder.routes[currentPosition].flightResult)
             }
@@ -432,5 +440,58 @@ class FlightMultiCityListActivity : BaseActivity(),
         data.mobilePhone    = getProfile().phone
         return data
     }
+
+    fun setTotalprice(){
+
+        tv_price.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        ic_image.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        tv_title_prize.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        line_shadow.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+
+        dataFligt.clear()
+        dataOrder.routes.forEach {
+            dataFligt.add(it.flightResult)
+        }
+        adapterPrice.setData(dataFligt)
+
+        var totalPrice = 0.0
+        dataOrder.routes.forEach {
+            totalPrice =  totalPrice+it.flightResult.price
+        }
+        tv_price.text = "${getString(R.string.total_price_for_1_pax)} ${dataFLigt.dataFlight.size} pax"
+        tv_price.text = "${Globals.formatAmount(totalPrice)} IDR"
+    }
+
+    private fun showOrHideDetailPrice() {
+        if (body_prize.isExpanded){
+            collapsePrice()
+        }
+        else{
+            expandPrice()
+        }
+    }
+
+    private fun expandPrice() {
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_down))
+        line_shadow.visibility  = View.VISIBLE
+        tv_including.visibility = View.GONE
+        body_prize.expand()
+    }
+
+    private fun collapsePrice() {
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_up_orange))
+        tv_including.visibility = View.VISIBLE
+        line_shadow.visibility  = View.GONE
+        body_prize.collapse()
+    }
+
 
 }

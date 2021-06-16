@@ -2,9 +2,11 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import android.util.Log
 import android.view.View
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
@@ -15,14 +17,15 @@ import kotlinx.android.synthetic.main.confirm_flight_order_new.*
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
+import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.SegmentFlightsRequest
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 
 class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -36,6 +39,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     lateinit var dataListFlight: DataListOrderAccomodation
     lateinit var dataOrder: OrderAccomodationModel
     var allreadySelectReasonCode = false
+    val dataFligt = ArrayList<ResultListFlightModel>()
+    val adapterPrice by lazy { TotalPriceAdapter(this)}
     val adapter by lazy { ConfirmationFlightAdapter(this, data) }
 
     override fun OnMain() {
@@ -56,7 +61,6 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
         getSeatMapFlight()
         initDataView()
-        initPrice()
 
         ic_back.setOnClickListener {
             onBackPressed()
@@ -254,6 +258,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         }
         adapter.setData(dataList)
         showOrHideNotComply()
+
+        initPrice()
     }
 
     private fun showOrHideNotComply() {
@@ -267,12 +273,17 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_confirmation_order_flight.layoutManager = layoutManager
-        rv_confirmation_order_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_confirmation_order_flight.itemAnimator = DefaultItemAnimator()
         rv_confirmation_order_flight.adapter = adapter
+
+        val lm = LinearLayoutManager(this)
+        lm.orientation = LinearLayoutManager.VERTICAL
+        rv_total_price.layoutManager = lm
+        rv_total_price.itemAnimator = DefaultItemAnimator()
+        rv_total_price.adapter = adapterPrice
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
@@ -282,8 +293,6 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun initPrice() {
-        Log.d("dtxxx","confirmorder xx : 01 " + Globals.typeAccomodation)
-
         tv_price.setOnClickListener {
             showOrHideDetailPrice()
         }
@@ -297,10 +306,10 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             showOrHideDetailPrice()
         }
 
-        if (Globals.typeAccomodation== Constants.FLIGHT){
-            if (Constants.multitrip){
-                val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
 
+/*
                 tv_prize_departure.text     = StringUtils().setCurrency("IDR", dataOrder.routes.first().flightResult.price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
                 tvPassengerTotal1.text      = "${dataOrder.totalPassengerString} /Pax"
                 tv_station_departure.text   = "${dataOrder.routes.first().flightResult.origin} - ${dataOrder.routes.first().flightResult.destination}"
@@ -308,32 +317,54 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataOrder.routes.last().flightResult.price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
                 tv_station_arrival.text     = "${dataOrder.routes.last().flightResult.origin} - ${dataOrder.routes.last().flightResult.destination}"
                 tvPassengerTotal2.text      = "${dataOrder.totalPassengerString} /Pax"
-                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataOrder.routes.first().flightResult.price + dataOrder.routes.last().flightResult.price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                tv_price.text               = StringUtils().setCurrency("IDR", (dataOrder.routes.first().flightResult.price + dataOrder.routes.last().flightResult.price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+*/
 
-            }else {
-                val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
-                val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
-
-                tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                tvPassengerTotal1.text    = "${dataOrder.totalPassengerString} /Pax"
-                tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"
-
-                if (dataListFlight.dataFlight.size>1){
-                    line_arrival.visibility     = View.VISIBLE
-                    tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                    tv_station_arrival.text = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
-                    tvPassengerTotal2.text = "${dataOrder.totalPassengerString} /Pax"
-                    tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                    tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                }
-                else{
-                    line_arrival.visibility     = View.GONE
-                    tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
-                    tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                }
+            dataFligt.clear()
+            dataOrder.routes.forEach {
+                dataFligt.add(it.flightResult)
             }
+            adapterPrice.setData(dataFligt)
+            var totalPrice              = 0.0
+            dataOrder.routes.forEach {
+                totalPrice =  totalPrice+it.flightResult.price
+            }
+            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataOrder.routes.size} pax"
+            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
 
+        }else {
+            val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+
+            dataFligt.clear()
+            dataListFlight.dataFlight.forEach {
+                dataFligt.add(it)
+            }
+            adapterPrice.setData(dataFligt)
+            var totalPrice              = 0.0
+            dataListFlight.dataFlight.forEach {
+                totalPrice =  totalPrice+it.price
+            }
+            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataFligt.size} pax"
+            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
+            /*tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+            tvPassengerTotal1.text    = "${dataOrder.totalPassengerString} /Pax"
+            tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"
+
+            if (dataListFlight.dataFlight.size>1){
+                line_arrival.visibility     = View.VISIBLE
+                tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataListFlight.dataFlight[1].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+                tv_station_arrival.text = "${dataListFlight.dataFlight[1].origin} - ${dataListFlight.dataFlight[1].destination}"
+                tvPassengerTotal2.text = "${dataOrder.totalPassengerString} /Pax"
+                tv_price_total.text         = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+                tv_price.text               = StringUtils().setCurrency("IDR", (dataListFlight.dataFlight[0].price + dataListFlight.dataFlight[1].price) * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+            }
+            else{
+                line_arrival.visibility     = View.GONE
+                tv_price_total.text         = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant), false)
+                tv_price.text               = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
+            }*/
         }
     }
 

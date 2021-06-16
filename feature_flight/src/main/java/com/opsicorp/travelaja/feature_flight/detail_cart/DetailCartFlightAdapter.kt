@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.DateConverter
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.StringUtils
+import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detail_cart_item_adapter.view.*
-import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 import opsigo.com.domainlayer.model.summary.FlightSegmentItem
 
 class DetailCartFlightAdapter (val context: Context, private var items: ArrayList<FlightSegmentItem>): androidx.recyclerview.widget.RecyclerView.Adapter<DetailCartFlightAdapter.ViewHolder>() {

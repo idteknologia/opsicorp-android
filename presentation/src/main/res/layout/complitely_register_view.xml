@@ -214,7 +214,7 @@
                     android:textStyle="italic"
                     android:visibility="gone" />
 
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:layout_width="match_parent"
                     app:text="Start Now"
                     android:layout_marginBottom="40dp"
@@ -222,7 +222,7 @@
                     android:id="@+id/btnSignIn"
                     android:layout_height="wrap_content">
 
-                </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
             </LinearLayout>

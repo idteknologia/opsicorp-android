@@ -11,11 +11,11 @@
         android:layout_height="wrap_content">
 
 
-        <com.opsigo.travelaja.module.item_custom.button_top_approval.ButtonTopApproval
+        <com.mobile.travelaja.module.item_custom.button_top_approval.ButtonTopApproval
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_approval">
-        </com.opsigo.travelaja.module.item_custom.button_top_approval.ButtonTopApproval>
+        </com.mobile.travelaja.module.item_custom.button_top_approval.ButtonTopApproval>
 
 
 
@@ -110,21 +110,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
 
-        <com.opsigo.travelaja.module.item_custom.empty_view.EmptyView
+        <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/empty_view"
-            android:layout_height="match_parent"></com.opsigo.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
 
-        <com.opsigo.travelaja.module.item_custom.empty_view.EmptyView
+        <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/error_view"
-            android:layout_height="match_parent"></com.opsigo.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
 
 
-        <com.opsigo.travelaja.module.item_custom.empty_view.LoadingView
+        <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/loading_view"></com.opsigo.travelaja.module.item_custom.empty_view.LoadingView>
+            android:id="@+id/loading_view"></com.mobile.travelaja.module.item_custom.empty_view.LoadingView>
 
     </RelativeLayout>
 

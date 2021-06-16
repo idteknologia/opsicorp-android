@@ -1,12 +1,11 @@
 package com.opsicorp.travelaja.feature_flight.adapter
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_train_short_by_adapter_new.view.*
 
 class FlightShortByAdapter (val context: Context, private var items: ArrayList<String>): androidx.recyclerview.widget.RecyclerView.Adapter<FlightShortByAdapter.ViewHolder>() {

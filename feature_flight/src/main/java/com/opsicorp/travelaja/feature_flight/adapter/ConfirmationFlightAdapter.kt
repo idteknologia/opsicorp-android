@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FareRulesActivity
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.utility.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_confirmation_order_flight_new.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel

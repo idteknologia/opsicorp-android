@@ -12,24 +12,23 @@ import android.widget.CheckBox
 import android.widget.EditText
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.callback.CallbackBookingHotel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import com.opsigo.travelaja.utility.Constants.KEY_NAME_GUEST
-import com.opsigo.travelaja.module.cart.activity.NewCartActivity
+import com.mobile.travelaja.utility.Constants.KEY_NAME_GUEST
+import com.mobile.travelaja.module.cart.activity.NewCartActivity
 import kotlinx.android.synthetic.main.booking_contact_view_hotel.*
 import com.opsicorp.hotel_feature.adapter.HotelBookingContactAdapter
 import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
 import com.opsicorp.hotel_feature.adapter.OnclickRecyclerBookingContact
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import kotlinx.android.synthetic.main.hotel_booking_contact.view.*
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class BookingContactHotelActivity : BaseActivity(),

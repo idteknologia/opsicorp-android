@@ -64,11 +64,11 @@
 <!--                android:id="@+id/line_list_approval">-->
 <!--            </com.opsigo.opsicorp.module.item_custom.dasboard_approval.DasboardListApproval>-->
 
-            <com.opsigo.travelaja.module.manage_trip.TestDasboardListApproval
+            <com.mobile.travelaja.module.manage_trip.TestDasboardListApproval
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/line_list_approval">
-            </com.opsigo.travelaja.module.manage_trip.TestDasboardListApproval>
+            </com.mobile.travelaja.module.manage_trip.TestDasboardListApproval>
 
             <!--<include-->
             <!--android:visibility="gone"-->
@@ -77,11 +77,11 @@
             <!--android:layout_height="match_parent">-->
             <!--</include>-->
 
-            <com.opsigo.travelaja.module.manage_trip.TestDasboardApproval
+            <com.mobile.travelaja.module.manage_trip.TestDasboardApproval
                 android:layout_width="match_parent"
                 android:id="@+id/line_dasboard"
                 android:layout_height="match_parent">
-            </com.opsigo.travelaja.module.manage_trip.TestDasboardApproval>
+            </com.mobile.travelaja.module.manage_trip.TestDasboardApproval>
 
 
         </FrameLayout>

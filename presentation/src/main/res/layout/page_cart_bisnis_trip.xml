@@ -58,12 +58,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.opsigo.travelaja.module.item_custom.empty_view.LoadingView
+        <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/loading_view">
 
-        </com.opsigo.travelaja.module.item_custom.empty_view.LoadingView>
+        </com.mobile.travelaja.module.item_custom.empty_view.LoadingView>
 
     </LinearLayout>
 </LinearLayout>

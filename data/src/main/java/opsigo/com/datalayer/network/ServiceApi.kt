@@ -1,24 +1,17 @@
 package opsigo.com.datalayer.network
 
-import android.content.Context
-import android.preference.PreferenceManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
 import opsigo.com.datalayer.model.result.City
-import opsigo.com.datalayer.model.result.Result
+import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.ResultList
 import opsigo.com.domainlayer.model.settlement.Settlement
 import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Query
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 interface ServiceApi {
 
@@ -27,6 +20,10 @@ interface ServiceApi {
 
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripList(@QueryMap map: MutableMap<String, Any>): ResultList<Trip>
+
+    @FormUrlEncoded
+    @POST
+    suspend fun onLogin(@Url url : String , @FieldMap body : MutableMap<String,Any>) : LoginEntity
 
     @GET("Settlement/ManageTrip/Gets")
     suspend fun getSettlement(@QueryMap map: MutableMap<String, Any>) : ResultList<Settlement>
@@ -38,7 +35,7 @@ interface ServiceApi {
     companion object {
         fun createRequest(token: String, baseUrl : String ): ServiceApi {
             val interceptor = HttpLoggingInterceptor()
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+            interceptor.level = HttpLoggingInterceptor.Level.BODY
             val httpClient = OkHttpClient.Builder().apply {
                     addInterceptor(Interceptor { chain ->
                         val builder = chain.request().newBuilder()

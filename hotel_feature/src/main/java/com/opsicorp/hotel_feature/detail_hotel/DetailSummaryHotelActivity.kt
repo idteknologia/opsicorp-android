@@ -5,11 +5,11 @@ import android.widget.ImageView
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
 import com.squareup.picasso.Picasso
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.module.cart.model.CartModel
 import kotlinx.android.synthetic.main.activity_detail_summary_hotel.*
 
 class DetailSummaryHotelActivity : BaseActivity() {

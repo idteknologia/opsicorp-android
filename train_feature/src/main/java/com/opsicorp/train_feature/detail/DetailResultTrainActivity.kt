@@ -5,22 +5,22 @@ import opsigo.com.datalayer.request_model.accomodation.train.validation.Segments
 import opsigo.com.datalayer.request_model.accomodation.train.validation.ContactValidationTrainRequest
 import opsigo.com.datalayer.request_model.accomodation.train.validation.ValidationTrainRequest
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
 import opsigo.com.domainlayer.model.accomodation.train.ValidationTrainModel
 import opsigo.com.domainlayer.callback.CallbackValidationTrain
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import java.text.SimpleDateFormat
 import java.lang.Exception
 import android.view.View
 import com.opsicorp.train_feature.R
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.DateConverter
 import kotlinx.android.synthetic.main.detail_train_result_activity.*
 
 class DetailResultTrainActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonListener,ButtonDefaultOpsicorp.OnclickButtonListener,View.OnClickListener {
@@ -89,14 +89,14 @@ class DetailResultTrainActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonLi
     private fun initButtonNext() {
         btn_next.callbackOnclickButton(this)
         if (Globals.ONE_TRIP){
-            btn_next.setTextButton("Select Departing")
+            btn_next.setTextButton(getString(R.string.txt_select_departing))
         }
         else{
             if (Globals.ALL_READY_SELECT_DEPARTING){
-                btn_next.setTextButton("Select Returning")
+                btn_next.setTextButton(getString(R.string.txt_select_returning))
             }
             else {
-                btn_next.setTextButton("Select Departing ")
+                btn_next.setTextButton(getString(R.string.txt_select_departing))
             }
         }
     }

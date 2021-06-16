@@ -1,11 +1,10 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import kotlinx.android.synthetic.main.seatmap_view_flight.*
-import com.opsigo.travelaja.module.cart.model.CartModel
-import androidx.recyclerview.widget.DefaultItemAnimator
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.*
 import kotlin.collections.ArrayList
 import android.os.CountDownTimer
 import android.view.View
