@@ -39,6 +39,7 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -570,26 +571,40 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
             setLog("notReady")
         } else {
-            var tripPlanId = tripSummary.tripId
+            val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
 
-            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
-            /*if (tripSummary.tripCode.contains("PT")) {
-                Constants.isBisnisTrip = false
-                if (Constants.isBisnisTrip.equals(false)) {
-                    var tripPlanId = tripSummary.tripId
-                    val bundle = Bundle()
-                    bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
-                    gotoActivityWithBundle(PaymentActivity::class.java, bundle)
+            //panggil issued
+            if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                issuedAll()
+            } else {
+                if (tripSummary.tripCode.contains("PT")) {
+                    Constants.isBisnisTrip = false
+                    if (Constants.isBisnisTrip.equals(false)) {
+                        gotoActivityWithBundle(PaymentActivity::class.java, bundle)
+                    } else {
+                        getSubmitTripPlant()
+                    }
                 } else {
                     getSubmitTripPlant()
                 }
-            } else {
-                getSubmitTripPlant()
-            }*/
+            }
+            /*gotoActivityWithBundle(PaymentActivity::class.java, bundle)*/
         }
+    }
+
+    private fun issuedAll() {
+        GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),tripSummary.tripId, object : CallbackApprovAll{
+            override fun successLoad(data: String) {
+                getSubmitTripPlant()
+            }
+
+            override fun failedLoad(message: String) {
+                showAllert("Sorry",message)
+            }
+
+        })
     }
 
     fun getSubmitTripPlant() {

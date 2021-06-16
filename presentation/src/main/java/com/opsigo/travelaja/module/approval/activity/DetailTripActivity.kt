@@ -759,7 +759,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     fun showApproveAllDialog(view: View) {
         if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
             approveOrRejectItemRequest("1", "1")
-            saveToDraft()
+            /*saveToDraft()*/
         } else {
             ListParticipantDialog(this).create(this, dataParticipant)
         }
