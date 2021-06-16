@@ -17,14 +17,14 @@ import com.mobile.travelaja.databinding.ActivityNewCreatetripTravelajaBinding
 import com.mobile.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.mobile.travelaja.module.create_trip.newtrip.view.CreateTripView
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
-import com.opsigo.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
+import com.mobile.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane

@@ -4,7 +4,6 @@ import android.util.Log
 import android.view.View
 import java.util.ArrayList
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
 import android.content.Context
 import android.widget.TextView
 import com.mobile.travelaja.R
@@ -14,9 +13,7 @@ import com.squareup.picasso.Picasso
 import android.widget.ImageView
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.squareup.picasso.Picasso
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.utility.Globals.setLog
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel

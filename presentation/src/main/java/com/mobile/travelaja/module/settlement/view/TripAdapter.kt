@@ -1,13 +1,14 @@
 package com.mobile.travelaja.module.settlement.view
 
 import android.app.Activity
+import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.paging.PageListAdapter
 import com.mobile.travelaja.databinding.ItemTripPageBinding
-import com.opsigo.travelaja.module.settlement.TripSearchActivity
+import com.mobile.travelaja.module.settlement.TripSearchActivity
 import opsigo.com.domainlayer.model.trip.Trip
 
 class TripAdapter(private val selectedCode : String?,private val activity: Activity) : PageListAdapter<Trip>(POST_COMPARATOR) {

@@ -7,23 +7,19 @@ import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
-import com.opsigo.travelaja.R
 import android.content.Context
 import android.widget.TextView
 import android.widget.PopupWindow
 import android.view.LayoutInflater
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.base.BaseFragment
+import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import android.graphics.drawable.BitmapDrawable
-import com.opsigo.travelaja.base.InitApplications
+import com.mobile.travelaja.base.InitApplications
 import com.opsicorp.sliderdatepicker.utils.Constant
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.opsicorp.sliderdatepicker.utils.Constant
 import com.mobile.travelaja.R
-import com.mobile.travelaja.base.BaseFragment
-import com.mobile.travelaja.base.InitApplications
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
@@ -34,7 +30,7 @@ import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
 import com.mobile.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.utility.Constants.SELECT_RESULT
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment_2.*
@@ -50,23 +46,14 @@ import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_pref
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_class
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_return_date
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_departur_date
-import com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
-import com.opsigo.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
-import com.opsigo.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
-import com.opsigo.travelaja.module.item_custom.select_passager.TotalPassengerFlight
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import com.opsigo.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
-import com.opsigo.travelaja.utility.Constants.SELECT_RESULT
+
 
 class FlightFragmentNew : BaseFragment(),
     OnclickListenerRecyclerView,
@@ -248,7 +235,7 @@ class FlightFragmentNew : BaseFragment(),
             for (i in 0 until 2){
                 val orderFlight = RouteMultiCityModel()
                 if (i == 0) {
-                orderFlight.dateDeparture = if (data.startDate.contains(":")) data.startDate.split(" ")[0].trim() elsedata.startDate
+                orderFlight.dateDeparture = if (data.startDate.contains(":")) data.startDate.split(" ")[0].trim() else data.startDate
                 orderFlight.originName = originName
                 orderFlight.idOrigin = idOrigin
                 orderFlight.destinationName = destinationName
@@ -330,13 +317,17 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun selectDate(position: Int) {
         currentPosition = position
-        var minStartDate = mFlightMulti.routes.filter { it.dateDeparture.isNotEmpty() }.last().dateDepartureNewCalendarViewOpsicorp().showCalendarViewMinMax(
-            requireActivity(),
-            "yyyy-MM-dd",
-            minStartDate,
-            dataTripPlan.endDate,
-            Constant.SINGGLE_SELECTED
-        )
+//        var minStartDate = mFlightMulti.routes.filter { it.dateDeparture.isNotEmpty() }.last().dateDepartureNewCalendarViewOpsicorp().showCalendarViewMinMax(
+//            requireActivity(),
+//            "yyyy-MM-dd",
+//            minStartDate,
+//            dataTripPlan.endDate,
+//            Constant.SINGGLE_SELECTED
+//        )
+
+        var minStartDate = mFlightMulti.routes.filter { it.dateDeparture.isNotEmpty() }.last().dateDeparture
+        NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", minStartDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+
     }
 
     override fun onClick(v: View?) {

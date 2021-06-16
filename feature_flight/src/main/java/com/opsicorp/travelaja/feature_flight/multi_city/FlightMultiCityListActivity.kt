@@ -9,7 +9,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.gone
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R

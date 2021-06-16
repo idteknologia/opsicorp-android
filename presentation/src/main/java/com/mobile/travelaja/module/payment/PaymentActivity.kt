@@ -11,12 +11,10 @@ import android.webkit.WebViewClient
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.home.activity.HomeActivity
-import com.opsigo.travelaja.module.item_custom.success_view.SuccessView
+import com.mobile.travelaja.module.item_custom.success_view.SuccessView
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.Globals.showAlert
-import com.mobile.travelaja.utility.OnclikAllertDoubleSelected
 import kotlinx.android.synthetic.main.payment_activity.*
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
