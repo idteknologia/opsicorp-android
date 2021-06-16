@@ -468,6 +468,7 @@ Please add your trip item for Approval."
     <string name="facilities">Facilities</string>
 
     <string name="total_price_for_1_pax">Total price for 1 pax</string>
+    <string name="total_price_for">Total price for</string>
     <string name="total_to_be_paid">TOTAL TO BE PAID</string>
     <string name="total_purchase_orders">Total Purchase orders:</string>
     <string name="including_of_all_fares">Including of all fares, taxes &amp; fees</string>
@@ -663,7 +664,6 @@ Please add your trip item for Approval."
     <string name="string_page_detail_hotel">Jl. Lengkong Kecil 76-80, Asia Afrika,  Arjuna, Bandung, Jawa Barat, Indonesia  42061</string>
     <string name="join_trip">Join Trip</string>
     <string name="unable_host">Unable to resolve host"</string>
-    <string name="dummy"></string>
     <string name="string_information_passsanger_booking_contact">Passenger details must be written as on ID card / Driving \n License / Passport / GDS Travel Profile.</string>
     <string name="string_information_passsanger_booking_contact2">Passenger data cannot be changed after passing this page.</string>
 
@@ -673,12 +673,106 @@ Please add your trip item for Approval."
     <string name="airport">Airport :</string>
     <string name="terminalBandara">Soekarno Hatta - Terminal 1C</string>
 
-    <string name="hargaTotal">IDR 719.000</string>
+    <string name="hargaTotal">0 IDR </string>
     <string name="cz_fare_option_not_available" translatable="false">CZ - Fare option not available</string>
     <string name="please_choose_the_information_for_fastest_approval" translatable="false">Please choose the information for fastest Approval</string>
     <string name="transit">TRANSIT</string>
     <string name="price_pax">PRICE/PAX</string>
     <string name="booking_contact_not_empty">Please complete input data passenger</string>
     <string name="string_requaired_input">Please add, this field is required</string>
+    <string name="text_kg">kg</string>
+    <string name="text_trip_template">CGK-KNO</string>
+    <string name="text_booking_details">Booking details</string>
+    <string name="text_booking_desc">Fill passenger and contact information in details.</string>
+    <string name="text_booking_contact">Booking Contact</string>
+    <string name="text_contacts_name">Contact\'s Name</string>
+    <string name="text_contact_desc">As on ID card / Driving License / Passport / GDS Travel Profile</string>
+    <string name="text_contact_number">Contact Number</string>
+    <string name="text_phone_code">+62</string>
+    <string name="text_contact_number_desc">e.g +62 8123456789 for Country Code (+62) and Mobile No. 08123456789</string>
+    <string name="text_email_example">e.g email@example.com</string>
+    <string name="text_passenger_information">Passenger Information</string>
+    <string name="text_select_seat">Select Seat</string>
+    <string name="text_seat_class">Economy Class</string>
+    <string name="text_not_including_of_all_fares_amp_vat"><![CDATA[Not Including of all fares & vat]]></string>
+    <string name="text_flight_detail">Flight Detail</string>
+    <string name="text_description">Description :</string>
+    <string name="text_description_desc">Where a seat on a lower fare option was not available even though booking request was outside deadlines.</string>
+    <string name="text_adult_pax">Adult x1</string>
+    <string name="text_adult_times" translatable="false">Adult x</string>
+    <string name="text_amount_to_pay">Amount to pay</string>
+    <string name="text_reserved">Reserved</string>
+    <string name="text_booking_code_pnr">Booking Code (PNR)</string>
+    <string name="text_date_created">SUN, 27 Apr 2019</string>
+    <string name="text_price_details">Price Details</string>
+    <string name="text_include_all_fare"><![CDATA[Including of all fares & vat]]></string>
+    <string name="text_bagage">Bagage</string>
+    <string name="text_filter_type">Early Morning</string>
+    <string name="text_pricebar_example">1.356.000 - 5.230.000</string>
+    <string name="text_start">Start</string>
+    <string name="text_max">Max</string>
+    <string name="text_available_cabin_class">AVAILABLE CABIN CLASS</string>
+    <string name="text_departure_time">DEPARTURE TIME</string>
+    <string name="text_arrival_time">ARRIVAL TIME</string>
+    <string name="text_x">x</string>
+    <string name="text_1">1</string>
+    <string name="text_adult_passenger">Adult Passenger</string>
+    <string name="text_age_15_and_older">Age 15 and older</string>
+    <string name="text_id_card_ktp">ID Card (KTP)</string>
+    <string name="text_add">Add</string>
+    <string name="text_passport">PASSPORT</string>
+    <string name="text_please_add_this_field_is_required">Please add, this field is required</string>
+    <string name="text_driving_license_sim">Driving License (SIM)</string>
+    <string name="text_additional_flights_services">Additional Flights Services</string>
+    <string name="text_ssr">SSR</string>
+    <string name="text_meals_etc">Meals,etc</string>
+    <string name="text_frequent">Frequent</string>
+    <string name="text_flyer">Flyer</string>
+    <string name="text_infant_or_child_passenger">Infant or Child Passenger</string>
+    <string name="text_below_age_15">Below age 15</string>
+    <string name="text_mstr">Mstr.</string>
+    <string name="text_ms">Ms.</string>
+    <string name="text_as_on_birth_certificate">As on Birth Certificate</string>
+    <string name="text_birth_date">Birth Date</string>
+    <string name="text_dd">DD</string>
+    <string name="text_mm">MM</string>
+    <string name="text_yyyy">YYYY</string>
+    <string name="text_2_years_old">2 Years Old</string>
+    <string name="text_fare_rules">Fare Rules</string>
+    <string name="text_lowest_price">Lowest Price</string>
+    <string name="text_detail_info">Detail Info</string>
+    <string name="text_important_info_includes_segment_and_facilities">Important info includes Segment and Facilities</string>
+    <string name="text_pax">/pax</string>
+    <string name="text_duration">Duration</string>
+    <string name="text_stop">Stop</string>
+    <string name="text_room_night">/room/night</string>
+    <string name="text_didn_apos_t_find_the_train">Didn\'t find the train ?</string>
+    <string name="text_didnt_fint_train_desc">If you don\'t find any train match with your budget or travel policy. You can select not comply list of train, with specific notes.</string>
+    <string name="text_all_tickets_sold_out">All tickets sold out ?</string>
+    <string name="text_all_ticket_sold_out_desc">No Worries, let\'s try other transportation options!</string>
+    <string name="text_change">Change</string>
+    <string name="text_p1">P1</string>
+    <string name="text_pick">Pick</string>
+    <string name="text_selected">Selected</string>
+    <string name="text_available">Available</string>
+    <string name="text_occupied">Occupied</string>
+    <string name="text_selected_seat">Selected Seat</string>
+    <string name="text_departure_flight">Departure Flight</string>
+    <string name="text_x1">x1</string>
+    <string name="text_add_more_item">+Add more item</string>
+    <string name="text_107_ticket_s_found">107 Ticket(s) found</string>
+    <string name="text_price_pax">PRICE / PAX</string>
+    <string name="text_filter_price_range">50.000 – 500.000</string>
+    <string name="text_filter_price_min">IDR 50.000</string>
+    <string name="text_filter_price_max">IDR 300.000</string>
+    <string name="text_select_all">SELECT ALL</string>
+    <string name="text_sort_by">SORT BY</string>
+    <string name="arrival_date">Arrival date</string>
+    <string name="text_terminal">Terminal -</string>
+    <string name="text_edit">Edit</string>
+    <string name="text_0_kg">0 Kg</string>
+    <string name="text_oneway">Oneway</string>
+    <string name="text_roundtrip">Roundtrip</string>
+
 
 </resources>

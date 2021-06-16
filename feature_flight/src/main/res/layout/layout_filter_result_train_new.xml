@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginBottom="9dp"
     android:layout_marginTop="2dp"
@@ -19,20 +19,20 @@
         android:layout_height="51dp">
 
         <LinearLayout
-            android:paddingLeft="17dp"
+            android:paddingStart="17dp"
+            android:paddingEnd="17dp"
             android:layout_width="wrap_content"
             android:orientation="vertical"
-            android:layout_height="match_parent"
-            android:layout_toRightOf="@+id/img_flight_icon">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/tv_title_train"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Garuda Indonesia"
+                tools:text="Garuda Indonesia"
                 android:textColor="#24253d"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_type_class"
@@ -40,17 +40,17 @@
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#91929e"
-                android:text="Economy (K)" />
+                tools:text="Economy (K)" />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/line_total_seat"
-            android:layout_marginRight="14dp"
+            android:layout_marginEnd="14dp"
             android:gravity="end"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -59,10 +59,10 @@
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#5488c1"
                 android:gravity="end"
-                android:text="12 seat(s)" />
+                tools:text="12 seat(s)" />
         </LinearLayout>
 
 
@@ -73,10 +73,10 @@
             style="@style/RobotoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="2dp"
-            android:layout_marginRight="37dp"
-            android:text="IDR 1.275.000"
+            android:layout_marginEnd="37dp"
+            android:text="@string/hargaTotal"
             android:textColor="#24253d"
             android:textSize="14sp" />
 
@@ -85,11 +85,11 @@
             android:layout_below="@+id/line_total_seat"
             style="@style/RobotoRegular"
             android:textColor="#cbcbd0"
-            android:textSize="10sp"
-            android:layout_marginRight="14dp"
-            android:layout_alignParentRight="true"
+            android:textSize="12sp"
+            android:layout_marginEnd="14dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
-            android:text="/pax"
+            android:text="@string/text_pax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -114,7 +114,7 @@
 
         <LinearLayout
             android:layout_centerVertical="true"
-            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -125,17 +125,17 @@
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="06:40 - 08:35"
+                tools:text="06:40 - 08:35"
                 android:textColor="#24253d"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_centerVertical="true"
             android:gravity="end"
-            android:layout_marginRight="14sp"
-            android:layout_alignParentRight="true"
+            android:layout_marginEnd="14sp"
+            android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -144,17 +144,17 @@
                 android:id="@+id/tv_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#cc939396"
                 android:letterSpacing="0.01"
                 android:gravity="end"
-                android:text="3h, 17m "/>
+                tools:text="3h, 17m "/>
 
             <ImageView
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:src="@drawable/ic_chevron_down"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 app:tint="@color/tintTextView"/>
         </LinearLayout>
 

@@ -20,7 +20,7 @@
 
             <ImageView
                 android:id="@+id/ic_close"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@drawable/ic_close_black">
@@ -42,7 +42,7 @@
                     android:textSize="18sp"
                     android:textColor="#24253d"
                     android:gravity="center_horizontal"
-                    android:text="Flight Detail"/>
+                    android:text="@string/text_flight_detail"/>
 
                 <TextView
                     android:id="@+id/tripType"
@@ -53,7 +53,7 @@
                     android:textSize="12sp"
                     android:textColor="#91929e"
                     android:gravity="center_horizontal"
-                    android:text="Roundtrip"
+                    android:text="@string/round_trip"
                     android:layout_marginTop="3dp"/>
 
             </LinearLayout>
@@ -101,9 +101,9 @@
                         android:layout_height="wrap_content"
                         style="@style/RobotoBold"
                         android:textStyle="normal"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:textColor="#eb0011"
-                        android:text="Reason Code"
+                        android:text="@string/reason_code"
                         />
                     <TextView
                         android:id="@+id/tv_reason_code"
@@ -113,7 +113,7 @@
                         android:textStyle="bold"
                         android:textSize="12sp"
                         android:textColor="#24253d"
-                        android:text="CZ - Fare option not available"
+                        android:text="@string/cz_fare_option_not_available"
                         style="@style/RobotoBold"/>
                 </LinearLayout>
 
@@ -131,7 +131,7 @@
                     android:textStyle="bold"
                     android:textSize="12sp"
                     android:textColor="#00776a"
-                    android:text="Description :"
+                    android:text="@string/text_description"
                     android:layout_marginTop="14dp"/>
 
                 <TextView
@@ -141,10 +141,10 @@
                     style="@style/RobotoBold"
                     android:layout_marginTop="10dp"
                     android:textStyle="normal"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
                     android:textColor="#91929e"
                     android:lineSpacingExtra="6sp"
-                    android:text="Where a seat on a lower fare option was not available even though booking request was outside deadlines."
+                    android:text="@string/text_description_desc"
                     />
             </LinearLayout>
 
@@ -187,7 +187,7 @@
                             android:textStyle="normal"
                             android:textSize="14sp"
                             android:textColor="#b324253d"
-                            android:text="Gajayana"
+                            tools:text="Gajayana"
                             style="@style/RobotoBold"/>
 
                         <TextView
@@ -197,9 +197,9 @@
                             android:layout_height="wrap_content"
                             style="@style/RobotoBold"
                             android:textStyle="normal"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             android:textColor="#939396"
-                            android:text="Adult x1"/>
+                            android:text="@string/text_adult_pax"/>
                     </LinearLayout>
                     <!--<TextView
                         android:id="@+id/tv_total_price_flight1"
@@ -356,18 +356,18 @@
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="#24253d"
-                    android:text="Amount to pay" />
+                    android:text="@string/text_amount_to_pay" />
 
                 <TextView
                     android:id="@+id/tv_total_amount"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:textSize="16sp"
                     android:textColor="#009688"
                     android:gravity="end"
-                    android:text="0  IDR "
+                    android:text="@string/hargaTotal"
                     style="@style/RobotoBold"/>
 
             </RelativeLayout>

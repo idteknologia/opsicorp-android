@@ -16,6 +16,7 @@ import com.mobile.travelaja.utility.OnclickListenerRecyclerViewParent
 import kotlinx.android.synthetic.main.ssr_list_activity.*
 import kotlinx.android.synthetic.main.ssr_list_activity.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 
@@ -55,7 +56,15 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
     }
 
     private fun setDataRecyclerView() {
-        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.forEach {
+                datalist.dataFlight.add(it.flightResult)
+            }
+        }
+        else {
+            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        }
         positionFlight = intent.getIntExtra(Constants.KEY_POSITION_SELECT_SSR, 0)
         positionPassanger = intent.getIntExtra(Constants.KEY_POSITION_SELECT_PASSENGER, 0)
         adapter.setData(datalist.dataFlight[0].passenger[positionFlight].ssr.dataSsr)
@@ -89,8 +98,18 @@ class SsrListActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, B
         ssrSelected.distinct()
         datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.ssrSelected.clear()
         datalist.dataFlight[positionFlight].passenger[positionPassanger].ssr.ssrSelected.addAll(ssrSelected)
-        Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
 
+
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.mapIndexed { index, routeMultiCityModel ->
+                routeMultiCityModel.flightResult = datalist.dataFlight[index]
+            }
+            Globals.DATA_ORDER_FLIGHT = Serializer.serialize(dataOrder)
+        }
+        else {
+            Globals.DATA_LIST_FLIGHT = Serializer.serialize(datalist)
+        }
     }
 
     override fun onClicked() {

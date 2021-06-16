@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
@@ -18,16 +18,16 @@
             android:textSize="15sp"
             style="@style/RobotoBold"
             android:textColor="#24253d"
-            android:text="Lowest Price"/>
+            android:text="@string/text_lowest_price"/>
 
         <ImageView
             android:id="@+id/ic_checklist"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/margin_default"
-            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:layout_alignParentEnd="true"
             android:layout_width="18dp"
             android:layout_height="13dp"
-            android:src="@drawable/ic_check_orange"></ImageView>
+            android:src="@drawable/ic_check_orange"/>
 
     </RelativeLayout>
     <LinearLayout

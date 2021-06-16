@@ -27,7 +27,6 @@ class ItineraryAdapter(val viewModel : ItineraryViewModel) : RecyclerView.Adapte
             v.position = position
             v.tvTripNumber.text = "Trip  ${position+1}"
 
-
             v.layDeaprtureDate.setOnClickListener {
                 (it.context as ItineraryListener).clickItemItinerary(position,0)
 

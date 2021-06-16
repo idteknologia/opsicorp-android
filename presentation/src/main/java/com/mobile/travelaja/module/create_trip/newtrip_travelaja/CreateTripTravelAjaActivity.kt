@@ -17,20 +17,29 @@ import com.mobile.travelaja.databinding.ActivityNewCreatetripTravelajaBinding
 import com.mobile.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.mobile.travelaja.module.create_trip.newtrip.view.CreateTripView
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
+import com.opsigo.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import com.opsigo.travelaja.utility.Constants
+import com.opsigo.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.btn_next
-import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.et_notes
-import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.ic_back
-import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.rv_attachment
-import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.tv_notes_count
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.*
+import opsigo.com.datalayer.datanetwork.GetDataTripPlane
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
+import opsigo.com.datalayer.request_model.create_trip_plane.SaveAsDraftRequest
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
+import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
+import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import java.util.HashMap
 
 
 class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTravelajaBinding>(),
@@ -49,7 +58,9 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     var m_startdate = ""
     var m_endate = ""
     var idPurphose = ""
-    var idCountry            = ""
+    var idCountry  = ""
+    var idBudget = ""
+    var idCost = ""
     var purposeIsEmpty = true
     var notesIsEmpty = true
 
@@ -58,6 +69,8 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         setTextDocs()
         presenter.setDataAutomatically()
         presenter.initRecyclerViewAttachment(rv_attachment)
+        idBudget = "388888e0-2f5d-48da-9f13-9e93599f5ae5"
+        idCost = "000002"
     }
 
     private fun setTextDocs() {
@@ -193,6 +206,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
 
 
     override fun onClicked() {
+        presenter.createTripNow()
     }
 
     override fun loadDataView() {
@@ -219,7 +233,83 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     }
 
     override fun SuccessCreateTrip() {
+        gotoSuccessTrip()
+    }
 
+    private fun gotoSuccessTrip() {
+        showLoadingOpsicorp(true)
+        val dataOrderCreatTrip = DataBisnisTripModel()
+        dataOrderCreatTrip.namePusrpose = et_purpose.text.toString()
+        dataOrderCreatTrip.startDate = m_startdate
+        dataOrderCreatTrip.endDate = m_endate
+        dataOrderCreatTrip.origin = tv_origin_city.text.toString()
+        dataOrderCreatTrip.destination = tv_destination_city.text.toString()
+        dataOrderCreatTrip.notes   = et_notes.text.toString()
+        dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
+        dataOrderCreatTrip.tripcode = System.currentTimeMillis().toString()
+        dataOrderCreatTrip.dateCreated  = DateConverter().getDay("dd MMMM yyyy HH:mm")
+
+
+        GetDataTripPlane(getBaseUrl()).saveAsDraftTripPlant(Globals.getToken(),dataRequest(dataOrderCreatTrip),object : CallbackSaveAsDraft {
+            override fun successLoad(data: SuccessCreateTripPlaneModel) {
+                hideLoadingOpsicorp()
+                val bundle = Bundle()
+                data.costCenter = idCost
+                data.buggetId   = idBudget
+                data.destinationName = tv_destination_city.text.toString()
+                data.originName      = tv_origin_city.text.toString()
+                Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data)
+                bundle.putString("data_order", Serializer.serialize(dataOrderCreatTrip,DataBisnisTripModel::class.java))
+                gotoActivityWithBundle(SucessCreateTripPlaneActivity::class.java,bundle)
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                showAllert("Sorry",message)
+            }
+
+        })
+
+    }
+
+    private fun dataRequest(dataOrderCreatTrip: DataBisnisTripModel): HashMap<String, Any> {
+        val dataRequest             = SaveAsDraftRequest()
+        dataRequest.startDate       = m_startdate
+        dataRequest.returnDate      = m_endate
+        dataRequest.remark          = et_notes.text.toString()
+        dataRequest.origin          = tv_origin_city.text.toString()
+        dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType
+        dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
+        dataRequest.destination     = tv_destination_city.text.toString()
+        dataRequest.purpose         = et_purpose.text.toString()
+
+        dataRequest.tripAttachments = ArrayList()
+
+        val contactPerson = ContactRequest()
+        contactPerson.lastName  = getProfile().lastName
+        contactPerson.firstName = getProfile().firstName
+        dataRequest.contact         = contactPerson
+
+        val attachment = ArrayList<TripAttachmentsItemRequest>()
+
+        dataOrderCreatTrip.image.forEachIndexed { index, uploadModel ->
+            val mDataAttachment = TripAttachmentsItemRequest()
+            mDataAttachment.description = uploadModel.nameImage
+            mDataAttachment.url         = uploadModel.url
+            attachment.add(mDataAttachment)
+        }
+        dataRequest.tripAttachments = attachment
+
+        val tripParticipant = ArrayList<TripParticipantsItem>()
+        val mDataParticipant = TripParticipantsItem()
+        mDataParticipant.budgetId     = idBudget
+        mDataParticipant.costCenterId = idCost
+        mDataParticipant.employeeId   = getProfile().employId
+        tripParticipant.add(mDataParticipant)
+        dataRequest.tripParticipants   = tripParticipant
+
+
+        return Globals.classToHasMap(dataRequest,SaveAsDraftRequest::class.java)
     }
 
     override fun failedCreareTrip() {

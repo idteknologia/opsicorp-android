@@ -2,6 +2,7 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import java.util.*
 import android.view.View
+import android.os.Bundle
 import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
@@ -70,22 +71,28 @@ class ResultSearchFlightActivity : BaseActivity(),
     val timeSelectFilterArrival = ArrayList<String>()
     val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
     val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+    var positionRoutes = 0
     
     override fun OnMain() {
         initItemViews()
     }
 
     private fun initItemViews() {
-        if (!Constants.multitrip){
+        try {
+            if (Constants.multitrip){
+                positionRoutes = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+            }
             dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
             setRecyclerView()
             filter.callbackOnclickFilter(this)
             btnChangeResult.setTextButton("Change Result")
             btnChangeResult.callbackOnclickButton(this)
-
-            //init toolbar
-            setToolbar()
+        }catch (e:Exception){
+            e.printStackTrace()
         }
+
+        //init toolbar
+        setToolbar()
         getAirlineByCompany()
     }
 
@@ -100,6 +107,23 @@ class ResultSearchFlightActivity : BaseActivity(),
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     -1 ->{
+                        if (!Constants.multitrip){
+                            if (totalGetDataFlight!=dataCodeAirline.listSchedule.size){
+                                data.removeAll(data.filter { it.typeLayout == 5 })
+                                gotoDetailFlight(position)
+                            }
+                            else{
+                                gotoDetailFlight(position)
+                            }
+                        }
+                        else {
+                            val dataSelected = data[position].listFlightModel
+                            val intent = Intent()
+                            intent.putExtra(Constants.KEY_INTENT_SELECT_FLIGHT,Serializer.serialize(dataSelected))
+                            Globals.finishResultOk(this@ResultSearchFlightActivity,intent)
+                        }
+                    }
+                    -2 -> {
                         if (totalGetDataFlight!=dataCodeAirline.listSchedule.size){
                             data.removeAll(data.filter { it.typeLayout == 5 })
                             gotoDetailFlight(position)
@@ -107,7 +131,6 @@ class ResultSearchFlightActivity : BaseActivity(),
                         else{
                             gotoDetailFlight(position)
                         }
-
                     }
                 }
             }
@@ -115,9 +138,11 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun gotoDetailFlight(position: Int) {
-        val dataSelected = data.get(position).listFlightModel
+        val bundle = Bundle()
+        val dataSelected = data[position].listFlightModel
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
-        gotoActivity(DetailResultFlightActivity::class.java)
+        bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
+        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
     }
 
     private fun getAirlineByCompany() {
@@ -172,13 +197,13 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun dataRoutesRequestMultiTrip(): List<RoutesItem?> {
         val dataRoutes    = ArrayList<RoutesItem>()
-        val dataOrder = Constants.DATA_FLIGHT_MULTI_CITY
-        dataOrder.dataListOrderAccomodation.forEach {
+        val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+        dataOrder.routes.forEach {
             val model         = RoutesItem()
             model.origin      = it.idOrigin
             model.destination = it.idDestination //"BDO"
-            model.departDate  = it.dateDeparture //"2020-08-28"
-            dataRoutes.add(addDepartureData())
+            model.departDate  = it.dateDeparture  //"2020-08-28"
+            dataRoutes.add(model)
         }
         return dataRoutes
     }
@@ -273,7 +298,9 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun mappingByDate() {
         data.clear()
-        data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY)
+        val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+        val departure = if (dataOrder.routes[position].dateDeparture.contains(" ")) dataOrder.routes[position].dateDeparture.split(" ")[0] else dataOrder.routes[position].dateDeparture
+        data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY.filter { it.listFlightModel.departDate.contains(departure.trim()) })
         checkEmptyData()
     }
 
@@ -335,19 +362,26 @@ class ResultSearchFlightActivity : BaseActivity(),
         var destinationName = ""
         var date            = ""
         var titleDate       = ""
-        if (Globals.ALL_READY_SELECT_DEPARTING){
-            if (mDate.isNotEmpty()) date = mDate else date = DateConverter().setDateFormat3(dataOrder.dateArrival)
-            originName      = dataOrder.destinationName
-            destinationName = dataOrder.originName
-            titleDate       = "Returning"
+
+        if (!Constants.multitrip){
+            if (Globals.ALL_READY_SELECT_DEPARTING){
+                if (mDate.isNotEmpty()) date = mDate else date = DateConverter().setDateFormat3(dataOrder.dateArrival)
+                originName      = dataOrder.destinationName
+                destinationName = dataOrder.originName
+                titleDate       = "Returning"
+            }
+            else {
+                if (mDate.isNotEmpty()) date = mDate  else date = DateConverter().setDateFormat3(dataOrder.dateDeparture)
+                originName      = dataOrder.originName
+                destinationName = dataOrder.destinationName
+                titleDate       = "Departure"
+            }
+            toolbar.setDoubleTitle("${originName} - ${destinationName}","$titleDate Date : ${date} - 1 pax")
         }
         else {
-            if (mDate.isNotEmpty()) date = mDate  else date = DateConverter().setDateFormat3(dataOrder.dateDeparture)
-            originName      = dataOrder.originName
-            destinationName = dataOrder.destinationName
-            titleDate       = "Departure"
+            toolbar.setDoubleTitle("${dataOrder.routes[positionRoutes].originName}(${dataOrder.routes[positionRoutes].idOrigin}) - ${dataOrder.routes[positionRoutes].destinationName}(${dataOrder.routes[positionRoutes].idDestination})",
+                    "${DateConverter().getDate(dataOrder.routes[positionRoutes].dateDeparture,"yyyy-MM-dd","EEE, dd MMM yyyy")} - 1 pax")
         }
-        toolbar.setDoubleTitle("${originName} - ${destinationName}","$titleDate Date : ${date} - 1 pax")
     }
 
     private fun setDataArrival() {
@@ -368,13 +402,6 @@ class ResultSearchFlightActivity : BaseActivity(),
         when(requestCode){
             Constants.GET_FILTER -> {
                 if (resultCode== Activity.RESULT_OK){
-                    setLog(Constants.dataFilterMaxPriceAccomodation.toString())
-                    Constants.dataDepartureTime.forEachIndexed{
-                        index, accomodationPreferanceModel ->
-                        if (accomodationPreferanceModel.checked){
-                            setLog(accomodationPreferanceModel.time.trim().split("-")[0])
-                        }
-                    }
                     timeSelectFilterArrival.clear()
                     timeSelectFilterDeparture.clear()
                     nameStation.clear()

@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import android.util.Log
 import com.google.gson.JsonObject
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
@@ -73,16 +74,17 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful){
+                    val responseString = response.body()?.string()
+                    callback.success(AccomodationResultFlightMapper().mapping(responseString!!))
+                }
+                else {
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callback.failed(message)
+                }
                 try {
-                    if (response.isSuccessful){
-                        val responseString = response.body()?.string()
-                        callback.success(AccomodationResultFlightMapper().mapping(responseString!!))
-                    }
-                    else {
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callback.failed(message)
-                    }
+
                 }catch (e:Exception){
                     callback.failed(messageFailed)
                 }
@@ -871,26 +873,6 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                         else{
                             callback.failedLoad(json.getString("errorMessage"))
                         }
-
-                        /*"\"isSuccess\": true,\n" +
-                                "    \"errorMessage\": \"\",\n" +
-                                "    \"progress\": {\n" +
-                                "        \"Key\": \"fdcf92b8-58dd-4cb2-8a04-944db798320b\",\n" +
-                                "        \"PnrId\": \"60562226-81ce-4876-813b-3f9e17aa5437\",\n" +
-                                "        \"ProgressNum\": 100.0,\n" +
-                                "        \"Progress\": \"100\",\n" +
-                                "        \"Text\": \"Reserved\",\n" +
-                                "        \"JobType\": \"Sync\",\n" +
-                                "        \"RunStart\": \"0001-01-01 00:00:00\",\n" +
-                                "        \"RunEnd\": \"0001-01-01 00:00:00\",\n" +
-                                "        \"IsManual\": false,\n" +
-                                "        \"ReferenceCode\": null,\n" +
-                                "        \"PnrCode\": \"C6Q69X\",\n" +
-                                "        \"PartitionKey\": \"20200624\",\n" +
-                                "        \"RowKey\": \"f8530484-1fe6-4012-9b18-0afad71d18de\",\n" +
-                                "        \"Timestamp\": \"0001-01-01 00:00:00\",\n" +
-                                "        \"ETag\": null\n" +
-                                "    }"*/
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

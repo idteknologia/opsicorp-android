@@ -4,9 +4,10 @@ import android.view.View
 import java.lang.Exception
 import android.view.ViewGroup
 import android.content.Context
-import android.view.LayoutInflater
 import android.widget.ImageView
+import android.view.LayoutInflater
 import com.squareup.picasso.Picasso
+import com.opsigo.travelaja.utility.Globals
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.utility.DateConverter
@@ -50,7 +51,7 @@ class FlightMultiCityListAdapter(val context: Context): RecyclerView.Adapter<Fli
             holder.itemView.img_airline2.visibility         = View.VISIBLE
             setImage(holder.itemView.img_airline2,data.imgAirline)
             holder.itemView.tv_flight_code2.text            = "${data.origin} - ${data.destination}"//"CGK - KNO"
-            holder.itemView.tv_price.text                   = "Sub Total - ${data.price} IDR/pax"
+            holder.itemView.tv_price.text                   = "Sub Total - ${Globals.formatAmount(data.price)} IDR/pax"
         }
         else {
             holder.itemView.tvSelectFlight2.text            = "Select"
@@ -60,6 +61,10 @@ class FlightMultiCityListAdapter(val context: Context): RecyclerView.Adapter<Fli
             holder.itemView.img_airline2.visibility         = View.GONE
             holder.itemView.tv_flight_code2.text            = "${data.origin} - ${data.destination}"//"CGK - KNO"
             holder.itemView.tv_price.text                   = "${data.originName} - ${data.destinationName}"
+        }
+
+        holder.itemView.setOnClickListener{
+            onclick.onClick(SELECT_FLIGHT,position)
         }
     }
 

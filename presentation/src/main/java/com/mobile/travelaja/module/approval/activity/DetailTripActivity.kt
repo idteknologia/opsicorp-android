@@ -44,10 +44,13 @@ import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
 import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.domainlayer.callback.CallbackSummary
+import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
+import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.SummaryModel
 import opsigo.com.domainlayer.model.summary.SummaryModelItems
+import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import opsigo.com.domainlayer.model.summary.TripParticipantsItemModel
 import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import org.koin.core.inject
@@ -140,7 +143,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         showLoadingOpsicorp(true)
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-                setLog("---------------------->>>> ${Serializer.serialize(summaryModel)}")
+                setLog("cobak")
+                setLog(Serializer.serialize(tripSummary.tripParticipantModels))
+
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
                 postEstimateCost()
@@ -513,9 +518,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         title_trip_total.visibility = View.VISIBLE
 
         dataItems.clear()
+
         val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
         val totalAccomdation = dataAccomodation.itemFlightModel.size + dataAccomodation.itemTrainModel.size + dataAccomodation.itemHotelModel.size
         title_trip_total.text = "${getString(R.string.your_trip_items_detail )} (${totalAccomdation})"
+
+
 
         var number = 1
 
@@ -669,7 +677,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     private fun updateSummary() {
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-                tripSummary = summaryModel
+               tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
                 hideDialog()
             }
@@ -988,11 +996,18 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.originName = tripSummary.originName
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
+            model.route   = mappingRoutes(tripSummary.routes)
+            model.attachment.addAll(addAttacthment())
             model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
             model.costCenter = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
-            Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
-            setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
+            model.businessTripType = tripSummary.businessTripType
+            model.remark      = tripSummary.remark.toString()
+            model.wbsNo       = tripSummary.wbsNo
+            model.isDomestik  = tripSummary.isDomestic
+            model.golper      = tripSummary.golper
+
+            Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
@@ -1003,5 +1018,30 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 showAlert("Sorry", "This Trip Plant return date is expired")
             }
         }
+    }
+
+    private fun addAttacthment(): ArrayList<TripAttachmentItemModel> {
+        val data = ArrayList<TripAttachmentItemModel>()
+        tripSummary.attactment.forEach {
+            val model = TripAttachmentItemModel()
+            model.description = it.nameImage
+            model.url         = it.url
+            model.id          = it.id
+            setLog(" Test attachment => ${Serializer.serialize(model)}")
+            data.add(model)
+        }
+        return data
+    }
+
+    private fun mappingRoutes(routes: ArrayList<RoutesItemPertamina>): ArrayList<RouteMultiCityModel> {
+        val data = ArrayList<RouteMultiCityModel>()
+        routes.forEach {
+            val mData = RouteMultiCityModel()
+            mData.destinationName = it.destination
+            mData.originName    = it. origin
+            mData.dateDeparture = it.departureDate
+            data.add(mData)
+        }
+        return data
     }
 }

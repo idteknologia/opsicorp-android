@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.paging.PageListAdapter
 import com.mobile.travelaja.databinding.ItemTripPageBinding
+import com.opsigo.travelaja.module.settlement.TripSearchActivity
 import opsigo.com.domainlayer.model.trip.Trip
 
 class TripAdapter(private val selectedCode : String?,private val activity: Activity) : PageListAdapter<Trip>(POST_COMPARATOR) {
@@ -44,12 +45,12 @@ class TripAdapter(private val selectedCode : String?,private val activity: Activ
             view.trip = trip
             view.selected = selectedCode == trip?.Code
             view.executePendingBindings()
-            /*itemView.setOnClickListener {
+            itemView.setOnClickListener {
                 val intent = Intent()
                 intent.putExtra(TripSearchActivity.SELECTED,trip?.Code)
                 activity.setResult(Activity.RESULT_OK,intent)
                 activity.finish()
-            }*/
+            }
         }
     }
 

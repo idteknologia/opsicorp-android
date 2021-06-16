@@ -24,7 +24,6 @@ class FrequentFlyerActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListe
     }
 
     private fun setData() {
-        val datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         val dataProfile = Globals.getProfile(applicationContext)
         tvPassengerFf.text = dataProfile.name
     }

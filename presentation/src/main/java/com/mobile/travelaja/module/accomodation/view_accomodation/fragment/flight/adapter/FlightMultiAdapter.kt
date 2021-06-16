@@ -1,18 +1,18 @@
 package com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter
 
-import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
+import android.view.LayoutInflater
 import com.mobile.travelaja.utility.*
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.flight_multi_city_item.view.*
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 
 class FlightMultiAdapter : RecyclerView.Adapter<FlightMultiAdapter.ViewHolder>() {
 
     lateinit var onClick : OnclickListenerRecyclerView
-    var items = ArrayList<OrderAccomodationModel>()
+    var items = ArrayList<RouteMultiCityModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -74,7 +74,7 @@ class FlightMultiAdapter : RecyclerView.Adapter<FlightMultiAdapter.ViewHolder>()
         }
     }
 
-    fun setData(data: ArrayList<OrderAccomodationModel>) {
+    fun setData(data: ArrayList<RouteMultiCityModel>) {
         items = data
         notifyDataSetChanged()
     }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:background="@android:color/white"
+<RelativeLayout android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:paddingLeft="@dimen/margin_default"
     android:paddingRight="@dimen/margin_default"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RadioButton
         android:buttonTint="@color/checkbox"
-        android:layout_marginLeft="11dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/checkbox"
@@ -23,21 +23,20 @@
         android:layout_alignBaseline="@id/checkbox"
         android:layout_marginBottom="11dp"
         style="@style/RobotoRegular"
-        android:text= "kqkwkeqkewkqekqewkwkkqwkeqkweqkqkweqkwekqewqkkqwekqeqwk"
+        tools:text= "kqkwkeqkewkqekqewkwkkqwkeqkweqkqkweqkwekqewqkkqwekqeqwk"
         android:textSize="14sp"
         android:textColor="#9924253d"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/checkbox" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/tv_value_ssr"
-        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
         android:layout_alignBaseline="@id/checkbox"
         style="@style/RobotoMedium"
-        android:text="IDR 198.000"
-        android:textSize="14dp"
-        android:layout_alignParentRight="true"
+        android:text="@string/hargaTotal"
+        android:textSize="14sp"
+        android:layout_alignParentEnd="true"
         android:textColor="#24253d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -48,6 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e0e0e1"
-        android:layout_alignParentBottom="true"></LinearLayout>
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

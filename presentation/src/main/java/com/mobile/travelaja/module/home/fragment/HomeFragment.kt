@@ -315,25 +315,29 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun chekExistPersonalTrip(type: Int) {
-        showLoadingOpsicorp(true)
-        GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(), object : CallbackString {
-            override fun successLoad(data: String) {
-                if (data.isNotEmpty()) {
-                    val bundle = Bundle()
-                    bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
-                    bundle.putString(Constants.ID_PERSONAL_TRIP, data)
-                    gotoActivityWithBundle(NewCartActivity::class.java, bundle)
-                } else {
-                    createPersonalTrip(type)
+        if (getProfile().companyCode!="000002"){
+            showLoadingOpsicorp(true)
+            GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(), object : CallbackString {
+                override fun successLoad(data: String) {
+                    if (data.isNotEmpty()) {
+                        val bundle = Bundle()
+                        bundle.putString(Constants.FROM_CART,Constants.FROM_PERSONAL_TRIP)
+                        bundle.putString(Constants.ID_PERSONAL_TRIP, data)
+                        gotoActivityWithBundle(NewCartActivity::class.java, bundle)
+                    } else {
+                        createPersonalTrip(type)
+                    }
                 }
-            }
 
-            override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
-                setToast(message)
-            }
-        })
-
+                override fun failedLoad(message: String) {
+                    hideLoadingOpsicorp()
+                    setToast(message)
+                }
+            })
+        }
+        else {
+          Globals.showAlert("Sorry","This feature is not available",requireContext())
+        }
     }
 
     private fun createPersonalTrip(type: Int) {

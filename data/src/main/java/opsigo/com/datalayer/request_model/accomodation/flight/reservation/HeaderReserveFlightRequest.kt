@@ -1,6 +1,7 @@
 package opsigo.com.datalayer.request_model.accomodation.flight.reservation
 
 import com.google.gson.annotations.SerializedName
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 
 data class HeaderReserveFlightRequest(
@@ -37,6 +38,11 @@ data class HeaderReserveFlightRequest(
 	@field:SerializedName("Code")
 	var codeTripPlan: String = "",
 
+
 	@field:SerializedName("Purpose")
-	var purpose: String = ""
+	var purpose: String = "",
+
+	@field:SerializedName("Routes")
+	var routes: ArrayList<RoutestRequest> = ArrayList(),
+
 )

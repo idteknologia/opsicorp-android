@@ -73,8 +73,8 @@ data class PassangersFlightRequest(
 		var email: String? = null,
 
 		@field:SerializedName("BirthDate")
-	var birthDate: String? = null,
+	    var birthDate: String? = null,
 
 		@field:SerializedName("IdentityNumber")
-	var identityNumber: String? = null
+	    var identityNumber: String? = null
 )

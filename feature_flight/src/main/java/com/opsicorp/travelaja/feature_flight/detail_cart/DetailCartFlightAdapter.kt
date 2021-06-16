@@ -43,7 +43,7 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_title_airline.text = data.nameAirline
         holder.itemView.tv_airline_number.text   = data.airlineNumber
 
-        if(!data.imageAirline.isEmpty() && data.imageAirline != null) {
+        if(!data.imageAirline.isEmpty()) {
             Picasso.get()
                     .load(data.imageAirline)
                     .fit()
@@ -59,9 +59,9 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_station_origin.text = data.airportDeparture
 
         if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
-            holder.itemView.tv_terminal.text = "Terminal - "
+            holder.itemView.tv_terminal.text = context.getString(R.string.text_terminal)
         }else{
-            holder.itemView.tv_terminal.text = "Terminal "+data.terminal
+            holder.itemView.tv_terminal.text = context.getString(R.string.text_terminal)+data.terminal
         }
 
         holder.itemView.line_total_duration.text = data.estimatiTime
@@ -70,7 +70,7 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_date_arrival.text = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd","dd MMM")
         holder.itemView.tv_depart.text = data.cityCodeArrival
         holder.itemView.tv_station_destination.text = data.airportArrival
-        holder.itemView.tv_total_passager.text = "Adult x ${data.totalPassenger}"
+        holder.itemView.tv_total_passager.text = "${context.getString(R.string.text_adult_times)} ${data.totalPassenger}"
         holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble() / data.totalPassenger.toDouble(), false)
 
     }

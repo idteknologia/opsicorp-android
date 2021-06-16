@@ -5,337 +5,346 @@ import opsigo.com.datalayer.model.accomodation.train.reservation.SegmentsItemRes
 
 data class SummaryEntity(
 
-	@field:SerializedName("Origin")
+		@field:SerializedName("Origin")
 	val origin: String? = null,
 
-	@field:SerializedName("CreationDate")
+		@field:SerializedName("CreationDate")
 	val creationDate: String? = null,
 
-	@field:SerializedName("IsShowPolicy")
+		@field:SerializedName("IsShowPolicy")
 	val isShowPolicy: Boolean? = null,
 
-	@field:SerializedName("TimeLimitRemaining")
+		@field:SerializedName("TimeLimitRemaining")
 	val timeLimitRemaining: String? = null,
 
-	@field:SerializedName("TotalAllowance")
+		@field:SerializedName("TotalAllowance")
 	val totalAllowance: Int = 0,
 
-	@field:SerializedName("TotalExpenditureAirline")
+		@field:SerializedName("TotalExpenditureAirline")
 	val totalExpenditureAirline: Double = 0.0,
 
-	@field:SerializedName("TripMembers")
+		@field:SerializedName("TripMembers")
 	val tripMembers: List<Any?>? = null,
 
-	@field:SerializedName("Remark")
-	val remark: Any? = null,
+		@field:SerializedName("Remark")
+	val remark: String? = null,
 
-	@field:SerializedName("BudgetSourceName")
+		@field:SerializedName("BudgetSourceName")
 	val budgetSourceName: Any? = null,
 
-	@field:SerializedName("LastModified")
+		@field:SerializedName("LastModified")
 	val lastModified: String? = null,
 
-	@field:SerializedName("SeqC4")
+		@field:SerializedName("SeqC4")
 	val seqC4: Int = 0,
 
-	@field:SerializedName("Currency")
+		@field:SerializedName("Currency")
 	val currency: String? = null,
 
-	@field:SerializedName("TotalPaid")
+		@field:SerializedName("TotalPaid")
 	val totalPaid: Int = 0,
 
-	@field:SerializedName("BudgetView")
+		@field:SerializedName("BudgetView")
 	val budgetView: Any? = null,
 
-	@field:SerializedName("DestinationName")
+		@field:SerializedName("DestinationName")
 	val destinationName: String? = null,
 
-	@field:SerializedName("TotalBudget")
+		@field:SerializedName("TotalBudget")
 	val totalBudget: Int = 0,
 
-	@field:SerializedName("Status")
+		@field:SerializedName("Status")
 	val status: Int = 0,
 
-	@field:SerializedName("TripAirlines")
+		@field:SerializedName("TripAirlines")
 	val tripAirlines: List<Any?>? = null,
 
-	@field:SerializedName("TripParticipants")
+		@field:SerializedName("TripParticipants")
 	val tripParticipants: List<TripParticipantsItem?>? = null,
 
-	@field:SerializedName("CreatedBy")
+		@field:SerializedName("CreatedBy")
 	val createdBy: String? = null,
 
-	@field:SerializedName("CreationDateRelativeView")
+		@field:SerializedName("CreationDateRelativeView")
 	val creationDateRelativeView: String? = null,
 
-	@field:SerializedName("Routes")
-	val routes: List<RoutesItem?>? = null,
+		@field:SerializedName("Routes")
+	val routes: ArrayList<RoutesItem> = ArrayList(),
 
-	@field:SerializedName("ReffIdHotel")
+		@field:SerializedName("ReffIdHotel")
 	val reffIdHotel: Any? = null,
 
-	@field:SerializedName("Code")
+		@field:SerializedName("Code")
 	val code: String? = null,
 
-	@field:SerializedName("CreationDateString")
+		@field:SerializedName("CreationDateString")
 	val creationDateString: String? = null,
 
-	@field:SerializedName("SubmitedDate")
+		@field:SerializedName("SubmitedDate")
 	val submitedDate: Any? = null,
 
-	@field:SerializedName("TripDateView")
+		@field:SerializedName("TripDateView")
 	val tripDateView: String? = null,
 
-	@field:SerializedName("ApproveDate")
+		@field:SerializedName("ApproveDate")
 	val approveDate: Any? = null,
 
-	@field:SerializedName("TripHotels")
+		@field:SerializedName("TripHotels")
 	val tripHotels: List<TripHotelsItem?>? = null,
 
-	@field:SerializedName("TripExpenditures")
+		@field:SerializedName("TripExpenditures")
 	val tripExpenditures: Any? = null,
 
-	@field:SerializedName("DestinationView")
+		@field:SerializedName("DestinationView")
 	val destinationView: String? = null,
 
-	@field:SerializedName("TimeLimitShorted")
+		@field:SerializedName("TimeLimitShorted")
 	val timeLimitShorted: String? = null,
 
-	@field:SerializedName("IsMultiTripForm")
+		@field:SerializedName("IsMultiTripForm")
 	val isMultiTripForm: Boolean? = null,
 
-	@field:SerializedName("Id")
+		@field:SerializedName("Id")
 	val id: String? = null,
 
-	@field:SerializedName("TripHistories")
+		@field:SerializedName("TripHistories")
 	val tripHistories: List<TripHistoriesItem?>? = null,
 
-	@field:SerializedName("BudgetDesc")
+		@field:SerializedName("BudgetDesc")
 	val budgetDesc: Any? = null,
 
-	@field:SerializedName("Trains")
+		@field:SerializedName("Trains")
 	val trains: List<TrainsItem?>? = null,
 
-	@field:SerializedName("TripClaims")
+		@field:SerializedName("TripClaims")
 	val tripClaims: List<Any?>? = null,
 
-	@field:SerializedName("LastModifiedBy")
+		@field:SerializedName("LastModifiedBy")
 	val lastModifiedBy: String? = null,
 
-	@field:SerializedName("TripApprovals")
+		@field:SerializedName("TripApprovals")
 	val tripApprovals: List<Any?>? = null,
 
-	@field:SerializedName("StatusView")
+		@field:SerializedName("StatusView")
 	val statusView: String? = null,
 
-	@field:SerializedName("Golper")
+		@field:SerializedName("Golper")
 	val golper: Int = 0,
 
-	@field:SerializedName("ExpiredIn")
+		@field:SerializedName("ExpiredIn")
 	val expiredIn: String? = null,
 
-	@field:SerializedName("TripCodeOld")
+		@field:SerializedName("TripCodeOld")
 	val tripCodeOld: Any? = null,
 
-	@field:SerializedName("TimeLimit")
+		@field:SerializedName("TimeLimit")
 	val timeLimit: String? = null,
 
-	@field:SerializedName("ReturnDate")
+		@field:SerializedName("ReturnDate")
 	val returnDate: String? = null,
 
-	@field:SerializedName("TripTrains")
+		@field:SerializedName("TripTrains")
 	val tripTrains: List<Any?>? = null,
 
-	@field:SerializedName("FlightEstimatedCostView")
+		@field:SerializedName("FlightEstimatedCostView")
 	val flightEstimatedCostView: String? = null,
 
-	@field:SerializedName("ReturnDateView")
+		@field:SerializedName("ReturnDateView")
 	val returnDateView: String? = null,
 
-	@field:SerializedName("OriginName")
+		@field:SerializedName("OriginName")
 	val originName: String? = null,
 
-	@field:SerializedName("Type")
+		@field:SerializedName("Type")
 	val type: Int = 0,
 
-	@field:SerializedName("PolicyComplianceStatus")
+		@field:SerializedName("PolicyComplianceStatus")
 	val policyComplianceStatus: Int = 0,
 
-	@field:SerializedName("PccId")
+		@field:SerializedName("PccId")
 	val pccId: String? = null,
 
-	@field:SerializedName("HotelEstimatedCost")
+		@field:SerializedName("HotelEstimatedCost")
 	val hotelEstimatedCost: Int = 0,
 
-	@field:SerializedName("FileC4")
+		@field:SerializedName("FileC4")
 	val fileC4: Any? = null,
 
-	@field:SerializedName("TravelAgentAccount")
+		@field:SerializedName("TravelAgentAccount")
 	val travelAgentAccount: String? = null,
 
-	@field:SerializedName("IsPrivateTrip")
+		@field:SerializedName("IsPrivateTrip")
 	val isPrivateTrip: Boolean? = null,
 
-	@field:SerializedName("PaymentTypeView")
+		@field:SerializedName("PaymentTypeView")
 	val paymentTypeView: String? = null,
 
-	@field:SerializedName("Destinations")
+		@field:SerializedName("Destinations")
 	val destinations: List<String?>? = null,
 
-	@field:SerializedName("BusinessTripType")
+		@field:SerializedName("BusinessTripType")
 	val businessTripType: Any? = null,
 
-	@field:SerializedName("SharingCostCenters")
+		@field:SerializedName("SharingCostCenters")
 	val sharingCostCenters: List<Any?>? = null,
 
-	@field:SerializedName("IsBookAfterApprove")
+		@field:SerializedName("IsBookAfterApprove")
 	val isBookAfterApprove: Boolean? = null,
 
-	@field:SerializedName("BudgetType")
+		@field:SerializedName("BudgetType")
 	val budgetType: Any? = null,
 
-	@field:SerializedName("HotelEstimatedCostView")
+		@field:SerializedName("HotelEstimatedCostView")
 	val hotelEstimatedCostView: String? = null,
 
-	@field:SerializedName("OriginView")
+		@field:SerializedName("OriginView")
 	val originView: String? = null,
 
-	@field:SerializedName("StartDate")
+		@field:SerializedName("StartDate")
 	val startDate: String? = null,
 
-	@field:SerializedName("IsDomestic")
+		@field:SerializedName("IsDomestic")
 	val isDomestic: Boolean? = null,
 
-	@field:SerializedName("TrainEstimatedCost")
+		@field:SerializedName("TrainEstimatedCost")
 	val trainEstimatedCost: Int = 0,
 
-	@field:SerializedName("IsPersonalTrip")
+		@field:SerializedName("IsPersonalTrip")
 	val isPersonalTrip: Boolean? = null,
 
-	@field:SerializedName("TravelAgentUrl")
+		@field:SerializedName("TravelAgentUrl")
 	val travelAgentUrl: String? = null,
 
-	@field:SerializedName("TimeLimitString")
+		@field:SerializedName("TimeLimitString")
 	val timeLimitString: String? = null,
 
-	@field:SerializedName("TripBudgetComponents")
+		@field:SerializedName("TripBudgetComponents")
 	val tripBudgetComponents: Any? = null,
 
-	@field:SerializedName("TrnNumber")
+		@field:SerializedName("TrnNumber")
 	val trnNumber: Any? = null,
 
-	@field:SerializedName("TotalExpenditureHotel")
+		@field:SerializedName("TotalExpenditureHotel")
 	val totalExpenditureHotel: Int = 0,
 
-	@field:SerializedName("DurationDay")
+		@field:SerializedName("DurationDay")
 	val durationDay: Int = 0,
 
-	@field:SerializedName("OriRoutes")
+		@field:SerializedName("OriRoutes")
 	val oriRoutes: Any? = null,
 
-	@field:SerializedName("IsWithoutSPJ")
+		@field:SerializedName("IsWithoutSPJ")
 	val isWithoutSPJ: Boolean? = null,
 
-	@field:SerializedName("BudgetId")
+		@field:SerializedName("BudgetId")
 	val budgetId: String? = null,
 
-	@field:SerializedName("EstimatedCost")
+		@field:SerializedName("EstimatedCost")
 	val estimatedCost: Int = 0,
 
-	@field:SerializedName("LastGeneratedToC4")
+		@field:SerializedName("LastGeneratedToC4")
 	val lastGeneratedToC4: String? = null,
 
-	@field:SerializedName("OtherPurpose")
+		@field:SerializedName("OtherPurpose")
 	val otherPurpose: Any? = null,
 
-	@field:SerializedName("ReasonCode")
+		@field:SerializedName("ReasonCode")
 	val reasonCode: Any? = null,
 
-	@field:SerializedName("PostTripClaims")
+		@field:SerializedName("PostTripClaims")
 	val postTripClaims: List<Any?>? = null,
 
-	@field:SerializedName("FlightEstimatedCost")
+		@field:SerializedName("FlightEstimatedCost")
 	val flightEstimatedCost: Int = 0,
 
-	@field:SerializedName("TripAttachments")
+		@field:SerializedName("TripAttachments")
 	val tripAttachments: ArrayList<TripAttachmentItem>? = null,
 
-	@field:SerializedName("Destination")
+		@field:SerializedName("Destination")
 	val destination: String? = null,
 
-	@field:SerializedName("CityNameApi")
+		@field:SerializedName("CityNameApi")
 	val cityNameApi: Any? = null,
 
-	@field:SerializedName("TotalExpenditure")
+		@field:SerializedName("TotalExpenditure")
 	val totalExpenditure: Double = 0.0,
 
-	@field:SerializedName("TransportationType")
+		@field:SerializedName("TransportationType")
 	val transportationType: Any? = null,
 
-	@field:SerializedName("SubmitDateView")
+		@field:SerializedName("SubmitDateView")
 	val submitDateView: Any? = null,
 
-	@field:SerializedName("PurposeCode")
+		@field:SerializedName("PurposeCode")
 	val purposeCode: Any? = null,
 
-	@field:SerializedName("isApproval")
+		@field:SerializedName("isApproval")
 	val isApproval: Boolean? = null,
 
-	@field:SerializedName("IsHavePayment")
+		@field:SerializedName("IsHavePayment")
 	val isHavePayment: Boolean? = null,
 
-	@field:SerializedName("CostCenter")
+		@field:SerializedName("CostCenter")
 	val costCenter: Any? = null,
 
-	@field:SerializedName("Flights")
+		@field:SerializedName("Flights")
 	val flights: List<FlightsItem?>? = null,
 
-	@field:SerializedName("CreationDateView")
+		@field:SerializedName("CreationDateView")
 	val creationDateView: String? = null,
 
-	@field:SerializedName("RemarkSKPD")
+		@field:SerializedName("RemarkSKPD")
 	val remarkSKPD: Any? = null,
 
-	@field:SerializedName("PaymentType")
+		@field:SerializedName("PaymentType")
 	val paymentType: Int = 0,
+
+	@field:SerializedName("PaymentStatus")
+	val paymentStatus: Int = 0,
+
+	@field:SerializedName("PaymentStatusView")
+	val paymentStatusView : String? = null,
 
 	@field:SerializedName("StartDateView")
 	val startDateView: String? = null,
 
-	@field:SerializedName("PolicyCause")
+		@field:SerializedName("PolicyCause")
 	val policyCause: Any? = null,
 
-	@field:SerializedName("TotalExpenditureTrain")
+		@field:SerializedName("TotalExpenditureTrain")
 	val totalExpenditureTrain: Int = 0,
 
-	@field:SerializedName("TrainEstimatedCostView")
+		@field:SerializedName("TrainEstimatedCostView")
 	val trainEstimatedCostView: String? = null,
 
-	@field:SerializedName("Purpose")
+		@field:SerializedName("Purpose")
 	val purpose: String? = null,
 
-	@field:SerializedName("PolicyReasonCode")
+		@field:SerializedName("PolicyReasonCode")
 	val policyReasonCode: Int = 0,
 
-	@field:SerializedName("ApprovalCode")
+		@field:SerializedName("ApprovalCode")
 	val approvalCode: Any? = null,
 
-	@field:SerializedName("CostCenterId")
+		@field:SerializedName("CostCenterId")
 	val costCenterId: Any? = null,
 
-	@field:SerializedName("IsGeneratedToC4")
+		@field:SerializedName("IsGeneratedToC4")
 	val isGeneratedToC4: Boolean? = null,
 
-	@field:SerializedName("Contact")
+		@field:SerializedName("Contact")
 	val contact: Contact? = null,
 
-	@field:SerializedName("DueDateApproval")
+		@field:SerializedName("DueDateApproval")
 	val dueDateApproval: String? = null,
 
-	@field:SerializedName("TripItems")
+		@field:SerializedName("TripItems")
 	val tripItems: List<Any?>? = null,
 
-	@field:SerializedName("SubmitDateString")
+		@field:SerializedName("WbsNo")
+		val wbsNo: String? = null,
+
+		@field:SerializedName("SubmitDateString")
 	val submitDateString: Any? = null
 )
 

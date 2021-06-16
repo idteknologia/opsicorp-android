@@ -180,25 +180,15 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
                     error_view.hide()
                     data.addAll(approvalModel)
                     adapter.setData(data)
-                    Globals.setLog("sknsvjn "+positionPage.toString())
 
-                    //set position filter
                     when(positionPage){
-
                         0 -> {
-                            //btnLeft()
-                            //btn_approval.allButtonSelected()
-                            //top_button.onclick.btnLeft()
                             onDraft()
                             top_button.draftButtonSelected()
                         }
                         1 -> {
                             onCompleted()
                             top_button.completedButtonSelected()
-                            //btnRight()
-                            //btn_approval.waitingButtonSelected()
-                            //top_button.waitingButtonSelected()
-                            //top_button.onclick.btnRight()
                         }
                     }
 

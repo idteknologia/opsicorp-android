@@ -38,6 +38,11 @@ data class SummaryModel(
         var allowance :String = "",
         var costCenter :String = "",
         var isDomestic :Boolean = false,
+        var wbsNo : String = "",
+        var golper : Int = 0,
+
+        var paymentStatus: String = "",
+        var paymentStatusView : String = "",
 
         var contact: ContactModel = ContactModel(),
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),

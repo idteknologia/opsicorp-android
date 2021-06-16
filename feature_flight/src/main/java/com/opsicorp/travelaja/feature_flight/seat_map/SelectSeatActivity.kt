@@ -2,6 +2,8 @@ package com.opsicorp.travelaja.feature_flight.seat_map
 
 import android.content.Intent
 import android.os.Build
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -13,6 +15,7 @@ import kotlinx.android.synthetic.main.select_seat_activity.*
 import kotlinx.android.synthetic.main.select_seat_activity.btnDone
 import kotlinx.android.synthetic.main.select_seat_activity.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.mapper.Serializer
 
 class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -34,18 +37,26 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
     }
 
     private fun setData() {
-        datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        if (Constants.multitrip){
+            val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+            dataOrder.routes.forEach {
+                datalist.dataFlight.add(it.flightResult)
+            }
+        }
+        else {
+            datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
+        }
         val dataProfile = Globals.getProfile(applicationContext)
         tvPassengerSeat.text = "${dataProfile.title}.${dataProfile.name}"
         adapter.setData(datalist.dataFlight)
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation  = LinearLayoutManager.VERTICAL
         rvSelectSeat.layoutManager = layoutManager
-        rvSelectSeat.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        rvSelectSeat.adapter = adapter
+        rvSelectSeat.itemAnimator  = DefaultItemAnimator()
+        rvSelectSeat.adapter       = adapter
 
         adapter.setOnclickListener(this)
     }
@@ -79,7 +90,7 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
             Constants.REQUEST_CODE_SELECT_SEAT ->{
                 val intent = Intent(this, SeatActivityFlight::class.java)
                 intent.putExtra(Constants.KEY_POSITION_SELECT_SEAT,position)
-               gotoActivityResultIntent(intent,Constants.GET_SEAT_MAP)
+                gotoActivityResultIntent(intent,Constants.GET_SEAT_MAP)
             }
             Constants.REQUEST_CODE_DELETE_SEAT -> {
                 datalist.dataFlight[position].dataSeat.dataSeat.clear()
@@ -99,6 +110,5 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
     override fun btnCard() {
 
     }
-
 
 }

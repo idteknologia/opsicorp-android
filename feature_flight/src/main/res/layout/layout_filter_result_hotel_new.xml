@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#f6f8f8"
     android:layout_width="match_parent"
@@ -43,7 +44,7 @@
                     style="@style/RobotoMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="The Trans Luxury Bandung"
+                    tools:text="The Trans Luxury Bandung"
                     android:textColor="#24253d">
 
                 </TextView>
@@ -63,9 +64,9 @@
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hotels"
+                        tools:text="Hotels"
                         android:textColor="#2b9a8e"
-                        android:textSize="8dp"></TextView>
+                        android:textSize="12sp"/>
 
                 </LinearLayout>
 
@@ -79,35 +80,35 @@
                     <ImageView
                         android:visibility="invisible"
                         android:id="@+id/star_1"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="2dp"
                         android:src="@mipmap/ic_star"
                         android:layout_width="14dp"
                         android:layout_height="10dp" />
                     <ImageView
                         android:visibility="invisible"
                         android:id="@+id/star_2"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="2dp"
                         android:src="@mipmap/ic_star"
                         android:layout_width="14dp"
                         android:layout_height="10dp" />
                     <ImageView
                         android:visibility="invisible"
                         android:id="@+id/star_3"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="2dp"
                         android:src="@mipmap/ic_star"
                         android:layout_width="14dp"
                         android:layout_height="10dp" />
                     <ImageView
                         android:visibility="invisible"
                         android:id="@+id/star_4"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="2dp"
                         android:src="@mipmap/ic_star"
                         android:layout_width="14dp"
                         android:layout_height="10dp" />
                     <ImageView
                         android:visibility="invisible"
                         android:id="@+id/star_5"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginStart="2dp"
                         android:src="@mipmap/ic_star"
                         android:layout_width="14dp"
                         android:layout_height="10dp" />
@@ -131,10 +132,10 @@
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:text="Cibangkong, Bandung"
+                        android:layout_marginStart="2dp"
+                        tools:text="Cibangkong, Bandung"
                         android:textColor="#91929e"
-                        android:textSize="12dp">
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
@@ -145,23 +146,23 @@
                     android:layout_marginTop="6dp">
 
                     <TextView
-                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
                         android:id="@+id/tv_available"
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
+                        android:textSize="12sp"
                         android:textColor="#5499e4"
                         android:gravity="end"
-                        android:text="8 Room(s) available" />
+                        tools:text="8 Room(s) available" />
 
                     <TextView
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
+                        android:textSize="12sp"
                         android:textColor="#cccccc"
-                        android:text="Room / Night" />
+                        android:text="@string/text_room_night" />
 
                 </RelativeLayout>
 
@@ -175,14 +176,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/tintTextView"
-                        android:textSize="14dp"
+                        android:textSize="14sp"
                         style="@style/RobotoBold"
-                        android:text="IDR 1.275.000">
+                        android:text="@string/hargaTotal">
                     </TextView>
 
                     <ImageView
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
                         android:src="@drawable/ic_chevron_down" />

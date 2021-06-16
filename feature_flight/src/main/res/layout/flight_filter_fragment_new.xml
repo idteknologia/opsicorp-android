@@ -50,7 +50,7 @@
                         <ImageView
                             android:layout_marginBottom="10dp"
                             android:layout_gravity="bottom"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/flight_depart"
                             android:layout_width="@dimen/icon_edittext"
                             android:layout_height="@dimen/icon_edittext" />
@@ -94,7 +94,7 @@
                                 android:layout_below="@+id/layStartDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -121,7 +121,7 @@
                         <ImageView
                             android:layout_marginBottom="10dp"
                             android:layout_gravity="bottom"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:src="@drawable/flight_arrived"
                             android:layout_width="@dimen/icon_edittext"
                             android:layout_height="@dimen/icon_edittext" />
@@ -164,7 +164,7 @@
                                 android:layout_below="@+id/lay_to"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -177,9 +177,9 @@
 
                 <com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth
                     android:id="@+id/btn_switch"
-                    android:layout_marginRight="28dp"
+                    android:layout_marginEnd="28dp"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth>
 
@@ -203,7 +203,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/ic_date_check_in"
                         android:layout_width="@dimen/icon_edittext"
                         android:layout_height="@dimen/icon_edittext" />
@@ -243,7 +243,7 @@
                             android:layout_below="@+id/lay_deaprture_date"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -258,7 +258,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="8dp"
                         android:src="@drawable/ic_date_check_out"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -299,7 +299,7 @@
                             android:layout_below="@+id/lay_end_date"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -310,7 +310,6 @@
 
             <LinearLayout
                 android:id="@+id/lay_parent_passager"
-                android:layout_below="@+id/line_depart"
                 android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
@@ -327,7 +326,7 @@
                     <ImageView
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="bottom"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:src="@drawable/passenger"
                         android:layout_width="@dimen/icon_edittext"
                         android:layout_height="@dimen/icon_edittext" />
@@ -352,7 +351,7 @@
                             <TextView
                                 android:textColor="@color/colorTextHint"
                                 android:textColorHint="@color/colorTextHint"
-                                android:text="1 Adults"
+                                tools:text="1 Adults"
                                 android:id="@+id/tv_passanger"
                                 android:paddingTop="8dp"
                                 android:paddingBottom="9dp"
@@ -370,7 +369,7 @@
                             android:layout_below="@+id/lay_passanger"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -379,7 +378,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@+id/line_depart"
                 android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
@@ -396,7 +394,7 @@
                     <ImageView
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="bottom"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_flight"
                         android:layout_width="@dimen/icon_edittext"
                         android:layout_height="@dimen/icon_edittext" />
@@ -416,7 +414,7 @@
                             <TextView
                                 android:textColor="@color/colorTextHint"
                                 android:textColorHint="@color/colorTextHint"
-                                android:hint="Airline Class"
+                                tools:hint="Airline Class"
                                 android:id="@+id/tv_titile_airline_class"
                                 android:paddingBottom="9dp"
                                 android:textAlignment="viewStart"
@@ -430,7 +428,7 @@
                                 android:singleLine="true"
                                 android:id="@+id/tv_airline_class"
                                 android:textColor="#009688"
-                                android:text="Economy"
+                                tools:text="Economy"
                                 android:textSize="14sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -442,7 +440,7 @@
                             android:layout_below="@+id/lay_airline_class"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -451,7 +449,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_below="@+id/line_depart"
                 android:layout_marginRight="@dimen/margin_default"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginTop="20dp"
@@ -468,7 +465,7 @@
                     <ImageView
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="bottom"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:src="@drawable/ic_flight"
                         android:layout_width="@dimen/icon_edittext"
                         android:layout_height="@dimen/icon_edittext" />
@@ -488,7 +485,7 @@
                             <TextView
                                 android:textColor="@color/colorTextHint"
                                 android:textColorHint="@color/colorTextHint"
-                                android:hint="Airlines Preferences"
+                                android:hint="@string/airlines_preferences"
                                 android:id="@+id/tv_titile_airline_prreferance"
                                 android:paddingBottom="9dp"
                                 android:textAlignment="viewStart"
@@ -514,7 +511,7 @@
                             android:layout_below="@+id/lay_airline_prreferance"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 

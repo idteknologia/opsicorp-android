@@ -1,10 +1,12 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
+import opsigo.com.datalayer.model.cart.RoutesItem
 import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.summary.*
+import java.util.ArrayList
 
 class SummaryEntityMapper() {
 
@@ -36,7 +38,13 @@ class SummaryEntityMapper() {
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
-        
+        summary.golper            = from.golper
+        summary.wbsNo             = from.wbsNo.toString()
+        summary.paymentStatus     = from.paymentStatus.toString()
+        summary.paymentStatusView = from.paymentStatusView.toString()
+
+
+
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()
             uplaodModel.id = tripAttachmentsItem.id.toString()

@@ -101,9 +101,9 @@ class DetailCartFlightActivity : BaseActivity() {
 
     private fun initToolbar() {
         if (dataOrder.dataCardFlight.typeFlight==0){
-            tripType.text = "Oneway"
+            tripType.text = getString(R.string.text_oneway)
         } else {
-            tripType.text = "Roundtrip"
+            tripType.text = getString(R.string.text_roundtrip)
         }
         ic_close.setOnClickListener {
             onBackPressed()

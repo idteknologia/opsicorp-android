@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="@android:color/white"
+<LinearLayout android:background="@android:color/white"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,7 +12,7 @@
         android:orientation="horizontal">
         <RelativeLayout
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:layout_width="30dp"
             android:background="@drawable/rounded_booking_contact"
             android:layout_height="30dp">
@@ -25,22 +26,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10dp"
+                    android:textSize="12sp"
                     android:textColor="#91929e"
-                    android:text="x" />
+                    android:text="@string/text_x" />
                 <TextView
                     android:id="@+id/number_data_infant"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:textColor="#00776a"
-                    android:text="1"/>
+                    android:text="@string/text_1"/>
             </LinearLayout>
 
         </RelativeLayout>
 
         <LinearLayout
-            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -50,14 +51,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#656677"
-                android:text="Infant or Child Passenger" />
+                android:text="@string/text_infant_or_child_passenger" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
+                android:textSize="12sp"
                 android:textColor="#91929e"
-                android:text="Below age 15"
+                android:text="@string/text_below_age_15"
                 android:layout_marginTop="2dp"/>
         </LinearLayout>
     </LinearLayout>
@@ -70,14 +71,14 @@
             android:layout_width="2dp"
             android:layout_height="244dp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="34dp"
+            android:layout_marginStart="34dp"
             android:background="#91929e"
-            android:orientation="horizontal"></LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="65dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="65dp"
             android:orientation="vertical"
             android:background="@android:color/white"
             android:layout_width="match_parent"
@@ -89,13 +90,13 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#8024253d"
                     android:lineSpacingExtra="4sp"
-                    android:text="Title"/>
+                    android:text="@string/title"/>
 
                 <LinearLayout
                     android:layout_width="50dp"
@@ -109,11 +110,11 @@
                         android:textSize="12sp"
                         android:textColor="#ffffff"
                         android:gravity="center"
-                        android:text="Mstr." />
+                        android:text="@string/text_mstr" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:background="#f5f5f5">
@@ -125,7 +126,7 @@
                         android:textSize="12sp"
                         android:textColor="#24253d"
                         android:gravity="center"
-                        android:text="Ms." />
+                        android:text="@string/text_ms" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -139,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColor="#91929e"
-                    android:text="Passenger Name" />
+                    android:text="@string/passengers" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,7 +166,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"></LinearLayout>
+                            android:background="#b2bbc6"/>
 
                     </LinearLayout>
 
@@ -174,10 +175,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="9sp"
+                    android:textSize="12sp"
                     android:textColor="#5488c1"
                     android:lineSpacingExtra="6sp"
-                    android:text="As on Birth Certificate"
+                    android:text="@string/text_as_on_birth_certificate"
                     android:layout_marginTop="2dp"/>
             </LinearLayout>
 
@@ -191,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
                     android:textColor="#91929e"
-                    android:text="Birth Date" />
+                    android:text="@string/text_birth_date" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -213,7 +214,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="29"
+                                tools:text="29"
                                 android:background="@color/transparent"/>
 
                         </LinearLayout>
@@ -221,17 +222,17 @@
                             android:layout_width="80dp"
                             android:layout_height="1dp"
                             android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"></LinearLayout>
+                            android:background="#b2bbc6"/>
 
                         <TextView
                             android:layout_marginTop="4dp"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             android:textColor="#5488c1"
                             android:gravity="center_horizontal"
-                            android:text="DD"/>
+                            android:text="@string/text_dd"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -252,7 +253,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="October"
+                                tools:text="October"
                                 android:background="@color/transparent"/>
 
                         </LinearLayout>
@@ -260,17 +261,17 @@
                             android:layout_width="80dp"
                             android:layout_height="1dp"
                             android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"></LinearLayout>
+                            android:background="#b2bbc6"/>
 
                         <TextView
                             android:layout_marginTop="4dp"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             android:textColor="#5488c1"
                             android:gravity="center_horizontal"
-                            android:text="MM"/>
+                            android:text="@string/text_mm"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -289,7 +290,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="2020"
+                                tools:text="2020"
                                 android:background="@color/transparent"/>
 
                         </LinearLayout>
@@ -297,27 +298,27 @@
                             android:layout_width="80dp"
                             android:layout_height="1dp"
                             android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"></LinearLayout>
+                            android:background="#b2bbc6"/>
 
                         <TextView
                             android:layout_marginTop="4dp"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             android:textColor="#5488c1"
                             android:gravity="center_horizontal"
-                            android:text="YYYY"/>
+                            android:text="@string/text_yyyy"/>
                     </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:textColor="#91929e"
                         android:gravity="end"
-                        android:text="2 Years Old"
-                        android:layout_marginLeft="10dp"
+                        android:text="@string/text_2_years_old"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"/>
 
 

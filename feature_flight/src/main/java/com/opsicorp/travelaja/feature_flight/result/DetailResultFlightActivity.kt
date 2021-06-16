@@ -30,6 +30,7 @@ import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
+import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
@@ -51,35 +52,46 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     lateinit var dataSsr : SsrModel
     lateinit var dataFareRules : ArrayList<FareRulesModel>
     lateinit var dataOrder: OrderAccomodationModel
+    var isSsr = false
 
     override fun OnMain() {
         getValidationFlight()
 
-        initButtonNext()
-        initToolbar()
     }
 
     private fun initButtonNext() {
         btn_next.callbackOnclickButton(this)
-        if (Globals.ONE_TRIP){
-            btn_next.setTextButton("Select Departing")
+        if (Constants.multitrip){
+            btn_next.setTextButton("Select Flight")
         }
-        else{
-            if (Globals.ALL_READY_SELECT_DEPARTING){
-                btn_next.setTextButton("Select Returning")
+        else {
+            if (Globals.ONE_TRIP){
+                btn_next.setTextButton("Select Departing")
             }
-            else {
-                btn_next.setTextButton("Select Departing ")
+            else{
+                if (Globals.ALL_READY_SELECT_DEPARTING){
+                    btn_next.setTextButton("Select Returning")
+                }
+                else {
+                    btn_next.setTextButton("Select Departing ")
+                }
             }
         }
+
     }
 
     private fun initToolbar() {
         toolbar.hidenBtnCart()
-        if(Globals.ALL_READY_SELECT_DEPARTING){
-            toolbar.setTitleBar("Returning Flight")
-        }else{
-            toolbar.setTitleBar("Departing Flight")
+        if (!Constants.multitrip){
+            if(Globals.ALL_READY_SELECT_DEPARTING){
+                toolbar.setTitleBar("Returning Flight")
+            }else{
+                toolbar.setTitleBar("Departing Flight")
+            }
+        }
+        else {
+            val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+            toolbar.setDoubleTitle("${dataOrder.routes[position].originName}(${dataOrder.routes[position].idOrigin}) - ${dataOrder.routes[position].destinationName}(${dataOrder.routes[position].idDestination})","${DateConverter().getDate(dataOrder.routes[position].dateDeparture,"yyyy-MM-dd","EEE, dd MMM yyyy")} - 1 pax")
         }
         toolbar.callbackOnclickToolbar(this)
     }
@@ -87,17 +99,25 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun getValidationFlight() {
         setLog(Serializer.serialize(dataRequest()))
         showLoadingOpsicorp(true)
-        GetDataAccomodation(getBaseUrl()).getValidationFlight(getToken(),dataRequest(),object : CallbackValidationFlight {
-            override fun successLoad(data: ValidationFlightModel) {
-                isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
-                getFareRules()
-                getSsr()
-            }
+        if (getProfile().companyCode=="000002"){
+            isNotComply = true
+            getFareRules()
+            getSsr()
+        }
+        else {
+            GetDataAccomodation(getBaseUrl()).getValidationFlight(getToken(),dataRequest(),object : CallbackValidationFlight {
+                override fun successLoad(data: ValidationFlightModel) {
+                    isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
+                    getFareRules()
+                    getSsr()
+                }
 
-            override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
-            }
-        })
+                override fun failedLoad(message: String) {
+                    hideLoadingOpsicorp()
+                }
+            })
+        }
+
     }
 
     private fun getFareRules() {
@@ -108,7 +128,6 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
 
             override fun failed(string: String) {
             }
-
         })
     }
 
@@ -143,13 +162,14 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         GetDataAccomodation(getBaseUrl()).getSsrFlight(getToken(),dataSrrRequest(),object : CallbackGetSsr {
             override fun success(data: SsrModel) {
                 hideLoadingOpsicorp()
-                initView()
+                isSsr = true
                 dataSsr = data
-                //setlog ssr
+                initView()
             }
 
             override fun failed(string: String) {
-
+                hideLoadingOpsicorp()
+                initView()
             }
         })
     }
@@ -195,14 +215,17 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         }
 
         if(Globals.DATA_FLIGHT.isNotEmpty()){
+
             dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
             dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
+
+            initButtonNext()
+            initToolbar()
 
             tv_airport_name.text = dataFlight.originAirport
             title_airline.text   = dataFlight.titleAirline
             tv_number.text       = dataFlight.flightNumber
             tv_type_class.text   = dataFlight.nameClass + " (" + dataFlight.code + ")"
-
 
             tv_duration.text     = dataFlight.durationView
             if(dataFlight.isConnecting){
@@ -211,15 +234,11 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
                 tv_transit.visibility   = View.GONE
             }
 
-
             tv_time_departure.text   = dataFlight.departTime
             tv_time_arrival.text     = dataFlight.arriveTime
 
             tv_date_departure.text  = DateConverter().setDateFormat4(dataFlight.departDate)
             tv_date_arrival.text    = DateConverter().setDateFormat4(dataFlight.arrivalDate)
-//            tv_departure.text       = "${data.originName} (${data.origin})"
-//            tv_arrival.text         = "${data.destinationName} (${data.destination})"
-
 
             if (Globals.ALL_READY_SELECT_DEPARTING){
                 tv_departure.text        = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
@@ -260,7 +279,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         return Globals.classToHashMap(data, ValidationFlightRequest::class.java)
     }
 
-    private fun getRemark(): List<String?>? {
+    private fun getRemark(): List<String?> {
         val data = ArrayList<String>()
 
         data.add(getProfile().title)
@@ -397,10 +416,12 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             mData.typeContact = Constants.CHILD
             datalist.dataFlight.last().passenger.add(mData)
         }
-
-        datalist.dataFlight.last().passenger.mapIndexed { index, bookingContactAdapterModel ->
-            bookingContactAdapterModel.ssr = dataSsr
+        if (isSsr){
+            datalist.dataFlight.last().passenger.mapIndexed { index, bookingContactAdapterModel ->
+                bookingContactAdapterModel.ssr = dataSsr
+            }
         }
+
 
         datalist.dataFlight.last().notComply = isNotComply
 

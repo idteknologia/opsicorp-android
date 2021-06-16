@@ -54,7 +54,9 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String?) {
         super.onNewToken(token)
-        Log.i(TAG, token)
+        if (token != null) {
+            Log.i(TAG, token)
+        }
     }
 
 //    override fun onTokenRefresh() {
@@ -73,7 +75,7 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
         Constants.isParticipant = false
 
         remoteMessage?.let { message ->
-            Log.i(TAG, message.data.get("message"))
+            Log.i(TAG, message.data.get("message")!!)
 
             //var broadcaster = LocalBroadcastManager.getInstance(getBaseContext());
             Log.d(TAG, "Dikirim dari: ${remoteMessage.from}")
@@ -109,12 +111,14 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
             Log.d("myfir01","here " + message.data.toString())
             Log.d("myfir01","" + message.data.get("additionalData"))
 
-            if(notifType == Constants.NotifType.SubmitTripPan){
+            if(notifType == Constants.NotifType.SubmitTripPan) {
 
                 val additionalData = message.data.get("additionalData")
                 val data = JSONObject(additionalData)
 
-                Log.i(TAG, additionalData)
+                if (additionalData != null) {
+                    Log.i(TAG, additionalData)
+                }
 
                 SEND_TO = data.optInt("SendTo", -1)
 
@@ -125,12 +129,35 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
                 val endDate = data.optString("EndDate", null)
                 val tp_status = data.optString("Status", null)
 
-                Log.d("myfir02","here " + data)
+                Log.d("myfir02", "here " + data)
                 if (SEND_TO == Constants.SendTo.Approvers) {
 
-                    Log.d("myfir03","here ")
+                    Log.d("myfir03", "here ")
                     displayNotification(InitApplications.appContext, notif_id,
-                            tpId, tripCode, purpose, startDate, endDate )
+                            tpId, tripCode, purpose, startDate, endDate)
+
+                }
+
+            }else if(notifType == Constants.NotifType.PaymentCompleted){
+
+                val additionalData = message.data.get("additionalData")
+                val data = JSONObject(additionalData)
+
+                if (additionalData != null) {
+                    Log.i(TAG, additionalData)
+                }
+
+                SEND_TO = data.optInt("SendTo", -1)
+
+                val tpId = data.optString("TripPlanId", null)
+                val tripCode = data.optString("TripCode", null)
+                val purpose = data.optString("Purpose", null)
+
+                if (SEND_TO == Constants.SendTo.Approvers) {
+
+                    Log.d("myfir03", "here ")
+                    /*displayNotification(InitApplications.appContext, notif_id,
+                    purpose)*/
 
                 }
 
@@ -158,7 +185,9 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
             }else if(notifType == Constants.NotifType.FinishFollowUpPerPax){
 
                 val additionalData = message.data.get("additionalData")
-                Log.i(TAG, additionalData)
+                if (additionalData != null) {
+                    Log.i(TAG, additionalData)
+                }
                 val data = JSONObject(additionalData)
 
                 val TripPlanId = data.optString("TripPlanId", null)

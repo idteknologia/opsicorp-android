@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_height="wrap_content">
@@ -26,9 +26,8 @@
             android:id="@+id/tvPassengerSsr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="22dp"
-            android:text="Passenger"
+            tools:text="Passenger"
             android:textColor="#24253d"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -112,7 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#cc000000"
-        android:visibility="gone"></LinearLayout>
+        android:visibility="gone"/>
 
     <LinearLayout
         android:elevation="3dp"
@@ -124,7 +123,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -147,7 +146,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
                     android:text="@string/ssr_charge"
@@ -159,10 +157,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="42dp"
-                    android:layout_marginRight="@dimen/margin_default"
                     android:gravity="end"
                     android:text="@string/total_price"
                     android:textColor="#24253d"
@@ -173,13 +169,10 @@
                     android:layout_width="12dp"
                     android:layout_height="12dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
                     android:layout_gravity="center"
                     android:layout_marginStart="13dp"
-                    android:layout_marginLeft="13dp"
                     android:layout_marginTop="18dp"
                     android:layout_marginEnd="22dp"
-                    android:layout_marginRight="22dp"
                     android:src="@drawable/ic_chevron_up_orange" />
             </RelativeLayout>
 
@@ -188,7 +181,7 @@
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
-                android:background="#d8d8d8"></LinearLayout>
+                android:background="#d8d8d8"/>
 
             <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
                 android:background="@android:color/white"

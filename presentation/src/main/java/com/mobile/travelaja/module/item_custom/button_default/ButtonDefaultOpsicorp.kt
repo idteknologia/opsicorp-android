@@ -33,7 +33,7 @@ class ButtonDefaultOpsicorp : LinearLayout, View.OnClickListener {
         val a = context.obtainStyledAttributes(attrs, R.styleable.ButtonDefaultOpsicorp, defStyle, 0)
 
         try {
-            mTitle = a.getString(R.styleable.ButtonDefaultOpsicorp_text)
+            mTitle = a.getString(R.styleable.ButtonDefaultOpsicorp_text).toString()
 //            backgroundButton = a.getDrawable(R.styleable.ButtonDefaultOpsicorp_backgroundButton)
         }catch (e:Exception){
             mTitle = ""

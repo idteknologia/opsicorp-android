@@ -221,7 +221,7 @@ object Globals {
     fun getDataPreferenceString(context: Context, key: String): String {
         val name = "${context.packageName}.$key"
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
-        return sharedPref.getString(name, "")
+        return sharedPref.getString(name, "")!!
     }
 
     fun getDataPreferenceFloat(context: Context, key: String): Float {
@@ -658,7 +658,7 @@ object Globals {
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.text = text
         } else {
-            val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            var clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
             val clip = ClipData.newPlainText("text copy", text)
             clipboard.primaryClip = clip
         }
@@ -855,7 +855,7 @@ object Globals {
                 android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                 mDateSetListener,
                 year, month, day)
-        dialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.show()
     }
 

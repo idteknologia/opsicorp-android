@@ -2,6 +2,7 @@ package opsigo.com.datalayer.model.accomodation.flight.search
 
 import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
+import opsigo.com.datalayer.model.accomodation.flight.search.multicity.MultiFlightsItem
 
 @Generated("com.robohorse.robopojogenerator")
 data class ResultSearchFlightEntity(
@@ -15,7 +16,7 @@ data class ResultSearchFlightEntity(
 		@field:SerializedName("Destination")
 	val destination: String? = null,
 
-	@field:SerializedName("ReturnFlights")
+		@field:SerializedName("ReturnFlights")
 	val returnFlights: List<ReturnFlightsItem> = ArrayList(),
 
 		@field:SerializedName("RequestId")
@@ -40,8 +41,10 @@ data class ResultSearchFlightEntity(
 		@field:SerializedName("DepartureFlights")
 	val departureFlights: List<DepartureFlightsItem> = ArrayList(),
 
+		@field:SerializedName("MultiFlights")
+		val multiCity: List<MultiFlightsItem?>? = ArrayList(),
+
 		@field:SerializedName("IncomingTrain")
 	val incomingTrain: List<Any?>? = null
-
 
 )

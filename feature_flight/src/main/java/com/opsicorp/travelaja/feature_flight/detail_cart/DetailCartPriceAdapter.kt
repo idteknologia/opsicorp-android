@@ -10,10 +10,9 @@ import com.mobile.travelaja.utility.StringUtils
 import kotlinx.android.synthetic.main.detail_cart_price_adapter.view.*
 import opsigo.com.domainlayer.model.summary.PaymentsItemModel
 
-class DetailCartPriceAdapter(context: Context): RecyclerView.Adapter<DetailCartPriceAdapter.ViewHolder>() {
+class DetailCartPriceAdapter(val context: Context): RecyclerView.Adapter<DetailCartPriceAdapter.ViewHolder>() {
 
     var items = ArrayList<PaymentsItemModel>()
-    val context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
