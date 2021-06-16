@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<!--
     <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
@@ -478,7 +478,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:ael_duration="200"
-                    app:ael_expanded="false"
+                    app:ael_expanded="true"
                     android:id="@+id/body_prize"
                     app:ael_interpolator="accelerateDecelerate"
                     android:orientation="vertical">
@@ -499,10 +499,9 @@
 
                     </androidx.recyclerview.widget.RecyclerView>
 
-
                     <RelativeLayout
                         android:id="@+id/rlBaggagePrice"
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:layout_marginTop="20dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginEnd="20dp"
@@ -669,5 +668,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>-->
 </LinearLayout>

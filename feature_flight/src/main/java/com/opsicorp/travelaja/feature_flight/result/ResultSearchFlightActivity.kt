@@ -2,11 +2,11 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import java.util.*
 import android.view.View
+import android.os.Bundle
 import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import androidx.transition.Fade
 import kotlin.collections.HashMap
 import java.text.SimpleDateFormat

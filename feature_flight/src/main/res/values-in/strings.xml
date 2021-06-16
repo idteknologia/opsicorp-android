@@ -464,6 +464,7 @@ Please add your trip item for Approval."
     <string name="facilities">Facilities</string>
 
     <string name="total_price_for_1_pax">Total price for 1 pax</string>
+    <string name="total_price_for">Total price for</string>
     <string name="total_to_be_paid">TOTAL TO BE PAID</string>
     <string name="total_purchase_orders">Total Purchase orders:</string>
     <string name="including_of_all_fares">Including of all fares, taxes &amp; fees</string>

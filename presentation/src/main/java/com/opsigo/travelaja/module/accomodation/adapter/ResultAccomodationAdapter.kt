@@ -188,7 +188,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
             tv_duration.text       = data.durationView
             tv_type_class.text     = data.nameClass + " (" + data.code + ")"
             tv_destination.text    = data.origin + " - " + data.destination
-            tv_time_departure.text = "${data.departDate}" //data.departTime + " - " + data.arriveTime
+            tv_time_departure.text = data.departTime + " - " + data.arriveTime //"${data.departDate}"
             tv_price.text          = StringUtils().setCurrency("", data.price , false)
 
             var transit = data.totalTransit.toString()

@@ -5,6 +5,8 @@ import android.os.Bundle
 import java.util.HashMap
 import android.app.Activity
 import android.content.Intent
+import android.view.View
+import androidx.core.content.ContextCompat
 import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.utility.gone
 import com.opsigo.travelaja.utility.Globals
@@ -14,6 +16,7 @@ import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.domainlayer.callback.CallbackGetSsr
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.DefaultItemAnimator
+import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import com.opsicorp.travelaja.feature_flight.result.ConfirmOrderFlightActivity
 import opsigo.com.domainlayer.model.summary.PassportModel
 import opsigo.com.domainlayer.callback.CallbackGetFareRules
@@ -41,6 +44,7 @@ import opsigo.com.datalayer.request_model.accomodation.flight.validation.Segment
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
+import java.lang.Exception
 
 class FlightMultiCityListActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -51,6 +55,8 @@ class FlightMultiCityListActivity : BaseActivity(),
         return R.layout.multi_city_list_activity
     }
 
+    val dataFligt = ArrayList<ResultListFlightModel>()
+    val adapterPrice by lazy { TotalPriceAdapter(this) }
     val adapter          = FlightMultiCityListAdapter(this@FlightMultiCityListActivity)
     var dataOrder        = OrderAccomodationModel()
     val dataFLigt        = DataListOrderAccomodation()
@@ -103,7 +109,7 @@ class FlightMultiCityListActivity : BaseActivity(),
             toolbar.singgleTitleGravity(toolbar.START)
         }
         btn_next.callbackOnclickButton(this)
-        tv_price.setText("IDR 0")
+        tv_price.setText("0 IDR")
         line_shadow.gone()
     }
 
@@ -166,6 +172,7 @@ class FlightMultiCityListActivity : BaseActivity(),
                     if (getProfile().companyCode=="000002"){
                         dataOrder.routes[currentPosition].flightResult = data
                         dataOrder.routes[currentPosition].flightResult.notComply = false
+                        setTotalprice()
                         getFareRules(dataOrder.routes[currentPosition].flightResult)
                         getSsr(dataOrder.routes[currentPosition].flightResult)
                     }else {
@@ -184,6 +191,7 @@ class FlightMultiCityListActivity : BaseActivity(),
                 val isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
                 dataOrder.routes[currentPosition].flightResult = dataFlight
                 dataOrder.routes[currentPosition].flightResult.notComply = isNotComply
+                setTotalprice()
 //                getFareRules(dataOrder.routes[currentPosition].flightResult)
                 getSsr(dataOrder.routes[currentPosition].flightResult)
             }
@@ -432,5 +440,58 @@ class FlightMultiCityListActivity : BaseActivity(),
         data.mobilePhone    = getProfile().phone
         return data
     }
+
+    fun setTotalprice(){
+
+        tv_price.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        ic_image.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        tv_title_prize.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+        line_shadow.setOnClickListener {
+            showOrHideDetailPrice()
+        }
+
+        dataFligt.clear()
+        dataOrder.routes.forEach {
+            dataFligt.add(it.flightResult)
+        }
+        adapterPrice.setData(dataFligt)
+
+        var totalPrice = 0.0
+        dataOrder.routes.forEach {
+            totalPrice =  totalPrice+it.flightResult.price
+        }
+        tv_price.text = "${getString(R.string.total_price_for_1_pax)} ${dataFLigt.dataFlight.size} pax"
+        tv_price.text = "${Globals.formatAmount(totalPrice)} IDR"
+    }
+
+    private fun showOrHideDetailPrice() {
+        if (body_prize.isExpanded){
+            collapsePrice()
+        }
+        else{
+            expandPrice()
+        }
+    }
+
+    private fun expandPrice() {
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_down))
+        line_shadow.visibility  = View.VISIBLE
+        tv_including.visibility = View.GONE
+        body_prize.expand()
+    }
+
+    private fun collapsePrice() {
+        ic_image.setImageDrawable(ContextCompat.getDrawable(applicationContext,R.drawable.ic_chevron_up_orange))
+        tv_including.visibility = View.VISIBLE
+        line_shadow.visibility  = View.GONE
+        body_prize.collapse()
+    }
+
 
 }

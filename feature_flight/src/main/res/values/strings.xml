@@ -468,6 +468,7 @@ Please add your trip item for Approval."
     <string name="facilities">Facilities</string>
 
     <string name="total_price_for_1_pax">Total price for 1 pax</string>
+    <string name="total_price_for">Total price for</string>
     <string name="total_to_be_paid">TOTAL TO BE PAID</string>
     <string name="total_purchase_orders">Total Purchase orders:</string>
     <string name="including_of_all_fares">Including of all fares, taxes &amp; fees</string>
@@ -672,7 +673,7 @@ Please add your trip item for Approval."
     <string name="airport">Airport :</string>
     <string name="terminalBandara">Soekarno Hatta - Terminal 1C</string>
 
-    <string name="hargaTotal">IDR 719.000</string>
+    <string name="hargaTotal">0 IDR </string>
     <string name="cz_fare_option_not_available" translatable="false">CZ - Fare option not available</string>
     <string name="please_choose_the_information_for_fastest_approval" translatable="false">Please choose the information for fastest Approval</string>
     <string name="transit">TRANSIT</string>

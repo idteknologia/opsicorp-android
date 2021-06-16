@@ -40,5 +40,9 @@ data class HeaderReserveFlightRequest(
 
 
 	@field:SerializedName("Purpose")
-	var purpose: String = ""
+	var purpose: String = "",
+
+	@field:SerializedName("Routes")
+	var routes: ArrayList<RoutestRequest> = ArrayList(),
+
 )
