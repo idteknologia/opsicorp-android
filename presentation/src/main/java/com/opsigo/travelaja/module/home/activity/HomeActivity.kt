@@ -2,6 +2,7 @@ package com.opsigo.travelaja.module.home.activity
 
 import android.view.View
 import android.content.Intent
+import android.util.Log
 import com.opsigo.travelaja.R
 import androidx.core.os.bundleOf
 import opsigo.com.domainlayer.callback.*
@@ -59,8 +60,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             getDataCountryHotel()
         }
 
-//        setLog("---------------------")
-//        setLog(Globals.getDataPreferenceString(this,Constants.KEY_DATA_CODE_AIRPORT))
+        Log.e(" TAG log ",Globals.getProfile(this).companyCode)
     }
 
     private fun getDataCountryHotel() {

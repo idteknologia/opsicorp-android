@@ -66,7 +66,6 @@ class FlightMultiCityListActivity : BaseActivity(),
     private fun mappingDataListFlight() {
         dataFLigt.dataFlight.clear()
         dataOrder.routes.forEachIndexed { index, routeMultiCityModel ->
-            setLog(Serializer.serialize(routeMultiCityModel))
             if (routeMultiCityModel.flightResult.titleAirline.isEmpty()){
                 val data = ResultListFlightModel()
                 data.departDate      = routeMultiCityModel.dateDeparture
@@ -114,7 +113,7 @@ class FlightMultiCityListActivity : BaseActivity(),
     }
 
     private fun changeButtonBookOrangeColor() {
-        btn_next.changeTextColorButton(R.color.colorPureBlack)
+        btn_next.changeTextColorButton(R.color.colorWhite)
         btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_yellow)
     }
 
@@ -164,8 +163,14 @@ class FlightMultiCityListActivity : BaseActivity(),
             Constants.REQUEST_CODE_SELECT_FLIGHT -> {
                 if (resultCode==Activity.RESULT_OK){
                     val data = Serializer.deserialize(data?.getStringExtra(Constants.KEY_INTENT_SELECT_FLIGHT),ResultListFlightModel::class.java)
-                    setLog("Test select flight",data.titleAirline)
-                    getValidationFlight(data)
+                    if (getProfile().companyCode=="000002"){
+                        dataOrder.routes[currentPosition].flightResult = data
+                        dataOrder.routes[currentPosition].flightResult.notComply = false
+                        getFareRules(dataOrder.routes[currentPosition].flightResult)
+                        getSsr(dataOrder.routes[currentPosition].flightResult)
+                    }else {
+                        getValidationFlight(data)
+                    }
                 }
             }
         }
@@ -179,7 +184,7 @@ class FlightMultiCityListActivity : BaseActivity(),
                 val isNotComply = data.isSecurity || data.isSecondary || data.isResticted || data.advanceBooking || !data.isLowerFare || !data.isAirlinePolicy
                 dataOrder.routes[currentPosition].flightResult = dataFlight
                 dataOrder.routes[currentPosition].flightResult.notComply = isNotComply
-                getFareRules(dataOrder.routes[currentPosition].flightResult)
+//                getFareRules(dataOrder.routes[currentPosition].flightResult)
                 getSsr(dataOrder.routes[currentPosition].flightResult)
             }
 
@@ -193,16 +198,16 @@ class FlightMultiCityListActivity : BaseActivity(),
         GetDataAccomodation(getBaseUrl()).getSsrFlight(getToken(),dataSrrRequest(dataFlight),object : CallbackGetSsr {
             override fun success(data: SsrModel) {
                 hideLoadingOpsicorp()
-                saveDataSsr(dataFlight,data)
+                saveDataSsr(dataFlight,data,true)
             }
 
             override fun failed(string: String) {
-
+                saveDataSsr(dataFlight,SsrModel(),false)
             }
         })
     }
 
-    private fun saveDataSsr(dataFlight: ResultListFlightModel,dataSsr: SsrModel) {
+    private fun saveDataSsr(dataFlight: ResultListFlightModel,dataSsr: SsrModel,ssrNotEmpty:Boolean) {
 
         val mDataBooker = BookingContactAdapterModel()
         mDataBooker.typeContact = Constants.ADULT
@@ -232,9 +237,12 @@ class FlightMultiCityListActivity : BaseActivity(),
             dataFlight.passenger.add(mData)
         }
 
-        dataFlight.passenger.mapIndexed { index, bookingContactAdapterModel ->
-            bookingContactAdapterModel.ssr = dataSsr
+        if (ssrNotEmpty){
+            dataFlight.passenger.mapIndexed { index, bookingContactAdapterModel ->
+                bookingContactAdapterModel.ssr = dataSsr
+            }
         }
+
 
         mappingDataListFlight()
     }
@@ -424,6 +432,5 @@ class FlightMultiCityListActivity : BaseActivity(),
         data.mobilePhone    = getProfile().phone
         return data
     }
-
 
 }

@@ -1,10 +1,12 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
+import opsigo.com.datalayer.model.cart.RoutesItem
 import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.summary.*
+import java.util.ArrayList
 
 class SummaryEntityMapper() {
 
@@ -32,7 +34,6 @@ class SummaryEntityMapper() {
         summary.statusView      = from.statusView.toString()
         summary.creationDate    = from.creationDateView.toString()
         summary.idUser          = from.contact?.id.toString()
-//        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
@@ -40,7 +41,7 @@ class SummaryEntityMapper() {
         summary.paymentStatusView = from.paymentStatusView.toString()
 
 
-        
+
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
             val uplaodModel = UploadModel()
             uplaodModel.id = tripAttachmentsItem.id.toString()
@@ -51,7 +52,7 @@ class SummaryEntityMapper() {
             summary.attactment.add(uplaodModel)
         }
 
-        from.routes?.forEachIndexed { index, routesItem ->
+        from.routes.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
                 routesItinerary.transportation = routesItem.transportation.toInt()

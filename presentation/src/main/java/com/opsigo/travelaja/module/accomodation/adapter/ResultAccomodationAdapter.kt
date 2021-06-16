@@ -9,6 +9,7 @@ import android.content.Context
 import android.widget.TextView
 import android.widget.ImageView
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import com.squareup.picasso.Picasso
 import com.opsigo.travelaja.utility.*
 import com.opsigo.travelaja.utility.Globals.setLog
@@ -163,8 +164,6 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
 
     inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
-
-
         val img_flight_icon    = itemView.findViewById(R.id.img_flight_icon) as ImageView
         val title_airline       = itemView.findViewById(R.id.title_airline) as TextView
         val tv_number           = itemView.findViewById(R.id.tv_number) as TextView
@@ -175,7 +174,7 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
         val tv_price            = itemView.findViewById(R.id.tv_price) as TextView
         val tv_transit          = itemView.findViewById(R.id.tv_transit) as TextView
         val flightComply        = itemView.findViewById(R.id.tv_comply) as TextView
-
+        val btnFLightDetail     = itemView.findViewById(R.id.btn_detail_flight) as LinearLayout
 
         fun bind(data: ResultListFlightModel, position:Int) {
             Picasso.get()
@@ -190,7 +189,6 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
             tv_type_class.text     = data.nameClass + " (" + data.code + ")"
             tv_destination.text    = data.origin + " - " + data.destination
             tv_time_departure.text = "${data.departDate}" //data.departTime + " - " + data.arriveTime
-//            tv_price.text          = Globals.formatAmount(data.price)
             tv_price.text          = StringUtils().setCurrency("", data.price , false)
 
             var transit = data.totalTransit.toString()
@@ -208,6 +206,9 @@ class ResultAccomodationAdapter : androidx.recyclerview.widget.RecyclerView.Adap
                 flightComply.invisible()
             }
 
+           /* btnFLightDetail.setOnClickListener {
+                onclick.onClick(-2,position)
+            }*/
 
             itemView.setOnClickListener {
                 onclick.onClick(-1,position)

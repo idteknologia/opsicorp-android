@@ -1,6 +1,7 @@
 package opsigo.com.datalayer.datanetwork.dummy.accomodation
 
 import opsigo.com.datalayer.model.cart.RoutesItem
+import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 
 class OrderAccomodationModel {
@@ -26,4 +27,5 @@ class OrderAccomodationModel {
     var destinationStationName = ""
     var reasonCode             = ""
     var routes               = ArrayList<RouteMultiCityModel>()
+
 }

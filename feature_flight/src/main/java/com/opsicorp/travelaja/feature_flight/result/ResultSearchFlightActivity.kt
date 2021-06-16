@@ -6,6 +6,7 @@ import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import androidx.transition.Fade
 import kotlin.collections.HashMap
 import java.text.SimpleDateFormat
@@ -70,6 +71,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     val timeSelectFilterArrival = ArrayList<String>()
     val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
     val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+    var positionRoutes = 0
     
     override fun OnMain() {
         initItemViews()
@@ -77,6 +79,9 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun initItemViews() {
         try {
+            if (Constants.multitrip){
+                positionRoutes = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+            }
             dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
             setRecyclerView()
             filter.callbackOnclickFilter(this)
@@ -112,12 +117,20 @@ class ResultSearchFlightActivity : BaseActivity(),
                             }
                         }
                         else {
-                            val dataSelected = data.get(position).listFlightModel
+                            val dataSelected = data[position].listFlightModel
                             val intent = Intent()
                             intent.putExtra(Constants.KEY_INTENT_SELECT_FLIGHT,Serializer.serialize(dataSelected))
                             Globals.finishResultOk(this@ResultSearchFlightActivity,intent)
                         }
-
+                    }
+                    -2 -> {
+                        if (totalGetDataFlight!=dataCodeAirline.listSchedule.size){
+                            data.removeAll(data.filter { it.typeLayout == 5 })
+                            gotoDetailFlight(position)
+                        }
+                        else{
+                            gotoDetailFlight(position)
+                        }
                     }
                 }
             }
@@ -125,9 +138,11 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun gotoDetailFlight(position: Int) {
-        val dataSelected = data.get(position).listFlightModel
+        val bundle = Bundle()
+        val dataSelected = data[position].listFlightModel
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
-        gotoActivity(DetailResultFlightActivity::class.java)
+        bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
+        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
     }
 
     private fun getAirlineByCompany() {
@@ -284,7 +299,8 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun mappingByDate() {
         data.clear()
         val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
-        data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY.filter { it.listFlightModel.departDate.equals(dataOrder.routes[position].dateDeparture) })
+        val departure = if (dataOrder.routes[position].dateDeparture.contains(" ")) dataOrder.routes[position].dateDeparture.split(" ")[0] else dataOrder.routes[position].dateDeparture
+        data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY.filter { it.listFlightModel.departDate.contains(departure.trim()) })
         checkEmptyData()
     }
 
@@ -363,8 +379,8 @@ class ResultSearchFlightActivity : BaseActivity(),
             toolbar.setDoubleTitle("${originName} - ${destinationName}","$titleDate Date : ${date} - 1 pax")
         }
         else {
-            val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
-            toolbar.setDoubleTitle("${dataOrder.routes[position].originName}(${dataOrder.routes[position].idOrigin}) - ${dataOrder.routes[position].destinationName}(${dataOrder.routes[position].idDestination})","${DateConverter().getDate(dataOrder.routes[position].dateDeparture,"yyyy-MM-dd","EEE, dd MMM yyyy")} - 1 pax")
+            toolbar.setDoubleTitle("${dataOrder.routes[positionRoutes].originName}(${dataOrder.routes[positionRoutes].idOrigin}) - ${dataOrder.routes[positionRoutes].destinationName}(${dataOrder.routes[positionRoutes].idDestination})",
+                    "${DateConverter().getDate(dataOrder.routes[positionRoutes].dateDeparture,"yyyy-MM-dd","EEE, dd MMM yyyy")} - 1 pax")
         }
     }
 
@@ -386,13 +402,6 @@ class ResultSearchFlightActivity : BaseActivity(),
         when(requestCode){
             Constants.GET_FILTER -> {
                 if (resultCode== Activity.RESULT_OK){
-                    setLog(Constants.dataFilterMaxPriceAccomodation.toString())
-                    Constants.dataDepartureTime.forEachIndexed{
-                        index, accomodationPreferanceModel ->
-                        if (accomodationPreferanceModel.checked){
-                            setLog(accomodationPreferanceModel.time.trim().split("-")[0])
-                        }
-                    }
                     timeSelectFilterArrival.clear()
                     timeSelectFilterDeparture.clear()
                     nameStation.clear()

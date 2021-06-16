@@ -7,11 +7,11 @@ import com.google.gson.annotations.SerializedName
 data class TripParticipantsItem(
 
 	@field:SerializedName("BudgetId")
-	var budgetId: String = "",
+	var budgetId: String? = null,
 
 	@field:SerializedName("EmployeeId")
-	var employeeId: String = "",
+	var employeeId: String? = null,
 
 	@field:SerializedName("CostCenterId")
-    var costCenterId: String= ""
+    var costCenterId: String? = null
 )

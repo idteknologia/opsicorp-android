@@ -21,144 +21,72 @@ class ListParticipantsDataMapper {
                 val dataHotelModel  = ArrayList<ItemHotelModel>()
 
                 if (!mData.flights.isNullOrEmpty()){
-                    mData.flights.filter { it?.employeeId == data?.employeeId }.first()?.tripFlights?.forEachIndexed { index, tripFlightsItem ->
+                    mData.flights.filter { it?.employeeId == data?.employeeId }.forEachIndexed { index, flightsItem ->
+                        flightsItem?.tripFlights?.forEachIndexed { index, tripFlightsItem ->
+                            var num = 0
+                            val dataFlight  = ItemFlightModel()
 
-                        var num = 0
-                        val dataFlight  = ItemFlightModel()
+                            dataFlight.typeView         = tripFlightsItem!!.flightTypeView.toString()
+                            dataFlight.type             = tripFlightsItem.flightType
 
-                        dataFlight.typeView         = tripFlightsItem!!.flightTypeView.toString()
-                        dataFlight.type             = tripFlightsItem.flightType
+                            dataFlight.airlineName      = tripFlightsItem.airlineView.toString()//"Sriwijaya"
 
-                        dataFlight.airlineName      = tripFlightsItem.airlineView.toString()//"Sriwijaya"
+                            dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
 
-                        //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
-
-                        dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
-
-
-                        dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
-                        dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
+                            dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
+                            dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
 
 
-                        dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
+                            dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
 
 
-                        tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
-                            dataFlight.priceItem.add(priceMapperData(paymentsItem))
-                        }
+                            tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
+                                dataFlight.priceItem.add(priceMapperData(paymentsItem))
+                            }
 
-                        tripFlightsItem.segments?.forEachIndexed { index, segmentsItem ->
-                            dataFlight.imageFlight      = segmentsItem!!.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
-                            dataFlight.originDestination = segmentsItem.originName+" - "+segmentsItem.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
-                            dataFlight.nextDestination = segmentsItem.destinationName+" - "+segmentsItem.originName
-                            dataFlight.idFlight         = segmentsItem.tripFlightId.toString()//"Sriwijaya"
-                            dataFlight.flightNumber     = segmentsItem.flightNumber.toString()//"SJ-0412"
-                            dataFlight.seatNumber       = segmentsItem.flightNumber.toString()
+                            tripFlightsItem.segments?.forEachIndexed { index, segmentsItem ->
+                                dataFlight.imageFlight      = segmentsItem!!.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
+                                dataFlight.originDestination = segmentsItem.originName+" - "+segmentsItem.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
+                                dataFlight.nextDestination = segmentsItem.destinationName+" - "+segmentsItem.originName
+                                dataFlight.idFlight         = segmentsItem.tripFlightId.toString()//"Sriwijaya"
+                                dataFlight.flightNumber     = segmentsItem.flightNumber.toString()//"SJ-0412"
+                                dataFlight.seatNumber       = segmentsItem.flightNumber.toString()
 
-                            dataFlight.classFlight      = segmentsItem.category + " Class"
-                            dataFlight.subClass         = "Subclass-" + segmentsItem.classCode.toString()
+                                dataFlight.classFlight      = segmentsItem.category + " Class"
+                                dataFlight.subClass         = "Subclass-" + segmentsItem.classCode.toString()
 
-                            dataFlight.num              = segmentsItem.num
-                            dataFlight.seq              = segmentsItem.seq
-
-                            //departure
-                            dataFlight.origin           = segmentsItem.origin.toString()
-                            dataFlight.originName       = segmentsItem.cityOrigin.toString()
-                            dataFlight.airportDeparture = segmentsItem.airportOrigin.toString()
-                            dataFlight.dateDeparture    = segmentsItem.departDate.toString()
-
-                            dataFlight.timeDeparture    = segmentsItem.departTime.toString()
-
-                            //arrival
-                            dataFlight.destination      = segmentsItem.destination.toString()
-                            dataFlight.destinationName  = segmentsItem.cityDestination.toString()
-                            dataFlight.airportArrival   = segmentsItem.airportDestination.toString()
-                            dataFlight.dateArrival      = segmentsItem.arriveDate.toString()
-                            dataFlight.timeArrival      = segmentsItem.arriveTime.toString()
-
-                            dataFlight.isComply         = segmentsItem.isComply
-                            dataFlight.duration         = segmentsItem.duration.toString()
-
-                            dataFlight.flightSegmentItem.add(segmentMapperData(segmentsItem, tripFlightsItem.pnrCode.toString(),
-                                    tripFlightsItem.status.toString(), tripFlightsItem.amount.toString(),
-                                    tripFlightsItem.passengers?.size.toString(), tripFlightsItem.airlineView.toString(), ))
-                        }
-
-                        dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
-
-
-                        dataFlightModel.add(dataFlight)
-                        num++
-
-                        /*tripFlightsItem.segments?.forEachIndexed { _, segmentFlightEntity ->
-
-                            if (num==segmentFlightEntity?.num){
-
-
-                                dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
-
-                                *//*val dataFlight  = ItemFlightModel()*//*
-
-                                *//*dataFlight.typeView         = tripFlightsItem.flightTypeView.toString()
-                                dataFlight.type             = tripFlightsItem.flightType
-
-                                dataFlight.imageFlight      = segmentFlightEntity.airlineImageUrl.toString()//"https://i.ibb.co/C0XzT6K/sriwijaya.png"
-                                //dataFlight.carrier          = tripFlightsItem.carrier
-
-                                dataFlight.originDeatination = segmentFlightEntity.originName+" - "+segmentFlightEntity.destinationName //"Jakarta (CGK) - Yogyakarta (JOG)"
-
-                                //dataFlight.idFlight         = segmentFlightEntity.id//"Sriwijaya"
-                                dataFlight.idFlight         = segmentFlightEntity.tripFlightId.toString()//"Sriwijaya"
-                                dataFlight.airlineName      = tripFlightsItem.airlineView.toString()//"Sriwijaya"
-                                dataFlight.flightNumber     = segmentFlightEntity.flightNumber.toString()//"SJ-0412"
-                                dataFlight.seatNumber       = segmentFlightEntity.flightNumber.toString()
-
-                                //if (segmentsItem.classCode==null) "" else segmentsItem.classCode
-                                dataFlight.status           = if (tripFlightsItem.status==null) "" else tripFlightsItem.status
-                                dataFlight.classFlight      = segmentFlightEntity.category + " Class"
-                                dataFlight.subClass         = "Subclass-" + segmentFlightEntity.classCode.toString()
-
-                                dataFlight.num              = segmentFlightEntity.num
-                                dataFlight.seq              = segmentFlightEntity.seq
+                                dataFlight.num              = segmentsItem.num
+                                dataFlight.seq              = segmentsItem.seq
 
                                 //departure
-                                dataFlight.origin           = segmentFlightEntity.origin.toString()
-                                dataFlight.originName       = segmentFlightEntity.cityOrigin.toString()
-                                dataFlight.airportDeparture = segmentFlightEntity.airportOrigin.toString()
-                                dataFlight.dateDeparture    = segmentFlightEntity.departDate.toString()
+                                dataFlight.origin           = segmentsItem.origin.toString()
+                                dataFlight.originName       = segmentsItem.cityOrigin.toString()
+                                dataFlight.airportDeparture = segmentsItem.airportOrigin.toString()
+                                dataFlight.dateDeparture    = segmentsItem.departDate.toString()
 
-                                dataFlight.timeDeparture    = segmentFlightEntity.departTime.toString()
+                                dataFlight.timeDeparture    = segmentsItem.departTime.toString()
 
                                 //arrival
-                                dataFlight.destination      = segmentFlightEntity.destination.toString()
-                                dataFlight.destinationName  = segmentFlightEntity.cityDestination.toString()
-                                dataFlight.airportArrival   = segmentFlightEntity.airportDestination.toString()
-                                dataFlight.dateArrival      = segmentFlightEntity.arriveDate.toString()
-                                dataFlight.timeArrival      = segmentFlightEntity.arriveTime.toString()
+                                dataFlight.destination      = segmentsItem.destination.toString()
+                                dataFlight.destinationName  = segmentsItem.cityDestination.toString()
+                                dataFlight.airportArrival   = segmentsItem.airportDestination.toString()
+                                dataFlight.dateArrival      = segmentsItem.arriveDate.toString()
+                                dataFlight.timeArrival      = segmentsItem.arriveTime.toString()
 
-                                dataFlight.pnrCode          = if (tripFlightsItem.pnrCode==null) "" else tripFlightsItem.pnrCode
-                                dataFlight.pnrId            = tripFlightsItem.pnrId.toString()
+                                dataFlight.isComply         = segmentsItem.isComply
+                                dataFlight.duration         = segmentsItem.duration.toString()
 
-                                dataFlight.isComply         = segmentFlightEntity.isComply
-                                dataFlight.duration         = segmentFlightEntity.duration.toString()
-
-//                                dataFlight.price          = "IDR 400.000/pax"
-                                dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
-
-                                dataFlight.flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
-
-                                dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
-
-                                dataFlightModel.add(dataFlight)
-                                num++ *//*
-
-                            }
-                            else{
-                                dataFlightModel[num-1].flightSegmentItem.add(segmentMapperData(segmentFlightEntity))
+                                dataFlight.flightSegmentItem.add(segmentMapperData(segmentsItem, tripFlightsItem.pnrCode.toString(),
+                                        tripFlightsItem.status.toString(), tripFlightsItem.amount.toString(),
+                                        tripFlightsItem.passengers?.size.toString(), tripFlightsItem.airlineView.toString(), ))
                             }
 
-                        }*/
+                            dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
+
+                            dataFlightModel.add(dataFlight)
+                            num++
+                        }
                     }
                 }
 

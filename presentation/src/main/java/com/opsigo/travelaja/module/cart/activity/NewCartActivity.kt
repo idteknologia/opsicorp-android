@@ -477,8 +477,6 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 failedWarning(message)
             }
         })
-
-
     }
 
     fun showPageListDataPersonalTrip() {

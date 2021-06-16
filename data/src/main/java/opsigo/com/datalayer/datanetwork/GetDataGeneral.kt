@@ -293,7 +293,6 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 if (response.isSuccessful){
                     val summaryEntity = Serializer.deserialize(response.body()?.string().toString(), SummaryEntity::class.java)
-                    Log.e("??????????????? ",Serializer.serialize(summaryEntity))
                     val summ = SummaryEntityMapper().mapFrom(summaryEntity)
                     callbackSummary.successLoad(summ)
                 }
