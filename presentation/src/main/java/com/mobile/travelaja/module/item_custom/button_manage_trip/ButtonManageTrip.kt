@@ -7,6 +7,9 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals.getBaseUrl
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import kotlinx.android.synthetic.main.button_right_left_rounded.view.*
 
 class ButtonManageTrip : LinearLayout, View.OnClickListener {
@@ -33,6 +36,14 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.button_right_left_rounded, this)
+
+        if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+            line_button_left.gone()
+            line_button_right.gone()
+        } else {
+            line_button_left.visible()
+            line_button_right.visible()
+        }
 
         line_button_left.setOnClickListener(this)
         line_button_right.setOnClickListener(this)

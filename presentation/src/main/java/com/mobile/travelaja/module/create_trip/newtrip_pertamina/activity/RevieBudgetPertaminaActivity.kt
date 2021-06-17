@@ -48,7 +48,6 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     var tripRoute = ""
     var originName = ""
     var destinationName = ""
-    var codeSelectBudget = "BI000008"
     var costCenterName = ""
     var cashAdvanceValue = 0
     var costCenterOther = false
@@ -58,7 +57,9 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     override fun onMain() {
         getDataIntent()
         initOnClick()
-        getDataSelectCostCenter()
+        /*getDataSelectCostCenter()*/
+        costCenterName = getProfile().costCenter
+        title_cost_name.setText(costCenterName)
         postDataForEstimateCost()
         tv_title_prize.text = "Total Estimated Cost"
         tv_including.text = "Exclude Cash Advance"
@@ -210,6 +211,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     private fun getDataSelectCostCenter() {
+        val codeSelectBudget = getProfile().costCenter
         GetDataTripPlane(getBaseUrl()).getDataCostCenter(Globals.getToken(), getProfile().employId, codeSelectBudget, object : CallbackCostCenter {
             override fun successLoad(approvalModel: ArrayList<CostCenterModel>) {
 

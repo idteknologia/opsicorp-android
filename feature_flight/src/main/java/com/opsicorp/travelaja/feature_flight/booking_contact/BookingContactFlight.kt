@@ -40,13 +40,9 @@ import android.app.Activity
 import java.lang.Exception
 import android.view.View
 import android.os.Bundle
-import android.os.Build
-import android.util.Log
-import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
-import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
-import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+
 
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
