@@ -470,13 +470,13 @@ class BookingContactFlight : BaseActivity(),
 
         dataBooking.flightType = dataListFlight.dataFlight.first().flightType
         if (dataListFlight.dataFlight.size == 1) {
-            dataBooking.flightTripType = 1
+            dataBooking.flightTripType = 0
         } else if (dataListFlight.dataFlight.size > 1) {
             if(Constants.multitrip){
                 dataBooking.flightTripType = 3
             }
             else {
-                dataBooking.flightTripType = 2
+                dataBooking.flightTripType = 1
             }
         }
 

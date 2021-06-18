@@ -321,13 +321,11 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     override fun startDate(displayStartDate: String, startDate: String) {
         viewBinding.tvFrom.setText(displayStartDate)
         m_startdate = startDate
-        setLog("start date "+m_startdate)
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
         viewBinding.etEndDate.setText(displayEndDate)
-        m_startdate = endDate
-        setLog("end date "+m_endate)
+        m_endate = endDate
     }
 
     override fun canceledCalendar() {

@@ -3,6 +3,7 @@ package com.mobile.travelaja.module.my_booking.purchase_list_detail
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import com.opsigo.travelaja.R
 import android.widget.TextView
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
@@ -11,11 +12,12 @@ import com.mobile.travelaja.module.my_booking.adapter.PurchaseDetailTripFlightAd
 import com.mobile.travelaja.module.my_booking.model.*
 import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.detail_purchase_list_activity.*
+import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
+import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.my_booking.adapter.PurchaseDetailTripFlightAdapter
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageFlight
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageHote
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageTrain
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
 
 
 class PurchaseDetailListActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonListener{
