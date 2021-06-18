@@ -1,23 +1,21 @@
 package com.opsigo.travelaja.module.my_booking.purchase_list_detail
 
-import android.content.Context
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
-import com.opsigo.travelaja.BaseActivity
 import com.opsigo.travelaja.R
+import android.widget.TextView
+import android.content.Context
+import android.view.LayoutInflater
+import com.opsigo.travelaja.BaseActivity
+import com.opsigo.travelaja.utility.Globals
+import com.opsigo.travelaja.module.my_booking.model.*
+import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import kotlinx.android.synthetic.main.detail_purchase_list_activity.*
+import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
 import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.opsigo.travelaja.module.my_booking.adapter.PurchaseDetailTripFlightAdapter
-import com.opsigo.travelaja.module.my_booking.model.*
-import com.opsigo.travelaja.utility.Globals
-import kotlinx.android.synthetic.main.detail_purchase_list_activity.*
 import com.opsigo.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageFlight
 import com.opsigo.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageHote
 import com.opsigo.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageTrain
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
 
 
 class PurchaseDetailListActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonListener{

@@ -45,7 +45,7 @@ class PurchaseDetailActivity :BaseActivity(),
     }
 
     fun showDetailData(views: View){
-        if (btn_drop_down.drawable.constantState.equals(resources.getDrawable(R.drawable.ic_chevron_up_green).constantState)){
+        if (btn_drop_down.drawable.constantState!!.equals(resources.getDrawable(R.drawable.ic_chevron_up_green).constantState)){
             btn_drop_down.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down_green))
             lay_detail.collapse()
         }
