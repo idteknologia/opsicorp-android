@@ -156,7 +156,7 @@ class PaymentActivity : BaseActivity(),
         model.returnDate = tripSummary.returnDate
         model.origin = tripSummary.origin
         model.destination = tripSummary.destination
-        model.type = tripSummary.type
+        model.type = tripSummary.type.toString()
         model.tripParticipants = getDataParticipant()
         model.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         model.purpose = tripSummary.purpose

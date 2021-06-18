@@ -315,7 +315,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun chekExistPersonalTrip(type: Int) {
-        if (getProfile().companyCode!="000002"){
+        if (getProfile().companyCode!=Constants.codeCompanyTravelAja){
             showLoadingOpsicorp(true)
             GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(), object : CallbackString {
                 override fun successLoad(data: String) {

@@ -554,9 +554,6 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                     line_warning.visibility = View.VISIBLE
                     line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
                 }
-                /*else if (itemsTrip.filter { it.status.toLowerCase().contains("pending") }.isNotEmpty()){
-
-                }*/
                 else {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_yellow)
                     line_warning.visibility = View.GONE
@@ -567,28 +564,17 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun submitTripPlant(view: View) {
-        if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
-            setLog("notReady")
-        } else {
-            var tripPlanId = tripSummary.tripId
+        if (btn_submit_trip_plant.background.constantState != resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
+            val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
             gotoActivityWithBundle(PaymentActivity::class.java, bundle)
-            /*if (tripSummary.tripCode.contains("PT")) {
-                Constants.isBisnisTrip = false
-                if (Constants.isBisnisTrip.equals(false)) {
-                    var tripPlanId = tripSummary.tripId
-                    val bundle = Bundle()
-                    bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
-                    gotoActivityWithBundle(PaymentActivity::class.java, bundle)
-                } else {
-                    getSubmitTripPlant()
-                }
+            if (Constants.codeCompanyTravelAja==getProfile().companyCode||tripSummary.type==Constants.PERSONAL_TRIP) {
+                bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
+                gotoActivityWithBundle(PaymentActivity::class.java, bundle)
             } else {
                 getSubmitTripPlant()
-            }*/
+            }
         }
     }
 
@@ -616,7 +602,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         model.returnDate = tripSummary.returnDate
         model.origin = tripSummary.origin
         model.destination = tripSummary.destination
-        model.type = tripSummary.type
+        model.type = tripSummary.type.toString()
         model.tripParticipants = getDataParticipant()
         model.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         model.purpose = tripSummary.purpose
@@ -765,8 +751,4 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             e.printStackTrace()
         }
     }
-
-
-
-
 }

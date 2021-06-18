@@ -17,6 +17,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 object Constants {
 
+    val codeCompanyTravelAja = "000002"
     val positionFlightMulticity = "position flight multicity"
     var ALREADY_SEARCH_FLIGHT = false
     var multitrip           = false
@@ -433,6 +434,10 @@ object Constants {
     val TYPE_SIM      = "SIM"
     val TYPE_PASSPORT = "PASSPORT"
     val TYPE_KTP      = "KTP"
+
+
+    val BISNIS_TRIP      = 1
+    var PERSONAL_TRIP    = 2
 
 
 }

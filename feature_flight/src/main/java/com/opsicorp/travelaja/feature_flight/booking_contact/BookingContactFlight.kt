@@ -443,7 +443,13 @@ class BookingContactFlight : BaseActivity(),
         header.isDomestic       = dataTrip.isDomestik
         header.golper           = dataTrip.golper
 
-        header.type = 2
+        if (Constants.isBisnisTrip) {
+            header.type = 2
+        }
+        else {
+            header.type = 1
+        }
+
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
@@ -779,12 +785,17 @@ class BookingContactFlight : BaseActivity(),
         header.returnDate = dataTrip.endDate
         header.origin = dataTrip.originId
         header.destination = dataTrip.destinationId
-        header.type = 2
         header.tripParticipants = tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
+        if (Constants.isBisnisTrip){
+            header.type = 1
+        }
+        else {
+            header.type = 2
+        }
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
