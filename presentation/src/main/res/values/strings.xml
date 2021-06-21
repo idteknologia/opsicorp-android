@@ -884,4 +884,19 @@ Please add your trip item for Approval."
 <!--config SSO Pertamina-->
     <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
     <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
+<!--config SSO Pertamina-->
+    <string name="selected_participant">Selected Participant</string>
+    <string name="click_list_to_see_your_trip_detail">Click list to see your trip detail</string>
+    <string name="today">Today</string>
+    <string name="tripcode">Tripcode</string>
+    <string name="cart_list">Cart List</string>
+    <string name="one_way">OneWay</string>
+    <string name="flight_summary">Flight Summary</string>
+    <string name="please_wait_we_try_to_connecting">Please wait.. We try to connecting</string>
+    <string name="seat_on_progress">Seat on progress</string>
+    <string name="station">Station</string>
+    <string name="booking_id">Booking ID</string>
+    <string name="expired_in">Expired in</string>
+    <string name="select">Select</string>
+    <string name="warning_delete_this_tripplan">Apa Anda yakin ingin menghapus tripplan ini?</string>
 </resources>

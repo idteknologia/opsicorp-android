@@ -182,7 +182,7 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
             itemView.tv_carrier_number.text         = data.carrierNumber
             itemView.tv_seat_number.text            = data.seatText
-            itemView.tv_progress_train.text         = "Seat on progress ${data.progressTrain}%"
+            itemView.tv_progress_train.text         = "${itemView.context.getString(R.string.seat_on_progress)} ${data.progressTrain}%"
 
             itemView.tv_departure_date.text         = DateConverter().setDateFormat3(data.dateDeparture)
 
@@ -195,12 +195,12 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
             //departure
             itemView.tv_departure_train_cart.text       = data.origin
-            itemView.tv_station_departure_cart.text     = data.stationDeparture+" Station"
+            itemView.tv_station_departure_cart.text     = data.stationDeparture+" ${itemView.context.getString(R.string.station)}"
             itemView.tv_date_departure_train_cart.text  = DateConverter().setDateFormat4(data.dateDeparture)
 
             //arrival
             itemView.tv_arrival_train_cart.text         = data.destination
-            itemView.tv_station_arrival_cart.text       = data.stationArrival +" Station"
+            itemView.tv_station_arrival_cart.text       = data.stationArrival +" ${itemView.context.getString(R.string.station)}"
             itemView.tv_date_arrival_train_cart.text    = DateConverter().setDateFormat4(data.dateArrival)
 
             try {
@@ -213,14 +213,14 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
             setLog("--------- id = "+data.idTrain)
             if (data.progressTrain!="100.00"){
-                itemView.tv_title_code.text = "Booking ID"
+                itemView.tv_title_code.text = itemView.context.getString(R.string.booking_id)
                 itemView.tv_progress_train.visibility =  View.VISIBLE
                 itemView.tv_seat_number.visibility    = View.GONE
                 setLog(Serializer.serialize(getDataSyncTrain(data)))
                 getSyncTrain(data,position)
             }
             else{
-                itemView.tv_title_code.text = "Booking Code (PNR)"
+                itemView.tv_title_code.text = itemView.context.getString(R.string.txt_booking_code_pnr)
                 itemView.tv_progress_train.visibility =  View.GONE
                 itemView.tv_seat_number.visibility    = View.VISIBLE
             }
@@ -427,11 +427,11 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
             val iprog = (data.progressFlight.toDouble()).toInt()
             if (iprog != 100){
-                itemView.tv_title_code_fl.text = "Booking ID"
+                itemView.tv_title_code_fl.text = itemView.context.getString(R.string.booking_id)
                 itemView.tv_progress_flight.visibility =  View.VISIBLE
                 getDataSyncFlight(data,position)
             }else{
-                itemView.tv_title_code_fl.text = "Booking Code (PNR)"
+                itemView.tv_title_code_fl.text = itemView.context.getString(R.string.txt_booking_code_pnr)
                 itemView.tv_progress_flight.visibility =  View.GONE
             }
 

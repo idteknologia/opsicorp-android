@@ -126,12 +126,12 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
     fun deleteConfirmation(){
         AlertDialog.Builder(context)
-                .setMessage("Apa Anda yakin ingin menghapus tripplan ini?")
+                .setMessage(context.getString(R.string.warning_delete_this_tripplan))
                 .setCancelable(false)
-                .setPositiveButton("IYA") { dialog, id ->
+                .setPositiveButton(context.getString(R.string.yes)) { dialog, id ->
                     deleteListener()
                 }
-                .setNegativeButton("Tidak", null)
+                .setNegativeButton(context.getString(R.string.no), null)
                 .show()
     }
 
@@ -162,20 +162,20 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                     Log.d("xdeletedx","deleted : " + isSuccess)
 
                 } else {
-                    Globals.showAlert("Sorry","something wrong!",context)
+                    Globals.showAlert(context.getString(R.string.sorry),"something wrong!",context)
                 }
 
             }
 
             override fun failedLoad(message: String) {
-                Globals.showAlert("Sorry",message,context)
+                Globals.showAlert(context.getString(R.string.sorry),message,context)
             }
         } )
 
     }
 
     private fun unSelectAllListener() {
-        tv_select_all.text = "Select"
+        tv_select_all.text = context.getString(R.string.select)
         data.forEachIndexed { index, cartTripModel ->
             data[index].cheked = false
         }
@@ -183,7 +183,7 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     private fun selectAllListener() {
-        tv_select_all.text = "Select All"
+        tv_select_all.text = context.getString(R.string.select_all)
         btn_delet.visibility = View.VISIBLE
 
         data.forEachIndexed { index, cartTripModel ->
