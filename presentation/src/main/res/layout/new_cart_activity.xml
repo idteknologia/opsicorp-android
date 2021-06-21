@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <androidx.core.widget.NestedScrollView
         android:layout_below="@+id/toolbar"
@@ -109,29 +109,29 @@
             </LinearLayout>
 
 
-            <com.opsigo.travelaja.module.cart.view.PageListBisnisTrip
+            <com.mobile.travelaja.module.cart.view.PageListBisnisTrip
                 android:layout_width="match_parent"
                 android:layout_below="@+id/button_switch"
                 android:layout_height="match_parent"
                 android:visibility="gone"
                 android:id="@+id/page_list_bisnis_trip">
-            </com.opsigo.travelaja.module.cart.view.PageListBisnisTrip>
+            </com.mobile.travelaja.module.cart.view.PageListBisnisTrip>
 
-            <com.opsigo.travelaja.module.cart.view.PageDetailListTrip
+            <com.mobile.travelaja.module.cart.view.PageDetailListTrip
                 android:layout_width="match_parent"
                 android:id="@+id/page_list_detail_trip"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/button_switch"
-                android:visibility="gone"></com.opsigo.travelaja.module.cart.view.PageDetailListTrip>
+                android:visibility="gone"></com.mobile.travelaja.module.cart.view.PageDetailListTrip>
 
-            <com.opsigo.travelaja.module.cart.view.PageDetailPersonalTrip
+            <com.mobile.travelaja.module.cart.view.PageDetailPersonalTrip
                 android:layout_width="match_parent"
                 android:visibility="gone"
                 android:layout_below="@+id/button_switch"
                 android:id="@+id/page_detail_personal_trip"
                 android:layout_height="match_parent">
 
-            </com.opsigo.travelaja.module.cart.view.PageDetailPersonalTrip>
+            </com.mobile.travelaja.module.cart.view.PageDetailPersonalTrip>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 

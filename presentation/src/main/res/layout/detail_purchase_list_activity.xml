@@ -7,11 +7,11 @@
     android:background="#f6f8f8"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
 
     <androidx.core.widget.NestedScrollView
@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                    <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/margin_default"
@@ -54,7 +54,7 @@
                         app:ticketDividerPadding="0dp"
                         app:ticketElevation="14dp" >
 
-                    </com.opsigo.travelaja.module.item_custom.ticket_view.TicketView>
+                    </com.mobile.travelaja.module.item_custom.ticket_view.TicketView>
 
                     <LinearLayout
                         android:background="@android:color/transparent"
@@ -117,21 +117,21 @@
                     android:id="@+id/flight_header">
                 </include>
 
-                <com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase
+                <com.mobile.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase
                     android:layout_width="match_parent"
                     android:id="@+id/pageHotel"
                     android:visibility="gone"
                     android:layout_height="wrap_content">
 
-                </com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase>
+                </com.mobile.travelaja.module.my_booking.purchase_list_detail.PageDetailHotelPurchase>
 
-                <com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase
+                <com.mobile.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/pageFlightAndTrain"
                     android:visibility="visible">
 
-                </com.opsigo.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase>
+                </com.mobile.travelaja.module.my_booking.purchase_list_detail.PageDetailFlightAndTrainPurchase>
 
             </LinearLayout>
 

@@ -1,16 +1,14 @@
 package com.opsicorp.train_feature.seat
 
 import android.content.Context
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.train_feature.R
 import opsigo.com.domainlayer.model.accomodation.train.CabinModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerViewParent
-import com.opsigo.travelaja.utility.WrappableGridLayoutManager
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerViewParent
+import com.mobile.travelaja.utility.WrappableGridLayoutManager
 import kotlinx.android.synthetic.main.cabin_adapter_view.view.*
 
 class AdapterSeatMapCabin (var context: Context, var items: ArrayList<CabinModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AdapterSeatMapCabin.ViewHolder>() {

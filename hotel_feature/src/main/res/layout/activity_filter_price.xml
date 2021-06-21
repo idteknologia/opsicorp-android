@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".result.FilterPriceActivity">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -174,7 +174,7 @@
             </androidx.recyclerview.widget.RecyclerView>
 
 
-            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_default"
@@ -182,7 +182,7 @@
                 android:layout_marginBottom="40dp"
                 app:text="Apply"
                 android:id="@+id/btn_submit">
-            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+            </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

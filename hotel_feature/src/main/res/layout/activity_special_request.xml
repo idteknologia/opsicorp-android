@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".booking_contact.SpecialRequestActivity">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -268,7 +268,7 @@
                 android:background="#d8d8d8">
             </LinearLayout>
 
-            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+            <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_submit"
@@ -277,7 +277,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="30dp">
-            </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+            </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
         </LinearLayout>

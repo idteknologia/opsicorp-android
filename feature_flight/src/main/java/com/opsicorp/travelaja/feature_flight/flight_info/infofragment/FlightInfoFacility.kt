@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.opsicorp.travelaja.feature_flight.R
 import com.opsicorp.travelaja.feature_flight.adapter.FacilityFlightListAdapter
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
-import com.opsigo.travelaja.base.BaseFragment
+import com.mobile.travelaja.base.BaseFragment
 import kotlinx.android.synthetic.main.flight_info_facility_fragment_new.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.accomodation.flight.FacilityFlightModel

@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="260dp">
 
-                <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -288,7 +288,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="38dp">
 
-                            <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                            <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
                                 android:layout_width="42dp"
                                 android:id="@+id/img_participant"
                                 android:layout_height="42dp"

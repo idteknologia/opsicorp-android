@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.StringUtils
+import com.mobile.travelaja.utility.StringUtils
 import kotlinx.android.synthetic.main.detail_cart_price_adapter.view.*
 import opsigo.com.domainlayer.model.summary.PaymentsItemModel
 

@@ -79,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.opsigo.travelaja.module.item_custom.ticket_view.TicketView
+                        <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="20dp"

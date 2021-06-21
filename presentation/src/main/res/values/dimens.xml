@@ -83,6 +83,7 @@
     <dimen name="size_button_second_content">98dp</dimen>
     <dimen name="margin_default">20dp</dimen>
     <dimen name="size_image_back">59dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>

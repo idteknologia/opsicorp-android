@@ -50,7 +50,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
+        <com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice
             android:layout_width="0dp"
             android:layout_weight="1"
             app:scroll_background_color="@android:color/white"
@@ -65,10 +65,10 @@
             app:scroll_item_text_size="17sp"
             app:scroll_indicator_size="1dp"
             >
-        </com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice>
+        </com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice>
 
 <!--        app:scroll_indicator_color="#dadada"-->
-        <com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice
+        <com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice
             android:layout_width="0dp"
             app:scroll_background_color="@android:color/white"
             android:layout_weight="1"
@@ -82,7 +82,7 @@
             app:scroll_selected_item_text_color="@android:color/black"
             app:scroll_item_text_size="17sp"
             app:scroll_indicator_size="1dp">
-        </com.opsigo.travelaja.module.item_custom.scrolchoice.ScrollChoice>
+        </com.mobile.travelaja.module.item_custom.scrolchoice.ScrollChoice>
 
     </LinearLayout>
 

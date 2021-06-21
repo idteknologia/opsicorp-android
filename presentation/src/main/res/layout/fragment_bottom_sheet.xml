@@ -6,10 +6,10 @@
     android:id="@+id/design_bottom_sheet"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"></com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+        android:id="@+id/toolbar"></com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
 
     <RelativeLayout
@@ -194,21 +194,21 @@
     </RelativeLayout>
 
 
-    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+    <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
         android:layout_width="match_parent"
         android:id="@+id/btn_next"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="40dp"
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
-        android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
-    <com.opsigo.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog
+    <com.mobile.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog
         android:layout_width="match_parent"
         android:id="@+id/snackbar"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true">
-    </com.opsigo.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog>
+    </com.mobile.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog>
 </RelativeLayout>

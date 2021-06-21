@@ -7,11 +7,11 @@
     android:background="#f6f8f8"
     android:layout_height="match_parent">
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -215,7 +215,7 @@
                             </LinearLayout>
                         </RelativeLayout>
 
-                        <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                        <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
                             app:ael_duration="200"
                             android:id="@+id/lay_detail"
                             app:ael_expanded="true"
@@ -374,7 +374,7 @@
 
                                 </TextView>
                             </RelativeLayout>
-                        </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+                        </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
                         <LinearLayout
                             android:paddingRight="15dp"
@@ -428,7 +428,7 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
                     android:elevation="5dp"
                     android:layout_marginTop="24dp"
                     android:src="@drawable/succes_check"
@@ -436,7 +436,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp">
 
-                </com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView>
+                </com.mobile.travelaja.module.item_custom.circle_image.CircleImageView>
 
             </RelativeLayout>
 

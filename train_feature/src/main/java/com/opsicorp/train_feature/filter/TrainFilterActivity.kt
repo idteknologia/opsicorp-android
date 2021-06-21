@@ -3,16 +3,16 @@ package com.opsicorp.train_feature.filter
 import android.app.Activity
 import android.content.Intent
 import com.opsicorp.train_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Constants
 import it.sephiroth.android.library.rangeseekbar.RangeSeekBar
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.train_filter_actvity_view.*
 import kotlinx.android.synthetic.main.detail_train_result_activity.toolbar
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceAdapter
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 
 class TrainFilterActivity : BaseActivity() ,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -42,7 +42,7 @@ class TrainFilterActivity : BaseActivity() ,
     }
 
     private fun initButtonFilter() {
-        btn_filter.setTextButton("See ${totalTrain} Ticket(s)")
+        btn_filter.setTextButton("${getString(R.string.txt_see)} $totalTrain ${getString(R.string.txt_ticket)}(s)")
         btn_filter.callbackOnclickButton(this)
     }
 

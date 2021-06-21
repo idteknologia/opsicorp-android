@@ -1,12 +1,11 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.ssr_price_list_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.SelectedSsrModel
 

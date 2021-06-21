@@ -13,11 +13,11 @@
         android:layout_height="wrap_content">
 
 
-        <com.opsigo.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval
+        <com.mobile.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_filter_approval">
-        </com.opsigo.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval>
+        </com.mobile.travelaja.module.item_custom.button_top_filter_approval.ButtonTopFilterApproval>
 
     </FrameLayout>
 
@@ -194,7 +194,7 @@
                     android:layout_width="0dp"
                     android:layout_height="146dp">
 
-                    <com.opsigo.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
+                    <com.mobile.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
                         android:id="@+id/tv_total_partially_approved"
                         android:layout_marginLeft="17dp"
                         android:layout_width="wrap_content"
@@ -237,7 +237,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
 
-                    <com.opsigo.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
+                    <com.mobile.travelaja.module.item_custom.dasboard_approval.CountAnimationTextView
                         android:id="@+id/tv_list_approval"
                         android:layout_marginRight="11dp"
                         android:layout_width="wrap_content"

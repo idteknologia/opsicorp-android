@@ -58,7 +58,7 @@
 
                 </RelativeLayout>
 
-                <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                     android:layout_marginTop="30dp"
                     app:text="Apply"
                     android:layout_width="match_parent"

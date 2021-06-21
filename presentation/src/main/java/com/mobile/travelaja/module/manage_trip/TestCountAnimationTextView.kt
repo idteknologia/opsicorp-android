@@ -1,0 +1,112 @@
+package com.mobile.travelaja.module.manage_trip
+
+import android.animation.Animator
+import android.animation.TimeInterpolator
+import android.animation.ValueAnimator
+import android.content.Context
+import android.util.AttributeSet
+import android.widget.TextView
+
+import java.text.DecimalFormat
+
+class TestCountAnimationTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : TextView(context, attrs, defStyleAttr) {
+
+    private var isAnimating = false
+    private var mCountAnimator: ValueAnimator? = null
+    private var mCountAnimationListener: CountAnimationListener? = null
+
+    private var mDecimalFormat: DecimalFormat? = null
+
+    init {
+        setUpAnimator()
+    }
+
+    private fun setUpAnimator() {
+        mCountAnimator = ValueAnimator()
+        mCountAnimator!!.addUpdateListener { animation ->
+            val value: String
+            if (mDecimalFormat == null) {
+                value = animation.animatedValue.toString()
+            } else {
+                value = mDecimalFormat!!.format(animation.animatedValue)
+            }
+            super@TestCountAnimationTextView.setText(value)
+        }
+
+        mCountAnimator!!.addListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(animation: Animator) {
+                isAnimating = true
+
+                if (mCountAnimationListener == null) return
+                mCountAnimationListener!!.onAnimationStart(mCountAnimator!!.animatedValue)
+            }
+
+            override fun onAnimationEnd(animation: Animator) {
+                isAnimating = false
+
+                if (mCountAnimationListener == null) return
+                mCountAnimationListener!!.onAnimationEnd(mCountAnimator!!.animatedValue)
+            }
+
+            override fun onAnimationCancel(animation: Animator) {
+                // do nothing
+            }
+
+            override fun onAnimationRepeat(animation: Animator) {
+                // do nothing
+            }
+        })
+        mCountAnimator!!.duration = DEFAULT_DURATION
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        if (mCountAnimator != null) {
+            mCountAnimator!!.cancel()
+        }
+    }
+
+    fun countAnimation(fromValue: Int, toValue: Int) {
+        if (isAnimating) return
+
+        mCountAnimator!!.setIntValues(fromValue, toValue)
+        mCountAnimator!!.start()
+    }
+
+    fun setAnimationDuration(duration: Long): TestCountAnimationTextView {
+        mCountAnimator!!.duration = duration
+        return this
+    }
+
+    fun setInterpolator(value: TimeInterpolator): TestCountAnimationTextView {
+        mCountAnimator!!.interpolator = value
+        return this
+    }
+
+
+    // interface progress animationListener
+    interface CountAnimationListener {
+        fun onAnimationStart(animatedValue: Any)
+
+        fun onAnimationEnd(animatedValue: Any)
+    }
+
+    fun setDecimalFormat(mDecimalFormat: DecimalFormat): TestCountAnimationTextView {
+        this.mDecimalFormat = mDecimalFormat
+        return this
+    }
+
+    fun clearDecimalFormat() {
+        this.mDecimalFormat = null
+    }
+
+    fun setCountAnimationListener(mCountAnimationListener: CountAnimationListener): TestCountAnimationTextView {
+        this.mCountAnimationListener = mCountAnimationListener
+        return this
+    }
+
+    companion object {
+
+        private val DEFAULT_DURATION: Long = 1000
+    }
+}

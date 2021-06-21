@@ -1,12 +1,11 @@
 package com.opsicorp.hotel_feature.adapter
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_filter_rating.view.*
 import opsigo.com.domainlayer.model.accomodation.hotel.StartSelected
 

@@ -37,10 +37,9 @@ class SummaryEntityMapper() {
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
-        summary.golper            = from.golper
-        summary.wbsNo             = from.wbsNo.toString()
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
+
 
 
 

@@ -6,17 +6,17 @@ import android.content.Intent
 import android.widget.TextView
 import android.widget.LinearLayout
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import com.opsigo.travelaja.module.accomodation.view_accomodation.fragment.hotel.DialogSelectDuration
+import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hotel.DialogSelectDuration
 
 class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         ToolbarOpsicorp.OnclickButtonListener,CalendarViewOpsicorp.CallbackResult {

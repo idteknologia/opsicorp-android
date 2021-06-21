@@ -654,4 +654,5 @@ Please add your trip item for Approval."
     <string name="et_search_manage_trip">Ketik Kode perjalanan atau nama acara</string>
     <string name="draft">Draf</string>
     <string name="completed">Lengkap</string>
+    <string name="txt_please_select_reasoncode">Please Select ReasonCode</string>
 </resources>

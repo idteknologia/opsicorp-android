@@ -37,6 +37,7 @@ class ProfileEntityDataMapper{
         data.ktp          = profileEntity.idNumber.toString()
         data.passport     = if (profileEntity.passportNumber==null) "" else profileEntity.passportNumber
         data.sim          = if (profileEntity.simNumber==null) "" else profileEntity.simNumber
+        data.costCenter   = profileEntity.costCenterDefault.toString()
 
         return data
     }

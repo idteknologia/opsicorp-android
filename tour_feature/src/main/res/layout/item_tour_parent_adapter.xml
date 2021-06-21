@@ -18,7 +18,7 @@
         <TextView
             android:id="@+id/tv_name"
             style="@style/RobotoMedium"
-            android:text="Special Promo"
+            android:text="@string/special_promo"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -39,6 +39,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_tour_child"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

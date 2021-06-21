@@ -5,9 +5,9 @@ import android.view.View
 import java.lang.Exception
 import com.opsicorp.hotel_feature.R
 import android.annotation.SuppressLint
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.DateConverter
 import com.unicode.kingmarket.Base.BaseDialogFragment
 import kotlinx.android.synthetic.main.dialog_cancelation_policy.*
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel

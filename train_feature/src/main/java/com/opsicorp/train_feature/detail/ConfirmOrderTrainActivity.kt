@@ -1,21 +1,21 @@
 package com.opsicorp.train_feature.detail
 
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
 import com.opsicorp.train_feature.booking_contact.BookingContactTrain
 import com.opsicorp.train_feature.adapter.ConfirmationTrainAdapter
 import kotlinx.android.synthetic.main.detail_prize_bottom_train.*
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.confirm_train_order.*
-import com.opsigo.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import com.opsicorp.train_feature.R
 import java.text.SimpleDateFormat
 import java.lang.Exception
@@ -33,7 +33,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
     val adapter by lazy { ConfirmationTrainAdapter(this, data) }
 
     override fun OnMain() {
-        btn_next.setTextButton("Book")
+        btn_next.setTextButton(getString(R.string.book))
         btn_next.callbackOnclickButton(this)
         ic_back.setOnClickListener(this)
 
@@ -128,7 +128,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
         mData.name_station_departure = dataTrain.stationDeparture
         mData.name_station_arrival   = dataTrain.stationArrival
 
-        mData.total_passager         = if ("".isEmpty()) "Adult x 1" else ""
+        mData.total_passager         = if ("".isEmpty()) "${getString(R.string.txt_adult)} x 1" else ""
         mData.total_prize            = dataTrain.price //"IDR "+Globals.formatAmount("")
 
         data.add(mData)
@@ -214,7 +214,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
                 mData.name_station_arrival = dataOrder.destinationStationName
             }
 
-            mData.total_passager = if (dataOrder.totalPassengerString.isEmpty()) "Adult x 1" else dataOrder.totalPassengerString
+            mData.total_passager = if (dataOrder.totalPassengerString.isEmpty()) "${getString(R.string.txt_adult)} x 1" else dataOrder.totalPassengerString
 //            mData.total_prize    = resultListTrainModel.price
             mData.total_prize    = "IDR "+Globals.formatAmount(resultListTrainModel.price)
 
@@ -244,7 +244,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
                 gotoActivity(BookingContactTrain::class.java)
             }
             else {
-                showAllert("Sorry","Please Select ReasonCode")
+                showAllert(getString(R.string.sorry),getString(R.string.txt_please_select_reasoncode))
             }
         }
         else{

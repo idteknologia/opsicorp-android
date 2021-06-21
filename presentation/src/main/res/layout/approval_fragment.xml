@@ -92,11 +92,11 @@
 
             <!--</include>-->
 
-            <com.opsigo.travelaja.module.item_custom.dasboard_approval.DasboardListApproval
+            <com.mobile.travelaja.module.item_custom.dasboard_approval.DasboardListApproval
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/line_list_approval">
-            </com.opsigo.travelaja.module.item_custom.dasboard_approval.DasboardListApproval>
+            </com.mobile.travelaja.module.item_custom.dasboard_approval.DasboardListApproval>
 
             <!--<include-->
                 <!--android:visibility="gone"-->
@@ -105,11 +105,11 @@
                 <!--android:layout_height="match_parent">-->
             <!--</include>-->
 
-            <com.opsigo.travelaja.module.item_custom.dasboard_approval.DasboardApproval
+            <com.mobile.travelaja.module.item_custom.dasboard_approval.DasboardApproval
                 android:layout_width="match_parent"
                 android:id="@+id/line_dasboard"
                 android:layout_height="match_parent">
-            </com.opsigo.travelaja.module.item_custom.dasboard_approval.DasboardApproval>
+            </com.mobile.travelaja.module.item_custom.dasboard_approval.DasboardApproval>
 
 
         </FrameLayout>

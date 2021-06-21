@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import com.opsicorp.train_feature.R
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_booking_train_adapter_adult.view.*
 import kotlinx.android.synthetic.main.item_booking_train_adapter_infant.view.*
 

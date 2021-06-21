@@ -2,8 +2,8 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import android.util.Log
 import android.view.View
-import com.opsigo.travelaja.utility.*
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,11 +21,11 @@ import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.seat.SeatMapFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.SegmentFlightsRequest
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_reason_trip.SelectReasonAccomodation
 
 class ConfirmOrderFlightActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,

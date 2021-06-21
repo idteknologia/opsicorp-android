@@ -1,15 +1,12 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import com.squareup.picasso.Picasso
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import kotlinx.android.synthetic.main.item_facility_hotel.view.*
 

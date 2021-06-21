@@ -205,7 +205,7 @@
                     android:layout_height="25dp"
                     android:layout_centerVertical="true">
 
-                    <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                    <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:src="#d5d5d5"
@@ -234,7 +234,7 @@
                     android:layout_width="37dp"
                     android:layout_height="38dp">
 
-                    <com.opsigo.travelaja.module.item_custom.circle_image.CircleImageView
+                    <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
                         android:layout_width="37dp"
                         android:layout_height="38dp"
                         app:civ_border_width="3dp"

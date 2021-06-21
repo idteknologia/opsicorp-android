@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.opsicorp.train_feature.R
-import androidx.recyclerview.widget.RecyclerView
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_confirmation_order_train.view.*
 import opsigo.com.domainlayer.model.accomodation.train.ConfirmationTrainModel
 

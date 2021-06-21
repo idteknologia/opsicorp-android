@@ -7,7 +7,7 @@
     app:startDestination="@id/createSettlement">
     <fragment
         android:id="@+id/tripFragment"
-        android:name="com.opsigo.travelaja.module.settlement.view.TripFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.TripFragment"
         android:label="fragment_one"
         tools:layout="@layout/page_list_fragment" >
         <argument
@@ -21,16 +21,16 @@
     </fragment>
     <fragment
         android:id="@+id/twoFragment"
-        android:name="com.opsigo.travelaja.module.settlement.TwoFragment"
+        android:name="com.mobile.travelaja.module.settlement.TwoFragment"
         android:label="fragment_two"
         tools:layout="@layout/fragment_two" />
     <fragment
         android:id="@+id/createSettlement"
-        android:name="com.opsigo.travelaja.module.settlement.view.CreateSettlementFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.CreateSettlementFragment"
         android:label="Create Settlement"
         tools:layout="@layout/fragment_create_settlement"/>
     <fragment android:id="@+id/settlements"
-        android:name="com.opsigo.travelaja.module.settlement.view.SettlementsFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.SettlementsFragment"
         android:label="Settlement"/>
 
 </navigation>

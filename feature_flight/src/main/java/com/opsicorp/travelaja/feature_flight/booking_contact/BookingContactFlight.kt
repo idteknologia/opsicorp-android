@@ -6,10 +6,10 @@ import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreat
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ContactFlightRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.request_model.accomodation.flight.reservation.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.datalayer.request_model.reservation.TripParticipantsItem
 import opsigo.com.domainlayer.model.accomodation.flight.ReserveFlightModel
@@ -17,12 +17,12 @@ import com.opsicorp.travelaja.feature_flight.seat_map.SelectSeatActivity
 import com.opsicorp.travelaja.feature_flight.ssr.FrequentFlyerActivity
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import kotlinx.android.synthetic.main.booking_contact_view_flight.*
-import com.opsigo.travelaja.module.profile.SimFormContactActivity
-import com.opsigo.travelaja.module.cart.activity.NewCartActivity
+import com.mobile.travelaja.module.profile.SimFormContactActivity
+import com.mobile.travelaja.module.cart.activity.NewCartActivity
 import com.opsicorp.travelaja.feature_flight.ssr.BagageActivity
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.opsigo.travelaja.module.profile.PassportFormActivity
-import com.opsigo.travelaja.module.profile.KtpCardFormActivity
+import com.mobile.travelaja.module.profile.PassportFormActivity
+import com.mobile.travelaja.module.profile.KtpCardFormActivity
 import com.opsicorp.travelaja.feature_flight.ssr.SsrActivity
 import opsigo.com.domainlayer.callback.CallbackReserveFlight
 import opsigo.com.domainlayer.model.booking_contact.SimModel
@@ -33,8 +33,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.*
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.*
 import android.content.Intent
 import android.app.Activity
 import java.lang.Exception
@@ -42,6 +42,7 @@ import android.view.View
 import android.os.Bundle
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+
 
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
@@ -348,7 +349,7 @@ class BookingContactFlight : BaseActivity(),
         }
     }
 
-    fun seatMapListener() {
+    fun seatMapListener(view: View) {
         gotoActivityResult(SelectSeatActivity::class.java, Constants.GET_SEAT_MAP)
     }
 

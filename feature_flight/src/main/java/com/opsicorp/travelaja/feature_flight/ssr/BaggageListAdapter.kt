@@ -5,11 +5,10 @@ import android.view.ViewGroup
 import android.content.Context
 import androidx.core.content.ContextCompat
 import android.view.LayoutInflater
-import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.baggage_list_item_adapter.view.*
 import opsigo.com.domainlayer.model.accomodation.flight.DataSsrModel
 

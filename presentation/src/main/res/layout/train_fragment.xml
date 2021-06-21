@@ -10,12 +10,12 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-        <com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
+        <com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
             android:layout_width="match_parent"
             android:id="@+id/top_button"
             android:layout_marginTop="30dp"
             android:layout_height="wrap_content">
-        </com.opsigo.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
+        </com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -161,13 +161,13 @@
 
 
 
-            <com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth
+            <com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth
                 android:id="@+id/btn_switch"
                 android:layout_marginRight="28dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></com.opsigo.travelaja.module.item_custom.button_swicth.ButtonSwicth>
+                android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth>
 
         </RelativeLayout>
 
@@ -366,7 +366,7 @@
 
         </LinearLayout>
 
-        <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
             android:layout_marginRight="@dimen/margin_default"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginTop="55dp"
@@ -374,7 +374,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btn_next">
-        </com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
     </LinearLayout>

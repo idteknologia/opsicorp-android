@@ -43,7 +43,7 @@ Check your connection or try again later." />
     </LinearLayout>
 
 
-    <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+    <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
         android:id="@+id/btn_home_page"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/margin_default"
@@ -51,7 +51,7 @@ Check your connection or try again later." />
         android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:text="Goto to Home "></com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        app:text="Goto to Home "></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
 
 </RelativeLayout>

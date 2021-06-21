@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="135dp"
     android:layout_height="160dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="left"
     android:layout_marginRight="13dp"
     android:id="@+id/layBox"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -40,7 +41,7 @@
 
                     <TextView
                         android:id="@+id/tv_country"
-                        android:text="France"
+                        tools:text="France"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:textSize="14sp"
@@ -56,7 +57,7 @@
                         <TextView
                             android:id="@+id/tvCurrency"
                             android:layout_marginLeft="10dp"
-                            android:text="Rp"
+                            android:text="@string/txt_rp"
                             android:textSize="8sp"
                             android:textColor="@color/white"
                             android:layout_width="wrap_content"
@@ -65,7 +66,7 @@
                         <TextView
                             android:id="@+id/tv_pricing_tour"
                             android:layout_marginLeft="3dp"
-                            android:text="20.000.000"
+                            tools:text="20.000.000"
                             android:textSize="14sp"
                             android:textColor="@color/white"
                             android:layout_width="wrap_content"
@@ -74,7 +75,7 @@
                         <TextView
                             android:id="@+id/tvPerPax"
                             android:layout_marginLeft="0dp"
-                            android:text="/pax"
+                            android:text="@string/txt_pax"
                             android:textSize="8sp"
                             android:textColor="@color/white"
                             android:layout_width="wrap_content"
@@ -84,7 +85,7 @@
 
                     <TextView
                         android:id="@+id/tv_date_tour"
-                        android:text="on April 2018"
+                        tools:text="on April 2018"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:textSize="8sp"

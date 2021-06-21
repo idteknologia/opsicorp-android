@@ -4,9 +4,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
-import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.nearby_city_airport_adapter.view.*
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 

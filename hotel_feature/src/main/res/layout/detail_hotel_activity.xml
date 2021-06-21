@@ -23,11 +23,11 @@
                 android:layout_height="match_parent">
             </ImageView>
 
-            <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+            <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/toolbar">
-            </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+            </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
             <LinearLayout
                 android:layout_marginBottom="20dp"

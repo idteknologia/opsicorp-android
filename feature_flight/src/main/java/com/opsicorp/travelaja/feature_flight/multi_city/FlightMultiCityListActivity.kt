@@ -7,11 +7,11 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.gone
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.domainlayer.callback.CallbackGetSsr
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,18 +24,18 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.domainlayer.callback.CallbackValidationFlight
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
 import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
@@ -115,12 +115,12 @@ class FlightMultiCityListActivity : BaseActivity(),
 
     private fun changeButtonBookGrayColor() {
         btn_next.changeTextColorButton(R.color.colorPureBlack)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_dark_select_budget)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_dark_select_budget)
     }
 
     private fun changeButtonBookOrangeColor() {
         btn_next.changeTextColorButton(R.color.colorWhite)
-        btn_next.changeBackgroundDrawable(com.opsigo.travelaja.R.drawable.rounded_button_yellow)
+        btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_yellow)
     }
 
     override fun btnBack() {

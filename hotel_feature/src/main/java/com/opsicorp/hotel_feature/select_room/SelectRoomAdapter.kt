@@ -1,16 +1,13 @@
 package com.opsicorp.hotel_feature.select_room
 
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
-import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import android.view.LayoutInflater
-import android.content.Context
 import android.view.ViewGroup
 import android.view.View
 import com.opsicorp.hotel_feature.R
-import com.opsicorp.hotel_feature.detail_hotel.DialogDetailReview
-import com.opsigo.travelaja.utility.Constants
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.item_select_room.view.*
 
 class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): androidx.recyclerview.widget.RecyclerView.Adapter<SelectRoomAdapter.ViewHolder>() {

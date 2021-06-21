@@ -205,7 +205,6 @@
 
                 </LinearLayout>
 
-
                 <LinearLayout
                     android:id="@+id/btn_login_with_email"
                     android:layout_width="match_parent"

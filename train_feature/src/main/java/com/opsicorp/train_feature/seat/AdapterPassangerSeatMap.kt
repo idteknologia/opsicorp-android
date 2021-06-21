@@ -1,12 +1,11 @@
 package com.opsicorp.train_feature.seat
 
 import android.content.Context
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.opsicorp.train_feature.R
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.seatmap_pasanger_adapter_view.view.*
 
 class AdapterPassangerSeatMap (var context: Context, var items: ArrayList<PassangerSeatMapModel>): androidx.recyclerview.widget.RecyclerView.Adapter<AdapterPassangerSeatMap.ViewHolder>() {
@@ -61,7 +60,7 @@ class AdapterPassangerSeatMap (var context: Context, var items: ArrayList<Passan
                     R.drawable.rounded_seatmap_pick)
         }
 
-        holder.itemView.title_passanger.text  = "Passanger ${position+1}"
+        holder.itemView.title_passanger.text  = "${context.getString(R.string.txt_passanger)} ${position+1}"
         holder.itemView.name_passanger.text   = data.namePassanger
         holder.itemView.number_seat.text      = data.numberSeatSelected
 

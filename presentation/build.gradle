@@ -26,6 +26,10 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         signingConfig signingConfigs.releases
+
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'com.mobile.travelaja'
+        ]
     }
     buildTypes {
         release {
@@ -48,6 +52,12 @@ android {
             dimension 'default'
             applicationId "com.opsigo.travelaja"
             versionCode 14
+            versionName "1.0.10"
+        }
+        opsicorp_dev{
+            dimension 'default'
+            applicationId "com.opsigo.opsicorp"
+            versionCode 15
             versionName "1.0.10"
         }
     }
@@ -108,6 +118,9 @@ android {
     }
     viewBinding {
         enabled = true
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
@@ -197,4 +210,8 @@ dependencies {
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
     androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3'
+    implementation 'net.openid:appauth:0.9.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
+
+
 }

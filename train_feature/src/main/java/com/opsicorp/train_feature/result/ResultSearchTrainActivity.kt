@@ -1,30 +1,30 @@
 package com.opsicorp.train_feature.result
 
-import com.opsigo.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import opsigo.com.datalayer.request_model.accomodation.train.search.SearchTrainRequest
-import com.opsigo.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
+import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import com.opsigo.travelaja.module.item_custom.btn_filter.FilterOpsicorp
-import com.opsigo.travelaja.module.item_custom.menu_sort.BottomSheetSort
-import com.opsigo.travelaja.module.item_custom.calendar.CalendarDialog
+import com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+import com.mobile.travelaja.module.item_custom.menu_sort.BottomSheetSort
+import com.mobile.travelaja.module.item_custom.calendar.CalendarDialog
 import kotlinx.android.synthetic.main.search_result_train_activity.*
 import com.opsicorp.train_feature.detail.DetailResultTrainActivity
 import opsigo.com.domainlayer.callback.CallbackResultSearchTrain
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.opsicorp.train_feature.filter.TrainFilterActivity
 import com.opsicorp.train_feature.dialog.TrainShortByDialog
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import com.opsigo.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
+import com.mobile.travelaja.utility.Constants
 import androidx.transition.TransitionManager
-import com.opsigo.travelaja.utility.Globals
-import com.opsigo.travelaja.BaseActivity
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import androidx.transition.Transition
 import kotlin.collections.ArrayList
 import com.opsicorp.train_feature.R
@@ -91,7 +91,7 @@ class ResultSearchTrainActivity : BaseActivity(),
         val departing = if (depart.contains(" ")) DateConverter().getDate(depart.split(" ")[0],"yyyy-MM-dd","EEE, yyyy MMM dd") else DateConverter().getDate(departureDate,"yyyy-MM-dd","EEE, yyyy MMM dd")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","Depart Date : ${departing} - 1 pax")
+        toolbar.setDoubleTitle("${dataOrder.originStationName} - ${dataOrder.destinationStationName}","${getString(R.string.txt_depart_date)} : ${departing} - 1 pax")
     }
 
     private fun addDataDummyFlight() {
@@ -123,7 +123,7 @@ class ResultSearchTrainActivity : BaseActivity(),
 
             override fun failed(error: String) {
                 loadingSearch = false
-                showAllert("Sorry",error)
+                showAllert(getString(R.string.sorry),error)
             }
         })
     }
@@ -162,7 +162,7 @@ class ResultSearchTrainActivity : BaseActivity(),
     private fun showTotalData() {
         Globals.delay(1000.toLong(),object :Globals.DelayCallback{
             override fun done() {
-                tv_total_data.text = "${data.size} Tickets Found"
+                tv_total_data.text = "${data.size} ${getString(R.string.txt_tickets_found)}"
                 val transition: Transition = Fade()
                 transition.setDuration(700)
                 transition.addTarget(R.id.tv_total_data)

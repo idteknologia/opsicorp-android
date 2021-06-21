@@ -48,12 +48,12 @@
                 android:id="@+id/fourthContent"
                 layout="@layout/home_fourth_content"/>
 
-            <com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp
+            <com.mobile.travelaja.module.item_custom.slider.SliderImageOpsicorp
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 android:id="@+id/lay_slider">
-            </com.opsigo.travelaja.module.item_custom.slider.SliderImageOpsicorp>
+            </com.mobile.travelaja.module.item_custom.slider.SliderImageOpsicorp>
             <LinearLayout
                 android:id="@+id/line_title_upcomming_flight"
                 android:orientation="vertical"

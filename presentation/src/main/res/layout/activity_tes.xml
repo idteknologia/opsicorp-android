@@ -13,11 +13,11 @@
 
 <!--    </android.support.v7.widget.RecyclerView>-->
 
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+    <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+    </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
     <TextView
         android:gravity="center"
@@ -82,11 +82,11 @@
 
     </RelativeLayout>
 
-    <com.opsigo.travelaja.module.item_custom.barcode.scanner.ScannerOpsicorp
+    <com.mobile.travelaja.module.item_custom.barcode.scanner.ScannerOpsicorp
         android:id="@+id/scanner_barcode"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.opsigo.travelaja.module.item_custom.barcode.scanner.ScannerOpsicorp>
+    </com.mobile.travelaja.module.item_custom.barcode.scanner.ScannerOpsicorp>
 
 </LinearLayout>

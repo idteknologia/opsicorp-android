@@ -6,12 +6,10 @@ import org.json.JSONArray
 import android.text.Editable
 import android.text.TextWatcher
 import com.opsicorp.hotel_feature.R
-import com.opsigo.travelaja.BaseActivity
-import com.opsigo.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
-import com.opsigo.travelaja.utility.Constants
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.mobile.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.nearby_hotel_view.*
@@ -23,7 +21,7 @@ import opsigo.com.domainlayer.callback.CallbackListCityHotel
 import com.opsicorp.hotel_feature.adapter.NearbyOfficeAdapter
 import com.opsicorp.hotel_feature.adapter.NearbyCountryAdapter
 import com.opsicorp.hotel_feature.adapter.NearbyAirportAdapter
-import com.opsigo.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyOfficeModel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
