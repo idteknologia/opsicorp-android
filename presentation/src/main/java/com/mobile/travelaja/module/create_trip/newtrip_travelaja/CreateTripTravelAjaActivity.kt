@@ -240,8 +240,8 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         showLoadingOpsicorp(true)
         val dataOrderCreatTrip = DataBisnisTripModel()
         dataOrderCreatTrip.namePusrpose = et_purpose.text.toString()
-        dataOrderCreatTrip.startDate = m_startdate
-        dataOrderCreatTrip.endDate = m_endate
+        dataOrderCreatTrip.startDate = tv_from.text.toString()
+        dataOrderCreatTrip.endDate = et_end_date.text.toString()
         dataOrderCreatTrip.origin = tv_origin_city.text.toString()
         dataOrderCreatTrip.destination = tv_destination_city.text.toString()
         dataOrderCreatTrip.notes   = et_notes.text.toString()
@@ -274,8 +274,8 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
 
     private fun dataRequest(dataOrderCreatTrip: DataBisnisTripModel): HashMap<String, Any> {
         val dataRequest             = SaveAsDraftRequest()
-        dataRequest.startDate       = m_startdate
-        dataRequest.returnDate      = m_endate
+        dataRequest.startDate       = tv_from.text.toString()
+        dataRequest.returnDate      = et_end_date.text.toString()
         dataRequest.remark          = et_notes.text.toString()
         dataRequest.origin          = tv_origin_city.text.toString()
         dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType
@@ -321,13 +321,11 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     override fun startDate(displayStartDate: String, startDate: String) {
         viewBinding.tvFrom.setText(displayStartDate)
         m_startdate = startDate
-        setLog("start date "+m_startdate)
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
         viewBinding.etEndDate.setText(displayEndDate)
-        m_startdate = endDate
-        setLog("end date "+m_endate)
+        m_endate = endDate
     }
 
     override fun canceledCalendar() {

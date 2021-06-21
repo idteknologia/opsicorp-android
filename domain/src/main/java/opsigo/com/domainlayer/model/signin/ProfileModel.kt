@@ -18,6 +18,7 @@ class ProfileModel {
     var title               = ""
     var homePhone           = ""
     var isApproval          = false
+    var costCenter = ""
 
 
     var idNumber     = ""

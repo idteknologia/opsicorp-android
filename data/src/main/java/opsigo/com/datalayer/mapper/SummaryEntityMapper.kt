@@ -12,10 +12,9 @@ class SummaryEntityMapper() {
 
     fun mapFrom(from: SummaryEntity): SummaryModel {
 
-        Log.e("TAG 1",Serializer.serialize(from))
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
-        summary.type            = from.type.toString()
+        summary.type            = from.type
         summary.tripCode            = from.code.toString()
         summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
         summary.businessTripType         = if (from.businessTripType==null) "" else from.businessTripType.toString()
@@ -38,10 +37,9 @@ class SummaryEntityMapper() {
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
         summary.isDomestic        = from.isDomestic!!
-        summary.golper            = from.golper
-        summary.wbsNo             = from.wbsNo.toString()
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
+
 
 
 

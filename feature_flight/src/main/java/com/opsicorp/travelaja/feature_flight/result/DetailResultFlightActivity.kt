@@ -53,6 +53,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     lateinit var dataFareRules : ArrayList<FareRulesModel>
     lateinit var dataOrder: OrderAccomodationModel
     var isSsr = false
+    var isFareRules = false
 
     override fun OnMain() {
         getValidationFlight()
@@ -123,6 +124,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun getFareRules() {
         GetDataAccomodation(getBaseUrl()).getFareRules(getToken(),dataFareRulesRequest(),object : CallbackGetFareRules {
             override fun success(data: ResultListFlightModel) {
+                isFareRules = true
                 dataFareRules = data.dataFareRules
             }
 
@@ -426,7 +428,9 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         datalist.dataFlight.last().notComply = isNotComply
 
         if (datalist.dataFlight.last().flightType.equals("GdsBfm")){
-            datalist.dataFlight.last().dataFareRules = dataFareRules
+            if (isFareRules) {
+                datalist.dataFlight.last().dataFareRules = dataFareRules
+            }
         }
 
         /*dataContacts.add(mDataBooker)*/

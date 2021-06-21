@@ -43,6 +43,7 @@ import android.os.Bundle
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
+
 class BookingContactFlight : BaseActivity(),
         OnclickListenerRecyclerView,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -348,7 +349,7 @@ class BookingContactFlight : BaseActivity(),
         }
     }
 
-    fun seatMapListener() {
+    fun seatMapListener(view: View) {
         gotoActivityResult(SelectSeatActivity::class.java, Constants.GET_SEAT_MAP)
     }
 
@@ -443,7 +444,13 @@ class BookingContactFlight : BaseActivity(),
         header.isDomestic       = dataTrip.isDomestik
         header.golper           = dataTrip.golper
 
-        header.type = 2
+        if (Constants.isBisnisTrip) {
+            header.type = 2
+        }
+        else {
+            header.type = 1
+        }
+
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
@@ -469,13 +476,13 @@ class BookingContactFlight : BaseActivity(),
 
         dataBooking.flightType = dataListFlight.dataFlight.first().flightType
         if (dataListFlight.dataFlight.size == 1) {
-            dataBooking.flightTripType = 1
+            dataBooking.flightTripType = 0
         } else if (dataListFlight.dataFlight.size > 1) {
             if(Constants.multitrip){
                 dataBooking.flightTripType = 3
             }
             else {
-                dataBooking.flightTripType = 2
+                dataBooking.flightTripType = 1
             }
         }
 
@@ -779,12 +786,17 @@ class BookingContactFlight : BaseActivity(),
         header.returnDate = dataTrip.endDate
         header.origin = dataTrip.originId
         header.destination = dataTrip.destinationId
-        header.type = 2
         header.tripParticipants = tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
+        if (Constants.isBisnisTrip){
+            header.type = 1
+        }
+        else {
+            header.type = 2
+        }
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }

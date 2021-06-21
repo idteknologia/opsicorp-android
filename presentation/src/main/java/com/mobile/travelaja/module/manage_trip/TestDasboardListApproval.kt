@@ -110,7 +110,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         //btn_approval.setTextWaitingButton("Waiting (${data.filter { it.status.equals("Waiting") }.size})")
 
         top_button.setTextBtnLeft("Draft")
-        top_button.setTextBtnRight("Completed")
+        top_button.setTextBtnRight("Approved")
 
         //btn_approval.setTextApproveButton("Approval (${data.filter { it.status.equals("Completely Approved") }.size})")
         //btn_approval.setTextRejectedButton("Rejected (${data.filter { it.status.equals("Completely Rejected") }.size})")
@@ -173,6 +173,14 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
+                if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                    onCompleted()
+                    top_button.completedButtonSelected()
+                } else {
+                    onDraft()
+                    top_button.draftButtonSelected()
+                }
+
                 if (approvalModel.isEmpty()) {
                     empty_view.show()
                 } else {

@@ -39,6 +39,7 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -567,29 +568,36 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun submitTripPlant(view: View) {
-        if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
-            setLog("notReady")
-        } else {
-            var tripPlanId = tripSummary.tripId
+        if (btn_submit_trip_plant.background.constantState != resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
+            val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
-            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
-            /*if (tripSummary.tripCode.contains("PT")) {
-                Constants.isBisnisTrip = false
-                if (Constants.isBisnisTrip.equals(false)) {
-                    var tripPlanId = tripSummary.tripId
-                    val bundle = Bundle()
+            if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                issuedAll()
+            }
+            else {
+                if (Constants.codeCompanyTravelAja==getProfile().companyCode||tripSummary.type==Constants.PERSONAL_TRIP) {
                     bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
                     gotoActivityWithBundle(PaymentActivity::class.java, bundle)
                 } else {
                     getSubmitTripPlant()
                 }
-            } else {
-                getSubmitTripPlant()
-            }*/
+            }
+
         }
+    }
+
+    private fun issuedAll() {
+        GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),tripSummary.tripId, object : CallbackApprovAll{
+            override fun successLoad(data: String) {
+                getSubmitTripPlant()
+            }
+
+            override fun failedLoad(message: String) {
+                showAllert("Sorry",message)
+            }
+
+        })
     }
 
     fun getSubmitTripPlant() {
@@ -616,7 +624,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         model.returnDate = tripSummary.returnDate
         model.origin = tripSummary.origin
         model.destination = tripSummary.destination
-        model.type = tripSummary.type
+        model.type = tripSummary.type.toString()
         model.tripParticipants = getDataParticipant()
         model.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         model.purpose = tripSummary.purpose
@@ -765,8 +773,4 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             e.printStackTrace()
         }
     }
-
-
-
-
 }

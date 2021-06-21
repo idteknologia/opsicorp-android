@@ -54,6 +54,9 @@ data class ProfileEntity(
 	@field:SerializedName("CompanyName")
 	val companyName: String?=null,
 
+	@field:SerializedName("CostCenterDefault")
+	val costCenterDefault: String?=null,
+
 	@field:SerializedName("DivisionName")
 	val divisionName: String?=null,
 

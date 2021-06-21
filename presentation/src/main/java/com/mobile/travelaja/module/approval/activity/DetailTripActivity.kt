@@ -451,7 +451,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
-        if (tripSummary.statusView == "Completely Approved" || tripSummary.statusView == "Completely Rejected") {
+        if (tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Completely Rejected") {
             line_add_trip_item.visibility = View.GONE
         } else {
             line_add_trip_item.visibility = View.VISIBLE
@@ -759,7 +759,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     fun showApproveAllDialog(view: View) {
         if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
             approveOrRejectItemRequest("1", "1")
-            saveToDraft()
+            /*saveToDraft()*/
         } else {
             ListParticipantDialog(this).create(this, dataParticipant)
         }
