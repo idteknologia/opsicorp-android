@@ -10,7 +10,6 @@ import opsigo.com.domainlayer.model.accomodation.flight.ProgressFlightModel
 import opsigo.com.domainlayer.model.accomodation.train.ProgressTrainModel
 import kotlinx.android.synthetic.main.item_detail_header_list_card.view.*
 import kotlinx.android.synthetic.main.item_hotel_summary_card_new.view.*
-import com.opsigo.travelaja.utility.Globals.getDateNowNewFormat
 import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.domainlayer.callback.CallbackProgressFlight
 import opsigo.com.domainlayer.callback.CallbackProgressTrain
@@ -25,7 +24,6 @@ import com.mobile.travelaja.utility.Globals.setLog
 import com.mobile.travelaja.module.cart.model.*
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
-import com.opsigo.travelaja.utility.*
 import kotlin.collections.ArrayList
 import com.squareup.picasso.Picasso
 import android.view.LayoutInflater
@@ -39,7 +37,6 @@ import com.mobile.travelaja.R
 import java.lang.Exception
 import android.view.View
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*
