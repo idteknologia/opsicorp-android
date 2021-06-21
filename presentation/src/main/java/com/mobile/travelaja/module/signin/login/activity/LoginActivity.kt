@@ -44,7 +44,8 @@ class LoginActivity : BaseActivity(),
 
     override fun getLayout(): Int {
         hideStatusBar()
-        Globals.setBaseUrl(this@LoginActivity, MyURL.URL_TRAVELAJA)
+        if (Globals.getBaseUrl(this).isEmpty() || Globals.getBaseUrl(this).isBlank())
+            Globals.setBaseUrl(this, MyURL.URL_TRAVELAJA)
         return R.layout.login_activity_view_travel_aja
     }
 
@@ -84,7 +85,7 @@ class LoginActivity : BaseActivity(),
         btn_login_with_google.setOnClickListener(this)
     }
 
-    private fun getDataLogin(username : String , password : String) {
+    private fun getDataLogin(username: String, password: String) {
         showDialog("")
         GetDataLogin(MyURL.URL_TRAVELAJA).getDataLogin(
             username,
@@ -190,7 +191,7 @@ class LoginActivity : BaseActivity(),
             btnSignIn -> {
                 val username = et_username.text.toString()
                 val password = et_password.text.toString()
-                getDataLogin(username,password)
+                getDataLogin(username, password)
             }
             eye_password -> {
                 presenter.visibilityPasswordListener(eye_password, et_password, this)
@@ -279,7 +280,6 @@ class LoginActivity : BaseActivity(),
         data.Email = personEmail
         return Globals.classToHashMap(data, RegisterWithEmailActivity.EmailModel::class.java)
     }
-
 
 
 }
