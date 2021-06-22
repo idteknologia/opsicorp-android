@@ -109,8 +109,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         //btn_approval.setTextAllButton("All (${data.size})")
         //btn_approval.setTextWaitingButton("Waiting (${data.filter { it.status.equals("Waiting") }.size})")
 
-        top_button.setTextBtnLeft("Draft")
-        top_button.setTextBtnRight("Completed")
+        top_button.setTextBtnLeft(context.getString(R.string.draft))
+        top_button.setTextBtnRight(context.getString(R.string.completed))
 
         //btn_approval.setTextApproveButton("Approval (${data.filter { it.status.equals("Completely Approved") }.size})")
         //btn_approval.setTextRejectedButton("Rejected (${data.filter { it.status.equals("Completely Rejected") }.size})")
@@ -203,7 +203,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
                 loading_view.hide()
 //                callback.failedLoad()
                 error_view.show()
-                Globals.showAlert("Sorry",message,context)
+                Globals.showAlert(context.getString(R.string.sorry),message,context)
                 setTitleButton()
             }
         } )

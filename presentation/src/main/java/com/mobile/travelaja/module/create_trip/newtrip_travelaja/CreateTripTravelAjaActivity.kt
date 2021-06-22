@@ -83,7 +83,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     }
 
     private fun initOnClick() {
-        btn_next.setTextButton("Continue")
+        btn_next.setTextButton(getString(R.string.continue_))
         btn_next.callbackOnclickButton(this)
 
         ic_back.setOnClickListener(this)
@@ -265,7 +265,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
 
         })

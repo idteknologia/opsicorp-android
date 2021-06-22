@@ -63,10 +63,10 @@ class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.On
 
 
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
-        toolbar.setTitleBar("Select Passengers")
+        toolbar.setTitleBar(getString(R.string.passengers))
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        btnNext.setTextButton("Done")
+        btnNext.setTextButton(getString(R.string.done))
 
 
         btn_add_adult.setOnClickListener(this)
@@ -104,7 +104,7 @@ class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.On
                 totalAdult++
             }
             else{
-                showSnackBar("Adult",limitAdult)
+                showSnackBar(getString(R.string.txt_adult),limitAdult)
             }
             changeTotalView()
         }
@@ -114,7 +114,7 @@ class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.On
             }
             else{
 
-                showSnackBar("Child",limitChild)
+                showSnackBar(getString(R.string.child),limitChild)
             }
 
             changeTotalView()
@@ -124,7 +124,7 @@ class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.On
                 totalInfant++
             }
             else{
-                showSnackBar("Infant",limitInfant)
+                showSnackBar(getString(R.string.infant),limitInfant)
             }
             changeTotalView()
         }
@@ -193,9 +193,9 @@ class SelectAgePassanger : BaseBottomSheetDialogFrament,ButtonDefaultOpsicorp.On
 
 
     private fun changeTotalView() {
-        tv_adult.text  = "${totalAdult} Adult(s)"
-        tv_child.text  = "${totalChild} Children"
-        tv_infant.text = "${totalInfant} Infant(s)"
+        tv_adult.text  = "$totalAdult ${getString(R.string.txt_adult)}(s)"
+        tv_child.text  = "$totalChild ${getString(R.string.children)}"
+        tv_infant.text = "$totalInfant ${getString(R.string.infant)}(s)"
 
         if(totalAdult==0){
             btn_minus_adult.setImageDrawable(resources.getDrawable(R.drawable.minus_inactive))

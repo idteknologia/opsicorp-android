@@ -215,16 +215,16 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun setImageContent() {
-        itemContentSunset.setContent("Sunset Gili Laba", R.drawable.bg_gili_laba){
+        itemContentSunset.setContent(getString(R.string.sunset_gili_laba), R.drawable.bg_gili_laba){
             openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/mengenang-sunset-di-gili-laba")
         }
-        itemContentPesona.setContent("Pesona Pantai Pink", R.drawable.bg_pesona){
+        itemContentPesona.setContent(getString(R.string.pesona_pantai_pink), R.drawable.bg_pesona){
             openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/pesona-pantai-pink-taklukkan-para-wisatawan-yang-datang")
         }
-        itemContentEksotisme.setContent("Eksotisme Labuan Bajo", R.drawable.bg_eksotisme){
+        itemContentEksotisme.setContent(getString(R.string.eksotisme_labuan_bajo), R.drawable.bg_eksotisme){
             openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/jelajahi-eksotisme-labuan-bajo")
         }
-        itemContentKeindahan.setContent("Keindahan Manta Point", R.drawable.bg_keindahan){
+        itemContentKeindahan.setContent(getString(R.string.keindahan_manta_point), R.drawable.bg_keindahan){
             openWebActivity("https://tic.wonderin.id/destination/nusa-tenggara-timur/keindahan-manta-point-surganya-para-pecinta-diving")
         }
     }
@@ -336,7 +336,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             })
         }
         else {
-          Globals.showAlert("Sorry","This feature is not available",requireContext())
+          Globals.showAlert(getString(R.string.sorry),getString(R.string.this_feature_is_not_available),requireContext())
         }
     }
 

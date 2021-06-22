@@ -165,7 +165,7 @@ class ManageTripFragment : BaseFragment()
 
     override fun failedLoad(string: String,tripCode:String) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Sorry")
+        builder.setTitle(getString(R.string.sorry))
         builder.setCancelable(false)
         builder.setMessage("Tripcode "+tripCode+" "+string)
         builder.setPositiveButton("Ok") { dialog, which ->

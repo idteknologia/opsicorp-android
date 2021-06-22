@@ -132,11 +132,11 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         imageSelected.add(R.drawable.ic_profile_selected)
 
         imageTitle.clear()
-        imageTitle.add("Home")
-        imageTitle.add("Manage trip")
-        imageTitle.add("Approval")
-        imageTitle.add("My Booking")
-        imageTitle.add("Profile")
+        imageTitle.add(getString(R.string.home))
+        imageTitle.add(getString(R.string.title_manage_trip))
+        imageTitle.add(getString(R.string.approval))
+        imageTitle.add(getString(R.string.my_booking))
+        imageTitle.add(getString(R.string.profile))
     }
 
     fun btnPersonalTrip(view: View){

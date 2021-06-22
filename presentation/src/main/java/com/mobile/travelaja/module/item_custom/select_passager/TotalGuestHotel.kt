@@ -81,7 +81,7 @@ class TotalGuestHotel() {
     }
 
     private fun changeTotalView() {
-        binding.tvAdult.text  = "${totalGuest} Guest(s)"
+        binding.tvAdult.text  = "$totalGuest ${context.getString(R.string.guest)}(s)"
 
         if(totalGuest==0){
             binding.btnMinusAdult.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_inactive))
