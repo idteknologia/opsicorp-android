@@ -292,8 +292,8 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
 
     fun showSnackbar(viewParent: View, calback: CallbackSnackBar){
         val snackbar = Snackbar
-                .make(viewParent, "No internet connection!", Snackbar.LENGTH_INDEFINITE)
-                .setAction("RETRY", object : View.OnClickListener{
+                .make(viewParent, getString(R.string.no_internet_connection), Snackbar.LENGTH_INDEFINITE)
+                .setAction(getString(R.string.retry), object : View.OnClickListener{
                     override fun onClick(v: View?) {
                         calback.onclikRetry()
                     }

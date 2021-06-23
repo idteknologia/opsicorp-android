@@ -123,7 +123,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
 
@@ -192,7 +192,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -286,7 +286,7 @@
                         android:layout_below="@+id/layPurpose"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
 
                     <ImageView
@@ -344,7 +344,7 @@
                         android:layout_below="@+id/lay_event"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 
@@ -535,7 +535,7 @@
                         android:layout_below="@+id/layDestination"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 
@@ -664,7 +664,7 @@
                                 android:layout_below="@+id/layStartDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -739,7 +739,7 @@
                                 android:layout_below="@+id/layEndDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -860,7 +860,7 @@
                     android:background="@android:color/white"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:onClick="openCameraView"
