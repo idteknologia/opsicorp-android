@@ -1,42 +1,39 @@
 package com.mobile.travelaja.module.signin.login.activity
 
-import android.content.Intent
+import java.util.*
 import android.net.Uri
-import android.os.Bundle
-import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.tasks.Task
-import com.mobile.travelaja.base.BaseActivity
+import android.os.Bundle
+import org.koin.core.inject
 import com.mobile.travelaja.R
-import com.mobile.travelaja.module.signin.login.presenter.LoginPresenter
-import com.mobile.travelaja.module.signin.login.view.LoginView
-import com.mobile.travelaja.module.signin.register.RegisterWithEmailActivity
-import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
-import com.mobile.travelaja.utility.Constants.RC_SIGN_IN
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.Utils
-import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
-import net.openid.appauth.*
-import opsigo.com.datalayer.datanetwork.GetDataLogin
-import opsigo.com.datalayer.datanetwork.dummy.signin.DataDummyUser
-import opsigo.com.datalayer.mapper.Serializer
+import android.content.Intent
+import com.google.android.gms.tasks.Task
 import opsigo.com.datalayer.network.MyURL
-import opsigo.com.domainlayer.callback.CallbackConfig
+import com.google.android.gms.auth.api.Auth
+import com.mobile.travelaja.utility.Globals
+import org.koin.core.parameter.parametersOf
+import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.base.BaseActivity
+import opsigo.com.domainlayer.model.ConfigModel
+import opsigo.com.datalayer.datanetwork.GetDataLogin
 import opsigo.com.domainlayer.callback.CallbackLogin
 import opsigo.com.domainlayer.callback.CallbackString
-import opsigo.com.domainlayer.model.ConfigModel
+import opsigo.com.domainlayer.callback.CallbackConfig
+import com.google.android.gms.common.api.ApiException
+import android.text.method.PasswordTransformationMethod
+import com.google.android.gms.common.api.GoogleApiClient
+import com.mobile.travelaja.utility.Constants.RC_SIGN_IN
 import opsigo.com.domainlayer.model.signin.DataLoginModel
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
-import java.util.*
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.mobile.travelaja.module.signin.login.view.LoginView
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import opsigo.com.datalayer.datanetwork.dummy.signin.DataDummyUser
+import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
+import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
+import com.mobile.travelaja.module.signin.login.presenter.LoginPresenter
+import com.mobile.travelaja.module.signin.register.RegisterWithEmailActivity
 
 
 class LoginActivity : BaseActivity(),
@@ -44,7 +41,8 @@ class LoginActivity : BaseActivity(),
 
     override fun getLayout(): Int {
         hideStatusBar()
-        Globals.setBaseUrl(this@LoginActivity, MyURL.URL_TRAVELAJA)
+        if (Globals.getBaseUrl(this).isEmpty() || Globals.getBaseUrl(this).isBlank())
+            Globals.setBaseUrl(this, MyURL.URL_TRAVELAJA)
         return R.layout.login_activity_view_travel_aja
     }
 
@@ -84,7 +82,7 @@ class LoginActivity : BaseActivity(),
         btn_login_with_google.setOnClickListener(this)
     }
 
-    private fun getDataLogin(username : String , password : String) {
+    private fun getDataLogin(username: String, password: String) {
         showDialog("")
         GetDataLogin(MyURL.URL_TRAVELAJA).getDataLogin(
             username,
@@ -190,7 +188,7 @@ class LoginActivity : BaseActivity(),
             btnSignIn -> {
                 val username = et_username.text.toString()
                 val password = et_password.text.toString()
-                getDataLogin(username,password)
+                getDataLogin(username, password)
             }
             eye_password -> {
                 presenter.visibilityPasswordListener(eye_password, et_password, this)
@@ -279,7 +277,6 @@ class LoginActivity : BaseActivity(),
         data.Email = personEmail
         return Globals.classToHashMap(data, RegisterWithEmailActivity.EmailModel::class.java)
     }
-
 
 
 }

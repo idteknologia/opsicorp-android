@@ -23,27 +23,29 @@ interface ServiceApi {
 
     @FormUrlEncoded
     @POST
-    suspend fun onLogin(@Url url : String , @FieldMap body : MutableMap<String,Any>) : LoginEntity
+    suspend fun onLogin(@Url url: String, @FieldMap body: MutableMap<String, Any>): LoginEntity
 
     @GET("Settlement/ManageTrip/Gets")
-    suspend fun getSettlement(@QueryMap map: MutableMap<String, Any>) : ResultList<Settlement>
+    suspend fun getSettlement(@QueryMap map: MutableMap<String, Any>): ResultList<Settlement>
 
     @GET(MyURL.CITY)
-    suspend fun getCities() : List<City>
+    suspend fun getCities(): List<City>
 
 
     companion object {
-        fun createRequest(token: String, baseUrl : String ): ServiceApi {
+        fun createRequest(token: String, baseUrl: String): ServiceApi {
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val httpClient = OkHttpClient.Builder().apply {
-                    addInterceptor(Interceptor { chain ->
-                        val builder = chain.request().newBuilder()
+                addInterceptor(Interceptor { chain ->
+                    val builder = chain.request().newBuilder()
+                    if (token.isNotEmpty() || token.isNotBlank()){
                         builder.header("Authorization", token)
-                        builder.header("Content-Type","application/json")
+                    }
+                    builder.header("Content-Type", "application/json")
 
-                        return@Interceptor chain.proceed(builder.build())
-                    })
+                    return@Interceptor chain.proceed(builder.build())
+                })
 
                 addInterceptor(interceptor)
             }

@@ -357,6 +357,6 @@ interface UrlEndpoind {
 
     @POST(MyURL.ISSUED_ALL)
     fun issuedAllTravelRequest(@Header("Authorization") token: String,
-                               @Query("TripId") TripId: String) : Call<ResponseBody>
+                               @Body body: HashMap<Any, Any>) : Call<ResponseBody>
 
 }

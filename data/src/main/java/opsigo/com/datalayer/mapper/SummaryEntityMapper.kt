@@ -12,10 +12,9 @@ class SummaryEntityMapper() {
 
     fun mapFrom(from: SummaryEntity): SummaryModel {
 
-        Log.e("TAG 1",Serializer.serialize(from))
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
-        summary.type            = from.type.toString()
+        summary.type            = from.type
         summary.tripCode            = from.code.toString()
         summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
         summary.businessTripType         = if (from.businessTripType==null) "" else from.businessTripType.toString()
@@ -37,11 +36,9 @@ class SummaryEntityMapper() {
 //        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
-        summary.isDomestic        = from.isDomestic!!
+        summary.isDomestic        = from.isDomestic
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
-
-
 
 
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
@@ -54,7 +51,7 @@ class SummaryEntityMapper() {
             summary.attactment.add(uplaodModel)
         }
 
-        from.routes?.forEachIndexed { index, routesItem ->
+        from.routes.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
                 routesItinerary.transportation = routesItem.transportation.toInt()

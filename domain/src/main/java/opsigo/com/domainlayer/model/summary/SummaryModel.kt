@@ -5,7 +5,7 @@ import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 
 data class SummaryModel(
         var tripId : String = "",
-        var type : String = "",
+        var type : Int = 0,
         var idUser :String = "",
         var tripCode: String = "",
         var origin: String = "",

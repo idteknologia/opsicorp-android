@@ -354,32 +354,67 @@ class BookingContactFlight : BaseActivity(),
     }
 
     override fun onClicked() {
-        getReservased()
-    }
-
-    fun getReservased() {
-        setLog("Test Reservasi",Serializer.serialize(getDataFlight()))
         if (bookingContactIsEmpty()){
             showAllert("Sorry",getString(R.string.booking_contact_not_empty))
         }
         else {
-            showLoadingOpsicorp(true)
-            GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
-                override fun successLoad(data: ReserveFlightModel) {
-                    if (data.errorMessage.equals("")) {
-                        goToNewCart(data.idTrip)
-                    } else {
-                        showAllert("error", data.errorMessage)
-                        hideLoadingOpsicorp()
-                    }
+            if (Constants.pertaminaUrl==getBaseUrl()){
+                if (phoneContactIsEmpty()){
+                    showAllert("Sorry",getString(R.string.phone_contact_not_empty))
                 }
+                else {
+                    getReservased()
+                }
+            }
+            else {
+                getReservased()
+            }
+        }
+    }
 
-                override fun failedLoad(message: String) {
-                    showAllert("error", message)
+    fun getReservased() {
+        setLog("Test Reservasi",Serializer.serialize(getDataFlight()))
+        showLoadingOpsicorp(true)
+        GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
+            override fun successLoad(data: ReserveFlightModel) {
+                if (data.errorMessage.equals("")) {
+                    goToNewCart(data.idTrip)
+                } else {
+                    showAllert("error", data.errorMessage)
                     hideLoadingOpsicorp()
                 }
-            })
+            }
+
+            override fun failedLoad(message: String) {
+                showAllert("error", message)
+                hideLoadingOpsicorp()
+            }
+        })
+    }
+
+    private fun phoneContactIsEmpty(): Boolean {
+        var isEmpty = false
+        val bookingContact = dataListFlight.dataFlight.first().passenger
+        bookingContact.forEach {
+            when (it.checktype){
+                Constants.TYPE_SIM -> {
+                    if (it.sim.mobilePhone.isEmpty()||it.sim.mobilePhone=="-"){
+                        isEmpty = true
+                    }
+                }
+                Constants.TYPE_PASSPORT -> {
+                    if (it.pasport.mobilePhone.isEmpty()||it.pasport.mobilePhone=="-"){
+                        isEmpty = true
+                    }
+                }
+                Constants.TYPE_KTP -> {
+                    if (it.idcard.mobilePhone.isEmpty()||it.idcard.mobilePhone=="-"){
+                        isEmpty = true
+                    }
+                }
+            }
         }
+        return isEmpty
     }
 
     private fun bookingContactIsEmpty(): Boolean {
@@ -410,7 +445,7 @@ class BookingContactFlight : BaseActivity(),
     }
 
     private fun getDataFlight(): HashMap<Any, Any> {
-        if(getProfile().companyCode=="000002"){
+        if(getBaseUrl()==Constants.pertaminaUrl){
             val model = ReserveFlightMulticityRequest()
             model.dataBooking = getDataBooking()
             model.header = getHeaderMulticity()
@@ -443,8 +478,8 @@ class BookingContactFlight : BaseActivity(),
         header.wbsNo            = dataTrip.wbsNo
         header.isDomestic       = dataTrip.isDomestik
         header.golper           = dataTrip.golper
+        header.type = Constants.TypeHeader.personal
 
-        header.type = 2
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
@@ -496,11 +531,11 @@ class BookingContactFlight : BaseActivity(),
     private fun getContactValidationFlightRequest(): ContactFlightRequest {
         val contact = ContactFlightRequest()
         contact.email = getProfile().email
-        contact.homePhone = getProfile().phone
+        contact.homePhone = "08167133923"//getProfile().phone
         contact.firstName = getProfile().firstName
-        contact.title = getProfile().title
+        contact.title = "Mr"//getProfile().title
         contact.lastName = getProfile().lastName
-        contact.mobilePhone = getProfile().phone
+        contact.mobilePhone = "08167133923"//getProfile().phone
         return contact
     }
 
@@ -527,6 +562,7 @@ class BookingContactFlight : BaseActivity(),
                     data.title          = bookingContactAdapterModel.sim.title
                     data.idNumber       = bookingContactAdapterModel.sim.idSim
                     data.identityNumber = bookingContactAdapterModel.sim.idSim
+                    data.otherPhone     = if (getProfile().homePhone=="-"||getProfile().homePhone.isEmpty()) bookingContactAdapterModel.sim.mobilePhone else getProfile().homePhone
                 }
                 Constants.TYPE_PASSPORT -> {
                     if (bookingContactAdapterModel.pasport.fullname.contains(" ")){
@@ -544,6 +580,7 @@ class BookingContactFlight : BaseActivity(),
                     data.title          = bookingContactAdapterModel.pasport.title
                     data.idNumber       = bookingContactAdapterModel.pasport.passporNumber
                     data.identityNumber = bookingContactAdapterModel.pasport.passporNumber
+                    data.otherPhone   = if (getProfile().homePhone=="-"||getProfile().homePhone.isEmpty()) bookingContactAdapterModel.pasport.mobilePhone else getProfile().homePhone
                 }
                 Constants.TYPE_KTP -> {
                     if (bookingContactAdapterModel.idcard.fullname.contains(" ")){
@@ -561,6 +598,7 @@ class BookingContactFlight : BaseActivity(),
                     data.title          = bookingContactAdapterModel.idcard.title
                     data.idNumber       = bookingContactAdapterModel.idcard.idCart
                     data.identityNumber = bookingContactAdapterModel.idcard.idCart
+                    data.otherPhone     = if (getProfile().homePhone=="-"||getProfile().homePhone.isEmpty()) bookingContactAdapterModel.idcard.mobilePhone else getProfile().homePhone
                 }
             }
 
@@ -575,7 +613,6 @@ class BookingContactFlight : BaseActivity(),
 
             data.index        = index+1
             data.identityType = bookingContactAdapterModel.checktype
-            data.otherPhone   = getProfile().homePhone
             data.employeeNik  = getProfile().employeeNik
             data.remarksPax   = ArrayList()
             data.jobTitleId   = getProfile().jobTitleId
@@ -780,12 +817,13 @@ class BookingContactFlight : BaseActivity(),
         header.returnDate = dataTrip.endDate
         header.origin = dataTrip.originId
         header.destination = dataTrip.destinationId
-        header.type = 2
         header.tripParticipants = tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
+        header.type = Constants.TypeHeader.personal
+
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
         }
@@ -806,7 +844,7 @@ class BookingContactFlight : BaseActivity(),
 
     private fun addRoute(routeMultiCityModel: RouteMultiCityModel): RoutestRequest {
         val data = RoutestRequest()
-        data.DepartureDateView = routeMultiCityModel.dateDeparture
+        data.DepartureDateView = DateConverter().getDate(routeMultiCityModel.dateDeparture,"yyyy-MM-dd","dd-MM-yyyy")
         data.departureDate     = routeMultiCityModel.dateDeparture
         data.destination       = routeMultiCityModel.destinationName
         data.origin            = routeMultiCityModel.originName
