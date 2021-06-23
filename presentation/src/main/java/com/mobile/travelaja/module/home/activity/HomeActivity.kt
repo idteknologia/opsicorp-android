@@ -1,13 +1,13 @@
 package com.mobile.travelaja.module.home.activity
 
-import android.view.View
-import android.content.Intent
 import android.util.Log
+import android.view.View
 import com.mobile.travelaja.R
+import android.content.Intent
 import androidx.core.os.bundleOf
 import opsigo.com.domainlayer.callback.*
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.domainlayer.model.HolidayModel

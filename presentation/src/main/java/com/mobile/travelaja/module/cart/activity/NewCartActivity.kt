@@ -40,6 +40,7 @@ import android.view.View
 import android.os.Build
 import android.util.Log
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.IssuedAllRequest
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -588,9 +589,13 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun issuedAll() {
-        GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),tripSummary.tripId, object : CallbackApprovAll{
+        GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),bodyIssuedAll(), object : CallbackApprovAll{
             override fun successLoad(data: String) {
-                getSubmitTripPlant()
+                hideLoadingOpsicorp()
+                val bundle = Bundle()
+                bundle.putString(Constants.TRIP_CODE,tripSummary.tripCode)
+                bundle.putString(Constants.ID_TRIP_PLANE,tripSummary.tripId)
+                gotoActivityWithBundle(SuccessView::class.java,bundle)
             }
 
             override fun failedLoad(message: String) {
@@ -598,6 +603,16 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             }
 
         })
+    }
+
+    private fun bodyIssuedAll(): HashMap<Any, Any> {
+        val issueAllModel = IssuedAllRequest()
+        issueAllModel.tripId = tripSummary.tripId
+        issueAllModel.deviceId = Globals.getDataPreferenceString(this, Constants.FCM_TOKEN)
+        try { issueAllModel.modelPhone = Globals.getDeviceName() }catch (e:Exception){
+            issueAllModel.modelPhone = "android"
+        }
+        return Globals.classToHashMap(issueAllModel,IssuedAllRequest::class.java)
     }
 
     fun getSubmitTripPlant() {

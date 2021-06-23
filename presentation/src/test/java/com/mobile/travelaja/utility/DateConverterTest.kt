@@ -57,6 +57,9 @@ class DateConverterTest {
 
     }
 
-
+    @Test
+    fun formatDate(){
+        print(DateConverter().getDate("2021-06-26 00:00:00","yyyy-MM-dd","dd-MM-yyyy"))
+    }
 
 }

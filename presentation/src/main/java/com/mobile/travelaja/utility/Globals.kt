@@ -10,6 +10,7 @@ import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Environment
 import android.os.Handler
 import android.preference.PreferenceManager
@@ -43,7 +44,6 @@ import opsigo.com.domainlayer.model.ConfigModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import java.io.*
 import java.text.*
-import java.text.DateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
@@ -811,7 +811,7 @@ object Globals {
 
     fun shortListDate(dataTime: ArrayList<String>, formatTime: String):ArrayList<String>{
         val listDates = ArrayList<Date>()
-        val dateFormatter: DateFormat = SimpleDateFormat(formatTime)
+        val dateFormatter: SimpleDateFormat = SimpleDateFormat(formatTime)
 
         dataTime.forEachIndexed { index, s ->
             listDates.add(dateFormatter.parse(s))
@@ -1017,6 +1017,26 @@ object Globals {
         return str
     }
 
+    fun getDeviceName(): String? {
+        val manufacturer: String = Build.MANUFACTURER
+        val model: String = Build.MODEL
+        return if (model.toLowerCase().startsWith(manufacturer.toLowerCase())) {
+            capitalize(model)
+        } else {
+            capitalize(manufacturer) + " " + model
+        }
+    }
 
+    private fun capitalize(s: String?): String {
+        if (s == null || s.length == 0) {
+            return ""
+        }
+        val first = s[0]
+        return if (Character.isUpperCase(first)) {
+            s
+        } else {
+            Character.toUpperCase(first).toString() + s.substring(1)
+        }
+    }
 
 }

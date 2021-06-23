@@ -14,7 +14,9 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 
 object Constants {
-
+    val pertaminaUrl = "https://pertamina-dtm3-qa.opsicorp.com/"
+    val KEY_IS_PARTICIPANT  = "isParticipant"
+    val KEY_IS_APPROVAL     = "isApproval"
     val codeCompanyTravelAja = "000002"
     val positionFlightMulticity = "position flight multicity"
     var ALREADY_SEARCH_FLIGHT = false
@@ -437,5 +439,10 @@ object Constants {
     val BISNIS_TRIP      = 1
     var PERSONAL_TRIP    = 2
 
+    object TypeHeader{
+        var bookers     = 1
+        var personal    = 2
+        var walkIn      = 3
+    }
 
 }

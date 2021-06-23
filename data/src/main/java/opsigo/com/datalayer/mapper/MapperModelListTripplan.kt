@@ -21,8 +21,6 @@ class MapperModelListTripplan {
             approvalModel.tripCode      = dataItem.code
             approvalModel.header        = dataItem.startDate
             approvalModel.title         = dataItem.purpose
-            Log.e("TAG","-----------------------")
-            Log.e("TAG",dataItem.destination)
             approvalModel.destination   = if (dataItem.destination==null) "" else dataItem.destination
             approvalModel.isApproval    = dataItem.isApprover
             approvalModel.isParticipant = dataItem.isParticipant
@@ -43,10 +41,6 @@ class MapperModelListTripplan {
                 mDataApproval.name  = listApproverItem.firstName
                 approvalModel.participant.add(mDataApproval)
             }
-
-/*            val mount = DateConverter().formatingDateDefault("dd-MM-yyyy",string).split("-")[1].substring(0,3)
-            val day = DateConverter().formatingDateDefault("dd-MM-yyyy",string).split("-")[2]
-            val days = DateConverter().formatingDay("dd-MM-yyyy",string)*/
 
             approvalModel.start_date    = dataItem.startDate
             approvalModel.end_date      = dataItem.returnDate
