@@ -38,11 +38,9 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
         View.inflate(context, R.layout.button_right_left_rounded, this)
 
         if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
-            line_button_left.gone()
-            line_button_right.gone()
+            ll_master_button.gone()
         } else {
-            line_button_left.visible()
-            line_button_right.visible()
+            ll_master_button.visible()
         }
 
         line_button_left.setOnClickListener(this)
