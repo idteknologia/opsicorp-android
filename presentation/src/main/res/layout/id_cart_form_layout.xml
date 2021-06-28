@@ -33,7 +33,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_width="31dp"
                     android:layout_height="23dp"
-                    android:src="@drawable/ic_id_cart"></ImageView>
+                    android:src="@drawable/ic_id_cart"/>
 
                 <LinearLayout
                     android:layout_marginLeft="12dp"
@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textColor="#009688"
-                        android:text="ID Card (KTP)"/>
+                        android:text="@string/txt_id_card_ktp"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                         android:textSize="14sp"
                         android:textColor="#91929e"
                         android:layout_marginTop="6dp"
-                        android:text="Fill ID card information in details." />
+                        android:text="@string/fill_id_card_information_in_details" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -79,7 +79,7 @@
                         android:textSize="14sp"
                         android:textColor="#8024253d"
                         android:lineSpacingExtra="4sp"
-                        android:text="Title"/>
+                        android:text="@string/title"/>
 
                     <LinearLayout
                         android:id="@+id/line_btn_mr"
@@ -145,7 +145,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Full Name" />
+                        android:text="@string/full_name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -171,7 +171,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -183,7 +183,7 @@
                         android:textSize="9sp"
                         android:textColor="#5488c1"
                         android:lineSpacingExtra="6sp"
-                        android:text="As on ID Card (KTP) without title and punctuation"
+                        android:text="@string/as_on_id_card_ktp_without_title_and_punctuation"
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
@@ -197,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Number Id Card" />
+                        android:text="@string/number_id_card" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -224,7 +224,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -236,7 +236,7 @@
                         android:textSize="9sp"
                         android:textColor="#5488c1"
                         android:lineSpacingExtra="6sp"
-                        android:text="As on ID Card (KTP) without title and punctuation"
+                        android:text="@string/as_on_id_card_ktp_without_title_and_punctuation"
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
@@ -250,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Contact&apos;s Name" />
+                        android:text="@string/txt_contacts_name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -273,7 +273,7 @@
                                     android:layout_gravity="center"
                                     android:layout_width="22dp"
                                     android:layout_height="15dp"
-                                    android:background="@color/green_price"></ImageView>
+                                    android:background="@color/green_price"/>
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -288,7 +288,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -313,7 +313,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -339,7 +339,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Email" />
+                        android:text="@string/email" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -365,7 +365,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -391,7 +391,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Birth Date" />
+                        android:text="@string/id_pax_birth_date" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -424,7 +424,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                             <TextView
                                 android:layout_marginTop="4dp"
@@ -466,7 +466,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                             <TextView
                                 android:layout_marginTop="4dp"
@@ -506,7 +506,7 @@
                                 android:layout_width="80dp"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                             <TextView
                                 android:layout_marginTop="4dp"
@@ -556,7 +556,7 @@
                 android:textColor="#24253d"
                 android:textSize="14sp"
                 style="@style/RobotoMedium"
-                android:text="Discard"
+                android:text="@string/discard"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -577,7 +577,7 @@
                 android:textColor="@color/textButtonColor"
                 android:textSize="16sp"
                 style="@style/RobotoMedium"
-                android:text="Save"
+                android:text="@string/save"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

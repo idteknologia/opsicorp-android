@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#24253d"
-                android:text="Total Amount: "/>
+                android:text="@string/total_amount_with_symbol"/>
 
             <TextView
                 android:id="@+id/tv_total_amount"
@@ -128,7 +128,7 @@
                                 android:textSize="12sp"
                                 android:textColor="#91929e"
                                 android:gravity="center_horizontal"
-                                android:text="Trip Code:"
+                                android:text="@string/trip_code_with_symbol"
                                 android:layout_marginTop="15dp"
                                 style="@style/RobotoRegular"/>
 
@@ -212,7 +212,7 @@
                                     android:textSize="12sp"
                                     android:textColor="#939396"
                                     android:gravity="center_horizontal"
-                                    android:text="Share QR"/>
+                                    android:text="@string/share_qr"/>
 
                             </LinearLayout>
 
@@ -365,7 +365,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#939396"
-                        android:text="Cost Center" />
+                        android:text="@string/cost_center" />
 
                     <TextView
                         android:id="@+id/tv_cost_center"
@@ -392,7 +392,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#939396"
-                        android:text="Allowance" />
+                        android:text="@string/allowance" />
 
                     <TextView
                         android:id="@+id/tv_mount"
@@ -429,7 +429,7 @@
                 android:textSize="12sp"
                 style="@style/RobotoRegular"
                 android:textColor="#939396"
-                android:text="Click list for participant detail"
+                android:text="@string/click_list_for_participant_detail"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -462,7 +462,7 @@
                 android:textSize="12sp"
                 style="@style/RobotoRegular"
                 android:textColor="#939396"
-                android:text="Click list for participant detail"
+                android:text="@string/click_list_for_participant_detail"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -506,7 +506,7 @@
                 android:id="@+id/lineBottomItemOrder"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:background="#f6f8f8"></LinearLayout>
+                android:background="#f6f8f8"/>
 
             <TextView
                 android:id="@+id/titleNotes"
@@ -555,7 +555,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:textColor="#00776a"
-                android:text="Attachment Files"/>
+                android:text="@string/attachment_files"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:visibility="visible"
@@ -591,7 +591,7 @@
                         android:textColor="@color/textColorButtonOutline"
                         android:textSize="14sp"
                         style="@style/RobotoMedium"
-                        android:text="Reject All"
+                        android:text="@string/reject_all"
                         android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -612,7 +612,7 @@
                         android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
-                        android:text="Approve All"
+                        android:text="@string/approve_all"
                         android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

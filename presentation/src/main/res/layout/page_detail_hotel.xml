@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hotel Address"
+        android:text="@string/hotel_address"
         android:gravity="center"
         android:textColor="#212121"
         android:textSize="14dp"
@@ -28,7 +28,7 @@
         android:layout_marginLeft="66dp"
         android:layout_marginRight="66dp"
         android:gravity="center"
-        android:layout_marginTop="10dp"></TextView>
+        android:layout_marginTop="10dp"/>
 
     <RelativeLayout
         android:background="#f6f8f8"
@@ -63,7 +63,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Show Direction"
+            android:text="@string/show_direction"
             android:textColor="#24253d"
             android:textSize="10dp"
             style="@style/RobotoRegular"
@@ -76,14 +76,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Room Detail"
+            android:text="@string/room_detail"
             android:layout_marginBottom="14dp"
             android:textSize="14dp"
             style="@style/RobotoBold"
             android:layout_below="@+id/tv_show_direction"
             android:textColor="@color/colorPrimary"
             android:layout_marginLeft="@dimen/margin_default"
-            android:layout_marginTop="30dp"></TextView>
+            android:layout_marginTop="30dp"/>
     </RelativeLayout>
 
 
@@ -102,10 +102,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Superior Room"
+                android:text="@string/superior_room"
                 style="@style/RobotoBold"
                 android:textSize="14dp"
-                android:textColor="#24253d"></TextView>
+                android:textColor="#24253d"/>
 
 
             <TextView
@@ -127,7 +127,7 @@
             android:textSize="12dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textColor="#2b9a8e"></TextView>
+            android:textColor="#2b9a8e"/>
 
 
     </RelativeLayout>
@@ -176,7 +176,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hotel Message"
+                        android:text="@string/hotel_message"
                         android:textSize="14dp"
                         android:textColor="#24253d"
                         style="@style/RobotoBold">
@@ -187,7 +187,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/ic_chevron_up_orange"></ImageView>
+                        android:src="@drawable/ic_chevron_up_orange"/>
 
                 </RelativeLayout>
 
@@ -196,7 +196,7 @@
                     android:id="@+id/line_sparator_hotel_massage"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#b2bbc6"></LinearLayout>
+                    android:background="#b2bbc6"/>
 
 
                 <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
@@ -245,7 +245,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cancelation Policy"
+                android:text="@string/cancelation_policy"
                 android:textSize="14dp"
                 android:textColor="#24253d"
                 style="@style/RobotoBold">
@@ -256,7 +256,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
-                android:src="@drawable/ic_chevron_up_orange"></ImageView>
+                android:src="@drawable/ic_chevron_up_orange"/>
 
 
         </RelativeLayout>
@@ -265,7 +265,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#b2bbc6"></LinearLayout>
+        android:background="#b2bbc6"/>
 
     <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
         android:layout_width="match_parent"
@@ -318,7 +318,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Remark"
+                        android:text="@string/remark"
                         android:textSize="14dp"
                         android:textColor="#24253d"
                         style="@style/RobotoBold">
@@ -329,7 +329,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_width="14dp"
                         android:layout_height="14dp"
-                        android:src="@drawable/ic_chevron_up_orange"></ImageView>
+                        android:src="@drawable/ic_chevron_up_orange"/>
 
 
                 </RelativeLayout>
@@ -386,10 +386,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guest Name / Room"
+                android:text="@string/guest_name_room"
                 style="@style/RobotoBold"
                 android:textSize="14dp"
-                android:textColor="#00776a"></TextView>
+                android:textColor="#00776a"/>
 
 
         </LinearLayout>
@@ -397,12 +397,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bed type"
+            android:text="@string/bed_type"
             style="@style/RobotoRegular"
             android:textSize="12dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textColor="#939396"></TextView>
+            android:textColor="#939396"/>
 
 
     </RelativeLayout>
@@ -410,7 +410,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#b2bbc6"></LinearLayout>
+        android:background="#b2bbc6"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_room_passanger"
@@ -422,7 +422,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="#f6f8f8"></LinearLayout>
+        android:background="#f6f8f8"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -434,11 +434,11 @@
             android:id="@+id/tv_tittle_prize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Prize"
+            android:text="@string/total_price"
             android:textColor="#939396"
             style="@style/RobotoRegular"
             android:textSize="14dp"
-            android:layout_marginTop="12dp"></TextView>
+            android:layout_marginTop="12dp"/>
 
         <TextView
             android:layout_below="@+id/tv_tittle_prize"
@@ -449,7 +449,7 @@
             style="@style/RobotoRegular"
             android:layout_marginBottom="12dp"
             android:textSize="14dp"
-            android:layout_marginTop="6dp"></TextView>
+            android:layout_marginTop="6dp"/>
 
 
 
@@ -459,7 +459,7 @@
             android:id="@+id/btn_send_receip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send Receipt"
+            android:text="@string/send_receipt"
             android:textColor="@color/colorPrimary"
             style="@style/RobotoBold"
             android:textSize="14dp"

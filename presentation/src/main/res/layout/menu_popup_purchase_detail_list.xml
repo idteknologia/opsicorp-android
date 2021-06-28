@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#24253d"
-        android:text="Reimbursement"
+        android:text="@string/txt_reimburstment"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="13dp"/>
@@ -23,7 +23,7 @@
         android:layout_marginRight="7dp"
         android:layout_height="1dp"
         android:layout_marginLeft="7dp"
-        android:background="#d3d3d8"></LinearLayout>
+        android:background="#d3d3d8"/>
 
     <TextView
         android:id="@+id/btn_back_to_purchase_list"
@@ -34,14 +34,14 @@
         android:layout_marginTop="11dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="13dp"
-        android:text="Back to Purchase List" />
+        android:text="@string/back_to_purchase_list" />
 
     <LinearLayout
         android:layout_width="132dp"
         android:layout_marginRight="7dp"
         android:layout_height="1dp"
         android:layout_marginLeft="7dp"
-        android:background="#d3d3d8"></LinearLayout>
+        android:background="#d3d3d8"/>
 
     <TextView
         android:id="@+id/btn_back_to_homepage"
@@ -52,6 +52,6 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#24253d"
-        android:text="Back to Homepage"
+        android:text="@string/back_to_homepage"
         />
 </LinearLayout>

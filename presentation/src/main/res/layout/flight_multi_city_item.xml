@@ -40,7 +40,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
-                android:text="Remove"
+                android:text="@string/remove"
                 android:textColor="#2b9a8e"
                 android:textSize="14sp"
                 android:visibility="gone" />
@@ -94,7 +94,7 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="9dp"
                                 android:text=""
-                                android:hint="Origin city/airport"
+                                android:hint="@string/origin_city_airport"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/colorTextHint"
                                 android:textColorHint="@color/colorTextHint"
@@ -196,7 +196,7 @@
                                 android:paddingTop="8dp"
                                 android:paddingBottom="9dp"
                                 android:text=""
-                                android:hint="Destination city/airport"
+                                android:hint="@string/destination_city_airport"
                                 android:textAlignment="viewStart"
                                 android:textColor="@color/colorTextHint"
                                 android:textColorHint="@color/colorTextHint"
@@ -210,7 +210,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_below="@+id/lay_to"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -267,7 +267,7 @@
                             android:textAlignment="viewStart"
                             android:gravity="center"
                             android:textSize="@dimen/font_edittext"
-                            android:hint="Select departure date"
+                            android:hint="@string/select_departure_date"
                             android:textColor="@color/colorTextHint"
                             android:textColorHint="@color/colorTextHint"
                             android:layout_width="match_parent"
@@ -282,7 +282,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginBottom="5dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 
@@ -339,7 +339,7 @@
                         android:layout_below="@+id/lay_end_date"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 

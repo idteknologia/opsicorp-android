@@ -34,7 +34,7 @@
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginRight="@dimen/margin_default"
             style="@style/TextButtonStyle"
-            android:text="Create Reimburstment"/>
+            android:text="@string/create_reimburstment"/>
         <TextView
             android:id="@+id/tvLabelCreate"
             android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             style="@style/TextInputLayout_Label"
             app:layout_constraintTop_toBottomOf="@+id/tvCreateRemb"
-            android:text="Please fill all trip information below."/>
+            android:text="@string/please_fill_all_trip_information_below"/>
 
         <TextView
             android:id="@+id/labelBank"
@@ -53,7 +53,7 @@
             android:layout_marginTop="25dp"
             app:layout_constraintLeft_toLeftOf="@+id/etBank"
             android:layout_marginLeft="3dp"
-            android:text="Bank Transfer"
+            android:text="@string/bank_transfer"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <EditText
@@ -67,7 +67,7 @@
             android:focusable="false"
             app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
             app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-            android:hint="Select Bank"
+            android:hint="@string/select_bank"
             android:editable="false"
             android:inputType="none"
             android:includeFontPadding="true"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
             android:layout_marginTop="20dp"
-            android:text="Trip Code"
+            android:text="@string/trip_code"
             android:layout_marginLeft="3dp"
             app:layout_constraintTop_toBottomOf="@+id/etBank" />
 
@@ -96,7 +96,7 @@
             android:drawableRight="@drawable/ic_chevron_down"
             app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
             app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-            android:hint="Select Trip Code"
+            android:hint="@string/select_trip_code"
             android:text="@{viewModel.selectedCode}"
             android:focusable="false"
             android:editable="false"

@@ -15,7 +15,7 @@
             android:layout_gravity="center"
             android:layout_width="161dp"
             android:layout_height="119dp"
-            android:src="@drawable/under_contruction"></ImageView>
+            android:src="@drawable/under_contruction"/>
 
         <TextView
             android:layout_marginTop="20dp"
@@ -25,7 +25,7 @@
             android:textSize="16sp"
             android:textColor="#24253d"
             android:gravity="center_horizontal"
-            android:text="Sorry for your inconvinience" />
+            android:text="@string/sorry_for_your_inconvinience" />
 
         <TextView
             android:layout_marginTop="10dp"
@@ -35,20 +35,20 @@
             android:layout_gravity="center"
             android:textColor="#91929e"
             android:gravity="center_horizontal"
-            android:text="This feature is under construction" />
+            android:text="@string/this_feature_is_under_construction" />
 
         <Button
             android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:text="Close"
+            android:text="@string/close"
             android:textStyle="bold"
             android:background="@color/colorOrangeApproval"
             android:id="@+id/btn_cancel"
             android:layout_width="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_height="wrap_content"></Button>
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </RelativeLayout>

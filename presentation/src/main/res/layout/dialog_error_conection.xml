@@ -18,7 +18,7 @@
             android:textSize="28sp"
             android:textColor="#24253d"
             android:gravity="center_horizontal"
-            android:text="Uh-oh.."/>
+            android:text="@string/uh_oh"/>
 
         <TextView
             android:layout_marginRight="42dp"
@@ -30,8 +30,7 @@
             android:textColor="#9924253d"
             android:lineSpacingExtra="6sp"
             android:gravity="center_horizontal"
-            android:text="We&apos;re having difficulty connecting to the server.
-Check your connection or try again later." />
+            android:text="@string/we_apos_re_having_difficulty_connecting_to_the_server_check_your_connection_or_try_again_later" />
 
         <ImageView
             android:layout_marginTop="43dp"
@@ -51,7 +50,7 @@ Check your connection or try again later." />
         android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:text="Goto to Home "></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        app:text="Goto to Home "/>
 
 
 </RelativeLayout>

@@ -39,7 +39,7 @@
             android:layout_marginRight="@dimen/margin_default"
             android:gravity="end"
             android:lineSpacingExtra="4sp"
-            android:text="Delete"
+            android:text="@string/delete"
             android:textColor="#eb0011"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -50,7 +50,7 @@
         android:layout_marginTop="21dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_list_bisnis_trip"></androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/rv_list_bisnis_trip"/>
 
     <LinearLayout
         android:layout_marginTop="21dp"

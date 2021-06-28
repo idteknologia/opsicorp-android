@@ -82,7 +82,7 @@
                             android:layout_below="@+id/layStartDate"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 

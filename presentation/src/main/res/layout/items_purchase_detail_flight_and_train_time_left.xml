@@ -25,7 +25,7 @@
                 android:layout_width="14dp"
                 android:layout_height="17dp"
                 android:src="@drawable/ic_tower_blue"
-                android:layout_marginRight="5dp"></ImageView>
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
                 android:layout_gravity="center"
                 android:layout_width="7dp"
                 android:layout_height="7dp"
-                android:background="@drawable/rounded_button_dark_gray"></LinearLayout>
+                android:background="@drawable/rounded_button_dark_gray"/>
 
             <TextView
                 android:id="@+id/tv_name_airport_layover_left"

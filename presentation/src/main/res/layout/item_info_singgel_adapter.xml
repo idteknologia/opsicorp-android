@@ -14,7 +14,7 @@
         android:layout_gravity="center"
         android:layout_marginRight="15dp"
         android:layout_width="5dp"
-        android:layout_height="5dp"></ImageView>
+        android:layout_height="5dp"/>
 
     <TextView
         android:id="@+id/tv_description"

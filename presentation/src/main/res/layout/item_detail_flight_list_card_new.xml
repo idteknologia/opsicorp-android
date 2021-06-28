@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="Reserved"
+                        android:text="@string/txt_reserved"
                         android:textColor="#2b9a8e"
                         android:textSize="14sp" />
                     <TextView
@@ -57,7 +57,7 @@
                         android:lineSpacingExtra="9sp"
                         style="@style/RobotoRegular"
                         android:id="@+id/tv_title_code_fl"
-                        android:text="Booking Code (PNR)" />
+                        android:text="@string/txt_booking_code_pnr" />
 
                     <TextView
                         android:id="@+id/tv_pnr_flight_cart"
@@ -335,7 +335,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1.5dp"
                 android:background="#91929e"
-                android:layout_marginTop="15dp"></LinearLayout>
+                android:layout_marginTop="15dp"/>
 
 
             <LinearLayout
@@ -357,7 +357,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#00776a"
-                        android:text="Total Price"
+                        android:text="@string/total_price"
                         style="@style/RobotoBold"/>
 
                     <TextView
@@ -376,7 +376,7 @@
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Not Comply"
+                        android:text="@string/not_comply"
                         android:textColor="#d0021b"
                         android:textSize="10sp" />
                 </LinearLayout>
@@ -403,7 +403,8 @@
                         android:fontFamily="@font/lato_black"
                         android:textColor="@color/tintTextView"
                         android:letterSpacing="0.1"
-                        android:text="DETAILS"
+                        android:textAllCaps="true"
+                        android:text="@string/details"
                         />
                 </LinearLayout>
             </RelativeLayout>

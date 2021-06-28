@@ -11,7 +11,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#cc000000"></LinearLayout>
+        android:background="#cc000000"/>
 
     <LinearLayout
         android:elevation="3dp"
@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top"/>
 
         <LinearLayout
             android:background="@android:color/white"
@@ -81,7 +81,7 @@
                     android:textSize="12sp"
                     android:textColor="#939396"
                     style="@style/RobotoRegular"
-                    android:text="Including of all fares &amp; vat"
+                    android:text="@string/txt_including_off_all"
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:gravity="left"
@@ -99,7 +99,7 @@
                     app:text="Book"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="@dimen/margin_default"
-                    android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Flight"/>
+                        android:text="@string/txt_flight"/>
 
 
                 </LinearLayout>
@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Hotel"/>
+                        android:text="@string/txt_hotel"/>
 
                 </LinearLayout>
 
@@ -205,7 +205,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Transportation"/>
+                        android:text="@string/transportation"/>
 
                 </LinearLayout>
 
@@ -237,7 +237,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Allowance"/>
+                        android:text="@string/allowance"/>
 
                 </LinearLayout>
 
@@ -269,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Allowance Event"/>
+                        android:text="@string/allowance_event"/>
 
                 </LinearLayout>
 
@@ -302,7 +302,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#b324253d"
-                        android:text="Laundry"/>
+                        android:text="@string/laundry"/>
 
                 </LinearLayout>
 

@@ -51,7 +51,7 @@
                     android:textColor="#91929e"
                     style="@style/RobotoRegular"
                     android:lineSpacingExtra="5sp"
-                    android:text="Your Trip Code has been Created, please \n waiting for approval" />
+                    android:text="@string/your_trip_code_has_been_created_please_n_waiting_for_approval" />
 
             </LinearLayout>
         </LinearLayout>
@@ -103,7 +103,7 @@
                             android:background="@drawable/rounded_approval_gray"
                             android:textSize="10sp"
                             style="@style/RobotoMedium"
-                            android:text="Draft"
+                            android:text="@string/draft"
                             android:gravity="center"
                             android:paddingRight="10sp"
                             android:paddingLeft="10sp"
@@ -116,7 +116,7 @@
                             android:textSize="12sp"
                             android:textColor="#91929e"
                             android:gravity="center_horizontal"
-                            android:text="Trip Code:"
+                            android:text="@string/trip_code_with_symbol"
                             android:layout_marginTop="20dp"
                             style="@style/RobotoRegular"/>
 
@@ -279,7 +279,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="32dp"
-                        android:text="Share QR"
+                        android:text="@string/share_qr"
                         android:textColor="#939396"
                         android:textSize="12sp"
                         style="@style/RobotoBold"
@@ -308,14 +308,14 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#24253d"
-            android:text="Tips today"/>
+            android:text="@string/tips_today"/>
 
         <ImageView
             android:src="@drawable/image_loading_finish"
             android:layout_marginLeft="34dp"
             android:layout_width="35dp"
             android:layout_marginTop="8dp"
-            android:layout_height="7dp"></ImageView>
+            android:layout_height="7dp"/>
 
         <LinearLayout
             android:layout_marginTop="12dp"
@@ -336,7 +336,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#24253d"
-                android:text="You can add trip item later in Manage Trip menu, Expired in 1 day and will be deleted." />
+                android:text="@string/you_can_add_trip_item_later_in_manage_trip_menu_expired_in_1_day_and_will_be_deleted" />
         </LinearLayout>
 
         <LinearLayout
@@ -358,7 +358,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#24253d"
-                android:text="You can share QRcode with same Company Policy only, as a Booker." />
+                android:text="@string/you_can_share_qrcode_with_same_company_policy_only_as_a_booker" />
         </LinearLayout>
 
         <LinearLayout
@@ -380,7 +380,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#24253d"
-                android:text="You will get The Best Price for All Trip item, match with your Travel Policy, Budget and Availability." />
+                android:text="@string/you_will_get_the_best_price_for_all_trip_item_match_with_your_travel_policy_budget_and_availability" />
         </LinearLayout>
         </LinearLayout>
 
@@ -397,7 +397,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
             android:layout_marginLeft="@dimen/margin_default"
-            android:text="Trip Plan Info"
+            android:text="@string/trip_plan_info"
             android:textColor="#24253d"
             android:textSize="18sp" />
 
@@ -473,7 +473,7 @@
                     android:textColor="@color/textColorButtonOutline"
                     android:textSize="14sp"
                     style="@style/RobotoMedium"
-                    android:text="Later"
+                    android:text="@string/later"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -494,7 +494,7 @@
                     android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
-                    android:text="Add Trip Item"
+                    android:text="@string/add_trip_item"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -522,7 +522,7 @@
                     android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
-                    android:text="Submit"
+                    android:text="@string/submit"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

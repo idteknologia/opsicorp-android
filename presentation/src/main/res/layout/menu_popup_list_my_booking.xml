@@ -23,7 +23,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="View Detail">
+            android:text="@string/view_detail">
         </TextView>
 
 
@@ -48,7 +48,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="Remove Purchase History">
+            android:text="@string/remove_purchase_history">
         </TextView>
 
     </LinearLayout>

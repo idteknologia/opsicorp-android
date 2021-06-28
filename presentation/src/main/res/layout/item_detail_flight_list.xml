@@ -22,7 +22,7 @@
         <TextView
             style="@style/RobotoBold"
             android:textSize="14dp"
-            android:text="DEPARTURE FLIGHT"
+            android:text="@string/departure_flight"
             android:textColor="#24253d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -38,7 +38,7 @@
             style="@style/RobotoMedium"
             android:textSize="8dp"
             android:gravity="center"
-            android:text="Not Comply"
+            android:text="@string/not_comply"
             android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="14dp" />

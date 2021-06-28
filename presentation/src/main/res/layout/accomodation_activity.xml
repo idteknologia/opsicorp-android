@@ -22,9 +22,5 @@
         android:id="@+id/btn_bottom_accomodation"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
-    </com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp>
-
-
-
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

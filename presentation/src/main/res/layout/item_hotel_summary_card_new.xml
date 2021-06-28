@@ -61,7 +61,7 @@
                             android:textColor="#91929e"
                             android:lineSpacingExtra="9sp"
                             style="@style/RobotoRegular"
-                            android:text="Booking Code (PNR)" />
+                            android:text="@string/txt_booking_code_pnr" />
 
                         <TextView
                             android:visibility="visible"
@@ -88,7 +88,7 @@
                             android:layout_centerVertical="true"
                             android:layout_width="1dp"
                             android:layout_height="54dp"
-                            android:background="#f5f5f5"></LinearLayout>
+                            android:background="#f5f5f5"/>
 
 
                         <TextView
@@ -111,7 +111,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="11dp"
                     android:scaleType="center"
-                    android:src="@drawable/background_slider"></ImageView>
+                    android:src="@drawable/background_slider"/>
 
                 <TextView
                     android:id="@+id/tv_name_hotel_cart"
@@ -197,7 +197,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1.5dp"
                     android:background="#91929e"
-                    android:layout_marginTop="12dp"></LinearLayout>
+                    android:layout_marginTop="12dp"/>
 
                 <RelativeLayout
                     android:layout_marginTop="15dp"
@@ -213,7 +213,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
                             android:textColor="#00776a"
-                            android:text="Total Price"
+                            android:text="@string/total_price"
                             style="@style/RobotoBold"/>
 
                         <TextView
@@ -233,7 +233,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
                             android:textColor="#d0021b"
-                            android:text="Not Comply"
+                            android:text="@string/not_comply"
                             style="@style/RobotoBold"/>
                     </LinearLayout>
 
@@ -248,7 +248,7 @@
                             android:layout_centerVertical="true"
                             android:layout_width="1dp"
                             android:layout_height="54dp"
-                            android:background="#f5f5f5"></LinearLayout>
+                            android:background="#f5f5f5"/>
 
 
                         <TextView
@@ -261,7 +261,7 @@
                             android:textSize="10sp"
                             android:textColor="@color/tintTextView"
                             android:gravity="end"
-                            android:text="Detail"
+                            android:text="@string/detail"
                             style="@style/RobotoBold"/>
                     </LinearLayout>
                 </RelativeLayout>
@@ -274,6 +274,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/line_bottom_hotel"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical"/>
 
 </LinearLayout>

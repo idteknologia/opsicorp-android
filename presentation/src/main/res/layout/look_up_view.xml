@@ -114,7 +114,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#ffffff"
-            android:text="CLOSE"
+            android:text="@string/close"
+            android:textAllCaps="true"
             android:paddingLeft="15dp"
             android:paddingRight="20dp"
             />

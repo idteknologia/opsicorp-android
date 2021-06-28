@@ -49,7 +49,7 @@
                             android:textSize="12sp"
                             android:textColor="#00776a"
                             android:gravity="end"
-                            android:text="Departure date" />
+                            android:text="@string/departure_date" />
 
                         <TextView
                             android:layout_marginTop="5dp"
@@ -58,7 +58,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="14dp"
                             android:textColor="#24253d"
-                            android:text="Booking Code (PNR) "
+                            android:text="@string/txt_booking_code_pnr"
                             />
                     </LinearLayout>
 
@@ -230,7 +230,7 @@
                             android:layout_gravity="center"
                             android:layout_width="10dp"
                             android:layout_height="10dp"
-                            android:src="@drawable/ic_clock_black"></ImageView>
+                            android:src="@drawable/ic_clock_black"/>
 
                         <TextView
                             android:layout_margin="2dp"
@@ -297,7 +297,7 @@
                         android:visibility="visible"
                         android:background="@drawable/point_arrival"
                         android:layout_width="9dp"
-                        android:layout_height="9dp"></ImageView>
+                        android:layout_height="9dp"/>
 
                 </LinearLayout>
 
@@ -378,7 +378,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Price Details"
+                    android:text="@string/txt_price_details"
                     android:textColor="#00776a"
                     android:textSize="14dp" />
 
@@ -390,7 +390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Not Comply"
+                    android:text="@string/not_comply"
                     android:textColor="#d0021b"
                     android:textSize="12dp" />
 

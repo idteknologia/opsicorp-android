@@ -27,7 +27,7 @@
         style="@style/RobotoRegular"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
-        android:text="Join Trip"
+        android:text="@string/join_trip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -40,7 +40,7 @@
         style="@style/RobotoRegular"
         android:layout_marginTop="7dp"
         android:layout_marginLeft="20dp"
-        android:text="Join other trip with trip code"
+        android:text="@string/join_other_trip_with_trip_code"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         tools:ignore="RtlCompat" />
@@ -75,7 +75,7 @@
             android:layout_toRightOf="@+id/ic_search"
             android:textColor="#24253d"
             android:textColorHint="#24253d"
-            android:hint="Search by Trip code, barcode , dll"
+            android:hint="@string/search_by_trip_code_barcode_dll"
             android:layout_centerVertical="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />

@@ -34,7 +34,7 @@
                 android:textSize="17sp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:text="Pilih Tanggal"
+                android:text="@string/select_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/btn_close" />
@@ -68,7 +68,7 @@
                         android:layout_centerInParent="true"
                         android:background="@android:color/white"
                         android:layout_width="10dp"
-                        android:layout_height="2dp"></LinearLayout>
+                        android:layout_height="2dp"/>
                 </RelativeLayout>
 
 
@@ -130,7 +130,7 @@
             <LinearLayout
                 android:background="@drawable/shadow_bottom"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"></LinearLayout>
+                android:layout_height="4dp"/>
         </RelativeLayout>
 
 
@@ -197,7 +197,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
-        android:text="Done"
+        android:text="@string/done"
         android:textStyle="bold"
         android:textSize="20dp"
         android:gravity="center"

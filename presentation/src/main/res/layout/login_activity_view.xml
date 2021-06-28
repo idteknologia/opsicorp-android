@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" Password"
+                        android:text="@string/password"
                         android:visibility="gone"
                         android:textColor="#91929e"
                         android:textSize="14dp" />
@@ -96,7 +96,7 @@
                         android:layout_marginBottom="10dp"
                         android:paddingBottom="18dp"
                         android:singleLine="true"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:textColor="#24253d"
                         android:textSize="@dimen/font_edittext" />
 

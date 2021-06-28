@@ -22,7 +22,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="Economy Class">
+            android:text="@string/txt_economy_class">
         </TextView>
 
 
@@ -47,7 +47,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="Business Class">
+            android:text="@string/business_class">
         </TextView>
 
         <LinearLayout
@@ -70,7 +70,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="First Class">
+            android:text="@string/first_class">
         </TextView>
 
     </LinearLayout>

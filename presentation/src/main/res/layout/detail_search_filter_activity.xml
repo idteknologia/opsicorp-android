@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:id="@+id/rv_result_flight"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -67,7 +67,7 @@
                 android:textSize="22sp"
                 android:textColor="#24253d"
                 android:gravity="center_horizontal"
-                android:text="Whoops!"
+                android:text="@string/txt_whoops"
                 style="@style/RobotoBold"/>
 
             <TextView
@@ -80,7 +80,7 @@
                 android:layout_gravity="center"
                 style="@style/RobotoRegular"
                 android:layout_marginTop="10dp"
-                android:text="No flight, please search again before 30 days."
+                android:text="@string/no_flight_please_search_again_before_30_days"
                 />
         </LinearLayout>
 
@@ -92,5 +92,5 @@
         android:layout_width="match_parent"
         android:id="@+id/filter"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp>
+        android:layout_height="wrap_content"/>
 </RelativeLayout>

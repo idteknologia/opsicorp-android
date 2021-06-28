@@ -72,7 +72,7 @@
                 android:visibility="invisible"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Not Comply"
+                android:text="@string/not_comply"
                 android:textColor="#eb0011"
                 android:textSize="10sp" />
 
@@ -127,7 +127,7 @@
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" / pax"
+                android:text="@string/per_pax"
                 android:textColor="@color/colorMaterialGrey"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -185,7 +185,7 @@
             <TextView
                 style="@style/RobotoBold"
                 android:textColor="#b2bbc6"
-                android:text="Duration"
+                android:text="@string/duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"/>
@@ -222,7 +222,7 @@
                     <TextView
                         style="@style/RobotoBold"
                         android:textColor="#b2bbc6"
-                        android:text="Stop"
+                        android:text="@string/stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"
@@ -234,7 +234,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:text="Direct"
+                        android:text="@string/direct"
                         android:textColor="#24253d"
                         android:textSize="12sp" />
 

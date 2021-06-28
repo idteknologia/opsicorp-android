@@ -133,7 +133,7 @@
                 android:paddingLeft="@dimen/margin_default"
                 android:paddingRight="@dimen/margin_default"
                 android:layout_marginBottom="@dimen/margin_default"
-                android:text="+ Add Transportation"
+                android:text="@string/add_transportation"
                 android:textAllCaps="false"
                 android:textColor="@color/textColorButtonOutline"
                 android:textSize="14sp"
