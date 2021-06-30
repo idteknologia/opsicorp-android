@@ -37,7 +37,7 @@
                 android:textSize="13sp"
                 android:textColor="#707070"
                 android:lineSpacingExtra="9sp"
-                android:text="Please input verification code from email"
+                android:text="@string/please_input_verification_code_from_email"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="25dp"
                 style="@style/RobotoRegular"/>
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="19dp"
-                android:text="Enter your code"
+                android:text="@string/enter_your_code"
                 android:layout_gravity="center"
                 android:textColor="@color/colorBlueTitle"
                 android:textSize="22sp" />
@@ -139,7 +139,7 @@
                 android:layout_marginLeft="@dimen/margin_default"
                 android:id="@+id/btn_next"
                 android:layout_marginRight="@dimen/margin_default"
-                android:layout_marginTop="140dp"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                android:layout_marginTop="140dp"/>
 
         </LinearLayout>
 

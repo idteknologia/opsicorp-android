@@ -10,8 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -22,7 +20,7 @@
                 android:textColor="@color/black"
                 android:layout_width="170dp"
                 android:layout_height="45dp"
-                android:text="Duration"
+                android:text="@string/duration"
                 style="@style/RobotoBold"
                 android:textSize="17dp">
             </TextView>
@@ -75,7 +73,7 @@
                 android:layout_width="170dp"
                 android:gravity="center"
                 android:layout_height="45dp"
-                android:text="Batal"
+                android:text="@string/cancel"
                 android:textColor="@color/textColorButtonOutline"
                 style="@style/RobotoBold">
             </TextView>
@@ -94,7 +92,7 @@
                 android:textColor="@color/textButtonColor"
                 android:layout_width="170dp"
                 android:layout_height="45dp"
-                android:text="Selesai"
+                android:text="@string/done"
                 style="@style/RobotoBold"
                 android:textSize="17dp">
             </TextView>

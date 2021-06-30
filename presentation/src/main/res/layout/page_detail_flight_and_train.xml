@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Important Pre-Flight info"
+            android:text="@string/important_pre_flight_info"
             style="@style/RobotoBold"
             android:textColor="#24253d"
             android:layout_centerVertical="true"
@@ -72,8 +72,7 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#009688"
-            android:text="Passenger(s)"
-            ></TextView>
+            android:text="@string/passenger_s"/>
 
         <ImageView
             android:layout_width="14dp"
@@ -117,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             style="@style/RobotoBold"
-            android:text="Related Item(s)">
+            android:text="@string/related_item_s">
         </TextView>
 
         <ImageView
@@ -145,7 +144,7 @@
             android:textColor="#939396"
             style="@style/RobotoRegular"
             android:textSize="14dp"
-            android:layout_marginTop="12dp"></TextView>
+            android:layout_marginTop="12dp"/>
 
         <TextView
             android:id="@+id/tv_total_pricing"
@@ -168,7 +167,7 @@
             android:id="@+id/btn_send_receip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send Receipt"
+            android:text="@string/send_receipt"
             android:textColor="@color/colorPrimary"
             style="@style/RobotoBold"
             android:textSize="14dp"

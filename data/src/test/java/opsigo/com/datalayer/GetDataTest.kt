@@ -2,6 +2,8 @@ package opsigo.com.datalayer.datanetwork
 
 import okhttp3.ResponseBody
 import opsigo.com.datalayer.request_model.accomodation.train.search.SearchTrainRequest
+import opsigo.com.domainlayer.callback.CallbackLogin
+import opsigo.com.domainlayer.model.signin.DataLoginModel
 import org.junit.Test
 import org.koin.test.KoinTest
 import retrofit2.Call
@@ -405,6 +407,19 @@ class GetDataTest:KoinTest{
 //
 //        return maps
 //    }
+
+    @Test
+    fun getLogin(){
+        GetDataLogin("https://basicqa.opsicorp.com/").getDataLogin("mohammad.aussie@opsigo.com","Opsicorp2021!",object : CallbackLogin {
+            override fun successGetData(data: DataLoginModel) {
+                println(data)
+            }
+
+            override fun failedGetData(message: String) {
+            }
+
+        })
+    }
 
 
 }

@@ -74,7 +74,7 @@
                             android:textStyle="normal"
                             android:textColor="#939396"
                             android:gravity="center_horizontal"
-                            android:text="Airline Booking Code (PNR)" />
+                            android:text="@string/airline_booking_code_pnr" />
 
                         <LinearLayout
                             android:layout_marginTop="8dp"
@@ -98,14 +98,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/lay_detail_hotel"
-                            layout="@layout/layout_detail_hotel_purchase"></include>
+                            layout="@layout/layout_detail_hotel_purchase"/>
 
                         <include
                             android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/lay_detail_train"
-                            layout="@layout/layout_detail_hotel_train"></include>
+                            layout="@layout/layout_detail_hotel_train"/>
 
                     </LinearLayout>
 

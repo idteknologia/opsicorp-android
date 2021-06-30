@@ -14,7 +14,7 @@
             style="@style/RobotoBold"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:text="Reject"
+            android:text="@string/reject"
             android:layout_marginLeft="21dp"
             android:layout_marginRight="21dp"
             android:layout_centerVertical="true"
@@ -24,7 +24,7 @@
             style="@style/RobotoBold"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:text="Reject"
+            android:text="@string/reject"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="21dp"
             android:layout_marginRight="21dp"
@@ -78,7 +78,7 @@
                 android:paddingRight="10sp"
                 android:paddingLeft="10sp"
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"></TextView>
+                android:layout_height="16dp"/>
 
             <TextView
                 android:id="@+id/tv_expired"
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:text="TP201802080003"
                 android:textColor="#91929e"
-                android:textSize="16dp"></TextView>
+                android:textSize="16dp"/>
 
 
 
@@ -107,7 +107,7 @@
                 android:text="Meeting in Yogyakarta"
                 android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"/>
 
             <ImageView
                 android:src="@drawable/departure_date"
@@ -117,7 +117,7 @@
                 android:textSize="12sp"
                 android:gravity="center"
                 android:layout_width="14dp"
-                android:layout_height="14dp"></ImageView>
+                android:layout_height="14dp"/>
 
 
             <TextView
@@ -132,7 +132,7 @@
                 android:text="Surabaya"
                 android:gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
+                android:layout_height="wrap_content"/>
 
 
             <ImageView
@@ -143,7 +143,7 @@
                 android:textSize="12sp"
                 android:gravity="center"
                 android:layout_width="14dp"
-                android:layout_height="14dp"></ImageView>
+                android:layout_height="14dp"/>
 
 
             <TextView
@@ -158,7 +158,7 @@
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/img_date"></TextView>
+                android:layout_toRightOf="@+id/img_date"/>
 
 
             <ImageView

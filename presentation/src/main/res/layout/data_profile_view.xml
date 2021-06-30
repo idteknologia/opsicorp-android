@@ -50,7 +50,7 @@
                     android:layout_height="60dp">
 
                     <TextView
-                        android:text="Phone Number"
+                        android:text="@string/phone_number"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -73,7 +73,7 @@
                     android:layout_below="@+id/lay_phone"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#3324253d"></LinearLayout>
+                    android:background="#3324253d"/>
 
 
             </RelativeLayout>
@@ -102,7 +102,7 @@
                     android:layout_height="60dp">
 
                     <TextView
-                        android:text="Nationality"
+                        android:text="@string/nationality"
                         android:textSize="14sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -124,7 +124,7 @@
                     android:layout_below="@+id/layPurpose"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="#3324253d"></LinearLayout>
+                    android:background="#3324253d"/>
 
 
                 <ImageView

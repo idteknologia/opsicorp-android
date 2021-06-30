@@ -22,7 +22,7 @@
             style="@style/RobotoMedium"
             android:layout_marginRight="50dp"
             android:singleLine="true"
-            android:text="Document Meeting.PDF"
+            android:text="@string/document_meeting_pdf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/tv_failed"
-            android:text="Retry"
+            android:text="@string/retry"
             android:textColor="@color/red_alert"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"

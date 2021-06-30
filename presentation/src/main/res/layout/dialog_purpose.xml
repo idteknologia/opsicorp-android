@@ -23,7 +23,7 @@
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginTop="10dp"
-        android:text="What is your travel purpose ?"
+        android:text="@string/what_is_your_travel_purpose"
         android:textColor="#00776a"
         android:textSize="18sp" />
 

@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hotels"
                         android:textColor="#2b9a8e"
-                        android:textSize="8dp"></TextView>
+                        android:textSize="8dp"/>
 
                 </LinearLayout>
 
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="9sp"
                         android:textColor="#cccccc"
-                        android:text="Room / Night" />
+                        android:text="@string/room_night" />
 
                 </RelativeLayout>
 

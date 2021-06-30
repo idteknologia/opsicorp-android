@@ -89,7 +89,7 @@
                     android:textSize="15sp"
                     android:textColor="@android:color/white"
                     android:gravity="center"
-                    android:text="Business Trip"
+                    android:text="@string/business_trip"
                     android:layout_marginRight="2dp"/>
 
 
@@ -104,7 +104,7 @@
                     android:textSize="15sp"
                     android:textColor="#009688"
                     android:gravity="center"
-                    android:text="Personal Trip"
+                    android:text="@string/personal_trip"
                     android:layout_marginRight="2dp"/>
             </LinearLayout>
 
@@ -114,15 +114,14 @@
                 android:layout_below="@+id/button_switch"
                 android:layout_height="match_parent"
                 android:visibility="gone"
-                android:id="@+id/page_list_bisnis_trip">
-            </com.mobile.travelaja.module.cart.view.PageListBisnisTrip>
+                android:id="@+id/page_list_bisnis_trip"/>
 
             <com.mobile.travelaja.module.cart.view.PageDetailListTrip
                 android:layout_width="match_parent"
                 android:id="@+id/page_list_detail_trip"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/button_switch"
-                android:visibility="gone"></com.mobile.travelaja.module.cart.view.PageDetailListTrip>
+                android:visibility="gone"/>
 
             <com.mobile.travelaja.module.cart.view.PageDetailPersonalTrip
                 android:layout_width="match_parent"
@@ -181,7 +180,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top"/>
 
         <RelativeLayout
             android:background="@android:color/white"
@@ -200,7 +199,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#24253d"
-                    android:text="Total Purchase orders "
+                    android:text="@string/total_purchase_orders"
                     style="@style/RobotoRegular"/>
                 <TextView
                     android:visibility="gone"
@@ -225,7 +224,7 @@
                 android:textColor="@color/textButtonColor"
                 style="@style/RobotoBold"
                 android:gravity="center"
-                android:text="Checkout"
+                android:text="@string/checkout"
                 android:background="@drawable/rounded_button_yellow"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"

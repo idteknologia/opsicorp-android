@@ -45,7 +45,7 @@ class ListParticipantDialog(var context: Context) {
         line_approve_all.setOnClickListener { approvaListener() }
 
         initRecyclerView()
-        tv_total_participant.text = "Selected Participant (${data.size})"
+        tv_total_participant.text = "${context.getString(R.string.selected_participant)} (${data.size})"
 
         adb.setView(views)
         alertDialog = adb.create()

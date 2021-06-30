@@ -164,7 +164,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:hint="Origin city"
+                                    android:hint="@string/origin_city"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"
                                     android:text="@{viewModel.getItinerary(position).origin}"
@@ -252,7 +252,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:hint="Destination city"
+                                    android:hint="@string/title_nearby_city"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"
                                     android:text="@{viewModel.getItinerary(position).destination}"
@@ -269,7 +269,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_below="@+id/lay_to"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 

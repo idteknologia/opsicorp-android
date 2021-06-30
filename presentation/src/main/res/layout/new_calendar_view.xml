@@ -24,7 +24,7 @@
             android:textSize="16dp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            android:text="Pilih Tanggal"
+            android:text="@string/select_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/btn_close" />
@@ -59,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Berangkat"
-                    android:textSize="11dp"></TextView>
+                    android:textSize="11dp"/>
 
 
                 <TextView
@@ -68,8 +68,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pilih Tanggal"
-                    android:textSize="14sp"></TextView>
+                    android:text="@string/select_date"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pulang"
-                    android:textSize="11dp"></TextView>
+                    android:textSize="11dp"/>
 
 
                 <TextView
@@ -94,8 +94,8 @@
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pilih Tanggal"
-                    android:textSize="14sp"></TextView>
+                    android:text="@string/select_date"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_centerInParent="true"
             android:layout_width="10dp"
             android:layout_height="2dp"
-            android:background="@android:color/white"></LinearLayout>
+            android:background="@android:color/white"/>
 
     </RelativeLayout>
 

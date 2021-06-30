@@ -91,7 +91,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     private fun initOnClick() {
-        btn_next.setTextButton("Continue")
+        btn_next.setTextButton(getString(R.string.continue_))
         btn_next.callbackOnclickButton(this)
 
         ic_back.setOnClickListener(this)
@@ -177,7 +177,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         val bundle = Bundle()
         bundle.putString("emplaoyId", "purpose")
         bundle.putString("invisibleSearch", "yes")
-        bundle.putString("titleHeader", "What is your Travel purpose?")
+        bundle.putString("titleHeader", getString(R.string.what_is_your_travel_purpose))
         gotoActivityResultWithBundle(DialogPurpose::class.java, bundle, SELECT_CODE_PURPOSE)
     }
 
@@ -185,7 +185,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         val bundle = Bundle()
         bundle.putString("emplaoyId", "activity")
         bundle.putString("invisibleSearch", "yes")
-        bundle.putString("titleHeader", "Select trip activity type")
+        bundle.putString("titleHeader", getString(R.string.select_trip_activity_type))
         gotoActivityResultWithBundle(DialogPurpose::class.java, bundle, SELECT_CODE_ACTIVITY)
     }
 
@@ -313,11 +313,11 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             bundle.putString("data_order", Serializer.serialize(dataOrderCreatTrip, DataBisnisTripModel::class.java))
 
             if (et_purpose.text == resources.getString(R.string.select_your_purpose)) {
-                Globals.showAlert("Please", "Select your purpose", this)
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_purpose), this)
             } else if (presenter.dataAttachment.size <= 0) {
-                Globals.showAlert("Please", "Attach your document", this)
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.attach_your_document), this)
             } else if (attactmentIsEmpty()) {
-                Globals.showAlert("Please", "Waiting upload file", this)
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.waiting_upload_file), this)
             } else {
                 bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
                 bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)

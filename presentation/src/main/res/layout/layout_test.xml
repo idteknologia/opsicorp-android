@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="permission"
-        android:id="@+id/tvPermission"></Button>
+        android:id="@+id/tvPermission"/>
 
     <Button
         android:visibility="gone"
@@ -103,7 +103,7 @@
                     android:layout_gravity="center"
                     android:layout_width="10dp"
                     android:layout_height="10dp"
-                    android:src="@drawable/ic_clock_black"></ImageView>
+                    android:src="@drawable/ic_clock_black"/>
 
                 <TextView
                     android:layout_margin="2dp"
@@ -156,7 +156,7 @@
                 android:visibility="visible"
                 android:background="@drawable/point_arrival"
                 android:layout_width="9dp"
-                android:layout_height="9dp"></ImageView>
+                android:layout_height="9dp"/>
 
         </LinearLayout>
 

@@ -80,7 +80,7 @@
                     <TextView
                         style="@style/RobotoRegular"
                         android:layout_marginLeft="10dp"
-                        android:text="PNR Code : "
+                        android:text="@string/pnr_code"
                         android:textSize="12sp"
                         android:textColor="#B2BBC6"
                         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                     <TextView
                         style="@style/RobotoRegular"
                         android:layout_marginLeft="10dp"
-                        android:text="Status : "
+                        android:text="@string/status"
                         android:textSize="12sp"
                         android:textColor="#B2BBC6"
                         android:layout_width="wrap_content"
@@ -307,7 +307,7 @@
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
                 android:textColor="#24253d"
-                android:text="Details Information"
+                android:text="@string/details_information"
                 />
 
             <ImageView
@@ -337,7 +337,7 @@
                 android:layout_marginLeft="10dp"
                 android:textColor="#24253D"
                 android:textSize="12sp"
-                android:text="Total"
+                android:text="@string/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

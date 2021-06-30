@@ -183,7 +183,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry", message)
+                showAllert(getString(R.string.sorry), message)
             }
 
         })

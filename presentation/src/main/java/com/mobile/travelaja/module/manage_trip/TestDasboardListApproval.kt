@@ -210,7 +210,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
                 loading_view.hide()
 //                callback.failedLoad()
                 error_view.show()
-                Globals.showAlert("Sorry",message,context)
+                Globals.showAlert(context.getString(R.string.sorry),message,context)
                 setTitleButton()
             }
         } )

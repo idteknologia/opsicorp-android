@@ -41,7 +41,7 @@
             ​
             <TextView
                 android:id="@+id/tvTitle"
-                android:text="Are you sure?"
+                android:text="@string/are_u_sure"
                 android:textColor="#24253D"
                 android:textSize="16sp"
                 android:layout_marginLeft="20dp"

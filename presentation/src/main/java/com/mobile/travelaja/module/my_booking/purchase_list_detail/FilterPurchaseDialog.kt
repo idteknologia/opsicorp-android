@@ -160,15 +160,15 @@ class FilterPurchaseDialog(var context: Context) {
         listPayment.clear()
 
 
-        listProduct.add("Flight")
-        listProduct.add("Hotel")
-        listProduct.add("Train")
-        listProduct.add("Tour & travel")
+        listProduct.add(context.getString(R.string.txt_flight))
+        listProduct.add(context.getString(R.string.txt_hotel))
+        listProduct.add(context.getString(R.string.txt_train))
+        listProduct.add(context.getString(R.string.tour_and_travel))
 
-        listPayment.add("Credit Card")
-        listPayment.add("Transfer")
-        listPayment.add("Atm")
-        listPayment.add("Mandiri Clickpay")
+        listPayment.add(context.getString(R.string.credit_card))
+        listPayment.add(context.getString(R.string.transfer))
+        listPayment.add(context.getString(R.string.atm))
+        listPayment.add(context.getString(R.string.mandiri__clickpay))
 
         listPayment.forEachIndexed { index, s ->
             val mData = FilterPurchaseModel()

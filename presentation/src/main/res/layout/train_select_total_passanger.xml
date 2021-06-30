@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="18sp"
                     android:textColor="#00776a"
-                    android:text="Number of Passengers"
+                    android:text="@string/number_of_passengers"
                     android:layout_marginBottom="20dp"/>
 
                 <LinearLayout
@@ -86,7 +86,7 @@
                             <TextView
                                 android:layout_marginTop="3dp"
                                 android:textSize="12dp"
-                                android:text="Age 3 and older"
+                                android:text="@string/txt_age_3_and_older"
                                 android:textColor="#8024253d"
                                 style="@style/RobotoMedium"
                                 android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
                         android:layout_alignParentRight="true"
                         android:src="@drawable/plus_active"
                         android:layout_width="36dp"
-                        android:layout_height="36dp"></ImageView>
+                        android:layout_height="36dp"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -146,7 +146,7 @@
 
                             <TextView
                                 android:textSize="12dp"
-                                android:text="Below age 3"
+                                android:text="@string/txt_below_age_3"
                                 android:textColor="#8024253d"
                                 style="@style/RobotoMedium"
                                 android:layout_width="wrap_content"
@@ -183,7 +183,7 @@
                         android:textColor="#91929e"
                         android:lineSpacingExtra="6sp"
                         android:gravity="center_horizontal"
-                        android:text="For passenger below 18 years old, you may enter another valid ID number (e.g birth certificate, student ID) or date of birth ( ddmmyyyy )." />
+                        android:text="@string/text_desc_passenger" />
                 </LinearLayout>
 
 

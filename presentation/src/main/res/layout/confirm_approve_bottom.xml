@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top"/>
 
         <LinearLayout
             android:background="@color/white"
@@ -27,7 +27,7 @@
                 android:fontFamily="sans-serif"
                 android:textStyle="normal"
                 android:textColor="#24253d"
-                android:text="Do you confirm to approve all item?"
+                android:text="@string/do_u_want_to_approve_all"
                 />
 
             <LinearLayout
@@ -42,7 +42,7 @@
                 layout="@layout/btn_confirm_approve"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></include>
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

@@ -86,7 +86,7 @@ class PaymentActivity : BaseActivity(),
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                Globals.showAlert("Sorry",message,applicationContext)
+                Globals.showAlert(getString(R.string.sorry),message,applicationContext)
             }
 
         })
@@ -96,11 +96,11 @@ class PaymentActivity : BaseActivity(),
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
         toolbar.singgleTitleGravity(toolbar.START)
-        toolbar.setTitleBar("Select Payment")
+        toolbar.setTitleBar(getString(R.string.select_payment))
     }
 
     override fun btnBack() {
-        showDialog("Checking Payment")
+        showDialog(getString(R.string.checking_payment))
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripPlanId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
                 setLog(Serializer.serialize(summaryModel))
@@ -116,7 +116,7 @@ class PaymentActivity : BaseActivity(),
 
             override fun failedLoad(message: String) {
                 hideDialog()
-                showAllert("Sorry", message)
+                showAllert(getString(R.string.sorry), message)
             }
         })
         /*Globals.showAlertComplete("Exit Payment","The payment process will be canceled if you leave",this,object : OnclikAllertDoubleSelected {
@@ -142,7 +142,7 @@ class PaymentActivity : BaseActivity(),
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry", message)
+                showAllert(getString(R.string.sorry), message)
             }
         })
     }

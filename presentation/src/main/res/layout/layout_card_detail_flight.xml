@@ -221,7 +221,7 @@
                 <TextView
                     android:textColor="#24253d"
                     android:textSize="14sp"
-                    android:text="Detail Info"
+                    android:text="@string/detail_info"
                     style="@style/RobotoBold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -231,7 +231,7 @@
                     android:textSize="10sp"
                     style="@style/RobotoRegular"
                     android:textColor="#939396"
-                    android:text="Important info includes Segment, Facilities or Fare Rules"
+                    android:text="@string/important_info_includes_segment_facilities_or_fare_rules"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

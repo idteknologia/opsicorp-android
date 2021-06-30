@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textColor="#ffffff"
-                android:text="Filter" />
+                android:text="@string/filter" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="15sp"
                             android:textColor="#009688"
-                            android:text="Purchase Date" />
+                            android:text="@string/purchase_date" />
 
                         <ImageView
                             android:id="@+id/btn_show_purchase_date"
@@ -134,7 +134,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="17sp"
                                 android:textColor="#24253d"
-                                android:text="Other Dates" />
+                                android:text="@string/other_dates" />
 
                             <ImageView
                                 android:layout_centerVertical="true"
@@ -171,7 +171,7 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:textColor="#8024253d"
-                                    android:text="From" />
+                                    android:text="@string/from" />
 
                                 <LinearLayout
                                     android:layout_marginTop="7dp"
@@ -212,7 +212,7 @@
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:textColor="#8024253d"
-                                    android:text="From" />
+                                    android:text="@string/from" />
 
                                 <LinearLayout
                                     android:layout_marginTop="7dp"
@@ -223,7 +223,7 @@
                                         android:layout_marginRight="10dp"
                                         android:src="@drawable/ic_date_check_out"
                                         android:layout_width="22dp"
-                                        android:layout_height="17dp"></ImageView>
+                                        android:layout_height="17dp"/>
 
                                     <TextView
                                         style="@style/RobotoRegular"
@@ -262,7 +262,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="15sp"
                             android:textColor="#009688"
-                            android:text="Product Type" />
+                            android:text="@string/product_type" />
 
                         <ImageView
                             android:id="@+id/btn_show_product"
@@ -306,7 +306,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="15sp"
                             android:textColor="#009688"
-                            android:text="Payment Method" />
+                            android:text="@string/payment_method" />
 
                         <ImageView
                             android:id="@+id/btn_show_payment_methode"
@@ -359,7 +359,7 @@
                                 android:textSize="17sp"
                                 android:textColor="@color/textColorButtonOutline"
                                 android:gravity="center_horizontal"
-                                android:text="Reset"
+                                android:text="@string/reset"
                                 style="@style/RobotoBold"/>
                         </RelativeLayout>
 
@@ -377,7 +377,7 @@
                                 android:textSize="17sp"
                                 android:textColor="@color/textButtonColor"
                                 android:gravity="center_horizontal"
-                                android:text="Apply"
+                                android:text="@string/apply"
                                 style="@style/RobotoBold"/>
                         </RelativeLayout>
                     </LinearLayout>

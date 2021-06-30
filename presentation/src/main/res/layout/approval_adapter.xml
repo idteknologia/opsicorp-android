@@ -13,7 +13,7 @@
             style="@style/RobotoBold"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:text="Reject"
+            android:text="@string/reject"
             android:layout_marginLeft="21dp"
             android:layout_marginRight="21dp"
             android:layout_centerVertical="true"
@@ -23,7 +23,7 @@
             style="@style/RobotoBold"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:text="Reject"
+            android:text="@string/reject"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="21dp"
             android:layout_marginRight="21dp"
@@ -81,12 +81,12 @@
                 android:background="@drawable/rounded_approval_orange"
                 android:textSize="10sp"
                 style="@style/RobotoMedium"
-                android:text="Waiting"
+                android:text="@string/waiting"
                 android:gravity="center"
                 android:paddingRight="10sp"
                 android:paddingLeft="10sp"
                 android:layout_width="wrap_content"
-                android:layout_height="16dp"></TextView>
+                android:layout_height="16dp"/>
 
             <TextView
                 android:id="@+id/tv_expired"
@@ -100,7 +100,7 @@
                 android:gravity="center"
                 android:text="9 days left to expired"
                 android:textColor="#eb0011"
-                android:textSize="10sp"></TextView>
+                android:textSize="10sp"/>
 
 
 

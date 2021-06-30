@@ -45,7 +45,7 @@
                         android:id="@+id/line_checkbox"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"></LinearLayout>
+                        android:layout_height="match_parent"/>
                 </RelativeLayout>
 
                 <TextView
@@ -53,7 +53,7 @@
                     android:textSize="12sp"
                     style="@style/RobotoRegular"
                     android:layout_marginLeft="10sp"
-                    android:text="Select All"
+                    android:text="@string/select_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -73,7 +73,7 @@
                     android:textSize="12sp"
                     style="@style/RobotoRegular"
                     android:layout_marginLeft="10sp"
-                    android:text="Reject"
+                    android:text="@string/reject"
                     android:paddingRight="24sp"
                     android:paddingLeft="24sp"
                     android:textColor="#24253d"
@@ -89,7 +89,7 @@
                     android:paddingLeft="15dp"
                     android:textSize="12sp"
                     style="@style/RobotoRegular"
-                    android:text="Approve"
+                    android:text="@string/approve"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
             </LinearLayout>
@@ -108,23 +108,23 @@
             android:nestedScrollingEnabled="false"
             android:id="@+id/rv_waiting_approval"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
         <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/empty_view"
-            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"/>
 
         <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/error_view"
-            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"/>
 
 
         <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/loading_view"></com.mobile.travelaja.module.item_custom.empty_view.LoadingView>
+            android:id="@+id/loading_view"/>
 
     </RelativeLayout>
 

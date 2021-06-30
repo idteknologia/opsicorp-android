@@ -98,7 +98,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
 
@@ -148,7 +148,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -182,7 +182,7 @@
                             android:textSize="12sp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginRight="5dp"
-                            android:text="select"
+                            android:text="@string/select"
                             android:textColor="#24253D"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
                         <TextView
                             android:textColor="#91929e"
                             android:textSize="16sp"
-                            android:text="Status"
+                            android:text="@string/txt_status"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"/>
@@ -236,7 +236,7 @@
                         <TextView
                             android:textColor="#91929e"
                             android:textSize="16sp"
-                            android:text="Purpose"
+                            android:text="@string/purpose"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"/>
@@ -266,7 +266,7 @@
                         <TextView
                             android:textColor="#91929e"
                             android:textSize="16sp"
-                            android:text="Destination"
+                            android:text="@string/destination"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"/>
@@ -296,7 +296,7 @@
                         <TextView
                             android:textColor="#91929e"
                             android:textSize="16sp"
-                            android:text="Start Date"
+                            android:text="@string/start_date"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"/>
@@ -325,7 +325,7 @@
                         <TextView
                             android:textColor="#91929e"
                             android:textSize="16sp"
-                            android:text="End data"
+                            android:text="@string/end_date"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.5"/>
@@ -425,7 +425,7 @@
                         android:layout_height="wrap_content">
                         <TextView
                             android:onClick="showDataBudget"
-                            android:text="Budget"
+                            android:text="@string/budget"
                             style="@style/RobotoRegular"
                             android:textColor="#8024253d"
                             android:textSize="12sp"
@@ -435,7 +435,7 @@
                             android:onClick="showDataBudget"
                             android:id="@+id/tv_budget"
                             android:layout_marginTop="1dp"
-                            android:text="Choose your budget"
+                            android:text="@string/choose_your_budget"
                             android:textSize="17sp"
                             style="@style/RobotoRegular"
                             android:textColor="#24253d"
@@ -472,7 +472,7 @@
                         android:layout_height="wrap_content">
                         <TextView
                             android:onClick="showDataCostCenter"
-                            android:text="Cost Center"
+                            android:text="@string/cost_center"
                             style="@style/RobotoRegular"
                             android:textColor="#8024253d"
                             android:textSize="12sp"
@@ -482,7 +482,7 @@
                             android:onClick="showDataCostCenter"
                             android:id="@+id/tv_cost_center"
                             android:layout_marginTop="1dp"
-                            android:text="Please select your cost center"
+                            android:text="@string/please_select_your_cost_center"
                             android:textSize="17sp"
                             style="@style/RobotoRegular"
                             android:textColor="#24253d"
@@ -508,7 +508,7 @@
                     android:textColor="#00776a"
                     android:layout_marginTop="28dp"
                     android:layout_marginRight="@dimen/margin_default"
-                    android:text="Available Cost"
+                    android:text="@string/available_cost"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end" />

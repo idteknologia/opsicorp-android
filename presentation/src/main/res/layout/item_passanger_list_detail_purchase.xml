@@ -59,7 +59,7 @@
             android:layout_below="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="See Detail"
+            android:text="@string/see_detail"
             style="@style/RobotoRegular"
             android:textColor="#f8b945"
             android:textSize="10dp"
@@ -82,7 +82,7 @@
             <ImageView
                 android:layout_width="14dp"
                 android:layout_height="12dp"
-                android:src="@drawable/ic_bagage_purchase"></ImageView>
+                android:src="@drawable/ic_bagage_purchase"/>
 
 
             <TextView

@@ -70,7 +70,7 @@
                 android:src="@drawable/panah_double"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"></ImageView>
+                android:layout_marginRight="5dp"/>
 
             <TextView
                 android:singleLine="true"
@@ -170,7 +170,7 @@
                     android:layout_width="18dp"
                     android:layout_marginRight="8dp"
                     android:layout_height="13dp"
-                    android:background="@drawable/panah_detail_product"></ImageView>
+                    android:background="@drawable/panah_detail_product"/>
             </LinearLayout>
 
             <LinearLayout
@@ -212,7 +212,7 @@
             android:textSize="16dp"
             style="@style/RobotoRegular"
             android:textColor="@color/tintTextView"
-            android:text="Reset"
+            android:text="@string/reset"
             android:id="@+id/btn_reset"
             android:layout_alignParentRight="true"
             android:src="@drawable/ic_cart_white"
@@ -255,7 +255,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
-                android:text="Filter" />
+                android:text="@string/filter" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -275,7 +275,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#ffffff"
-                android:text="+Add more item" />
+                android:text="@string/add_more_item" />
         </RelativeLayout>
 
     </RelativeLayout>

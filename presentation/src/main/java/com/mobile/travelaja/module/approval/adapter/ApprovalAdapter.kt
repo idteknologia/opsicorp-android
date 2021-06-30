@@ -80,13 +80,13 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             }*/
 
             if(data.isApproval&&data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Approver +${data.listApproval.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.approver)} +${data.listApproval.size}"
             }
             else if(data.isApproval&&!data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Participant +${data.participant.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.participant)} +${data.participant.size}"
             }
             else if(!data.isApproval&&data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Approver +${data.listApproval.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.approver)} +${data.listApproval.size}"
             }
 
             itemView.setOnLongClickListener {
@@ -166,13 +166,13 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             }
 
             if(data.isApproval&&data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Approver +${data.listApproval.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.approver)} +${data.listApproval.size}"
             }
             else if(data.isApproval&&!data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Participant +${data.participant.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.participant)} +${data.participant.size}"
             }
             else if(!data.isApproval&&data.isParticipant){
-                itemView.tv_total_layer_approval.text = "Approver +${data.listApproval.size}"
+                itemView.tv_total_layer_approval.text = "${itemView.context.getString(R.string.approver)} +${data.listApproval.size}"
             }
 
 

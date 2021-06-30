@@ -32,19 +32,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="com.mobile.travelaja.module.signin.login.activity.OpenIdDirectlySuccess"
-            android:label="@string/title_activity_open_id_directly_success"
-            android:theme="@style/AppTheme.NoActionBar">
-<!--                <intent-filter android:autoVerify="true">-->
-<!--                    <action android:name="android.intent.action.VIEW" />-->
-<!--                    <category android:name="android.intent.category.DEFAULT" />-->
-<!--                    <category android:name="android.intent.category.BROWSABLE" />-->
-<!--                    <data android:scheme="https"-->
-<!--                        android:host="opsicorp-per-dtm.azurewebsites.net"-->
-<!--                        android:pathPattern="Ssoc/signin-oidc"/>-->
-<!--                </intent-filter>-->
-        </activity>
-        <activity
             android:name="com.mobile.travelaja.module.settlement.SettlementActivity"
             android:screenOrientation="portrait" />
         <activity

@@ -269,10 +269,10 @@ class CreateTripActivity : BaseActivity(),
         bundle.putString("data_order",Serializer.serialize(dataOrderCreatTrip,DataBisnisTripModel::class.java))
 
         if (et_purpose.text==resources.getString(R.string.select_your_purpose)){
-            Globals.showAlert("Please","Select your purpose",this)
+            Globals.showAlert(getString(R.string.txt_please),getString(R.string.select_your_purpose),this)
         }
         else if(attactmentIsEmpty()){
-            Globals.showAlert("Please","Waiting upload file",this)
+            Globals.showAlert(getString(R.string.txt_please),getString(R.string.waiting_upload_file),this)
         }
         else {
             gotoActivityWithBundle(SelectBudget::class.java,bundle)

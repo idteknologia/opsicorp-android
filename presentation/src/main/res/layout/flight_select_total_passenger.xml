@@ -29,7 +29,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#00776a"
-                    android:text="Number of Passengers"
+                    android:text="@string/number_of_passengers"
                     android:layout_marginBottom="20dp"/>
 
                 <LinearLayout

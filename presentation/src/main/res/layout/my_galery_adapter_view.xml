@@ -10,6 +10,6 @@
         android:id="@+id/ic_image"
         android:layout_marginLeft="10dp"
         android:layout_width="77dp"
-        android:layout_height="55dp"></ImageView>
+        android:layout_height="55dp"/>
 
 </LinearLayout>

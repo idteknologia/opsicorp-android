@@ -108,23 +108,23 @@
             android:nestedScrollingEnabled="false"
             android:id="@+id/rv_waiting_approval"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"/>
 
         <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/empty_view"
-            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"/>
 
         <com.mobile.travelaja.module.item_custom.empty_view.EmptyView
             android:layout_width="match_parent"
             android:id="@+id/error_view"
-            android:layout_height="match_parent"></com.mobile.travelaja.module.item_custom.empty_view.EmptyView>
+            android:layout_height="match_parent"/>
 
 
         <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/loading_view"></com.mobile.travelaja.module.item_custom.empty_view.LoadingView>
+            android:id="@+id/loading_view"/>
 
     </RelativeLayout>
 

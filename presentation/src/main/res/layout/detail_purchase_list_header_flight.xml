@@ -47,8 +47,7 @@
                 android:textStyle="normal"
                 android:textColor="#2b9a8e"
                 android:gravity="center_horizontal"
-                android:text="Trip Code:"
-                />
+                android:text="@string/trip_code_with_symbol" />
 
             <TextView
                 style="@style/RobotoMedium"

@@ -44,7 +44,6 @@
             android:visibility="visible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/layInfo"
             android:layout_above="@+id/layNavBottom">
 
             <LinearLayout
@@ -58,8 +57,7 @@
                 <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/toolbar">
-                </com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+                    android:id="@+id/toolbar"/>
 
 
                 <LinearLayout
@@ -104,13 +102,11 @@
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
                             android:layout_marginStart="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginEnd="5dp"
                             android:layout_toEndOf="@+id/step_one_logo"
                             android:text="@string/create_tripplan"
                             android:textColor="#24253D"
-                            android:textSize="12sp"
-                            android:layout_toRightOf="@+id/step_one_logo" />
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -123,7 +119,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
 
@@ -172,14 +168,13 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/step_two_logo"
                             android:textSize="12sp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="5dp"
                             android:id="@+id/label_select_budget"
                             android:text="@string/select_budget"
                             android:textColor="#24253D"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/step_two_logo" />
+                            android:layout_height="wrap_content" />
 
                     </RelativeLayout>
 
@@ -192,7 +187,7 @@
                             android:layout_marginRight="10dp"
                             android:layout_width="20dp"
                             android:layout_height="3dp"
-                            android:background="#d8d8d8"></LinearLayout>
+                            android:background="#d8d8d8"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -224,13 +219,12 @@
                             android:layout_centerVertical="true"
                             android:layout_toEndOf="@+id/step_tree_logo"
                             android:textSize="12sp"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginRight="5dp"
-                            android:text="select"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="5dp"
+                            android:text="@string/select"
                             android:textColor="#24253D"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/step_tree_logo" />
+                            android:layout_height="wrap_content" />
 
                     </RelativeLayout>
 
@@ -286,18 +280,19 @@
                         android:layout_below="@+id/layPurpose"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
 
                     <ImageView
                         android:onClick="selectPurpose"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="5dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="5dp"
                         android:src="@drawable/ic_chevron_down"
                         app:tint="@color/tintTextView"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:contentDescription="TODO" />
 
                 </RelativeLayout>
 
@@ -344,7 +339,7 @@
                         android:layout_below="@+id/lay_event"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 
@@ -427,7 +422,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_marginRight="3dp"
+                        android:layout_marginEnd="3dp"
                         android:paddingTop="7dp"
                         android:paddingBottom="7dp"
                         android:gravity="center"
@@ -440,7 +435,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
                         android:paddingTop="7dp"
                         android:paddingBottom="7dp"
                         android:gravity="center"
@@ -535,7 +530,7 @@
                         android:layout_below="@+id/layDestination"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext"/>
 
                 </RelativeLayout>
 
@@ -615,15 +610,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/mp_xs"
-                        android:layout_marginLeft="@dimen/mp_xs"
+                        android:layout_marginStart="@dimen/mp_xs"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_marginTop="7dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_date_check_in"
                             android:layout_width="@dimen/icon_edittext"
-                            android:layout_height="@dimen/icon_edittext" />
+                            android:layout_height="@dimen/icon_edittext"
+                            android:contentDescription="TODO" />
 
 
                         <RelativeLayout
@@ -652,7 +648,7 @@
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
-                                    android:textSize="15dp"
+                                    android:textSize="15sp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
@@ -664,7 +660,7 @@
                                 android:layout_below="@+id/layStartDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -691,15 +687,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/mp_xs"
-                        android:layout_marginLeft="@dimen/mp_xs"
+                        android:layout_marginStart="@dimen/mp_xs"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:layout_marginTop="7sp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_date_check_out"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:contentDescription="TODO" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -727,7 +724,7 @@
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
                                     android:gravity="center"
-                                    android:textSize="15dp"
+                                    android:textSize="15sp"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     tools:ignore="RtlCompat" />
@@ -739,7 +736,7 @@
                                 android:layout_below="@+id/layEndDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -801,8 +798,7 @@
                         android:text="@string/_0_100"
                         android:layout_marginTop="10dp"
                         android:textColor="#b2bbc6"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true" />
+                        android:layout_alignParentEnd="true" />
 
                     <!--<LinearLayout
                         android:layout_below="@+id/layNotes"
@@ -860,16 +856,15 @@
                     android:background="@android:color/white"
                     android:layout_marginTop="4dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_height="wrap_content"/>
 
                 <LinearLayout
                     android:onClick="openCameraView"
-                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:id="@+id/layAddAttachment"
                     android:background="@drawable/rounded_attachment"
-                    android:paddingRight="10dp"
+                    android:paddingEnd="10dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:orientation="horizontal"
@@ -984,8 +979,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:orientation="vertical"
-            android:layout_alignParentLeft="true">
+            android:orientation="vertical">
 
 
             <LinearLayout
@@ -1042,7 +1036,8 @@
                     <ImageView
                         android:src="@drawable/ic_flight_active"
                         android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
+                        android:layout_height="@dimen/icon_height_home"
+                        android:contentDescription="TODO" />
                     <TextView
                         android:id="@+id/tvHome"
                         android:textSize="10sp"
@@ -1061,7 +1056,8 @@
                     <ImageView
                         android:src="@drawable/ic_hotel"
                         android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
+                        android:layout_height="@dimen/icon_height_home"
+                        android:contentDescription="TODO" />
                     <TextView
                         android:textSize="10sp"
                         android:text="@string/hotels"
@@ -1079,7 +1075,8 @@
                     <ImageView
                         android:src="@drawable/ic_tour"
                         android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
+                        android:layout_height="@dimen/icon_height_home"
+                        android:contentDescription="TODO" />
                     <TextView
                         android:id="@+id/tvTour"
                         android:textSize="10sp"
@@ -1098,7 +1095,8 @@
                     <ImageView
                         android:src="@drawable/ic_manage_trip"
                         android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
+                        android:layout_height="@dimen/icon_height_home"
+                        android:contentDescription="TODO" />
                     <TextView
                         android:id="@+id/tvManageTrip"
                         android:textSize="10sp"
@@ -1117,7 +1115,8 @@
                     <ImageView
                         android:src="@drawable/ic_profile"
                         android:layout_width="@dimen/icon_width_home"
-                        android:layout_height="@dimen/icon_height_home" />
+                        android:layout_height="@dimen/icon_height_home"
+                        android:contentDescription="TODO" />
                     <TextView
                         android:id="@+id/tvProfile"
                         android:textSize="10sp"
@@ -1160,17 +1159,18 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
                         android:id="@+id/imgBackFromDest"
-                        android:paddingRight="10dp"
+                        android:paddingEnd="10dp"
                         android:src="@drawable/ic_back_white"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:contentDescription="TODO" />
 
                     <TextView
                         android:text="@string/destination"
@@ -1225,7 +1225,8 @@
                     android:paddingRight="10dp"
                     android:src="@drawable/ic_close_dark_gray"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:contentDescription="TODO" />
 
             </LinearLayout>
 

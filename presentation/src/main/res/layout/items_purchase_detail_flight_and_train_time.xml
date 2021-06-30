@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_width="7dp"
             android:layout_height="7dp"
-            android:background="@drawable/rounded_button_dark_gray"></LinearLayout>
+            android:background="@drawable/rounded_button_dark_gray"/>
 
         <TextView
             android:id="@+id/tv_name_airport_layover"

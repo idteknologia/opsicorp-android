@@ -58,7 +58,7 @@ class ApprovalFragment : BaseFragment()
 
     private fun showListApprofal(tripDateFrom: String,tripDateTo: String,position:Int,key:String) {
         dasboardPage = false
-        tv_title_two.text = "Click list to see your trip detail"
+        tv_title_two.text = getString(R.string.click_list_to_see_your_trip_detail)
         line_dasboard.gone()
         Constants.tripDateFrom = tripDateFrom
         Constants.tripDateTo   = tripDateTo
@@ -69,7 +69,7 @@ class ApprovalFragment : BaseFragment()
 
 
     private fun showDasboardApprofal() {
-        tv_title_two.text = "Today: ${Globals.getDateNow()}"
+        tv_title_two.text = "${getString(R.string.today)}: ${Globals.getDateNow()}"
         dasboardPage = true
         line_list_approval.gone()
         line_dasboard.show()
@@ -160,9 +160,9 @@ class ApprovalFragment : BaseFragment()
 
     override fun failedLoad(string: String,tripCode:String) {
         val builder = AlertDialog.Builder(context)
-        builder.setTitle("Sorry")
+        builder.setTitle(R.string.sorry)
         builder.setCancelable(false)
-        builder.setMessage("Tripcode "+tripCode+" "+string)
+        builder.setMessage("${getString(R.string.tripcode)} $tripCode $string")
         builder.setPositiveButton("Ok") { dialog, which ->
             line_list_approval.show(Constants.tripDateFrom,Constants.tripDateTo,Constants.poition,Constants.key)
         }
