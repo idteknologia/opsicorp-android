@@ -144,4 +144,31 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
         })
     }
 
+    override fun checkDateAvaibility(token: String, date: HashMap<Any,Any>, callback: CallbackString) {
+        apiOpsicorp.checkDateAvaibility(token, date).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isError")){
+                            callback.successLoad(json.getString("errorMessage"))
+                        }else{
+                            callback.successLoad("true")
+                        }
+                    }
+                    else {
+                        callback.failedLoad(messageFailed)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+        })
+    }
+
 }

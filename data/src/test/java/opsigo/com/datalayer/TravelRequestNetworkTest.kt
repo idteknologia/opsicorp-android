@@ -7,8 +7,10 @@ import java.util.concurrent.CountDownLatch
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackTypeActivity
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.request_model.travel_request.CheckAvaibilityDateRequest
 import opsigo.com.datalayer.request_model.travel_request.EstimatedRequest
 import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
+import opsigo.com.domainlayer.callback.CallbackString
 import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import opsigo.com.domainlayer.model.travel_request.TypeActivityTravelRequestModel
 
@@ -17,8 +19,9 @@ class TravelRequestNetworkTest {
     @Test
     fun getActivityTypeTest(){
         val latch = CountDownLatch(1)
-        val baseUrl = "https://opsicorp-per-dtm.azurewebsites.net"
-        val token   = "Bearer tpygpvGKmd5_POTQSwy4DdBsEr_zeied42-d0nzgdbyClHFw6nq3FS-7B4yNpqJiufyhqVOYuKFGId8P6A_QPIGGYxvxlzIwV4cek1oWO4Z-zYwj7xa5HGzO8AbCdOPiY5jxiIk3MXB8adRlsU9lv_jgLBZx-rPqFdcQREGesGQAZA7LYzEpfYNBHrEEcMqmYgauO-Hg7irgT3zShwCkBla97U-kB3Um89qYw8s2g2IGie1w9EKd3wGfqvuw-4sw0djlZkWNkeJo4ermlb5ydJeXTcZhvaeT3EhX0135lmqvyk9bqDa9miAPG9euKdksNmr2c8r_1Ae2G6IdMqo5OiNgINHSXITTQuz63h8B_Ea1epq5iYPCr6hREWkWheldQsG5Jv7g0tLFBuKV3gasOn-6XOFj0pDLq4Xb8e3Q5j0eeHSyrwHVUi4wHd0V0UePXePxJO-bGXWkG7NitTxIk82hdEV06exnbw2tbBxAqZczMYvDVfrp_e5cGpqDxdXc-sw_ai8FOr3NGaN91OJaLLKxNEC6D5WJUZmndaIwq-VFySAhD0vCgYjVEj9NMtoSJPqy-T2AI9S8dtvO-7aKtQ"
+        val baseUrl = "https://pertamina-dtm3-qa.opsicorp.com"
+        val token   = "Bearer 6KCPiP_vTRzLVR2rjTx_KYnJroOxRKjTGH19YuPYIAqOLqIud7EE02KeoxLoALLnQiAIpWLm7DqIrEKKZCW2A1wWjZh0I1LCm-SHP0qEtM9QV9hyFVJEjCsN3VZid14UeoRW8yOx38oKKc3Q84-A1MVKj3dUgOnm-8UocMI-kBOmDvj_uNLxTK4Vug8vvtMf62Y4Flc3jnOojBz2CzzU1HSRpf9YXdPGFeTi9X_AX_fmU3CLTFIWBHJk68R4HLrNPIDv5YRbbfMTaQ2QYjHUeBiFYU3zBCitg9DoNSuZo7oDs8dJsDv25QO8PENCcenNVPEDh4v_eqKvsSC8tQm7w2uqhRuBGfUDl_fZQcFCVz2maxcHTZ-OMyMiOif47YuJSox3GJNpN7FGEez_6peBYT9P_pLTfLHOHNOxUN9XjkjzeSs9UC5DS6VTbZq7BBzn5NUEMH8k7KW87VkQ3fn0cBhiEBJgjz-PJxQQxqKTow1YkOLrWFIDsPv_jDTy_37Jsk_VSEr0N6H_cIH-A94VqbN757-zXMt5rJalv3l6sNJdOBtR4nIC4jmnWpPMRHVXiAON-VLEjLdj_RYq8VKXSA"
+
         /*GetDataTravelRequest(baseUrl).getTypeActivity(token,object :CallbackTypeActivity{
             override fun success(data: ArrayList<TypeActivityTravelRequestModel>) {
                 println(data.size)
@@ -33,10 +36,21 @@ class TravelRequestNetworkTest {
             }
         })*/
 
-        GetDataTravelRequest(baseUrl).getEstimatedCost(token,dataPurpose(),object :CallbackEstimatedCostTravelRequest{
+        /*GetDataTravelRequest(baseUrl).getEstimatedCost(token,dataPurpose(),object :CallbackEstimatedCostTravelRequest{
             override fun successLoad(data: EstimatedCostTravelRequestModel) {
                 println(data.estAllowance)
                 println(Serializer.serialize(data))
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })*/
+
+        GetDataTravelRequest(baseUrl).checkDateAvaibility(token,dataDate(),object :CallbackString{
+            override fun successLoad(data: String) {
+                println(data)
                 latch.await()
             }
 
@@ -50,6 +64,13 @@ class TravelRequestNetworkTest {
         }catch (e:Exception){
             e.printStackTrace()
         }
+    }
+
+    private fun dataDate(): HashMap<Any, Any> {
+        val data = CheckAvaibilityDateRequest()
+        data.endDate = "2021-07-05"
+        data.startDate = "2021-06-30"
+        return classToHashMap(data,CheckAvaibilityDateRequest::class.java)
     }
 
     private fun dataPurpose(): HashMap<Any, Any> {
