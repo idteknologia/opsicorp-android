@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
@@ -110,29 +111,24 @@ class DialogCamera : BaseDialogFragment() {
                 }
             }
 
-            /*UCrop.REQUEST_CROP -> {
-                if(resultCode==Activity.RESULT_OK){
-                    val tempUri = UCrop.getOutput(data!!)
-
-                    if (tempUri != null) {
-                        changeButtonUploaded()
-                        val myFile = File(tempUri.path!!)
-
-                        val selectedImage = getImageContentUri(context!!, myFile)
-                        pathImageOriginal = getRealPathFromURI(selectedImage)
-                        setImage(getRealPathFromURI(selectedImage))
-                    }
-                }
-            }*/
         }
 
     }
 
     private fun setImage(realPathFromURI: String) {
-        val f = File(realPathFromURI)
-        Picasso.get()
-                .load(f)
-                .into(image_selected)
+//        setLog(realPathFromURI)
+//        val f = File(realPathFromURI)
+//        Picasso.get()
+//                .load(f)
+//                .into(image_selected)
+
+        setLog(realPathFromURI)
+        val imgFile = File(realPathFromURI)
+
+        if (imgFile.exists()) {
+            val myBitmap: Bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+            image_selected.setImageBitmap(myBitmap)
+        }
     }
 
     private fun getImageFromGalery() {
