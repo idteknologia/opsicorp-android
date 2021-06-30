@@ -65,9 +65,7 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
         toolbar.setTitleBar("Seat Map")
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

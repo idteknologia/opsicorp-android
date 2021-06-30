@@ -732,6 +732,7 @@ Please add your trip item for Approval."
     <string name="text_occupied">Occupied</string>
     <string name="text_selected_seat">Selected Seat</string>
     <string name="text_departure_flight">Departure Flight</string>
+    <string name="text_arrival_flight">Arrival Flight</string>
     <string name="text_x1">x1</string>
     <string name="text_add_more_item">+Add more item</string>
     <string name="text_107_ticket_s_found">107 Ticket(s) found</string>

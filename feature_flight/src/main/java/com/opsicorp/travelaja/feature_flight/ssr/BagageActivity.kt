@@ -1,6 +1,5 @@
 package com.opsicorp.travelaja.feature_flight.ssr
 
-import android.os.Build
 import androidx.core.content.ContextCompat
 import com.opsicorp.travelaja.feature_flight.R
 import com.mobile.travelaja.base.BaseActivity
@@ -94,9 +93,7 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
         toolbar.setTitleBar("Baggage")
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
     }
 
     private fun initRecyclerView() {
