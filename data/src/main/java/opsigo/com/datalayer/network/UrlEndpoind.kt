@@ -359,4 +359,8 @@ interface UrlEndpoind {
     fun issuedAllTravelRequest(@Header("Authorization") token: String,
                                @Body body: HashMap<Any, Any>) : Call<ResponseBody>
 
+    @POST(MyURL.CHECK_AVAIBILITY_DATE)
+    fun checkDateAvaibility(@Header("Authorization") token: String,
+                               @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
 }
