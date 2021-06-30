@@ -12,6 +12,9 @@ import org.koin.core.KoinComponent
 import android.content.pm.PackageManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
@@ -146,16 +149,67 @@ class CreateTripActivity : BaseActivity(),
     }
 
     private fun checkPermissionCameraAndFile() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED&&checkSelfPermission(Manifest.permission.CAMERA)!==PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA),
-                        READ_REQUEST_CODE)
-            } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!checkPermission()) {
+                requestPermission()
+            }
+            else {
                 showDialogCamera()
             }
         }
-        else{
+        else {
             showDialogCamera()
+        }
+        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED
+                    && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED
+                    && checkSelfPermission(Manifest.permission.CAMERA)!== PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        arrayOf(
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        ),
+                        READ_REQUEST_CODE
+                )
+            }
+            else {
+                showDialogCamera()
+            }
+        }
+        else {
+            showDialogCamera()
+        }*/
+    }
+
+    protected fun checkPermission(): Boolean {
+        val permission =
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED&&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED&&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+        return permission
+    }
+
+    protected fun requestPermission() {
+        if (
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)&&
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)&&
+                ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA))
+        {
+            Toast.makeText(
+                    this,
+                    "Read External Storage permission allows us to do store images. Please allow this permission in App Settings.",
+                    Toast.LENGTH_LONG
+            ).show()
+        } else {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(
+                        arrayOf(
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                        ), READ_REQUEST_CODE)
+            }
         }
     }
 
