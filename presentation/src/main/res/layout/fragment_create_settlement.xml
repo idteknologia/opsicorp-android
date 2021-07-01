@@ -1,79 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="40dp"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="27dp"
         tools:context=".module.settlement.view.CreateSettlementFragment">
+
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_height="67dp"
             android:background="#e0e0e1"
-            app:layout_goneMarginTop="16dp"
-            app:layout_goneMarginLeft="20dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginLeft="20dp"
+            app:layout_goneMarginTop="16dp" />
 
         <TextView
             android:id="@+id/tvCreateRemb"
+            style="@style/TextButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="12dp"
             android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="@dimen/margin_default"
-            style="@style/TextButtonStyle"
-            android:text="@string/create_reimburstment"/>
+            android:text="@string/create_reimburstment"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvLabelCreate"
-            android:layout_width="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-            android:layout_marginTop="6dp"
-            android:layout_height="wrap_content"
             style="@style/TextInputLayout_Label"
-            app:layout_constraintTop_toBottomOf="@+id/tvCreateRemb"
-            android:text="@string/please_fill_all_trip_information_below"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/please_fill_all_trip_information_below"
+            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+            app:layout_constraintTop_toBottomOf="@+id/tvCreateRemb" />
 
         <TextView
             android:id="@+id/labelBank"
             style="@style/ContentDescriptionTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            app:layout_constraintLeft_toLeftOf="@+id/etBank"
             android:layout_marginLeft="3dp"
+            android:layout_marginTop="25dp"
             android:text="@string/bank_transfer"
+            app:layout_constraintLeft_toLeftOf="@+id/etBank"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <EditText
             android:id="@+id/etBank"
             style="@style/TextInputLayout_Input"
-            app:tint="@color/tintTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_chevron_down"
             android:drawableRight="@drawable/ic_chevron_down"
-            android:focusable="false"
-            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-            app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-            android:hint="@string/select_bank"
             android:editable="false"
-            android:inputType="none"
+            android:focusable="false"
+            android:hint="@string/select_bank"
             android:includeFontPadding="true"
+            android:inputType="none"
             android:paddingBottom="20dp"
             android:singleLine="true"
+            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+            app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
             app:layout_constraintTop_toBottomOf="@id/labelBank"
+            app:tint="@color/tintTextView"
             tools:text="Bank Mandiri" />
 
         <TextView
@@ -81,10 +86,10 @@
             style="@style/ContentDescriptionTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="20dp"
             android:text="@string/trip_code"
-            android:layout_marginLeft="3dp"
+            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
             app:layout_constraintTop_toBottomOf="@+id/etBank" />
 
         <EditText
@@ -94,30 +99,372 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_chevron_down"
             android:drawableRight="@drawable/ic_chevron_down"
-            app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-            app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-            android:hint="@string/select_trip_code"
-            android:text="@{viewModel.selectedCode}"
-            android:focusable="false"
             android:editable="false"
-            android:inputType="none"
+            android:focusable="false"
+            android:hint="@string/select_trip_code"
             android:includeFontPadding="true"
+            android:inputType="none"
             android:paddingBottom="20dp"
             android:singleLine="true"
+            android:text="@{viewModel.selectedCode}"
             android:textAppearance="@style/TextInputLayout_Input"
-            app:layout_constraintTop_toBottomOf="@+id/labelTrip" />
-
-        <Button
-            android:id="@+id/buttonNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/select_button_yellow"
-            android:text="@string/next"
             app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
             app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-            android:textAppearance="@style/TextButtonStyle"
+            app:layout_constraintTop_toBottomOf="@+id/labelTrip" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentSelected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            tools:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/etTripCode"
+            app:layout_constraintBottom_toTopOf="@+id/barrier">
+
+            <TextView
+                android:id="@+id/tvViewDetailTrip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/lato_black"
+                android:text="@string/view_detail_trip"
+                android:textAllCaps="true"
+                android:textColor="#b2bbc6"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:layout_width="0dp"
+                android:layout_marginTop="5dp"
+                android:background="#2b9a8e"
+                app:layout_constraintLeft_toLeftOf="@id/tvViewDetailTrip"
+                app:layout_constraintRight_toRightOf="@id/tvViewDetailTrip"
+                android:layout_height="2dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip"
+                />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchTransportation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:checked="@{viewModel.isEnabledDetailInformation()}"
+                android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInformation(checked)}"
+                android:layout_marginTop="41dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/transportation_to_airport_or_non_airport"
+                app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip" />
+
+            <TextView
+                android:id="@+id/captionTransportation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/SwitchCaption"
+                android:layout_marginTop="8dp"
+                android:text="@string/caption_create_settlement_transportation"
+                app:layout_constraintTop_toBottomOf="@+id/switchTransportation" />
+
+            <TextView
+                android:id="@+id/viewDetailInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextInputLayout_Label"
+                android:textColor="#2b9a8e"
+                android:layout_marginTop="10dp"
+                android:text="@string/view_detail"
+                android:visibility="@{viewModel.isEnabledDetailInformation() ? View.VISIBLE : View.GONE }"
+                tools:visibility="visible"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/captionTransportation" />
+            <View
+                android:id="@+id/dividerTransportation"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/viewDetailInformation"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchIntercity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/intercity_transport"
+                app:layout_constraintTop_toBottomOf="@+id/dividerTransportation" />
+            <TextView
+                android:id="@+id/captionIntercity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/SwitchCaption"
+                android:layout_marginTop="8dp"
+                android:text="@string/transportation_base_on_your_route"
+                app:layout_constraintTop_toBottomOf="@+id/switchIntercity" />
+            <View
+                android:id="@+id/dividerIntercity"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/captionIntercity"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchTraveling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/did_you_traveling_to_specific_area"
+                app:layout_constraintTop_toBottomOf="@+id/dividerIntercity" />
+            <TextView
+                android:id="@+id/captionTraveling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/SwitchCaption"
+                android:layout_marginTop="8dp"
+                android:text="@string/spm_sbm_sts_pipeline_etc"
+                app:layout_constraintTop_toBottomOf="@+id/switchTraveling" />
+            <View
+                android:id="@+id/dividerTraveling"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/captionTraveling"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchOvernight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:checked="@{viewModel.isEnableOverNight()}"
+                android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedOverNight(checked)}"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/did_you_stay_overnight_in_specific_area"
+                app:layout_constraintTop_toBottomOf="@+id/dividerTraveling" />
+            <TextView
+                android:id="@+id/tvTitleIncDec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/how_many_day_s"
+                style="@style/TextButtonStyle"
+                android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
+                android:layout_marginTop="20dp"
+                android:textSize="14sp"
+                android:textColor="#2b9a8e"
+                tools:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchOvernight"
+                />
+            <TextView
+                android:id="@+id/tvTitlePricePerDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rate_per_day"
+                android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
+                style="@style/TextButtonStyle"
+                android:textSize="14sp"
+                android:textColor="#52575c"
+                tools:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitleIncDec"
+                />
+            <com.mobile.travelaja.module.settlement.view.IncreaseDecreaseView
+                android:id="@+id/increaseDecreaseView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                tools:visibility="gone"
+                android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleIncDec"/>
+
+            <TextView
+                android:id="@+id/tvValueTarif"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                tools:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/increaseDecreaseView"
+                tools:text="7.000.000" />
+            <View
+                android:id="@+id/dividerOvernight"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvValueTarif"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchExpense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/other_expense"
+                app:layout_constraintTop_toBottomOf="@+id/dividerOvernight" />
+
+            <TextView
+                android:id="@+id/captionExpense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/SwitchCaption"
+                android:layout_marginTop="8dp"
+                android:text="@string/airport_tax_fiskal_insurance_laundry_etc"
+                app:layout_constraintTop_toBottomOf="@+id/switchExpense" />
+            <View
+                android:id="@+id/dividerExpense"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/captionExpense"/>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchRefund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:checked="true"
+                android:layout_marginTop="15dp"
+                style="@style/Widget.App.Switch"
+                android:text="@string/ticket_refund"
+                app:layout_constraintTop_toBottomOf="@+id/dividerExpense" />
+
+            <TextView
+                android:id="@+id/captionRefund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/SwitchCaption"
+                android:layout_marginTop="8dp"
+                android:text="@string/only_for_flights_and_hotels_max_2_ticket_in_a_day"
+                app:layout_constraintTop_toBottomOf="@+id/switchRefund" />
+            <View
+                android:id="@+id/dividerRefund"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/captionRefund"/>
+
+            <TextView
+                android:id="@+id/titleNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notes_optional"
+                android:layout_marginTop="34dp"
+                style="@style/TextInputLayout_Label"
+                app:layout_constraintTop_toBottomOf="@+id/dividerRefund"
+                android:textSize="14sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterEnabled="true"
+                app:counterMaxLength="100"
+                android:layout_marginTop="11dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintTop_toBottomOf="@+id/titleNotes"
+                tools:ignore="RtlCompat"
+                tools:text="@tools:sample/lorem/random" >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextNotes"
+                    android:maxLength="100"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/dividerNotes"
+                style="@style/Divider"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/et_notes"/>
+            <TextView
+                android:id="@+id/tvDescDoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/dividerNotes"
+                android:lineSpacingExtra="7sp"
+                android:textColor="#666666"
+                android:textSize="12sp"
+                android:layout_marginTop="19dp"
+                android:text="@string/information_docs" />
+
+            <Button
+                android:id="@+id/btnUploadEvidence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_up"
+                app:iconTint="#24253D"
+                app:iconPadding="5dp"
+                app:cornerRadius="20dp"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="2dp"
+                android:textSize="14sp"
+                android:textColor="#24253d"
+                android:textAppearance="@style/TextButtonStyle"
+                android:textAllCaps="false"
+                android:layout_marginTop="19dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescDoc"
+                android:text="@string/upload_evidence"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                />
+            <View
+                android:id="@+id/dividerEvidence"
+                style="@style/Divider"
+                android:layout_marginTop="19dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnUploadEvidence"/>
+            <TextView
+                android:id="@+id/tvDisclaimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/SubtitleTextStyle"
+                android:layout_marginTop="19dp"
+                app:layout_constraintTop_toBottomOf="@+id/dividerEvidence"
+                android:text="@string/disclaimer"/>
+            <CheckBox
+                android:id="@+id/checkboxDeclare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:textColor="#52575c"
+                android:textStyle="normal"
+                android:textSize="14sp"
+                android:checked="false"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvDisclaimer"
+                android:text="@string/i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="buttonNext" />
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/select_button_yellow"
             android:enabled="@{viewModel.buttonNextEnabled}"
+            android:text="@string/next"
+            android:textAppearance="@style/TextButtonStyle"
+            android:layout_marginTop="29dp"
+            android:layout_marginLeft="@dimen/margin_default"
+            android:layout_marginRight="@dimen/margin_default"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

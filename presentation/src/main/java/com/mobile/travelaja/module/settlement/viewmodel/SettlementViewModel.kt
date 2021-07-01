@@ -12,6 +12,9 @@ class SettlementViewModel(private val repository : SettlementRepository)  : View
     val buttonNextEnabled = ObservableBoolean(false)
     val selectedCode = ObservableField<String>()
 
+    val isEnabledDetailInformation = ObservableBoolean(false)
+    val isEnableOverNight = ObservableBoolean(false)
+
     private var currentResult : Flow<PagingData<Settlement>>?= null
 
     fun getSettlement(query : MutableMap<String,Any>) : Flow<PagingData<Settlement>> {
@@ -23,5 +26,14 @@ class SettlementViewModel(private val repository : SettlementRepository)  : View
         currentResult = newResult
         return newResult
     }
+
+    fun checkedInformation(checked : Boolean){
+        isEnabledDetailInformation.set(checked)
+    }
+
+    fun checkedOverNight(checked: Boolean){
+        isEnableOverNight.set(checked)
+    }
+
 
 }

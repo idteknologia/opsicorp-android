@@ -94,6 +94,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    tools:checked="true"
                     android:checked="@{viewModel.isInternational()}"
                     android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInternational(checked)}"
                     android:thumb="@drawable/rounded_switch2"
