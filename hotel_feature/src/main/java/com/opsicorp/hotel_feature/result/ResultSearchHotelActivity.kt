@@ -124,19 +124,19 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     private fun getDataIntent() {
         try {
-            typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_DESTINATION)
-            typeDestination  = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_DESTINATION)
-            totalGuest       = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KeyBundle.KEY_TOTAL_GUEST)
-            latitude         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LATITUDE,"")
-            longitude        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_LONGITUDE,"")
-            idCountry        = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_ID_COUNTRY,"")
-            duration         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_DURATION,"")
-            idCity           = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_ID_CITY,"")
-            checkIn          = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_CHECKIN,"")
-            checkOut         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_CHECKOUT,"")
-            nameCity         = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_CITY,"")
-            nameOffice       = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_OFFICE,"")
-            nameAirport      = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KeyBundle.KEY_NAME_AIRPORT,"")
+            typeDestination  = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_DESTINATION,0)!!
+            typeDestination  = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_DESTINATION,0)!!
+            totalGuest       = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_TOTAL_GUEST,0)!!
+            latitude         = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_LATITUDE,"").toString()
+            longitude        = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_LONGITUDE,"").toString()
+            idCountry        = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_ID_COUNTRY,"").toString()
+            duration         = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_DURATION,"").toString()
+            idCity           = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_ID_CITY,"").toString()
+            checkIn          = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_CHECKIN,"").toString()
+            checkOut         = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_CHECKOUT,"").toString()
+            nameCity         = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_NAME_CITY,"").toString()
+            nameOffice       = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_NAME_OFFICE,"").toString()
+            nameAirport      = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_NAME_AIRPORT,"").toString()
         }catch (e:Exception){
             e.printStackTrace()
         }

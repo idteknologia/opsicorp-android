@@ -30,7 +30,9 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true"
+        
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.mobile.travelaja.module.settlement.SettlementActivity"

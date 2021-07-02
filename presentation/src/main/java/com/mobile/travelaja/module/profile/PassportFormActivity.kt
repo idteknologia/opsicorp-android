@@ -60,8 +60,8 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
 
     private fun initDataIntent() {
         try {
-            if (intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_PASPORT,"").isNotEmpty()){
-                val dataString = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_PASPORT,"")
+            if (intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_PASPORT,"").toString().isNotEmpty()){
+                val dataString = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_PASPORT,"")
                 val dataPasspor = Serializer.deserialize(dataString,PassportModel::class.java)
 
                 et_passpor_number.setText(dataPasspor.passporNumber)
@@ -163,7 +163,7 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
             val birthdate         = "${tv_year_birtdate.text}-${month}-${tv_day_birtdate.text}"
             pasport.birtDate      = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
             val intent = Intent()
-            intent.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
+            intent?.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
             Globals.finishResultOk(this,intent)
         }
         else{

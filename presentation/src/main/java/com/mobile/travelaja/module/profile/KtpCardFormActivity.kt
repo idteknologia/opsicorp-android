@@ -65,8 +65,8 @@ class KtpCardFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp
 
     private fun initDataIntent() {
         try {
-            if (intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_KTP,"").isNotEmpty()){
-                val dataString = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_KTP,"")
+            if (intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_KTP,"").toString().isNotEmpty()){
+                val dataString = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_KTP,"")
                 val dataKtp = Serializer.deserialize(dataString,IdCartModel::class.java)
                 if (dataKtp.idCart.contains("null")||dataKtp.idCart.isEmpty()) et_no_id.setText("") else et_no_id.setText(dataKtp.idCart)
                 et_email.setText(dataKtp.email)

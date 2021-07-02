@@ -59,7 +59,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     private fun getDataIntent() {
         try {
-            data = intent.getBundleExtra("data").getInt(TYPE_ACCOMODATION)
+            data = intent?.getBundleExtra("data")?.getInt(TYPE_ACCOMODATION,0)!!
             if (Constants.KEY_ACCOMODATION.equals(data)){
                 Constants.isBisnisTrip = true
                 btn_bottom_accomodation.visibility = View.VISIBLE

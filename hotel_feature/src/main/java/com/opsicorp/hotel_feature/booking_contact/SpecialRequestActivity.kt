@@ -85,7 +85,7 @@ class SpecialRequestActivity : BaseActivity(),
     }
 
     private fun checkTypeLayout() {
-        if (intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(KEY_REQUEST)==BED_TYPE_REQUEST){
+        if (intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(KEY_REQUEST)==BED_TYPE_REQUEST){
             line_other_view.visibility = View.GONE
             line_bed_type.visibility   = View.VISIBLE
             title_bed_type.visibility  = View.VISIBLE
@@ -95,7 +95,7 @@ class SpecialRequestActivity : BaseActivity(),
             line_bed_type.visibility   = View.GONE
             title_bed_type.visibility  = View.GONE
         }
-        name_guest.text            = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.KEY_NAME_GUEST,"")
+        name_guest.text            = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KEY_NAME_GUEST,"").toString()
 
     }
 

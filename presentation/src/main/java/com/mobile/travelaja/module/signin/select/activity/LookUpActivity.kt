@@ -87,48 +87,48 @@ class LookUpActivity : BaseActivity(),LookUpView , AppLocaleChangeReceiver.AppLo
     }
 
     private fun getData() {
-        if(intent.getBundleExtra("data")!=null){
-            if("country".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+        if(intent?.getBundleExtra("data")!=null){
+            if("country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataNationality()
             }
-            else if("city".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataCity()
             }
-            else if("purpose".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataPurpose()
             }
-            else if("budget".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("budget".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataSelectBudged()
             }
-            else if("cost_center".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("cost_center".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataCostCenter()
             }
-            else if("reason_code".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("reason_code".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataReasonCode()
             }
-            else if ("train_station".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if ("train_station".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataStationTrain()
             }
-            else if("language".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("language".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 language = true
                 lay_search.visibility = View.GONE
                 presenter.getDataLanguage()
             }
 
-            tv_title.text = intent.getBundleExtra("data").getString("titleHeader")
-            et_filter.hint = intent.getBundleExtra("data").getString("hint")
+            tv_title.text = intent?.getBundleExtra("data")?.getString("titleHeader")
+            et_filter.hint = intent?.getBundleExtra("data")?.getString("hint")
         }
     }
 
     override fun callbackFromThisActivity(name: String,code:String) {
         val intent = Intent()
-        intent.putExtra("nameCountry",name)
-        intent.putExtra("idCountry",code)
-        intent.putExtra("language",language)
+        intent?.putExtra("nameCountry",name)
+        intent?.putExtra("idCountry",code)
+        intent?.putExtra("language",language)
         sendDataCallbackActivity(intent)
     }
 

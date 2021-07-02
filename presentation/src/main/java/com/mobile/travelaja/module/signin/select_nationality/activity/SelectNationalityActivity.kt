@@ -39,7 +39,7 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
     val presenter by inject<SelectedNationalityPresenter> { parametersOf(this) }
 
     override fun OnMain() {
-        hasSelected = intent.getBundleExtra("data")?.getBoolean(SELECT,false) ?: false
+        hasSelected = intent?.getBundleExtra("data")?.getBoolean(SELECT,false) ?: false
         initToolbar()
         initFilter()
         presenter.initRecyclerView(rv_nationality)
@@ -89,8 +89,8 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         getData()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
             android.R.id.home -> {
                 finish()
             }
@@ -99,48 +99,48 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
     }
 
     private fun getData() {
-        if(intent.getBundleExtra("data")!=null){
-            if("country".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+        if(intent?.getBundleExtra("data")!=null){
+            if("country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataNationality()
             }
-            else if("city".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataCity()
             }
-            else if("purpose".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataPurpose()
             }
-            else if("budget".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("budget".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataSelectBudged()
             }
-            else if("cost_center".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("cost_center".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataCostCenter()
             }
-            else if("reason_code".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("reason_code".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE
                 presenter.getDataReasonCode()
             }
-            else if ("train_station".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if ("train_station".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataStationTrain()
             }
-            else if("language".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("language".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 language = true
                 lay_search.visibility = View.GONE
                 presenter.getDataLanguage()
             }
 
-            tv_title.text = intent.getBundleExtra("data").getString("titleHeader")
-            et_filter.hint = intent.getBundleExtra("data").getString("searchHint")
+            tv_title.text = intent?.getBundleExtra("data")?.getString("titleHeader")
+            et_filter.hint = intent?.getBundleExtra("data")?.getString("searchHint")
         }
     }
 
     override fun callbackFromThisActivity(name: String,code:String) {
         val intent = Intent()
-        intent.putExtra("nameCountry",name)
-        intent.putExtra("idCountry",code)
-        intent.putExtra("language",language)
+        intent?.putExtra("nameCountry",name)
+        intent?.putExtra("idCountry",code)
+        intent?.putExtra("language",language)
         if (hasSelected){
             setResult(Activity.RESULT_OK,intent)
             finish()

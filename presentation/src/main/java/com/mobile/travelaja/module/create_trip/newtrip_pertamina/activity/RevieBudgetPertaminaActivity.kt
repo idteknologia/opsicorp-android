@@ -188,7 +188,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
 
     private fun getDataIntent() {
         val itineraries = intent.getParcelableArrayExtra("itineraries")
-        dataTrip = Serializer.deserialize(intent.getBundleExtra("data").getString("data_order"), DataBisnisTripModel::class.java)
+        dataTrip = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_order"), DataBisnisTripModel::class.java)
         itineraries?.forEach {
             if (it is Itinerary){
                 dataTrip.routes.add(RoutesItinerary(it.Transportation,it.DepartureDateView, it.Origin, it.Destination))

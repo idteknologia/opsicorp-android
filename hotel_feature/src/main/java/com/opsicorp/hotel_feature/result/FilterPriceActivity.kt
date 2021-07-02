@@ -108,8 +108,8 @@ class FilterPriceActivity : BaseActivity(),
     }
 
     private fun setDataListener() {
-        minPrice = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.MIN_PRICE)
-        maxPrice = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.MAX_PRICE)
+        minPrice = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.MIN_PRICE,0)!!
+        maxPrice = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.MAX_PRICE,0)!!
 //        tv_min_max.text = "${Globals.formatAmount(minPrice.toString())} - ${Globals.formatAmount(maxPrice.toString())}"
 
         for (i in 5 downTo  1){

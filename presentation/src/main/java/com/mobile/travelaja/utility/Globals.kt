@@ -3,7 +3,6 @@ package com.mobile.travelaja.utility
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.ClipData
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
@@ -26,6 +25,7 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
 import com.google.zxing.BarcodeFormat
@@ -49,6 +49,7 @@ import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
+
 
 /**
  * Created by khoiron on 11/06/18.
@@ -653,14 +654,10 @@ object Globals {
     }
 
     fun copyText(text: String, context: Context) {
-        val sdk = android.os.Build.VERSION.SDK_INT
-        if (sdk < android.os.Build.VERSION_CODES.HONEYCOMB) {
+        val sdk = Build.VERSION.SDK_INT
+        if (sdk < Build.VERSION_CODES.HONEYCOMB) {
             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             clipboard.text = text
-        } else {
-            var clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
-            val clip = ClipData.newPlainText("text copy", text)
-            clipboard.primaryClip = clip
         }
     }
 

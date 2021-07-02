@@ -24,7 +24,7 @@ class DialogPurpose : BaseActivity(),DialogPurposeView  {
     val presenter by inject<DialogPurposePresenter> { parametersOf(this)  }
 
     override fun OnMain() {
-        hasSelected = intent.getBundleExtra("data")?.getBoolean(SELECT,false) ?: false
+        hasSelected = intent?.getBundleExtra("data")?.getBoolean(SELECT,false) ?: false
         initToolbar()
 
         presenter.initRecyclerView(rv_purpose)
@@ -40,38 +40,38 @@ class DialogPurpose : BaseActivity(),DialogPurposeView  {
     }
 
     private fun getData() {
-        if(intent.getBundleExtra("data")!=null){
-            if("country".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+        if(intent?.getBundleExtra("data")!=null){
+            if("country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
             }
-            else if("city".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataCity()
             }
-            else if("purpose".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataPurpose()
             }
-            else if("activity".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("activity".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataActivity()
 
             }
-            else if("budget".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("budget".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataSelectBudged()
             }
-            else if("cost_center".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("cost_center".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataCostCenter()
             }
-            else if("reason_code".equals(intent.getBundleExtra("data").getString(Constants.SELECT_RESULT))){
+            else if("reason_code".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataReasonCode()
             }
-            tv_title.text = intent.getBundleExtra("data").getString("titleHeader")
+            tv_title.text = intent?.getBundleExtra("data")?.getString("titleHeader")
 
         }
     }
 
     override fun callbackFromThisActivity(name: String,code:String) {
         val intent = Intent()
-        intent.putExtra("nameCountry",name)
-        intent.putExtra("idCountry",code)
-        intent.putExtra("language",language)
+        intent?.putExtra("nameCountry",name)
+        intent?.putExtra("idCountry",code)
+        intent?.putExtra("language",language)
         if (hasSelected){
             setResult(Activity.RESULT_OK,intent)
             finish()
