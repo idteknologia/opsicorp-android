@@ -30,7 +30,7 @@ class BagageActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Bu
 
     override fun OnMain() {
         try {
-            currentPositionPassenger = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.KEY_POSITION_SELECT_PASSENGER)
+            currentPositionPassenger = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KEY_POSITION_SELECT_PASSENGER,0)!!
         }
         catch (e:Exception){ }
         btnDone.callbackOnclickButton(this)

@@ -1,12 +1,9 @@
 package opsigo.com.datalayer.mapper
 
-import android.util.Log
-import opsigo.com.datalayer.model.cart.RoutesItem
-import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.summary.*
-import java.util.ArrayList
 
 class SummaryEntityMapper() {
 
@@ -15,9 +12,9 @@ class SummaryEntityMapper() {
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
         summary.type            = from.type
-        summary.tripCode            = from.code.toString()
+        summary.tripCode          = from.code.toString()
         summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
-        summary.businessTripType         = if (from.businessTripType==null) "" else from.businessTripType.toString()
+        summary.businessTripType  = if (from.businessTripType==null) "" else from.businessTripType.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
         summary.destination     = if (from.destination==null) "" else from.destination

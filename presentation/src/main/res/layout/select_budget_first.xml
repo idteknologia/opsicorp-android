@@ -368,6 +368,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="63dp">
                         <TextView
+                            android:textIsSelectable="true"
                             android:onClick="copyListener"
                             android:text="Trip Code"
                             style="@style/RobotoRegular"

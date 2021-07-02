@@ -88,7 +88,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
     private fun getDataFromIntent() {
 
-        data = Serializer.deserialize(intent.getBundleExtra("data").getString("data_order"), DataBisnisTripModel::class.java)
+        data = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_order"), DataBisnisTripModel::class.java)
 
         tv_start_date.text  = DateConverter().getDate(data.startDate,"yyyy-MM-dd","EEE, dd MMM yyyy")
         tv_date_end.text    = DateConverter().getDate(data.endDate,"yyyy-MM-dd","EEE, dd MMM yyyy")

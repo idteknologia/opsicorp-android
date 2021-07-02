@@ -34,9 +34,9 @@ class ComplitelyRegisterActivity : BaseActivity(),
     }
 
     private fun parsingDataIntent() {
-        email = intent.getBundleExtra("data").getString("Email")
-        otp   = intent.getBundleExtra("data").getString("Otp")
-        id    = intent.getBundleExtra("data").getString("id")
+        email = intent?.getBundleExtra("data")?.getString("Email").toString()
+        otp   = intent?.getBundleExtra("data")?.getString("Otp").toString()
+        id    = intent?.getBundleExtra("data")?.getString("id").toString()
     }
 
     private fun initOnclickListener() {

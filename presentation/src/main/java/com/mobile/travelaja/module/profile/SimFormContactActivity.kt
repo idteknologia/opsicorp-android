@@ -62,8 +62,8 @@ class SimFormContactActivity : BaseActivity(),View.OnClickListener, ToolbarOpsic
 
     private fun initDataIntent() {
         try {
-            if (intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_SIM,"").isNotEmpty()){
-                val dataString = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.INPUT_EDIT_SIM,"")
+            if (intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_SIM,"").toString().isNotEmpty()){
+                val dataString = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.INPUT_EDIT_SIM,"")
                 val dataSim    = Serializer.deserialize(dataString,SimModel::class.java)
 
                 et_email.setText(dataSim.email)

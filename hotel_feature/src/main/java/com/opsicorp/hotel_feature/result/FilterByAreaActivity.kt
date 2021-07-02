@@ -25,9 +25,9 @@ class FilterByAreaActivity : BaseActivity() ,
     }
 
     private fun setDataArea() {
-        if (!intent.getBundleExtra(Constants.KEY_BUNDLE).getStringArrayList(Constants.KEY_DATA_AREA).isNullOrEmpty()){
+        if (!intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getStringArrayList(Constants.KEY_DATA_AREA).isNullOrEmpty()){
             data.clear()
-            data.addAll(intent.getBundleExtra(Constants.KEY_BUNDLE).getStringArrayList(Constants.KEY_DATA_AREA)!!)
+            data.addAll(intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getStringArrayList(Constants.KEY_DATA_AREA)!!)
             adapterArea.setData(data)
         }
     }

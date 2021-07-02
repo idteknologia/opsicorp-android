@@ -88,14 +88,14 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun checkData() {
-        when(intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.FROM_CART)){
+        when(intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.FROM_CART)){
             Constants.FROM_HOME -> {
                 Globals.changeViewButton(btnList, 0, this)
                 pagePosition = LIST_BISNIS_TRIP
                 getDataCart()
             }
             Constants.FROM_BISNIS_TRIP -> {
-                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                idTripPlant = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
                 Globals.changeViewButton(btnList, 0, this)
                 pagePosition = DETAIL_BISNIS_TRIP
                 showLoadingOpsicorp(false)
@@ -103,7 +103,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 getDataSummary(idTripPlant)
             }
             Constants.FROM_PERSONAL_TRIP -> {
-                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                idTripPlant = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
                 Globals.changeViewButton(btnList, 1, this)
                 pagePosition = DETAIL_PERSONAL_TRIP
                 showLoadingOpsicorp(false)
@@ -721,7 +721,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         when (requestCode) {
             Constants.GET_SEAT_MAP -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    idTripPlant = intent.getStringExtra(Constants.ID_TRIP_PLANE)
+                    idTripPlant = intent?.getStringExtra(Constants.ID_TRIP_PLANE).toString()
                     showLoadingOpsicorp(false)
                     getDataSummary(idTripPlant)
                 }
@@ -744,18 +744,18 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
             override fun onReceive(context: Context, intent: Intent) {
                 //Get message from intent
-                //val tp_status = intent.getStringExtra("tp_status")
+                //val tp_status = intent?.getStringExtra("tp_status")
 
-                //tripId = intent.getStringExtra(Constants.KEY_INTENT_TRIPID)
-                //tripCode = intent.getStringExtra(Constants.KEY_INTENT_TRIP_CODE)
+                //tripId = intent?.getStringExtra(Constants.KEY_INTENT_TRIPID)
+                //tripCode = intent?.getStringExtra(Constants.KEY_INTENT_TRIP_CODE)
                 //employIdUser = getProfile().employId
 
                 //showLoadingOpsicorp(true)
 
-                val vProgress = intent.getStringExtra("vProgress")
-                val vText = intent.getStringExtra("vText")
-                val vPnrId = intent.getStringExtra("vPnrId")
-                val PnrCode = intent.getStringExtra("PnrCode")
+                val vProgress = intent?.getStringExtra("vProgress")
+                val vText = intent?.getStringExtra("vText")
+                val vPnrId = intent?.getStringExtra("vPnrId")
+                val PnrCode = intent?.getStringExtra("PnrCode")
 
                 tvProgress.text = vProgress
                 tvTestStatus.text = vText
