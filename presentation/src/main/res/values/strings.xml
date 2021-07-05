@@ -1089,4 +1089,7 @@ Please add your trip item for Approval."
     <string name="upload_evidence">Upload Evidence</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules">I hereby declare that the data provided is true and I am willing to be held accountable according to the right company rules.</string>
+    <string name="select_bank_transfer">Select Bank Transfer</string>
+    <string name="no_have_trips">Sorry, you no have Trips</string>
+    <string name="no_have_bank_account">Sorry, you no have Bank Account</string>
 </resources>

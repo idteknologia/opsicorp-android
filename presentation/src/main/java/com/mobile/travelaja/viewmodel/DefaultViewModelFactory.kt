@@ -8,6 +8,7 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itine
 import com.mobile.travelaja.module.home.presenter.HomeViewModel
 import com.mobile.travelaja.module.home.repository.HomeDefaultRepository
 import com.mobile.travelaja.module.settlement.repository.DefaultSettlementRepository
+import com.mobile.travelaja.module.settlement.repository.SettlementServiceLocator
 import com.mobile.travelaja.module.settlement.repository.TripServiceLocator
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.module.settlement.viewmodel.TripViewModel
@@ -25,7 +26,8 @@ class DefaultViewModelFactory(private val isFake: Boolean, private val context: 
         val tkn = Globals.getToken()
         val api = ServiceApi.createRequest(tkn, baseUrl)
         if (modelClass.isAssignableFrom(SettlementViewModel::class.java)) {
-            return SettlementViewModel(DefaultSettlementRepository(api)) as T
+            val repository = SettlementServiceLocator.instance(api).getRepository()
+            return SettlementViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(TripViewModel::class.java)) {
             val repository = TripServiceLocator.instance(api).getRepository()
             return TripViewModel(repository) as T

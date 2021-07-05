@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="bank"
+            type="opsigo.com.domainlayer.model.settlement.Bank" />
+    </data>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextDarkFontLato"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:text="@{bank.bankName}"
+        android:layout_marginStart="@dimen/margin_default"
+        tools:text="Bank Mandiri"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        style="@style/TextInputLayout_Label"
+        android:layout_marginTop="8dp"
+        android:text="@{bank.account}"
+        android:textSize="14sp"
+        tools:text="Bank Mandiri"/>
+</LinearLayout>
+</layout>

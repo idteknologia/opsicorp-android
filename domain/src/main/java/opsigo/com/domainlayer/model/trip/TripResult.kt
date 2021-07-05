@@ -6,27 +6,27 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 data class TripResult(
-        @SerializedName("data")
-        val data: MutableList<Trip>,
-        @SerializedName("total")
-        val total: Int,
-        @SerializedName("page")
-        val page: Int
+    @SerializedName("data")
+    val data: MutableList<Trip>,
+    @SerializedName("total")
+    val total: Int,
+    @SerializedName("page")
+    val page: Int
 )
 
 data class Trip(
-        @SerializedName("Id")
-        val Id: String,
-        @SerializedName("Code")
-        val Code: String,
-        @SerializedName("DestinationName")
-        val destinationName: String,
-        @SerializedName("Purpose")
-        val purpose: String,
-        @SerializedName("StartDate")
-        val startDate: String,
-        @SerializedName("ReturnDate")
-        val returnDate: String
+    @SerializedName("Id")
+    val Id: String,
+    @SerializedName("Code")
+    val Code: String,
+    @SerializedName("DestinationName")
+    val destinationName: String,
+    @SerializedName("Purpose")
+    val purpose: String,
+    @SerializedName("StartDate")
+    val startDate: String,
+    @SerializedName("ReturnDate")
+    val returnDate: String
 ) {
 
     fun getDateNumber(): String {
@@ -67,3 +67,28 @@ data class Trip(
         return sdfOutput.format(dInput)
     }
 }
+
+data class DetailTripResult(
+    @SerializedName("trip")
+    val trip: DetailTrip,
+    var rateStay: Double
+)
+
+data class DetailTrip(
+    @SerializedName("Id")
+    val Id: String,
+    @SerializedName("Code")
+    val Code: String,
+    @SerializedName("DestinationName")
+    val destinationName: String,
+    @SerializedName("Purpose")
+    val Purpose: String,
+    @SerializedName("StartDate")
+    val StartDate: String,
+    @SerializedName("EndDate")
+    val EndDate: String,
+    @SerializedName("Golper")
+    val Golper: Int,
+    @SerializedName("SpecificAreaTariff")
+    val SpecificAreaTariff: Int
+)
