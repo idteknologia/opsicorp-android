@@ -1,8 +1,7 @@
 package com.mobile.travelaja
 
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
-import opsigo.com.datalayer.model.result.City
+import com.google.zxing.common.StringUtils
+import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
 import java.text.SimpleDateFormat
@@ -14,7 +13,7 @@ import java.util.*
  * @see [Testing documentation](http://d.android.com/tools/testing)
  */
 class ExampleUnitTest {
-    private var context = ApplicationProvider.getApplicationContext<Context>()
+//    private var context = ApplicationProvider.getApplicationContext<Context>()
 
 
     @Test
@@ -66,6 +65,14 @@ class ExampleUnitTest {
         val link = "https://pertamina-dtm3-qa.opsicorp.com"
         val link2 = "https://pertamina-dtm3-qa.opsicorp.com"
         assert(link.equals(link2))
+    }
+
+
+    @Test
+    fun testing(){
+        val data = "{\"Errors\":[\"[Message, Trip data for the period from 01.07.2021 00:00 to 05.07.2021 12:00 already exists]\"]}"
+        val coba = JSONObject(data)
+        println(coba.getJSONArray("Errors").getString(0))
     }
 
 }

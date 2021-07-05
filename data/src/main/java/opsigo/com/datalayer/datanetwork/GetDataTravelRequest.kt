@@ -1,22 +1,18 @@
 package opsigo.com.datalayer.datanetwork
 
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import opsigo.com.data.network.UrlEndpoind
-import opsigo.com.datalayer.datanetwork.BaseGetData
-import opsigo.com.datalayer.mapper.*
 import opsigo.com.datalayer.model.create_trip_plane.save_as_daft.SaveAsDraftEntity
 import opsigo.com.datalayer.model.travel_request.EstimatedCostEntity
-import opsigo.com.datalayer.model.travel_request.TypeActivityTravelRequestEntity
-import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.usecase.TravelRequestRepository
-import org.json.JSONArray
-import org.json.JSONObject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.lang.Exception
+import opsigo.com.data.network.UrlEndpoind
+import opsigo.com.domainlayer.callback.*
+import opsigo.com.datalayer.mapper.*
+import okhttp3.ResponseBody
 import javax.inject.Inject
+import java.lang.Exception
+import org.json.JSONObject
+import retrofit2.Response
+import retrofit2.Callback
+import retrofit2.Call
 
 class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestRepository {
     @Inject
@@ -85,9 +81,16 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
                         callback.successLoad(SaveAsDraftMapper().mapping(data))
                     }
                     else {
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callback.failedLoad(message)
+                        val erString = response.errorBody()?.string().toString()
+                        if (erString.contains("Errors")){
+                            val json = JSONObject(erString)
+                            callback.failedLoad(json.getJSONArray("Errors").getString(0))
+                        }
+                        else {
+                            val json = JSONObject(erString)
+                            val message = json.optString("error_description")
+                            callback.failedLoad(message)
+                        }
                     }
                 }catch (e:Exception){
                     callback.failedLoad(messageFailed)
@@ -112,14 +115,58 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
         })
     }
 
-    override fun issuedAllTrip(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
-        apiOpsicorp.getTypeActivity(token,token).enqueue(object : Callback<ResponseBody>{
+    override fun issuedAllTrip(token: String, tripid: HashMap<Any,Any>, callback: CallbackApprovAll) {
+        apiOpsicorp.issuedAllTravelRequest(token, tripid).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isSuccess")){
+                            callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                        }else{
+                            callback.failedLoad(json.getString("errorMessage"))
+                        }
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
             }
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+        })
+    }
 
+    override fun checkDateAvaibility(token: String, date: HashMap<Any,Any>, callback: CallbackString) {
+        apiOpsicorp.checkDateAvaibility(token, date).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isError")){
+                            callback.successLoad(json.getString("errorMessage"))
+                        }else{
+                            callback.successLoad("true")
+                        }
+                    }
+                    else {
+                        callback.failedLoad(messageFailed)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
             }
         })
     }

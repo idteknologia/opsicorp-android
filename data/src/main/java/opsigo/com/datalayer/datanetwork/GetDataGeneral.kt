@@ -245,6 +245,8 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
                      }else{
                          if(resp.code() == 401){
                              Log.d("log","lakukan aksi ketika Unauthorized, login ulang")
+                         } else if (resp.code() == 500){
+                             callback.failedLoad("Internal Server Error")
                          }
                      }
                  }catch (e : Exception){

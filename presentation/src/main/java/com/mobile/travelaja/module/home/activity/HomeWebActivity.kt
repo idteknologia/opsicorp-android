@@ -8,10 +8,10 @@ class HomeWebActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val url = intent.getStringExtra(URL)
+        val url = intent?.getStringExtra(URL)
         val webView = WebView(this)
         setContentView(webView)
-        webView.loadUrl(url)
+        webView.loadUrl(url.toString())
     }
 
     companion object {

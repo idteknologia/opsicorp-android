@@ -12,7 +12,7 @@ data class SummaryEntity(
 	val creationDate: String? = null,
 
 		@field:SerializedName("IsShowPolicy")
-	val isShowPolicy: Boolean? = null,
+	val isShowPolicy: Boolean = false,
 
 		@field:SerializedName("TimeLimitRemaining")
 	val timeLimitRemaining: String? = null,
@@ -102,7 +102,7 @@ data class SummaryEntity(
 	val timeLimitShorted: String? = null,
 
 		@field:SerializedName("IsMultiTripForm")
-	val isMultiTripForm: Boolean? = null,
+	val isMultiTripForm: Boolean = false,
 
 		@field:SerializedName("Id")
 	val id: String? = null,
@@ -174,7 +174,7 @@ data class SummaryEntity(
 	val travelAgentAccount: String? = null,
 
 		@field:SerializedName("IsPrivateTrip")
-	val isPrivateTrip: Boolean? = null,
+	val isPrivateTrip: Boolean = false,
 
 		@field:SerializedName("PaymentTypeView")
 	val paymentTypeView: String? = null,
@@ -189,7 +189,7 @@ data class SummaryEntity(
 	val sharingCostCenters: List<Any?>? = null,
 
 		@field:SerializedName("IsBookAfterApprove")
-	val isBookAfterApprove: Boolean? = null,
+	val isBookAfterApprove: Boolean = false,
 
 		@field:SerializedName("BudgetType")
 	val budgetType: Any? = null,
@@ -204,13 +204,13 @@ data class SummaryEntity(
 	val startDate: String? = null,
 
 		@field:SerializedName("IsDomestic")
-	val isDomestic: Boolean? = null,
+	val isDomestic: Boolean = false,
 
 		@field:SerializedName("TrainEstimatedCost")
 	val trainEstimatedCost: Int = 0,
 
 		@field:SerializedName("IsPersonalTrip")
-	val isPersonalTrip: Boolean? = null,
+	val isPersonalTrip: Boolean = false,
 
 		@field:SerializedName("TravelAgentUrl")
 	val travelAgentUrl: String? = null,
@@ -234,7 +234,7 @@ data class SummaryEntity(
 	val oriRoutes: Any? = null,
 
 		@field:SerializedName("IsWithoutSPJ")
-	val isWithoutSPJ: Boolean? = null,
+	val isWithoutSPJ: Boolean = false,
 
 		@field:SerializedName("BudgetId")
 	val budgetId: String? = null,
@@ -279,10 +279,10 @@ data class SummaryEntity(
 	val purposeCode: Any? = null,
 
 		@field:SerializedName("isApproval")
-	val isApproval: Boolean? = null,
+	val isApproval: Boolean = false,
 
 		@field:SerializedName("IsHavePayment")
-	val isHavePayment: Boolean? = null,
+	val isHavePayment: Boolean = false,
 
 		@field:SerializedName("CostCenter")
 	val costCenter: Any? = null,
@@ -330,7 +330,7 @@ data class SummaryEntity(
 	val costCenterId: Any? = null,
 
 		@field:SerializedName("IsGeneratedToC4")
-	val isGeneratedToC4: Boolean? = null,
+	val isGeneratedToC4: Boolean = false,
 
 		@field:SerializedName("Contact")
 	val contact: Contact? = null,
@@ -395,19 +395,19 @@ data class TrainsItem(
 	val status: Int = 0,
 
 	@field:SerializedName("IsSecondaryLevel")
-	val isSecondaryLevel: Boolean? = null,
+	val isSecondaryLevel: Boolean = false,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("IsDownloadPnr")
-	val isDownloadPnr: Boolean? = null,
+	val isDownloadPnr: Boolean = false,
 
 	@field:SerializedName("TripPlanId")
 	val tripPlanId: String? = null,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("TripTrains")
 	val tripTrains: List<TripTrainsItem?>? = null,
@@ -416,7 +416,7 @@ data class TrainsItem(
 	val travelAgentAccount: String? = null,
 
 	@field:SerializedName("HasConfirmed")
-	val hasConfirmed: Boolean? = null,
+	val hasConfirmed: Boolean = false,
 
 	@field:SerializedName("ItemType")
 	val itemType: Int = 0,
@@ -431,7 +431,7 @@ data class TrainsItem(
 	val reasonCode: String? = null,
 
 	@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 	@field:SerializedName("TripHotels")
 	val tripHotels: List<Any?>? = null,
@@ -440,7 +440,7 @@ data class TrainsItem(
 	val tripFlights: List<Any?>? = null,
 
 	@field:SerializedName("IsViolatedHotelRules")
-	val isViolatedHotelRules: Boolean? = null,
+	val isViolatedHotelRules: Boolean = false,
 
 	@field:SerializedName("FlightType")
 	val flightType: Int = 0,
@@ -500,7 +500,7 @@ data class Hotel(
 	val address: String? = null,
 
 	@field:SerializedName("IsSync")
-	val isSync: Boolean? = null,
+	val isSync: Boolean = false,
 
 	@field:SerializedName("Payments")
 	val payments: List<PaymentsItem?>? = null,
@@ -518,7 +518,7 @@ data class Hotel(
 	val actionDate: String? = null,
 
 	@field:SerializedName("IsFullCharge")
-	val isFullCharge: Boolean? = null,
+	val isFullCharge: Boolean = false,
 
 	@field:SerializedName("Checkout")
 	val checkout: String? = null,
@@ -551,7 +551,7 @@ data class Hotel(
 	val checkinFormatString: String? = null,
 
 	@field:SerializedName("IsEmailSent")
-	val isEmailSent: Boolean? = null,
+	val isEmailSent: Boolean = false,
 
 	@field:SerializedName("TicketedDate")
 	val ticketedDate: Any? = null,
@@ -560,7 +560,7 @@ data class Hotel(
 	val statusName: String? = null,
 
 	@field:SerializedName("IsRefund")
-	val isRefund: Boolean? = null,
+	val isRefund: Boolean = false,
 
 	@field:SerializedName("DiscountAmount")
 	val discountAmount: Int = 0,
@@ -575,7 +575,7 @@ data class Hotel(
 	val timeLimitView: String? = null,
 
 	@field:SerializedName("IsViolatedHotelRules")
-	val isViolatedHotelRules: Boolean? = null,
+	val isViolatedHotelRules: Boolean = false,
 
 	@field:SerializedName("Country")
 	val country: String? = null,
@@ -653,7 +653,7 @@ data class Hotel(
 	val email: String? = null,
 
 	@field:SerializedName("IsForwardedBooking")
-	val isForwardedBooking: Boolean? = null,
+	val isForwardedBooking: Boolean = false,
 
 	@field:SerializedName("FormBookingUrl")
 	val formBookingUrl: String? = null,
@@ -683,10 +683,10 @@ data class Hotel(
 	val paymentStatus: Any? = null,
 
 	@field:SerializedName("PaymentSuccess")
-	val paymentSuccess: Boolean? = null,
+	val paymentSuccess: Boolean = false,
 
 	@field:SerializedName("IsSentEmail")
-	val isSentEmail: Boolean? = null,
+	val isSentEmail: Boolean = false,
 
 	@field:SerializedName("PaymentReff")
 	val paymentReff: Any? = null,
@@ -722,7 +722,7 @@ data class Hotel(
 	val area: String? = null,
 
 	@field:SerializedName("IsFullDeduct")
-	val isFullDeduct: Boolean? = null,
+	val isFullDeduct: Boolean = false,
 
 	@field:SerializedName("DiscountType")
 	val discountType: Int = 0,
@@ -743,7 +743,7 @@ data class Hotel(
 	val rating: Int = 0,
 
 	@field:SerializedName("IsTourism")
-	val isTourism: Boolean? = null,
+	val isTourism: Boolean = false,
 
 	@field:SerializedName("CancellationPoliciesView")
 	val cancellationPoliciesView: List<String?>? = null,
@@ -761,25 +761,25 @@ data class Hotel(
 	val phone: String? = null,
 
 	@field:SerializedName("IsGuarantedBooking")
-	val isGuarantedBooking: Boolean? = null,
+	val isGuarantedBooking: Boolean = false,
 
 	@field:SerializedName("RemarkReject")
 	val remarkReject: Any? = null,
 
 	@field:SerializedName("IsHsre")
-	val isHsre: Boolean? = null,
+	val isHsre: Boolean = false,
 
 	@field:SerializedName("CheckOutFormatString")
 	val checkOutFormatString: String? = null,
 
 	@field:SerializedName("IsReschedule")
-	val isReschedule: Boolean? = null,
+	val isReschedule: Boolean = false,
 
 	@field:SerializedName("TotalAmount")
 	val totalAmount: Int = 0,
 
 	@field:SerializedName("IsWithBreakfast")
-	val isWithBreakfast: Boolean? = null,
+	val isWithBreakfast: Boolean = false,
 
 	@field:SerializedName("BookingCodeNew")
 	val bookingCodeNew: Any? = null,
@@ -809,19 +809,19 @@ data class TripItemsItem(
 	val status: Int = 0,
 
 	@field:SerializedName("IsSecondaryLevel")
-	val isSecondaryLevel: Boolean? = null,
+	val isSecondaryLevel: Boolean = false,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("IsDownloadPnr")
-	val isDownloadPnr: Boolean? = null,
+	val isDownloadPnr: Boolean = false,
 
 	@field:SerializedName("TripPlanId")
 	val tripPlanId: String? = null,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("TripTrains")
 	val tripTrains: List<TripTrainsItem?>? = null,
@@ -830,7 +830,7 @@ data class TripItemsItem(
 	val travelAgentAccount: String? = null,
 
 	@field:SerializedName("HasConfirmed")
-	val hasConfirmed: Boolean? = null,
+	val hasConfirmed: Boolean = false,
 
 	@field:SerializedName("ItemType")
 	val itemType: Int = 0,
@@ -845,7 +845,7 @@ data class TripItemsItem(
 	val reasonCode: String? = null,
 
 	@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 	@field:SerializedName("TripHotels")
 	val tripHotels: List<TripHotelsItems?>? = null,
@@ -854,7 +854,7 @@ data class TripItemsItem(
 	val tripFlights: List<TripFlightsItem>? = null,
 
 	@field:SerializedName("IsViolatedHotelRules")
-	val isViolatedHotelRules: Boolean? = null,
+	val isViolatedHotelRules: Boolean = false,
 
 	@field:SerializedName("FlightType")
 	val flightType: Int = 0,
@@ -1184,7 +1184,7 @@ data class TripHotelsItems(
 		val address: String? = null,
 
 		@field:SerializedName("IsSync")
-		val isSync: Boolean? = null,
+		val isSync: Boolean = false,
 
 		@field:SerializedName("Payments")
 		val payments: List<PaymentsItem?>? = null,
@@ -1202,7 +1202,7 @@ data class TripHotelsItems(
 		val actionDate: String? = null,
 
 		@field:SerializedName("IsFullCharge")
-		val isFullCharge: Boolean? = null,
+		val isFullCharge: Boolean = false,
 
 		@field:SerializedName("Checkout")
 		val checkout: String? = null,
@@ -1235,7 +1235,7 @@ data class TripHotelsItems(
 		val checkinFormatString: String? = null,
 
 		@field:SerializedName("IsEmailSent")
-		val isEmailSent: Boolean? = null,
+		val isEmailSent: Boolean = false,
 
 		@field:SerializedName("TicketedDate")
 		val ticketedDate: Any? = null,
@@ -1244,7 +1244,7 @@ data class TripHotelsItems(
 		val statusName: String? = null,
 
 		@field:SerializedName("IsRefund")
-		val isRefund: Boolean? = null,
+		val isRefund: Boolean = false,
 
 		@field:SerializedName("DiscountAmount")
 		val discountAmount: Int? = null,
@@ -1259,7 +1259,7 @@ data class TripHotelsItems(
 		val timeLimitView: String? = null,
 
 		@field:SerializedName("IsViolatedHotelRules")
-		val isViolatedHotelRules: Boolean? = null,
+		val isViolatedHotelRules: Boolean = false,
 
 		@field:SerializedName("Country")
 		val country: String? = null,
@@ -1337,7 +1337,7 @@ data class TripHotelsItems(
 		val email: String? = null,
 
 		@field:SerializedName("IsForwardedBooking")
-		val isForwardedBooking: Boolean? = null,
+		val isForwardedBooking: Boolean = false,
 
 		@field:SerializedName("FormBookingUrl")
 		val formBookingUrl: String? = null,
@@ -1367,10 +1367,10 @@ data class TripHotelsItems(
 		val paymentStatus: Any? = null,
 
 		@field:SerializedName("PaymentSuccess")
-		val paymentSuccess: Boolean? = null,
+		val paymentSuccess: Boolean = false,
 
 		@field:SerializedName("IsSentEmail")
-		val isSentEmail: Boolean? = null,
+		val isSentEmail: Boolean = false,
 
 		@field:SerializedName("PaymentReff")
 		val paymentReff: Any? = null,
@@ -1406,7 +1406,7 @@ data class TripHotelsItems(
 		val area: String? = null,
 
 		@field:SerializedName("IsFullDeduct")
-		val isFullDeduct: Boolean? = null,
+		val isFullDeduct: Boolean = false,
 
 		@field:SerializedName("DiscountType")
 		val discountType: Int? = null,
@@ -1427,7 +1427,7 @@ data class TripHotelsItems(
 		val rating: Int? = null,
 
 		@field:SerializedName("IsTourism")
-		val isTourism: Boolean? = null,
+		val isTourism: Boolean = false,
 
 		@field:SerializedName("CancellationPoliciesView")
 		val cancellationPoliciesView: List<String?>? = null,
@@ -1445,25 +1445,25 @@ data class TripHotelsItems(
 		val phone: String? = null,
 
 		@field:SerializedName("IsGuarantedBooking")
-		val isGuarantedBooking: Boolean? = null,
+		val isGuarantedBooking: Boolean = false,
 
 		@field:SerializedName("RemarkReject")
 		val remarkReject: Any? = null,
 
 		@field:SerializedName("IsHsre")
-		val isHsre: Boolean? = null,
+		val isHsre: Boolean = false,
 
 		@field:SerializedName("CheckOutFormatString")
 		val checkOutFormatString: String? = null,
 
 		@field:SerializedName("IsReschedule")
-		val isReschedule: Boolean? = null,
+		val isReschedule: Boolean = false,
 
 		@field:SerializedName("TotalAmount")
 		val totalAmount: Int? = null,
 
 		@field:SerializedName("IsWithBreakfast")
-		val isWithBreakfast: Boolean? = null,
+		val isWithBreakfast: Boolean = false,
 
 		@field:SerializedName("BookingCodeNew")
 		val bookingCodeNew: Any? = null,
@@ -1574,10 +1574,10 @@ data class TripHotelsItem(
 	val bookingDate: String? = null,
 
 	@field:SerializedName("IsDownloadPnr")
-	val isDownloadPnr: Boolean? = null,
+	val isDownloadPnr: Boolean = false,
 
 	@field:SerializedName("IsRefundable")
-	val isRefundable: Boolean? = null,
+	val isRefundable: Boolean = false,
 
 	@field:SerializedName("Airline")
 	val airline: Int = 0,
@@ -1610,7 +1610,7 @@ data class TripHotelsItem(
 	val flightType: Int = 0,
 
 	@field:SerializedName("UseWizardSeatSelection")
-	val useWizardSeatSelection: Boolean? = null,
+	val useWizardSeatSelection: Boolean = false,
 
 	@field:SerializedName("CallbackUri")
 	val callbackUri: Any? = null,
@@ -1625,10 +1625,10 @@ data class TripHotelsItem(
 	val flightTripType: Int = 0,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("IsWithoutSpj")
-	val isWithoutSpj: Boolean? = null,
+	val isWithoutSpj: Boolean = false,
 
 	@field:SerializedName("TicketedDate")
 	val ticketedDate: Any? = null,
@@ -1646,7 +1646,7 @@ data class TripHotelsItem(
 	val reasonCode: String? = null,
 
 	@field:SerializedName("IsUpdatePassport")
-	val isUpdatePassport: Boolean? = null,
+	val isUpdatePassport: Boolean = false,
 
 	@field:SerializedName("TimeLimitView")
 	val timeLimitView: Any? = null,
@@ -1679,7 +1679,7 @@ data class TripHotelsItem(
 	val destination: Any? = null,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("TrainName")
 	val trainName: Any? = null,
@@ -1742,7 +1742,7 @@ data class TripHotelsItem(
 	val companyCode: Any? = null,
 
 	@field:SerializedName("IsViolatedTrainRules")
-	val isViolatedTrainRules: Boolean? = null
+	val isViolatedTrainRules: Boolean = false
 )
 
 data class TripPlanItemsItem(
@@ -1751,19 +1751,19 @@ data class TripPlanItemsItem(
 	val status: Int = 0,
 
 	@field:SerializedName("IsSecondaryLevel")
-	val isSecondaryLevel: Boolean? = null,
+	val isSecondaryLevel: Boolean = false,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("IsDownloadPnr")
-	val isDownloadPnr: Boolean? = null,
+	val isDownloadPnr: Boolean = false,
 
 	@field:SerializedName("TripPlanId")
 	val tripPlanId: String? = null,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("TripTrains")
 	val tripTrains: List<Any?>? = null,
@@ -1772,7 +1772,7 @@ data class TripPlanItemsItem(
 	val travelAgentAccount: String? = null,
 
 	@field:SerializedName("HasConfirmed")
-	val hasConfirmed: Boolean? = null,
+	val hasConfirmed: Boolean = false,
 
 	@field:SerializedName("ItemType")
 	val itemType: Int = 0,
@@ -1787,7 +1787,7 @@ data class TripPlanItemsItem(
 	val reasonCode: String? = null,
 
 	@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 	@field:SerializedName("TripHotels")
 	val tripHotels: List<TripHotelsItem?>? = null,
@@ -1796,7 +1796,7 @@ data class TripPlanItemsItem(
 	val tripFlights: List<Any?>? = null,
 
 	@field:SerializedName("IsViolatedHotelRules")
-	val isViolatedHotelRules: Boolean? = null,
+	val isViolatedHotelRules: Boolean = false,
 
 	@field:SerializedName("FlightType")
 	val flightType: Int = 0,
@@ -1826,7 +1826,7 @@ data class JobProgress(
 	val progress: String? = null,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("RowKey")
 	val rowKey: Any? = null,
@@ -1872,7 +1872,7 @@ data class TripTrainsItem(
 	val tripPlanId: Any? = null,
 
 		@field:SerializedName("IsRefundable")
-	val isRefundable: Boolean? = null,
+	val isRefundable: Boolean = false,
 
 		@field:SerializedName("Segments")
 	val segments: ArrayList<SegmentsItemReservationEntity> = ArrayList(),
@@ -1890,7 +1890,7 @@ data class TripTrainsItem(
 	val sequenceBRI: Int = 0,
 
 		@field:SerializedName("IsPostedHipchat")
-	val isPostedHipchat: Boolean? = null,
+	val isPostedHipchat: Boolean = false,
 
 		@field:SerializedName("Remarks")
 	val remarks: List<Any?>? = null,
@@ -1914,10 +1914,10 @@ data class TripTrainsItem(
 	val paymentStatus: Any? = null,
 
 		@field:SerializedName("PaymentSuccess")
-	val paymentSuccess: Boolean? = null,
+	val paymentSuccess: Boolean = false,
 
 		@field:SerializedName("selected")
-	val selected: Boolean? = null,
+	val selected: Boolean = false,
 
 		@field:SerializedName("FlightTypeView")
 	val flightTypeView: String? = null,
@@ -1932,7 +1932,7 @@ data class TripTrainsItem(
 	val paymentTimeLimit: String? = null,
 
 		@field:SerializedName("IsEmailSent")
-	val isEmailSent: Boolean? = null,
+	val isEmailSent: Boolean = false,
 
 		@field:SerializedName("TicketedDate")
 	val ticketedDate: String? = null,
@@ -1947,7 +1947,7 @@ data class TripTrainsItem(
 	val bookingDateView: String? = null,
 
 		@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 		@field:SerializedName("PnrCode")
 	val pnrCode: String? = null,
@@ -1986,7 +1986,7 @@ data class TripTrainsItem(
 	val destination: String? = null,
 
 		@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 		@field:SerializedName("AmountBeforeReserved")
 	val amountBeforeReserved: Int = 0,
@@ -2097,7 +2097,7 @@ data class PassengersItem(
 	val passportFirstName: Any? = null,
 
 	@field:SerializedName("IsGuest")
-	val isGuest: Boolean? = null,
+	val isGuest: Boolean = false,
 
 	@field:SerializedName("Seats")
 	val seats: List<Any?>? = null,
@@ -2181,7 +2181,7 @@ data class PassengersItem(
 	val type: String? = null,
 
 	@field:SerializedName("IsSeniorCitizen")
-	val isSeniorCitizen: Boolean? = null,
+	val isSeniorCitizen: Boolean = false,
 
 	@field:SerializedName("HomePhone")
 	val homePhone: String? = null,
@@ -2217,7 +2217,7 @@ data class TripParticipantsItem(
 	val tripPostClaims: List<Any?>? = null,
 
 		@field:SerializedName("IsShowButtonIssuedTrain")
-	val isShowButtonIssuedTrain: Boolean? = null,
+	val isShowButtonIssuedTrain: Boolean = false,
 
 		@field:SerializedName("OtherEmail")
 	val otherEmail: Any? = null,
@@ -2241,7 +2241,7 @@ data class TripParticipantsItem(
 	val picEmployeeName: Any? = null,
 
 		@field:SerializedName("IsShowButtonPayment")
-	val isShowButtonPayment: Boolean? = null,
+	val isShowButtonPayment: Boolean = false,
 
 		@field:SerializedName("Status")
 	val status: Int = 0,
@@ -2280,7 +2280,7 @@ data class TripParticipantsItem(
 	val approvedBy: Any? = null,
 
 		@field:SerializedName("ShowButtonDebitBNI")
-	val showButtonDebitBNI: Boolean? = null,
+	val showButtonDebitBNI: Boolean = false,
 
 		@field:SerializedName("Actual")
 	val actual: Int = 0,
@@ -2427,16 +2427,16 @@ data class TripParticipantsItem(
 	val totalTripPaidHotel: Int = 0,
 
 		@field:SerializedName("ShowButtonApproveHotel")
-	val showButtonApproveHotel: Boolean? = null,
+	val showButtonApproveHotel: Boolean = false,
 
 		@field:SerializedName("IsProcurement")
-	val isProcurement: Boolean? = null,
+	val isProcurement: Boolean = false,
 
 		@field:SerializedName("IsShowButtonIsued")
-	val isShowButtonIsued: Boolean? = null,
+	val isShowButtonIsued: Boolean = false,
 
 		@field:SerializedName("IncludeDailyAllowance")
-	val includeDailyAllowance: Boolean? = null,
+	val includeDailyAllowance: Boolean = false,
 
 		@field:SerializedName("BPFunctionName")
 	val bPFunctionName: Any? = null,
@@ -2445,7 +2445,7 @@ data class TripParticipantsItem(
 	val budgetId: String? = null,
 
 		@field:SerializedName("SentEmailApproval")
-	val sentEmailApproval: Boolean? = null,
+	val sentEmailApproval: Boolean = false,
 
 		@field:SerializedName("PaymentAirlineTimeLimit")
 	val paymentAirlineTimeLimit: String? = null,
@@ -2457,7 +2457,7 @@ data class TripParticipantsItem(
 	val relationOfPicView: String? = null,
 
 		@field:SerializedName("IsGuest")
-	val isGuest: Boolean? = null,
+	val isGuest: Boolean = false,
 
 		@field:SerializedName("DefaultClassAirline")
 	val defaultClassAirline: Any? = null,
@@ -2475,7 +2475,7 @@ data class TripParticipantsItem(
 	val pointOfHired: Any? = null,
 
 		@field:SerializedName("ShowButtonApproveAirline")
-	val showButtonApproveAirline: Boolean? = null,
+	val showButtonApproveAirline: Boolean = false,
 
 		@field:SerializedName("PaymentMethod")
 	val paymentMethod: Any? = null,
@@ -2502,7 +2502,7 @@ data class TripParticipantsItem(
 	val companyView: String? = null,
 
 		@field:SerializedName("IsCompletelyReviewed")
-	val isCompletelyReviewed: Boolean? = null,
+	val isCompletelyReviewed: Boolean = false,
 
 		@field:SerializedName("FollowUpBy")
 	val followUpBy: Any? = null,
@@ -2514,10 +2514,10 @@ data class TripParticipantsItem(
 	val tripPlanItems: List<TripPlanItemsItem?>? = null,
 
 		@field:SerializedName("IncludeOtherAllowance")
-	val includeOtherAllowance: Boolean? = null,
+	val includeOtherAllowance: Boolean = false,
 
 		@field:SerializedName("ShowButtonApproveTrain")
-	val showButtonApproveTrain: Boolean? = null,
+	val showButtonApproveTrain: Boolean = false,
 
 		@field:SerializedName("PaymentInstruction")
 	val paymentInstruction: Any? = null,
@@ -2535,7 +2535,7 @@ data class TripParticipantsItem(
 	val passportOrigin: Any? = null,
 
 		@field:SerializedName("IsShowButtonIssuedHotel")
-	val isShowButtonIssuedHotel: Boolean? = null,
+	val isShowButtonIssuedHotel: Boolean = false,
 
 		@field:SerializedName("BPSegmentName")
 	val bPSegmentName: Any? = null,
@@ -2571,10 +2571,10 @@ data class TripParticipantsItem(
 	val followUpComp: Any? = null,
 
 		@field:SerializedName("isApproveForm")
-	val isApproveForm: Boolean? = null,
+	val isApproveForm: Boolean = false,
 
 		@field:SerializedName("IncludeMealAllowance")
-	val includeMealAllowance: Boolean? = null,
+	val includeMealAllowance: Boolean = false,
 
 		@field:SerializedName("FullName")
 	val fullName: String? = null,
@@ -2583,10 +2583,10 @@ data class TripParticipantsItem(
 	val costCenterCode: String? = null,
 
 		@field:SerializedName("IsCostCenterUpdated")
-	val isCostCenterUpdated: Boolean? = null,
+	val isCostCenterUpdated: Boolean = false,
 
 		@field:SerializedName("IsHavePaymentMethodAirline")
-	val isHavePaymentMethodAirline: Boolean? = null,
+	val isHavePaymentMethodAirline: Boolean = false,
 
 		@field:SerializedName("CompanyCode")
 	val companyCode: Any? = null,
@@ -2595,19 +2595,19 @@ data class TripParticipantsItem(
 	val emergencyContactName: Any? = null,
 
 		@field:SerializedName("IsAnyPNRWithNotCompleted")
-	val isAnyPNRWithNotCompleted: Boolean? = null
+	val isAnyPNRWithNotCompleted: Boolean = false
 )
 
 data class TripParticipantCustomApprovalsItem(
 
 		@field:SerializedName("IsHaveAirline")
-		val isHaveAirline: Boolean? = null,
+		val isHaveAirline: Boolean = false,
 
 		@field:SerializedName("Company")
 		val company: String = "",
 
 		@field:SerializedName("HasHotel")
-		val hasHotel: Boolean? = null,
+		val hasHotel: Boolean = false,
 
 		@field:SerializedName("InfoCompany")
 		val infoCompany: String = "",
@@ -2616,7 +2616,7 @@ data class TripParticipantCustomApprovalsItem(
 		val completelyReviewedDate: String = "",
 
 		@field:SerializedName("IsHaveHotel")
-		val isHaveHotel: Boolean? = null,
+		val isHaveHotel: Boolean = false,
 
 		@field:SerializedName("ParentCompanyName")
 		val parentCompanyName: Any? = null,
@@ -2625,7 +2625,7 @@ data class TripParticipantCustomApprovalsItem(
 		val followUpHotel: String? = "",
 
 		@field:SerializedName("HasTrain")
-		val hasTrain: Boolean? = null,
+		val hasTrain: Boolean = false,
 
 		@field:SerializedName("CompanyName")
 		val companyName: String = "",
@@ -2679,19 +2679,19 @@ data class FlightsItem(
 	val status: Int = 0,
 
 	@field:SerializedName("IsSecondaryLevel")
-	val isSecondaryLevel: Boolean? = null,
+	val isSecondaryLevel: Boolean = false,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("IsDownloadPnr")
-	val isDownloadPnr: Boolean? = null,
+	val isDownloadPnr: Boolean = false,
 
 	@field:SerializedName("TripPlanId")
 	val tripPlanId: String? = null,
 
 	@field:SerializedName("IsManual")
-	val isManual: Boolean? = null,
+	val isManual: Boolean = false,
 
 	@field:SerializedName("TripTrains")
 	val tripTrains: List<Any?>? = null,
@@ -2700,7 +2700,7 @@ data class FlightsItem(
 	val travelAgentAccount: String? = null,
 
 	@field:SerializedName("HasConfirmed")
-	val hasConfirmed: Boolean? = null,
+	val hasConfirmed: Boolean = false,
 
 	@field:SerializedName("ItemType")
 	val itemType: Int = 0,
@@ -2715,7 +2715,7 @@ data class FlightsItem(
 	val reasonCode: Any? = null,
 
 	@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 	@field:SerializedName("TripHotels")
 	val tripHotels: List<Any?>? = null,
@@ -2724,7 +2724,7 @@ data class FlightsItem(
 	val tripFlights: List<TripFlightsItem?>? = null,
 
 	@field:SerializedName("IsViolatedHotelRules")
-	val isViolatedHotelRules: Boolean? = null,
+	val isViolatedHotelRules: Boolean = false,
 
 	@field:SerializedName("FlightType")
 	val flightType: Int = 0,
@@ -2754,7 +2754,7 @@ data class SegmentsItem(
 	val airline: Int = 0,
 
 	@field:SerializedName("IsSecuritySensivity")
-	val isSecuritySensivity: Boolean? = null,
+	val isSecuritySensivity: Boolean = false,
 
 	@field:SerializedName("SequenceBRI")
 	val sequenceBRI: Int = 0,
@@ -2793,13 +2793,13 @@ data class SegmentsItem(
 	val departDateTime: String? = null,
 
 	@field:SerializedName("IsAirlineCompliance")
-	val isAirlineCompliance: Boolean? = null,
+	val isAirlineCompliance: Boolean = false,
 
 	@field:SerializedName("Duration")
 	val duration: String? = null,
 
 	@field:SerializedName("IsRefund")
-	val isRefund: Boolean? = null,
+	val isRefund: Boolean = false,
 
 	@field:SerializedName("DepartDate")
 	val departDate: String? = null,
@@ -2823,10 +2823,10 @@ data class SegmentsItem(
 	val seq: Int = 0,
 
 	@field:SerializedName("IsSecondaryLevel")
-	val isSecondaryLevel: Boolean? = null,
+	val isSecondaryLevel: Boolean = false,
 
 	@field:SerializedName("IsAdvanceBooking")
-	val isAdvanceBooking: Boolean? = null,
+	val isAdvanceBooking: Boolean = false,
 
 	@field:SerializedName("Destination")
 	val destination: String? = null,
@@ -2838,7 +2838,7 @@ data class SegmentsItem(
 	val airlineName: String? = null,
 
 	@field:SerializedName("IsLowestFare")
-	val isLowestFare: Boolean? = null,
+	val isLowestFare: Boolean = false,
 
 	@field:SerializedName("DepartTime")
 	val departTime: String? = null,
@@ -2850,7 +2850,7 @@ data class SegmentsItem(
 	val transitDuration: Any? = null,
 
 	@field:SerializedName("IsReschedule")
-	val isReschedule: Boolean? = null,
+	val isReschedule: Boolean = false,
 
 	@field:SerializedName("Num")
 	val num: Int = 0,
@@ -2880,7 +2880,7 @@ data class SegmentsItem(
 	val countryOrigin: String? = null,
 
 	@field:SerializedName("IsRestrictedDest")
-	val isRestrictedDest: Boolean? = null,
+	val isRestrictedDest: Boolean = false,
 
 	@field:SerializedName("TripFlightId")
 	val tripFlightId: String? = null,
@@ -2901,7 +2901,7 @@ data class TripFlightsItem(
 	val tripPlanId: Any? = null,
 
 	@field:SerializedName("IsRefundable")
-	val isRefundable: Boolean? = null,
+	val isRefundable: Boolean = false,
 
 	@field:SerializedName("Airline")
 	val airline: Int = 0,
@@ -2925,7 +2925,7 @@ data class TripFlightsItem(
 	val actionDate: String? = null,
 
 	@field:SerializedName("IsPostedHipchat")
-	val isPostedHipchat: Boolean? = null,
+	val isPostedHipchat: Boolean = false,
 
 	@field:SerializedName("Remarks")
 	val remarks: List<Any?>? = null,
@@ -2955,10 +2955,10 @@ data class TripFlightsItem(
 	val paymentStatus: Any? = null,
 
 	@field:SerializedName("PaymentSuccess")
-	val paymentSuccess: Boolean? = null,
+	val paymentSuccess: Boolean = false,
 
 	@field:SerializedName("selected")
-	val selected: Boolean? = null,
+	val selected: Boolean = false,
 
 	@field:SerializedName("FlightTypeView")
 	val flightTypeView: String? = null,
@@ -2973,7 +2973,7 @@ data class TripFlightsItem(
 	val paymentTimeLimit: String? = null,
 
 	@field:SerializedName("IsEmailSent")
-	val isEmailSent: Boolean? = null,
+	val isEmailSent: Boolean = false,
 
 	@field:SerializedName("TicketedDate")
 	val ticketedDate: Any? = null,
@@ -2991,7 +2991,7 @@ data class TripFlightsItem(
 	val bookingDateView: String? = null,
 
 	@field:SerializedName("HasCostCenterUpdated")
-	val hasCostCenterUpdated: Boolean? = null,
+	val hasCostCenterUpdated: Boolean = false,
 
 	@field:SerializedName("PnrCode")
 	val pnrCode: String? = null,
@@ -3027,7 +3027,7 @@ data class TripFlightsItem(
 	val destination: String? = null,
 
 	@field:SerializedName("IsRemoved")
-	val isRemoved: Boolean? = null,
+	val isRemoved: Boolean = false,
 
 	@field:SerializedName("AmountBeforeReserved")
 	val amountBeforeReserved: Int = 0,
@@ -3087,7 +3087,7 @@ data class TripFlightsItem(
 	val originAirport: Any? = null,
 
 	@field:SerializedName("IsVoid")
-	val isVoid: Boolean? = null,
+	val isVoid: Boolean = false,
 
 	@field:SerializedName("TicketDocUrl")
 	val ticketDocUrl: Any? = null,

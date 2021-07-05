@@ -35,11 +35,15 @@ import kotlinx.android.synthetic.main.activity_new_createtripplan.layEvent
 import kotlinx.android.synthetic.main.activity_new_createtripplan.rv_attachment
 import kotlinx.android.synthetic.main.activity_new_createtripplan.tv_from
 import kotlinx.android.synthetic.main.activity_new_createtripplan.tv_notes_count
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.travel_request.CheckAvaibilityDateRequest
+import opsigo.com.domainlayer.callback.CallbackString
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import java.util.HashMap
 
 
 class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetripplanBinding>(),
@@ -318,11 +322,9 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.attach_your_document), this)
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.waiting_upload_file), this)
-            } else {
-                bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
-                bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
-                bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
-                gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
+            }
+            else {
+                checkAvailableDate(bundle)
             }
         }
     }
@@ -387,6 +389,32 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             }
         }
+    }
+
+    private fun checkAvailableDate(bundle:Bundle) {
+        GetDataTravelRequest(getBaseUrl()).checkDateAvaibility(getToken(),dataDate(),object : CallbackString {
+            override fun successLoad(data: String) {
+                if (!data.contains("true")){
+                    showAllert(getString(R.string.sorry),data)
+                }else {
+                    bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
+                    bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
+                    bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
+                    gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
+                }
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+        })
+    }
+
+    private fun dataDate(): HashMap<Any, Any> {
+        val data = CheckAvaibilityDateRequest()
+        data.endDate = m_endate//"2021-07-05"
+        data.startDate = m_startdate //"2021-06-30"
+        return Globals.classToHashMap(data, CheckAvaibilityDateRequest::class.java)
     }
 
 }

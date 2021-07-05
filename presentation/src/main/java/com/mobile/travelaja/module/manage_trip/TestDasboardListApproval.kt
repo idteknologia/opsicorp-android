@@ -173,6 +173,14 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
+                if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                    onCompleted()
+                    top_button.completedButtonSelected()
+                } else {
+                    onDraft()
+                    top_button.draftButtonSelected()
+                }
+
                 if (approvalModel.isEmpty()) {
                     empty_view.show()
                 } else {
@@ -233,32 +241,25 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
                         tripCode    = dataFilter[position].tripCode
                         isApproval  = dataFilter[position].isApproval
                         isParticipant = dataFilter[position].isParticipant
-//                        Globals.approvalData = dataFilter[position].listApproval
-//                        Globals.participantData = dataFilter[position].participant
                     }
                     else if(dataSearch.isNotEmpty()){
                         idTripPlane = dataSearch[position].id
                         tripCode    = dataSearch[position].tripCode
                         isApproval  = dataFilter[position].isApproval
                         isParticipant = dataFilter[position].isParticipant
-//                        Globals.approvalData = dataSearch[position].listApproval
-//                        Globals.participantData = dataSearch[position].participant
                     }
                     else{
                         idTripPlane = data[position].id
                         tripCode    = data[position].tripCode
                         isApproval  = data[position].isApproval
                         isParticipant = data[position].isParticipant
-//                        Globals.approvalData = data[position].listApproval
-//                        Globals.participantData = data[position].participant
                     }
-
-                    Constants.isApproval = isApproval
-                    Constants.isParticipant = isParticipant
 
                     intent.putExtra(Constants.KEY_FROM, Constants.FROM_DRAFT)
                     intent.putExtra(Constants.KEY_INTENT_TRIPID, idTripPlane)
                     intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, tripCode)
+                    intent.putExtra(Constants.KEY_IS_APPROVAL,isApproval)
+                    intent.putExtra(Constants.KEY_IS_PARTICIPANT,isParticipant)
 
                     (context as Activity).startActivityForResult(intent,Constants.OPEN_DETAIL_TRIP_PLANE)
                 }

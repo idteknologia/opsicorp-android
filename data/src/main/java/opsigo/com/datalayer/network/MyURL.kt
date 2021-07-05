@@ -96,5 +96,6 @@ object MyURL {
     const val SUBMIT_TRAVEL_REQUEST = "api/TripPlan/SubmitTravelRequest"
     const val APPROVE_ALL_TRIP      = "api/TripPlan/ApprovalAct"
     const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
+    const val CHECK_AVAIBILITY_DATE = "api/TripPlan/ValidationTravelRequest"
 
 }

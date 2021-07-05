@@ -43,9 +43,9 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
         val data = items.get(position)
         val dataProfile = Globals.getProfile(context)
         if (position==0){
-            holder.itemView.tv_title_trip.text     = "Departure Flight"
+            holder.itemView.tv_title_trip.text     = context.getString(R.string.text_departure_flight)
         } else {
-            holder.itemView.tv_title_trip.text     = "Arrival Flight"
+            holder.itemView.tv_title_trip.text     = context.getString(R.string.text_arrival_flight )
         }
         holder.itemView.tv_city_code.text      = "${data.origin} - ${data.destination}"
         holder.itemView.tv_name_passanger.text = "${dataProfile.title}.${dataProfile.name}"

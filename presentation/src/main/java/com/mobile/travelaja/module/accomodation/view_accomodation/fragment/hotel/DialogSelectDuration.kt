@@ -39,12 +39,12 @@ class DialogSelectDuration {
 
         adb.setView(v)
         alertDialog = adb.create()
-        alertDialog.window.getAttributes().windowAnimations = R.style.DialogAnimations_SmileWindow //R.style.DialogAnimations_SmileWindow;
+        alertDialog.window?.getAttributes()?.windowAnimations = R.style.DialogAnimations_SmileWindow //R.style.DialogAnimations_SmileWindow;
         alertDialog.setCancelable(false)
-        alertDialog.window.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM)
-        alertDialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        alertDialog.window?.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.BOTTOM)
+        alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog.show()
-        alertDialog.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        alertDialog.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
         scroll_guest.setOnItemSelectedListener { scrollChoice, position, name ->
             totalDuration = name

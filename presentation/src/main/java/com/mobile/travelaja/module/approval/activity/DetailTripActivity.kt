@@ -143,9 +143,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         showLoadingOpsicorp(true)
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-                setLog("cobak")
-                setLog(Serializer.serialize(tripSummary.tripParticipantModels))
-
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
                 postEstimateCost()
@@ -227,7 +224,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun onClick(views: Int, position: Int) {
                 when (views) {
                     -1 -> {
-                        if (Constants.isApproval) {
+                        if (intent.getBooleanExtra(Constants.KEY_IS_APPROVAL,false)) {
                             if (dataParticipant[position].employId != getProfile().employId) {
                                 val bundle = Bundle()
                                 bundle.putString(Constants.KEY_INTENT_TRIPID, tripId)
@@ -451,7 +448,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
-        if (tripSummary.statusView == "Completely Approved" || tripSummary.statusView == "Completely Rejected") {
+        if (tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Completely Rejected") {
             line_add_trip_item.visibility = View.GONE
         } else {
             line_add_trip_item.visibility = View.VISIBLE
@@ -511,6 +508,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
     }
 
+    lateinit var dataAccomodation: TripParticipantsItemModel
 
     private fun addDataAccomodation() {
         rv_item_order.visibility = View.VISIBLE
@@ -518,12 +516,15 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         title_trip_total.visibility = View.VISIBLE
 
         dataItems.clear()
+        if(!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!!&&intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!){
+            dataAccomodation = tripSummary.tripParticipantModels.first()
+        }
+        else {
+            dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
+        }
 
-        val dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
         val totalAccomdation = dataAccomodation.itemFlightModel.size + dataAccomodation.itemTrainModel.size + dataAccomodation.itemHotelModel.size
         title_trip_total.text = "${getString(R.string.your_trip_items_detail )} (${totalAccomdation})"
-
-
 
         var number = 1
 
@@ -695,7 +696,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         data.tripType = type
         data.employeeId = getProfile().employId
         data.tripId = tripSummary.tripId
-        data.tripParticipantId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().id
+        if(!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!!&&intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!){
+            data.tripParticipantId = tripSummary.tripParticipantModels.first().id
+        }else{
+            data.tripParticipantId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().id
+        }
         return Globals.classToHashMap(data, ApproverPerItemRequest::class.java)
     }
 
@@ -757,9 +762,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     fun showApproveAllDialog(view: View) {
-        if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+        if (getBaseUrl()==Constants.pertaminaUrl) {
             approveOrRejectItemRequest("1", "1")
-            saveToDraft()
+            /*saveToDraft()*/
         } else {
             ListParticipantDialog(this).create(this, dataParticipant)
         }
@@ -982,7 +987,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     fun gotoAddItem() {
-        if (tripSummary.contact.employeeId.equals(getProfile().employId)) {
+        if (intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)) {
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId

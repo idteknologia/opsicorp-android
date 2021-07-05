@@ -29,8 +29,8 @@ class SuccessView : BaseActivity() {
                 .load(R.drawable.ic_sucees_image)
                 .into(image_success)
 
-        idTrip   = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
-        tripCode = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.TRIP_CODE,"")
+        idTrip   = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
+        tripCode = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.TRIP_CODE,"").toString()
 
         Handler().postDelayed({
             if (idTrip.isNotEmpty()){

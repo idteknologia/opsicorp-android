@@ -4,8 +4,8 @@ import java.util.HashMap
 import android.view.View
 import java.lang.Exception
 import com.squareup.picasso.Picasso
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsicorp.travelaja.feature_flight.R
@@ -28,9 +28,9 @@ import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.accomodation.flight.ValidationFlightModel
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
+import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.toolbar
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
-import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.toolbar
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
@@ -53,6 +53,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     lateinit var dataFareRules : ArrayList<FareRulesModel>
     lateinit var dataOrder: OrderAccomodationModel
     var isSsr = false
+    var isFareRules = false
 
     override fun OnMain() {
         getValidationFlight()
@@ -90,7 +91,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             }
         }
         else {
-            val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+            val position = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.positionFlightMulticity)!!
             toolbar.setDoubleTitle("${dataOrder.routes[position].originName}(${dataOrder.routes[position].idOrigin}) - ${dataOrder.routes[position].destinationName}(${dataOrder.routes[position].idDestination})","${DateConverter().getDate(dataOrder.routes[position].dateDeparture,"yyyy-MM-dd","EEE, dd MMM yyyy")} - 1 pax")
         }
         toolbar.callbackOnclickToolbar(this)
@@ -123,6 +124,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun getFareRules() {
         GetDataAccomodation(getBaseUrl()).getFareRules(getToken(),dataFareRulesRequest(),object : CallbackGetFareRules {
             override fun success(data: ResultListFlightModel) {
+                isFareRules = true
                 dataFareRules = data.dataFareRules
             }
 
@@ -426,7 +428,9 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         datalist.dataFlight.last().notComply = isNotComply
 
         if (datalist.dataFlight.last().flightType.equals("GdsBfm")){
-            datalist.dataFlight.last().dataFareRules = dataFareRules
+            if (isFareRules) {
+                datalist.dataFlight.last().dataFareRules = dataFareRules
+            }
         }
 
         /*dataContacts.add(mDataBooker)*/

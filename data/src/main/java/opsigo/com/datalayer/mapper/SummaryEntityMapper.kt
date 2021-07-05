@@ -1,24 +1,20 @@
 package opsigo.com.datalayer.mapper
 
-import android.util.Log
-import opsigo.com.datalayer.model.cart.RoutesItem
-import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.domainlayer.model.summary.*
-import java.util.ArrayList
 
 class SummaryEntityMapper() {
 
     fun mapFrom(from: SummaryEntity): SummaryModel {
 
-        Log.e("TAG 1",Serializer.serialize(from))
         val summary = SummaryModel()
         summary.tripId          = from.id.toString()
-        summary.type            = from.type.toString()
-        summary.tripCode            = from.code.toString()
+        summary.type            = from.type
+        summary.tripCode          = from.code.toString()
         summary.purpose         = if (from.purpose==null) "" else from.purpose.toString()
-        summary.businessTripType         = if (from.businessTripType==null) "" else from.businessTripType.toString()
+        summary.businessTripType  = if (from.businessTripType==null) "" else from.businessTripType.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
         summary.destination     = if (from.destination==null) "" else from.destination
@@ -37,12 +33,9 @@ class SummaryEntityMapper() {
 //        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
-        summary.isDomestic        = from.isDomestic!!
-        summary.golper            = from.golper
-        summary.wbsNo             = from.wbsNo.toString()
+        summary.isDomestic        = from.isDomestic
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
-
 
 
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
@@ -55,7 +48,7 @@ class SummaryEntityMapper() {
             summary.attactment.add(uplaodModel)
         }
 
-        from.routes?.forEachIndexed { index, routesItem ->
+        from.routes.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
                 routesItinerary.transportation = routesItem.transportation.toInt()

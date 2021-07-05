@@ -53,7 +53,6 @@ data class PassangersFlightRequest(
 		@field:SerializedName("HomePhone")
 		var homePhone: String? = null,
 
-
 		@field:SerializedName("MobilePhone")
 		var mobilePhone: String? = null,
 

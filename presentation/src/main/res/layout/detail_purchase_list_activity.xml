@@ -94,14 +94,14 @@
                         </LinearLayout>
 
                         <include
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/lay_detail_hotel"
                             layout="@layout/layout_detail_hotel_purchase"/>
 
                         <include
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/lay_detail_train"

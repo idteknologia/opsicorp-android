@@ -39,6 +39,8 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.IssuedAllRequest
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -86,14 +88,14 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun checkData() {
-        when(intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.FROM_CART)){
+        when(intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.FROM_CART)){
             Constants.FROM_HOME -> {
                 Globals.changeViewButton(btnList, 0, this)
                 pagePosition = LIST_BISNIS_TRIP
                 getDataCart()
             }
             Constants.FROM_BISNIS_TRIP -> {
-                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                idTripPlant = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
                 Globals.changeViewButton(btnList, 0, this)
                 pagePosition = DETAIL_BISNIS_TRIP
                 showLoadingOpsicorp(false)
@@ -101,7 +103,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 getDataSummary(idTripPlant)
             }
             Constants.FROM_PERSONAL_TRIP -> {
-                idTripPlant = intent.getBundleExtra(Constants.KEY_BUNDLE).getString(Constants.ID_TRIP_PLANE,"")
+                idTripPlant = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
                 Globals.changeViewButton(btnList, 1, this)
                 pagePosition = DETAIL_PERSONAL_TRIP
                 showLoadingOpsicorp(false)
@@ -567,29 +569,50 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun submitTripPlant(view: View) {
-        if (btn_submit_trip_plant.background.constantState == resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
-            setLog("notReady")
-        } else {
-            var tripPlanId = tripSummary.tripId
+        if (btn_submit_trip_plant.background.constantState != resources.getDrawable(R.drawable.rounded_button_gray).constantState) {
+            val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
-            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
-            /*if (tripSummary.tripCode.contains("PT")) {
-                Constants.isBisnisTrip = false
-                if (Constants.isBisnisTrip.equals(false)) {
-                    var tripPlanId = tripSummary.tripId
-                    val bundle = Bundle()
+            if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                issuedAll()
+            }
+            else {
+                if (Constants.codeCompanyTravelAja==getProfile().companyCode||tripSummary.type==Constants.PERSONAL_TRIP) {
                     bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-
                     gotoActivityWithBundle(PaymentActivity::class.java, bundle)
                 } else {
                     getSubmitTripPlant()
                 }
-            } else {
-                getSubmitTripPlant()
-            }*/
+            }
+
         }
+    }
+
+    private fun issuedAll() {
+        GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),bodyIssuedAll(), object : CallbackApprovAll{
+            override fun successLoad(data: String) {
+                hideLoadingOpsicorp()
+                val bundle = Bundle()
+                bundle.putString(Constants.TRIP_CODE,tripSummary.tripCode)
+                bundle.putString(Constants.ID_TRIP_PLANE,tripSummary.tripId)
+                gotoActivityWithBundle(SuccessView::class.java,bundle)
+            }
+
+            override fun failedLoad(message: String) {
+                showAllert("Sorry",message)
+            }
+
+        })
+    }
+
+    private fun bodyIssuedAll(): HashMap<Any, Any> {
+        val issueAllModel = IssuedAllRequest()
+        issueAllModel.tripId = tripSummary.tripId
+        issueAllModel.deviceId = Globals.getDataPreferenceString(this, Constants.FCM_TOKEN)
+        try { issueAllModel.modelPhone = Globals.getDeviceName() }catch (e:Exception){
+            issueAllModel.modelPhone = "android"
+        }
+        return Globals.classToHashMap(issueAllModel,IssuedAllRequest::class.java)
     }
 
     fun getSubmitTripPlant() {
@@ -616,7 +639,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         model.returnDate = tripSummary.returnDate
         model.origin = tripSummary.origin
         model.destination = tripSummary.destination
-        model.type = tripSummary.type
+        model.type = tripSummary.type.toString()
         model.tripParticipants = getDataParticipant()
         model.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         model.purpose = tripSummary.purpose
@@ -698,7 +721,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         when (requestCode) {
             Constants.GET_SEAT_MAP -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    idTripPlant = intent.getStringExtra(Constants.ID_TRIP_PLANE)
+                    idTripPlant = intent?.getStringExtra(Constants.ID_TRIP_PLANE).toString()
                     showLoadingOpsicorp(false)
                     getDataSummary(idTripPlant)
                 }
@@ -721,18 +744,18 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
             override fun onReceive(context: Context, intent: Intent) {
                 //Get message from intent
-                //val tp_status = intent.getStringExtra("tp_status")
+                //val tp_status = intent?.getStringExtra("tp_status")
 
-                //tripId = intent.getStringExtra(Constants.KEY_INTENT_TRIPID)
-                //tripCode = intent.getStringExtra(Constants.KEY_INTENT_TRIP_CODE)
+                //tripId = intent?.getStringExtra(Constants.KEY_INTENT_TRIPID)
+                //tripCode = intent?.getStringExtra(Constants.KEY_INTENT_TRIP_CODE)
                 //employIdUser = getProfile().employId
 
                 //showLoadingOpsicorp(true)
 
-                val vProgress = intent.getStringExtra("vProgress")
-                val vText = intent.getStringExtra("vText")
-                val vPnrId = intent.getStringExtra("vPnrId")
-                val PnrCode = intent.getStringExtra("PnrCode")
+                val vProgress = intent?.getStringExtra("vProgress")
+                val vText = intent?.getStringExtra("vText")
+                val vPnrId = intent?.getStringExtra("vPnrId")
+                val PnrCode = intent?.getStringExtra("PnrCode")
 
                 tvProgress.text = vProgress
                 tvTestStatus.text = vText
@@ -765,8 +788,4 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             e.printStackTrace()
         }
     }
-
-
-
-
 }

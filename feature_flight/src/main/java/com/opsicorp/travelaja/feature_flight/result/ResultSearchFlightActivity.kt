@@ -80,7 +80,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun initItemViews() {
         try {
             if (Constants.multitrip){
-                positionRoutes = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+                positionRoutes = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.positionFlightMulticity,0)!!
             }
             dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
             setRecyclerView()
@@ -298,7 +298,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun mappingByDate() {
         data.clear()
-        val position = intent.getBundleExtra(Constants.KEY_BUNDLE).getInt(Constants.positionFlightMulticity)
+        val position = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.positionFlightMulticity,0)!!
         val departure = if (dataOrder.routes[position].dateDeparture.contains(" ")) dataOrder.routes[position].dateDeparture.split(" ")[0] else dataOrder.routes[position].dateDeparture
         data.addAll(Constants.DATA_RESULT_FLIGHT_MULTI_CITY.filter { it.listFlightModel.departDate.contains(departure.trim()) })
         checkEmptyData()

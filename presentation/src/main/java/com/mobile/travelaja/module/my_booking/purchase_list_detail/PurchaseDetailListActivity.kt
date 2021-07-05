@@ -11,11 +11,11 @@ import com.mobile.travelaja.module.my_booking.adapter.PurchaseDetailTripFlightAd
 import com.mobile.travelaja.module.my_booking.model.*
 import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.detail_purchase_list_activity.*
+import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageFlight
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageHote
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageTrain
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.detail_purchase_list_header_flight.*
 
 
 class PurchaseDetailListActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonListener{
@@ -84,7 +84,7 @@ class PurchaseDetailListActivity : BaseActivity(),ToolbarOpsicorp.OnclickButtonL
         rv_detail_flight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_detail_flight.adapter = adapterFlighDetail
 
-        adapterFlighDetail.setOnclickListener(object :OnclickListenerRecyclerView{
+        adapterFlighDetail.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
 
             }

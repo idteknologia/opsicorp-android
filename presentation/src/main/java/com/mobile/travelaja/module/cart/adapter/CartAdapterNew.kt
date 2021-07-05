@@ -23,6 +23,7 @@ import com.mobile.travelaja.utility.Globals.getToken
 import com.mobile.travelaja.utility.Globals.setLog
 import com.mobile.travelaja.module.cart.model.*
 import opsigo.com.datalayer.mapper.Serializer
+import androidx.core.content.ContextCompat
 import kotlin.collections.ArrayList
 import com.squareup.picasso.Picasso
 import android.view.LayoutInflater
@@ -36,7 +37,6 @@ import com.mobile.travelaja.R
 import java.lang.Exception
 import android.view.View
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*

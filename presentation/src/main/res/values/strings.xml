@@ -1092,4 +1092,5 @@ Please add your trip item for Approval."
     <string name="select_bank_transfer">Select Bank Transfer</string>
     <string name="no_have_trips">Sorry, you no have Trips</string>
     <string name="no_have_bank_account">Sorry, you no have Bank Account</string>
+
 </resources>

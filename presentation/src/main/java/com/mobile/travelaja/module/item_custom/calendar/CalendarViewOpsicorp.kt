@@ -31,10 +31,10 @@ class CalendarViewOpsicorp {
             REQUEST_CODE_CALENDAR -> {
                 if (resultCode== Activity.RESULT_OK){
                     if (data!!.getStringExtra("startDate") != null) {
-                        callbackResult.startDate(data.getStringExtra("displayStartDate"),data.getStringExtra("startDate"))
+                        callbackResult.startDate(data?.getStringExtra("displayStartDate").toString(),data?.getStringExtra("startDate").toString())
                     }
-                    if (data.getStringExtra("endDate") != null) {
-                        callbackResult.endDate(data.getStringExtra("displayEndDate"),data.getStringExtra("endDate"))
+                    if (data?.getStringExtra("endDate") != null) {
+                        callbackResult.endDate(data?.getStringExtra("displayEndDate").toString(),data?.getStringExtra("endDate").toString())
                     }
                 }
                 else {

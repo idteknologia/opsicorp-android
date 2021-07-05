@@ -33,8 +33,8 @@ object QRPopUp {
 
         d.show()
         d.setCancelable(true)
-        d.window.setBackgroundDrawable(ColorDrawable(Color.BLACK))
-        d.window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        d.window?.setBackgroundDrawable(ColorDrawable(Color.BLACK))
+        d.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
 
     }
 
