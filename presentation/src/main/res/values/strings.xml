@@ -1071,5 +1071,28 @@ Please add your trip item for Approval."
     <string name="check_your_transaction_history_on">Check your Transaction History on</string>
     <string name="add_more_item">+Add more item</string>
     <string name="transportation_type">Transportation Type</string>
+    <string name="view_detail_trip">View Detail Trip</string>
+    <string name="transportation_to_airport_or_non_airport">Transportation to Airport or non Airport</string>
+    <string name="caption_create_settlement_transportation">Flight, Train, Bus and Ship</string>
+    <string name="intercity_transport">Intercity transport</string>
+    <string name="transportation_base_on_your_route">Transportation base on your route</string>
+    <string name="did_you_traveling_to_specific_area">Did you traveling to specific area?</string>
+    <string name="spm_sbm_sts_pipeline_etc">SPM / SBM / STS / Pipeline / etc.</string>
+    <string name="did_you_stay_overnight_in_specific_area">Did you stay overnight in specific area?</string>
+    <string name="how_many_day_s">How many Day(s) ?</string>
+    <string name="rate_per_day">Rate per day</string>
+    <string name="other_expense">Other Expense</string>
+    <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
+    <string name="ticket_refund">Ticket Refund</string>
+    <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
+    <string name="notes_optional">Notes (Optional)</string>
+    <string name="upload_evidence">Upload Evidence</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules">I hereby declare that the data provided is true and I am willing to be held accountable according to the right company rules.</string>
+    <string name="select_bank_transfer">Select Bank Transfer</string>
+    <string name="no_have_trips">Sorry, you no have Trips</string>
+    <string name="no_have_bank_account">Sorry, you no have Bank Account</string>
+    <string name="transportation_form">Transportation Form</string>
+    <string name="total_idr">Total <font color="#2b9a8e">IDR</font></string>
 
 </resources>

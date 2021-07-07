@@ -85,7 +85,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         }
         contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)
         tvReimbursement.setOnClickListener {
-//            openReimbursement()
+            openReimbursement()
         }
     }
 

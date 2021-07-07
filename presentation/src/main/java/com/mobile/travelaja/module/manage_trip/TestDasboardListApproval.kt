@@ -167,6 +167,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     }
 
     fun getData(tripDateFrom:String,tripDateTo:String,key: String) {
+
         loading_view.show()
         data.clear()
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{

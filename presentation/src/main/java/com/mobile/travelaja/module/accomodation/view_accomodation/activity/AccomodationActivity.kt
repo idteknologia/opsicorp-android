@@ -52,7 +52,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
     var data = 0
 
     override fun OnMain() {
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         getDataIntent()
         initToolbar()
     }

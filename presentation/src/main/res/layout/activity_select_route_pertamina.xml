@@ -94,6 +94,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
+                    tools:checked="true"
                     android:checked="@{viewModel.isInternational()}"
                     android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInternational(checked)}"
                     android:thumb="@drawable/rounded_switch2"
@@ -118,14 +119,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="4"
+                tools:itemCount="1"
                 android:nestedScrollingEnabled="true"
                 tools:listitem="@layout/select_route_trip_item" />
 
             <TextView
                 android:id="@+id/btAddOtherFlight"
                 android:layout_width="wrap_content"
-                android:layout_height="38dp"
+                android:layout_height="@dimen/buttonOval"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_default"
                 android:background="@drawable/rounded_attachment"

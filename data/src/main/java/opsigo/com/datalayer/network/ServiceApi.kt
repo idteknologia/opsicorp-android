@@ -6,12 +6,14 @@ import okhttp3.logging.HttpLoggingInterceptor
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.ResultList
-import opsigo.com.domainlayer.model.settlement.Settlement
+import opsigo.com.domainlayer.model.settlement.*
+import opsigo.com.domainlayer.model.trip.DetailTripResult
 import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
+import javax.annotation.PostConstruct
 
 interface ServiceApi {
 
@@ -31,6 +33,23 @@ interface ServiceApi {
     @GET(MyURL.CITY)
     suspend fun getCities(): List<City>
 
+    @GET("api/Settlement/GetBankTransfer")
+    suspend fun getBanks():List<Bank>
+
+    @GET("api/Settlement/GetTripList")
+    suspend fun getTripCodes():List<Trip>
+
+    @GET("api/Settlement/GetDetailTrip")
+    suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailTripResult
+
+    @POST("api/Settlement/GetSpecificAreaCompensation")
+    suspend fun putSpecificAreaCompensation(@Body body:MutableMap<String,Int>) : RateStayResult
+
+    @GET("api/Settlement/GetTransportModeList")
+    suspend fun getModeTransport() :  List<ModeTransport>
+
+    @POST("api/Settlement/CalculateTransportExpense")
+    suspend fun calculateTransportExpense(@Body body:MutableMap<String,Any>) : CalculateTransportResult
 
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {
