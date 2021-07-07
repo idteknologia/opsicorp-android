@@ -1,9 +1,11 @@
 package com.mobile.travelaja.base.list
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
@@ -24,6 +26,8 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
     abstract fun dividerEnabled(): Boolean
 
     abstract fun isSearchVisible() : Boolean
+
+    abstract fun isButtonVisible() : Boolean
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,11 +56,19 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.swpRefresh.setOnRefreshListener(this)
         binding.ivBack.setOnClickListener(this)
         binding.includeSearch.buttonClose.setOnClickListener(this)
+        binding.buttonBaseList.setOnClickListener(this)
         binding.includeSearch.root.isVisible = isSearchVisible()
+        binding.buttonBaseList.isVisible = isButtonVisible()
     }
 
-    fun setTitleName(@StringRes title : Int){
+    fun setTitleName(@StringRes title : Int,@ColorRes color : Int = 0){
         binding.tvTitle.setText(title)
+        if (color != 0)
+        binding.tvTitle.setTextColor(resources.getColor(color))
+    }
+
+    fun setSubtitle(@StringRes subtitle : Int){
+        binding.tvSubtitle.setText(subtitle)
     }
 
     fun setHintSearch(hint : String){
@@ -93,5 +105,14 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     fun isRefreshing(isRefresh: Boolean) {
         binding.swpRefresh.isRefreshing = isRefresh
+    }
+
+    fun setButtonText(@StringRes text : Int){
+        binding.buttonBaseList.setText(text)
+    }
+
+    fun isEnabledRefresh(enabled : Boolean){
+        binding.swpRefresh.isEnabled = enabled
+        binding.swpRefresh.isRefreshing = enabled
     }
 }

@@ -6,9 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.ResultList
-import opsigo.com.domainlayer.model.settlement.Bank
-import opsigo.com.domainlayer.model.settlement.RateStayResult
-import opsigo.com.domainlayer.model.settlement.Settlement
+import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.DetailTripResult
 import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
@@ -42,10 +40,16 @@ interface ServiceApi {
     suspend fun getTripCodes():List<Trip>
 
     @GET("api/Settlement/GetDetailTrip")
-    suspend fun getDetailTrip(@Query("trip") tripId : String) : DetailTripResult
+    suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailTripResult
 
     @POST("api/Settlement/GetSpecificAreaCompensation")
-    suspend fun putSpecificAreaCompensation(@FieldMap body:MutableMap<String,Int>) : RateStayResult
+    suspend fun putSpecificAreaCompensation(@Body body:MutableMap<String,Int>) : RateStayResult
+
+    @GET("api/Settlement/GetTransportModeList")
+    suspend fun getModeTransport() :  List<ModeTransport>
+
+    @POST("api/Settlement/CalculateTransportExpense")
+    suspend fun calculateTransportExpense(@Body body:MutableMap<String,Any>) : CalculateTransportResult
 
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {

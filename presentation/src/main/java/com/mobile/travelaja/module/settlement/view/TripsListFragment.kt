@@ -87,4 +87,6 @@ class TripsListFragment : BaseListFragment<Trip>(),SearchView.OnQueryTextListene
         adapter.notifyDataSetChanged()
     }
 
+    override fun isButtonVisible(): Boolean = false
+
 }

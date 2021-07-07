@@ -3,6 +3,7 @@ package com.mobile.travelaja.utility
 import android.content.Context
 import com.mobile.travelaja.R
 import net.openid.appauth.AuthorizationException
+import retrofit2.HttpException
 import java.io.IOException
 
 object Utils {
@@ -15,6 +16,8 @@ object Utils {
            }else {
                callback.invoke(t.errorDescription ?:"not description")
            }
+        }else if(t is HttpException){
+            callback.invoke(t.localizedMessage)
         }else {
             callback.invoke("Maintenance")
         }

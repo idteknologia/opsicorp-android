@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_createSettlement_to_bankListFragment"
             app:destination="@id/bankListFragment" />
+        <action
+            android:id="@+id/action_createSettlement_to_transportExpenseFragment"
+            app:destination="@id/transportExpenseFragment" />
     </fragment>
     <fragment android:id="@+id/settlements"
         android:name="com.mobile.travelaja.module.settlement.view.SettlementsFragment"
@@ -44,5 +47,15 @@
         android:name="com.mobile.travelaja.module.settlement.view.BankListFragment"
         android:label="BankListFragment"
         tools:layout="@layout/base_list_fragment"/>
+    <fragment
+        android:id="@+id/transportExpenseFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.TransportExpenseFragment"
+        android:label="TransportExpenseFragment"
+        tools:layout="@layout/base_list_fragment">
+
+        <argument
+            android:name="cities"
+            app:argType="string[]" />
+    </fragment>
 
 </navigation>

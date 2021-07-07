@@ -6,9 +6,7 @@ import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.datalayer.network.ServiceApi
-import opsigo.com.domainlayer.model.settlement.Bank
-import opsigo.com.domainlayer.model.settlement.RateStayResult
-import opsigo.com.domainlayer.model.settlement.Settlement
+import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.DetailTripResult
 import opsigo.com.domainlayer.model.trip.Trip
 
@@ -53,4 +51,18 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             Result.Error(t)
         }
 
+    override suspend fun getModeTransport(): Result<List<ModeTransport>> =
+        try {
+            val modeTransports = api.getModeTransport()
+            Result.Success(modeTransports)
+        }catch (t:Throwable){
+            Result.Error(t)
+        }
+
+    override suspend fun calculateTransportExpense(body: MutableMap<String, Any>): Result<CalculateTransportResult> = try {
+        val result = api.calculateTransportExpense(body)
+        Result.Success(result)
+    }catch (t : Throwable){
+        Result.Error(t)
+    }
 }

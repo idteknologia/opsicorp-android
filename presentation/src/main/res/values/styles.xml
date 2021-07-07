@@ -190,6 +190,15 @@
         <item name="android:background">#e0e0e1</item>
     </style>
 
+    <style name="EditedSelected_NoEditable" parent="TextInputLayout_Input">
+        <item name="android:focusable">false</item>
+        <item name="android:includeFontPadding">true</item>
+        <item name="android:inputType">none</item>
+        <item name="singleLine">true</item>
+        <item name="tint">@color/tintTextView</item>
+        <item name="android:editable">false</item>
+    </style>
+
 
 
 </resources>

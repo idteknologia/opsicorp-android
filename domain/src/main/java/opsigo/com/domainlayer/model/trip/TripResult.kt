@@ -90,5 +90,25 @@ data class DetailTrip(
     @SerializedName("Golper")
     val Golper: Int,
     @SerializedName("SpecificAreaTariff")
-    val SpecificAreaTariff: Int
+    val SpecificAreaTariff: Int,
+    @SerializedName("Routes")
+    val Routes: MutableList<Route> = mutableListOf()
+){
+    fun cities(): List<String>{
+       val cities = mutableSetOf<String>()
+        Routes.forEach {
+            cities.add(it.Origin)
+            cities.add(it.Destination)
+       }
+        return cities.toList()
+    }
+}
+
+data class Route(
+    @SerializedName("Id")
+    val Id: String,
+    @SerializedName("Origin")
+    val Origin: String,
+    @SerializedName("Destination")
+    val Destination : String
 )
