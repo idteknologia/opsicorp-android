@@ -374,6 +374,7 @@ class BookingContactHotelActivity : BaseActivity(),
     private fun dataHeader(): HeaderReservationHotelRequest {
         val data            = HeaderReservationHotelRequest()
         data.origin         = dataTrip.originId
+        data.createdBy      = getProfile().employeeNik
         data.returnDate     = dataHotel.checkOut
         data.startDate      = dataHotel.checkIn
         data.destination    = dataTrip.destinationName
@@ -500,7 +501,11 @@ class BookingContactHotelActivity : BaseActivity(),
     private fun listParticipant(): List<TripParticipantHotelRequest> {
         val data = ArrayList<TripParticipantHotelRequest>()
         val model = TripParticipantHotelRequest()
-        model.budgetId     = dataTrip.buggetId
+        if (dataTrip.buggetId.equals("null")){
+            model.budgetId = null
+        } else {
+            model.budgetId     = dataTrip.buggetId
+        }
         model.costCenterId = dataTrip.costCenter
         model.employeeId   = getProfile().employId
         data.add(model)

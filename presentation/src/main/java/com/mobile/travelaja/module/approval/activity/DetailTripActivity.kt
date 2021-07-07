@@ -145,7 +145,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
-                postEstimateCost()
+                /*postEstimateCost()*/
                 hideLoadingOpsicorp()
             }
 
@@ -444,7 +444,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
-        tv_destination.text = tripSummary.destinationName
+        if(tripSummary.routes.size > 1){
+            tv_destination.text = tripSummary.routes.last().destination
+        } else {
+            tv_destination.text = tripSummary.destinationName
+        }
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
