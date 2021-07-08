@@ -399,7 +399,7 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="15dp"
                         android:gravity="end"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:fontFamily="@font/lato_black"
                         android:textColor="@color/tintTextView"
                         android:letterSpacing="0.1"

@@ -165,6 +165,9 @@ data class HeaderReservationHotelRequest(
 		@field:SerializedName("Origin")
 	var origin: String? = null,
 
+		@field:SerializedName("CreatedBy")
+		var createdBy: String? = null,
+
 		@field:SerializedName("ReturnDate")
 	var returnDate: String? = null,
 

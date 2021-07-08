@@ -109,8 +109,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         //btn_approval.setTextAllButton("All (${data.size})")
         //btn_approval.setTextWaitingButton("Waiting (${data.filter { it.status.equals("Waiting") }.size})")
 
-        top_button.setTextBtnLeft(context.getString(R.string.draft))
-        top_button.setTextBtnRight(context.getString(R.string.completed))
+        top_button.setTextBtnLeft("Draft")
+        top_button.setTextBtnRight("Approved")
 
         //btn_approval.setTextApproveButton("Approval (${data.filter { it.status.equals("Completely Approved") }.size})")
         //btn_approval.setTextRejectedButton("Rejected (${data.filter { it.status.equals("Completely Rejected") }.size})")
@@ -167,7 +167,6 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     }
 
     fun getData(tripDateFrom:String,tripDateTo:String,key: String) {
-
         loading_view.show()
         data.clear()
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{

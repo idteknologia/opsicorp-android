@@ -589,6 +589,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun issuedAll() {
+        showLoadingOpsicorp(true)
         GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),bodyIssuedAll(), object : CallbackApprovAll{
             override fun successLoad(data: String) {
                 hideLoadingOpsicorp()
