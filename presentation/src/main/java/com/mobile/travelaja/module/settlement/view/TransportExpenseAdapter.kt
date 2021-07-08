@@ -1,7 +1,9 @@
 package com.mobile.travelaja.module.settlement.view
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.databinding.ItemTransportationExpenseBinding
@@ -10,7 +12,8 @@ import opsigo.com.domainlayer.model.settlement.TransportExpenses
 
 class TransportExpenseAdapter(
     var viewModel: SettlementViewModel,
-    var onClick: (v: View, pos: Int) -> Unit
+    var onClick: (v: View, pos: Int) -> Unit,
+    var chips : MutableList<Chip> = mutableListOf()
 ) :
     BaseListAdapter<TransportExpenses>() {
 
@@ -35,7 +38,9 @@ class TransportExpenseAdapter(
             binding.tvTitleTransport.text = "Transport ${position + 1}"
             binding.viewModel = viewModel
             binding.position = position
-
+            chips.forEach {
+                binding.chipGroup.addView(it)
+            }
             binding.buttonRemove.setOnClickListener {
                 onClick.invoke(it,position)
             }
@@ -44,6 +49,12 @@ class TransportExpenseAdapter(
             }
             binding.captionNonFlight.setOnClickListener {
                 onClick.invoke(it, position)
+            }
+            binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
+                val c = group.findViewById<Chip>(checkedId)
+                if (c.isChecked){
+                    viewModel.calculateTransportByType(2,c.text.toString(),position)
+                }
             }
             binding.switchNonFlight.setOnClickListener {
                 val checked = binding.switchNonFlight.isChecked

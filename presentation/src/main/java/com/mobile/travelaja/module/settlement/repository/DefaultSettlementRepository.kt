@@ -54,6 +54,9 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
     override suspend fun getModeTransport(): Result<List<ModeTransport>> =
         try {
             val modeTransports = api.getModeTransport()
+            if (modeTransports.isEmpty()){
+                Result.Error(Throwable("Mode Transport Empty"))
+            }
             Result.Success(modeTransports)
         }catch (t:Throwable){
             Result.Error(t)

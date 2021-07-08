@@ -85,14 +85,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="@dimen/margin_default"
-
                 android:checked="@{viewModel.getTransportExpense(position).transportationType == 2}"
                 android:enabled="@{!viewModel.getTransportExpense(position).city.empty}"
                 android:text="NON-Flight ?"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etOriginCity"
                 tools:checked="true" />
-
             <TextView
                 android:id="@+id/captionNonFlight"
                 style="@style/SwitchCaption"
@@ -108,7 +106,14 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="@dimen/margin_default"
                 app:layout_constraintTop_toBottomOf="@+id/captionNonFlight" />
-
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/dividerNonFlight"
+                app:chipSpacingHorizontal="25dp"
+                app:singleSelection="true"
+                app:selectionRequired="true"/>
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchRoundtrip"
                 style="@style/Widget.App.Switch"
@@ -121,7 +126,7 @@
                 android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedSwitchRoundtrip(checked,position)}"
                 android:text="Roundtrip ?"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dividerNonFlight"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup"
                 tools:checked="true" />
 
             <TextView
