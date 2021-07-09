@@ -91,8 +91,19 @@ class TransportExpenses : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.city)
         }
+    @get:Bindable
     var TransportationType: Int = 1
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.transportationType)
+    }
     var TransportationMode: String = ""
+    @get:Bindable
+    var transportationModeId : Int = 0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.transportationModeId)
+    }
     @get:Bindable
     var Amount: Number = 0
     set(value) {
@@ -110,6 +121,7 @@ class TransportExpenses : BaseObservable() {
 }
 
 data class ModeTransport(
+    var id : Int,
     var Disabled: Boolean,
     val Text: String,
     val Value: Int

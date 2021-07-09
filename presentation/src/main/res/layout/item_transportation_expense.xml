@@ -10,7 +10,7 @@
             type="Integer" />
         <variable
             name="viewModel"
-            type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
+            type="com.mobile.travelaja.module.settlement.viewmodel.TransportExpenseViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -72,7 +72,7 @@
                 android:layout_marginRight="@dimen/margin_default"
                 android:hint="@string/origin_city"
                 android:paddingBottom="20dp"
-                android:text="@{viewModel.submitSettlement.transportExpenses.get(position).City}"
+                android:text="@{viewModel.getTransportExpense(position).City}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLabelSelectCity"
@@ -113,7 +113,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/dividerNonFlight"
                 app:chipSpacingHorizontal="25dp"
                 app:singleSelection="true"
-                app:selectionRequired="true"/>
+                app:selectionRequired="true"
+                appCheckedMode="@{viewModel.getTransportExpense(position).transportationModeId}"
+                android:visibility="@{viewModel.getTransportExpense(position).transportationType == 2 ? View.VISIBLE : View.GONE}"
+                />
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchRoundtrip"
                 style="@style/Widget.App.Switch"
@@ -182,7 +185,7 @@
                 android:gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="@{viewModel.submitSettlement.transportExpenses.get(position).Amount.toString()}"
+                android:text="@{viewModel.getTransportExpense(position).Amount.toString()}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/tvTotalIdr"
@@ -204,7 +207,7 @@
                 android:gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="@{viewModel.submitSettlement.transportExpenses.get(position).TotalAmount.toString()}"
+                android:text="@{viewModel.getTransportExpense(position).TotalAmount.toString()}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"

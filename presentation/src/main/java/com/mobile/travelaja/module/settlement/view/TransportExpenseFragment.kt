@@ -12,15 +12,15 @@ import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.base.list.BaseListFragment
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
+import com.mobile.travelaja.module.settlement.viewmodel.TransportExpenseViewModel
 import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
-import opsigo.com.domainlayer.BR
 import opsigo.com.domainlayer.model.settlement.ModeTransport
 import opsigo.com.domainlayer.model.settlement.TransportExpenses
 
 class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
     private lateinit var adapter: TransportExpenseAdapter
-    private lateinit var viewModel: SettlementViewModel
+    private lateinit var viewModel: TransportExpenseViewModel
     private val args: TransportExpenseFragmentArgs by navArgs()
     private val chips = mutableListOf<Chip>()
 
@@ -28,7 +28,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
         viewModel = ViewModelProvider(
             requireActivity(),
             DefaultViewModelFactory(false, requireContext())
-        ).get(SettlementViewModel::class.java)
+        ).get(TransportExpenseViewModel::class.java)
         adapter = TransportExpenseAdapter(viewModel, { v, pos ->
             when (v.id) {
                 R.id.etOriginCity -> {
@@ -44,30 +44,30 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
         })
         setTitleName(R.string.transportation_form, R.color.colorTextHint)
         setSubtitle(R.string.transportation_to_airport_or_non_airport)
-        viewModel.getModeTransports()
         setButtonText(R.string.add_transportation)
         isEnabledRefresh(false)
         return adapter
     }
 
-    private fun getChips(list : List<ModeTransport>) {
-        val modes = list.filter { it.Value == 2 }.map { it.Text }
-        modes.forEachIndexed { index, mode ->
+    private fun setChips(list: List<ModeTransport>) {
+        val modes = list.filter { it.Value == 2 }
+        modes.forEach { mode ->
             val chip = layoutInflater.inflate(R.layout.item_chip_transport, null, false) as Chip
             chips.add(chip.apply {
+                id = mode.id
                 isChecked = false
-                text = mode
+                text = mode.Text
             })
         }
         adapter.chips = chips
     }
 
     private fun showModeTransports(pos: Int) {
-        val list = viewModel.modeTransports.filter { it.Value == 2 }.map { it.Text }.toTypedArray()
-        MaterialAlertDialogBuilder(requireContext()).setTitle("Select Mode Non-Flight")
-            .setItems(list) { dialog, which ->
-                viewModel.calculateTransportByType(2, list[which], pos)
-            }.show()
+//        val list = viewModel.modeTransports.filter { it.Value == 2 }.map { it.Text }.toTypedArray()
+//        MaterialAlertDialogBuilder(requireContext()).setTitle("Select Mode Non-Flight")
+//            .setItems(list) { dialog, which ->
+//                viewModel.calculateTransportByType(2, list[which], pos)
+//            }.show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,8 +80,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
             }
         }
 
-        viewModel.modeTransport.observe(viewLifecycleOwner){
-            getChips(it)
+        viewModel.modeTransport.observe(viewLifecycleOwner) {
+            setChips(it)
         }
     }
 
@@ -90,7 +90,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
         MaterialAlertDialogBuilder(requireContext()).setTitle("City List")
             .setItems(list) { dialog, which ->
                 val city = list[which]
-                viewModel.calculateTransportByCity(city, pos)
+                viewModel.getModeTransports(city, pos)
             }.show()
     }
 
@@ -132,7 +132,6 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>() {
             Toast.makeText(context, "Pastikan tidak ada field yang kosong", Toast.LENGTH_SHORT)
                 .show()
         }
-
     }
 
     companion object {
