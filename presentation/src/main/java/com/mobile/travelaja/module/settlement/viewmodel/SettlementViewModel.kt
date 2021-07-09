@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.settlement.viewmodel
 
+import android.renderscript.Sampler
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -57,7 +58,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     var modeTransports = listOf<ModeTransport>()
     var modeFlight = ""
     val isRemoveVisible = ObservableBoolean(false)
-    var jobCalculateTransport : Job ?= null
+    var jobCalculateTransport: Job? = null
 
     /*
       cek your id trip is not same from default or not empty
@@ -189,105 +190,15 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         loadingPostDay.value = false
     }
 
-    
-    //Todo Mode Transport Observe
-    fun getModeTransports() {
-        viewModelScope.launch {
-            val result = repository.getModeTransport()
-            compareModeTransport(result)
-        }
-    }
-
-    private fun compareModeTransport(result: Result<List<ModeTransport>>) {
-        if (result is Result.Success) {
-            modeTransports = result.data
-            modeFlight = result.data.last { it.Value == 1 }.Text
-        }
-    }
 
 
-    fun calculateTransportByCity(city: String, pos: Int) {
-        val transportExpenses = getTransportExpense(pos)
-        val type = transportExpenses.TransportationType
-        var mode = transportExpenses.TransportationMode
-        if (modeFlight.isNotEmpty() && mode.isEmpty() && type == 1) {
-            mode = modeFlight
-        }
-        calculateTransportExpense(
-            city,
-            type,
-            mode,
-            pos
-        )
-    }
-    
-    fun calculateTransportByType(type: Int, moda: String, pos: Int) {
-        val city = getTransportExpense(pos).City
-        calculateTransportExpense(city, type, moda, pos)
-    }
-    fun calculateTransportExpense(city: String, type: Int, mode: String, pos: Int) {
-        jobCalculateTransport?.cancel()
-        val body = mutableMapOf<String, Any>(CITY to city, TYPE to type, MODA to mode)
-        jobCalculateTransport = viewModelScope.launch {
-            val result = repository.calculateTransportExpense(body)
-            compareCalculateTransportExpense(result, pos, city, type, mode)
-        }
-    }
-
-    private fun compareCalculateTransportExpense(
-        result: Result<CalculateTransportResult>,
-        pos: Int,
-        city: String, type: Int, mode: String
-    ) {
-        if (result is Result.Success) {
-            val tripType = getTransportExpense(pos).TripType
-            val amount = result.data.amount
-            getTransportExpense(pos).Amount = result.data.amount
-            getTransportExpense(pos).City = city
-            getTransportExpense(pos).TransportationType = type
-            getTransportExpense(pos).TransportationMode = mode
-            getTransportExpense(pos).TotalAmount = if (tripType == 0) amount else amount * 2
-        }else {
-            val t = result as Result.Error
-            _error.value = Event(t.exception)
-        }
-    }
-    
-    fun getTransportExpense(pos : Int) : TransportExpenses{
-        return submitSettlement.TransportExpenses[pos]
-    }
-    
-    fun checkedSwitchRoundtrip(checked : Boolean,pos: Int){
-        getTransportExpense(pos).TripType = if (checked) 1 else 0
-            val amount = getTransportExpense(pos).Amount.toDouble()
-            getTransportExpense(pos).TotalAmount =  if (!checked) amount else amount * 2
-    }
-
-    fun getVisibleRemove() : Boolean {
-        return submitSettlement.TransportExpenses.size > 1
-    }
-
-    fun addTransport(){
-        submitSettlement.TransportExpenses.add(TransportExpenses())
-        isRemoveVisible.set(true)
-    }
-
-    fun removeTransport(pos: Int){
-        submitSettlement.TransportExpenses.removeAt(pos)
-        isRemoveVisible.set(submitSettlement.TransportExpenses.size > 1)
-    }
-
-    fun isEmptyCityTransport() : Boolean{
-        val isEmptyCity = submitSettlement.TransportExpenses.none {
-            it.City.isEmpty()
-        }
-        return !isEmptyCity
-    }
 
     companion object {
         const val TYPE = "Type"
         const val MODA = "Moda"
         const val CITY = "City"
+        const val TYPE_FLIGHT = 1
+        const val NON_FLIGHT = 2
     }
 
 }
