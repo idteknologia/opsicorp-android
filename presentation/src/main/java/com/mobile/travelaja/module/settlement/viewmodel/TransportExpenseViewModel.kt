@@ -1,6 +1,7 @@
 package com.mobile.travelaja.module.settlement.viewmodel
 
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableDouble
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,18 +19,23 @@ import opsigo.com.domainlayer.model.settlement.TransportExpenses
 class TransportExpenseViewModel(private val repository: SettlementRepository) : ViewModel() {
 
     var jobCalculateTransport: Job? = null
-    var modeFlight : ModeTransport ?= null
+    var modeFlight: ModeTransport? = null
 
     private val _error = MutableLiveData<Event<Throwable>>()
     val error: LiveData<Event<Throwable>> = _error
+
+    private val _warning = MutableLiveData<Event<Boolean>>()
+    val warning: LiveData<Event<Boolean>> = _warning
 
     val transportExpenses = mutableListOf(TransportExpenses())
     val isRemoveVisible = ObservableBoolean(false)
     val selection: MutableMap<String, List<ModeTransport>> = mutableMapOf()
 
-
     private val _modeTransports = MutableLiveData<List<ModeTransport>>()
     val modeTransport: LiveData<List<ModeTransport>> = _modeTransports
+
+    val totalTransport = MutableLiveData<Number>(0)
+
     fun getModeTransports(city: String, pos: Int) {
         if (_modeTransports.value != null) {
             calculateTransportByCity(city, pos)
@@ -55,32 +61,36 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
 
 
     fun calculateTransportByCity(city: String, pos: Int) {
-        val transportExpenses = getTransportExpense(pos)
-        val type = transportExpenses.TransportationType
-        var mode = transportExpenses.TransportationMode
-        if (mode.isEmpty()){
+        val mode = modeFlight!!.Text
+        if (hasSameTransport(city, mode)) {
             getTransportExpense(pos).TransportationType = NON_FLIGHT
             getTransportExpense(pos).City = city
             return
         }
-        if (modeFlight?.Text != null && mode.isEmpty() && type == 1) {
-            mode = modeFlight!!.Text
-        }
         calculateTransportExpense(
             city,
-            type,
+            TYPE_FLIGHT,
             mode,
             pos
         )
     }
 
-    private fun hasFlightByCity(city: String,mode: String) : Boolean{
-        return selection[city]?.any { it.Text ==  mode && it.Disabled} ?: false
+    fun calculateTransportByType(type: Int, mode: String, pos: Int) {
+        val transport = getTransportExpense(pos)
+        val city = transport.City
+        val tempId = transport.transportationModeId
+        val tempType = transport.TransportationType
+        if (hasSameTransport(city, mode)) {
+            _warning.value = Event(true)
+            getTransportExpense(pos).transportationModeId = tempId
+            getTransportExpense(pos).TransportationType = tempType
+            return
+        }
+        calculateTransportExpense(city, type, mode, pos)
     }
 
-    fun calculateTransportByType(type: Int, mode: String, pos: Int) {
-        val city = getTransportExpense(pos).City
-        calculateTransportExpense(city, type, mode, pos)
+    private fun hasFlightByCity(city: String, mode: String): Boolean {
+        return selection[city]?.any { it.Text == mode && it.Disabled } ?: false
     }
 
     fun calculateTransportExpense(city: String, type: Int, mode: String, pos: Int) {
@@ -101,34 +111,32 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         pos: Int,
         city: String, type: Int, mode: String
     ) {
-        val idMode = if (result is Result.Success) _modeTransports.value?.first { it.Text == mode }?.id else getTransportExpense(pos).transportationModeId
+        val transport = getTransportExpense(pos)
+        val idMode = if (result is Result.Success) _modeTransports.value?.first { it.Text == mode }?.id else transport.transportationModeId
+        transport.TransportationType = if (result is Result.Success) type else transport.TransportationType
+        transport.transportationModeId = idMode ?: 0
         if (result is Result.Success) {
-            val tripType = getTransportExpense(pos).TripType
             val amount = result.data.amount
-            getTransportExpense(pos).Amount = result.data.amount
-            getTransportExpense(pos).City = city
-            getTransportExpense(pos).TransportationType = type
-            getTransportExpense(pos).TransportationMode = mode
-            getTransportExpense(pos).transportationModeId = idMode ?: 0
-            getTransportExpense(pos).TotalAmount = if (tripType == 0) amount else amount * 2
-            if (!selection.containsKey(city)) {
-                putSelected(city)
-            }
+            val tripType = transport.TripType
+            transport.Amount = amount
+            transport.City = city
+            transport.TransportationMode = mode
+            transport.TotalAmount = if (tripType == 0) amount else amount * 2
+            updateTotal(amount, true)
         } else {
-            getTransportExpense(pos).transportationModeId = idMode ?: 0
             val t = result as Result.Error
             _error.value = Event(t.exception)
         }
     }
 
     private fun putSelected(city: String) {
-        if (!_modeTransports.value.isNullOrEmpty()){
+        if (!_modeTransports.value.isNullOrEmpty()) {
             selection[city] = _modeTransports.value!!
             selection[city]?.last { it.Value == TYPE_FLIGHT }?.Disabled = true
         }
     }
 
-    private fun hasSameTransport(city : String , mode : String): Boolean{
+    private fun hasSameTransport(city: String, mode: String): Boolean {
         return transportExpenses.any { it.City == city && it.TransportationMode == mode }
     }
 
@@ -136,23 +144,33 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         return transportExpenses[pos]
     }
 
+    //Todo switch round trip
     fun checkedSwitchRoundtrip(checked: Boolean, pos: Int) {
         getTransportExpense(pos).TripType = if (checked) 1 else 0
         val amount = getTransportExpense(pos).Amount.toDouble()
         getTransportExpense(pos).TotalAmount = if (!checked) amount else amount * 2
+        if (checked) {
+            updateTotal(amount, true)
+        } else {
+            updateTotal(amount, false)
+        }
     }
 
     fun getVisibleRemove(): Boolean {
         return transportExpenses.size > 1
     }
 
+    //Todo add item Transport Expense
     fun addTransport() {
         transportExpenses.add(TransportExpenses())
         isRemoveVisible.set(true)
     }
 
+    //Todo remove item Transport Expense
     fun removeTransport(pos: Int) {
+        val totalAmount = getTransportExpense(pos).TotalAmount
         transportExpenses.removeAt(pos)
+        updateTotal(totalAmount, false)
         isRemoveVisible.set(transportExpenses.size > 1)
     }
 
@@ -166,7 +184,29 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         return !nonEmptyCity || !nonEmptyMode
     }
 
-    val type = ObservableInt(-1)
+    fun switchNonFlight(checked: Boolean, pos: Int) {
+        if (checked) {
+            val transport = getTransportExpense(pos)
+            val totalAmount = transport.TotalAmount
+            transport.TransportationType = NON_FLIGHT
+            transport.TransportationMode = ""
+            transport.Amount = 0
+            transport.TotalAmount = 0
+            updateTotal(totalAmount, false)
+        } else {
+            calculateTransportByType(TYPE_FLIGHT, modeFlight!!.Text, pos)
+        }
+    }
+
+    private fun updateTotal(amount: Number, isAdding: Boolean) {
+        var total = totalTransport.value?.toDouble() ?: 0.0
+        if (isAdding) {
+            total += amount.toDouble()
+        } else {
+            total -= amount.toDouble()
+        }
+        totalTransport.value = total
+    }
 
     companion object {
         const val TYPE = "Type"

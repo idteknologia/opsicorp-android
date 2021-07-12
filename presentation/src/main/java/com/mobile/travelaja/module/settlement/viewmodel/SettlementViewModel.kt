@@ -1,7 +1,7 @@
 package com.mobile.travelaja.module.settlement.viewmodel
 
-import android.renderscript.Sampler
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableDouble
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -59,6 +59,14 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     var modeFlight = ""
     val isRemoveVisible = ObservableBoolean(false)
     var jobCalculateTransport: Job? = null
+
+    var totalTransport = ObservableField<Number>(0)
+
+    var saveAction : (() -> Unit)? = null
+
+    fun onClickSave() {
+        saveAction?.invoke()
+    }
 
     /*
       cek your id trip is not same from default or not empty

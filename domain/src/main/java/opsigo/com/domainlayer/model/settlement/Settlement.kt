@@ -70,12 +70,12 @@ class SubmitSettlement : BaseObservable() {
             notifyPropertyChanged(BR.totalSpecificAreaExpense)
         }
     @get:Bindable
-    var TransportExpenses = mutableListOf(TransportExpenses())
+    var TransportExpenses = mutableListOf<TransportExpenses>()
     set(value) {
         field = value
         notifyPropertyChanged(BR.transportExpenses)
     }
-
+    var TotalTransportExpense : Number = 0
     fun bankSelected(): String? {
         if (BankTransfer.isNotEmpty() && BankAccount.isNotEmpty()) {
             return "$BankAccount - $BankTransfer"

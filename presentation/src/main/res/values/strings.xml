@@ -1094,5 +1094,12 @@ Please add your trip item for Approval."
     <string name="no_have_bank_account">Sorry, you no have Bank Account</string>
     <string name="transportation_form">Transportation Form</string>
     <string name="total_idr">Total <font color="#2b9a8e">IDR</font></string>
+    <string name="has_same_transport_expense">This moda has been choosen before. Please select other moda.</string>
+    <string name="alert">Alert</string>
+    <string name="non_flight">Non Flight</string>
+    <string name="empty_mode_transports">Sorry, mode transports is empty</string>
+    <string name="warning_not_complete_transport_expense">Please make sure to complete the Transport Expense form</string>
+    <string name="dont_save">Dont Save</string>
+    <string name="warning_back_settlement_transport_expense">Press the save button to save transport expense</string>
 
 </resources>
