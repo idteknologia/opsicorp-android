@@ -444,7 +444,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
-        if(tripSummary.routes.size > 1){
+        if(tripSummary.routes.isNotEmpty()){
             tv_destination.text = tripSummary.routes.last().destination
         } else {
             tv_destination.text = tripSummary.destinationName
@@ -999,10 +999,17 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.tripCode = tripSummary.tripCode
             model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
-            model.destinationName = tripSummary.destinationName
-            model.destinationId = tripSummary.destination
-            model.originId = tripSummary.origin
-            model.originName = tripSummary.originName
+            if(tripSummary.routes.isNotEmpty()){
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.routes.first().origin
+                model.destinationName = tripSummary.routes.first().destination
+                model.destinationId = tripSummary.destination
+            } else {
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.originName
+                model.destinationName = tripSummary.destinationName
+                model.destinationId = tripSummary.destination
+            }
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
             model.route   = mappingRoutes(tripSummary.routes)
@@ -1014,6 +1021,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.remark      = tripSummary.remark.toString()
             model.wbsNo       = tripSummary.wbsNo
             model.isDomestik  = tripSummary.isDomestic
+            model.isBookAfterApprove = tripSummary.isBookAfterApprove
+            model.isPrivateTrip = tripSummary.isPrivateTrip
             model.golper      = tripSummary.golper
 
             Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)

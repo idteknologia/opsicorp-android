@@ -24,6 +24,8 @@ class SuccessCreateTripPlaneModel {
     var businessTripType = ""
     var wbsNo       = ""
     var isDomestik  = false
+    var isBookAfterApprove = false
+    var isPrivateTrip = false
     var golper      = 0
 
     var route        = ArrayList<RouteMultiCityModel>()
