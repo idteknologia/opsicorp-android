@@ -48,10 +48,10 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
         lineButtons.add(line_button_right)
         textButtons.add(title_btn_left)
         textButtons.add(title_button_right)
-        lineDefault.add(R.drawable.rounded_button_up_flight_selected_left)
-        lineDefault.add(R.drawable.rounded_button_up_flight_selected_right)
-        lineSelected.add(R.drawable.rounded_button_up_flight_default_left)
-        lineSelected.add(R.drawable.rounded_button_up_flight_default_right)
+        lineDefault.add(R.drawable.rounded_button_up_flight_default_left)
+        lineDefault.add(R.drawable.rounded_button_up_flight_default_right)
+        lineSelected.add(R.drawable.rounded_button_up_flight_selected_left)
+        lineSelected.add(R.drawable.rounded_button_up_flight_selected_right)
     }
 
     fun setTextBtnLeft(text:String){
@@ -85,7 +85,7 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
         lineButtons.forEachIndexed { index, lineView ->
             if (index==position){
                 lineView.background = (resources.getDrawable(lineSelected[position]))
-                textButtons.get(index).setTextColor(resources.getColor(R.color.colorPrimary))
+                textButtons.get(index).setTextColor(resources.getColor(R.color.white))
 
                 val face = Typeface.createFromAsset(context.getAssets(),
                         "font/Roboto_Black.ttf")
@@ -93,7 +93,7 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
             }
             else{
                 lineView.background = (resources.getDrawable(lineDefault[index]))
-                textButtons.get(index).setTextColor(resources.getColor(R.color.white))
+                textButtons.get(index).setTextColor(resources.getColor(R.color.colorPrimary))
                 val face = Typeface.createFromAsset(context.getAssets(),
                         "font/Roboto_Regular.ttf")
                 textButtons.get(index).typeface = face
