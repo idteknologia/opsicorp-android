@@ -18,7 +18,7 @@ import com.mobile.travelaja.databinding.BaseListFragmentBinding
 import com.mobile.travelaja.utility.Utils
 
 abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
-    private lateinit var binding: BaseListFragmentBinding
+    lateinit var binding: BaseListFragmentBinding
     private var snackbar: Snackbar ?= null
 
     abstract fun baseListAdapter(): BaseListAdapter<T>
@@ -41,7 +41,6 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvBaseList.adapter = baseListAdapter()
         binding.rvBaseList.apply {
             adapter = baseListAdapter()
             if (dividerEnabled()) {

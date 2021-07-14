@@ -1101,5 +1101,11 @@ Please add your trip item for Approval."
     <string name="warning_not_complete_transport_expense">Please make sure to complete the Transport Expense form</string>
     <string name="dont_save">Dont Save</string>
     <string name="warning_back_settlement_transport_expense">Press the save button to save transport expense</string>
+    <string name="amount">Amount</string>
+    <string name="select_transportation_mode">Select transportation mode</string>
+    <string name="roundtrip">Roundtrip ?</string>
+    <string name="non_udara_option_are_train_bus_ship">Non-udara option are Train, Bus, Ship</string>
+    <string name="non_flight_">NON-Flight ?</string>
+    <string name="warning_loading">Please waiting for fetching data</string>
 
 </resources>

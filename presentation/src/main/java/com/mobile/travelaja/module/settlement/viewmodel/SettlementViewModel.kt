@@ -55,7 +55,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     val loadingPostDay = MutableLiveData(false)
     private var job: Job? = null
 
-    var modeTransports = listOf<ModeTransport>()
+    var modeTransports = mutableListOf<ModeTransport>()
     var modeFlight = ""
     val isRemoveVisible = ObservableBoolean(false)
     var jobCalculateTransport: Job? = null
@@ -63,6 +63,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     var totalTransport = ObservableField<Number>(0)
 
     var saveAction : (() -> Unit)? = null
+
 
     fun onClickSave() {
         saveAction?.invoke()

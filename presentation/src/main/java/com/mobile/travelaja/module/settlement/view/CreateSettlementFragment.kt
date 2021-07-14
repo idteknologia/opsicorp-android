@@ -91,8 +91,9 @@ class CreateSettlementFragment : Fragment() {
 
     private fun showTransportation(){
         val cities = viewModel.detailTrip.value?.trip?.cities()?.toTypedArray()
+        val modeTransports = viewModel.modeTransports.toTypedArray()
         cities?.let {
-            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities)
+            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities,modeTransports)
             findNavController().navigate(action)
         }
     }

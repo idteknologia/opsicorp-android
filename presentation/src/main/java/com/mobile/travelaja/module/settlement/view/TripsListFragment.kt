@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.base.list.BaseListFragment
+import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.trip.Trip

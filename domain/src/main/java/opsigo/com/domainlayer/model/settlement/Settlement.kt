@@ -1,8 +1,10 @@
 package opsigo.com.domainlayer.model.settlement
 
+import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import opsigo.com.domainlayer.BR
 
 data class Settlement(
@@ -120,12 +122,14 @@ class TransportExpenses : BaseObservable() {
     }
 }
 
+@Parcelize
 data class ModeTransport(
     var id : Int,
     var Disabled: Boolean,
     val Text: String,
     val Value: Int
-)
+) : Parcelable
+
 
 data class CalculateTransportResult(
     var isSuccess: Boolean, var amount: Double
