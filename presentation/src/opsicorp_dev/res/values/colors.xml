@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--    <color name="colorPrimary">#009688</color>-->
-    <color name="colorPrimary">#DA2128</color>
-    <color name="colorPrimaryDark">#DA2128</color>
-    <color name="colorAccent">#DA2128</color>
+    <color name="colorPrimary">#00776a</color>
+    <color name="colorPrimaryDark">#00776A</color>
+    <color name="colorAccent">#F19C00</color>
     <color name="colorAccentPink">#D81B60</color>
     <color name="colorRedDateCalendar">#99eb0011</color>
 
@@ -142,20 +142,22 @@
     <color name="switchOnColor">#a3cec9</color>
     <color name="divider">#d8d8d8</color>
     <color name="redButtonColor">#E30E17</color>
-    <color name="buttonColor">#E30E17</color>
-    <color name="textButtonColor">#ffffff</color>
-    <color name="tintTextView">#080808</color>
-    <color name="textColorButtonOutline">#E30E17</color>
-    <color name="headerList">#DA2128</color>
-    <color name="toolbarOutline">#ffffff</color>
-    <color name="bgIconPlaneHome">#EFEFEF</color>
-    <color name="bgIconHotelHome">#EFEFEF</color>
-    <color name="bgIconTrainHome">#EFEFEF</color>
-    <color name="textIconHome">#000000</color>
-    <color name="buttonRemoveTextColor">#24253d</color>
+    <color name="buttonColor">#F8B945</color>
+    <color name="textButtonColor">#24253d</color>
+    <color name="tintTextView">#ffb733</color>
+    <color name="textColorButtonOutline">#24253d</color>
+    <color name="headerList">#2B9A8E</color>
+    <color name="checkbox">#00776a</color>
+    <color name="toolbarOutline">#ffb733</color>
+    <color name="bgIconPlaneHome">#5499e4</color>
+    <color name="bgIconHotelHome">#2f6db0</color>
+    <color name="bgIconTrainHome">#38b7dc</color>
+    <color name="textIconHome">#ffffff</color>
+    <color name="buttonRemoveTextColor">#2b9a8e</color>
     <color name="chipTextColorEnable">@color/buttonRemoveTextColor</color>
-    <color name="chipBackgroundEnable">#1924253d</color>
+    <color name="chipBackgroundEnable">#19009688</color>
     <color name="chipStrokeEnabled">@color/buttonRemoveTextColor</color>
+
 
 
 </resources>

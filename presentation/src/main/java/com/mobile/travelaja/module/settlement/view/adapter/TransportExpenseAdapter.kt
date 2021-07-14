@@ -29,6 +29,10 @@ class TransportExpenseAdapter(
         setHasStableIds(true)
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun getLayoutItem(viewType: Int): Int = R.layout.item_transportation_expense
 
     override fun viewHolder(view: View, viewType: Int): RecyclerView.ViewHolder {

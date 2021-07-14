@@ -33,6 +33,7 @@
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        app:cardElevation="4dp"
         app:visibleEmpty="@{position == indexEmpty}"
         app:strokeColor="#f44336"
         app:cardBackgroundColor="@color/white">
@@ -62,12 +63,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="@dimen/margin_default"
-                android:textAllCaps="false"
-                android:text='@{"- " + (transport.transportationType == 1 ? @string/trip_type_air : @string/non_flight)}'
+                android:text='@{"- " + (transport.transportationType == 1 ? @string/udara_ : @string/non_udara_)}'
                 android:textColor="#91929e"
                 app:layout_constraintStart_toEndOf="@+id/tvTitleTransport"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="- Flight" />
+                tools:text="- FLIGHT" />
 
             <Button
                 android:id="@+id/buttonRemove"
@@ -79,7 +79,7 @@
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
                 android:text="@string/remove"
                 android:textAppearance="@style/TextButtonStyle"
-                android:textColor="#2b9a8e"
+                android:textColor="@color/buttonRemoveTextColor"
                 android:visibility="@{isRemove ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

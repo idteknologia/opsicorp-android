@@ -124,7 +124,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         val indexEmpty = viewModel.indexFirstEmpty()
         if (indexEmpty != -1) {
             val y = binding.rvBaseList.getChildAt(indexEmpty).y - 30f
-            binding.nested.scrollTo(0,y.toInt())
+            binding.nested.scrollTo(0, y.toInt())
             val snackbar = Snackbar.make(
                 binding.root,
                 R.string.warning_not_complete_transport_expense,
@@ -216,6 +216,9 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     }
 
     private fun removeTransport(pos: Int) {
+        if (pos == viewModel.indexEmpty.get()) {
+            viewModel.indexEmpty.set(-1)
+        }
         viewModel.removeTransport(pos)
         binding.rvBaseList.removeViewAt(pos)
         adapter.notifyItemRemoved(pos)
