@@ -48,8 +48,8 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
         title_btn_left.setOnClickListener(this)
         title_button_right.setOnClickListener(this)
 
-        setTextBtnLeft(context.getString(R.string.draft))
-        setTextBtnRight(context.getString(R.string.completed))
+        setTextBtnLeft("Draft")
+        setTextBtnRight("Approved")
 
         lineButtons.clear()
         lineDefault.clear()

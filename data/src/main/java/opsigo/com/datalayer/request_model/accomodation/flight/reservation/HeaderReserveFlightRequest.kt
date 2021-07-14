@@ -17,6 +17,15 @@ data class HeaderReserveFlightRequest(
 	@field:SerializedName("ReturnDate")
 	var returnDate: String = "",
 
+	@field:SerializedName("Status")
+	var status: Int = 0,
+
+	@field:SerializedName("IsBookAfterApprove")
+	var isBookAfterApprove: Boolean = false,
+
+	@field:SerializedName("IsPrivateTrip")
+	var isPrivateTrip: Boolean = false,
+
 	@field:SerializedName("Origin")
 	var origin: String = "",
 

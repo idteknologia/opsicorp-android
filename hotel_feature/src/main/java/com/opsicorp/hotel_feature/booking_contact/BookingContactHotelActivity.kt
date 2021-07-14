@@ -66,7 +66,7 @@ class BookingContactHotelActivity : BaseActivity(),
         line_cb_4.setOnClickListener { cbCheckedListener(cb4,4) }
 
         line_cb_2.setOnClickListener { bedTypeListener() }
-        line_cb_5.setOnClickListener { otherTypeListener() }
+        line_cb_5.setOnClickListener { otherTypeListener() } 
         btn_cb5.setOnClickListener { otherTypeListener() }
         btn_cb2.setOnClickListener { bedTypeListener() }
     }
@@ -384,6 +384,9 @@ class BookingContactHotelActivity : BaseActivity(),
         data.purpose        = dataTrip.purpose
         data.idTripPlan     = dataTrip.idTripPlane
         data.code           = dataTrip.tripCode
+        data.status = dataTrip.status.toInt()
+        data.isBookAfterApprove = dataTrip.isBookAfterApprove
+        data.isPrivateTrip = dataTrip.isPrivateTrip
         return data
     }
 

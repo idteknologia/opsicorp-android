@@ -324,9 +324,15 @@ class FlightFragmentNew : BaseFragment(),
 //            dataTripPlan.endDate,
 //            Constant.SINGGLE_SELECTED
 //        )
-
-        var minStartDate = mFlightMulti.routes.filter { it.dateDeparture.isNotEmpty() }.last().dateDeparture
-        NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", minStartDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)
+        NewCalendarViewOpsicorp().showCalendarViewMinMax(
+                requireActivity(),
+                "yyyy-MM-dd",
+                dataTripPlan.startDate,
+                dataTripPlan.endDate,
+                Constant.SINGGLE_SELECTED
+        )
+        /*var minStartDate = mFlightMulti.routes.filter { it.dateDeparture.isNotEmpty() }.last().dateDeparture
+        NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(), "yyyy-MM-dd", minStartDate, dataTripPlan.endDate, Constant.SINGGLE_SELECTED)*/
 
     }
 

@@ -38,6 +38,8 @@ data class SummaryModel(
         var allowance :String = "",
         var costCenter :String = "",
         var isDomestic :Boolean = false,
+        var isBookAfterApprove :Boolean = false,
+        var isPrivateTrip :Boolean = false,
         var wbsNo : String = "",
         var golper : Int = 0,
 
