@@ -6,6 +6,7 @@ import androidx.databinding.Bindable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import opsigo.com.domainlayer.BR
+import java.util.*
 
 data class Settlement(
     @SerializedName("Id")
@@ -127,6 +128,19 @@ class TransportExpenses : BaseObservable() {
     }
 }
 
+class OtherExpense : BaseObservable(){
+    @get:Bindable
+    var expenseName : String = ""
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.expenseName)
+    }
+    var ExpenseType : String = ""
+    var Amount : String = ""
+    var Description : String = ""
+    var Currency : String = ""
+}
+
 @Parcelize
 data class ModeTransport(
     var id : Int,
@@ -134,6 +148,17 @@ data class ModeTransport(
     val Text: String,
     val Value: Int
 ) : Parcelable
+
+data class ExpenseType(
+    var Disabled: Boolean,
+    var Selected : Boolean,
+    var Text: String,
+    var Value: String
+){
+    override fun toString(): String {
+        return Text
+    }
+}
 
 
 data class CalculateTransportResult(

@@ -79,4 +79,13 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
         } catch (t: Throwable) {
             Result.Error(t)
         }
+
+    override suspend fun getExpenseType(): Result<List<ExpenseType>> =
+        try {
+            val result = api.getExpenseType()
+            Result.Success(result)
+        } catch (t: Throwable) {
+            Result.Error(t)
+        }
+
 }

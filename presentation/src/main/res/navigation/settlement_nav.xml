@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_createSettlement_to_transportExpenseFragment"
             app:destination="@id/transportExpenseFragment" />
+        <action
+            android:id="@+id/action_createSettlement_to_otherExpenseFragment"
+            app:destination="@id/otherExpenseFragment" />
     </fragment>
     <fragment android:id="@+id/settlements"
         android:name="com.mobile.travelaja.module.settlement.view.SettlementsFragment"
@@ -60,5 +63,10 @@
             android:name="modes"
             app:argType="opsigo.com.domainlayer.model.settlement.ModeTransport[]" />
     </fragment>
+    <fragment
+        android:id="@+id/otherExpenseFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.OtherExpenseFragment"
+        android:label="OtherExpenseFragment"
+        tools:layout="@layout/base_list_fragment"/>
 
 </navigation>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="otherExpense"
+            type="opsigo.com.domainlayer.model.settlement.OtherExpense" />
+
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.ItemClickListener" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp"
+        app:strokeColor="#f44336">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/etTypeExpense"
+                style="@style/EditedSelected_NoEditable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:autofillHints="null"
+                android:drawableEnd="@{otherExpense.ExpenseType.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
+                android:hint="Expense Type"
+                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                android:paddingBottom="20dp"
+                android:text="@{otherExpense.expenseName}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Airport Tax" />
+
+            <EditText
+                android:id="@+id/etAmount"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                app:layout_constraintTop_toBottomOf="@+id/etTypeExpense" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

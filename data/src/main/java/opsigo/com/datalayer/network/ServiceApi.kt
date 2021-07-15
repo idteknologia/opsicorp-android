@@ -51,6 +51,9 @@ interface ServiceApi {
     @POST("api/Settlement/CalculateTransportExpense")
     suspend fun calculateTransportExpense(@Body body:MutableMap<String,Any>) : CalculateTransportResult
 
+    @GET("api/Settlement/GetExpenseTypeList")
+    suspend fun getExpenseType() : List<ExpenseType>
+
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {
             val interceptor = HttpLoggingInterceptor()

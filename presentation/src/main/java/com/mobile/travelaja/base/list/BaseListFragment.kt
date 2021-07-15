@@ -9,10 +9,12 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.databinding.ObservableBoolean
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
+import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.BaseListFragmentBinding
 import com.mobile.travelaja.utility.Utils
@@ -20,6 +22,7 @@ import com.mobile.travelaja.utility.Utils
 abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
     lateinit var binding: BaseListFragmentBinding
     private var snackbar: Snackbar ?= null
+    val isLoading = ObservableBoolean(false)
 
     abstract fun baseListAdapter(): BaseListAdapter<T>
 
@@ -36,6 +39,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
     ): View? {
         binding = BaseListFragmentBinding.inflate(inflater, container, false)
         binding.isSearch = isSearchVisible()
+        binding.setVariable(BR.isLoading,isLoading)
         return binding.root
     }
 

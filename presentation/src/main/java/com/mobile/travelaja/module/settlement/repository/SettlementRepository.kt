@@ -16,4 +16,5 @@ interface SettlementRepository {
     suspend fun updateRateOvernight(typeWork : Int , countDay : Int) : Result<RateStayResult>
     suspend fun getModeTransport() : Result<List<ModeTransport>>
     suspend fun calculateTransportExpense(body:MutableMap<String,Any>) : Result<CalculateTransportResult>
+    suspend fun getExpenseType() : Result<List<ExpenseType>>
 }

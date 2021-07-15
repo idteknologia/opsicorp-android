@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
@@ -81,8 +82,18 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
             R.id.etBank -> navigateBank()
             R.id.ivBack -> activity?.finish()
             R.id.viewDetailInformation -> showTransportation()
+            R.id.switchExpense -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateOtherExpense()
+                }
+            }
             else -> navigateTripCode()
         }
+    }
+
+    private fun navigateOtherExpense(){
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToOtherExpenseFragment()
+        findNavController().navigate(action)
     }
 
     private fun navigateBank(){
