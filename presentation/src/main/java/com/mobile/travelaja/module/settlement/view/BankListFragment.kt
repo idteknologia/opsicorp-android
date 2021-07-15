@@ -2,6 +2,7 @@ package com.mobile.travelaja.module.settlement.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobile.travelaja.R
@@ -49,6 +50,12 @@ class BankListFragment : BaseListFragment<Bank>() {
             isRefreshing(loading)
         }
         viewModel.getBank()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.tvSubtitle.isVisible = false
     }
 
     override fun onRefresh() {

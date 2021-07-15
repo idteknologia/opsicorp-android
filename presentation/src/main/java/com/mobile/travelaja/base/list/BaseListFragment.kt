@@ -58,6 +58,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.buttonBaseList.setOnClickListener(this)
         binding.includeSearch.root.isVisible = isSearchVisible()
         binding.buttonBaseList.isVisible = isButtonVisible()
+        binding.executePendingBindings()
     }
 
     fun setTitleName(@StringRes title : Int,@ColorRes color : Int = 0){

@@ -39,7 +39,12 @@ data class Bank(
 )
 
 class SubmitSettlement : BaseObservable() {
+    @get:Bindable
     var BankTransfer: String = ""
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.bankTransfer)
+    }
     var BankAccount: String = ""
     var TripId: String = ""
 

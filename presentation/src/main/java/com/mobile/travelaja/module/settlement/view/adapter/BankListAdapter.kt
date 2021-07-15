@@ -28,6 +28,7 @@ class BankListAdapter(val viewModel: SettlementViewModel) : BaseListAdapter<Bank
 
         fun onBind(bank : Bank){
             binding.bank = bank
+            binding.executePendingBindings()
             itemView.setOnClickListener {
                 viewModel.submitSettlement.BankAccount = bank.Account
                 viewModel.submitSettlement.BankTransfer = bank.BankName

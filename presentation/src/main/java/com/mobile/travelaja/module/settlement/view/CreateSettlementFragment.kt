@@ -5,17 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
+import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
 
-class CreateSettlementFragment : Fragment() {
+class CreateSettlementFragment : Fragment(),View.OnClickListener {
     private lateinit var viewModel: SettlementViewModel
     private lateinit var binding: FragmentCreateSettlementBinding
 
@@ -23,7 +22,6 @@ class CreateSettlementFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCreateSettlementBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,26 +34,13 @@ class CreateSettlementFragment : Fragment() {
         ).get(SettlementViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.clickListener = this
         binding.increaseDecreaseView.setValue(1, 0, object : IncreaseDecreaseListener {
             override fun onChangeValue(value: Int) {
                 viewModel.calculateOvernight(value)
             }
-
         })
-        binding.etTripCode.setOnClickListener {
-            val action =
-                CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment()
-            findNavController().navigate(action)
-//            val intent = Intent(requireContext(), TripSearchActivity::class.java)
-//            intent.putExtra(TripSearchActivity.SELECTED,viewModel.selectedCode.get())
-//            requireActivity().startActivityForResult(intent,9)
-        }
 
-        binding.etBank.setOnClickListener {
-            val action =
-                CreateSettlementFragmentDirections.actionCreateSettlementToBankListFragment()
-            findNavController().navigate(action)
-        }
         binding.checkboxDeclare.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.buttonNextEnabled.set(isChecked)
         }
@@ -64,13 +49,6 @@ class CreateSettlementFragment : Fragment() {
             if (binding.switchTransportation.isChecked){
                 showTransportation()
             }
-        }
-        binding.viewDetailInformation.setOnClickListener {
-            showTransportation()
-        }
-
-        binding.ivBack.setOnClickListener {
-            activity?.finish()
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
@@ -96,6 +74,27 @@ class CreateSettlementFragment : Fragment() {
             val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities,modeTransports)
             findNavController().navigate(action)
         }
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.etBank -> navigateBank()
+            R.id.ivBack -> activity?.finish()
+            R.id.viewDetailInformation -> showTransportation()
+            else -> navigateTripCode()
+        }
+    }
+
+    private fun navigateBank(){
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToBankListFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateTripCode(){
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment()
+        findNavController().navigate(action)
     }
 
 }
