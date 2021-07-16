@@ -109,12 +109,14 @@ class TrainFragment : BaseFragment(), NewCalendarViewOpsicorp.CallbackResult,
     }
 
     override fun btnLeft() {
+        top_button.selectedButton()
         Globals.ONE_TRIP = false
         typeTrip  = "one_trip"
         lay_return_date.visibility = View.VISIBLE
     }
-
+      
     override fun btnRight() {
+        top_button.defaultButton()
         typeTrip  = "round_trip"
         Globals.ONE_TRIP = true
         lay_return_date.visibility = View.GONE

@@ -66,6 +66,7 @@ object Constants {
     var tipeTrip                 = ""
     var TRIP_CODE                = ""
     var TRIP_PLAN_ID             = ""
+    var TRIP_TYPE                = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
     val PROGRESS_TRAIN_CALLBACK  = 9099

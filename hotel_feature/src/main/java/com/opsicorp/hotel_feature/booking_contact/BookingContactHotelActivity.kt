@@ -384,7 +384,7 @@ class BookingContactHotelActivity : BaseActivity(),
         data.purpose        = dataTrip.purpose
         data.idTripPlan     = dataTrip.idTripPlane
         data.code           = dataTrip.tripCode
-        data.status = dataTrip.status.toInt()
+        data.status = dataTrip.statusNumber
         data.isBookAfterApprove = dataTrip.isBookAfterApprove
         data.isPrivateTrip = dataTrip.isPrivateTrip
         return data

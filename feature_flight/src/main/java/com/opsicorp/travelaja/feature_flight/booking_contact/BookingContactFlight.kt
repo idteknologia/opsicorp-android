@@ -472,7 +472,7 @@ class BookingContactFlight : BaseActivity(),
         header.idTripPlan = dataTrip.idTripPlane
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
-        header.status = dataTrip.status.toInt()
+        header.status = dataTrip.statusNumber
         header.isBookAfterApprove = dataTrip.isBookAfterApprove
         header.isPrivateTrip = dataTrip.isPrivateTrip
 
@@ -818,7 +818,7 @@ class BookingContactFlight : BaseActivity(),
         val header = HeaderReserveFlightRequest()
         header.startDate = dataTrip.startDate
         header.returnDate = dataTrip.endDate
-        header.status = dataTrip.status.toInt()
+        header.status = dataTrip.statusNumber
         header.isBookAfterApprove = dataTrip.isBookAfterApprove
         header.isPrivateTrip = dataTrip.isPrivateTrip
         header.origin = dataTrip.originId
