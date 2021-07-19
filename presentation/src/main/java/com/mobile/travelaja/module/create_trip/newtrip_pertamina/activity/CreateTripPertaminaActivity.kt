@@ -73,7 +73,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var wbsIsEmpty = true
     var partnerIsEmpty = true
     var notesIsEmpty = true
-    var attachmentIsEmpty = true
 
     override fun onMain() {
         initOnClick()

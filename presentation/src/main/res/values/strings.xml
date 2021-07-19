@@ -897,6 +897,9 @@ Please add your trip item for Approval."
     <string name="select">Select</string>
     <string name="warning_delete_this_tripplan">Apa Anda yakin ingin menghapus tripplan ini?</string>
     <string name="select_your_purpose">Select your purpose</string>
+    <string name="select_your_origin">Select your origin</string>
+    <string name="select_your_destination">Select your destination</string>
+    <string name="fill_your_note">Fill your note</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>
