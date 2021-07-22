@@ -41,7 +41,7 @@
                         android:layout_centerVertical="true"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_before_cheklist"></ImageView>
+                        android:src="@drawable/ic_before_cheklist"/>
 
                     <LinearLayout
                         android:layout_marginLeft="10dp"
@@ -308,7 +308,7 @@
                             android:layout_below="@+id/lay_end_date"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 
@@ -377,7 +377,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_below="@+id/line_passanger"
-                            android:background="@color/colorLineEdittext"></LinearLayout>
+                            android:background="@color/colorLineEdittext"/>
 
                     </RelativeLayout>
 

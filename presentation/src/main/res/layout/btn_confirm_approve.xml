@@ -30,7 +30,7 @@
                 android:id="@+id/tv_button_reject_all"
                 android:textSize="17sp"
                 android:textColor="@color/textColorButtonOutline"
-                android:text="Reject"
+                android:text="@string/reject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -40,7 +40,7 @@
             android:background="#ffffff"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.1"></LinearLayout>
+            android:layout_weight="0.1"/>
 
         <LinearLayout
             android:onClick="approveAllitemListener"
@@ -58,7 +58,7 @@
                 android:id="@+id/tv_button_approve_all"
                 android:textSize="17sp"
                 android:textColor="@color/textButtonColor"
-                android:text="Approve Participant"
+                android:text="@string/approve_participant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

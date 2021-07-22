@@ -139,7 +139,7 @@ class AddressActivity : BaseActivity(), LoginView {
                     onLogin("sck", "gshc", baseUrl)
                 }
             } else {
-                showAllert("Please", "Insert Domain name your Corporate")
+                showAllert(getString(R.string.txt_please), getString(R.string.insert_domain_name_your_corporate))
             }
         }
     }
@@ -153,7 +153,7 @@ class AddressActivity : BaseActivity(), LoginView {
             override fun failedGetData(message: String) {
                 hideDialog()
                 if (message.contains(resources.getString(R.string.unable_host))) {
-                    showAllert("Sorry", "No address associated with hostname")
+                    showAllert(getString(R.string.sorry), getString(R.string.no_address_associated_with_hostname))
                 } else {
                     Globals.setBaseUrl(this@AddressActivity, baseUrl)
                     gotoActivity(LoginPremiumActivity::class.java)
@@ -184,7 +184,7 @@ class AddressActivity : BaseActivity(), LoginView {
 
 
     private fun failedWarning(message: String) {
-        Globals.showAlert("Failed", message, this)
+        Globals.showAlert(getString(R.string.failed), message, this)
     }
 
     private fun saveDataLogin(data: DataLoginModel) {

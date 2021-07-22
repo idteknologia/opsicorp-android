@@ -83,7 +83,7 @@
                 android:background="#2b9a8e"
                 android:layout_weight="0.7"
                 android:layout_width="0dp"
-                android:layout_height="1dp"></LinearLayout>
+                android:layout_height="1dp"/>
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -133,7 +133,7 @@
                     android:textSize="14dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Upload File"/>
+                    android:text="@string/upload_file"/>
             </LinearLayout>
         </RelativeLayout>
 

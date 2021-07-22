@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:id="@+id/line_first"
         android:layout_width="37dp"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_height="match_parent"/>
 
     <LinearLayout
         android:layout_marginRight="13dp"

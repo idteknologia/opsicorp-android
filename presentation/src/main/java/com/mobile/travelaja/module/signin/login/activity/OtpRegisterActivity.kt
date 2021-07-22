@@ -97,7 +97,7 @@ class OtpRegisterActivity : BaseActivity(),
             getValidationOtp()
         }
         else{
-            failedWarning("Field can not be empty")
+            failedWarning(getString(R.string.warning_canot_be_empty))
         }
     }
 
@@ -115,7 +115,7 @@ class OtpRegisterActivity : BaseActivity(),
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
         })
     }
@@ -148,7 +148,7 @@ class OtpRegisterActivity : BaseActivity(),
     }
 
     private fun failedWarning(message: String) {
-        Globals.showAlert("Failed",message,this)
+        Globals.showAlert(getString(R.string.failed),message,this)
     }
 
 }

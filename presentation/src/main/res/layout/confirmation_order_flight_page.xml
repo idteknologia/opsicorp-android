@@ -14,7 +14,7 @@
             android:layout_centerVertical="true"
             style="@style/RobotoRegular"
             android:textSize="20dp"
-            android:text="Confirm Your Information v1"
+            android:text="@string/confirm_your_information"
             android:textColor="#24253d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -42,7 +42,7 @@
             android:layout_centerVertical="true"
             style="@style/RobotoRegular"
             android:textSize="10sp"
-            android:text="Select reason code"
+            android:text="@string/select_reason_code"
             android:textColor="#8024253d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -66,7 +66,7 @@
                 style="@style/RobotoRegular"
                 android:textColor="#24253d"
                 android:layout_centerVertical="true"
-                android:text="Important Flight Info"
+                android:text="@string/important_flight_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -109,7 +109,7 @@
             android:textSize="14dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Where a seat on a lower fare option was not available even though booking request was outside deadlines."/>
+            android:text="@string/description_reason_code"/>
 
     </LinearLayout>
 
@@ -127,7 +127,7 @@
             android:layout_centerVertical="true"
             style="@style/RobotoRegular"
             android:textSize="10sp"
-            android:text="CONTACT INFORMATION"
+            android:text="@string/contact_information_caps"
             android:textColor="#8024253d"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -163,7 +163,7 @@
                 android:textSize="14dp"
                 style="@style/RobotoRegular"
                 android:textColor="#8024253d"
-                android:text="Important Flight Info"
+                android:text="@string/important_flight_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

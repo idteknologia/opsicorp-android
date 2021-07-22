@@ -80,7 +80,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
             override fun failedLoad(message: String) {
 
-                Globals.showAlert("failed",message,this@SelectBudget)
+                Globals.showAlert(getString(R.string.failed),message,this@SelectBudget)
             }
         })
 
@@ -170,15 +170,15 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
     override fun onClicked() {
         if (budgetIsEmpty&&costCenterIsEmpty){
-            Globals.showAlert("Sorry","Please select budget and cost center",this)
+            Globals.showAlert(getString(R.string.sorry),getString(R.string.please_select_budget_and_cost_center),this)
         } else if(!budgetIsEmpty&&!costCenterIsEmpty){
             saveAsDraft()
         }
         else if (budgetIsEmpty){
-            Globals.showAlert("Sorry","Please select budget first",this)
+            Globals.showAlert(getString(R.string.sorry),getString(R.string.please_select_budget_first),this)
         }
         else if(costCenterIsEmpty){
-            Globals.showAlert("Sorry","Please select cost center",this)
+            Globals.showAlert(getString(R.string.sorry),getString(R.string.please_select_cost_center),this)
         }
     }
 
@@ -203,7 +203,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
                 showDialogErrorOpsicorp(false,this@SelectBudget)
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
         })
 
@@ -274,7 +274,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
     fun copyListener(view: View){
         Globals.copyText(tv_trip_code.text.toString(),this)
-        setToast("You have copied the trip code")
+        setToast(getString(R.string.you_have_copied_the_trip_code))
     }
 
     override fun btnBack() {

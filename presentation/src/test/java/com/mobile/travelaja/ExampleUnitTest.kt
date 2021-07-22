@@ -36,9 +36,9 @@ class ExampleUnitTest {
 
     @Test
     fun conversionDate() {
-        val date = "2021-04-15 00:00:00"
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-        val sdfOutput = SimpleDateFormat("EEEE", Locale("in"))
+        val date = "2021-07-01T00:21:54Z"
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+        val sdfOutput = SimpleDateFormat("yyyy-MM-dd", Locale("in"))
         val dInput = sdf.parse(date)
         val dOutput = sdfOutput.format(dInput)
         println(dOutput)
@@ -46,8 +46,8 @@ class ExampleUnitTest {
 
     @Test
     fun isToday() {
-        val date = "2021-04-15 00:00:00"
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val date = "2021-07-01T00:21:54Z"
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
         val sdfOutput = SimpleDateFormat("yyyy-MM-dd", Locale("in"))
         val now = sdfOutput.format(Date())
         val dInput = sdfOutput.format(sdf.parse(date))

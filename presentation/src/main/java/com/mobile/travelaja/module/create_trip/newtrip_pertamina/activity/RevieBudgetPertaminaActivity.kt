@@ -61,8 +61,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         costCenterName = getProfile().costCenter
         title_cost_name.setText(costCenterName)
         postDataForEstimateCost()
-        tv_title_prize.text = "Total Estimated Cost"
-        tv_including.text = "Exclude Cash Advance"
+        tv_title_prize.text = getString(R.string.total_estimated_cost)
+        tv_including.text = getString(R.string.exclude_cash_advance)
         tv_price.gone()
     }
 
@@ -228,7 +228,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
 
             override fun failedLoad(message: String) {
 
-                Globals.showAlert("failed", message, this@RevieBudgetPertaminaActivity)
+                Globals.showAlert(getString(R.string.failed), message, this@RevieBudgetPertaminaActivity)
             }
         })
 
@@ -264,7 +264,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAllert("Sorry",message)
+                showAllert(getString(R.string.sorry),message)
             }
 
         })

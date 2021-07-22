@@ -88,7 +88,7 @@
             android:layout_marginRight="14dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
-            android:text="/pax"
+            android:text="@string/per_pax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -154,7 +154,7 @@
                 android:layout_height="12dp"
                 app:tint="@color/tintTextView"
                 android:src="@drawable/ic_chevron_down"
-                android:layout_marginLeft="5dp"></ImageView>
+                android:layout_marginLeft="5dp"/>
         </LinearLayout>
 
     </RelativeLayout>

@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" Username or Email"
+                        android:text="@string/username_or_email"
                         android:textColor="#91929e"
                         android:textSize="14dp"
                         android:visibility="gone" />
@@ -73,7 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
-                        android:hint="Email / Corporate email"
+                        android:hint="@string/txt_email_corporate_email"
                         android:paddingBottom="18dp"
                         android:singleLine="true"
                         android:textColor="#24253d"
@@ -92,7 +92,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" Password"
+                        android:text="@string/password"
                         android:textColor="#91929e"
                         android:textSize="14dp"
                         android:visibility="gone" />
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/hintPassword"
                         android:layout_marginBottom="10dp"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:paddingBottom="18dp"
                         android:singleLine="true"
                         android:textColor="#24253d"
@@ -191,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:gravity="center"
-                        android:text="or"
+                        android:text="@string/or"
                         android:textColor="#707070"
                         android:textSize="13sp" />
 

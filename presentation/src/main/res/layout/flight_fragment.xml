@@ -94,7 +94,7 @@
                                     android:layout_below="@+id/layStartDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext"></LinearLayout>
+                                    android:background="@color/colorLineEdittext"/>
 
                             </RelativeLayout>
 
@@ -162,7 +162,7 @@
                                     android:layout_below="@+id/lay_to"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
-                                    android:background="@color/colorLineEdittext"></LinearLayout>
+                                    android:background="@color/colorLineEdittext"/>
 
                             </RelativeLayout>
 
@@ -179,7 +179,7 @@
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth>
+                        android:layout_height="wrap_content"/>
 
                 </RelativeLayout>
 
@@ -241,7 +241,7 @@
                                 android:layout_below="@+id/lay_deaprture_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -297,7 +297,7 @@
                                 android:layout_below="@+id/lay_end_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -368,7 +368,7 @@
                                 android:layout_below="@+id/lay_passanger"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -415,7 +415,7 @@
                                 <TextView
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
-                                    android:hint="Airline Class"
+                                    android:hint="@string/airline_class"
                                     android:id="@+id/tv_titile_airline_class"
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
@@ -441,7 +441,7 @@
                                 android:layout_below="@+id/lay_airline_class"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 
@@ -488,7 +488,7 @@
                                 <TextView
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
-                                    android:hint="Airlines Preferences"
+                                    android:hint="@string/airlines_preferences"
                                     android:id="@+id/tv_titile_airline_prreferance"
                                     android:paddingBottom="9dp"
                                     android:textAlignment="viewStart"
@@ -514,7 +514,7 @@
                                 android:layout_below="@+id/lay_airline_prreferance"
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
-                                android:background="@color/colorLineEdittext"></LinearLayout>
+                                android:background="@color/colorLineEdittext"/>
 
                         </RelativeLayout>
 

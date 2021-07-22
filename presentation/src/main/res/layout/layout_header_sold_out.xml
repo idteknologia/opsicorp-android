@@ -15,7 +15,7 @@
         android:textSize="14sp"
         style="@style/RobotoBold"
         android:textColor="#24253d"
-        android:text="All tickets sold out ?" />
+        android:text="@string/all_tickets_sold_out" />
 
     <TextView
         android:layout_marginTop="5dp"
@@ -24,7 +24,7 @@
         android:textSize="12sp"
         android:textColor="#24253d"
         style="@style/RobotoRegular"
-        android:text="No Worries, let&apos;s try other transportation options!" />
+        android:text="@string/no_worries_let_apos_s_try_other_transportation_options" />
 
     <LinearLayout
         android:layout_marginTop="12dp"
@@ -42,7 +42,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginBottom="3dp"
             android:textColor="@color/textButtonColor"
-            android:text="Flights"
+            android:text="@string/flights"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

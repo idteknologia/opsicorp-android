@@ -23,7 +23,7 @@
         android:layout_centerVertical="true"
         android:layout_alignBaseline="@+id/radioButton"
         style="@style/RobotoBold"
-        android:text="Economy Class"
+        android:text="@string/txt_economy_class"
         android:textSize="18sp"
         android:textColor="#24253d"
         android:layout_width="wrap_content"

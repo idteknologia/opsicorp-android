@@ -26,7 +26,7 @@
             style="@style/RobotoRegular"
             android:textSize="15sp"
             android:layout_marginRight="90dp"
-            android:text="The Number of Adults and Children should not Exceed 9"
+            android:text="@string/the_number_of_adults_and_children_should_not_exceed_9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>

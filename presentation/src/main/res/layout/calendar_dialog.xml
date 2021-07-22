@@ -39,7 +39,8 @@
                 android:gravity="center"
                 style="@style/RobotoBold"
                 android:layout_gravity="center"
-                android:text="SEE"/>
+                android:textAllCaps="true"
+                android:text="@string/txt_see"/>
 
             <TextView
                 style="@style/RobotoBold"
@@ -51,14 +52,15 @@
                 android:lineSpacingExtra="0sp"
                 android:gravity="center"
                 android:layout_marginBottom="18dp"
-                android:text="OTHER DATES"/>
+                android:textAllCaps="true"
+                android:text="@string/other_dates"/>
 
             <LinearLayout
                 android:layout_width="104dp"
                 android:layout_height="1dp"
                 android:background="#e0e0e1"
                 android:layout_marginBottom="19dp"
-                android:layout_gravity="center"></LinearLayout>
+                android:layout_gravity="center"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,7 +71,7 @@
                     android:id="@+id/recycler_shor_by"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"></androidx.recyclerview.widget.RecyclerView>
+                    android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
         </LinearLayout>

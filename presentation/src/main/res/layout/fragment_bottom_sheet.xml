@@ -9,7 +9,7 @@
     <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/toolbar"></com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+        android:id="@+id/toolbar"/>
 
 
     <RelativeLayout
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/btn_minus_adult"
+            android:id="@+id/btnDecrease"
             android:src="@drawable/minus_inactive"
             android:layout_width="36dp"
             android:layout_height="36dp" />
@@ -66,11 +66,11 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/btn_add_adult"
+            android:id="@+id/btnIncrease"
             android:layout_alignParentRight="true"
             android:src="@drawable/plus_active"
             android:layout_width="36dp"
-            android:layout_height="36dp"></ImageView>
+            android:layout_height="36dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -201,7 +201,7 @@
         android:layout_marginBottom="40dp"
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
-        android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+        android:layout_height="wrap_content"/>
 
 
     <com.mobile.travelaja.module.item_custom.sanckbar_custom.SnackBarCustomForDialog

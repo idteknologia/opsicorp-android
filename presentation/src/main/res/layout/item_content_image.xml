@@ -49,6 +49,6 @@
         android:layout_margin="17dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Read more"/>
+        android:text="@string/txt_read_more"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

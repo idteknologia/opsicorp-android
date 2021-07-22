@@ -33,7 +33,7 @@
             style="@style/RobotoMedium"
             android:textSize="12dp"
             android:gravity="center"
-            android:text="Not Comply"
+            android:text="@string/not_comply"
             android:textColor="@color/colorRedApproval"
             android:layout_width="wrap_content"
             android:layout_height="14dp" />

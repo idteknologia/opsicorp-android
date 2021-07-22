@@ -103,8 +103,8 @@ class TotalPassangerTrain() {
     }
 
     private fun changeTotalView() {
-        binding.tvAdult.text  = "${totalAdult} Adult(s)"
-        binding.tvInfant.text  = "${totalInfant} Childern"
+        binding.tvAdult.text  = "${totalAdult} ${context.getString(R.string.txt_adult)}(s)"
+        binding.tvInfant.text  = "${totalInfant} ${context.getString(R.string.children)}"
 
         if(totalAdult==0){
             binding.btnMinusAdult.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.minus_inactive))

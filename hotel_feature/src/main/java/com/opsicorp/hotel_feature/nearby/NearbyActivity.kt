@@ -49,6 +49,9 @@ class NearbyActivity : BaseActivity() {
 //        getDataListCompany()
         viewTypeSelected()
         initFilter()
+        tv_close.setOnClickListener {
+            finish()
+        }
     }
 
     val filterAirport: ArrayList<NearbyAirportModel> = ArrayList()

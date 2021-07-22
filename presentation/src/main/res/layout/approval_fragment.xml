@@ -21,7 +21,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginRight="@dimen/margin_default"
-            android:text="Trip plan status"
+            android:text="@string/trip_plan_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -35,7 +35,7 @@
             android:layout_marginTop="7dp"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginRight="@dimen/margin_default"
-            android:text="Click list to see your trip detail"
+            android:text="@string/click_list_to_see_your_trip_detail"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             tools:ignore="RtlCompat" />

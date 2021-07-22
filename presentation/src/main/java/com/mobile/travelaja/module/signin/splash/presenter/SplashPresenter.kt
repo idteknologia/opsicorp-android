@@ -68,17 +68,18 @@ class SplashPresenter {
 
     //error, skip dulu
     fun getCheckVersion(token: String) {
-        GetDataGeneral(version_url).getCheckVersion(token,Globals.getVersionCode(),"1",object :CallbackCheckVersion{
-            override fun successLoad(data: CheckVersionModel) {
-                getDataProfile(token)
-            }
-
-            override fun failedLoad(message: String) {
-                //
-                view.showDialogUpdate("Opsicorp", "New version is available,\nplease update your application")
-                //view.showDialogUpdate("Sorry",message +" Or plase check connection")
-            }
-        })
+//        GetDataGeneral(version_url).getCheckVersion(token,Globals.getVersionCode(),"1",object :CallbackCheckVersion{
+//            override fun successLoad(data: CheckVersionModel) {
+//                getDataProfile(token)
+//            }
+//
+//            override fun failedLoad(message: String) {
+//                //
+//                view.showDialogUpdate("Opsicorp", "New version is available,\nplease update your application")
+//                //view.showDialogUpdate("Sorry",message +" Or plase check connection")
+//            }
+//        })
+        getDataProfile(token)
     }
 
     fun getDataProfile(token:String) {

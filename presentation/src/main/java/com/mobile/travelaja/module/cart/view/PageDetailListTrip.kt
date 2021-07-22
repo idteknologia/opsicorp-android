@@ -88,7 +88,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     fun setTimeLimit(timeLimit:String){
-        tv_time_limit.text = "Expired in : " + timeLimit
+        tv_time_limit.text = "${context.getString(R.string.expire_in)} : " + timeLimit
     }
 
     interface Callback{

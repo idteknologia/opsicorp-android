@@ -36,14 +36,14 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
 
     private fun initEmptyView() {
         img_empty.setImageDrawable(resources.getDrawable(R.drawable.no_transaction))
-        tv_massage_empty.text = "You haven't made any purchase."
-        tv_title_empty.text = "Oh Crap.."
-        btn_home_page.setTextButton("Make a New Purchase")
+        tv_massage_empty.text = getString(R.string.you_havent_made_any_purchase)
+        tv_title_empty.text = getString(R.string.oh_crap)
+        btn_home_page.setTextButton(getString(R.string.make_a_new_purchase))
     }
 
 
     private fun initToolbar() {
-        toolbar.setTitleBar("Purchase List")
+        toolbar.setTitleBar(getString(R.string.purchase_list))
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { toolbar.singgleTitleGravity(toolbar.START) }

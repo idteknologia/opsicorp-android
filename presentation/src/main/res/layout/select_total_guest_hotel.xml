@@ -31,7 +31,7 @@
                     android:layout_centerHorizontal="true"
                     android:textSize="18sp"
                     android:textColor="#00776a"
-                    android:text="Total of Guest"
+                    android:text="@string/total_of_guest"
                     android:layout_marginBottom="20dp"/>
 
                 <LinearLayout
@@ -101,7 +101,7 @@
                         android:layout_alignParentRight="true"
                         android:src="@drawable/plus_active"
                         android:layout_width="36dp"
-                        android:layout_height="36dp"></ImageView>
+                        android:layout_height="36dp"/>
                 </RelativeLayout>
 
                 <LinearLayout
@@ -124,7 +124,7 @@
                         android:textColor="#91929e"
                         android:lineSpacingExtra="6sp"
                         android:gravity="center_horizontal"
-                        android:text="one room can be filled by several guests, you may enter valid ID number , Passport or Driving license" />
+                        android:text="@string/one_room_can_be_filled_by_several_guests_you_may_enter_valid_id_number_passport_or_driving_license" />
                 </LinearLayout>
 
 

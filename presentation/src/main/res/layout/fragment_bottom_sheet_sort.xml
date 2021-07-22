@@ -43,7 +43,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
-        android:background="#e0e0e1"></LinearLayout>
+        android:background="#e0e0e1"/>
 
     <LinearLayout
         android:id="@+id/lowestPrice"
@@ -80,7 +80,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
-        android:background="#e0e0e1"></LinearLayout>
+        android:background="#e0e0e1"/>
 
     <LinearLayout
         android:id="@+id/earliestDeparture"
@@ -118,7 +118,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="#e0e0e1"></LinearLayout>
+        android:background="#e0e0e1"/>
 
     <LinearLayout
         android:id="@+id/latestDeparture"
@@ -156,7 +156,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
-        android:background="#e0e0e1"></LinearLayout>
+        android:background="#e0e0e1"/>
 
     <LinearLayout
         android:id="@+id/shortestDuration"
@@ -195,7 +195,7 @@
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginBottom="24dp"
-        android:background="#e0e0e1"></LinearLayout>
+        android:background="#e0e0e1"/>
 
 
 </LinearLayout>

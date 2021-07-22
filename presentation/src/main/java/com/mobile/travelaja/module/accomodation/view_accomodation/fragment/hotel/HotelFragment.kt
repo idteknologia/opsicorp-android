@@ -106,10 +106,14 @@ class HotelFragment : BaseFragment(),
 
     private fun setDataCityDefault() {
         ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_before_cheklist))
+        val data = Serializer.deserialize(
+                Constants.DATA_SUCCESS_CREATE_TRIP,
+                SuccessCreateTripPlaneModel::class.java
+        )
         typeDestination             = Constants.SELECT_NEARBY_CITY
-        dataSelectCity.cityName     = "Bandung"
-        dataSelectCountry.id        = "ID"
-        dataSelectCity.idCity       = "7sdn5U3LQUaiqnGJUhXQpg"
+        dataSelectCity.cityName     = data.destinationName
+        dataSelectCountry.id        = data.destinationId
+        dataSelectCity.idCity       = data.destinationId
         tv_city.text                = dataSelectCity.cityName
         tv_title_destination.text   = context?.getString(R.string.title_nearby_city)
 

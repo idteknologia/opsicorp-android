@@ -22,10 +22,10 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Passenger need to show this e-ticket and passenger identity when check-in."
+        android:text="@string/passenger_need_to_show_this_e_ticket_and_passenger_identity_when_check_in"
         android:layout_marginLeft="10dp"
         android:textSize="12dp"
         style="@style/RobotoRegular"
-        android:textColor="#24253d"></TextView>
+        android:textColor="#24253d"/>
 
 </LinearLayout>

@@ -25,6 +25,7 @@ import com.mobile.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.payment.PaymentActivity
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
 import com.mobile.travelaja.utility.DateConverter
@@ -145,7 +146,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
-                postEstimateCost()
+                /*postEstimateCost()*/
                 hideLoadingOpsicorp()
             }
 
@@ -444,7 +445,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
-        tv_destination.text = tripSummary.destinationName
+        if(tripSummary.routes.isNotEmpty()){
+            tv_destination.text = tripSummary.routes.last().destination
+        } else {
+            tv_destination.text = tripSummary.destinationName
+        }
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
@@ -767,6 +772,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             /*saveToDraft()*/
         } else {
             ListParticipantDialog(this).create(this, dataParticipant)
+
         }
     }
 
@@ -952,6 +958,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 } else {
                     hideDialog()
                     successApproveParticipant("Success approve participant ")
+
                 }
 
             }
@@ -972,6 +979,10 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         builder.setMessage(message)
         builder.setPositiveButton("Ok") { dialog, which ->
             getSummary()
+            val tripPlanId = tripSummary.tripId
+            val bundle = Bundle()
+            bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
+            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
         }
         builder.create().show()
     }
@@ -991,14 +1002,22 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId
-            model.status = tripSummary.status
+            model.status = tripSummary.statusView
+            model.statusNumber = tripSummary.status.toInt()
             model.tripCode = tripSummary.tripCode
             model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
-            model.destinationName = tripSummary.destinationName
-            model.destinationId = tripSummary.destination
-            model.originId = tripSummary.origin
-            model.originName = tripSummary.originName
+            if(tripSummary.routes.isNotEmpty()){
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.routes.first().origin
+                model.destinationName = tripSummary.routes.first().destination
+                model.destinationId = tripSummary.destination
+            } else {
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.originName
+                model.destinationName = tripSummary.destinationName
+                model.destinationId = tripSummary.destination
+            }
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
             model.route   = mappingRoutes(tripSummary.routes)
@@ -1010,6 +1029,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.remark      = tripSummary.remark.toString()
             model.wbsNo       = tripSummary.wbsNo
             model.isDomestik  = tripSummary.isDomestic
+            model.isBookAfterApprove = tripSummary.isBookAfterApprove
+            model.isPrivateTrip = tripSummary.isPrivateTrip
             model.golper      = tripSummary.golper
 
             Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)

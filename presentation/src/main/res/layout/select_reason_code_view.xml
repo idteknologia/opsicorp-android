@@ -19,7 +19,7 @@
         android:textSize="18sp"
         android:textColor="#00776a"
         style="@style/RobotoBold"
-        android:text="Select your reason code"/>
+        android:text="@string/select_your_reason_code"/>
 
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#91929e"
-        android:text="Please choose the information for fastest Approval"
+        android:text="@string/txt_please_choose_the_information_for_fastest_approval"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginBottom="19dp"/>
@@ -35,6 +35,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_reason_code"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

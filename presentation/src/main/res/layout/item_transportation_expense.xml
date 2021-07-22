@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="viewModel"
+            type="com.mobile.travelaja.module.settlement.viewmodel.TransportExpenseViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="@dimen/margin_default">
+
+            <TextView
+                android:id="@+id/tvTitleTransport"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:textColor="#91929e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Transport 1" />
+
+            <Button
+                android:id="@+id/buttonRemove"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="9dp"
+                android:text="@string/remove"
+                android:textAppearance="@style/TextButtonStyle"
+                android:textColor="#2b9a8e"
+                android:visibility="@{viewModel.isRemoveVisible() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLabelSelectCity"
+                style="@style/ContentDescriptionTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/select_city"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleTransport" />
+
+            <EditText
+                android:id="@+id/etOriginCity"
+                style="@style/EditedSelected_NoEditable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_default"
+                android:hint="@string/origin_city"
+                android:paddingBottom="20dp"
+                android:text="@{viewModel.getTransportExpense(position).City}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvLabelSelectCity"
+                tools:text="Jakarta" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchNonFlight"
+                style="@style/Widget.App.Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:checked="@{viewModel.getTransportExpense(position).transportationType == 2}"
+                android:enabled="@{!viewModel.getTransportExpense(position).city.empty}"
+                android:text="NON-Flight ?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etOriginCity"
+                tools:checked="true" />
+            <TextView
+                android:id="@+id/captionNonFlight"
+                style="@style/SwitchCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Non-udara option are Train, Bus, Ship"
+                app:layout_constraintTop_toBottomOf="@+id/switchNonFlight" />
+
+            <View
+                android:id="@+id/dividerNonFlight"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@+id/captionNonFlight" />
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/dividerNonFlight"
+                app:chipSpacingHorizontal="25dp"
+                app:singleSelection="true"
+                app:selectionRequired="true"
+                appCheckedMode="@{viewModel.getTransportExpense(position).transportationModeId}"
+                android:visibility="@{viewModel.getTransportExpense(position).transportationType == 2 ? View.VISIBLE : View.GONE}"
+                />
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchRoundtrip"
+                style="@style/Widget.App.Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:checked="@{viewModel.getTransportExpense(position).tripType == 1}"
+                android:enabled="@{!viewModel.getTransportExpense(position).city.empty}"
+                android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedSwitchRoundtrip(checked,position)}"
+                android:text="Roundtrip ?"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+                tools:checked="true" />
+
+            <TextView
+                android:id="@+id/captionRoundtrip"
+                style="@style/SwitchCaption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Select transportation mode"
+                app:layout_constraintTop_toBottomOf="@+id/switchRoundtrip" />
+
+            <View
+                android:id="@+id/dividerRoundtrip"
+                style="@style/Divider"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@+id/captionRoundtrip" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Amount"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividerRoundtrip"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:text="@string/total_idr"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividerRoundtrip"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvValueAmount"
+                style="@style/TextButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{viewModel.getTransportExpense(position).Amount.toString()}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvTotalIdr"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotal"
+                tools:text="7.000.000"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvTotalIdr"
+                style="@style/TextButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{viewModel.getTransportExpense(position).TotalAmount.toString()}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvValueAmount"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotal"
+                tools:text="7.000.000"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
+

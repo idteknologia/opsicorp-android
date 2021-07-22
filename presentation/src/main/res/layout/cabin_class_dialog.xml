@@ -29,7 +29,7 @@
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#00776a"
-                    android:text="Cabin Class"
+                    android:text="@string/cabin_class"
                     android:layout_marginBottom="20dp"/>
 
                 <LinearLayout

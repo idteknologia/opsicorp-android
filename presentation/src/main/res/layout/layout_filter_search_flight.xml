@@ -29,7 +29,7 @@
                 android:id="@+id/tv_filter"
                 android:textSize="12sp"
                 android:gravity="center"
-                android:text="Filter"
+                android:text="@string/filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -39,7 +39,7 @@
             android:layout_alignParentRight="true"
             android:background="@color/active_icon"
             android:layout_width="1dp"
-            android:layout_height="29dp"></LinearLayout>
+            android:layout_height="29dp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -51,7 +51,7 @@
             android:layout_alignParentRight="true"
             android:background="@color/active_icon"
             android:layout_width="1dp"
-            android:layout_height="29dp"></LinearLayout>
+            android:layout_height="29dp"/>
 
         <LinearLayout
             android:layout_marginTop="17dp"
@@ -65,14 +65,14 @@
                 android:layout_gravity="center"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:src="@drawable/ic_sort_grey"></ImageView>
+                android:src="@drawable/ic_sort_grey"/>
             <TextView
                 android:layout_marginLeft="6dp"
                 android:layout_gravity="center"
                 android:id="@+id/tv_sort"
                 android:textSize="12sp"
                 android:gravity="center"
-                android:text="Sort"
+                android:text="@string/sort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -94,12 +94,12 @@
                 android:id="@+id/ic_change_date"
                 android:src="@drawable/ic_transparant"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></ImageView>
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/tv_change_date"
                 android:textSize="12sp"
                 android:gravity="center"
-                android:text="Change date"
+                android:text="@string/change_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

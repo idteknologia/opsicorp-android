@@ -74,7 +74,7 @@ object Globals {
             val builder = AlertDialog.Builder(activity)
             builder.setTitle(title)
             builder.setMessage(message)
-            builder.setPositiveButton("Ok") { dialog, which -> dialog.dismiss() }
+            builder.setPositiveButton(activity.getString(R.string.ok)) { dialog, which -> dialog.dismiss() }
             builder.create().show()
         }catch (e:Exception){
             e.printStackTrace()
@@ -124,7 +124,7 @@ object Globals {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("Ok") { dialog, which -> dialog.dismiss() }
+        builder.setPositiveButton(activity.getString(R.string.ok)) { dialog, which -> dialog.dismiss() }
         builder.create().show()
     }
 
@@ -139,7 +139,7 @@ object Globals {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("Ok") { dialog, which -> onclikAllert.onclik() }
+        builder.setPositiveButton(context.getString(R.string.ok)) { dialog, which -> onclikAllert.onclik() }
         builder.create().show()
     }
 
@@ -147,8 +147,8 @@ object Globals {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
-        builder.setNegativeButton("Cancel") { dialogInterface, i ->
+        builder.setPositiveButton(activity.getString(R.string.yes)) { dialog, which -> onclikAllert.yes() }
+        builder.setNegativeButton(activity.getString(R.string.cancel)) { dialogInterface, i ->
             dialogInterface.dismiss()
             onclikAllert.no()
         }
@@ -159,8 +159,8 @@ object Globals {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle(title)
         builder.setMessage(message)
-        builder.setPositiveButton("Yes") { dialog, which -> onclikAllert.yes() }
-        builder.setNegativeButton("No") { dialogInterface, i ->
+        builder.setPositiveButton(activity.getString(R.string.yes)) { dialog, which -> onclikAllert.yes() }
+        builder.setNegativeButton(activity.getString(R.string.no)) { dialogInterface, i ->
             dialogInterface.dismiss()
             onclikAllert.no()
         }

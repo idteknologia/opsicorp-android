@@ -75,7 +75,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             toolbar.singgleTitleGravity(toolbar.START)
         }
-        toolbar.setTitleBar("Cart List")
+        toolbar.setTitleBar(getString(R.string.cart_list))
 
         btn_bisnis_trip.setOnClickListener(this)
         btn_personal_trip.setOnClickListener(this)
@@ -164,7 +164,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             }
 
             override fun failedLoad(message: String) {
-                Globals.showAlert("Sorry", message, this@NewCartActivity)
+                Globals.showAlert(getString(R.string.sorry), message, this@NewCartActivity)
             }
         })
     }
@@ -180,13 +180,13 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             override fun successLoad(boolean: Boolean) {
 
                 if (!boolean) {
-                    Globals.showAlert("Sorry", "something wrong!", applicationContext)
+                    Globals.showAlert(getString(R.string.sorry), "something wrong!", applicationContext)
                 }
 
             }
 
             override fun failedLoad(message: String) {
-                Globals.showAlert("Sorry", message, applicationContext)
+                Globals.showAlert(getString(R.string.sorry), message, applicationContext)
             }
         })
 
@@ -215,9 +215,9 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     fun failedWarning(message: String) {
         if (message.isNotEmpty()) {
-            showAlert("Sorry", message)
+            showAlert(getString(R.string.sorry), message)
         } else {
-            showAlert("Sorry", "failed to retrieve data")
+            showAlert(getString(R.string.sorry), getString(R.string.failed_to_retrieve_data))
         }
     }
 
@@ -438,27 +438,27 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     private fun headerHotel(): CartHeaderModel {
         val header = CartHeaderModel()
-        header.titleHeader = "Hotel Summary"
-        header.typeTrip = "OneWay"
+        header.titleHeader = getString(R.string.hotel_summary)
+        header.typeTrip = getString(R.string.one_way)
         header.typeHeader = Constants.TYPE_HOTEL
         return header
     }
 
     private fun headerTrain(): CartHeaderModel {
         val header = CartHeaderModel()
-        header.titleHeader = "Train Summary"
-        header.typeTrip = "OneWay"
+        header.titleHeader = getString(R.string.txt_train_summary)
+        header.typeTrip = getString(R.string.one_way)
         header.typeHeader = Constants.TYPE_TRAIN
         return header
     }
 
     private fun headerFlight(data: List<ItemFlightModel>): CartHeaderModel {
         val header = CartHeaderModel()
-        header.titleHeader = "Flight Summary"
+        header.titleHeader = getString(R.string.flight_summary)
         if (data[0].type == 0) {
-            header.typeTrip = "One Way"
+            header.typeTrip = getString(R.string.one_way)
         } else {
-            header.typeTrip = "Round Trip"
+            header.typeTrip = getString(R.string.round_trip)
         }
         header.typeHeader = Constants.TYPE_FLIGHT
         return header
@@ -544,7 +544,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()) {
             btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
             line_warning.visibility = View.VISIBLE
-            tv_warning_cart.text = "Please wait.. We try to connecting ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
+            tv_warning_cart.text = "${getString(R.string.please_wait_we_try_to_connecting)} ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
         } else {
             if (itemsTrip.filter { it.status == "Expired" }.isNotEmpty()) {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
@@ -552,7 +552,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             } else {
                 if (itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty()) {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
-                    tv_warning_cart.text = "Please wait until your trip item status Reserved"
+                    tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
                     line_warning.visibility = View.VISIBLE
                     line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
                 }
@@ -589,6 +589,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun issuedAll() {
+        showLoadingOpsicorp(true)
         GetDataTravelRequest(getBaseUrl()).issuedAllTrip(getToken(),bodyIssuedAll(), object : CallbackApprovAll{
             override fun successLoad(data: String) {
                 hideLoadingOpsicorp()
@@ -628,7 +629,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
             override fun failedLoad(message: String) {
                 hideLoadingOpsicorp()
-                showAlert("Sorry", message)
+                showAlert(getString(R.string.sorry), message)
             }
         })
     }

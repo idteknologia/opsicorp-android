@@ -183,10 +183,10 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         fun bind(data: ItemFlightModel, position: Int) {
             if(data.num == 0 && data.seq == 0){
                 tv_dep_return_tittle.visibility = View.VISIBLE
-                tv_dep_return_tittle.text   = "DEPARTURE FLIGHT"
+                tv_dep_return_tittle.text   = itemView.context.getString(R.string.departure_flight)
             }else if(data.num == 1 && data.seq == 0){
                 tv_dep_return_tittle.visibility = View.VISIBLE
-                tv_dep_return_tittle.text   = "RETURN FLIGHT"
+                tv_dep_return_tittle.text   = itemView.context.getString(R.string.return_flight)
             }else{
                 tv_dep_return_tittle.visibility = View.GONE
             }
@@ -299,8 +299,8 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         val btnDetail = layout.findViewById(R.id.tv_view_detail) as TextView
         val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
 
-        btnDetail.text = "Approve"
-        btnRemove.text = "Reject"
+        btnDetail.text = itemView.context.getString(R.string.approve)
+        btnRemove.text = itemView.context.getString(R.string.reject)
 
         btnDetail.setOnClickListener {
             popup?.dismiss()

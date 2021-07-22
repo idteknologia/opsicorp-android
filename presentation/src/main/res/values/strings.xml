@@ -148,7 +148,6 @@
     <string name="select_accomodation">Select Accommodation</string>
     <string name="select_all">Select All</string>
     <string name="select_for_accomodation">Select For Accommodation</string>
-    <string name="select_your_purpose">Select your travel purpose</string>
     <string name="select_your_budget">Select your budget</string>
     <string name="select_budget">Select Budget</string>
     <string name="select_cost_center">Select Cost Center</string>
@@ -746,7 +745,6 @@ Please add your trip item for Approval."
     <string name="_0_100">0 / 100</string>
     <string name="congratulation">Congratulation</string>
     <string name="review_budget">3. Review Budget</string>
-    <string name="guest">Total Guest</string>
     <string name="information">Please attach your document! \n e.g. invitation letter or official letter \n Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.\n Maximum file size : 1 MB</string>
     <string name="select_your_travel_purpose">Select your travel purpose</string>
     <string name="select_trip_activity_type">Select trip activity type</string>
@@ -792,7 +790,7 @@ Please add your trip item for Approval."
     <string name="txt_fill_passenger">Fill passenger and contact information in details.</string>
     <string name="txt_passenger_information">Passenger Information</string>
     <string name="txt_booking_contact">Booking Contact</string>
-    <string name="txt_contacts_name">Contacts Name</string>
+    <string name="txt_contacts_name">Contact\'s Name</string>
     <string name="txt_without_degree_or_special">(without degree or special characters)</string>
     <string name="txt_contact_number">Contact Number</string>
     <string name="txt_economy_class">Economy Class</string>

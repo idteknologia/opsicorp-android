@@ -109,6 +109,7 @@ class FlightMultiCityListActivity : BaseActivity(),
             toolbar.singgleTitleGravity(toolbar.START)
         }
         btn_next.callbackOnclickButton(this)
+        btn_next.setTextButton("Book")
         tv_price.setText("0 IDR")
         line_shadow.gone()
     }

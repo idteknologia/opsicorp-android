@@ -73,7 +73,7 @@ class LoginPremiumActivity : BaseActivity(),
 
 
     private fun failedWarning(message:String) {
-        Globals.showAlert("Failed",message,this)
+        Globals.showAlert(getString(R.string.failed),message,this)
     }
 
     private fun saveDataLogin(data: DataLoginModel) {

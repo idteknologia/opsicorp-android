@@ -39,7 +39,7 @@
                     android:textStyle="normal"
                     android:textColor="#24253d"
                     android:lineSpacingExtra="8sp"
-                    android:text="Detail Participant" />
+                    android:text="@string/detail_participant" />
 
                 <LinearLayout
                     android:orientation="vertical"
@@ -62,7 +62,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Name"
+                            android:text="@string/name"
                             />
 
                         <TextView
@@ -107,7 +107,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Budget"
+                            android:text="@string/budget"
                             />
 
                         <TextView
@@ -152,7 +152,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Cost Center"
+                            android:text="@string/cost_center"
                             />
 
                         <TextView
@@ -197,7 +197,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Approver"
+                            android:text="@string/approver"
                             />
 
                         <TextView
@@ -242,7 +242,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Trip Item"
+                            android:text="@string/trip_item"
                             />
 
                         <TextView
@@ -287,7 +287,7 @@
                             android:fontFamily="sans-serif-medium"
                             android:textStyle="normal"
                             android:textColor="#939396"
-                            android:text="Allowance"
+                            android:text="@string/allowance"
                             />
 
                         <TextView
@@ -360,7 +360,7 @@
                             android:textStyle="normal"
                             android:textColor="#2b9a8e"
                             android:gravity="center_horizontal"
-                            android:text="Trip Code:"
+                            android:text="@string/trip_code_with_symbol"
                             />
 
                         <TextView
@@ -619,7 +619,7 @@
                     android:fontFamily="sans-serif"
                     android:textStyle="normal"
                     android:textColor="#24253d"
-                    android:text="Total Amount: "
+                    android:text="@string/total_amount_with_symbol"
                     />
 
                 <TextView
@@ -640,7 +640,7 @@
                 layout="@layout/confirm_approve_bottom"
                 android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"></include>
+                android:layout_height="130dp"/>
 
         </LinearLayout>
 

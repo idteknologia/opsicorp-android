@@ -36,7 +36,7 @@
                 android:textSize="13sp"
                 android:textColor="#707070"
                 android:lineSpacingExtra="9sp"
-                android:text="Please complete the data for easy access booking. Enjoy the new experince in Business Trip and Personal Trip."
+                android:text="@string/txt_content_travelaja_member"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="19dp"
-                    android:text="Travelaja Member"
+                    android:text="@string/txt_travelaja_member"
                     android:textColor="@color/colorBlueTitle"
                     android:textSize="22sp" />
 
@@ -72,7 +72,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" Full Name"
+                        android:text="@string/full_name"
                         android:textColor="#91929e"
                         android:textSize="14dp" />
 
@@ -101,7 +101,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" New Password"
+                        android:text="@string/txt_new_password"
                         android:textColor="#91929e"
                         android:textSize="14dp" />
 
@@ -142,7 +142,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" New Password"
+                        android:text="@string/txt_new_password"
                         android:textColor="#91929e"
                         android:textSize="14dp" />
 
@@ -183,7 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text=" Company Name"
+                        android:text="@string/company_name"
                         android:textColor="#91929e"
                         android:textSize="14dp" />
 

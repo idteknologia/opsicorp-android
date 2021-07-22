@@ -32,7 +32,7 @@
                     android:layout_marginTop="3dp"
                     android:layout_width="30dp"
                     android:layout_height="39dp"
-                    android:src="@drawable/ic_other_form"></ImageView>
+                    android:src="@drawable/ic_other_form"/>
 
                 <LinearLayout
                     android:layout_marginLeft="12dp"
@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
                         android:textColor="#009688"
-                        android:text="Other"/>
+                        android:text="@string/other"/>
 
                     <LinearLayout
                         android:layout_marginRight="@dimen/margin_default"
@@ -60,7 +60,7 @@
                             android:textSize="12sp"
                             android:textColor="#91929e"
                             android:lineSpacingExtra="6sp"
-                            android:text="For passenger below 18 years old, you may enter \nanother valid ID number (e.g birth certificate, student ID ) " />
+                            android:text="@string/for_passenger_below_18_years_old_you_may_enter_nanother_valid_id_number_e_g_birth_certificate_student_id" />
                         <LinearLayout
                             android:layout_marginTop="4dp"
                             android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="12dp"
                                 android:textColor="#91929e"
-                                android:text="or date of birth ( " />
+                                android:text="@string/or_date_of_birth" />
                             <TextView
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                         android:textSize="14sp"
                         android:textColor="#8024253d"
                         android:lineSpacingExtra="4sp"
-                        android:text="Title"/>
+                        android:text="@string/title"/>
 
                     <LinearLayout
                         android:layout_width="50dp"
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="Full Name" />
+                        android:text="@string/full_name" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -186,7 +186,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -198,7 +198,7 @@
                         android:textSize="9sp"
                         android:textColor="#5488c1"
                         android:lineSpacingExtra="6sp"
-                        android:text="As on ID Card (KTP) without title and punctuation"
+                        android:text="@string/as_on_id_card_ktp_without_title_and_punctuation"
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
@@ -214,7 +214,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="ID Number" />
+                        android:text="@string/id_number" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -239,7 +239,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp"
                                 android:layout_marginTop="8dp"
-                                android:background="#b2bbc6"></LinearLayout>
+                                android:background="#b2bbc6"/>
 
                         </LinearLayout>
 
@@ -251,7 +251,7 @@
                         android:textSize="9sp"
                         android:textColor="#5488c1"
                         android:lineSpacingExtra="6sp"
-                        android:text="Student ID or date of birth (ddmmyyyy)"
+                        android:text="@string/student_id_or_date_of_birth_ddmmyyyy"
                         android:layout_marginTop="2dp"/>
                 </LinearLayout>
 
@@ -287,7 +287,7 @@
                 android:textColor="#24253d"
                 android:textSize="14sp"
                 style="@style/RobotoMedium"
-                android:text="Discard"
+                android:text="@string/discard"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -308,7 +308,7 @@
                 android:textColor="#24253d"
                 android:textSize="16sp"
                 style="@style/RobotoMedium"
-                android:text="Save"
+                android:text="@string/save"
                 android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

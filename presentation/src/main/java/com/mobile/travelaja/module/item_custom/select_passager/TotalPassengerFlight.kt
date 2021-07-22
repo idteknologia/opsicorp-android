@@ -123,9 +123,9 @@ class TotalPassengerFlight() {
     }
 
     private fun changeTotalView() {
-        binding.tvAdult.text  = "${totalAdult} Adult(s)"
-        binding.tvInfant.text  = "${totalInfant} Infant(s)"
-        binding.tvChild.text = "${totalChild} Children"
+        binding.tvAdult.text  = "${totalAdult} ${context.getString(R.string.txt_adult)}(s)"
+        binding.tvInfant.text  = "${totalInfant} ${context.getString(R.string.infant)}(s)"
+        binding.tvChild.text = "${totalChild} ${context.getString(R.string.children)}"
 
         if(totalAdult==0){
             binding.btnMinusAdult.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.minus_inactive))

@@ -62,7 +62,7 @@
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cost Center"
+                    android:text="@string/cost_center"
                     android:textColor="#91929e"
                     android:textSize="14sp" />
 
@@ -94,7 +94,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="15dp"
                 android:layout_marginRight="15dp"
-                android:text="Change"
+                android:text="@string/change"
                 android:textAllCaps="true"
                 android:textColor="@color/tintTextView"
                 android:textSize="14sp" />
@@ -117,7 +117,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Purpose"
+                    android:text="@string/purpose"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -136,7 +136,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:paddingBottom="8dp"
-                    android:text="New"
                     android:textColor="#24253d"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -151,7 +150,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Activity"
+                    android:text="@string/activity"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -185,7 +184,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Trip Route"
+                    android:text="@string/trip_route"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -219,7 +218,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="Start Date"
+                    android:text="@string/start_date"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 
@@ -252,7 +251,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.5"
-                    android:text="End Date"
+                    android:text="@string/end_date"
                     android:textColor="#91929e"
                     android:textSize="16sp" />
 

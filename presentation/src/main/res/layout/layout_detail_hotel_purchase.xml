@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/RobotoRegular"
-                android:text="Hotels"
+                android:text="@string/hotels"
                 android:textSize="11dp"
                 android:textColor="#2b9a8e">
 
@@ -140,7 +140,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#939396"
-                        android:text="Chek In"
+                        android:text="@string/chek_in"
                         />
 
                     <TextView
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#939396"
-                        android:text="Chek Out"
+                        android:text="@string/chek_out"
                         />
 
                     <TextView
@@ -260,7 +260,7 @@
             android:layout_marginRight="@dimen/margin_default"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#d3d3d8"></LinearLayout>
+            android:background="#d3d3d8"/>
 
 
         <RelativeLayout
@@ -276,7 +276,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#009688"
-                android:text="Booking Contact">
+                android:text="@string/txt_booking_contact">
             </TextView>
 
             <TextView
