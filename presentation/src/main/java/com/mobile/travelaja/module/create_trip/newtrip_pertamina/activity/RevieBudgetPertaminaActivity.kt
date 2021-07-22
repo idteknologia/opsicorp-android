@@ -67,6 +67,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     private fun postDataForEstimateCost() {
+        showDialog(getString(R.string.please_wait))
         GetDataTravelRequest(getBaseUrl()).getEstimatedCost(Globals.getToken(), dataPurpose(), object : CallbackEstimatedCostTravelRequest {
             override fun successLoad(data: EstimatedCostTravelRequestModel) {
                 dataCost = data
@@ -86,6 +87,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.estLaundry = dataCost.estLaundry.toInt()
                 participanItem.estHotel = dataCost.estHotel.toInt()
                 dataTrip.participant.add(participanItem)
+                hideDialog()
             }
 
             override fun failedLoad(message: String) {
@@ -124,7 +126,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.purpose = dataTrip.namePusrpose
         dataRequest.startDate = dataTrip.startDate
         dataRequest.endDate = dataTrip.endDate
-        dataRequest.golper  = 2
+
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()
         dataTrip.routes.forEachIndexed { index, routesItinerary ->

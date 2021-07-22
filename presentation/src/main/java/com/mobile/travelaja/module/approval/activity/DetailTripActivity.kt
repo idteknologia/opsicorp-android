@@ -178,7 +178,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         dataRequest.purpose = tripSummary.purpose
         dataRequest.startDate = tripSummary.startDate
         dataRequest.endDate = tripSummary.returnDate
-        dataRequest.golper = 2
+
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()
         tripSummary.routes.forEachIndexed { index, routesItinerary ->
