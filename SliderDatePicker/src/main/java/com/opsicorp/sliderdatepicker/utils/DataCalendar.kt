@@ -14,7 +14,7 @@ class DataCalendar {
     fun getDataDates() : ArrayList<CalendarModel> {
         val mCalendar = Calendar.getInstance()
 
-        for (i in 1 until 6){
+        for (i in 1 until 13){
             calendarModels.add(addCalendarThisMonth(mCalendar))
             mCalendar.add(Calendar.MONTH, +1)
         }

@@ -704,7 +704,7 @@ Please add your trip item for Approval."
     <string name="txt_new_password">New Password</string>
     <string name="txt_fullname">FullName</string>
     <string name="txt_email_corporate_email">Email / Corporate email</string>
-    <string name="txt_continue_with_email">Continue with Email</string>
+    <string name="txt_continue_with_email">Register as Member</string>
     <string name="txt_contunue_with_google">Contunue with Google</string>
     <string name="txt_content_login_travel_aja">The new corporate travel management in Indonesia, seamless technology according your corporate travel policy.</string>
     <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
