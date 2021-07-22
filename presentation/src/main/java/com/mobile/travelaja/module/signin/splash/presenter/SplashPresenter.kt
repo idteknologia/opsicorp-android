@@ -56,7 +56,8 @@ class SplashPresenter {
                     val fcm = Globals.getDataPreferenceString(context, Constants.FCM_TOKEN)
                     thisFCMToken = fcm
                     Log.d("proxx 5 abc_dx11",": " + thisFCMToken)
-                    getCheckVersion(token)
+//                    getCheckVersion(token)
+                    getDataProfile(token)
                 } catch (e: IOException) {
                     Log.i("MyFirebaseTokenY no", "something wrong")
                     e.printStackTrace()
