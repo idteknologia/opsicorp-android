@@ -91,19 +91,24 @@ class DialogCamera : BaseDialogFragment() {
 
             GALLERY_PICTURE -> {
                 if (resultCode == Activity.RESULT_OK) {
-                    changeButtonUploaded()
-                    val selectedImage = data!!.data
-                    if (selectedImage != null) {
-                        if (selectedImage.path!!.contains("/raw/")){
-                            pictureImagePath = selectedImage.path.toString().replace("/raw/","")
-                        } else {
-                            pictureImagePath  = selectedImage.path!!
-                        }
-                    }
-
                     try {
-                        val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImage)
-                        image_selected.setImageBitmap(bitmap)
+                        changeButtonUploaded()
+                        val selectedImage = data!!.data
+                        if (selectedImage != null) {
+                            if (selectedImage.path!!.contains("/raw/")){
+                                pictureImagePath = selectedImage.path.toString().replace("/raw/","")
+                            } else {
+                                pictureImagePath  = selectedImage.path!!
+                            }
+                        }
+                        if (pictureImagePath.contains("jpg")||pictureImagePath.contains("png")||pictureImagePath.contains("jpeg")){
+                            val bitmap: Bitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, selectedImage)
+                            image_selected.setImageBitmap(bitmap)
+                        }
+                        if (pictureImagePath.contains("pdf")||pictureImagePath.contains("doc")||pictureImagePath.contains("xls")||pictureImagePath.contains("xlsx")){
+                            callbackDialog.data(pictureImagePath)
+                            dismiss()
+                        }
                     } catch (e: IOException) {
                         Globals.setLog("TAG", "Some exception $e")
                     }
@@ -132,12 +137,9 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     private fun getImageFromGalery() {
-        val pictureActionIntent = Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI).setType("image/*")
-        startActivityForResult(
-                Intent.createChooser(pictureActionIntent, "Select File"),
-                GALLERY_PICTURE)
+        val type = "*/*"//"image/*|application/pdf|application/doc/|application/docx/|application/xls/|application/xlsx/*"
+        val pictureActionIntent = Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI).setType(type) // */* setType("image/*")
+        startActivityForResult(Intent.createChooser(pictureActionIntent, "Select File"),GALLERY_PICTURE)
     }
 
     private fun getOpenCamera() {
@@ -151,7 +153,7 @@ class DialogCamera : BaseDialogFragment() {
         pictureImagePath = storageDir.absolutePath + "/" + imageFileName
         val file = File(pictureImagePath)
         val outputFileUri = Uri.fromFile(file)
-        val cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri)
         startActivityForResult(cameraIntent, CAMERA_REQUEST)
 

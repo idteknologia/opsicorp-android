@@ -84,5 +84,15 @@ class TestLogic {
         var testSegment = ArrayList<String>()
     }
 
+    @Test
+    fun testContains(){
+        var data = "cahd.doc"
+        if (data.contains("pdf")||data.contains("doc")||data.contains("xls")||data.contains("xlsx")){
+
+        }
+        else{
+            print("loh")
+        }
+    }
 
 }

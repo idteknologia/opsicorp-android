@@ -14,25 +14,29 @@ import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.layout_test.*
 import opsigo.com.datalayer.mapper.Serializer
 
-class TestActivity : BaseActivity() ,CallbackCalendar{
-
+class TestActivity : BaseActivity() {
+//    ,CallbackCalendar
     var latitude  = -7.3589299
     var longitude = 112.6916272
 
     override fun getLayout(): Int { return R.layout.layout_test }
 
     override fun OnMain() {
+        tvPermission.setOnClickListener {
+
+        }
 //        tvPermission.setOnClickListener {
 //            checkPermissionLocation()
 //        }
 
 //        getAllAirLine()
 
-        calendarView.callbackCalendarListener(this)
-        calendarView.typeSelected(SINGGLE_SELECTED)
+//        calendarView.callbackCalendarListener(this)
+//        calendarView.typeSelected(SINGGLE_SELECTED)
 
     }
 
+/*
     val data = "{\n" +
             "  \"CabinFilterClasses\" : [],\n" +
             "  \"PreferredCarriers\" : [\"ID\"],\n" +
@@ -145,5 +149,5 @@ class TestActivity : BaseActivity() ,CallbackCalendar{
 
     override fun endDate(string: String) {
         setLog(string)
-    }
+    }*/
 }

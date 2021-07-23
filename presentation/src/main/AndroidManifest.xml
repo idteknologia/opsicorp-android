@@ -49,7 +49,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map" />
 
-
         <activity
             android:name="com.mobile.travelaja.module.signin.splash.activity.SplashActivity"
             android:screenOrientation="portrait" />
@@ -59,7 +58,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.mobile.travelaja.module.item_custom.map.TestActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity"
             android:screenOrientation="portrait" />
@@ -87,7 +87,6 @@
         <activity
             android:name="com.mobile.travelaja.module.signin.login.activity.LoginActivity"
             android:screenOrientation="portrait">
-
             <!-- this main -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

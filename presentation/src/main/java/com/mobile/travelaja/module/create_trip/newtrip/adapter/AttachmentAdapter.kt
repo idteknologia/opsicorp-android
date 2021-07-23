@@ -52,6 +52,7 @@ class AttachmentAdapter (val context: Context, private var items: ArrayList<Uplo
             holder.itemView.image_delet.visibility = View.GONE
             holder.itemView.progressBar.visibility = View.GONE
             holder.itemView.tv_failed.visibility   = View.VISIBLE
+//            holder.itemView.tx_name_document.text  = data.statusUploaded
         }
 
         holder.itemView.tv_failed.setOnClickListener {

@@ -5,13 +5,12 @@
     android:orientation="vertical">
 
     <Button
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="permission"
         android:id="@+id/tvPermission"/>
 
-    <Button
+ <!--   <Button
         android:visibility="gone"
         android:id="@+id/tv_current_lication"
         android:layout_width="wrap_content"
@@ -227,5 +226,5 @@
         android:id="@+id/calendarView"
         android:layout_height="match_parent">
     </com.opsicorp.sliderdatepicker.lib.CalendarVertical>
-
+-->
 </LinearLayout>

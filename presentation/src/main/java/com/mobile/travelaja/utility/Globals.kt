@@ -25,7 +25,6 @@ import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
 import com.google.zxing.BarcodeFormat
@@ -49,7 +48,6 @@ import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
-
 
 /**
  * Created by khoiron on 11/06/18.
@@ -387,21 +385,32 @@ object Globals {
         return fileToUpload
     }
 
-    fun getImageFile(context: Context, requestPicture: String?, path: String): MultipartBody.Part? {
+    fun getImageFile(context: Context, requestPictures: String?, path: String): MultipartBody.Part? {
         var fileToUpload: MultipartBody.Part? = null
 
+        var requestPicture = requestPictures
         val file: File
         if (requestPicture != null) {
-
+            if (requestPicture.contains("external_files")){
+                requestPicture = requestPicture.replace("/external_files","") // /storage/emulated/0/DCIM/Camera/IMG_20210713_144320.jpg
+                requestPicture = "/storage/emulated/0${requestPicture}" // /external_files/DCIM/Camera/IMG_20210713_144320.jpg
+            }
+            else if (requestPicture.contains("root_files")){
+                requestPicture = requestPicture.replace("/root_files","")
+            }
             file = File(requestPicture)
-            val file_size = Integer.parseInt((file.length() / 1024).toString())
-            setLog("path "+requestPicture)
-            setLog("size image file after compress = "+file_size)
-            if (file_size > 2000) {
-                setLog("resize")
-                val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-                try {
-                    val resizedImage = Resizer(context)
+            /*
+            * comprez size image
+            * */
+            if (requestPicture.contains("jpg")||requestPicture.contains("png")||requestPicture.contains("jpeg")){
+                val file_size = Integer.parseInt((file.length() / 1024).toString())
+                setLog("path "+requestPicture)
+                setLog("size image file before compress = "+file_size)
+                if (file_size > 2000) {
+                    setLog("resize")
+                    val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+                    try {
+                        val resizedImage = Resizer(context)
                             .setTargetLength(1000)
                             .setQuality(100)
                             .setOutputFormat("JPEG")
@@ -409,21 +418,28 @@ object Globals {
                             .setOutputDirPath(dir.absolutePath)
                             .setSourceImage(file)
                             .getResizedFile()
-                    val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
-                    setLog("size image file before compress = "+file_size_resized.toString())
-                    val tsLong = System.currentTimeMillis() / 1000
-                    val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
-                    fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
-                } catch (e: Exception) {
-                    setLog(e.message.toString())
-                    e.printStackTrace()
-                }
+                        val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
+                        setLog("size image file after compress = "+file_size_resized.toString())
+                        val tsLong = System.currentTimeMillis() / 1000
+                        val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
+                        fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
+                    } catch (e: Exception) {
+                        setLog(e.message.toString())
+                        e.printStackTrace()
+                    }
 
-            } else {
-                val tsLong = System.currentTimeMillis() / 1000
-                val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
-                fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
+                } else {
+                    val tsLong = System.currentTimeMillis() / 1000
+                    val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
+                    fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
+                }
             }
+            else if (requestPicture.contains("pdf")||requestPicture.contains("doc")||requestPicture.contains("xls")||requestPicture.contains("xlsx")){
+                val tsLong = System.currentTimeMillis() / 1000
+                val image = RequestBody.create(MediaType.parse("application/${requestPicture.split(".").last().trim()}"), file)
+                fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".${requestPicture.split(".").last().trim()}", image)
+            }
+
         }
         return fileToUpload
     }

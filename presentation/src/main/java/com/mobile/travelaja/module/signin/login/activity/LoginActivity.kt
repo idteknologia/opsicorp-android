@@ -287,6 +287,5 @@ class LoginActivity : BaseActivity(),
         data.Email = personEmail
         return Globals.classToHashMap(data, RegisterWithEmailActivity.EmailModel::class.java)
     }
-
-
+    
 }
