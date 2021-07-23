@@ -16,8 +16,7 @@ data class RequestEstimatedCost (
         @field:SerializedName("EndDate")
         var  endDate: String = "",
 
-        @field:SerializedName("Golper")
-        var  golper: Int = 0,
+
 
         @field:SerializedName("Routes")
         var  routes: List<RoutesItem> = ArrayList(),
