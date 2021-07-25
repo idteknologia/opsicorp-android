@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -16,7 +17,6 @@ import android.provider.MediaStore
 import android.view.View
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
-import com.squareup.picasso.Picasso
 import com.unicode.kingmarket.Base.BaseDialogFragment
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.dialog_camera.*
@@ -30,6 +30,7 @@ class DialogCamera : BaseDialogFragment() {
 
     protected val CAMERA_REQUEST  = 0
     protected val GALLERY_PICTURE = 1
+    lateinit var imgFile: File
     var pictureImagePath          = ""
     lateinit var callbackDialog   : DialogCameraCallback
 
@@ -44,7 +45,7 @@ class DialogCamera : BaseDialogFragment() {
                 getImageFromGalery()
             }
             else {
-                callbackDialog.data(pictureImagePath)
+                callbackDialog.data(pictureImagePath,imgFile)
                 dismiss()
             }
         }
@@ -106,9 +107,10 @@ class DialogCamera : BaseDialogFragment() {
                             image_selected.setImageBitmap(bitmap)
                         }
                         if (pictureImagePath.contains("pdf")||pictureImagePath.contains("doc")||pictureImagePath.contains("xls")||pictureImagePath.contains("xlsx")){
-                            callbackDialog.data(pictureImagePath)
+                            callbackDialog.data(pictureImagePath, File(getPath(selectedImage)))
                             dismiss()
                         }
+                        imgFile = File(getPath(selectedImage))
                     } catch (e: IOException) {
                         Globals.setLog("TAG", "Some exception $e")
                     }
@@ -120,15 +122,19 @@ class DialogCamera : BaseDialogFragment() {
 
     }
 
-    private fun setImage(realPathFromURI: String) {
-//        setLog(realPathFromURI)
-//        val f = File(realPathFromURI)
-//        Picasso.get()
-//                .load(f)
-//                .into(image_selected)
+    fun getPath(uri: Uri?): String? {
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        val cursor: Cursor = context?.getContentResolver()?.query(uri!!, projection, null, null, null) ?: return null
+        val column_index: Int = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+        cursor.moveToFirst()
+        val s: String = cursor.getString(column_index)
+        cursor.close()
+        return s
+    }
 
+    private fun setImage(realPathFromURI: String) {
         setLog(realPathFromURI)
-        val imgFile = File(realPathFromURI)
+        imgFile = File(realPathFromURI)
 
         if (imgFile.exists()) {
             val myBitmap: Bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)

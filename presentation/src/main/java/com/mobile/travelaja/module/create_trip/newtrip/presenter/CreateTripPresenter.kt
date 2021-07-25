@@ -17,6 +17,7 @@ import com.mobile.travelaja.R
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.domainlayer.model.travel_request.TypeActivityTravelRequestModel
 import org.koin.core.inject
+import java.io.File
 
 class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinComponent {
     var dataAttachment  = ArrayList<UploadModel>()
@@ -133,12 +134,13 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         })
     }
 
-    fun addDataAttactment(imagePath: String) {
+    fun addDataAttactment(imagePath: String,file:File) {
         val splitName = imagePath.split("/")
         val mData = UploadModel()
         mData.pathOriginalLocalImage = imagePath
         mData.pathLocalImage = splitName.get(splitName.size-1)
         mData.statusUploaded = "load"
+        mData.file           = file
         dataAttachment.add(mData)
         adapter.setData(dataAttachment)
         uploadImage(dataAttachment.size-1)
@@ -153,7 +155,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
     }
 
     fun uploadImage(position: Int){
-        GetDataTripPlane(baseUrl).uploadFile(Globals.getToken(),Globals.getImageFile(context,dataAttachment[position].pathOriginalLocalImage,"file"),object : CallbackUploadFile {
+        GetDataTripPlane(baseUrl).uploadFile(Globals.getToken(),Globals.getImageFile(context,dataAttachment[position].pathOriginalLocalImage,"file",dataAttachment[position].file!!),object : CallbackUploadFile {
             override fun successLoad(data: UploadModel) {
                 dataAttachment[position].url = data.url
                 dataAttachment[position].nameImage = data.nameImage
@@ -164,6 +166,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
             override fun failedLoad(message: String) {
                 dataAttachment[position].statusUploaded = "failed"
                 adapter.notifyItemChanged(position)
+                Globals.setToast(message,context)
             }
         })
     }

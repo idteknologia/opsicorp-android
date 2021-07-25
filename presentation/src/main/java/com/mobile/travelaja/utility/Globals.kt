@@ -385,20 +385,20 @@ object Globals {
         return fileToUpload
     }
 
-    fun getImageFile(context: Context, requestPictures: String?, path: String): MultipartBody.Part? {
+    fun getImageFile(context: Context, requestPicture: String?, query: String,file: File): MultipartBody.Part? {
         var fileToUpload: MultipartBody.Part? = null
 
-        var requestPicture = requestPictures
-        val file: File
+//        val requestPicture = requestPictures
+//        val file = file
         if (requestPicture != null) {
-            if (requestPicture.contains("external_files")){
+           /* if (requestPicture.contains("external_files")){
                 requestPicture = requestPicture.replace("/external_files","") // /storage/emulated/0/DCIM/Camera/IMG_20210713_144320.jpg
                 requestPicture = "/storage/emulated/0${requestPicture}" // /external_files/DCIM/Camera/IMG_20210713_144320.jpg
             }
             else if (requestPicture.contains("root_files")){
                 requestPicture = requestPicture.replace("/root_files","")
             }
-            file = File(requestPicture)
+            file = File(requestPicture)*/
             /*
             * comprez size image
             * */
@@ -422,7 +422,7 @@ object Globals {
                         setLog("size image file after compress = "+file_size_resized.toString())
                         val tsLong = System.currentTimeMillis() / 1000
                         val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
-                        fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
+                        fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".jpeg", image)
                     } catch (e: Exception) {
                         setLog(e.message.toString())
                         e.printStackTrace()
@@ -431,13 +431,13 @@ object Globals {
                 } else {
                     val tsLong = System.currentTimeMillis() / 1000
                     val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
-                    fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".jpeg", image)
+                    fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".jpeg", image)
                 }
             }
             else if (requestPicture.contains("pdf")||requestPicture.contains("doc")||requestPicture.contains("xls")||requestPicture.contains("xlsx")){
                 val tsLong = System.currentTimeMillis() / 1000
                 val image = RequestBody.create(MediaType.parse("application/${requestPicture.split(".").last().trim()}"), file)
-                fileToUpload = MultipartBody.Part.createFormData(path, tsLong.toString() + ".${requestPicture.split(".").last().trim()}", image)
+                fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".${requestPicture.split(".").last().trim()}", image)
             }
 
         }
