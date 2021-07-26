@@ -25,6 +25,7 @@ class TransportExpenseAdapter(
     var listener: ItemClickListener
 ) :
     BaseListAdapter<TransportExpenses>() {
+
     init {
         setHasStableIds(true)
     }
@@ -52,7 +53,10 @@ class TransportExpenseAdapter(
 
     inner class TransportExpenseViewHolder(val binding: ItemTransportationExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(transport: TransportExpenses, position: Int, isRemove: ObservableBoolean,indexEmpty : ObservableInt) {
+        fun onBind(transport: TransportExpenses,
+                   position: Int,
+                   isRemove: ObservableBoolean,
+                   indexEmpty : ObservableInt) {
             binding.position = position
             binding.listener = listener
             binding.isRemove = isRemove
@@ -71,7 +75,7 @@ class TransportExpenseAdapter(
             binding.executePendingBindings()
             binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
                 val mode = group.findViewById<Chip>(checkedId)?.text
-                if (!binding.hasPendingBindings() && mode != null && transport.TransportationMode != mode.toString()) {
+                if (!binding.hasPendingBindings() && mode != null && transport.nameTransportationMode != mode.toString()) {
                     viewModel.calculateTransportByType(
                         TransportExpenseViewModel.NON_FLIGHT,
                         mode.toString(),

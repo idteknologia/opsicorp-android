@@ -10,10 +10,7 @@ import com.mobile.travelaja.module.home.repository.HomeDefaultRepository
 import com.mobile.travelaja.module.settlement.repository.DefaultSettlementRepository
 import com.mobile.travelaja.module.settlement.repository.SettlementServiceLocator
 import com.mobile.travelaja.module.settlement.repository.TripServiceLocator
-import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
-import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
-import com.mobile.travelaja.module.settlement.viewmodel.TransportExpenseViewModel
-import com.mobile.travelaja.module.settlement.viewmodel.TripViewModel
+import com.mobile.travelaja.module.settlement.viewmodel.*
 import com.mobile.travelaja.module.signin.login.viewmodel.UserServiceLocator
 import com.mobile.travelaja.module.signin.login.viewmodel.UserViewModel
 import com.mobile.travelaja.utility.Globals
@@ -36,8 +33,10 @@ class DefaultViewModelFactory(private val isFake: Boolean, private val context: 
         } else if (modelClass.isAssignableFrom(OtherExpenseViewModel::class.java)){
             val repository = SettlementServiceLocator.instance(api).getRepository()
             return OtherExpenseViewModel(repository) as T
-        }
-        else if (modelClass.isAssignableFrom(TripViewModel::class.java)) {
+        } else if (modelClass.isAssignableFrom(IntercityTransportViewModel::class.java)){
+            val repository = SettlementServiceLocator.instance(api).getRepository()
+            return IntercityTransportViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(TripViewModel::class.java)) {
             val repository = TripServiceLocator.instance(api).getRepository()
             return TripViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(ItineraryViewModel::class.java)){
@@ -49,7 +48,9 @@ class DefaultViewModelFactory(private val isFake: Boolean, private val context: 
         }else if (modelClass.isAssignableFrom(UserViewModel::class.java)){
             val repository = UserServiceLocator.instance(api).getRepository()
             return UserViewModel(repository) as T
-        } else{
+        }else if (modelClass.isAssignableFrom(TicketRefundViewModel::class.java)){
+            return TicketRefundViewModel() as T
+        }else{
             throw IllegalArgumentException("Unknown ViewModel class")
         }
     }

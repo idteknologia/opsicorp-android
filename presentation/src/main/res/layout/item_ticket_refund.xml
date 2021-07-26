@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobile.travelaja.utility.Utils" />
+        <import type="androidx.databinding.ObservableBoolean"/>
+        <import type="android.view.View"/>
+
+        <variable
+            name="isRemove"
+            type="ObservableBoolean" />
+        <variable
+            name="ticketRefund"
+            type="opsigo.com.domainlayer.model.settlement.Ticket" />
+
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.ItemClickListener" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp"
+        app:strokeColor="#f44336">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+            <TextView
+                android:id="@+id/tvPosition"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@{`Position `+(position+1)}"
+                android:textColor="#91929e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Transport 1" />
+
+            <Button
+                android:id="@+id/buttonRemove"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="9dp"
+                android:text="@string/remove"
+                android:textAppearance="@style/TextButtonStyle"
+                android:textColor="@color/buttonRemoveTextColor"
+                android:contentDescription="@{`buttonremove`+position}"
+                android:visibility="@{isRemove ? View.VISIBLE : View.GONE}"
+                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etTicket"
+                style="@style/EditedSelected_NoEditable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="null"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@{ticketRefund.ticketNumber.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
+                android:hint="Ticket Number"
+                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                android:paddingBottom="20dp"
+                android:contentDescription="@{`ticketNumber`+position}"
+                android:text="@{ticketRefund.ticketNumber}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPosition"
+                tools:text="Airport Tax" />
+            
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etRefundAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:text="@{String.valueOf(Utils.doubleParse(ticketRefund.amount)??``)}"
+                android:enabled="@{!ticketRefund.ticketNumber.empty}"
+                android:contentDescription="@{`refundamount`+position}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etTicket"
+                android:hint="Refund Amount"/>
+
+            <TextView
+                android:id="@+id/tvTicketPrice"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{Utils.formatCurrency(ticketRefund.price)}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etRefundAmount"
+                tools:text="7.000.000"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tvCategory"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{ticketRefund.category}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTicketPrice"
+                tools:text="Flight"
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

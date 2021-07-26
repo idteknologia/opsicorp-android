@@ -193,6 +193,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun setTypeAccount() {
+        tvReimbursement.isEnabled = false
+        tvReimbursement.setTextColor(Color.parseColor("#EFEFEF"))
         if (Globals.getBaseUrl(requireContext()) == MyURL.URL_TRAVELAJA) {
             tvAccountType.text = getString(R.string.txt_travelaja_basic)
             tvAccountType.setTextColor(Color.parseColor("#da2128"))
@@ -314,8 +316,16 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         }
     }
 
+
+
+    //Todo check exist personal trip
+    /*
+      @data kalau ada id trip(trip belum di checkout) masuk ke cart
+     */
     private fun chekExistPersonalTrip(type: Int) {
-        if (getProfile().companyCode!=Constants.codeCompanyTravelAja){
+        val profile = getProfile()
+        val config = getConfig()
+        if (profile.companyCode == Constants.codeCompanyTravelAja || config.isPersonalTrip || getBaseUrl().contains("basicqa.opsicorp.com")){
             showLoadingOpsicorp(true)
             GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(), object : CallbackString {
                 override fun successLoad(data: String) {

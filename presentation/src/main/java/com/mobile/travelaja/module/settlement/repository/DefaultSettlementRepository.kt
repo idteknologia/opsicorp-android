@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.datalayer.network.ServiceApi
 import opsigo.com.domainlayer.model.settlement.*
-import opsigo.com.domainlayer.model.trip.DetailTripResult
 import opsigo.com.domainlayer.model.trip.Trip
 
 class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepository {
@@ -33,13 +32,17 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             Result.Error(t)
         }
 
-    override suspend fun getDetailTrip(idTrip: String): Result<DetailTripResult> =
+    override suspend fun getDetailTrip(idTrip: String): Result<DetailSettlementResult> =
         try {
             val result = api.getDetailTrip(idTrip)
 //            val typeWorker = result.trip.Golper
 //            val rateStay = api.putSpecificAreaCompensation(mutableMapOf("Golper" to typeWorker,"IsStay" to 1))
 //            result.rateStay = rateStay.result
-            Result.Success(result)
+            if (result.trip != null){
+                Result.Success(result)
+            }else {
+                Result.Error(Throwable(Utils.ISNULL))
+            }
         } catch (t: Throwable) {
             Result.Error(t)
         }
@@ -87,5 +90,14 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
         } catch (t: Throwable) {
             Result.Error(t)
         }
+
+    override suspend fun submitSettlement(submit: SubmitSettlement): Result<SubmitResult>  =
+        try {
+            val result = api.submitSettlement(submit)
+            Result.Success(result)
+        }catch (t : Throwable){
+            Result.Error(t)
+        }
+
 
 }

@@ -41,6 +41,12 @@
         <action
             android:id="@+id/action_createSettlement_to_otherExpenseFragment"
             app:destination="@id/otherExpenseFragment" />
+        <action
+            android:id="@+id/action_createSettlement_to_ticketRefundFragment"
+            app:destination="@id/ticketRefundFragment" />
+        <action
+            android:id="@+id/action_createSettlement_to_intercityTransportFragment"
+            app:destination="@id/intercityTransportFragment" />
     </fragment>
     <fragment android:id="@+id/settlements"
         android:name="com.mobile.travelaja.module.settlement.view.SettlementsFragment"
@@ -68,5 +74,24 @@
         android:name="com.mobile.travelaja.module.settlement.view.OtherExpenseFragment"
         android:label="OtherExpenseFragment"
         tools:layout="@layout/base_list_fragment"/>
+    <fragment
+        android:id="@+id/ticketRefundFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.TicketRefundFragment"
+        android:label="TicketRefundFragment"
+        tools:layout="@layout/base_list_fragment">
+        <argument
+            android:name="ticketRefunds"
+            app:argType="opsigo.com.domainlayer.model.settlement.Ticket[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/intercityTransportFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.IntercityTransportFragment"
+        android:label="IntercityTransportFragment"
+        tools:layout="@layout/base_list_fragment">
+        <argument
+            android:name="route"
+            app:argType="opsigo.com.domainlayer.model.settlement.RouteTransport[]" />
+    </fragment>
+
 
 </navigation>

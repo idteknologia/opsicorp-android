@@ -30,8 +30,7 @@ class BankListAdapter(val viewModel: SettlementViewModel) : BaseListAdapter<Bank
             binding.bank = bank
             binding.executePendingBindings()
             itemView.setOnClickListener {
-                viewModel.submitSettlement.BankAccount = bank.Account
-                viewModel.submitSettlement.BankTransfer = bank.BankName
+                viewModel.selectedBank(bank.Account , bank.BankName)
                 itemView.findNavController().navigateUp()
             }
         }

@@ -13,6 +13,7 @@
         <variable
             name="clickListener"
             type="View.OnClickListener" />
+
     </data>
 
     <LinearLayout
@@ -99,7 +100,7 @@
                     android:onClick="@{clickListener}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@{viewModel.submitSettlement.bankTransfer.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
+                    android:drawableEnd="@{viewModel.submitSettlement.bankTransfer.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                     android:hint="@string/select_bank"
                     android:paddingBottom="20dp"
                     android:text="@{viewModel.submitSettlement.bankTransfer.empty ? null : viewModel.submitSettlement.bankAccount +` - `+viewModel.submitSettlement.bankTransfer}"
@@ -124,16 +125,16 @@
                     style="@style/EditedSelected_NoEditable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:onClick="@{clickListener}"
-                    android:drawableEnd="@{viewModel.submitSettlement.tripCode.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
+                    android:drawableEnd="@{viewModel.submitSettlement.tripCode.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                     android:hint="@string/select_trip_code"
+                    android:onClick="@{clickListener}"
                     android:paddingBottom="20dp"
                     android:text="@{viewModel.submitSettlement.tripCode}"
                     android:textAppearance="@style/TextInputLayout_Input"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
                     app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
                     app:layout_constraintTop_toBottomOf="@+id/labelTrip" />
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/contentSelected"
@@ -216,6 +217,7 @@
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switchIntercity"
                         style="@style/Widget.App.Switch"
+                        android:onClick="@{clickListener}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
@@ -393,6 +395,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
+                        android:onClick="@{clickListener}"
                         android:text="@string/ticket_refund"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dividerExpense"
@@ -516,15 +519,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:barrierDirection="top"
-                    app:constraint_referenced_ids="buttonNext" />
+                    app:constraint_referenced_ids="buttonSubmit" />
 
                 <Button
-                    android:id="@+id/buttonNext"
+                    android:id="@+id/buttonSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="29dp"
                     android:layout_marginRight="@dimen/margin_default"
+                    android:onClick="@{clickListener}"
                     android:background="@drawable/select_button_yellow"
                     android:enabled="@{viewModel.buttonNextEnabled}"
                     android:text="@string/submit"

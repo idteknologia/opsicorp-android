@@ -68,6 +68,7 @@ class ExampleUnitTest {
         println(result)
     }
 
+
     @Test
     fun getCities() {
 //        val cities = TestUtil.getListObject<City>(context, R.raw.cities)

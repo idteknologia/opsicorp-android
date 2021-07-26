@@ -639,6 +639,7 @@ class FlightFragmentNew : BaseFragment(),
         if (typeTrip.equals("multi_city")) {
             mFlightMulti.routes[currentPosition].dateDeparture = startDate
         } else {
+            if (displayStartDate != "Error Formating")
             tv_departur_date.text = displayStartDate
         }
 

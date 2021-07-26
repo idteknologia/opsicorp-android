@@ -61,5 +61,8 @@ data class ConfigEntity(
 	var setCurrency: String = "",
 
 	@field:SerializedName("IsShowCreateTripOnMobile")
-	var isShowCreateTripOnMobile: Boolean = false
+	var isShowCreateTripOnMobile: Boolean = false,
+
+	@field:SerializedName("ShowPersonalTrip")
+    var isPersonalTrip: Boolean = false
 )

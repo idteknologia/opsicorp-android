@@ -42,10 +42,10 @@ data class Bank(
 class SubmitSettlement : BaseObservable() {
     @get:Bindable
     var BankTransfer: String = ""
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.bankTransfer)
-    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.bankTransfer)
+        }
     var BankAccount: String = ""
     var TripId: String = ""
 
@@ -55,6 +55,8 @@ class SubmitSettlement : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.tripCode)
         }
+    var StartDate: String = ""
+    var EndDate: String = ""
 
     @get:Bindable
     var SpecificAreaTariff: Number = 0
@@ -77,13 +79,14 @@ class SubmitSettlement : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.totalSpecificAreaExpense)
         }
+
     @get:Bindable
     var TransportExpenses = mutableListOf<TransportExpenses>()
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.transportExpenses)
-    }
-    var TotalTransportExpense : Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.transportExpenses)
+        }
+    var TotalTransportExpense: Number = 0
     fun bankSelected(): String? {
         if (BankTransfer.isNotEmpty() && BankAccount.isNotEmpty()) {
             return "$BankAccount - $BankTransfer"
@@ -99,51 +102,55 @@ class TransportExpenses : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.city)
         }
+
     @get:Bindable
     var TransportationType: Int = 1
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.transportationType)
-    }
-    var TransportationMode: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.transportationType)
+        }
+    var nameTransportationMode: String = ""
+
     @get:Bindable
-    var transportationModeId : Int = 0
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.transportationModeId)
-    }
+    var TransportationMode: Int = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.transportationMode)
+        }
+
     @get:Bindable
     var Amount: Number = 0
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.amount)
-    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.amount)
+        }
     var TripType: Int = 0
     var Currency: String = "IDR"
+
     @get:Bindable
     var TotalAmount: Number = 0
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.totalAmount)
-    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.totalAmount)
+        }
 }
 
-class OtherExpense : BaseObservable(){
+class OtherExpense : BaseObservable() {
     @get:Bindable
-    var expenseName : String = ""
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.expenseName)
-    }
-    var ExpenseType : String = ""
-    var Amount : String = ""
-    var Description : String = ""
-    var Currency : String = ""
+    var expenseName: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.expenseName)
+        }
+    var ExpenseType: String = ""
+    var Amount: String = ""
+    var Description: String = ""
+    var Currency: String = ""
 }
 
 @Parcelize
 data class ModeTransport(
-    var id : Int,
+    var id: Int,
     var Disabled: Boolean,
     val Text: String,
     val Value: Int
@@ -151,16 +158,76 @@ data class ModeTransport(
 
 data class ExpenseType(
     var Disabled: Boolean,
-    var Selected : Boolean,
+    var Selected: Boolean,
     var Text: String,
     var Value: String
-){
+) {
     override fun toString(): String {
         return Text
     }
 }
 
-
 data class CalculateTransportResult(
     var isSuccess: Boolean, var amount: Double
 )
+
+data class SubmitResult(var isSuccess: Boolean, var isApproverSet: Boolean)
+
+
+@Parcelize
+class Ticket : Parcelable, BaseObservable() {
+    @SerializedName("TicketNumber")
+    @get:Bindable
+    var TicketNumber: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.ticketNumber)
+        }
+
+    @SerializedName("Category")
+    @get:Bindable
+    var Category: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.category)
+        }
+
+    @SerializedName("Amount")
+    var Amount: Number? = null
+
+    @SerializedName("Price")
+    @get:Bindable
+    var Price: Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.price)
+        }
+
+    @SerializedName("Currency")
+    var Currency: String = ""
+}
+
+@Parcelize
+open class RouteTransport : Parcelable, BaseObservable() {
+    @get:Bindable
+    var Route: String = ""
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.route)
+    }
+    @get:Bindable
+    var City: String = ""
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.city)
+        }
+}
+
+@Parcelize
+class IntercityTransport : RouteTransport(), Parcelable {
+    var Amount: Number = 0
+    var Distance: Number? = null
+    var TripType: Int = 0
+    var Currency: String = ""
+    var TotalAmount: Number = 0
+}

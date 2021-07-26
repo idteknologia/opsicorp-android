@@ -10,6 +10,7 @@ import java.text.NumberFormat
 
 object Utils {
     const val EMPTY = "Empty"
+    const val ISNULL = "DATA NULL"
     fun handleErrorMessage(context : Context,t : Throwable, callback:(errorString : String) -> Unit){
         if (t is IOException){
             callback.invoke(context.getString(R.string.no_internet))
@@ -38,6 +39,15 @@ object Utils {
         }catch (t : Throwable){
             return ""
         }
+    }
 
+    @JvmStatic
+    fun doubleParse(value: Number?) : Number? {
+        if (value != null){
+            val format = DecimalFormat("###.###")
+            return format.parse(value.toString())
+        }else {
+            return value
+        }
     }
 }

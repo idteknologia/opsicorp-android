@@ -87,11 +87,11 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         }
         val transport = getTransportExpense(pos)
         val city = transport.City
-        val tempId = transport.transportationModeId
+        val tempId = transport.TransportationMode
         val tempType = transport.TransportationType
         if (hasSameTransport(city, mode)) {
             _warning.value = Event(WARNING_SAME_DATA)
-            getTransportExpense(pos).transportationModeId = tempId
+            getTransportExpense(pos).TransportationMode = tempId
             getTransportExpense(pos).TransportationType = tempType
             return
         }
@@ -122,16 +122,16 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         city: String, type: Int, mode: String
     ) {
         val transport = getTransportExpense(pos)
-        val idMode = if (result is Result.Success) modeTransports.first { it.Text == mode }.id else transport.transportationModeId
+        val idMode = if (result is Result.Success) modeTransports.first { it.Text == mode }.id else transport.TransportationMode
         transport.TransportationType = if (result is Result.Success) type else transport.TransportationType
-        transport.transportationModeId = idMode
+        transport.TransportationMode = idMode
         if (result is Result.Success) {
             val tempAmount = transport.TotalAmount
             val amount = result.data.amount
             val tripType = transport.TripType
             transport.Amount = amount
             transport.City = city
-            transport.TransportationMode = mode
+            transport.nameTransportationMode = mode
             transport.TotalAmount = if (tripType == 0) amount else amount * 2
             updateTotal(amount, true,tempAmount)
         } else {
@@ -142,7 +142,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
     }
 
     private fun hasSameTransport(city: String, mode: String): Boolean {
-        return transportExpenses.any { it.City == city && it.TransportationMode == mode }
+        return transportExpenses.any { it.City == city && it.nameTransportationMode == mode }
     }
 
     fun getTransportExpense(pos: Int): TransportExpenses {
@@ -181,7 +181,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
 
     fun indexFirstEmpty() : Int {
       val i =   transportExpenses.indexOfFirst {
-          it.City.isEmpty() || (it.TransportationType == NON_FLIGHT && it.TransportationMode.isEmpty()) }
+          it.City.isEmpty() || (it.TransportationType == NON_FLIGHT && it.nameTransportationMode.isEmpty()) }
         indexEmpty.set(i)
       return  i
     }
@@ -191,7 +191,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
             val transport = getTransportExpense(pos)
             val totalAmount = transport.TotalAmount
             transport.TransportationType = NON_FLIGHT
-            transport.TransportationMode = ""
+            transport.nameTransportationMode = ""
             transport.Amount = 0
             transport.TotalAmount = 0
             updateTotal(totalAmount, false,0)

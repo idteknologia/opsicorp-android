@@ -63,7 +63,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     }
 
     private fun setDataTransports() {
-        val transports = settlementViewModel.submitSettlement.TransportExpenses
+        val transports = settlementViewModel.submitSettlement.value!!.TransportExpenses
         if (transports.isNotEmpty() && viewModel.transportExpenses.isEmpty()) {
             viewModel.totalTransport.value = settlementViewModel.totalTransport.get()
             viewModel.transportExpenses.clear()
@@ -137,8 +137,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         } else {
             val transports = viewModel.transportExpenses
             val total = viewModel.totalTransport.value
-            settlementViewModel.submitSettlement.TransportExpenses = transports
-            settlementViewModel.submitSettlement.TotalTransportExpense = total ?: 0
+            settlementViewModel.submitSettlement.value!!.TransportExpenses = transports
+            settlementViewModel.submitSettlement.value!!.TotalTransportExpense = total ?: 0
             if (settlementViewModel.modeTransports.isEmpty()) {
                 settlementViewModel.modeTransports.addAll(viewModel.modeTransports)
             }

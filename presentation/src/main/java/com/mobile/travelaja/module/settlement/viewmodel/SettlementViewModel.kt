@@ -1,7 +1,6 @@
 package com.mobile.travelaja.module.settlement.viewmodel
 
 import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableDouble
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,9 +45,13 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    val submitSettlement = SubmitSettlement()
-    private var _idTrip = ""
-    private var _tripCode = ""
+    var submitSettlement = MutableLiveData(DetailSettlement())
+    var tickets = mutableListOf<Ticket>()
+    var routes = mutableListOf<RouteTransport>()
+
+    var idTripSelected = ""
+    private var bankAccountSelected = ""
+    private var bankTransferSelected = ""
 
     private val _dayValueEvent = MutableLiveData<Event<Int>>()
     val dayValueEvent: LiveData<Event<Int>> = _dayValueEvent
@@ -69,28 +72,37 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         saveAction?.invoke()
     }
 
+    fun selectedBank(account : String , transfer : String ){
+        bankAccountSelected = account
+        bankTransferSelected = transfer
+        submitSettlement.value!!.BankAccount = account
+        submitSettlement.value!!.BankTransfer = transfer
+    }
+
     /*
       cek your id trip is not same from default or not empty
      */
-    fun getDetailTrip(idTrip: String) {
-        if (idTrip.isEmpty() || idTrip == _idTrip) {
+    fun getDetailTrip() {
+        if (idTripSelected == submitSettlement.value!!.TripId) {
             return
         }
+        isEnabledDetailInformation.set(false)
         viewModelScope.launch {
-            val result = repository.getDetailTrip(idTrip)
+            val result = repository.getDetailTrip(idTripSelected)
             compareDetailTrip(result)
         }
     }
 
-    private fun compareDetailTrip(result: Result<DetailTripResult>) {
+    private fun compareDetailTrip(result: Result<DetailSettlementResult>) {
         if (result is Result.Success) {
-            _tripCode = submitSettlement.TripCode
-            _idTrip = submitSettlement.TripId
-            submitSettlement.Golper = result.data.trip.Golper
-            _detailTrip.value = result.data
+            submitSettlement.value = result.data.trip
+            submitSettlement.value!!.BankAccount = bankAccountSelected
+            submitSettlement.value!!.BankTransfer = bankTransferSelected
+            tickets.clear()
+            tickets.addAll(result.data.listTicket)
+            routes.clear()
+            routes.addAll(result.data.trip!!.routes())
         } else {
-            submitSettlement.TripCode = _tripCode
-            submitSettlement.TripId = _idTrip
             val e = result as Result.Error
             _error.value = Event(e.exception)
         }
@@ -160,9 +172,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         if (checked) {
             updateRateDay()
         } else {
-            submitSettlement.SpecificAreaTariff = 0
-            submitSettlement.SpecificAreaDays = 0
-            submitSettlement.TotalSpecificAreaExpense = 0
+            submitSettlement.value!!.SpecificAreaTariff = 0
+            submitSettlement.value!!.SpecificAreaDays = 0
+            submitSettlement.value!!.TotalSpecificAreaExpense = 0
             _dayValueEvent.value = Event(0)
             loadingPostDay.value = false
             job?.cancel()
@@ -170,14 +182,14 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     fun calculateOvernight(countDay: Int) {
-        val price = submitSettlement.SpecificAreaTariff
-        submitSettlement.SpecificAreaDays = countDay
+        val price = submitSettlement.value!!.SpecificAreaTariff
+        submitSettlement.value!!.SpecificAreaDays = countDay
         val totalPrice = price.toInt() * countDay
-        submitSettlement.TotalSpecificAreaExpense = totalPrice
+        submitSettlement.value!!.TotalSpecificAreaExpense = totalPrice
     }
 
     private fun updateRateDay() {
-        val typeWork = submitSettlement.Golper
+        val typeWork = submitSettlement.value!!.Golper
         loadingPostDay.value = true
         job?.cancel()
         job = viewModelScope.launch {
@@ -188,9 +200,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
 
     private fun compareRateDay(result: Result<RateStayResult>) {
         if (result is Result.Success) {
-            submitSettlement.SpecificAreaTariff = result.data.result
-            submitSettlement.TotalSpecificAreaExpense = result.data.result
-            submitSettlement.SpecificAreaDays = 1
+            submitSettlement.value!!.SpecificAreaTariff = result.data.result
+            submitSettlement.value!!.TotalSpecificAreaExpense = result.data.result
+            submitSettlement.value!!.SpecificAreaDays = 1
         } else {
             val e = result as Result.Error
             checkedOverNight(false)
@@ -199,7 +211,20 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         loadingPostDay.value = false
     }
 
+    fun submit(){
+        viewModelScope.launch {
+//            val result = repository.submitSettlement(submitSettlement)
+//            compareSubmitResult(result)
+        }
+    }
 
+    private fun compareSubmitResult(result : Result<SubmitResult>){
+        if (result is Result.Success){
+
+        }else {
+            _error.value = Event((result as Result.Error).exception)
+        }
+    }
 
 
     companion object {

@@ -98,18 +98,19 @@
             <EditText
                 android:id="@+id/etOriginCity"
                 style="@style/EditedSelected_NoEditable"
-                android:drawableEnd="@{transport.City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_default"
+                android:drawableEnd="@{transport.City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                 android:hint="@string/origin_city"
-                android:paddingBottom="20dp"
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
-                tools:focusable="true"
+                android:paddingBottom="20dp"
                 android:text="@{transport.City}"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLabelSelectCity"
+                tools:focusable="true"
                 tools:text="Jakarta" />
 
             <com.google.android.material.switchmaterial.SwitchMaterial
@@ -148,7 +149,7 @@
                 app:chipSpacingHorizontal="25dp"
                 app:singleSelection="true"
                 app:selectionRequired="true"
-                appCheckedMode="@{transport.transportationModeId}"
+                appCheckedMode="@{transport.transportationMode}"
                 android:visibility="@{transport.transportationType == 2 ? View.VISIBLE : View.GONE}" />
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchRoundtrip"

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.mobile.travelaja.utility.Utils" />
+
+        <import type="androidx.databinding.ObservableBoolean" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="isRemove"
+            type="ObservableBoolean" />
+
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.ItemClickListener" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="data"
+            type="opsigo.com.domainlayer.model.settlement.IntercityTransport" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="4dp"
+        app:strokeColor="#f44336">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/tvPosition"
+                style="@style/SubtitleTextStyle"
+                tools:text="Transport 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@{`Position `+(position+1)}"
+                android:textColor="#91929e"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonRemove"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="9dp"
+                android:contentDescription="@{`buttonremove`+position}"
+                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                android:text="@string/remove"
+                android:textAppearance="@style/TextButtonStyle"
+                android:textColor="@color/buttonRemoveTextColor"
+                android:visibility="@{isRemove ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etRoute"
+                style="@style/EditedSelected_NoEditable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="null"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@{data.City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down}"
+                android:hint="Route"
+                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                android:paddingBottom="20dp"
+                android:contentDescription="@{`city`+position}"
+                android:text="@{data.City}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPosition"
+                tools:text="Jakarta - Bali" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchRoundtrip"
+                style="@style/Widget.App.Switch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:onClick="@{(v) -> listener.onClickItem(v,position)}"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:checked="@{data.tripType == 1}"
+                android:enabled="@{!data.city.empty}"
+                android:text="@string/roundtrip"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etRoute"
+                tools:checked="true" />
+
+            <TextView
+                android:id="@+id/tvCost"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@{data.amount.toString()}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/switchRoundtrip"
+                tools:text="3500"
+                tools:visibility="visible" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDistance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@{`etDistance`+position}"
+                android:hint="Distance"
+                android:inputType="numberDecimal"
+                android:text="@{String.valueOf(Utils.doubleParse(data.distance)??``)}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCost" />
+
+            <TextView
+                android:id="@+id/tvTotal"
+                style="@style/TextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:background="@drawable/card_background_grey"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{data.totalAmount.toString()}"
+                android:textColor="#52575c"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etDistance"
+                tools:text="7000"
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -28,6 +28,7 @@ class ConfigEntityDataMapper{
         data.mobileLogo               = configEntity.mobileLogo
         data.mobileTextLogo           = configEntity.mobileTextLogo
         data.mobileTextColorLogo      = configEntity.mobileTextColorLogo
+        data.isPersonalTrip           = configEntity.isPersonalTrip
         return data
     }
 }

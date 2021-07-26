@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.switchmaterial.SwitchMaterial
+import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
@@ -65,16 +66,22 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
                 binding.increaseDecreaseView.setValue(1, value)
             }
         }
-        viewModel.getDetailTrip(viewModel.submitSettlement.TripId)
+        viewModel.getDetailTrip()
     }
 
     private fun showTransportation(){
-        val cities = viewModel.detailTrip.value?.trip?.cities()?.toTypedArray()
+        val cities = viewModel.submitSettlement.value?.cities()?.toTypedArray()
         val modeTransports = viewModel.modeTransports.toTypedArray()
         cities?.let {
             val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities,modeTransports)
             findNavController().navigate(action)
+        }?: run {
+            showWarning()
         }
+    }
+
+    private fun showWarning(){
+        Toast.makeText(context,"Citi is Empty",Toast.LENGTH_SHORT).show()
     }
 
     override fun onClick(v: View?) {
@@ -87,6 +94,17 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
                     navigateOtherExpense()
                 }
             }
+            R.id.switchRefund -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateTicketRefund()
+                }
+            }
+            R.id.switchIntercity -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateIntercity()
+                }
+            }
+            R.id.buttonSubmit -> viewModel.submit()
             else -> navigateTripCode()
         }
     }
@@ -106,6 +124,22 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
         val action =
             CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment()
         findNavController().navigate(action)
+    }
+
+    private fun navigateIntercity(){
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(viewModel.routes.toTypedArray())
+        findNavController().navigate(action)
+    }
+
+    private fun navigateTicketRefund(){
+        val list = viewModel.tickets
+        if (!list.isNullOrEmpty()){
+            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTicketRefundFragment(list.toTypedArray())
+            findNavController().navigate(action)
+        }else {
+            showWarning()
+        }
+
     }
 
 }
