@@ -15,13 +15,16 @@ import android.os.Environment
 import android.os.StrictMode
 import android.provider.MediaStore
 import android.view.View
+import androidx.core.net.toFile
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.FileUtil
 import com.mobile.travelaja.utility.Globals
 import com.unicode.kingmarket.Base.BaseDialogFragment
 import com.yalantis.ucrop.UCrop
 import kotlinx.android.synthetic.main.dialog_camera.*
 import java.io.File
 import java.io.IOException
+import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -107,10 +110,10 @@ class DialogCamera : BaseDialogFragment() {
                             image_selected.setImageBitmap(bitmap)
                         }
                         if (pictureImagePath.contains("pdf")||pictureImagePath.contains("doc")||pictureImagePath.contains("xls")||pictureImagePath.contains("xlsx")){
-                            callbackDialog.data(pictureImagePath, File(getPath(selectedImage)))
+                            callbackDialog.data(pictureImagePath, FileUtil.from(context,selectedImage))
                             dismiss()
                         }
-                        imgFile = File(getPath(selectedImage))
+                        imgFile = FileUtil.from(context,selectedImage)
                     } catch (e: IOException) {
                         Globals.setLog("TAG", "Some exception $e")
                     }
