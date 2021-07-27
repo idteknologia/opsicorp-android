@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#009688</color>
+
+    <color name="colorBlueTitle">#24253D</color>
+    <color name="colorBlueHotel">#5499e4</color>
 <!--    <color name="colorPrimary">#00776a</color>-->
 <!--    <color name="colorPrimaryDark">#00776A</color>-->
 <!--    <color name="colorAccent">#F19C00</color>-->
@@ -76,7 +79,7 @@
 <!--    <color name="colorSunset">#ffcc11</color>-->
 <!--    <color name="colorDarkSunset">#e7420b</color>-->
 <!--    <color name="colorRed">#e53934</color>-->
-<!--    <color name="colorRedUndo">#eb0011</color>-->
+    <color name="colorRedUndo">#eb0011</color>
 
 <!--    <color name="colorBackgroundSelected">#f5f5f5</color>-->
 
@@ -98,7 +101,6 @@
 <!--    <color name="colorGrayButton">#F5F5F5</color>-->
 <!--    <color name="colorYellowButton">#FFB733</color>-->
 <!--    <color name="colorYellowButton_2">#F8B945</color>-->
-    <color name="colorBlueTitle">#24253D</color>
 
 <!--    <color name="blue_button_yes">#E7ECF3</color>-->
 <!--    <color name="blue_button_no">#00BAF5</color>-->

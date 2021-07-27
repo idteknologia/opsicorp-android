@@ -39,7 +39,7 @@
 
 <!--        </LinearLayout>-->
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/layScroll"
             android:visibility="visible"
             android:layout_width="match_parent"
@@ -852,6 +852,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
                     android:id="@+id/rv_attachment"
                     android:background="@android:color/white"
                     android:layout_marginTop="4dp"
@@ -962,7 +963,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
         <LinearLayout
