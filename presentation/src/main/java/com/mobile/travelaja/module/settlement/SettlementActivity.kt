@@ -14,7 +14,6 @@ import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 
 class SettlementActivity : AppCompatActivity() {
-
     private lateinit var viewModel : SettlementViewModel
     private lateinit var binding : ActivitySettlementBinding
 
