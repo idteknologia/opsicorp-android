@@ -107,7 +107,12 @@ class PaymentActivity : BaseActivity(),
                 tripSummary = summaryModel
                 if (tripSummary.paymentStatusView.equals("Paid")){
                     hideDialog()
-                    paymentSuccess()
+                    if (tripSummary.type==Constants.PERSONAL_TRIP){
+                        paymentSuccess()
+                    }else {
+                        showDialog(getString(R.string.payment_success))
+                        onBackPressed()
+                    }
                 } else {
                     hideDialog()
                     onBackPressed()

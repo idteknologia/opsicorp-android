@@ -14,6 +14,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 
 object Constants {
+    val URL_REGISTER = "https://travelaja.id/register/basic"
     val pertaminaUrl = "https://pertamina-dtm3-qa.opsicorp.com/"
     val KEY_IS_PARTICIPANT  = "isParticipant"
     val KEY_IS_APPROVAL     = "isApproval"
@@ -66,6 +67,7 @@ object Constants {
     var tipeTrip                 = ""
     var TRIP_CODE                = ""
     var TRIP_PLAN_ID             = ""
+    var TRIP_TYPE                = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
     val PROGRESS_TRAIN_CALLBACK  = 9099

@@ -80,6 +80,14 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
         }
     }
 
+    fun defaultButton(){
+        changeImageBtn(1)
+    }
+
+    fun selectedButton(){
+        changeImageBtn(0)
+    }
+
     private fun changeImageBtn(position:Int) {
 
         lineButtons.forEachIndexed { index, lineView ->

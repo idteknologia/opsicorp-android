@@ -48,6 +48,7 @@
     <string name="string_unable_to_load_image">Unable to Load Image</string>
     <string name="string_reselect">Click on Image to Reselect</string>
 
+
     <string name="opsicorp_splash">Opsicorp Splash</string>
     <string name="contact_information">Contact Information</string>
     <string name="contact_information_caps">CONTACT INFORMATION</string>
@@ -703,8 +704,8 @@ Please add your trip item for Approval."
     <string name="txt_new_password">New Password</string>
     <string name="txt_fullname">FullName</string>
     <string name="txt_email_corporate_email">Email / Corporate email</string>
-    <string name="txt_continue_with_email">Continue with Email</string>
     <string name="txt_contunue_with_google">Continue with Google</string>
+    <string name="txt_continue_with_email">Register as Member</string>
     <string name="txt_content_login_travel_aja">The new corporate travel management in Indonesia, seamless technology according your corporate travel policy.</string>
     <string name="txt_don_t_have_a_premium_account">Don\'t have a premium account ?</string>
     <string name="txt_welcome_back">Welcome Back!</string>
@@ -879,10 +880,10 @@ Please add your trip item for Approval."
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-<!--config SSO Pertamina-->
+    <!--config SSO Pertamina-->
     <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
     <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
-<!--config SSO Pertamina-->
+    <!--config SSO Pertamina-->
     <string name="selected_participant">Selected Participant</string>
     <string name="click_list_to_see_your_trip_detail">Click list to see your trip detail</string>
     <string name="today">Today</string>
@@ -897,6 +898,9 @@ Please add your trip item for Approval."
     <string name="select">Select</string>
     <string name="warning_delete_this_tripplan">Apa Anda yakin ingin menghapus tripplan ini?</string>
     <string name="select_your_purpose">Select your purpose</string>
+    <string name="select_your_origin">Select your origin</string>
+    <string name="select_your_destination">Select your destination</string>
+    <string name="fill_your_note">Fill your note</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>
@@ -923,6 +927,7 @@ Please add your trip item for Approval."
     <string name="atm">Atm</string>
     <string name="mandiri__clickpay">Mandiri Clickpay</string>
     <string name="checking_payment">Checking Payment</string>
+    <string name="payment_success">Payment Success</string>
     <string name="insert_domain_name_your_corporate">Insert Domain name your Corporate</string>
     <string name="no_address_associated_with_hostname">No address associated with hostname</string>
     <string name="no_internet_connection">No internet connection!</string>
@@ -1110,4 +1115,6 @@ Please add your trip item for Approval."
     <string name="non_udara_">Non-Udara</string>
     <string name="udara_">Udara</string>
 
+
 </resources>
+

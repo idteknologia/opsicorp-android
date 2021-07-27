@@ -67,6 +67,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     private fun postDataForEstimateCost() {
+        showDialog(getString(R.string.please_wait))
         GetDataTravelRequest(getBaseUrl()).getEstimatedCost(Globals.getToken(), dataPurpose(), object : CallbackEstimatedCostTravelRequest {
             override fun successLoad(data: EstimatedCostTravelRequestModel) {
                 dataCost = data
@@ -86,6 +87,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.estLaundry = dataCost.estLaundry.toInt()
                 participanItem.estHotel = dataCost.estHotel.toInt()
                 dataTrip.participant.add(participanItem)
+                hideDialog()
             }
 
             override fun failedLoad(message: String) {
@@ -124,7 +126,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.purpose = dataTrip.namePusrpose
         dataRequest.startDate = dataTrip.startDate
         dataRequest.endDate = dataTrip.endDate
-        dataRequest.golper  = 2
+
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()
         dataTrip.routes.forEachIndexed { index, routesItinerary ->
@@ -205,7 +207,19 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         }
         originName = dataTrip.routes[0].Origin
         destinationName = dataTrip.routes[0].Destination
-        tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}"
+        if (dataTrip.routes.size >1){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}"
+        } else if (dataTrip.routes.size >2){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}"
+        } else if (dataTrip.routes.size >3){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}"
+        } else if (dataTrip.routes.size >4){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}"
+        } else if (dataTrip.routes.size >5){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}-${dataTrip.routes[5].Destination}"
+        } else {
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}"
+        }
         tv_start_date.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
     }
@@ -245,89 +259,6 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         val bundle = Bundle()
         gotoActivity(SucessCreateTripPlaneActivity::class.java)
     }
-
-    private fun saveAsDraft() {
-        showLoadingOpsicorp(true)
-        Constants.DATA_CREATE_TRIP = Serializer.serialize(dataTrip,DataBisnisTripModel::class.java)
-        setLog("Test Save",Serializer.serialize(dataTrip))
-        GetDataTripPlane(getBaseUrl()).saveAsDraftTripPlant(Globals.getToken(),dataRequest(),object : CallbackSaveAsDraft {
-            override fun successLoad(data: SuccessCreateTripPlaneModel) {
-                hideLoadingOpsicorp()
-                val bundle = Bundle()
-                data.status = tripRoute
-                data.costCenter = costCenterName
-                data.originName = originName
-                data.destinationName = destinationName
-                Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data)
-                gotoActivityWithBundle(SucessCreateTripPlaneActivity::class.java,bundle)
-            }
-
-            override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
-                showAllert(getString(R.string.sorry),message)
-            }
-
-        })
-    }
-
-    private fun dataRequest(): HashMap<String, Any> {
-        val dataDraft     = SaveAsDraftRequestPertamina()
-        dataDraft.origin = dataTrip.routes[0].Origin
-        dataDraft.destination = dataTrip.routes[0].Destination
-        dataDraft.golper = 2
-        dataDraft.purpose = dataTrip.namePusrpose
-        dataDraft.businessTripType = dataTrip.nameActivity
-        dataDraft.startDate = dataTrip.startDate
-        dataDraft.returnDate = dataTrip.endDate
-        dataDraft.type            = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
-        dataDraft.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
-        dataDraft.isDomestic = !dataTrip.isInternational
-        dataDraft.remark = dataTrip.notes
-        dataDraft.wbsNo = dataTrip.wbsNumber
-
-        dataDraft.routes = ArrayList()
-        val mDataRoutes = ArrayList<RoutesItem>()
-        dataTrip.routes.forEachIndexed { index, routesItinerary ->
-            val dataRoutes = RoutesItem()
-            dataRoutes.transportation = routesItinerary.Transportation
-            dataRoutes.departureDate = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "yyyy-MM-dd")
-            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
-            dataRoutes.origin   = routesItinerary.Origin
-            dataRoutes.destination = routesItinerary.Destination
-            mDataRoutes.add(dataRoutes)
-        }
-        dataDraft.routes = mDataRoutes
-
-        val attachments = ArrayList<TripAttachmentsItemRequest>()
-        dataTrip.image.forEachIndexed { index, uploadModel ->
-            val mDataAttachments = TripAttachmentsItemRequest()
-            mDataAttachments.description = uploadModel.nameImage
-            mDataAttachments.url         = uploadModel.url
-            attachments.add(mDataAttachments)
-        }
-        dataDraft.tripAttachments = attachments
-
-        dataDraft.tripParticipants = ArrayList()
-        val participants = ArrayList<TripParticipantsPertaminaItem>()
-        val mDataParticipants = TripParticipantsPertaminaItem()
-        mDataParticipants.employeeId = getProfile().employId
-        mDataParticipants.useCostCenterOther = costCenterOther
-        mDataParticipants.useCashAdvance = isCashAdvance
-        mDataParticipants.cashAdvance = cashAdvanceValue
-        mDataParticipants.costCenterCode = costCenterName
-        mDataParticipants.estFlight = dataCost.estFlight.toInt()
-        mDataParticipants.estTransportation = dataCost.estTransportation.toInt()
-        mDataParticipants.estTotal = dataCost.total.toInt()
-        mDataParticipants.estAllowance = dataCost.estAllowance.toInt()
-        mDataParticipants.estAllowanceEvent = dataCost.estAllowanceEvent.toInt()
-        mDataParticipants.estLaundry = dataCost.estLaundry.toInt()
-        mDataParticipants.estHotel = dataCost.estHotel.toInt()
-        participants.add(mDataParticipants)
-        dataDraft.tripParticipants = participants
-
-        return Globals.classToHasMap(dataDraft,SaveAsDraftRequestPertamina::class.java)
-    }
-
 
     override fun onClick(v: View?) {
         when (v) {

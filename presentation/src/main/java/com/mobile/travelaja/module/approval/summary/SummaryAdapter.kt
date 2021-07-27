@@ -196,7 +196,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             tv_pnr.text              = data.pnrCode
             tv_status.text           = data.status
             tv_number.text           = data.flightNumber
-            tv_date_arrival.text     = DateConverter().getDate(data.dateArrival,"yyyy-mm-dd","EEE, dd MMMM yyyy")
+            tv_date_arrival.text     = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd","EEE, dd MMM yyyy")
             time_departure.text      = data.timeDeparture
             time_arrival.text        = data.timeArrival
             tv_price.text            = "IDR "+Globals.formatAmount(data.price.split(".")[0])

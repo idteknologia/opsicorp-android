@@ -82,12 +82,19 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                 try {
                     if (response.isSuccessful){
                         val data = response.body()?.string()!!
-                        val dataResponse = Serializer.deserialize(data, UploadFileEntity::class.java)
-                        callback.successLoad(UploadFileMapper().mapping(dataResponse))
+                        val json = JSONObject(data)
+                        if (json.getBoolean("success")){
+                            val dataResponse = Serializer.deserialize(data, UploadFileEntity::class.java)
+                            callback.successLoad(UploadFileMapper().mapping(dataResponse))
+                        }
+                        else {
+                            val message = json.getString("errMsg")
+                            callback.failedLoad(message)
+                        }
                     }
                     else{
                         val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
+                        val message = json.getString("errMsg")
                         callback.failedLoad(message)
                     }
                 }catch (e:Exception){

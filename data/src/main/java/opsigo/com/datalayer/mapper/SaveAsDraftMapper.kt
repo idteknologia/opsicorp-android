@@ -10,6 +10,7 @@ class SaveAsDraftMapper {
         mData.originId     = data.origin
         mData.originName = data.originName
         mData.status     = data.statusView
+        mData.statusNumber = data.status!!
         mData.tripCode   = data.code
         mData.idTripPlane = data.id
         mData.purpose    = data.purpose

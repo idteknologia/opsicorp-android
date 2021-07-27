@@ -202,7 +202,7 @@
                             android:textColor="#24253d"
                             android:textColorHint="#24253d"
                             android:textSize="@dimen/font_edittext"
-                            tools:ignore="RtlCompat" />
+                            tools:ignore="RtlCompat,UsingOnClickInXml" />
 
 
                     </LinearLayout>

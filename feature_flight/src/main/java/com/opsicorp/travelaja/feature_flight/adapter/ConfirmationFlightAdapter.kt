@@ -50,6 +50,7 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
 
         holder.itemView.tv_origin.text = data.originDisplay
         holder.itemView.tv_depart.text = data.departureDisplay
+        holder.itemView.tv_class_type.text = data.class_type
         holder.itemView.tv_total_prize.text = data.totalPrice
         holder.itemView.tvFlightDate.text = data.date_arrival_departure
         holder.itemView.tv_airline_number.text  = data.airlineNumber

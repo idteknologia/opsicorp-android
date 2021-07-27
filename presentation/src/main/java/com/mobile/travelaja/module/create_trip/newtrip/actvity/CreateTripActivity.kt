@@ -33,6 +33,7 @@ import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.mobile.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import java.io.File
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -217,8 +218,8 @@ class CreateTripActivity : BaseActivity(),
     private fun showDialogCamera() {
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object :DialogCameraCallback{
-            override fun data(imagePath: String) {
-                presenter.addDataAttactment(imagePath)
+            override fun data(imagePath: String,file:File) {
+                presenter.addDataAttactment(imagePath,file)
             }
         })
     }

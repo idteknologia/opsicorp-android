@@ -22,6 +22,7 @@ import opsigo.com.domainlayer.callback.CallbackString
 import opsigo.com.domainlayer.callback.CallbackConfig
 import com.google.android.gms.common.api.ApiException
 import android.text.method.PasswordTransformationMethod
+import androidx.browser.customtabs.CustomTabsIntent
 import com.google.android.gms.common.api.GoogleApiClient
 import com.mobile.travelaja.utility.Constants.RC_SIGN_IN
 import opsigo.com.domainlayer.model.signin.DataLoginModel
@@ -34,6 +35,7 @@ import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
 import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
 import com.mobile.travelaja.module.signin.login.presenter.LoginPresenter
 import com.mobile.travelaja.module.signin.register.RegisterWithEmailActivity
+import com.mobile.travelaja.utility.Constants
 
 
 class LoginActivity : BaseActivity(),
@@ -197,13 +199,21 @@ class LoginActivity : BaseActivity(),
                 gotoActivity(AddressActivity::class.java)
             }
             btn_login_with_email -> {
-                gotoActivity(RegisterWithEmailActivity::class.java)
+                gotoRegisterUrl()
+//                gotoActivity(RegisterWithEmailActivity::class.java)
             }
 
             btn_login_with_google -> {
                 getDataGoogle()
             }
         }
+    }
+
+    private fun gotoRegisterUrl() {
+        val url = Constants.URL_REGISTER
+        val builder = CustomTabsIntent.Builder()
+        val customTabsIntent = builder.build()
+        customTabsIntent.launchUrl(this, Uri.parse(url))
     }
 
     private fun getDataGoogle() {
@@ -277,6 +287,5 @@ class LoginActivity : BaseActivity(),
         data.Email = personEmail
         return Globals.classToHashMap(data, RegisterWithEmailActivity.EmailModel::class.java)
     }
-
-
+    
 }

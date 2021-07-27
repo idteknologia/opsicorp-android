@@ -60,7 +60,7 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="260dp">
+            android:layout_height="170dp">
 
             <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
                 android:layout_width="match_parent"
@@ -111,6 +111,7 @@
                             android:layout_height="16dp"/>
 
                         <TextView
+                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
@@ -121,6 +122,7 @@
                             style="@style/RobotoRegular"/>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -145,6 +147,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/tv_created_date"
                             style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
@@ -172,7 +175,7 @@
                             android:id="@+id/tv_purpose"
                             style="@style/RobotoBold"
                             android:textColor="#009688"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"

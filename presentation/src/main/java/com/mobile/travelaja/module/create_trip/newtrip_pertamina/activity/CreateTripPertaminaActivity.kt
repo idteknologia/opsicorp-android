@@ -43,6 +43,7 @@ import opsigo.com.domainlayer.callback.CallbackString
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import java.io.File
 import java.util.HashMap
 
 
@@ -73,7 +74,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var wbsIsEmpty = true
     var partnerIsEmpty = true
     var notesIsEmpty = true
-    var attachmentIsEmpty = true
 
     override fun onMain() {
         initOnClick()
@@ -213,8 +213,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     private fun showDialogCamera() {
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object : DialogCameraCallback {
-            override fun data(imagePath: String) {
-                presenter.addDataAttactment(imagePath)
+            override fun data(imagePath: String,file:File) {
+                presenter.addDataAttactment(imagePath,file)
             }
         })
     }

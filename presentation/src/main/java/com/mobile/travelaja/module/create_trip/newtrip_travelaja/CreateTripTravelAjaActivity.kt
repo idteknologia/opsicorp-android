@@ -27,6 +27,15 @@ import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.*
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.btn_next
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.et_end_date
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.et_notes
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.et_purpose
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.ic_back
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.rv_attachment
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.tv_from
+import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.tv_notes_count
+import kotlinx.android.synthetic.main.activity_new_createtripplan.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
@@ -39,6 +48,7 @@ import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreat
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
+import java.io.File
 import java.util.HashMap
 
 
@@ -63,6 +73,8 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     var idCost = ""
     var purposeIsEmpty = true
     var notesIsEmpty = true
+    var originIsEmpty = true
+    var destinationIsEmpty = true
 
     override fun onMain() {
         initOnClick()
@@ -71,6 +83,8 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         presenter.initRecyclerViewAttachment(rv_attachment)
         idBudget = "388888e0-2f5d-48da-9f13-9e93599f5ae5"
         idCost = "000002"
+
+        changeButtonNextGrayColor()
     }
 
     private fun setTextDocs() {
@@ -113,7 +127,23 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     }
 
     private fun checkEmptyField() {
+        if (!purposeIsEmpty && !originIsEmpty && !destinationIsEmpty && !notesIsEmpty) {
+            changeButtonNextOrangeColor()
+        } else {
+            changeButtonNextGrayColor()
+        }
+    }
 
+    private fun changeButtonNextGrayColor() {
+        btn_next.changeTextColorButton(R.color.gray_total)
+        btn_next.changeBackgroundDrawable(R.drawable.rounded_button_dark_select_budget)
+        btn_next.isClickable = false
+    }
+
+    private fun changeButtonNextOrangeColor() {
+        btn_next.changeTextColorButton(R.color.textButtonColor)
+        btn_next.changeBackgroundDrawable(R.drawable.rounded_button_yellow)
+        btn_next.isClickable = true
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -127,21 +157,30 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
                 if (resultCode== Activity.RESULT_OK){
                     viewBinding.etPurpose.text = data?.getStringExtra("nameCountry")
                     idPurphose      = data?.getStringExtra("idCountry").toString()
+                    purposeIsEmpty = false
+                    checkEmptyField()
                 }
+
             }
 
             SELECT_CODE_COUNTRY_FROM -> {
                 if (resultCode== Activity.RESULT_OK){
                     viewBinding.tvOriginCity.text = data?.getStringExtra("nameCountry")
                     idCountry       = data?.getStringExtra("idCountry").toString()
+                    originIsEmpty = false
+                    checkEmptyField()
                 }
+
             }
 
             SELECT_CODE_COUNTRY_TO -> {
                 if (resultCode== Activity.RESULT_OK){
                     viewBinding.tvDestinationCity.text = data?.getStringExtra("nameCountry")
                     idCountry       = data?.getStringExtra("idCountry").toString()
+                    destinationIsEmpty = false
+                    checkEmptyField()
                 }
+
             }
 
         }
@@ -198,15 +237,27 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     private fun showDialogCamera() {
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object : DialogCameraCallback {
-            override fun data(imagePath: String) {
-                presenter.addDataAttactment(imagePath)
+            override fun data(imagePath: String,file:File) {
+                presenter.addDataAttactment(imagePath,file)
             }
         })
     }
 
 
     override fun onClicked() {
-        presenter.createTripNow()
+        if (purposeIsEmpty == true) {
+            Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_purpose), this)
+        } else if (originIsEmpty == true) {
+            Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_origin), this)
+        } else if (destinationIsEmpty == true) {
+            Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_destination), this)
+        } else if (notesIsEmpty == true) {
+            Globals.showAlert(getString(R.string.txt_please), getString(R.string.fill_your_note), this)
+        }
+        else {
+            presenter.createTripNow()
+        }
+
     }
 
     override fun loadDataView() {
@@ -269,6 +320,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
             }
 
         })
+
 
     }
 
