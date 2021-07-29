@@ -1114,7 +1114,7 @@ Please add your trip item for Approval."
     <string name="warning_loading">Please waiting for fetching data</string>
     <string name="non_udara_">Non-Udara</string>
     <string name="udara_">Udara</string>
-
+    <string name="txt_failed_upload_file_size_is_to_large">File upload failed: Size is to large.</string>
 
 </resources>
 
