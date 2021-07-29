@@ -65,7 +65,11 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             itemView.tv_title.text = data.title
             itemView.tv_trip_code.text = data.tripCode
             itemView.tv_date.text = formatingDate(data.start_date) + " - " + formatingDate(data.end_date)
-            itemView.tv_city.text = data.destination
+            if (data.routes.isNotEmpty()){
+                itemView.tv_city.text = data.routes.last().destination
+            } else {
+                itemView.tv_city.text = data.destination
+            }
             itemView.tv_expired.text = data.timeExperied
             Log.e("TAG === ",data.timeExperied)
 
@@ -154,7 +158,11 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             itemView.tv_title.text = data.title
             itemView.tv_trip_code.text = data.tripCode
             itemView.tv_date.text = formatingDate(data.start_date) + " - " + formatingDate(data.end_date)
-            itemView.tv_city.text = data.destination
+            if (data.routes.isNotEmpty()){
+                itemView.tv_city.text = data.routes.last().destination
+            } else {
+                itemView.tv_city.text = data.destination
+            }
             itemView.tv_expired.text = data.timeExperied
 
             val idUser = Globals.getProfile(context).employId

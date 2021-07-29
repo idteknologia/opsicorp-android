@@ -5,6 +5,7 @@ import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 
 class SuccessCreateTripPlaneModel {
     var purpose     = ""
+    var activityType = ""
     var idTripPlane = ""
     var status      = ""
     var tripCode    = ""

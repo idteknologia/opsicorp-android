@@ -49,9 +49,11 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     var originName = ""
     var destinationName = ""
     var costCenterName = ""
+    var picCostCenter = ""
     var cashAdvanceValue = 0
     var costCenterOther = false
     var isCashAdvance = false
+    var picCostCentreEmpty = true
 
 
     override fun onMain() {
@@ -147,11 +149,13 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     private fun initOnClick() {
-        btn_next.setTextButton("Next")
+        btn_next.setTextButton("Submit")
         btn_next.callbackOnclickButton(this)
 
         ic_back.setOnClickListener(this)
         tvCostNameAdd.setOnClickListener(this)
+        tvCostNameReset.setOnClickListener(this)
+        et_pic.setOnClickListener(this)
         title_cost_name.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -207,57 +211,106 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         }
         originName = dataTrip.routes[0].Origin
         destinationName = dataTrip.routes[0].Destination
-        if (dataTrip.routes.size >1){
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}"
-        } else if (dataTrip.routes.size >2){
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}"
-        } else if (dataTrip.routes.size >3){
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}"
-        } else if (dataTrip.routes.size >4){
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}"
-        } else if (dataTrip.routes.size >5){
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}-${dataTrip.routes[5].Destination}"
-        } else {
+        if (dataTrip.routes.size == 1){
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}"
+        } else if (dataTrip.routes.size == 2){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}"
+        } else if (dataTrip.routes.size == 3){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}"
+        } else if (dataTrip.routes.size == 4){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}"
+        } else if (dataTrip.routes.size == 5){
+            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}"
         }
         tv_start_date.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
     }
 
-    private fun getDataSelectCostCenter() {
-        val codeSelectBudget = getProfile().costCenter
-        GetDataTripPlane(getBaseUrl()).getDataCostCenter(Globals.getToken(), getProfile().employId, codeSelectBudget, object : CallbackCostCenter {
-            override fun successLoad(approvalModel: ArrayList<CostCenterModel>) {
-
-                DataTemporary.dataCostCenter.clear()
-                approvalModel.forEachIndexed { index, costCenterModel ->
-                    val mData = SelectNationalModel()
-                    mData.name = costCenterModel.code
-                    mData.id = costCenterModel.idCost
-                    DataTemporary.dataCostCenter.add(mData)
-                }
-                costCenterName = approvalModel[0].code
-                title_cost_name.setText(costCenterName)
-            }
-
-            override fun failedLoad(message: String) {
-
-                Globals.showAlert(getString(R.string.failed), message, this@RevieBudgetPertaminaActivity)
-            }
-        })
-
-    }
-
     override fun onClicked() {
-        /*saveAsDraft()*/
         succesCreateTrip()
     }
 
     private fun succesCreateTrip() {
-        Constants.DATA_CREATE_TRIP = Serializer.serialize(dataTrip,DataBisnisTripModel::class.java)
-        setLog("Test Save",Serializer.serialize(dataTrip))
-        val bundle = Bundle()
-        gotoActivity(SucessCreateTripPlaneActivity::class.java)
+        showLoadingOpsicorp(true)
+        picCostCenter = et_pic.text.toString()
+        dataTrip.picCostCenter = picCostCenter
+        GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(), dataRequest(), object : CallbackSaveAsDraft {
+            override fun successLoad(data: SuccessCreateTripPlaneModel) {
+                hideLoadingOpsicorp()
+                data.originName = dataTrip.routes.first().Origin
+                data.destinationName = tv_trip_route.text.toString()
+                data.activityType = dataTrip.nameActivity
+                Constants.DATA_CREATE_TRIP = Serializer.serialize(data)
+                setLog("Test Save",Serializer.serialize(Constants.DATA_CREATE_TRIP))
+                gotoActivity(SucessCreateTripPlaneActivity::class.java)
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
+                showAllert(getString(R.string.sorry), message)
+            }
+
+        })
+
+    }
+
+    private fun dataRequest(): HashMap<String, Any> {
+        val dataRequest = SaveAsDraftRequestPertamina()
+        dataRequest.origin = dataTrip.routes[0].Origin
+        dataRequest.destination = dataTrip.routes[0].Destination
+        dataRequest.purpose = dataTrip.namePusrpose
+        dataRequest.businessTripType = dataTrip.nameActivity
+        dataRequest.startDate = dataTrip.startDate
+        dataRequest.returnDate = dataTrip.endDate
+        dataRequest.type = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
+        dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
+        dataRequest.isDomestic = !dataTrip.isInternational
+        dataRequest.remark = dataTrip.notes
+        dataRequest.wbsNo = dataTrip.wbsNumber
+
+        dataRequest.routes = ArrayList()
+        val mDataRoutes = ArrayList<RoutesItem>()
+        dataTrip.routes.forEachIndexed { index, routesItinerary ->
+            val dataRoutes = RoutesItem()
+            dataRoutes.transportation = routesItinerary.Transportation
+            dataRoutes.departureDate = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "yyyy-MM-dd")
+            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
+            dataRoutes.origin = routesItinerary.Origin
+            dataRoutes.destination = routesItinerary.Destination
+            mDataRoutes.add(dataRoutes)
+        }
+        dataRequest.routes = mDataRoutes
+
+        val attachments = ArrayList<TripAttachmentsItemRequest>()
+        dataTrip.image.forEachIndexed { index, uploadModel ->
+            val mDataAttachments = TripAttachmentsItemRequest()
+            mDataAttachments.description = uploadModel.nameImage
+            mDataAttachments.url = uploadModel.url
+            attachments.add(mDataAttachments)
+        }
+        dataRequest.tripAttachments = attachments
+
+        dataRequest.tripParticipants = ArrayList()
+        val participants = ArrayList<TripParticipantsPertaminaItem>()
+        val mDataParticipants = TripParticipantsPertaminaItem()
+        mDataParticipants.employeeId = getProfile().employId
+        mDataParticipants.useCostCenterOther = dataTrip.participant[0].useCostCenterOther
+        mDataParticipants.costCenterPicEmail = picCostCenter
+        mDataParticipants.useCashAdvance = dataTrip.participant[0].useCashAdvance
+        mDataParticipants.cashAdvance = dataTrip.participant[0].cashAdvance
+        mDataParticipants.costCenterCode = dataTrip.participant[0].costCenterCode
+        mDataParticipants.estFlight = dataTrip.participant[0].estFlight
+        mDataParticipants.estTransportation = dataTrip.participant[0].estTransportation
+        mDataParticipants.estTotal = dataTrip.participant[0].estTotal
+        mDataParticipants.estAllowance = dataTrip.participant[0].estAllowance
+        mDataParticipants.estAllowanceEvent = dataTrip.participant[0].estAllowanceEvent
+        mDataParticipants.estLaundry = dataTrip.participant[0].estLaundry
+        mDataParticipants.estHotel = dataTrip.participant[0].estHotel
+        participants.add(mDataParticipants)
+        dataRequest.tripParticipants = participants
+
+
+        return Globals.classToHasMap(dataRequest, SaveAsDraftRequestPertamina::class.java)
     }
 
     override fun onClick(v: View?) {
@@ -271,6 +324,31 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
                 costCenterName = title_cost_name.text.toString()
                 costCenterOther = true
+                if (costCenterOther.equals(true)){
+                    tvCostNameReset.visible()
+                    tvCostNameAdd.gone()
+                    lineCash.visible()
+                    layPIC.visible()
+                } else {
+                    tvCostNameReset.gone()
+                    tvCostNameAdd.visible()
+                    lineCash.gone()
+                    layPIC.gone()
+                }
+            }
+            tvCostNameReset -> {
+                costCenterName = getProfile().costCenter
+                title_cost_name.setText(costCenterName)
+                costCenterOther = false
+                tvCostNameReset.gone()
+                tvCostNameAdd.visible()
+                lineCash.gone()
+                layPIC.gone()
+            }
+            et_pic -> {
+                if (et_pic.text.isNotEmpty()){
+                    picCostCentreEmpty = false
+                }
             }
         }
 

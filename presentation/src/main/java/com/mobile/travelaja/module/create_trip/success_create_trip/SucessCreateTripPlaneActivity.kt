@@ -40,7 +40,6 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     }
 
     var data = SuccessCreateTripPlaneModel()
-    lateinit var dataDraft: DataBisnisTripModel
 
     override fun OnMain() {
         setTypeTravelRequest()
@@ -64,25 +63,24 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setDataPertamina() {
-        dataDraft = Serializer.deserialize(Constants.DATA_CREATE_TRIP, DataBisnisTripModel::class.java)
-        setLog("Data Draft", Serializer.serialize(dataDraft))
-        if (dataDraft.tripcode != null) {
-            image_barcode.setImageBitmap(Globals.stringToBarcodeImage(dataDraft.tripcode))
+        data = Serializer.deserialize(Constants.DATA_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+        setLog("Data Draft", Serializer.serialize(data))
+        if (data.tripCode != null) {
+            image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
         }
-        tv_status.text = dataDraft.statusCreateTrip
-        tv_tripcode.text = "TP${dataDraft.tripcode}"
-        tv_purpose.text = dataDraft.namePusrpose
-        tv_created_date.text = "Created Date ${dataDraft.dateCreated.replace("Current Date","")}"
+        tv_status.text = data.status
+        tv_tripcode.text = "TP${data.tripCode}"
+        tv_purpose.text = data.purpose
+        tv_activity_type_text.text = data.activityType
+        tv_created_date.text = "Created Date ${data.createDate.replace("Current Date","")}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
-        tv_destination.text = "${dataDraft.routes[0].Origin} - ${dataDraft.routes[0].Destination}"
+        /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
+        tv_destination.text = data.destinationName
 
 
-        tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(dataDraft.startDate)
-        tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(dataDraft.endDate)
-
-
-        setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
+        tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
+        tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
 
         Globals.delay(1500, object : Globals.DelayCallback {
             override fun done() {
@@ -165,15 +163,17 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             line_submit -> {
-                submitTripPlan()
+                /*submitTripPlan()*/
+                later()
             }
             btn_submit -> {
-                submitTripPlan()
+                /*submitTripPlan()*/
+                later()
             }
         }
     }
 
-    private fun submitTripPlan() {
+   /* private fun submitTripPlan() {
         showLoadingOpsicorp(true)
         GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(), dataRequest(), object : CallbackSaveAsDraft {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
@@ -247,7 +247,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
 
 
         return Globals.classToHasMap(dataRequest, SaveAsDraftRequestPertamina::class.java)
-    }
+    }*/
 
     /*private fun backListerner() {
 

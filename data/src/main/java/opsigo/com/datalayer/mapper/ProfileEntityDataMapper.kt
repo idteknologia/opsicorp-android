@@ -1,11 +1,16 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.profile.ProfileEntity
+import opsigo.com.datalayer.model.profile.*
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalDomesticModel
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalInternationalModel
+import opsigo.com.domainlayer.model.signin.ApprovalModel
+import opsigo.com.domainlayer.model.signin.ProfileApproverModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
+import java.util.ArrayList
 
 class ProfileEntityDataMapper{
 
-    fun transform(profileEntity: ProfileEntity): ProfileModel {
+    fun transform(profileEntity: ProfileNewEntity): ProfileModel {
         val data = ProfileModel()
 
         data.name        = profileEntity.fullName.toString()
@@ -19,7 +24,7 @@ class ProfileEntityDataMapper{
         data.phone              = profileEntity.mobilePhone.toString()
         data.nationality        = profileEntity.nationality.toString()
         data.nationalityName    = profileEntity.nationalityName.toString()
-        data.isApproval     = profileEntity.IsApprover
+        data.isApproval     = profileEntity.isApprover
         data.idPosition     = profileEntity.jobTitleId.toString()
         data.homePhone      = profileEntity.homePhone.toString()
         data.title          = profileEntity.title.toString()
@@ -39,6 +44,50 @@ class ProfileEntityDataMapper{
         data.sim          = if (profileEntity.simNumber==null) "" else profileEntity.simNumber
         data.costCenter   = profileEntity.costCenterDefault.toString()
 
+        data.approval = mappingApproval(profileEntity.approval)
+
         return data
+    }
+
+    private fun mappingApproval(approval: Approval?): ApprovalModel {
+        val mData = ApprovalModel()
+        mData.reqEmail = approval?.requestorEmail.toString()
+        mData.reqName = approval?.requestorName.toString()
+        mData.reqPosName = approval?.requestorPositionName.toString()
+        mData.travelRequestApprovalDomestic = mappingApprovalDomestic(approval?.travelRequestApprovalDomestic)
+        mData.travelRequestApprovalInternational = mappingApprovalInternational(approval?.travelRequestApprovalInternational)
+        return mData
+    }
+
+    private fun mappingApprovalInternational(travelRequestApprovalInternational: List<TravelRequestApprovalInternationalItem?>?): ArrayList<TravelRequestApprovalInternationalModel> {
+        val mData = ArrayList<TravelRequestApprovalInternationalModel>()
+        travelRequestApprovalInternational?.forEachIndexed { index, travelRequestApprovalDomesticItem ->
+            val model = TravelRequestApprovalInternationalModel()
+            model.employeeId = travelRequestApprovalDomesticItem?.employeeId.toString()
+            model.isPjs = travelRequestApprovalDomesticItem?.isPjs == true
+            model.profile = mappingProfile(travelRequestApprovalDomesticItem?.profile)
+            mData.add(model)
+        }
+        return mData
+    }
+
+    private fun mappingApprovalDomestic(travelRequestApprovalDomestic: List<TravelRequestApprovalDomesticItem?>?): ArrayList<TravelRequestApprovalDomesticModel> {
+        val mData = ArrayList<TravelRequestApprovalDomesticModel>()
+        travelRequestApprovalDomestic?.forEachIndexed { index, travelRequestApprovalDomesticItem ->
+            val model = TravelRequestApprovalDomesticModel()
+            model.employeeId = travelRequestApprovalDomesticItem?.employeeId.toString()
+            model.isPjs = travelRequestApprovalDomesticItem?.isPjs == true
+            model.profile = mappingProfile(travelRequestApprovalDomesticItem?.profile)
+            mData.add(model)
+        }
+        return mData
+    }
+
+    private fun mappingProfile(profile: Profile?): ProfileApproverModel {
+        val mData = ProfileApproverModel()
+        mData.email = profile?.email.toString()
+        mData.name = profile?.name.toString()
+        mData.positionText = profile?.positionText.toString()
+        return mData
     }
 }

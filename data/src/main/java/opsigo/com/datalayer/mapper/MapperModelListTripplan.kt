@@ -3,6 +3,7 @@ package opsigo.com.datalayer.mapper
 import android.util.Log
 import opsigo.com.datalayer.model.listtripplan.StatusTrip
 import opsigo.com.datalayer.model.approval.list_approval.ListApprovalEntity
+import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import org.json.JSONObject
@@ -24,6 +25,16 @@ class MapperModelListTripplan {
             approvalModel.destination   = if (dataItem.destination==null) "" else dataItem.destination
             approvalModel.isApproval    = dataItem.isApprover
             approvalModel.isParticipant = dataItem.isParticipant
+
+            dataItem.routes.forEachIndexed { index, routeEntity ->
+                val mDataApproval = RoutesItemPertamina()
+                mDataApproval.departureDate = routeEntity.departureDate.toString()
+                mDataApproval.departureDateView = routeEntity.departureDateView.toString()
+                mDataApproval.origin = routeEntity.origin.toString()
+                mDataApproval.destination = routeEntity.destination.toString()
+                mDataApproval.transportation = routeEntity.transportation!!.toInt()
+                approvalModel.routes.add(mDataApproval)
+            }
 
             dataItem.listApprover.forEachIndexed { index, listParticipantItem ->
                 val mDataApproval = ParticipantModelDomain()

@@ -78,7 +78,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     override fun onMain() {
         initOnClick()
         Globals.typeAccomodation = ""
-        setTextDocs()
+        /*setTextDocs()*/
         presenter.setDataAutomatically()
         presenter.initRecyclerViewAttachment(rv_attachment)
 
@@ -88,9 +88,9 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     private fun setTextDocs(){
         val textDocs = getString(R.string.txt_document_description)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            viewBinding.tvDescDoc.text = Html.fromHtml(textDocs,Html.FROM_HTML_MODE_COMPACT)
+            viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs,Html.FROM_HTML_MODE_COMPACT)
         }else {
-            viewBinding.tvDescDoc.text = Html.fromHtml(textDocs)
+            viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs)
         }
     }
 
@@ -298,7 +298,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             dataOrderCreatTrip.startDate = m_startdate//tv_from.text.toString()
             dataOrderCreatTrip.endDate = m_endate//et_end_date.text.toString()
             dataOrderCreatTrip.notes = et_notes.text.toString()
-            dataOrderCreatTrip.tripcode = System.currentTimeMillis().toString()
             dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
 
             dataOrderCreatTrip.idPurphose = idPurphose

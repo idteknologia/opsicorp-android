@@ -29,6 +29,7 @@ class DataBisnisTripModel {
     var budget      = ""
     var costCenter  = ""
     var dateCreated = ""
+    var picCostCenter = ""
     var isCbt = false
     var isInternational = false
     var isWbs = false

@@ -7,6 +7,9 @@ data class TripParticipantsPertaminaItem(
         @field:SerializedName("UseCostCenterOther")
         var useCostCenterOther: Boolean = false,
 
+        @field:SerializedName("CostCenterPicEmail")
+        var costCenterPicEmail: String = "",
+
         @field:SerializedName("EmployeeId")
         var employeeId: String = "",
 

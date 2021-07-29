@@ -670,5 +670,11 @@ Please add your trip item for Approval."
     <string name="txt_reimburstment">Reimbursement</string>
     <string name="txt_enter_trip_code">Enter Trip Code</string>
     <string name="notif_leave_page">Apakah anda yakin ingin meninggalkan halaman ini?</string>
+    <string name="pic_email_cost_center">PIC Email Cost Center</string>
+    <string name="to_main_menu">To Main Menu</string>
+    <string name="required_document">Required Document</string>
+    <string name="contact_hr">You don\'t have Approver yet right now.<br>Please contact your HR Management!</br></string>
+    <string name="sorry2">Sorry..</string>
+    <string name="enter_amount">Enter Amount</string>
     <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>
