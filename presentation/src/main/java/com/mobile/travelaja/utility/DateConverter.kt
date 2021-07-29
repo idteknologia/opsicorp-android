@@ -299,4 +299,13 @@ class DateConverter {
         }
     }
 
+
+    fun decreaseDate(date: String,format:String):String{
+        val sdf = SimpleDateFormat(format)
+        val c = Calendar.getInstance()
+        c.time = sdf.parse(date)
+        c.add(Calendar.DATE, -1) // number of days to add
+        val date = sdf.format(c.time) // dt is now the new date
+        return date
+    }
 }

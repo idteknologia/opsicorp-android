@@ -1,6 +1,5 @@
 package com.mobile.travelaja
 
-import com.google.zxing.common.StringUtils
 import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
@@ -75,5 +74,15 @@ class ExampleUnitTest {
         println(coba.getJSONArray("Errors").getString(0))
     }
 
+    @Test
+    fun decreaseDate(){
+        var dt = "2008-01-01" // Start date
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val c = Calendar.getInstance()
+        c.time = sdf.parse(dt)
+        c.add(Calendar.DATE, -1) // number of days to add
+        dt = sdf.format(c.time) // dt is now the new date
+        print(dt)
+    }
 
 }
