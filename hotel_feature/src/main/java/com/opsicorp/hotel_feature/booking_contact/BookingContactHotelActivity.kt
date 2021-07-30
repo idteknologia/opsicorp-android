@@ -375,8 +375,8 @@ class BookingContactHotelActivity : BaseActivity(),
         val data            = HeaderReservationHotelRequest()
         data.origin         = dataTrip.originId
         data.createdBy      = getProfile().employeeNik
-        data.returnDate     = dataHotel.checkOut
-        data.startDate      = dataHotel.checkIn
+        data.returnDate     = dataTrip.endDate
+        data.startDate      = dataTrip.startDate
         data.destination    = dataTrip.destinationName
         data.tripParticipants   = listParticipant()
         data.type               = 1

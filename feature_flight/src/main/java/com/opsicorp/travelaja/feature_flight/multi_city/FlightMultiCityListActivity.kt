@@ -44,7 +44,6 @@ import opsigo.com.datalayer.request_model.accomodation.flight.validation.Segment
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
-import java.lang.Exception
 
 class FlightMultiCityListActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
