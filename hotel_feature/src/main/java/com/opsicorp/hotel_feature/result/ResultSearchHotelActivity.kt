@@ -1,44 +1,44 @@
 package com.opsicorp.hotel_feature.result
 
-import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
-import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelRequest
-import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
-import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
-import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
-import com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
-import com.mobile.travelaja.module.item_custom.menu_sort.BottomSheetSort
-import com.mobile.travelaja.utility.OnclickListenerRecyclerViewAnimation
-import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
-import com.opsicorp.hotel_feature.detail_hotel.DetailHotelActivity
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.domainlayer.callback.CallbackSearchHotel
-import androidx.transition.TransitionManager
-import com.mobile.travelaja.utility.DateConverter
-import com.mobile.travelaja.utility.Constants
-import opsigo.com.datalayer.mapper.Serializer
-import androidx.transition.Transition
-import com.mobile.travelaja.utility.Globals
-import org.koin.core.parameter.parametersOf
-import com.mobile.travelaja.base.BaseActivity
-import androidx.transition.Fade
-import kotlin.collections.ArrayList
-import com.opsicorp.hotel_feature.R
-import org.koin.core.KoinComponent
-import java.text.SimpleDateFormat
-import android.text.TextWatcher
-import android.content.Intent
-import android.text.Editable
 import android.app.Activity
-import org.koin.core.inject
-import java.lang.Exception
-import android.view.View
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.Fade
+import androidx.transition.Transition
+import androidx.transition.TransitionManager
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
+import com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
+import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import com.mobile.travelaja.module.item_custom.menu_sort.BottomSheetSort
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.OnclickListenerRecyclerViewAnimation
+import com.opsicorp.hotel_feature.R
+import com.opsicorp.hotel_feature.detail_hotel.DetailHotelActivity
+import kotlinx.android.synthetic.main.detail_search_hotel_activity.*
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelRequest
+import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
+import opsigo.com.domainlayer.callback.CallbackSearchHotel
+import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
+import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import org.koin.core.KoinComponent
+import org.koin.core.inject
+import org.koin.core.parameter.parametersOf
+import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ResultSearchHotelActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult,KoinComponent,
@@ -62,6 +62,8 @@ class ResultSearchHotelActivity : BaseActivity(),
     var facilitys         = ArrayList<String>()
     var area              = ""
     var correlationId     = ""
+    var maxPage           = 5
+    var scrolPage         = 1
 
     lateinit var dataTrip: SuccessCreateTripPlaneModel
 
@@ -162,11 +164,17 @@ class ResultSearchHotelActivity : BaseActivity(),
         }
     }
 
-    private fun addDataLoading(){
+    private fun addDataLoading(isLoadingPage:Boolean){
         tv_total_data.visibility = View.GONE
         loadingSearch = true
         empty_result.visibility = View.GONE
-        adapter.setDataList(DataDummyAccomodation().addDataLoadingHotel(),this)
+        if (isLoadingPage){
+            dataFilter.addAll(DataDummyAccomodation().addDataLoadingHotel())
+        }
+        else {
+            data.addAll(DataDummyAccomodation().addDataLoadingHotel())
+        }
+        adapter.notifyDataSetChanged()
     }
 
     private fun checkEmptyData(mData: ArrayList<AccomodationResultModel>) {
@@ -202,6 +210,22 @@ class ResultSearchHotelActivity : BaseActivity(),
         rv_result_hotel.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_result_hotel.adapter = adapter
         adapter.setOnclickListenerWithAnimation(this)
+        adapter.setDataList(data,this)
+
+        rv_result_hotel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    if (!loadingSearch){
+                        if (scrolPage<maxPage){
+                            scrolPage = scrolPage+1
+                            getSearchPageHotel(scrolPage)
+                        }
+                    }
+
+                }
+            }
+        })
 
         getDataHotel()
     }
@@ -267,7 +291,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                     maxPrice  = ""
                     star      = ArrayList()
                     area      = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
-                    getSearchPageHotel()
+                    getSearchPageHotel(1)
                 }
             }
             Constants.REQUEST_CODE_HOTEL_FILTER -> {
@@ -278,7 +302,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                     facilitys = data?.getStringArrayListExtra(Constants.RESULT_FACILITY)!!
                     star      = data.getStringArrayListExtra(Constants.RESULT_STAR)!!
                     area      = ""
-                    getSearchPageHotel()
+                    getSearchPageHotel(1)
                 }
             }
         }
@@ -321,10 +345,11 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     fun getDataHotel(){
-        addDataLoading()
+        addDataLoading(false)
         setLog(Serializer.serialize(dataSearch()))
         GetDataAccomodation(getBaseUrl()).getSearchHotel(getToken(),dataSearch(),object : CallbackSearchHotel {
-            override fun success(mData: ArrayList<AccomodationResultModel>,areas:ArrayList<String>) {
+            override fun success(mData: ArrayList<AccomodationResultModel>,areas:ArrayList<String>,maximalPage:Int) {
+                maxPage = maximalPage
                 loadingSearch = false
                 data.clear()
                 dataArea.clear()
@@ -364,6 +389,7 @@ class ResultSearchHotelActivity : BaseActivity(),
 
         when (typeDestination){
             Constants.SELECT_NEARBY_CITY-> {
+                model.destinationKey   = idCity
                 model.destinationKey   = idCity
                 model.latitude         = null
                 model.longitude        = null
@@ -445,16 +471,32 @@ class ResultSearchHotelActivity : BaseActivity(),
         adapter.notifyDataSetChanged()
     }
 
-    fun getSearchPageHotel(){
-        setLog("------------- data filter page")
-        setLog(Serializer.serialize(dataFilterPage()))
-        addDataLoading()
-        GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(),object :CallbackSearchHotel{
-            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>) {
+    fun getSearchPageHotel(page:Int){
+        if (page==2) {
+            dataFilter.addAll(data)
+            adapter.setDataList(dataFilter,this)
+        }
+        addDataLoading(true)
+        GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(page),object :CallbackSearchHotel{
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>,maxPage:Int) {
                 loadingSearch = false
-                dataFilter.clear()
+                if (page==1){
+                    /*this if for filter area dll*/
+                    dataFilter.clear()
+                }
+                else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        data.removeIf { it.typeLayout==8 }
+                        dataFilter.removeIf { it.typeLayout==8 }
+                    }
+                    else {
+                        data.removeAll(DataDummyAccomodation().addDataLoadingHotel())
+                        dataFilter.removeAll(DataDummyAccomodation().addDataLoadingHotel())
+                    }
+                }
+                data.addAll(mData)
                 dataFilter.addAll(mData)
-                adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
+                adapter.notifyDataSetChanged()
                 checkEmptyData(mData)
             }
 
@@ -465,15 +507,17 @@ class ResultSearchHotelActivity : BaseActivity(),
         })
     }
 
-    private fun dataFilterPage(): HashMap<Any, Any> {
+    private fun dataFilterPage(page: Int): HashMap<Any, Any> {
         val data = PageHotelRequest()
-        data.page       = 1
+        data.page       = page
         data.hotelName  = ""
-        data.star       = if (star.isNotEmpty()) star.first() else ""
-        data.minPrice   = if (minPrice!="0") minPrice else null
-        data.maxPrice   = if (maxPrice!="0") maxPrice else null
-        data.orderBy    = ""//price_asc
-        data.area       = area
+        if (page==1){
+            data.star       = if (star.isNotEmpty()) star.first() else ""
+            data.minPrice   = if (minPrice!="0") minPrice else null
+            data.maxPrice   = if (maxPrice!="0") maxPrice else null
+            data.area       = area
+        }
+        data.orderBy     = ""//price_asc
         data.correlationId = correlationId
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.origin      = dataTrip.originId

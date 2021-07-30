@@ -591,8 +591,13 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
+                        var json = JSONObject(responseString)
+                        var maxPage = 0
+                        if (!json.getBoolean("IsError")){
+                            maxPage = json.getInt("MaxPage")
+                        }
                         val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
-                        callback.success(data.first,data.second)
+                        callback.success(data.first,data.second,maxPage)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
@@ -615,8 +620,13 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
+                        var json = JSONObject(responseString)
+                        var maxPage = 0
+                        if (!json.getBoolean("IsError")){
+                            maxPage = json.getInt("MaxPage")
+                        }
                         val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
-                        callback.success(data.first,data.second)
+                        callback.success(data.first,data.second,maxPage)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
