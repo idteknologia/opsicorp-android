@@ -29,10 +29,17 @@ class BankListAdapter(val viewModel: SettlementViewModel) : BaseListAdapter<Bank
         fun onBind(bank : Bank){
             binding.bank = bank
             itemView.setOnClickListener {
-                viewModel.submitSettlement.BankAccount = bank.Account
-                viewModel.submitSettlement.BankTransfer = bank.BankName
-                itemView.findNavController().navigateUp()
+                if (itemView.context is BankListener){
+                    (itemView.context as BankListener).onClickItemBank(bank.Id)
+                } else {
+                    itemClickByNav(bank)
+                }
             }
+        }
+        fun itemClickByNav(bank : Bank){
+            viewModel.submitSettlement.BankAccount = bank.Account
+            viewModel.submitSettlement.BankTransfer = bank.BankName
+            itemView.findNavController().navigateUp()
         }
     }
 }

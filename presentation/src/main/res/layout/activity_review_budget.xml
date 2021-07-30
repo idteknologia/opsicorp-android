@@ -71,11 +71,10 @@
                     android:id="@+id/title_cost_name"
                     android:background="@android:color/transparent"
                     style="@style/RobotoBold"
-                    android:textColorHint="#24253d"
                     android:textColor="#24253d"
                     android:focusable="false"
                     android:imeOptions="actionDone"
-                    android:text="@string/cost_center"
+                    android:hint="@string/cost_center"
                     android:paddingTop="8dp"
                     android:paddingBottom="9dp"
                     android:textSize="16sp"
@@ -346,20 +345,10 @@
 
         <RelativeLayout
             android:id="@+id/rlCashAd"
+            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp">
-
-            <TextView
-                android:id="@+id/tv_cash_ad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:text="@string/cash_advance"
-                android:textColor="#2b9a8e"
-                android:textSize="18sp"
-                style="@style/RobotoBold" />
-
 
         <RelativeLayout
             android:visibility="visible"
@@ -396,7 +385,6 @@
                 android:inputType="none"
                 android:paddingBottom="20dp"
                 android:singleLine="true"
-                android:text="@{viewModel.submitSettlement.bankSelected()}"
                 tools:text="Bank Mandiri"
                 android:layout_below="@+id/labelBank"/>
 
@@ -413,24 +401,24 @@
                 android:layout_below="@+id/etBank"/>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginStart="20dp"
                 android:orientation="horizontal"
                 android:layout_below="@+id/tv_enter_amount">
 
                 <EditText
                     android:id="@+id/et_min"
-                    android:layout_width="260dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:background="@drawable/rounded_border"
                     android:inputType="number"
                     android:paddingLeft="15dp"
+                    android:textSize="14sp"
                     android:paddingRight="15dp"
-                    android:singleLine="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="8dp">
+                    android:singleLine="true">
 
                 </EditText>
                 <TextView
@@ -442,11 +430,22 @@
                     android:textSize="16sp"
                     android:textColor="#2b9a8e"
                     android:text="IDR"
-                    style="@style/RobotoBold"
-                    android:layout_marginLeft="20dp" />
+                    style="@style/RobotoBold" />
             </LinearLayout>
 
         </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_cash_ad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_marginStart="30dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:text="@string/cash_advance"
+                android:textColor="#2b9a8e"
+                android:textSize="18sp"
+                style="@style/RobotoBold" />
         </RelativeLayout>
     </LinearLayout>
 

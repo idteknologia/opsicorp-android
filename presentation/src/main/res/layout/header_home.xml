@@ -205,7 +205,7 @@
                 android:paddingEnd="25dp"
                 android:paddingRight="25dp"
                 android:text="@string/txt_reimburstment"
-                android:textColor="@color/colorGreenFont"
+                android:textColor="#939393"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

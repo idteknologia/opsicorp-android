@@ -1,7 +1,7 @@
 package com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity
 
 import android.content.Context
-import android.os.Bundle
+import android.content.Intent
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -11,7 +11,6 @@ import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.BaseActivityBinding
 import com.mobile.travelaja.databinding.ActivityReviewBudgetBinding
-import com.mobile.travelaja.module.create_trip.newtrip.actvity.DataTemporary
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itinerary
 import com.mobile.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
@@ -19,18 +18,15 @@ import com.mobile.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_review_budget.*
 import kotlinx.android.synthetic.main.detail_price_bottom.*
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
-import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.*
-import opsigo.com.domainlayer.callback.CallbackCostCenter
 import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
 import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
-import opsigo.com.domainlayer.model.CostCenterModel
 import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
-import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
 import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -44,16 +40,19 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     }
 
     lateinit var dataTrip: DataBisnisTripModel
-    lateinit var dataCost : EstimatedCostTravelRequestModel
+    lateinit var dataCost: EstimatedCostTravelRequestModel
+    lateinit var dataCashAdvance: CashAdvanceModel
     var tripRoute = ""
     var originName = ""
     var destinationName = ""
     var costCenterName = ""
     var picCostCenter = ""
-    var cashAdvanceValue = 0
+    var cashAdvanceValue = ""
     var costCenterOther = false
     var isCashAdvance = false
     var picCostCentreEmpty = true
+    var bankTransferEmpty = true
+    var cashAmountEmpty = true
 
 
     override fun onMain() {
@@ -74,12 +73,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             override fun successLoad(data: EstimatedCostTravelRequestModel) {
                 dataCost = data
                 iniPrice(data)
-
+                hideDialog()
                 val participanItem = ParticipantPertamina()
                 participanItem.employeeId = getProfile().employId
                 participanItem.useCostCenterOther = costCenterOther
                 participanItem.useCashAdvance = isCashAdvance
-                participanItem.cashAdvance = cashAdvanceValue
+                participanItem.cashAdvance = cashAdvanceValue.toInt()
                 participanItem.costCenterCode = costCenterName
                 participanItem.estFlight = dataCost.estFlight.toInt()
                 participanItem.estTransportation = dataCost.estTransportation.toInt()
@@ -89,7 +88,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.estLaundry = dataCost.estLaundry.toInt()
                 participanItem.estHotel = dataCost.estHotel.toInt()
                 dataTrip.participant.add(participanItem)
-                hideDialog()
+
             }
 
             override fun failedLoad(message: String) {
@@ -136,7 +135,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             dataRoutes.transportation = routesItinerary.Transportation
             dataRoutes.departureDate = routesItinerary.DepartureDateView
             dataRoutes.departureDateView = routesItinerary.DepartureDateView
-            dataRoutes.origin   = routesItinerary.Origin
+            dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
         }
@@ -156,6 +155,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         tvCostNameAdd.setOnClickListener(this)
         tvCostNameReset.setOnClickListener(this)
         et_pic.setOnClickListener(this)
+        et_min.setOnClickListener(this)
+        etBank.setOnClickListener(this)
         title_cost_name.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -196,38 +197,66 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         val itineraries = intent.getParcelableArrayExtra("itineraries")
         dataTrip = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_order"), DataBisnisTripModel::class.java)
         itineraries?.forEach {
-            if (it is Itinerary){
-                dataTrip.routes.add(RoutesItinerary(it.Transportation,it.DepartureDateView, it.Origin, it.Destination))
+            if (it is Itinerary) {
+                dataTrip.routes.add(RoutesItinerary(it.Transportation, it.DepartureDateView, it.Origin, it.Destination))
             }
         }
-        setLog("Test Request",Serializer.serialize(dataTrip))
+        setLog("Test Request", Serializer.serialize(dataTrip))
+        dataCashAdvance = Serializer.deserialize(Constants.DATA_CASH_ADVANCE, CashAdvanceModel::class.java)
 
         tv_purpose.text = dataTrip.namePusrpose
         tv_activity.text = dataTrip.nameActivity
-        if (dataTrip.isInternational.equals(true)){
+        if (dataTrip.isInternational.equals(true)) {
             tripRoute = "International Route"
         } else {
             tripRoute = "Domestic Route"
         }
         originName = dataTrip.routes[0].Origin
         destinationName = dataTrip.routes[0].Destination
-        if (dataTrip.routes.size == 1){
+        if (dataTrip.routes.size == 1) {
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}"
-        } else if (dataTrip.routes.size == 2){
+        } else if (dataTrip.routes.size == 2) {
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}"
-        } else if (dataTrip.routes.size == 3){
+        } else if (dataTrip.routes.size == 3) {
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}"
-        } else if (dataTrip.routes.size == 4){
+        } else if (dataTrip.routes.size == 4) {
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}"
-        } else if (dataTrip.routes.size == 5){
+        } else if (dataTrip.routes.size == 5) {
             tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}"
         }
         tv_start_date.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+
+        if (dataCashAdvance.isAllowed.equals(true)) {
+            rlCashAd.visible()
+            tv_currency.text = dataCashAdvance.currency
+            et_min.hint = "Limit ${dataCashAdvance.maxAmount}"
+        } else {
+            rlCashAd.gone()
+        }
     }
 
     override fun onClicked() {
-        succesCreateTrip()
+        checkData()
+    }
+
+    private fun checkData() {
+        if (costCenterOther == true) {
+            if (picCostCentreEmpty == true) {
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.fill_your_pic_email), this)
+            } else {
+                succesCreateTrip()
+            }
+        }
+        if (dataCashAdvance.isAllowed.equals(true)) {
+            if (bankTransferEmpty == true) {
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_bank_transfer), this)
+            } else if (cashAmountEmpty == true) {
+                Globals.showAlert(getString(R.string.txt_please), getString(R.string.fill_your_cash_amount), this)
+            } else {
+                succesCreateTrip()
+            }
+        }
     }
 
     private fun succesCreateTrip() {
@@ -241,7 +270,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 data.destinationName = tv_trip_route.text.toString()
                 data.activityType = dataTrip.nameActivity
                 Constants.DATA_CREATE_TRIP = Serializer.serialize(data)
-                setLog("Test Save",Serializer.serialize(Constants.DATA_CREATE_TRIP))
+                setLog("Test Save", Serializer.serialize(Constants.DATA_CREATE_TRIP))
                 gotoActivity(SucessCreateTripPlaneActivity::class.java)
             }
 
@@ -251,7 +280,6 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             }
 
         })
-
     }
 
     private fun dataRequest(): HashMap<String, Any> {
@@ -296,8 +324,9 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         mDataParticipants.employeeId = getProfile().employId
         mDataParticipants.useCostCenterOther = dataTrip.participant[0].useCostCenterOther
         mDataParticipants.costCenterPicEmail = picCostCenter
-        mDataParticipants.useCashAdvance = dataTrip.participant[0].useCashAdvance
-        mDataParticipants.cashAdvance = dataTrip.participant[0].cashAdvance
+        mDataParticipants.useCashAdvance = isCashAdvance
+        mDataParticipants.cashAdvance = cashAdvanceValue.toInt()
+        mDataParticipants.cashAdvanceTransfer = etBank.text.toString()
         mDataParticipants.costCenterCode = dataTrip.participant[0].costCenterCode
         mDataParticipants.estFlight = dataTrip.participant[0].estFlight
         mDataParticipants.estTransportation = dataTrip.participant[0].estTransportation
@@ -319,12 +348,14 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 onBackPressed()
             }
             tvCostNameAdd -> {
+                title_cost_name.text.clear()
+                title_cost_name.hint = getProfile().costCenter
                 title_cost_name.isFocusableInTouchMode = true
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
                 costCenterName = title_cost_name.text.toString()
                 costCenterOther = true
-                if (costCenterOther.equals(true)){
+                if (costCenterOther.equals(true)) {
                     tvCostNameReset.visible()
                     tvCostNameAdd.gone()
                     lineCash.visible()
@@ -335,6 +366,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                     lineCash.gone()
                     layPIC.gone()
                 }
+
+
             }
             tvCostNameReset -> {
                 costCenterName = getProfile().costCenter
@@ -346,11 +379,32 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 layPIC.gone()
             }
             et_pic -> {
-                if (et_pic.text.isNotEmpty()){
+                if (et_pic.text.isNotEmpty()) {
                     picCostCentreEmpty = false
                 }
             }
+            et_min -> {
+                if (et_min.text.isNotEmpty()) {
+                    isCashAdvance = true
+                    cashAdvanceValue = et_min.text.toString()
+                    cashAmountEmpty = false
+                } else {
+                    isCashAdvance = false
+                    cashAdvanceValue = "0"
+                    cashAmountEmpty = true
+                }
+            }
+            etBank -> {
+                gotoActivityResult(SelectBankTransferActivity::class.java, 1)
+            }
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val id = data?.getStringExtra("keyBank")
+        etBank.setText(id)
+        bankTransferEmpty = false
     }
 }

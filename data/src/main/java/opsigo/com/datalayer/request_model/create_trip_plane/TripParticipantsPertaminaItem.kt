@@ -22,6 +22,9 @@ data class TripParticipantsPertaminaItem(
         @field:SerializedName("CashAdvance")
         var cashAdvance: Int = 0,
 
+        @field:SerializedName("CashAdvanceTransfer")
+        var cashAdvanceTransfer: String = "",
+
         @field:SerializedName("EstFlight")
         var estFlight: Int = 0,
 

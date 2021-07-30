@@ -21,10 +21,7 @@ import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
-import com.mobile.travelaja.utility.DateConverter
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.gone
-import com.mobile.travelaja.utility.visible
+import com.mobile.travelaja.utility.*
 import kotlinx.android.synthetic.main.activity_new_createtripplan.*
 import kotlinx.android.synthetic.main.activity_new_createtripplan.btn_next
 import kotlinx.android.synthetic.main.activity_new_createtripplan.et_end_date
@@ -38,8 +35,11 @@ import kotlinx.android.synthetic.main.activity_new_createtripplan.tv_notes_count
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.create_trip_plane.CashAdvanceRequest
 import opsigo.com.datalayer.request_model.travel_request.CheckAvaibilityDateRequest
+import opsigo.com.domainlayer.callback.CallbackCashAdvance
 import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
@@ -69,6 +69,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var nonCbt = false
     var tripPartner = false
     var typeTrip = false
+    var isDomestic = true
     var purposeIsEmpty = true
     var activityIsEmpty = true
     var wbsIsEmpty = true
@@ -339,13 +340,13 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     override fun startDate(displayStartDate: String, startDate: String) {
-        tv_from.setText(displayStartDate)
+        tv_from.text = displayStartDate
         m_startdate = startDate
         setLog("start date " + m_startdate)
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
-        et_end_date.setText(displayEndDate)
+        et_end_date.text = displayEndDate
         m_endate = endDate
         setLog("end date " + m_endate)
     }
@@ -374,6 +375,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             }
             btn_switch -> {
                 typeTrip = btn_switch.isChecked
+                isDomestic = !btn_switch.isChecked
+
             }
             btn_switch2 -> {
                 nonCbt = btn_switch2.isChecked
@@ -399,7 +402,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                     bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
                     bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
-                    gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
+                    checkCashAdvance(bundle)
                 }
             }
 
@@ -407,6 +410,30 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             }
         })
+    }
+
+    private fun checkCashAdvance(bundle: Bundle) {
+        GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(),dataRequest(),object : CallbackCashAdvance{
+            override fun successLoad(data: CashAdvanceModel) {
+                Constants.DATA_CASH_ADVANCE = Serializer.serialize(data)
+                setLog("Test Cash",Serializer.serialize(Constants.DATA_CASH_ADVANCE))
+                gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+
+        })
+    }
+
+    private fun dataRequest(): HashMap<Any, Any> {
+        val data = CashAdvanceRequest()
+        data.isDomestic = isDomestic
+        data.activityType = et_activity_type.text.toString()
+        data.startDate = m_startdate
+        data.endDate = m_endate
+        return Globals.classToHashMap(data, CashAdvanceRequest::class.java)
     }
 
     private fun dataDate(): HashMap<Any, Any> {
