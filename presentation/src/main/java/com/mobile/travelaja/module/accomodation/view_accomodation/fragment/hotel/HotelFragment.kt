@@ -111,8 +111,8 @@ class HotelFragment : BaseFragment(),
         )
         typeDestination             = Constants.SELECT_NEARBY_CITY
         dataSelectCity.cityName     = data.destinationName
-        dataSelectCountry.id        = data.destinationId
-        dataSelectCity.idCity       = data.destinationId
+        dataSelectCountry.id        = "ID"
+        dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
         tv_city.text                = dataSelectCity.cityName
         tv_title_destination.text   = context?.getString(R.string.title_nearby_city)
 

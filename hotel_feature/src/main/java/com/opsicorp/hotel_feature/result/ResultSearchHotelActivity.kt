@@ -127,7 +127,6 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun getDataIntent() {
         try {
             typeDestination  = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_DESTINATION,0)!!
-            typeDestination  = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_DESTINATION,0)!!
             totalGuest       = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KeyBundle.KEY_TOTAL_GUEST,0)!!
             latitude         = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_LATITUDE,"").toString()
             longitude        = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.KeyBundle.KEY_LONGITUDE,"").toString()
