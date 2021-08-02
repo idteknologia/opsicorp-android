@@ -829,6 +829,7 @@ class BookingContactFlight : BaseActivity(),
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
         header.type = Constants.TypeHeader.personal
+        header.remark = dataTrip.remark
 
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"

@@ -73,13 +73,11 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_expired_date.visibility = View.GONE //don't need expire for draft
         /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
         tv_destination.text = data.destinationName
-        if (data.isDomestik.equals(true)){
-            tv_list_approval.text = "List Approver (${Globals.getProfile(this).approval.travelRequestApproval.size})"
+        if (Globals.getProfile(this).approval.travelRequestApproval.isNotEmpty()){
+            tv_list_approval.text = "List Approver (${Globals.getProfile(this).approval.travelRequestApproval.size.toString()})"
         } else {
             tv_list_approval.text = "List Approver (0)"
         }
-
-
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
@@ -125,6 +123,8 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_created_date.text = "Created Date ${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
+        tv_activity_type.gone()
+        tv_activity_type_text.gone()
         if (data.destinationName.isNullOrEmpty()) {
             tv_destination.text = data.originName
         } else {

@@ -1,4 +1,4 @@
-package com.mobile.travelaja.module.settlement.view
+package com.mobile.travelaja.module.settlement.view.adapter
 
 import android.view.View
 import androidx.navigation.findNavController
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.databinding.ItemBankLayoutBinding
+import com.mobile.travelaja.module.settlement.view.BankListener
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import opsigo.com.domainlayer.model.settlement.Bank
 
@@ -37,8 +38,7 @@ class BankListAdapter(val viewModel: SettlementViewModel) : BaseListAdapter<Bank
             }
         }
         fun itemClickByNav(bank : Bank){
-            viewModel.submitSettlement.BankAccount = bank.Account
-            viewModel.submitSettlement.BankTransfer = bank.BankName
+            viewModel.selectedBank(bank.Account,bank.BankName)
             itemView.findNavController().navigateUp()
         }
     }

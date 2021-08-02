@@ -8,50 +8,50 @@ data class HeaderReserveFlightRequest(
 
 	//@field:SerializedName("TripParticipants")
 	//val tripParticipants: List<TripParticipantsItem?>? = null,
-//	@field:SerializedName("Remarks")
-//	val remarks: List<String?>? = null,
+		@field:SerializedName("Remark")
+	var remark: String = "",
 
-	@field:SerializedName("StartDate")
+		@field:SerializedName("StartDate")
 	var startDate: String = "",
 
-	@field:SerializedName("ReturnDate")
+		@field:SerializedName("ReturnDate")
 	var returnDate: String = "",
 
-	@field:SerializedName("Status")
+		@field:SerializedName("Status")
 	var status: Int = 0,
 
-	@field:SerializedName("IsBookAfterApprove")
+		@field:SerializedName("IsBookAfterApprove")
 	var isBookAfterApprove: Boolean = false,
 
-	@field:SerializedName("IsPrivateTrip")
+		@field:SerializedName("IsPrivateTrip")
 	var isPrivateTrip: Boolean = false,
 
-	@field:SerializedName("Origin")
+		@field:SerializedName("Origin")
 	var origin: String = "",
 
-	@field:SerializedName("Destination")
+		@field:SerializedName("Destination")
 	var destination: String = "",
 
-	@field:SerializedName("Type")
+		@field:SerializedName("Type")
 	var type: Int = 0,
 
-	@field:SerializedName("TripParticipants")
+		@field:SerializedName("TripParticipants")
 	var tripParticipants: List<TripParticipantsItem> = ArrayList(),
 
-	@field:SerializedName("TravelAgentAccount")
+		@field:SerializedName("TravelAgentAccount")
 	var travelAgentAccount: String = "",
 
-	@field:SerializedName("Id")
+		@field:SerializedName("Id")
 	var idTripPlan: String = "",
 
-	@field:SerializedName("Code")
+		@field:SerializedName("Code")
 	var codeTripPlan: String = "",
 
 
-	@field:SerializedName("Purpose")
+		@field:SerializedName("Purpose")
 	var purpose: String = "",
 
-	@field:SerializedName("Routes")
+		@field:SerializedName("Routes")
 	var routes: ArrayList<RoutestRequest> = ArrayList(),
 
-)
+		)

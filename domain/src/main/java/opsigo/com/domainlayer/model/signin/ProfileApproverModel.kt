@@ -4,4 +4,5 @@ class ProfileApproverModel {
     var email = ""
     var name = ""
     var positionText = ""
+    var personId = ""
 }

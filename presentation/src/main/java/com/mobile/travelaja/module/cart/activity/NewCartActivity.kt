@@ -577,7 +577,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 issuedAll()
             }
             else {
-                if (Constants.codeCompanyTravelAja==getProfile().companyCode||tripSummary.type==Constants.PERSONAL_TRIP) {
+                if (tripSummary.type==Constants.PERSONAL_TRIP) {
                     bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
                     gotoActivityWithBundle(PaymentActivity::class.java, bundle)
                 } else {

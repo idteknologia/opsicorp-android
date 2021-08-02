@@ -834,6 +834,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         mData.approvalAction = action
         mData.employeeId = getProfile().employId
         mData.tripId = tripId
+        mData.tripType = "0"
 
         return Globals.classToHashMap(mData, ApprovalAllRequest::class.java)
     }

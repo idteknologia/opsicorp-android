@@ -94,6 +94,7 @@ class ProfileEntityDataMapper{
         mData.email = profile?.email.toString()
         mData.name = profile?.name.toString()
         mData.positionText = profile?.positionText.toString()
+        mData.personId = profile?.personID.toString()
         return mData
     }
 }

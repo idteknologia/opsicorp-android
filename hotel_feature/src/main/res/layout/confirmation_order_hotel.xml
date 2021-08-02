@@ -150,11 +150,13 @@
                     <ImageView
                         android:id="@+id/tv_image_hotel_cart"
                         android:layout_width="match_parent"
-                        android:layout_height="84dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="11dp"
                         android:scaleType="center"
-                        android:src="@drawable/background_slider"></ImageView>
+                        android:src="@drawable/background_slider">
+
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/tv_name_hotel_cart"
