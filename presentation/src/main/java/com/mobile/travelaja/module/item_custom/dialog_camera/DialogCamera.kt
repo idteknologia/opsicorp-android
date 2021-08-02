@@ -108,11 +108,12 @@ class DialogCamera : BaseDialogFragment() {
                         data?.data?.let { uri ->
                             val path = uri.path
                             println(path)
-                            if (uri.path != null && uri.path!!.contains("/raw/")) {
+                            showFileGallery(uri)
+                            /*if (uri.path != null && uri.path!!.contains("/raw/")) {
                                 pictureImagePath = uri.path.toString().replace("/raw/", "")
                             } else {
-                                showFileGallery(uri)
-                            }
+                            }*/
+
                             if (pictureImagePath.contains("pdf") || pictureImagePath.contains("doc") || pictureImagePath.contains(
                                     "xls"
                                 ) || pictureImagePath.contains("xlsx")
@@ -120,6 +121,8 @@ class DialogCamera : BaseDialogFragment() {
                                 callbackDialog.data(pictureImagePath, File(pictureImagePath))
                                 dismiss()
                             }
+
+
                         }
                     } catch (e: IOException) {
                         Globals.setLog("TAG", "Some exception $e")
@@ -236,7 +239,8 @@ class DialogCamera : BaseDialogFragment() {
                 fOut.close()
                 this.imgFile = imgFile
                 this.pictureImagePath = imgFile.absolutePath
-                image_selected.setImageURI(Uri.fromFile(imgFile))
+//                image_selected.setImageURI(Uri.fromFile(imgFile))
+                image_selected.setImageBitmap(bitmap)
             }
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
