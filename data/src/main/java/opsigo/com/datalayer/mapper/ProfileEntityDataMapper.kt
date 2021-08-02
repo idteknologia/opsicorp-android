@@ -1,7 +1,7 @@
 package opsigo.com.datalayer.mapper
 
 import opsigo.com.datalayer.model.profile.*
-import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalDomesticModel
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalInternationalModel
 import opsigo.com.domainlayer.model.signin.ApprovalModel
 import opsigo.com.domainlayer.model.signin.ProfileApproverModel
@@ -54,8 +54,7 @@ class ProfileEntityDataMapper{
         mData.reqEmail = approval?.requestorEmail.toString()
         mData.reqName = approval?.requestorName.toString()
         mData.reqPosName = approval?.requestorPositionName.toString()
-        mData.travelRequestApprovalDomestic = mappingApprovalDomestic(approval?.travelRequestApprovalDomestic)
-        mData.travelRequestApprovalInternational = mappingApprovalInternational(approval?.travelRequestApprovalInternational)
+        mData.travelRequestApproval = mappingApprovalDomestic(approval)
         return mData
     }
 
@@ -71,13 +70,20 @@ class ProfileEntityDataMapper{
         return mData
     }
 
-    private fun mappingApprovalDomestic(travelRequestApprovalDomestic: List<TravelRequestApprovalDomesticItem?>?): ArrayList<TravelRequestApprovalDomesticModel> {
-        val mData = ArrayList<TravelRequestApprovalDomesticModel>()
-        travelRequestApprovalDomestic?.forEachIndexed { index, travelRequestApprovalDomesticItem ->
-            val model = TravelRequestApprovalDomesticModel()
+    private fun mappingApprovalDomestic(approve: Approval?): ArrayList<TravelRequestApprovalModel> {
+        val mData = ArrayList<TravelRequestApprovalModel>()
+        approve?.travelRequestApprovalDomestic?.forEachIndexed { index, travelRequestApprovalDomesticItem ->
+            val model = TravelRequestApprovalModel()
             model.employeeId = travelRequestApprovalDomesticItem?.employeeId.toString()
             model.isPjs = travelRequestApprovalDomesticItem?.isPjs == true
             model.profile = mappingProfile(travelRequestApprovalDomesticItem?.profile)
+            mData.add(model)
+        }
+        approve?.travelRequestApprovalInternational?.forEachIndexed { index, travelRequestApprovalInternationalItem ->
+            val model = TravelRequestApprovalModel()
+            model.employeeId = travelRequestApprovalInternationalItem?.employeeId.toString()
+            model.isPjs = travelRequestApprovalInternationalItem?.isPjs == true
+            model.profile = mappingProfile(travelRequestApprovalInternationalItem?.profile)
             mData.add(model)
         }
         return mData

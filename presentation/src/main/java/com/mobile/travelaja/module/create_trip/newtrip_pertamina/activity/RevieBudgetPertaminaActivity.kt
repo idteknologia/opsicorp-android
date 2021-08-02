@@ -47,7 +47,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     var destinationName = ""
     var costCenterName = ""
     var picCostCenter = ""
-    var cashAdvanceValue = ""
+    var cashAdvanceValue = 0
     var costCenterOther = false
     var isCashAdvance = false
     var picCostCentreEmpty = true
@@ -247,8 +247,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             } else {
                 succesCreateTrip()
             }
+        } else {
+            succesCreateTrip()
         }
-        if (dataCashAdvance.isAllowed.equals(true)) {
+        /*if (dataCashAdvance.isAllowed.equals(true)) {
             if (bankTransferEmpty == true) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_bank_transfer), this)
             } else if (cashAmountEmpty == true) {
@@ -256,7 +258,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             } else {
                 succesCreateTrip()
             }
-        }
+        }*/
     }
 
     private fun succesCreateTrip() {
@@ -322,10 +324,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         val participants = ArrayList<TripParticipantsPertaminaItem>()
         val mDataParticipants = TripParticipantsPertaminaItem()
         mDataParticipants.employeeId = getProfile().employId
-        mDataParticipants.useCostCenterOther = dataTrip.participant[0].useCostCenterOther
+        mDataParticipants.useCostCenterOther = costCenterOther
         mDataParticipants.costCenterPicEmail = picCostCenter
         mDataParticipants.useCashAdvance = isCashAdvance
-        mDataParticipants.cashAdvance = cashAdvanceValue.toInt()
+        mDataParticipants.cashAdvance = cashAdvanceValue
         mDataParticipants.cashAdvanceTransfer = etBank.text.toString()
         mDataParticipants.costCenterCode = dataTrip.participant[0].costCenterCode
         mDataParticipants.estFlight = dataTrip.participant[0].estFlight
@@ -386,11 +388,11 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             et_min -> {
                 if (et_min.text.isNotEmpty()) {
                     isCashAdvance = true
-                    cashAdvanceValue = et_min.text.toString()
+                    cashAdvanceValue = et_min.text.toString().toInt()
                     cashAmountEmpty = false
                 } else {
                     isCashAdvance = false
-                    cashAdvanceValue = "0"
+                    cashAdvanceValue = 0
                     cashAmountEmpty = true
                 }
             }

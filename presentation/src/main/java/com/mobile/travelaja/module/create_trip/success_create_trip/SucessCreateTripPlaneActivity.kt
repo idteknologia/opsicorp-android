@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
+import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverAdapter
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
@@ -22,16 +23,9 @@ import kotlinx.android.synthetic.main.success_create_trip_plane.tv_purpose
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_start_date
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_status
 import kotlinx.android.synthetic.main.success_create_trip_plane.tv_tripcode
-import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
-import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.request_model.create_trip_plane.RoutesItem
-import opsigo.com.datalayer.request_model.create_trip_plane.SaveAsDraftRequestPertamina
-import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
-import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsPertaminaItem
-import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import java.util.HashMap
 
 
 class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
@@ -40,6 +34,8 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     }
 
     var data = SuccessCreateTripPlaneModel()
+    val dataApproval = ArrayList<TravelRequestApprovalModel>()
+    val adapterApproval by lazy { ApproverAdapter(this) }
 
     override fun OnMain() {
         setTypeTravelRequest()
@@ -77,6 +73,12 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_expired_date.visibility = View.GONE //don't need expire for draft
         /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
         tv_destination.text = data.destinationName
+        if (data.isDomestik.equals(true)){
+            tv_list_approval.text = "List Approver (${Globals.getProfile(this).approval.travelRequestApproval.size})"
+        } else {
+            tv_list_approval.text = "List Approver (0)"
+        }
+
 
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
@@ -90,6 +92,18 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
                 })
             }
         })
+        initRecyclerViewApproval()
+    }
+
+    private fun initRecyclerViewApproval() {
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        rv_approver.layoutManager = layoutManager
+        rv_approver.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_approver.adapter = adapterApproval
+
+        dataApproval.addAll(Globals.getProfile(this).approval.travelRequestApproval)
+        adapterApproval.setData(dataApproval)
     }
 
     private fun copyToClip() {
@@ -130,6 +144,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
                 })
             }
         })
+        initRecyclerViewApproval()
     }
 
     fun laterListener(view: View) {

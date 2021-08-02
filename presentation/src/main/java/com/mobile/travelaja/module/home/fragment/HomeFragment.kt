@@ -263,7 +263,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
             if (Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/"){
-                if (Globals.getProfile(requireContext()).approval.travelRequestApprovalDomestic.isEmpty() && Globals.getProfile(requireContext()).approval.travelRequestApprovalInternational.isEmpty()){
+                if (Globals.getProfile(requireContext()).approval.travelRequestApproval.isEmpty()){
                     showContactHr()
                 } else {
                     gotoActivity(CreateTripPertaminaActivity::class.java)

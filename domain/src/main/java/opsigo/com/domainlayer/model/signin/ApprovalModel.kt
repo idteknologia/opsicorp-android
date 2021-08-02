@@ -1,7 +1,6 @@
 package opsigo.com.domainlayer.model.signin
 
-import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalDomesticModel
-import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalInternationalModel
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 
 class ApprovalModel {
     var reqPosId = Int
@@ -12,7 +11,6 @@ class ApprovalModel {
     var enableInpAppDom = false
     var enableInpAppInt = false
 
-    var travelRequestApprovalDomestic = ArrayList<TravelRequestApprovalDomesticModel>()
-    var travelRequestApprovalInternational = ArrayList<TravelRequestApprovalInternationalModel>()
+    var travelRequestApproval = ArrayList<TravelRequestApprovalModel>()
 
 }

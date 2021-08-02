@@ -172,7 +172,7 @@
                             android:id="@+id/tv_purpose"
                             style="@style/RobotoBold"
                             android:textColor="#009688"
-                            android:layout_marginTop="65dp"
+                            android:layout_marginTop="60dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
@@ -405,6 +405,36 @@
                     android:text="@string/you_will_get_the_best_price_for_all_trip_item_match_with_your_travel_policy_budget_and_availability" />
             </LinearLayout>
         </LinearLayout>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/line_approver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_list_approval"
+            android:layout_marginStart="@dimen/margin_default"
+            style="@style/RobotoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#24253d"
+            android:text="List Approval (5)"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/rv_approver"
+            android:visibility="visible"
+            android:background="#f9f9f9"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
         <LinearLayout
             android:visibility="visible"

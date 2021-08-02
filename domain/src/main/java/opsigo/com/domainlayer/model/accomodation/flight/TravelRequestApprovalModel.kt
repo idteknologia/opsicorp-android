@@ -2,7 +2,7 @@ package opsigo.com.domainlayer.model.accomodation.flight
 
 import opsigo.com.domainlayer.model.signin.ProfileApproverModel
 
-class TravelRequestApprovalDomesticModel {
+class TravelRequestApprovalModel {
     var layer = Int
     var employeeId = ""
     var isPjs = false
