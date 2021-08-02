@@ -1,9 +1,10 @@
 package com.mobile.travelaja
 
-import com.google.zxing.common.StringUtils
 import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,6 +56,19 @@ class ExampleUnitTest {
     }
 
     @Test
+    fun formatNumber(){
+        val format = NumberFormat.getCurrencyInstance()
+        val symbol = (format as DecimalFormat).decimalFormatSymbols
+        symbol.currencySymbol = ""
+        format.decimalFormatSymbols = symbol
+        format.minimumFractionDigits = 0
+        val value = 0.0
+        val result = format.format(value)
+        println(result)
+    }
+
+
+    @Test
     fun getCities() {
 //        val cities = TestUtil.getListObject<City>(context, R.raw.cities)
 //        assert(cities.isNotEmpty())
@@ -75,5 +89,15 @@ class ExampleUnitTest {
         println(coba.getJSONArray("Errors").getString(0))
     }
 
+    @Test
+    fun decreaseDate(){
+        var dt = "2008-01-01" // Start date
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val c = Calendar.getInstance()
+        c.time = sdf.parse(dt)
+        c.add(Calendar.DATE, -1) // number of days to add
+        dt = sdf.format(c.time) // dt is now the new date
+        print(dt)
+    }
 
 }

@@ -7,13 +7,11 @@ import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.ResultList
 import opsigo.com.domainlayer.model.settlement.*
-import opsigo.com.domainlayer.model.trip.DetailTripResult
 import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import javax.annotation.PostConstruct
 
 interface ServiceApi {
 
@@ -40,7 +38,7 @@ interface ServiceApi {
     suspend fun getTripCodes():List<Trip>
 
     @GET("api/Settlement/GetDetailTrip")
-    suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailTripResult
+    suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailSettlementResult
 
     @POST("api/Settlement/GetSpecificAreaCompensation")
     suspend fun putSpecificAreaCompensation(@Body body:MutableMap<String,Int>) : RateStayResult
@@ -50,6 +48,15 @@ interface ServiceApi {
 
     @POST("api/Settlement/CalculateTransportExpense")
     suspend fun calculateTransportExpense(@Body body:MutableMap<String,Any>) : CalculateTransportResult
+
+    @GET("api/Settlement/GetExpenseTypeList")
+    suspend fun getExpenseType() : List<ExpenseType>
+
+    @POST("api/Settlement/Submit")
+    suspend fun submitSettlement(@Body submit : SubmitSettlement) : SubmitResult
+
+    @POST("api/Settlement/GetIntercityTransportCompensation")
+    suspend fun getIntercityTransportCompensation(@Body route : MutableMap<String,Any>) :IntercityTransportResult
 
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {

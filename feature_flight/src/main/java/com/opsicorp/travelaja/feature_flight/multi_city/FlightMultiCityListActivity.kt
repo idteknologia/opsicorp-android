@@ -44,7 +44,6 @@ import opsigo.com.datalayer.request_model.accomodation.flight.validation.Segment
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ValidationFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.validation.ContactValidationFlightRequest
-import java.lang.Exception
 
 class FlightMultiCityListActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -115,12 +114,10 @@ class FlightMultiCityListActivity : BaseActivity(),
     }
 
     private fun changeButtonBookGrayColor() {
-        btn_next.changeTextColorButton(R.color.colorPureBlack)
         btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_dark_select_budget)
     }
 
     private fun changeButtonBookOrangeColor() {
-        btn_next.changeTextColorButton(R.color.colorWhite)
         btn_next.changeBackgroundDrawable(com.mobile.travelaja.R.drawable.rounded_button_yellow)
     }
 

@@ -647,7 +647,7 @@ Please add your trip item for Approval."
     <string name="warning_selected_singel_select_in_date_picker2">Tolong pilih satu tanggal</string>
 
     <string name="manage_transport">Kelola Tranport Anda</string>
-    <string name="title_manage_trip">Kelola Perjalanan</string>
+    <string name="title_manage_trip">Perjalanan</string>
     <string name="descrip_title_manange_trip">Silakan tambahkan item perjalanan Anda untuk Persetujuan</string>
     <string name="et_search_manage_trip">Ketik Kode perjalanan atau nama acara</string>
     <string name="draft">Draf</string>

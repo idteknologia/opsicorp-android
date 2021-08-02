@@ -73,7 +73,7 @@ class NotificationReceiver : BroadcastReceiver() {
 
         //final NotificationCompat.Builder builder = new NotificationCompat.Builder(App.getContext(), CHANNNEL_ID);
         val builder = NotificationCompat.Builder(context, CHANNNEL_ID_X + NOTIF_ID_INT)
-        builder.setSmallIcon(R.drawable.ic_launcher_background)
+        builder.setSmallIcon(R.mipmap.ic_launcher)
         builder.setContentTitle("$status $NOTIF_ID_INT")
         builder.setContentText("sync progress")
         builder.priority = NotificationCompat.PRIORITY_DEFAULT

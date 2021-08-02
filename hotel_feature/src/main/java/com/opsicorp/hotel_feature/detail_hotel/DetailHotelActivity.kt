@@ -107,6 +107,8 @@ class DetailHotelActivity : BaseActivity(),
 
     private fun initWebview() {
         val url = "<object width=\"360\" height=\"178\" style=\"border: 1px solid #cccccc;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
+        setLog("--------------------")
+        setLog(url)
         webview.loadData(url, "text/html", null)
         webview.setWebViewClient(WebViewClient())
         webview.clearCache(true)
@@ -313,6 +315,7 @@ class DetailHotelActivity : BaseActivity(),
         line_desc.callbackOnclickButton(this)
         line_desc.setDataListFacility(mData)
         line_desc.initLinePricing(data)
+        line_desc.setTotalRoom(data.room.size)
         line_desc.setDescriptions(data.descriptioHotel)
     }
 

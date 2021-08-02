@@ -77,7 +77,8 @@
             android:layout_width="137dp"
             android:layout_height="37dp"
             android:textColor="@color/textButtonColor"
-            android:text="On Request"
+            android:text="Select Room"
+            style="@style/RobotoBold"
             android:background="@drawable/rounded_button_yellow"
             android:gravity="center">
         </TextView>

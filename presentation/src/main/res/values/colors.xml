@@ -153,6 +153,9 @@
     <color name="bgIconHotelHome">#2f6db0</color>
     <color name="bgIconTrainHome">#38b7dc</color>
     <color name="textIconHome">#ffffff</color>
-
+    <color name="buttonRemoveTextColor">#24253d</color>
+    <color name="chipTextColorEnable">#009688</color>
+    <color name="chipBackgroundEnable">#19009688</color>
+    <color name="chipStrokeEnabled">#009688</color>
 
 </resources>

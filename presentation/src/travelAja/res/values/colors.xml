@@ -152,8 +152,10 @@
     <color name="bgIconHotelHome">#EFEFEF</color>
     <color name="bgIconTrainHome">#EFEFEF</color>
     <color name="textIconHome">#000000</color>
-
-
+    <color name="buttonRemoveTextColor">#24253d</color>
+    <color name="chipTextColorEnable">@color/buttonRemoveTextColor</color>
+    <color name="chipBackgroundEnable">#1924253d</color>
+    <color name="chipStrokeEnabled">@color/buttonRemoveTextColor</color>
 
 
 </resources>

@@ -2,11 +2,13 @@ package com.mobile.travelaja.module.settlement.view
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.base.list.BaseListFragment
+import com.mobile.travelaja.module.settlement.view.adapter.BankListAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.Bank
@@ -48,6 +50,12 @@ class BankListFragment : BaseListFragment<Bank>() {
             isRefreshing(loading)
         }
         viewModel.getBank()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.tvSubtitle.isVisible = false
     }
 
     override fun onRefresh() {

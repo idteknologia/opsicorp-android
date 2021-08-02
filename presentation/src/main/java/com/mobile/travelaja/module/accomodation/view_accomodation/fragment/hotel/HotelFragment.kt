@@ -2,15 +2,15 @@ package com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hote
 
 import android.os.Bundle
 import android.view.View
-import android.content.Intent
-import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
+import android.content.Intent
 import org.koin.core.KoinComponent
 import kotlin.collections.ArrayList
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseFragment
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
-import com.mobile.travelaja.base.BaseFragment
 import com.mobile.travelaja.utility.DateConverter
 import com.opsicorp.sliderdatepicker.utils.Constant
 import kotlinx.android.synthetic.main.hotel_fragment.*
@@ -82,25 +82,24 @@ class HotelFragment : BaseFragment(),
 
     private fun setDateDefault() {
         if (Constants.isBisnisTrip){
-            setLog("000000000000000000000000000000000000000000")
             data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-            startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
-            endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
             checkIn  = data.startDate
             checkOut = data.endDate
-            setDurationDate(checkIn,checkOut)
+            setDurationDate(checkIn,DateConverter().decreaseDate(checkOut,"yyyy-MM-dd"))
             setDataCityDefault()
+            startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
+            endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
         }
         else{
-            setLog("11111111111111111111111111111111111111111")
             data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
-            startDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
-            endDate(DateConverter().getAfterDay("dd MMM yyyy",1),DateConverter().getAfterDay("yyyy-MM-dd",1) )
             checkIn  = DateConverter().getDayFormatOpsicorp2()
             checkOut = DateConverter().getAfterDay("yyyy-MM-dd",1)
             setDurationDate(checkIn,checkOut)
             tv_duration.text = "1 Night(s)"
             setDataCityDefault()
+            startDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
+            endDate(DateConverter().getAfterDay("dd MMM yyyy",1),DateConverter().getAfterDay("yyyy-MM-dd",1) )
+
         }
     }
 
@@ -112,8 +111,8 @@ class HotelFragment : BaseFragment(),
         )
         typeDestination             = Constants.SELECT_NEARBY_CITY
         dataSelectCity.cityName     = data.destinationName
-        dataSelectCountry.id        = data.destinationId
-        dataSelectCity.idCity       = data.destinationId
+        dataSelectCountry.id        = "ID"
+        dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
         tv_city.text                = dataSelectCity.cityName
         tv_title_destination.text   = context?.getString(R.string.title_nearby_city)
 
@@ -140,19 +139,6 @@ class HotelFragment : BaseFragment(),
             bundle.putString(Constants.KeyBundle.KEY_CHECKOUT,checkOut)
             bundle.putString(Constants.KeyBundle.KEY_CHECKIN,checkIn)
 
-/*            setLog("---------------------------")
-            setLog("1 -> "+tv_duration.text.toString())
-            setLog("2 -> "+typeDestination.toString())
-            setLog("3 -> "+dataAirport.nameAirport)
-            setLog("4 -> "+dataSelectCity.cityName)
-            setLog("6 -> "+dataSelectCity.idCity)
-            setLog("5 -> "+dataOffice.nameCompany)
-            setLog("7 -> "+dataSelectCountry.id)
-            setLog("8 -> "+longitude)
-            setLog("9 -> "+latitude)
-            setLog("10 ->"+checkOut)
-            setLog("11 ->"+checkIn)*/
-
             val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_HOTEL +"result.ResultSearchHotelActivity"))
             intent.putExtra(Constants.KEY_BUNDLE,bundle)
             gotoActivityModule(requireContext(),intent)
@@ -166,7 +152,7 @@ class HotelFragment : BaseFragment(),
         tv_departur_date.text = displayStartDate
         checkIn = startDate
         if (!Constants.isBisnisTrip) checkOut = DateConverter().getAfterDate("yyyy-MM-dd","yyyy-MM-dd",checkIn,totalDuration-1)
-        setDurationDate(checkIn,checkOut)
+        setDurationDate(checkIn,DateConverter().decreaseDate(checkOut,"yyyy-MM-dd"))
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
@@ -180,7 +166,7 @@ class HotelFragment : BaseFragment(),
     override fun onClick(v: View?) {
         when(v){
             tv_departur_date -> {
-                NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",data.startDate,data.endDate, Constant.SINGGLE_SELECTED)
+                NewCalendarViewOpsicorp().showCalendarViewMinMax(requireActivity(),"yyyy-MM-dd",data.startDate,DateConverter().decreaseDate(data.endDate,"yyyy-MM-dd"), Constant.SINGGLE_SELECTED)
             }
             tv_duration -> {
                 selectDuration()
@@ -234,7 +220,7 @@ class HotelFragment : BaseFragment(),
 //        var max = ""
 //        if (Constants.isBisnisTrip) max = checkOut else max = data.endDate
         DialogSelectDuration(requireContext()).create(
-                Globals.countDaysBettwenTwoDate(checkIn,data.endDate,"yyyy-MM-dd"),
+                Globals.countDaysBettwenTwoDate(checkIn,DateConverter().decreaseDate(data.endDate,"yyyy-MM-dd"),"yyyy-MM-dd"),
                 object : DialogSelectDurationHotel {
                     override fun duration(duration: String) {
                         tv_duration.text = duration+" Night(s)"

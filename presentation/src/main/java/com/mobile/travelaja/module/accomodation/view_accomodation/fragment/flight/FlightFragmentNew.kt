@@ -213,11 +213,12 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun setDataDefault() {
         mFlightMulti.routes.clear()
-            val data = Serializer.deserialize(
+        val data = Serializer.deserialize(
                 Constants.DATA_SUCCESS_CREATE_TRIP,
                 SuccessCreateTripPlaneModel::class.java
         )
-            if (getProfile().companyCode=="000002"){
+
+        if (data.route.isNotEmpty()){
             data.route.forEachIndexed { index, routeMultiCityModel ->
                 val orderFlight = RouteMultiCityModel()
                 orderFlight.dateDeparture   = routeMultiCityModel.dateDeparture
@@ -235,21 +236,21 @@ class FlightFragmentNew : BaseFragment(),
             for (i in 0 until 2){
                 val orderFlight = RouteMultiCityModel()
                 if (i == 0) {
-                orderFlight.dateDeparture = if (data.startDate.contains(":")) data.startDate.split(" ")[0].trim() else data.startDate
-                orderFlight.originName = originName
-                orderFlight.idOrigin = idOrigin
-                orderFlight.destinationName = destinationName
-                orderFlight.idDestination = idDestination
-            } else {
-                orderFlight.dateDeparture =
-                    DateConverter().getNextDay("yyyy-MM-dd", "yyyy-MM-dd", data.startDate, 3)
-                orderFlight.originName = destinationName
-                orderFlight.idOrigin = idDestination
-                orderFlight.destinationName = originName
-                orderFlight.idDestination = idOrigin}
+                    orderFlight.dateDeparture = if (data.startDate.contains(":")) data.startDate.split(" ")[0].trim() else data.startDate
+                    orderFlight.originName = originName
+                    orderFlight.idOrigin = idOrigin
+                    orderFlight.destinationName = destinationName
+                    orderFlight.idDestination = idDestination
+                } else {
+                    orderFlight.dateDeparture =  if (data.endDate.contains(":")) data.endDate.split(" ")[0].trim() else data.endDate//DateConverter().getNextDay("yyyy-MM-dd", "yyyy-MM-dd", data.startDate, 3)
+                    orderFlight.originName = destinationName
+                    orderFlight.idOrigin = idDestination
+                    orderFlight.destinationName = originName
+                    orderFlight.idDestination = idOrigin}
                 mFlightMulti.routes.add(orderFlight)
             }
         }
+
         adapter.setData(mFlightMulti.routes)
     }
 
@@ -639,6 +640,7 @@ class FlightFragmentNew : BaseFragment(),
         if (typeTrip.equals("multi_city")) {
             mFlightMulti.routes[currentPosition].dateDeparture = startDate
         } else {
+            if (displayStartDate != "Error Formating")
             tv_departur_date.text = displayStartDate
         }
 

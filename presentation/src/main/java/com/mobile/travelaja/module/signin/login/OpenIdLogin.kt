@@ -46,6 +46,7 @@ object OpenIdLogin {
             responseType,
             redirectUri
         )
+
         builder.setState(null)
         builder.setScopes(scopes)
         builder.setPrompt("login")

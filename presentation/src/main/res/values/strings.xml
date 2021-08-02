@@ -1100,8 +1100,24 @@ Please add your trip item for Approval."
     <string name="select_bank_transfer">Select Bank Transfer</string>
     <string name="no_have_trips">Sorry, you no have Trips</string>
     <string name="no_have_bank_account">Sorry, you no have Bank Account</string>
-    <string name="transportation_form">Transportation Form</string>
+    <string name="transportation_form">Reimbursement Form</string>
     <string name="total_idr">Total <font color="#2b9a8e">IDR</font></string>
+    <string name="has_same_transport_expense">This moda has been choosen before. Please select other moda.</string>
+    <string name="alert">Alert</string>
+    <string name="non_flight">Non Flight</string>
+    <string name="empty_mode_transports">Sorry, mode transports is empty</string>
+    <string name="warning_not_complete_transport_expense">Please make sure to complete the Transport Expense form</string>
+    <string name="dont_save">Dont Save</string>
+    <string name="warning_back_settlement_transport_expense">Press the save button to save transport expense</string>
+    <string name="amount">Amount</string>
+    <string name="select_transportation_mode">Active toggle for roundtrip mode</string>
+    <string name="roundtrip">Roundtrip ?</string>
+    <string name="non_udara_option_are_train_bus_ship">Select Non-udara option Train, Bus or Ship</string>
+    <string name="non_flight_">Transportation Non-Udara ?</string>
+    <string name="warning_loading">Please waiting for fetching data</string>
+    <string name="non_udara_">Non-Udara</string>
+    <string name="udara_">Udara</string>
+    <string name="txt_failed_upload_file_size_is_to_large">File upload failed: Size is to large.</string>
     <string name="pic_email_cost_center">PIC Email Cost Center</string>
     <string name="to_main_menu">To Main Menu</string>
     <string name="required_document">Required Document</string>

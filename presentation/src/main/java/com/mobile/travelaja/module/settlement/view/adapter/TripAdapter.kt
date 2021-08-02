@@ -1,4 +1,4 @@
-package com.mobile.travelaja.module.settlement.view
+package com.mobile.travelaja.module.settlement.view.adapter
 
 import android.app.Activity
 import android.content.Intent
@@ -11,7 +11,9 @@ import com.mobile.travelaja.databinding.ItemTripPageBinding
 import com.mobile.travelaja.module.settlement.TripSearchActivity
 import opsigo.com.domainlayer.model.trip.Trip
 
-class TripAdapter(private val selectedCode : String?,private val activity: Activity) : PageListAdapter<Trip>(POST_COMPARATOR) {
+class TripAdapter(private val selectedCode : String?,private val activity: Activity) : PageListAdapter<Trip>(
+    POST_COMPARATOR
+) {
 
     companion object {
         val POST_COMPARATOR = object : DiffUtil.ItemCallback<Trip>() {

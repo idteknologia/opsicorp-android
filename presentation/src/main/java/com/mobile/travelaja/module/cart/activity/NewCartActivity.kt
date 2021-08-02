@@ -686,7 +686,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun gotoAddItem() {
-        if (tripSummary.contact.employeeId.equals(getProfile().employId)) {
+        if (tripSummary.tripParticipantModels.filter { it.employId.contains(getProfile().employId)}.isNotEmpty()) {
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId
@@ -709,7 +709,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
                 val bundle = Bundle()
-                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.ADD_ITEM_PERSONAL_TRIP)
+                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             } else {
                 showAlert(getString(R.string.message_sorry), getString(R.string.info_expired_trip))
@@ -753,10 +753,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
                 //showLoadingOpsicorp(true)
 
-                val vProgress = intent?.getStringExtra("vProgress")
-                val vText = intent?.getStringExtra("vText")
-                val vPnrId = intent?.getStringExtra("vPnrId")
-                val PnrCode = intent?.getStringExtra("PnrCode")
+                val vProgress = intent.getStringExtra("vProgress")
+                val vText = intent.getStringExtra("vText")
+                val vPnrId = intent.getStringExtra("vPnrId")
+                val PnrCode = intent.getStringExtra("PnrCode")
 
                 tvProgress.text = vProgress
                 tvTestStatus.text = vText

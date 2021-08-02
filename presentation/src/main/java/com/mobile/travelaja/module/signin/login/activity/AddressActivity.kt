@@ -17,9 +17,7 @@ import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import kotlinx.android.synthetic.main.address_activity_view.*
 import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
-import net.openid.appauth.AuthorizationException
-import net.openid.appauth.AuthorizationResponse
-import net.openid.appauth.AuthorizationService
+import net.openid.appauth.*
 import opsigo.com.datalayer.datanetwork.GetDataLogin
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackConfig
@@ -112,6 +110,7 @@ class AddressActivity : BaseActivity(), LoginView {
                         viewModel.onLogin("${PERTAMINA_URL}token",body)
                     }
 
+
                 }
             }
         }
@@ -124,7 +123,6 @@ class AddressActivity : BaseActivity(), LoginView {
             val baseUrl = "https://$url.opsicorp.com/"
             if (url.isNotEmpty()) {
                 if (baseUrl == PERTAMINA_URL) {
-
                     showDialog(getString(R.string.waiting))
                     OpenIdLogin.loginWithSSO(
                         this,

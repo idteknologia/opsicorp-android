@@ -55,18 +55,17 @@ class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): androidx.recycl
         }
 
         if (data.isGuaranteedBooking){
-            holder.itemView.type_booking.text          = "Hold Booking"
+            holder.itemView.tv_type_refund.text          = "Guaranted"
         }
         else{
-            holder.itemView.type_booking.text          = "Direct Booking"
+            holder.itemView.tv_type_refund.text          = "Free Cancelation"
         }
 
-        if (data.isFullCharge){
+ /*       if (data.isFullCharge){
 //            holder.itemView.line_guaranted.visibility   = View.VISIBLE //"Refundable"\
         }else {
 //            holder.itemView.line_guaranted.visibility   = View.GONE //"Refundable"\
-        }
-
+        }*/
 
         holder.itemView.setOnClickListener {
             onclick.onClick(-1,position)

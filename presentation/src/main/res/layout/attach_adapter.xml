@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:id="@+id/layoutFile"
     android:layout_height="wrap_content">
 
@@ -16,30 +18,33 @@
 
         <TextView
             android:id="@+id/tx_name_document"
-            android:layout_centerVertical="true"
-            android:textSize="14dp"
-            android:textColor="#4a4a4a"
             style="@style/RobotoMedium"
-            android:layout_marginRight="50dp"
-            android:singleLine="true"
-            android:text="@string/document_meeting_pdf"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/tv_failed"
+            android:singleLine="true"
+            android:layout_marginEnd="16dp"
+            android:text="@string/document_meeting_pdf"
+            android:textColor="#4a4a4a"
+            android:textSize="14dp" />
 
         <ImageView
             android:id="@+id/image_delet"
             android:src="@drawable/ic_close"
-            android:layout_alignParentRight="true"
+            tools:visibility="gone"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_width="12dp"
-            android:layout_height="12dp" />
-
+            android:layout_width="14dp"
+            android:layout_height="14dp" />
 
         <ProgressBar
             android:visibility="gone"
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:src="@drawable/ic_close"
+            tools:visibility="visible"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_width="12dp"
@@ -47,12 +52,14 @@
 
         <TextView
             android:id="@+id/tv_failed"
-            android:text="@string/retry"
-            android:textColor="@color/red_alert"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/image_delet"
+            android:layout_marginEnd="16dp"
+            tools:visibility="gone"
+            android:text="@string/retry"
+            android:textColor="@color/red_alert" />
 
     </RelativeLayout>
 </LinearLayout>

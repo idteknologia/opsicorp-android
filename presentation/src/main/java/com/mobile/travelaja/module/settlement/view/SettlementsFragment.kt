@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.mobile.travelaja.base.paging.PageListAdapter
 import com.mobile.travelaja.base.paging.PageListFragment
+import com.mobile.travelaja.module.settlement.view.adapter.SettlementAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import kotlinx.coroutines.Job
