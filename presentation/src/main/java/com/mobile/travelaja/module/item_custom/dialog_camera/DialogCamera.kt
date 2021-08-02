@@ -19,6 +19,7 @@ import android.provider.OpenableColumns
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
 import com.unicode.kingmarket.Base.BaseDialogFragment
@@ -29,15 +30,22 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DialogCamera : BaseDialogFragment() {
-    override fun getLayout(): Int {
-        return R.layout.dialog_camera
-    }
 
     protected val CAMERA_REQUEST = 0
     protected val GALLERY_PICTURE = 1
-    lateinit var imgFile: File
-    var pictureImagePath = ""
+    var imgFile: File ?= null
+    private var pictureImagePath = ""
+    private var tempFilePath = ""
     lateinit var callbackDialog: DialogCameraCallback
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        pictureImagePath = ""
+    }
+
+    override fun getLayout(): Int {
+        return R.layout.dialog_camera
+    }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         setCornerDialog()
@@ -46,12 +54,14 @@ class DialogCamera : BaseDialogFragment() {
 
     private fun setInitClickListener() {
         line_upload_file.setOnClickListener {
-            if (line_upload_file.background.constantState == resources.getDrawable(R.drawable.rounded_button_camera).constantState) {
+            if (img_upload_file.isVisible) {
                 getImageFromGalery()
 //                openDirectory()
             } else {
-                callbackDialog.data(pictureImagePath, imgFile)
-                dismiss()
+                if (imgFile != null && pictureImagePath.isNotEmpty()){
+                    callbackDialog.data(pictureImagePath, imgFile!!)
+                    dismiss()
+                }
             }
         }
         btn_camera1.setOnClickListener {
@@ -72,14 +82,14 @@ class DialogCamera : BaseDialogFragment() {
     }
 
     fun changeButtonUploaded() {
-        if (line_upload_file.background.constantState == resources.getDrawable(R.drawable.rounded_button_camera).constantState) {
-            line_upload_file.setBackgroundDrawable(resources.getDrawable(R.drawable.rounded_button_camera_uploaded))
-            img_upload_file.visibility = View.GONE
+        if (pictureImagePath.isNotEmpty() && img_upload_file.isVisible) {
+            line_upload_file.setBackgroundResource(R.drawable.rounded_button_camera_uploaded)
+            img_upload_file.isVisible = false
             title_upload_file.setTextColor(resources.getColor(R.color.white))
         } else {
-            line_upload_file.background = resources.getDrawable(R.drawable.rounded_button_camera)
+            line_upload_file.setBackgroundResource(R.drawable.rounded_button_camera)
+            img_upload_file.isVisible = true
             title_upload_file.setTextColor(resources.getColor(R.color.colorDarkGrayRound))
-            img_upload_file.visibility = View.VISIBLE
         }
     }
 
@@ -118,8 +128,7 @@ class DialogCamera : BaseDialogFragment() {
                 }
             }
         }
-
-        if (pictureImagePath.isNotEmpty()){
+        if (resultCode == Activity.RESULT_OK && pictureImagePath.isNotEmpty()){
             changeButtonUploaded()
         }
     }
@@ -140,8 +149,8 @@ class DialogCamera : BaseDialogFragment() {
         setLog(realPathFromURI)
         imgFile = File(realPathFromURI)
 
-        if (imgFile.exists()) {
-            val myBitmap: Bitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+        if (imgFile!!.exists()) {
+            val myBitmap: Bitmap = BitmapFactory.decodeFile(imgFile!!.absolutePath)
             image_selected.setImageBitmap(myBitmap)
         }
     }
@@ -222,12 +231,12 @@ class DialogCamera : BaseDialogFragment() {
                     return
                 }
                 val bitmap = getBitmapImage(fd)
-                image_selected.setImageBitmap(bitmap)
                 bitmap?.compress(Bitmap.CompressFormat.JPEG, compress, fOut)
                 fOut.flush()
                 fOut.close()
                 this.imgFile = imgFile
                 this.pictureImagePath = imgFile.absolutePath
+                image_selected.setImageURI(Uri.fromFile(imgFile))
             }
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
@@ -272,26 +281,30 @@ class DialogCamera : BaseDialogFragment() {
             ".jpg",
             storageDir
         ).apply {
-            pictureImagePath = absolutePath
+            tempFilePath = absolutePath
         }
     }
 
     fun setImageFileFromCamera() {
         try {
-            imgFile = File(pictureImagePath)
-            val size = imgFile.length()
+            imgFile = File(tempFilePath)
+            if (imgFile == null)
+                return
+            val size = imgFile!!.length()
             val s = size / (1024 * 1024)
             val compress = getCompressSize(s)
             if (compress == -1) return
-            val bitmap = BitmapFactory.decodeFile(pictureImagePath)
+            val bitmap = BitmapFactory.decodeFile(tempFilePath)
             val fOut = FileOutputStream(imgFile)
             bitmap?.compress(Bitmap.CompressFormat.JPEG, compress, fOut)
             fOut.flush()
             fOut.close()
-            image_selected.setImageURI(Uri.fromFile(imgFile))
         } catch (e: IOException) {
             e.printStackTrace()
+            return
         }
+        pictureImagePath = tempFilePath
+        image_selected.setImageURI(Uri.parse(pictureImagePath))
     }
 
     private fun getCompressSize(sizeMb: Long): Int {

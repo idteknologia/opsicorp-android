@@ -4,11 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="com.mobile.travelaja.utility.Utils" />
-
         <import type="androidx.databinding.ObservableBoolean" />
-
         <import type="android.view.View" />
 
         <variable
@@ -115,7 +112,7 @@
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{data.amount.toString()}"
+                android:text="@{Utils.formatCurrency(data.cost)}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@{`etDistance`+position}"
                 android:hint="Distance"
+                android:visibility="@{data.isFromPolicy ? View.GONE : View.VISIBLE}"
                 android:inputType="numberDecimal"
                 android:text="@{String.valueOf(Utils.doubleParse(data.distance)??``)}"
                 app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +141,7 @@
                 android:gravity="center"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="@{data.totalAmount.toString()}"
+                android:text="@{Utils.formatCurrency(data.totalAmount)}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"

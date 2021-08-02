@@ -1,6 +1,7 @@
 package com.mobile.travelaja.base
 
 import android.app.Activity
+import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context

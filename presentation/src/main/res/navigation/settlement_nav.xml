@@ -91,6 +91,10 @@
         <argument
             android:name="route"
             app:argType="opsigo.com.domainlayer.model.settlement.RouteTransport[]" />
+        <argument
+            android:name="golper"
+            app:argType="integer" />
+
     </fragment>
 
 

@@ -4,6 +4,7 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.switchmaterial.SwitchMaterial
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.base.list.BaseListFragment
@@ -20,7 +21,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     private val args: IntercityTransportFragmentArgs by navArgs()
     private var routes = arrayOf<RouteTransport>()
     private var position = -1
-
+    private var golper = 0
 
     override fun baseListAdapter(): BaseListAdapter<IntercityTransport> {
         viewModel = ViewModelProvider(
@@ -30,6 +31,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         viewModel.items.add(IntercityTransport())
         arguments?.let {
             routes = args.route
+            golper = args.golper
         }
         setRoute()
         adapter = IntercityTransportAdapter(viewModel, this)
@@ -42,6 +44,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     override fun isButtonVisible(): Boolean = true
 
     override fun onRefresh() {
+
     }
 
     override fun onClick(v: View?) {
@@ -55,6 +58,12 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
             R.id.buttonRemove -> {
                 removeItem(position)
             }
+            R.id.switchRoundtrip -> {
+                if (view is SwitchMaterial) {
+                    val checked = view.isChecked
+                    viewModel.switchTransport(position, checked)
+                }
+            }
             else -> {
                 this.position = position
                 dialog.show()
@@ -67,7 +76,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         dialog = MaterialAlertDialogBuilder(requireContext()).setTitle("Ticket Number")
         dialog.setItems(items) { d, pos ->
             val route = routes[pos]
-            viewModel.setRoute(this.position, route)
+            viewModel.setRoute(this.position, route, golper)
             d.dismiss()
         }
     }

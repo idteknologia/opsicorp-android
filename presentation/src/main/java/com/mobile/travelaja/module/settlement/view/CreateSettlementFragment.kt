@@ -127,7 +127,8 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
     }
 
     private fun navigateIntercity(){
-        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(viewModel.routes.toTypedArray())
+        val golper = viewModel.submitSettlement.value?.Golper ?:0
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(viewModel.routes.toTypedArray(),golper)
         findNavController().navigate(action)
     }
 

@@ -157,7 +157,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.SelectTripRoutePertaminaActivity"
@@ -239,4 +240,9 @@
 
         </provider>
     </application>
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 </manifest>

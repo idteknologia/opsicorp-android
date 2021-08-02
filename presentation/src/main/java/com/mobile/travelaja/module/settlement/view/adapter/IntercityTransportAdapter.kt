@@ -3,6 +3,7 @@ package com.mobile.travelaja.module.settlement.view.adapter
 import android.text.InputFilter
 import android.text.Spanned
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.ObservableBoolean
@@ -55,17 +56,20 @@ class IntercityTransportAdapter(
             binding.position = position
             binding.setVariable(BR.data, model)
             binding.executePendingBindings()
+
             binding.etDistance.doOnTextChanged { text, start, count, after ->
-                if (!text.isNullOrEmpty() && binding.etDistance.isFocusable){
-                    viewModel.setDistance(text.toString().toDouble(),itemId.toInt())
+                if (!text.isNullOrEmpty() && binding.etDistance.isFocusable) {
+                    viewModel.setDistance(text.toString().toDouble(), itemId.toInt())
                 }
             }
-            binding.etDistance.filters = arrayOf(InputFilterMax())
+            binding.etDistance.filters = arrayOf(InputFilterMax {
+                Toast.makeText(itemView.context,"Maximum 200 km",Toast.LENGTH_SHORT).show()
+            })
         }
     }
 }
 
-class InputFilterMax : InputFilter {
+class InputFilterMax(val listenMax : () -> Unit?) : InputFilter {
     /*
       @dest is value before change
       @replacement is char value input / delete is empty
@@ -87,9 +91,11 @@ class InputFilterMax : InputFilter {
             val charsEnd = dest?.substring(dend, dest.length)
             val value = charsStart + replacement + charsEnd
             val d = value.toDouble()
-            if (d > 200)
+            if (d > 200){
+                listenMax.invoke()
                 return ""
-        }catch (t : Throwable){
+            }
+        } catch (t: Throwable) {
 
         }
         return source!!

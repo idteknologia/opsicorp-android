@@ -99,5 +99,14 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             Result.Error(t)
         }
 
-
+    override suspend fun getIntercityTransportCompensation(route: RouteTransport,golper : Int): Result<IntercityTransport> =
+        try {
+            val origin = route.City.split("-").first()
+            val dest = route.City.split("-").last()
+            val body = mutableMapOf<String,Any>("Golper" to golper,"Origin" to origin,"Destination" to dest)
+            val result = api.getIntercityTransportCompensation(body)
+            Result.Success(result.result)
+        }catch (t : Throwable){
+            Result.Error(t)
+        }
 }

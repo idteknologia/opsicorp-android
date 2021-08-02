@@ -211,10 +211,11 @@ class Ticket : Parcelable, BaseObservable() {
 open class RouteTransport : Parcelable, BaseObservable() {
     @get:Bindable
     var Route: String = ""
-    set(value) {
-        field = value
-        notifyPropertyChanged(BR.route)
-    }
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.route)
+        }
+
     @get:Bindable
     var City: String = ""
         set(value) {
@@ -225,9 +226,35 @@ open class RouteTransport : Parcelable, BaseObservable() {
 
 @Parcelize
 class IntercityTransport : RouteTransport(), Parcelable {
+    @SerializedName("Amount")
     var Amount: Number = 0
+    @SerializedName("Distance")
     var Distance: Number? = null
+    @SerializedName("TripType")
     var TripType: Int = 0
+    @SerializedName("Currency")
     var Currency: String = ""
+    @get:Bindable
+    @SerializedName("TotalAmount")
     var TotalAmount: Number = 0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.totalAmount)
+    }
+    @get:Bindable
+    @SerializedName("Cost")
+    var Cost: Number = 0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.cost)
+    }
+    @get:Bindable
+    @SerializedName("IsFromPolicy")
+    var IsFromPolicy: Boolean = false
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.isFromPolicy)
+    }
 }
+
+data class IntercityTransportResult(@SerializedName("result") var result: IntercityTransport)

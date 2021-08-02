@@ -55,6 +55,9 @@ interface ServiceApi {
     @POST("api/Settlement/Submit")
     suspend fun submitSettlement(@Body submit : SubmitSettlement) : SubmitResult
 
+    @POST("api/Settlement/GetIntercityTransportCompensation")
+    suspend fun getIntercityTransportCompensation(@Body route : MutableMap<String,Any>) :IntercityTransportResult
+
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {
             val interceptor = HttpLoggingInterceptor()

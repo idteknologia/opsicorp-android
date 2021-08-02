@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.Flow
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.Trip
+import retrofit2.http.Body
 
 interface SettlementRepository {
     fun getSettlements(query : MutableMap<String,Any>) : Flow<PagingData<Settlement>>
@@ -16,4 +17,6 @@ interface SettlementRepository {
     suspend fun calculateTransportExpense(body:MutableMap<String,Any>) : Result<CalculateTransportResult>
     suspend fun getExpenseType() : Result<List<ExpenseType>>
     suspend fun submitSettlement(submit : SubmitSettlement) : Result<SubmitResult>
+    suspend fun getIntercityTransportCompensation( route : RouteTransport,golper : Int) :Result<IntercityTransport>
+
 }
