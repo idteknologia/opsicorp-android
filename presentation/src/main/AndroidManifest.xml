@@ -157,7 +157,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+        </activity>
         <activity
             android:name="com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.SelectTripRoutePertaminaActivity"
             android:screenOrientation="portrait" />
@@ -226,5 +228,21 @@
                 <data android:scheme="${applicationId}" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:authorities="${applicationId}.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths"/>
+
+        </provider>
     </application>
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 </manifest>

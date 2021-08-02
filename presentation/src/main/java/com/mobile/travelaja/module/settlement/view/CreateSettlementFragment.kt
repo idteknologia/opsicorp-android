@@ -5,17 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.mobile.travelaja.BR
+import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
 
-class CreateSettlementFragment : Fragment() {
+class CreateSettlementFragment : Fragment(),View.OnClickListener {
     private lateinit var viewModel: SettlementViewModel
     private lateinit var binding: FragmentCreateSettlementBinding
 
@@ -23,7 +24,6 @@ class CreateSettlementFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentCreateSettlementBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,26 +36,13 @@ class CreateSettlementFragment : Fragment() {
         ).get(SettlementViewModel::class.java)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.clickListener = this
         binding.increaseDecreaseView.setValue(1, 0, object : IncreaseDecreaseListener {
             override fun onChangeValue(value: Int) {
                 viewModel.calculateOvernight(value)
             }
-
         })
-        binding.etTripCode.setOnClickListener {
-            val action =
-                CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment()
-            findNavController().navigate(action)
-//            val intent = Intent(requireContext(), TripSearchActivity::class.java)
-//            intent.putExtra(TripSearchActivity.SELECTED,viewModel.selectedCode.get())
-//            requireActivity().startActivityForResult(intent,9)
-        }
 
-        binding.etBank.setOnClickListener {
-            val action =
-                CreateSettlementFragmentDirections.actionCreateSettlementToBankListFragment()
-            findNavController().navigate(action)
-        }
         binding.checkboxDeclare.setOnCheckedChangeListener { buttonView, isChecked ->
             viewModel.buttonNextEnabled.set(isChecked)
         }
@@ -64,13 +51,6 @@ class CreateSettlementFragment : Fragment() {
             if (binding.switchTransportation.isChecked){
                 showTransportation()
             }
-        }
-        binding.viewDetailInformation.setOnClickListener {
-            showTransportation()
-        }
-
-        binding.ivBack.setOnClickListener {
-            activity?.finish()
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
@@ -86,15 +66,81 @@ class CreateSettlementFragment : Fragment() {
                 binding.increaseDecreaseView.setValue(1, value)
             }
         }
-        viewModel.getDetailTrip(viewModel.submitSettlement.TripId)
+        viewModel.getDetailTrip()
     }
 
     private fun showTransportation(){
-        val cities = viewModel.detailTrip.value?.trip?.cities()?.toTypedArray()
+        val cities = viewModel.submitSettlement.value?.cities()?.toTypedArray()
+        val modeTransports = viewModel.modeTransports.toTypedArray()
         cities?.let {
-            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities)
+            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTransportExpenseFragment(cities,modeTransports)
             findNavController().navigate(action)
+        }?: run {
+            showWarning()
         }
+    }
+
+    private fun showWarning(){
+        Toast.makeText(context,"Citi is Empty",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.etBank -> navigateBank()
+            R.id.ivBack -> activity?.finish()
+            R.id.viewDetailInformation -> showTransportation()
+            R.id.switchExpense -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateOtherExpense()
+                }
+            }
+            R.id.switchRefund -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateTicketRefund()
+                }
+            }
+            R.id.switchIntercity -> {
+                if (v is SwitchMaterial && v.isChecked){
+                    navigateIntercity()
+                }
+            }
+            R.id.buttonSubmit -> viewModel.submit()
+            else -> navigateTripCode()
+        }
+    }
+
+    private fun navigateOtherExpense(){
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToOtherExpenseFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateBank(){
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToBankListFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateTripCode(){
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateIntercity(){
+        val golper = viewModel.submitSettlement.value?.Golper ?:0
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(viewModel.routes.toTypedArray(),golper)
+        findNavController().navigate(action)
+    }
+
+    private fun navigateTicketRefund(){
+        val list = viewModel.tickets
+        if (!list.isNullOrEmpty()){
+            val action = CreateSettlementFragmentDirections.actionCreateSettlementToTicketRefundFragment(list.toTypedArray())
+            findNavController().navigate(action)
+        }else {
+            showWarning()
+        }
+
     }
 
 }

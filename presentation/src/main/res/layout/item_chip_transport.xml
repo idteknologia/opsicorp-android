@@ -12,4 +12,6 @@
     app:chipBackgroundColor="@color/chip_background"
     app:chipStrokeColor="@color/chip_stroke"
     app:chipStrokeWidth="1dp"
-    tools:checked="true" />
+    android:textColor="@color/chip_text"
+    tools:text="Bus"
+    tools:checked="false" />

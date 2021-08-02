@@ -91,6 +91,26 @@ data class DetailTrip(
     val Golper: Int,
     @SerializedName("SpecificAreaTariff")
     val SpecificAreaTariff: Int,
+    @SerializedName("CompanyCode")
+    val CompanyCode:String,
+    @SerializedName("CompanyName")
+    val CompanyName:String,
+    @SerializedName("RouteType")
+    val RouteType:String,
+    @SerializedName("TripType")
+    val TripType:String,
+    @SerializedName("CostCenter")
+    val CostCenter: String,
+    @SerializedName("IsDomestic")
+    val IsDomestic : Boolean,
+    @SerializedName("WbsNo")
+    val WbsNo:String,
+    @SerializedName("LaundryPcs")
+    val LaundryPcs: Any,
+    @SerializedName("AmountLaundry")
+    val AmountLaundry : Number,
+    @SerializedName("CurrLaundry")
+    val CurrLaundry : String,
     @SerializedName("Routes")
     val Routes: MutableList<Route> = mutableListOf()
 ){

@@ -1,4 +1,4 @@
-package com.mobile.travelaja.module.settlement.view
+package com.mobile.travelaja.module.settlement.view.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.DiffUtil

@@ -1,4 +1,4 @@
-package com.mobile.travelaja.module.settlement.view
+package com.mobile.travelaja.module.settlement.view.adapter
 
 import android.view.View
 import androidx.navigation.findNavController
@@ -29,8 +29,7 @@ class TripsListAdapter(val viewModel : SettlementViewModel) : BaseListAdapter<Tr
         fun onBind(trip : Trip){
             binding.trip = trip
             itemView.setOnClickListener {
-                viewModel.submitSettlement.TripId = trip.Id
-                viewModel.submitSettlement.TripCode = trip.Code
+                viewModel.idTripSelected = trip.Id
                 it.findNavController().navigateUp()
             }
         }

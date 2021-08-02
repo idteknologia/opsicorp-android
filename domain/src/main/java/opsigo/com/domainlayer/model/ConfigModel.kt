@@ -20,4 +20,5 @@ class ConfigModel {
     var mobileLogo               = ""
     var mobileTextLogo           = ""
     var mobileTextColorLogo      = ""
+    var isPersonalTrip = false
 }

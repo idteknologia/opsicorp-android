@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.fragment.app.FragmentContainerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_host_settlement_fragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="androidx.navigation.fragment.NavHostFragment"
-    app:navGraph="@navigation/settlement_nav"
-    app:defaultNavHost="true">
+<layout>
 
-</androidx.fragment.app.FragmentContainerView>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_settlement_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/includeBottomSettlement"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/settlement_nav" />
+
+        <include
+            android:id="@+id/includeBottomSettlement"
+            app:viewModel="@{viewModel}"
+            layout="@layout/bottom_total_transport_expense" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

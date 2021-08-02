@@ -3,6 +3,8 @@ package com.mobile.travelaja
 import org.json.JSONObject
 import org.junit.Assert
 import org.junit.Test
+import java.text.DecimalFormat
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -52,6 +54,19 @@ class ExampleUnitTest {
         val dInput = sdfOutput.format(sdf.parse(date))
         println(now.equals(dInput))
     }
+
+    @Test
+    fun formatNumber(){
+        val format = NumberFormat.getCurrencyInstance()
+        val symbol = (format as DecimalFormat).decimalFormatSymbols
+        symbol.currencySymbol = ""
+        format.decimalFormatSymbols = symbol
+        format.minimumFractionDigits = 0
+        val value = 0.0
+        val result = format.format(value)
+        println(result)
+    }
+
 
     @Test
     fun getCities() {

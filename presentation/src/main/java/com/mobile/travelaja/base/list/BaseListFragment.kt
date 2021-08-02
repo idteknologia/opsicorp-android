@@ -9,17 +9,20 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
+import androidx.databinding.ObservableBoolean
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
+import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.BaseListFragmentBinding
 import com.mobile.travelaja.utility.Utils
 
 abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefreshListener,View.OnClickListener {
-    private lateinit var binding: BaseListFragmentBinding
+    lateinit var binding: BaseListFragmentBinding
     private var snackbar: Snackbar ?= null
+    val isLoading = ObservableBoolean(false)
 
     abstract fun baseListAdapter(): BaseListAdapter<T>
 
@@ -36,12 +39,12 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
     ): View? {
         binding = BaseListFragmentBinding.inflate(inflater, container, false)
         binding.isSearch = isSearchVisible()
+        binding.setVariable(BR.isLoading,isLoading)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvBaseList.adapter = baseListAdapter()
         binding.rvBaseList.apply {
             adapter = baseListAdapter()
             if (dividerEnabled()) {
@@ -59,6 +62,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.buttonBaseList.setOnClickListener(this)
         binding.includeSearch.root.isVisible = isSearchVisible()
         binding.buttonBaseList.isVisible = isButtonVisible()
+        binding.executePendingBindings()
     }
 
     fun setTitleName(@StringRes title : Int,@ColorRes color : Int = 0){
