@@ -42,6 +42,7 @@ class DetailParticipantActivity : BaseActivity()
     var nameParticipant = ""
     var costCenter = ""
     var budget = ""
+    var destination = ""
     var getActionApprove = false
 
     var idTripCode    = ""
@@ -60,14 +61,15 @@ class DetailParticipantActivity : BaseActivity()
         id  = bundle?.getString(Constants.KEY_INTENT_TRIPID).toString()
         str = bundle?.getString(Constants.Summary).toString()
         status = bundle?.getString(Constants.STATUS_MEMBER).toString()
-        jobTitle = bundle?.getString(Constants.JOB_TITLE).toString()
-        nameParticipant = bundle?.getString(Constants.NAME_PARTICIPANT).toString()
-        costCenter          = bundle?.getString(Constants.COSTCENTER).toString()
-        budget          = bundle?.getString(Constants.BUDGET).toString()
+        jobTitle = Globals.getProfile(this).approval.reqPosName
+        nameParticipant = Globals.getProfile(this).approval.reqName
+        costCenter          = Globals.getProfile(this).costCenter
+        budget          = Globals.getProfile(this).approval.reqEmail
         idParticipant = bundle?.getString(Constants.ID_PARTICIPANT).toString()
         employId      = bundle?.getString(Constants.EMPLOY_ID).toString()
+        destination = bundle?.getString(Constants.DetailDestination).toString()
         tripSummary = Serializer.deserialize(str,SummaryModel::class.java)
-        idTripCode = tripSummary.tripCode.toString()
+        idTripCode = tripSummary.tripCode
         updateView()
 
         initRecyclerView()
@@ -292,7 +294,7 @@ class DetailParticipantActivity : BaseActivity()
         tv_days_left.text       = ""//tripSummary.timeLimitRemaining
 
         tv_purpose.text         = tripSummary.purpose
-        tv_destination.text     = StringUtils().setUppercaseFirstLetter(tripSummary.destinationName!!)
+        tv_destination.text     = StringUtils().setUppercaseFirstLetter(destination)
 
         dateConverter = DateConverter()
         var string = tripSummary.startDate

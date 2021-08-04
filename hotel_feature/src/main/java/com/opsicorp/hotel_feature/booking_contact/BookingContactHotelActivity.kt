@@ -387,6 +387,7 @@ class BookingContactHotelActivity : BaseActivity(),
         data.status = dataTrip.statusNumber
         data.isBookAfterApprove = dataTrip.isBookAfterApprove
         data.isPrivateTrip = dataTrip.isPrivateTrip
+        data.remark = dataTrip.remark
         return data
     }
 

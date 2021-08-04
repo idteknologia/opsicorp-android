@@ -222,7 +222,7 @@ data class SummaryEntity(
 	val tripBudgetComponents: Any? = null,
 
 		@field:SerializedName("TrnNumber")
-	val trnNumber: Any? = null,
+	val trnNumber: String? = null,
 
 		@field:SerializedName("TotalExpenditureHotel")
 	val totalExpenditureHotel: Int = 0,

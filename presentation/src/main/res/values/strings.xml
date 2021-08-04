@@ -759,7 +759,7 @@ Please add your trip item for Approval."
     <string name="txt_domestic_route">Domestic Route</string>
     <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
     <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
-    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br />  <b>Maximum file size : 1 MB</b></string>
+    <string name="information_docs"><br/><b>e.g.</b>invitation letter, official letter, PJS Document<br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br />  <b>Maximum file size : 1 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>
@@ -901,6 +901,10 @@ Please add your trip item for Approval."
     <string name="select_your_origin">Select your origin</string>
     <string name="select_your_destination">Select your destination</string>
     <string name="fill_your_note">Fill your note</string>
+    <string name="fill_your_pic_email">Fill PIC Email Cost Center</string>
+    <string name="select_your_bank_transfer">Select your Bank Transfer</string>
+    <string name="fill_your_cash_amount">Fill your Cash Advance Amount</string>
+    <string name="limit_cash_advance">Your cash advance are beyond limit</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>
@@ -1115,6 +1119,13 @@ Please add your trip item for Approval."
     <string name="non_udara_">Non-Udara</string>
     <string name="udara_">Udara</string>
     <string name="txt_failed_upload_file_size_is_to_large">File upload failed: Size is to large.</string>
+    <string name="pic_email_cost_center">PIC Email Cost Center</string>
+    <string name="to_main_menu">To Main Menu</string>
+    <string name="required_document">Required Document</string>
+    <string name="contact_hr">You don\'t have Approver yet right now.<br>Please contact your HR Management!</br></string>
+    <string name="sorry2">Sorry..</string>
+    <string name="enter_amount">Enter Amount</string>
+
 
 </resources>
 

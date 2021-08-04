@@ -1,5 +1,7 @@
 package opsigo.com.domainlayer.model.aprover
 
+import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
+
 class ApprovalModelAdapter {
 
     var id           = ""
@@ -19,5 +21,6 @@ class ApprovalModelAdapter {
 
     var participant  = ArrayList<ParticipantModelDomain>()
     var listApproval  = ArrayList<ParticipantModelDomain>()
+    var routes = ArrayList<RoutesItemPertamina>()
 
 }

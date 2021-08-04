@@ -24,6 +24,9 @@ data class DataItemListApprovalEntity(
 		@field:SerializedName("IsApprover")
 		val isApprover: Boolean =false,
 
+		@field:SerializedName("Routes")
+		val routes : List<RouteEntity> = ArrayList(),
+
 		@field:SerializedName("ListParticipant")
 		val listParticipant : List<ListApproverItem> = ArrayList(),
 

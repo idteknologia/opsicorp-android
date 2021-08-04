@@ -60,6 +60,9 @@ class DetailSummaryHotelActivity : BaseActivity() {
             tv_reason_code.text             = dataHotel.reasonCode
             tv_description.text             = ""
         }
+        icClose.setOnClickListener {
+            finish()
+        }
     }
 
     fun startViewListener(rating:Int){

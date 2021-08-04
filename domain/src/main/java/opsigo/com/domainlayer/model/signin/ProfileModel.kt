@@ -1,5 +1,6 @@
 package opsigo.com.domainlayer.model.signin
 
+
 class ProfileModel {
     var name      = ""
     var firstName = ""
@@ -34,4 +35,8 @@ class ProfileModel {
     var passport     = ""
     var identityType = ""
     var sim          = ""
+
+    var approval = ApprovalModel()
+
+
 }

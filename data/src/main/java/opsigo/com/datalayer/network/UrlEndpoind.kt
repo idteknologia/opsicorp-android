@@ -362,4 +362,7 @@ interface UrlEndpoind {
     fun checkDateAvaibility(@Header("Authorization") token: String,
                                @Body body: HashMap<Any, Any>) : Call<ResponseBody>
 
+    @POST(MyURL.CHECK_CASH_ADVANCE)
+    fun checkCashAdvance(@Header("Authorization") token: String,
+                            @Body body: HashMap<Any, Any>) : Call<ResponseBody>
 }

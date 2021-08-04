@@ -19,6 +19,7 @@ data class SummaryModel(
         var budget: String = "",
         var budgetId : String = "",
         var expiredRemaining :String = "",
+        var trnNumber :String = "",
         var homepage: String? = null,
         var imdbId: String? = null,
         var creationDate :String= "",

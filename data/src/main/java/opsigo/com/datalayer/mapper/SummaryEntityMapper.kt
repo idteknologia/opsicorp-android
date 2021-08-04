@@ -33,6 +33,7 @@ class SummaryEntityMapper() {
 //        summary.employId        = from.contact.employeeId
         summary.creationDateView  = from.creationDateView.toString()
         summary.expiredRemaining  = from.timeLimitRemaining.toString()
+        summary.trnNumber         = from.trnNumber.toString()
         summary.isDomestic        = from.isDomestic
         summary.isBookAfterApprove = from.isBookAfterApprove
         summary.isPrivateTrip       = from.isPrivateTrip

@@ -3,6 +3,7 @@ package opsigo.com.datalayer.datanetwork.dummy.bisni_strip
 import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
 
 class DataBisnisTripModel {
 
@@ -29,6 +30,8 @@ class DataBisnisTripModel {
     var budget      = ""
     var costCenter  = ""
     var dateCreated = ""
+    var picCostCenter = ""
+    var cashAdvance = CashAdvanceModel()
     var isCbt = false
     var isInternational = false
     var isWbs = false

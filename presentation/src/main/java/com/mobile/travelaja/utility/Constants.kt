@@ -59,6 +59,7 @@ object Constants {
     var DATA_ROOM_HOTEL          = ""
     var DATA_LIST_TRAIN          = ""
     var DATA_CREATE_TRIP         = ""
+    var DATA_CASH_ADVANCE        = ""
     var LIST_DETAIL_PASSANGER    = ""
     val FROM_CART                = "from_cart"
     val DATA_DETAIL_TRAIN        = "data_detail_cart"
@@ -282,6 +283,7 @@ object Constants {
     var EMPLOY_ID                = "employId"
     var STATUS_MEMBER            = "statusMember"
     var ParticipantID            = "ParticipantID"
+    var DetailDestination        = ""
 
     var TripplanCode             = "TripplanCode"
     var TripplanIDX              = "TripplanID"

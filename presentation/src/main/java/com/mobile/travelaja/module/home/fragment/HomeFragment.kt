@@ -265,7 +265,11 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
             if (Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/"){
-                gotoActivity(CreateTripPertaminaActivity::class.java)
+                if (Globals.getProfile(requireContext()).approval.travelRequestApproval.isEmpty()){
+                    showContactHr()
+                } else {
+                    gotoActivity(CreateTripPertaminaActivity::class.java)
+                }
             } else if (Globals.getBaseUrl(requireContext()) == "https://basicqa.opsicorp.com/") {
                 gotoActivity(CreateTripTravelAjaActivity::class.java)
             } else {
@@ -274,6 +278,11 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         } else {
             showContactAdmin()
         }
+
+    }
+
+    private fun showContactHr() {
+        showDialogContactHR(false)
     }
 
     override fun onClick(v: View?) {

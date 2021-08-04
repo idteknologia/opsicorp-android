@@ -467,6 +467,7 @@ class BookingContactFlight : BaseActivity(),
         header.returnDate = dataTrip.endDate
         header.origin = dataTrip.originId
         header.destination = dataTrip.destinationId
+        header.trnNumber = dataTrip.trnNumber
         header.tripParticipants = tripParticipant()
         header.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         header.idTripPlan = dataTrip.idTripPlane
@@ -482,6 +483,7 @@ class BookingContactFlight : BaseActivity(),
         header.isDomestic       = dataTrip.isDomestik
         header.golper           = dataTrip.golper
         header.type = Constants.TypeHeader.personal
+
 
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
@@ -821,6 +823,7 @@ class BookingContactFlight : BaseActivity(),
         header.status = dataTrip.statusNumber
         header.isBookAfterApprove = dataTrip.isBookAfterApprove
         header.isPrivateTrip = dataTrip.isPrivateTrip
+        header.trnNumber = dataTrip.trnNumber
         header.origin = dataTrip.originId
         header.destination = dataTrip.destinationId
         header.tripParticipants = tripParticipant()
@@ -829,6 +832,11 @@ class BookingContactFlight : BaseActivity(),
         header.codeTripPlan = dataTrip.tripCode
         header.purpose = dataTrip.purpose
         header.type = Constants.TypeHeader.personal
+        header.remark = dataTrip.remark
+        header.businessTripType = dataTrip.businessTripType
+        header.wbsNo = dataTrip.wbsNo
+        header.isDomestic = dataTrip.isDomestik
+        header.golper = dataTrip.golper
 
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
