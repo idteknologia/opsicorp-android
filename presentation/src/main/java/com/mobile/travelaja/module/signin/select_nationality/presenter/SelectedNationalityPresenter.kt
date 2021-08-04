@@ -116,7 +116,18 @@ class SelectedNationalityPresenter :KoinComponent {
         data.clear()
         data.addAll(Constants.DATA_CITY)
         adapter.setData(data)
+    }
 
+    fun getDataCity(listCity:ArrayList<String>) {
+        data.clear()
+        data.addAll(Constants.DATA_CITY)
+        val dataFilter = ArrayList<SelectNationalModel>()
+        listCity.forEachIndexed { index, c ->
+            dataFilter.addAll(data.filter { it.name.contains(c) })
+        }
+        data.clear()
+        data.addAll(dataFilter)
+        adapter.setData(data)
     }
 
     fun getDataSelectBudged(){

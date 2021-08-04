@@ -1,6 +1,5 @@
 package com.mobile.travelaja.module.cart.adapter
 
-import opsigo.com.datalayer.request_model.accomodation.train.sync.RemoveTrainRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.sync.SyncFlightRequest
 import opsigo.com.datalayer.request_model.accomodation.train.sync.SyncTrainRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.sync.SyncHotelRequest
@@ -10,6 +9,7 @@ import opsigo.com.domainlayer.model.accomodation.flight.ProgressFlightModel
 import opsigo.com.domainlayer.model.accomodation.train.ProgressTrainModel
 import kotlinx.android.synthetic.main.item_detail_header_list_card.view.*
 import kotlinx.android.synthetic.main.item_hotel_summary_card_new.view.*
+import com.mobile.travelaja.utility.Globals.getDateNowNewFormat
 import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.domainlayer.callback.CallbackProgressFlight
 import opsigo.com.domainlayer.callback.CallbackProgressTrain
@@ -24,6 +24,7 @@ import com.mobile.travelaja.utility.Globals.setLog
 import com.mobile.travelaja.module.cart.model.*
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
+import com.mobile.travelaja.utility.*
 import kotlin.collections.ArrayList
 import com.squareup.picasso.Picasso
 import android.view.LayoutInflater
@@ -31,14 +32,12 @@ import android.widget.LinearLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.content.Context
-import android.graphics.Color
 import android.view.ViewGroup
 import com.mobile.travelaja.R
+import android.graphics.Color
 import java.lang.Exception
 import android.view.View
 import android.util.Log
-import com.mobile.travelaja.utility.*
-import com.mobile.travelaja.utility.Globals.getDateNowNewFormat
 import java.util.*
 
 class CartAdapterNew(val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
@@ -67,7 +66,6 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             else        -> HotelHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_hotel_summary_card_new, parent, false))
         }
-
     }
 
     fun setOnclickListener(onclickListenerRecyclerView: OnclickListenerRecyclerView){
@@ -97,7 +95,6 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
     open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun setData(data: ArrayList<CartModel>) {
-//    fun setData(data: ArrayList<CartModelAdapter>) {
         items = data
         notifyDataSetChanged()
     }
@@ -118,6 +115,7 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
                 TYPE_TRAIN  -> {
                     itemView.line_image_accomodation.background = context.resources.getDrawable(R.drawable.rounded_cart_header_train)
                     itemView.ic_image_accomodation.setImageDrawable(context.resources.getDrawable(R.drawable.ic_train_cart))
+
                 }
                 TYPE_FLIGHT -> {
                     itemView.line_image_accomodation.background = context.resources.getDrawable(R.drawable.rounded_cart_header_flight)
@@ -132,15 +130,15 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             itemView.title_header.text = data.titleHeader
             itemView.tv_type_trip.text = data.typeTrip
 
-            itemView.btnOption.visibility =  View.GONE
             itemView.btnOption.setOnClickListener {
-//                showPopUpRemove(itemView.option,position)
+                showPopUpRemove(itemView.btn_setting,position,data.typeHeader)
             }
+
         }
 
     }
 
-    private fun showPopUpRemove(option: ImageView, position: Int) {
+    private fun showPopUpRemove(option: ImageView, position: Int, typeHeader: Int) {
         val layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout = layoutInflater.inflate(R.layout.menu_popup_list_my_booking, null)
         val btnDetail = layout.findViewById(R.id.tv_view_detail) as TextView
@@ -151,11 +149,24 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
         line_center.visibility = View.GONE
         btnRemove.text = "Remove"
 
-        btnRemove.setOnClickListener {
-            onclick.onClick(Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART,position)
-        }
+        val dialog = Globals.showPopup(option,layout)
 
-        Globals.showPopup(option,layout)
+        btnRemove.setOnClickListener {
+            when (typeHeader){
+                TYPE_TRAIN  -> {
+                    onclick.onClick(Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART,position)
+                    dialog.dismiss()
+                }
+                TYPE_FLIGHT -> {
+                    onclick.onClick(Constants.ONCLIK_OPTION_REMOVE_FLIGHT_CART,position)
+                    dialog.dismiss()
+                }
+                else        -> {
+                    onclick.onClick(Constants.ONCLIK_OPTION_REMOVE_HOTEL_CART,position)
+                    dialog.dismiss()
+                }
+            }
+        }
     }
 
 
@@ -280,23 +291,6 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
         return Globals.classToHashMap(mData,SyncTrainRequest::class.java)
     }
 
-    private fun removeTrain(idTrain: String){
-        GetDataAccomodation(getBaseUrl(context)).getRemoveTrain(getToken(),getDataTrainRemove(idTrain),object :CallbackArrayListString{
-            override fun successLoad(data: ArrayList<String>) {
-
-            }
-
-            override fun failedLoad(message: String) {
-
-            }
-        })
-    }
-
-    private fun getDataTrainRemove(idTrain: String): HashMap<Any, Any> {
-        val data = RemoveTrainRequest()
-        data.trainId = idTrain
-        return Globals.classToHashMap(data,RemoveTrainRequest::class.java)
-    }
 
     private fun getDataProgressTrain(data: ItemCardTrainModel, position: Int) {
         GetDataAccomodation(getBaseUrl(context)).getProgressTrain(getToken(),data.idTrain,object :CallbackProgressTrain{
@@ -538,8 +532,8 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }
 
             itemView.tv_status_hotel_cart.text       = data.status
-            if (data.pnrHotel.isNotEmpty()||data.pnrHotel=="null"){
-                itemView.tv_pnr_hotel_cart.text      = data.pnrHotel
+            if (data.pnrCode.isNotEmpty()||data.pnrCode=="null"){
+                itemView.tv_pnr_hotel_cart.text      = data.pnrCode
             }
             else {
                 itemView.tv_pnr_hotel_cart.text      = "-"
@@ -577,9 +571,9 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
     private fun getDataSyncHotel(mData: ItemCardHotelModel): HashMap<Any, Any> {
         val data = SyncHotelRequest()
-        data.hotelId  = mData.tripIdHotel
+        data.hotelId  = mData.tripItemId
         data.maxRetry = 0
-        data.pnrId    = mData.pnrHotel
+        data.pnrId    = mData.pnrCode
         data.travelAgent = Globals.getConfigCompany(context).defaultTravelAgent
         return Globals.classToHashMap(data,SyncHotelRequest::class.java)
     }

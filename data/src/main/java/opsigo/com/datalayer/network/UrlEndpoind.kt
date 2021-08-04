@@ -262,6 +262,10 @@ interface UrlEndpoind {
     fun getRemoveTrain(@Header("Authorization") token:String,
                        @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
+    @POST(MyURL.REMOVE_FLIGHT)
+    fun getRemoveFlight(@Header("Authorization") token:String,
+                       @Body body: HashMap<Any, Any>):Call<ResponseBody>
+
     @POST(MyURL.SYNC_TRAIN)
     fun getSyncTrain(@Header("Authorization") token:String,
                      @Body body: HashMap<Any, Any>):Call<ResponseBody>
@@ -310,14 +314,9 @@ interface UrlEndpoind {
     fun getSyncHotel(@Header("Authorization") token:String,
                      @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
-    @FormUrlEncoded
     @POST(MyURL.REMOVE_HOTEL)
     fun getRemoveHotel(@Header("Authorization") token:String,
-                       @Field("tripItemId")tripItemId:String,
-                       @Field("tripId")tripId:String,
-                       @Field("hotelId")hotelId:String,
-                       @Field("pnrId")pnrId:String,
-                       @Field("travelAgent")travelAgent:String):Call<ResponseBody>
+                       @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
     @POST(MyURL.REMARK_HOTEL)
     fun getUpdateRemarkHotel(@Header("Authorization") token:String,

@@ -248,6 +248,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 page_list_detail_trip.setPurpose(tripSummary.purpose)
                 page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
                 page_list_detail_trip.setTripCode(tripSummary.tripCode)
+                page_list_detail_trip.setIdTrip(tripSummary.tripId)
                 page_list_detail_trip.setData(getDataTrip())
                 page_list_detail_trip.callbackOnclickButton(this)
             }
@@ -403,7 +404,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardHotel.image = it.image
                 model.dataCardHotel.status = it.status
                 model.dataCardHotel.nameHotel = it.nameHotel
-                model.dataCardHotel.tripIdHotel = it.tripItemId
+                model.dataCardHotel.tripItemId = it.tripItemId
                 model.dataCardHotel.checkIn = it.checkIn
                 model.dataCardHotel.checkOut = it.checkOut
                 model.dataCardHotel.address = it.address
@@ -411,12 +412,14 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardHotel.starRating = it.starRating
                 model.dataCardHotel.price = it.price
                 model.dataCardHotel.reasonCode = it.reasonCode
-                model.dataCardHotel.pnrHotel = it.pnrHotel
-                model.dataCardHotel.typeHotel = it.typeHotel
+                model.dataCardHotel.pnrCode    = it.pnrCode
+                model.dataCardHotel.pnrId      = it.pnrId
+                model.dataCardHotel.hotelId    = it.hotelId
+                model.dataCardHotel.typeHotel  = it.typeHotel
                 model.dataCardHotel.descreption = it.description
 
                 val modelItem = ModelItemTrip()
-                modelItem.id = it.pnrHotel
+                modelItem.id = it.pnrCode
                 modelItem.name = it.nameHotel
                 if ("pending".equals(it.status.toLowerCase())) {
                     modelItem.progress = "100.00"

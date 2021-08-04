@@ -269,11 +269,11 @@
                         android:paddingEnd="9dp"
                         android:paddingStart="9dp"
                         android:layout_marginTop="6dp"
+                        android:gravity="center"
                         android:background="@drawable/rounded_green_stroke_50_persen">
 
                         <ImageView
                             android:layout_marginEnd="6dp"
-                            android:layout_marginStart="9dp"
                             android:layout_gravity="center"
                             android:layout_width="10dp"
                             android:layout_height="10dp"

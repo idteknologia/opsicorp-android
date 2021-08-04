@@ -83,6 +83,7 @@ class HotelFragment : BaseFragment(),
     private fun setDateDefault() {
         if (Constants.isBisnisTrip){
             data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+            setLog(Serializer.serialize(data))
             checkIn  = data.startDate
             checkOut = data.endDate
             setDurationDate(checkIn,DateConverter().decreaseDate(checkOut,"yyyy-MM-dd"))

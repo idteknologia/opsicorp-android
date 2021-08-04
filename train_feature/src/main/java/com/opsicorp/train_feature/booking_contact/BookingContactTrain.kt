@@ -176,6 +176,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         }
 
         btn_next.callbackOnclickButton(this)
+        btn_next.setTextButton("Continue")
 
         if (Globals.typeAccomodation=="Train"){
             val dataListTrain = Serializer.deserialize(Constants.DATA_LIST_TRAIN, DataListOrderAccomodation::class.java)

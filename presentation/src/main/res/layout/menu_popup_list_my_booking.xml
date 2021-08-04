@@ -8,7 +8,7 @@
     android:background="@android:color/transparent">
 
     <LinearLayout
-        android:background="#009688"
+        android:background="@drawable/rounded_button_green_5_persen"
         android:layout_width="169dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">

@@ -500,32 +500,7 @@ class FlightFragmentNew : BaseFragment(),
         }
     }
 
-    private fun selectCityFrom() {
-        val bundle = Bundle()
-        bundle.putString("emplaoyId", "city")
-        bundle.putString("invisibleSearch", "yes")
-        bundle.putString("searchHint", "Enter city or airport name")
-        bundle.putString("titleHeader", "Select Cities and Airports")
-        gotoActivityResultWithBundle(
-            SelectNationalityActivity::class.java,
-            bundle,
-            SELECT_CODE_COUNTRY_FROM
-        )
 
-    }
-
-    private fun selectCityTo() {
-        val bundle = Bundle()
-        bundle.putString("emplaoyId", "city")
-        bundle.putString("invisibleSearch", "yes")
-        bundle.putString("searchHint", "Enter city or airport name")
-        bundle.putString("titleHeader", "Select Cities and Airports")
-        gotoActivityResultWithBundle(
-            SelectNationalityActivity::class.java,
-            bundle,
-            SELECT_CODE_COUNTRY_TO
-        )
-    }
 
     private fun addOtherFlight() {
         val orderFlight = RouteMultiCityModel()
@@ -675,12 +650,16 @@ class FlightFragmentNew : BaseFragment(),
 
 
     private fun openCityTo(position: Int) {
+        var listCity = ArrayList<String>()
+        listCity.add("Jakarta")
+        listCity.add("Surabaya")
         val bundle = Bundle()
         currentPosition = position
         bundle.putString(SELECT_RESULT, "city")
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
+        bundle.putStringArrayList("listCity",listCity)
         gotoActivityResultWithBundle(
             SelectNationalityActivity::class.java,
             bundle,
@@ -689,16 +668,47 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun openCityFrom(position: Int) {
+        var listCity = ArrayList<String>()
+        listCity.add("Jakarta")
+        listCity.add("Surabaya")
         val bundle = Bundle()
         currentPosition = position
         bundle.putString(SELECT_RESULT, "city")
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
+        bundle.putStringArrayList("listCity",listCity)
         gotoActivityResultWithBundle(
             SelectNationalityActivity::class.java,
             bundle,
             Constants.REQUEST_CODE_SELECT_FROM_MULTI
+        )
+    }
+
+    private fun selectCityFrom() {
+        val bundle = Bundle()
+        bundle.putString("emplaoyId", "city")
+        bundle.putString("invisibleSearch", "yes")
+        bundle.putString("searchHint", "Enter city or airport name")
+        bundle.putString("titleHeader", "Select Cities and Airports")
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            SELECT_CODE_COUNTRY_FROM
+        )
+
+    }
+
+    private fun selectCityTo() {
+        val bundle = Bundle()
+        bundle.putString("emplaoyId", "city")
+        bundle.putString("invisibleSearch", "yes")
+        bundle.putString("searchHint", "Enter city or airport name")
+        bundle.putString("titleHeader", "Select Cities and Airports")
+        gotoActivityResultWithBundle(
+            SelectNationalityActivity::class.java,
+            bundle,
+            SELECT_CODE_COUNTRY_TO
         )
     }
 

@@ -894,6 +894,30 @@ data class PaymentsItem(
 		val seq: Int = 0
 )
 
+data class PaymentsItemHotel(
+
+	@field:SerializedName("Amount")
+	val amount: Double = 0.0,
+
+	@field:SerializedName("Currency")
+	val currency: String? = null,
+
+	@field:SerializedName("Title")
+	val title: String? = null,
+
+	@field:SerializedName("Id")
+	val id: String? = null,
+
+	@field:SerializedName("Code")
+	val code: String? = null,
+
+	@field:SerializedName("TripHotelId")
+	val tripHotelId: String? = null,
+
+	@field:SerializedName("Seq")
+	val seq: Int = 0
+)
+
 data class Passport(
 
 		@field:SerializedName("Expire")
@@ -1187,7 +1211,7 @@ data class TripHotelsItems(
 		val isSync: Boolean = false,
 
 		@field:SerializedName("Payments")
-		val payments: List<PaymentsItem?>? = null,
+		val payments: List<PaymentsItemHotel?>? = null,
 
 		@field:SerializedName("Hash")
 		val hash: Any? = null,

@@ -1,11 +1,15 @@
 package opsigo.com.datalayer.datanetwork
 
-import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.cancel.CancelFlightRequest
 import opsigo.com.datalayer.request_model.reservation.ReservationFlightRequest
-import org.junit.Test
-import org.koin.test.KoinTest
-import java.util.*
+import opsigo.com.domainlayer.callback.CallbackArrayListString
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.hotel.cancel.CancelHotelRequest
 import java.util.concurrent.CountDownLatch
+import kotlin.collections.ArrayList
+import org.koin.test.KoinTest
+import org.junit.Test
+import java.util.*
 
 
 class GetDataTestAccomodation:KoinTest{
@@ -66,12 +70,14 @@ class GetDataTestAccomodation:KoinTest{
             "  }\n" +
             "}"
 
+    val baseUrl = "https://basicqa.opsicorp.com"
+    val token = "Bearer cjkgvciCRrOl0cWK7A26IAmY0q_Yg1AKl5pmcY4yDg9fRK3E9CaVjVUBXcjGPgogBHeV323cDGJ92kgve0COiFyEpMFPAhuFP7h4LYkeQGdt7NEj9rebl7-ov6kf3tgELMT_51b-Duo1f8XF2QUpccPXJ0s4OfmaQeX_cndJFo94J1THtE1rMuHMcCtt7Seknvn6DD7gtM6TcZrLc0j12iGPj1YQwL-yYNZI90KWO-eN8SGQ87CkUlrjahrRQ4Uvr5-M9Azib3RFXEeemLxquj5n1F_jvHjOkS8RGKb9qADObQcVaqwVCcHm3HxKvswiUTLaPTCPEhNN0aFF0vNa-hrxFR1TV6QpazS9_8P8kt--GQDdHPO2eVgFqYfy8snk6Bh8TaHbKnfJyXj5ZuIDcPzl9zfSLYtwI2r_3LnThy8EImKthrup9WSUjr88Y4kTOfZ0niHkU3y8jXa1xphCfS6CzNZURiKkLS8ak8fPDUcqEkcOQz7VcAzftLiODPGigqCtii8PHBPSpCrpMBZTu3aYNi2FwlCnP0ycc4r2mk6RFZ-W4Gzu5-H4eCGpQNq5"
+
+
     @Test
     fun testApiSearchFlight() {
 
        val latch = CountDownLatch(1)
-
-        val token = "Bearer ZY59D_AD_78bbAYmP7LCYsGpx8bDhqJB4dkhukBawLUrV8VgfmhMBG-als0jGn5LG7SvnCvNjDc8IjMVmVnMgBMcFSsgI5QfsSSvryP3wcGlrMZruvD4CJB5Wp2-CedUNraaRjPOnMyMWCEDYM5mXEw5yJL92puaB-_4dx3tXCluZN5_0qdSlvCcVapRiQKWWAwcpjAY41EB6y70pSo9ao-MyxmRJtltm2wCaegnl-8-iJy0vUDl-055GzqSilv-7C5g_U0CNYDuUxg5XpMLHgxNniFt9gtDnQJYA0xHyHw4uXT3RVtZmLaCjwzs_G_T7mVk29ZMC4XLPu4NeVB45XT_tojzEj4vyB_0gcRcYQHJ0MGmdJmvB1OlK95zzyAEBdxDT724VwTiv3IZ2XsaO1EoDfA-sDfDBZW0xkA9UNQRFvhFst47oasra3IrSTeDKQt1AsVnAet08F4jsImfTrOT-hQ_VLpqBt_tRVLg8yELjeSdd9q2IQkrBfk91riEEqrw50PJLP5BnYSmAkDjAw"
 
         /*val data = FlightModelRequest()
         data.Origin = "CGK"
@@ -123,8 +129,68 @@ class GetDataTestAccomodation:KoinTest{
 
     }
 
-    fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<String, Any>{
-        val maps = HashMap<String, Any>()
+    @Test
+    fun testCancelFlight(){
+        val latch = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRemoveFlight(token,dataRequestCancelFligt(),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testCancelHotel(){
+        val latch = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRemoveHotel(token,dataRequestCancelHotel(),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun dataRequestCancelHotel(): HashMap<Any, Any> {
+        val data = CancelHotelRequest()
+        data.hotelId = ""
+        data.pnrId   = ""
+        data.travelAgent = ""
+        data.tripId      = ""
+        data.tripItemId  = ""
+        return classToHasMap(data,CancelHotelRequest::class.java)
+    }
+
+
+    private fun dataRequestCancelFligt(): HashMap<Any, Any> {
+        val data = CancelFlightRequest()
+        data.flightId = ""
+        data.pnrId    = ""
+        data.travelAgent = ""
+        data.tripPlanId  = ""
+        return classToHasMap(data,CancelFlightRequest::class.java)
+    }
+
+    fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<Any, Any>{
+        val maps = HashMap<Any, Any>()
         for (field in nameClass.getDeclaredFields()) {
             if (!field.isAccessible()) {
                 field.setAccessible(true)

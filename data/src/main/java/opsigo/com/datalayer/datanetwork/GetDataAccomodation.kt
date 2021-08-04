@@ -480,6 +480,35 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
+    override fun getRemoveFlight(token: String, data: HashMap<Any,Any>, callback: CallbackArrayListString) {
+        apiOpsicorp.getRemoveFlight(token,data).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isSuccess").equals(true)){
+                            callback.successLoad(ArrayList())
+                        }
+                        else{
+                            callback.failedLoad(json.getString("errorMessage"))
+                        }
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(e.message!!)
+                }
+            }
+        })
+    }
+
     override fun getSyncTrain(token: String, data: HashMap<Any,Any>, callback: CallbackArrayListString) {
         apiOpsicorp.getSyncTrain(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -801,7 +830,6 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                        val responseString = response.body()?.string()
                         callback.successLoad(UploadModel())
                     }
                     else {
@@ -816,16 +844,15 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
-    override fun getRemoveHotel(token: String, tripItemId: String, tripId: String, hotelId: String, pnrId: String, travelAgent: String, callback: CallbackUploadFile) {
-        apiOpsicorp.getRemoveHotel(token,tripItemId,tripId,hotelId,pnrId,travelAgent).enqueue(object :Callback<ResponseBody>{
+    override fun getRemoveHotel(token: String, data:HashMap<Any,Any>, callback: CallbackArrayListString) {
+        apiOpsicorp.getRemoveHotel(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.isSuccessful){
-                        val responseString = response.body()?.string()
-                        callback.successLoad(UploadModel())
+                        callback.successLoad(ArrayList())
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

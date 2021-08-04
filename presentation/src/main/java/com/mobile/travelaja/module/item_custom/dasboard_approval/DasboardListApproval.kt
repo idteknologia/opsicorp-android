@@ -593,6 +593,7 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
         mData.approvalAction = action
         mData.employeeId     = Globals.getProfile(context).employId
         mData.tripId         = data.id
+        mData.tripType       = "0"
 
         return Globals.classToHashMap(mData, ApprovalAllRequest::class.java)
     }

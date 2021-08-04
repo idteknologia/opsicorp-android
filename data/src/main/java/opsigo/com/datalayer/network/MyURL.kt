@@ -44,6 +44,7 @@ object MyURL {
     const val GET_SEATMAP_FLIGHT  = "api/TripPlan/GetFlightSeat"
     const val GET_SSR_FLIGHT      = "api/TripPlan/GetSsrFlight"
     const val GET_FARE_RULES      = "api/TripPlan/GetFareRules"
+    const val REMOVE_FLIGHT       = "api/TripPlan/RemoveFlight"
 
     // search train
     const val STATION_TRAIN     = "api/Lookup/GetStationList"

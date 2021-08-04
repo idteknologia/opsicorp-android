@@ -165,8 +165,10 @@ class ListParticipantsDataMapper {
                                 dataHotel.reasonCode  = it.reasonCode.toString()
                                 dataHotel.employId    = data.employeeId.toString()
                                 dataHotel.tripItemId  = tripHotelsItem?.tripItemId.toString()
+                                dataHotel.hotelId     = tripHotelsItem?.payments?.first()?.tripHotelId.toString()
                                 dataHotel.typeHotel   = tripHotelsItem?.roomType.toString()
-                                dataHotel.pnrHotel    = tripHotelsItem?.pnrId.toString()
+                                dataHotel.pnrCode     = tripHotelsItem?.pnrId.toString()
+                                dataHotel.pnrId       = tripHotelsItem?.pnrId.toString()
                                 dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address +" ,"+ tripHotelsItem.city.toString()
 
                                 dataHotelModel.add(dataHotel)

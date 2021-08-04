@@ -26,7 +26,17 @@ import com.mobile.travelaja.utility.Constants.PROGRESS_TRAIN_CALLBACK
 import kotlinx.android.synthetic.main.page_cart_list_detail_trip.view.*
 import com.mobile.travelaja.utility.Constants.PROGRESS_FLIGHT_CALLBACK
 import com.mobile.travelaja.utility.Constants.ONCLICK_CHANGE_SEAT_MAP_TRAIN
+import com.mobile.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_FLIGHT_CART
+import com.mobile.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_HOTEL_CART
 import com.mobile.travelaja.utility.Constants.ONCLIK_OPTION_REMOVE_TRAIN_CART
+import com.mobile.travelaja.utility.Globals.getBaseUrl
+import com.mobile.travelaja.utility.Globals.getToken
+import opsigo.com.datalayer.datanetwork.GetDataAccomodation
+import opsigo.com.datalayer.request_model.accomodation.flight.cancel.CancelFlightRequest
+import opsigo.com.datalayer.request_model.accomodation.hotel.cancel.CancelHotelRequest
+import opsigo.com.datalayer.request_model.accomodation.train.sync.RemoveTrainRequest
+import opsigo.com.domainlayer.callback.CallbackArrayListString
+import java.util.HashMap
 
 class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRecyclerView{
 
@@ -34,6 +44,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     val adapter by lazy { CartAdapterNew(context) }
     lateinit var callback : Callback
     lateinit var onclick: OnclickListenerRecyclerView
+    var tripId = ""
 
 
     fun callbackOnclickButton(onclickButtonListener: Callback){
@@ -81,6 +92,10 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
     fun setTripCode(tripCode:String){
         tv_trip_code.text = tripCode
+    }
+
+    fun setIdTrip(idTrip:String){
+        tripId = idTrip
     }
 
     fun setPurpose(purpose:String){
@@ -134,8 +149,16 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 callback.updateViewReserved()
             }
             ONCLIK_OPTION_REMOVE_TRAIN_CART ->{
-
+                removeAllTrain()
             }
+            ONCLIK_OPTION_REMOVE_FLIGHT_CART ->{
+                removeAllFlight()
+            }
+
+            ONCLIK_OPTION_REMOVE_HOTEL_CART ->{
+                removeAllHotel()
+            }
+
             ONCLICK_DETAIL_TRAIN -> {
                 val intent = Intent(context,Class.forName(Constants.BASE_PACKAGE_TRAIN+"detail.CartTrainDetailActivity"))
                 intent.putExtra(Constants.FROM_CART,Constants.FROM_CART)
@@ -156,6 +179,92 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
                 Globals.gotoActivityModule(context,intent)
             }
         }
+    }
+
+    private fun removeAllTrain() {
+        data.forEachIndexed { index, cartModel ->
+            if (cartModel.typeCard == Constants.TYPE_TRAIN){
+                removeTrain(cartModel.dataCardTrain.idTrain)
+            }
+        }
+    }
+
+    private fun removeAllHotel() {
+        data.forEachIndexed { index, cartModel ->
+            if (cartModel.typeCard == Constants.TYPE_HOTEL){
+                removeHotel(index)
+            }
+        }
+    }
+
+    private fun removeAllFlight() {
+        data.forEachIndexed { index, cartModel ->
+            if (cartModel.typeCard == Constants.TYPE_FLIGHT){
+                removeFlight(index)
+            }
+        }
+    }
+
+    private fun removeTrain(idTrain: String){
+        GetDataAccomodation(getBaseUrl(context)).getRemoveTrain(getToken(),getDataTrainRemove(idTrain),object :
+            CallbackArrayListString {
+            override fun successLoad(data: ArrayList<String>) {
+                callback.updateViewReserved()
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+        })
+    }
+
+    private fun getDataTrainRemove(idTrain: String): HashMap<Any, Any> {
+        val data = RemoveTrainRequest()
+        data.trainId = idTrain
+        return Globals.classToHashMap(data, RemoveTrainRequest::class.java)
+    }
+
+    private fun removeHotel(position: Int){
+        GetDataAccomodation(getBaseUrl(context)).getRemoveHotel(getToken(),dataRequestCancelHotel(position),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                callback.updateViewReserved()
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+        })
+    }
+
+    private fun removeFlight(position: Int){
+        GetDataAccomodation(getBaseUrl(context)).getRemoveFlight(getToken(),dataRequestCancelFligt(position),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                callback.updateViewReserved()
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+        })
+    }
+
+    private fun dataRequestCancelHotel(position: Int): HashMap<Any, Any> {
+        val mData = CancelHotelRequest()
+        mData.pnrId       = data[position].dataCardHotel.pnrId
+        mData.travelAgent = Globals.getConfigCompany(context).defaultTravelAgent
+        mData.tripId      = tripId
+        mData.hotelId     = data[position].dataCardHotel.hotelId
+        mData.tripItemId  = data[position].dataCardHotel.tripItemId
+        return Globals.classToHashMap(mData, CancelHotelRequest::class.java)
+    }
+
+    private fun dataRequestCancelFligt(position: Int): HashMap<Any, Any> {
+        val mData = CancelFlightRequest()
+        mData.flightId = data[position].dataCardFlight.idFlight
+        mData.pnrId    = data[position].dataCardFlight.pnrId
+        mData.travelAgent = Globals.getConfigCompany(context).defaultTravelAgent
+        mData.tripPlanId  = data[position].dataCardFlight.tripId
+        return Globals.classToHashMap(mData, CancelFlightRequest::class.java)
     }
 
 }
