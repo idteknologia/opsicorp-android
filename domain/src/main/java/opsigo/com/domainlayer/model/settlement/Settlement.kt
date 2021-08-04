@@ -228,6 +228,7 @@ open class RouteTransport : Parcelable, BaseObservable() {
 class IntercityTransport : RouteTransport(), Parcelable {
     @SerializedName("Amount")
     var Amount: Number = 0
+    @get:Bindable
     @SerializedName("Distance")
     var Distance: Number? = null
     @SerializedName("TripType")

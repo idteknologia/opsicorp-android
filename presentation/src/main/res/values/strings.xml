@@ -1115,6 +1115,6 @@ Please add your trip item for Approval."
     <string name="non_udara_">Non-Udara</string>
     <string name="udara_">Udara</string>
     <string name="txt_failed_upload_file_size_is_to_large">File upload failed: Size is to large.</string>
-
+    <string name="warning_maximum_200_km">Maximum 200 km</string>
 </resources>
 
