@@ -76,6 +76,7 @@ class ProfileEntityDataMapper{
             val model = TravelRequestApprovalModel()
             model.employeeId = travelRequestApprovalDomesticItem?.employeeId.toString()
             model.isPjs = travelRequestApprovalDomesticItem?.isPjs == true
+            model.isDomestic = true
             model.profile = mappingProfile(travelRequestApprovalDomesticItem?.profile)
             mData.add(model)
         }
@@ -83,6 +84,7 @@ class ProfileEntityDataMapper{
             val model = TravelRequestApprovalModel()
             model.employeeId = travelRequestApprovalInternationalItem?.employeeId.toString()
             model.isPjs = travelRequestApprovalInternationalItem?.isPjs == true
+            model.isDomestic = false
             model.profile = mappingProfile(travelRequestApprovalInternationalItem?.profile)
             mData.add(model)
         }

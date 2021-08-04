@@ -26,11 +26,8 @@ import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.payment.PaymentActivity
-import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
-import com.mobile.travelaja.utility.DateConverter
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
@@ -237,6 +234,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                                 bundle.putString(Constants.BUDGET, dataParticipant[position].budgetCode + " - " + dataParticipant[position].budgetName)
                                 bundle.putString(Constants.EMPLOY_ID, dataParticipant[position].employId)
                                 bundle.putString(Constants.STATUS_MEMBER, dataParticipant[position].status)
+                                bundle.putString(Constants.DetailDestination, tv_destination.text.toString() )
                                 val status = dataParticipant[position].status
                                 gotoActivityResultWithBundle(DetailParticipantActivity::class.java, bundle, Constants.DETAIL_PERTICIPANT_INTENT)
 
@@ -357,7 +355,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     model.idParticipant = tripParticipantsItemModel.id
                     model.status = tripSummary.statusView
                     model.isApproval = false
-                    model.jobtitle = tripParticipantsItemModel.jobtitle
+                    model.jobtitle = Globals.getProfile(this).approval.reqPosName
+                    model.email = Globals.getProfile(this).approval.reqEmail
                     model.costCenterCode = tripParticipantsItemModel.costCenterCode
                     model.costCenterName = tripParticipantsItemModel.costCenterName
                     model.budgetCode = tripParticipantsItemModel.budgetCode
@@ -367,7 +366,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     model.imgUrl = ""
 
                     tv_budget.text = model.budgetCode + " - " + model.budgetName
-                    tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
+                    if (model.costCenterName.isNotEmpty()){
+                        tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
+                    } else {
+                        tv_cost_center.text = model.costCenterCode
+                    }
+
 
                     dataParticipant.add(model)
                 }
@@ -400,9 +404,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_notice_participant.visibility = View.GONE
         }
 
-        if (!tripSummary.tripParticipantModels.isNullOrEmpty()) {
+        if (!tripSummary.tripParticipantModels.isNotEmpty()) {
             tv_cost_center.text = "${tripSummary.tripParticipantModels[0].costCenterCode} - ${tripSummary.tripParticipantModels[0].costCenterName}"
             tv_mount.text = tripSummary.totalAllowance
+        } else {
+            tv_cost_center.text = "-"
+            llAllowance.gone()
         }
     }
 
@@ -446,7 +453,19 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
         if(tripSummary.routes.isNotEmpty()){
-            tv_destination.text = tripSummary.routes.last().destination
+            if (tripSummary.routes.size == 1) {
+                tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination}"
+            } else if (tripSummary.routes.size == 2) {
+                tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination}"
+            } else if (tripSummary.routes.size == 3) {
+                tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination}"
+            } else if (tripSummary.routes.size == 4) {
+                tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination} - ${tripSummary.routes[3].destination}"
+            } else if (tripSummary.routes.size == 5) {
+                tv_destination.text= "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination} - ${tripSummary.routes[3].destination} - ${tripSummary.routes[4].destination}"
+            } else {
+                tv_destination.text = tripSummary.routes.last().destination
+            }
         } else {
             tv_destination.text = tripSummary.destinationName
         }
@@ -938,6 +957,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.tripCode = tripSummary.tripCode
             model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
+            model.trnNumber = tripSummary.trnNumber
             if(tripSummary.routes.isNotEmpty()){
                 model.originId = tripSummary.origin
                 model.originName = tripSummary.routes.first().origin

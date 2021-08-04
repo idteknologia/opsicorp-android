@@ -10,6 +10,7 @@ import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import kotlinx.android.synthetic.main.activity_review_budget.*
 import opsigo.com.datalayer.model.listtripplan.StatusTrip
 import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
 import kotlinx.android.synthetic.main.approval_adapter.view.*
@@ -65,10 +66,20 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             itemView.tv_title.text = data.title
             itemView.tv_trip_code.text = data.tripCode
             itemView.tv_date.text = formatingDate(data.start_date) + " - " + formatingDate(data.end_date)
-            if (data.routes.isNotEmpty()){
-                itemView.tv_city.text = data.routes.last().destination
-            } else {
-                itemView.tv_city.text = data.destination
+            if (data.routes.isNotEmpty()) {
+                if (data.routes.size == 1) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination}"
+                } else if (data.routes.size == 2) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination}"
+                } else if (data.routes.size == 3) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination}"
+                } else if (data.routes.size == 4) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination}"
+                } else if (data.routes.size == 5) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination} - ${data.routes[4].destination}"
+                } else {
+                    itemView.tv_city.text = data.routes.last().destination
+                }
             }
             itemView.tv_expired.text = data.timeExperied
             Log.e("TAG === ",data.timeExperied)
@@ -159,7 +170,19 @@ class ApprovalAdapter (val context: Context, private var items: ArrayList<Approv
             itemView.tv_trip_code.text = data.tripCode
             itemView.tv_date.text = formatingDate(data.start_date) + " - " + formatingDate(data.end_date)
             if (data.routes.isNotEmpty()){
-                itemView.tv_city.text = data.routes.last().destination
+                if (data.routes.size == 1) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination}"
+                } else if (data.routes.size == 2) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination}"
+                } else if (data.routes.size == 3) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination}"
+                } else if (data.routes.size == 4) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination}"
+                } else if (data.routes.size == 5) {
+                    itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination} - ${data.routes[4].destination}"
+                } else {
+                    itemView.tv_city.text = data.routes.last().destination
+                }
             } else {
                 itemView.tv_city.text = data.destination
             }

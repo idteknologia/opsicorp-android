@@ -2,6 +2,8 @@ package com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity
 
 import android.content.Context
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -15,8 +17,11 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itine
 import com.mobile.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.utility.*
+import kotlinx.android.synthetic.main.activity_new_createtripplan.*
 import kotlinx.android.synthetic.main.activity_review_budget.*
+import kotlinx.android.synthetic.main.activity_review_budget.ic_back
 import kotlinx.android.synthetic.main.detail_price_bottom.*
+import kotlinx.android.synthetic.main.detail_price_bottom.btn_next
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
@@ -48,11 +53,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     var costCenterName = ""
     var picCostCenter = ""
     var cashAdvanceValue = 0
+    var cashAdvanceValueLimit = 0
     var costCenterOther = false
     var isCashAdvance = false
     var picCostCentreEmpty = true
     var bankTransferEmpty = true
-    var cashAmountEmpty = true
+    var cashAmountLimit = false
 
 
     override fun onMain() {
@@ -78,7 +84,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.employeeId = getProfile().employId
                 participanItem.useCostCenterOther = costCenterOther
                 participanItem.useCashAdvance = isCashAdvance
-                participanItem.cashAdvance = cashAdvanceValue.toInt()
+                participanItem.cashAdvance = cashAdvanceValue
                 participanItem.costCenterCode = costCenterName
                 participanItem.estFlight = dataCost.estFlight.toInt()
                 participanItem.estTransportation = dataCost.estTransportation.toInt()
@@ -169,6 +175,26 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 return false
             }
         })
+        et_min.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                /*if ( s.toString().toInt() > cashAdvanceValueLimit) {
+                    cashAmountLimit = true
+                    checkEmptyField()
+                } else {
+                    cashAmountLimit = false
+                    checkEmptyField()
+                }*/
+            }
+
+        })
     }
 
     private fun showOrHideDetailPrice() {
@@ -214,15 +240,15 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         originName = dataTrip.routes[0].Origin
         destinationName = dataTrip.routes[0].Destination
         if (dataTrip.routes.size == 1) {
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}"
+            tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination}"
         } else if (dataTrip.routes.size == 2) {
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}"
+            tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination} - ${dataTrip.routes[1].Destination}"
         } else if (dataTrip.routes.size == 3) {
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}"
+            tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination} - ${dataTrip.routes[1].Destination} - ${dataTrip.routes[2].Destination}"
         } else if (dataTrip.routes.size == 4) {
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}"
+            tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination} - ${dataTrip.routes[1].Destination} - ${dataTrip.routes[2].Destination} - ${dataTrip.routes[3].Destination}"
         } else if (dataTrip.routes.size == 5) {
-            tv_trip_route.text = "${dataTrip.routes[0].Origin}-${dataTrip.routes[0].Destination}-${dataTrip.routes[1].Destination}-${dataTrip.routes[2].Destination}-${dataTrip.routes[3].Destination}-${dataTrip.routes[4].Destination}"
+            tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination} - ${dataTrip.routes[1].Destination} - ${dataTrip.routes[2].Destination} - ${dataTrip.routes[3].Destination} - ${dataTrip.routes[4].Destination}"
         }
         tv_start_date.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
@@ -230,7 +256,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         if (dataCashAdvance.isAllowed.equals(true)) {
             rlCashAd.visible()
             tv_currency.text = dataCashAdvance.currency
-            et_min.hint = "Limit ${dataCashAdvance.maxAmount}"
+            cashAdvanceValueLimit = dataCashAdvance.maxAmount.toInt()
+            et_min.hint = "Limit ${(dataCashAdvance.maxAmount)}"
         } else {
             rlCashAd.gone()
         }
@@ -259,6 +286,27 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 succesCreateTrip()
             }
         }*/
+    }
+
+    fun checkEmptyField() {
+        if (cashAmountLimit) {
+            changeButtonNextOrangeColor()
+        } else {
+            changeButtonNextGrayColor()
+            /*Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this)*/
+        }
+    }
+
+    private fun changeButtonNextGrayColor() {
+        btn_next.changeTextColorButton(R.color.gray_total)
+        btn_next.changeBackgroundDrawable(R.drawable.rounded_button_dark_select_budget)
+        btn_next.isClickable = false
+    }
+
+    private fun changeButtonNextOrangeColor() {
+        btn_next.changeTextColorButton(R.color.textButtonColor)
+        btn_next.changeBackgroundDrawable(R.drawable.rounded_button_yellow)
+        btn_next.isClickable = true
     }
 
     private fun succesCreateTrip() {
@@ -389,11 +437,9 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 if (et_min.text.isNotEmpty()) {
                     isCashAdvance = true
                     cashAdvanceValue = et_min.text.toString().toInt()
-                    cashAmountEmpty = false
                 } else {
                     isCashAdvance = false
                     cashAdvanceValue = 0
-                    cashAmountEmpty = true
                 }
             }
             etBank -> {

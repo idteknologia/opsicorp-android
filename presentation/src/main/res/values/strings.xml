@@ -904,6 +904,7 @@ Please add your trip item for Approval."
     <string name="fill_your_pic_email">Fill PIC Email Cost Center</string>
     <string name="select_your_bank_transfer">Select your Bank Transfer</string>
     <string name="fill_your_cash_amount">Fill your Cash Advance Amount</string>
+    <string name="limit_cash_advance">Your cash advance are beyond limit</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>

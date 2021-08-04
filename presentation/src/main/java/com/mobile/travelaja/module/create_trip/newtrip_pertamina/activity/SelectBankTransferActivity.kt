@@ -20,5 +20,9 @@ class SelectBankTransferActivity : AppCompatActivity(), BankListener {
         finish()
     }
 
+    override fun onIvBack() {
+        finish()
+    }
+
 
 }

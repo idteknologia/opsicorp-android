@@ -64,8 +64,13 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         if (data.tripCode != null) {
             image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
         }
-        tv_status.text = data.status
-        tv_tripcode.text = "TP${data.tripCode}"
+        if (data.isDomestik.equals(true)){
+            tv_status.text = "Domestic Route"
+        } else {
+            tv_status.text = "International Route"
+        }
+
+        tv_tripcode.text = data.tripCode
         tv_purpose.text = data.purpose
         tv_activity_type_text.text = data.activityType
         tv_created_date.text = "Created Date ${data.createDate.replace("Current Date","")}"
@@ -74,13 +79,15 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
         tv_destination.text = data.destinationName
         if (Globals.getProfile(this).approval.travelRequestApproval.isNotEmpty()){
-            tv_list_approval.text = "List Approver (${Globals.getProfile(this).approval.travelRequestApproval.size.toString()})"
+            val totalApprover = Globals.getProfile(this).approval.travelRequestApproval.size
+            tv_list_approval.text = "List Approver (${totalApprover})"
         } else {
             tv_list_approval.text = "List Approver (0)"
         }
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
+        initRecyclerViewApproval()
 
         Globals.delay(1500, object : Globals.DelayCallback {
             override fun done() {
@@ -90,7 +97,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
                 })
             }
         })
-        initRecyclerViewApproval()
+
     }
 
     private fun initRecyclerViewApproval() {
@@ -100,8 +107,22 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         rv_approver.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approver.adapter = adapterApproval
 
-        dataApproval.addAll(Globals.getProfile(this).approval.travelRequestApproval)
+        if (data.isDomestik.equals(true)){
+            dataApproval.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
+                it.isDomestic
+            })
+        } else {
+            dataApproval.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
+                !it.isDomestic
+            })
+        }
         adapterApproval.setData(dataApproval)
+
+        if (dataApproval.isEmpty()){
+            line_approver.gone()
+        } else {
+            line_approver.visible()
+        }
     }
 
     private fun copyToClip() {
@@ -131,9 +152,16 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
             tv_destination.text = "${data.originName} - ${data.destinationName}"
         }
 
+        if (Globals.getProfile(this).approval.travelRequestApproval.isNotEmpty()){
+            tv_list_approval.text = "List Approver (${Globals.getProfile(this).approval.travelRequestApproval.size.toString()})"
+        } else {
+            tv_list_approval.text = "List Approver (0)"
+        }
+
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
+        initRecyclerViewApproval()
         setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
 
         Globals.delay(1500, object : Globals.DelayCallback {
@@ -144,7 +172,6 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
                 })
             }
         })
-        initRecyclerViewApproval()
     }
 
     fun laterListener(view: View) {

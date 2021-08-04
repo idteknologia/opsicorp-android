@@ -81,7 +81,11 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
         fun bind(data: ParticipantModel, position: Int) {
             tv_job_title.text       = data.jobtitle
             tv_status.text          = data.status
-            tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
+            if (data.budgetCode.isNullOrEmpty() && data.budgetName.isNullOrEmpty()){
+                tv_budget_name.text     = data.email
+            } else {
+                tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
+            }
             tv_name.text            = data.name
 
             tv_budget_name.visibility = View.VISIBLE
@@ -140,7 +144,11 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
         fun bind(data: ParticipantModel, position: Int) {
             tv_job_title.text       = data.jobtitle
             tv_status.text          = data.status
-            tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
+            if (data.budgetCode.isNullOrEmpty() && data.budgetName.isNullOrEmpty()){
+                tv_budget_name.text     = data.email
+            } else {
+                tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
+            }
             tv_name.text            = data.name
 
             tv_budget_name.visibility = View.GONE

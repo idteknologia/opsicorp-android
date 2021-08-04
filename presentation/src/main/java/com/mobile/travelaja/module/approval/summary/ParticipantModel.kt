@@ -6,6 +6,7 @@ class ParticipantModel {
     var isApproval     = false
     var jobtitle       = ""
     var name           = ""
+    var email          = ""
     var costCenterCode = ""
     var costCenterName = ""
     var budgetCode     = ""

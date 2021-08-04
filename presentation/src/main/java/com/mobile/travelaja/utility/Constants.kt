@@ -281,6 +281,7 @@ object Constants {
     var EMPLOY_ID                = "employId"
     var STATUS_MEMBER            = "statusMember"
     var ParticipantID            = "ParticipantID"
+    var DetailDestination        = ""
 
     var TripplanCode             = "TripplanCode"
     var TripplanIDX              = "TripplanID"

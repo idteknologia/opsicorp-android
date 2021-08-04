@@ -7,6 +7,7 @@ class TravelRequestApprovalModel {
     var employeeId = ""
     var isPjs = false
     var isManualInput = false
+    var isDomestic = false
 
     var profile = ProfileApproverModel()
 }

@@ -21,6 +21,7 @@ class SuccessCreateTripPlaneModel {
     var remark       = ""
     var buggetId     = ""
     var costCenter   = ""
+    var trnNumber    = ""
 
     var businessTripType = ""
     var wbsNo       = ""

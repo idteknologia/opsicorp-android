@@ -192,7 +192,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun showTotalData() {
         Globals.delay(1000.toLong(),object :Globals.DelayCallback{
             override fun done() {
-                tv_total_data.text = "${data.size} Best departing Hotel"
+                tv_total_data.text = "${data.size} Hotel Found"
                 val transition: Transition = Fade()
                 transition.setDuration(700)
                 transition.addTarget(R.id.tv_total_data)

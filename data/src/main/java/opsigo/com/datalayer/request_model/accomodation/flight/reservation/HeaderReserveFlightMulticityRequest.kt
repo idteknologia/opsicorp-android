@@ -15,6 +15,9 @@ data class HeaderReserveFlightMulticityRequest(
         @field:SerializedName("Status")
         var status: Int = 0,
 
+        @field:SerializedName("TrnNumber")
+        var trnNumber: String = "",
+
         @field:SerializedName("IsBookAfterApprove")
         var isBookAfterApprove: Boolean = false,
 
@@ -51,8 +54,12 @@ data class HeaderReserveFlightMulticityRequest(
         @field:SerializedName("Remark")
         var remark: String = "",
 
+        @field:SerializedName("BudgetId")
+        var budgetId: String = "",
+
         @field:SerializedName("IsDomestic")
         var isDomestic: Boolean = false,
+
 
         @field:SerializedName("WbsNo")
         var wbsNo: String = "",
