@@ -22,6 +22,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_centerVertical="true"
         android:layout_toEndOf="@+id/line_image_accomodation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,6 +39,7 @@
             style="@style/RobotoBold"/>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_type_trip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

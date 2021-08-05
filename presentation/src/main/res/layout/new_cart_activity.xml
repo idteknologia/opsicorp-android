@@ -145,7 +145,7 @@
         <RelativeLayout
             android:paddingLeft="50dp"
             android:paddingRight="50dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/line_warning"
             android:background="#eb0011"
             android:layout_width="match_parent"
@@ -178,6 +178,8 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/shadow_line_bottom"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:background="@drawable/shadow_top"/>

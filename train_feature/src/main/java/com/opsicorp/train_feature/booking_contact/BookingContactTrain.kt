@@ -1,6 +1,5 @@
 package com.opsicorp.train_feature.booking_contact
 
-
 import opsigo.com.datalayer.request_model.accomodation.train.validation.ContactValidationTrainRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
@@ -23,10 +22,10 @@ import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.summary.PassportModel
 import com.mobile.travelaja.utility.DateConverter
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.base.BaseActivity
 import com.opsicorp.train_feature.R
 import android.content.Intent
 import android.app.Activity
@@ -364,12 +363,11 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
             dataBooking.reasonCode = ""
         }
 
-        if (Constants.tipeTrip == "round_trip"){
+        if (dataListTrain.dataTrain.size>1){
             dataBooking.trainType               = "1"
             dataBooking.flightType              = "1"
         }
         else{
-
             dataBooking.trainType               = "0"
             dataBooking.flightType              = "0"
         }

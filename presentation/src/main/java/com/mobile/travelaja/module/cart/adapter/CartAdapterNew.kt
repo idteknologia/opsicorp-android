@@ -21,6 +21,7 @@ import com.mobile.travelaja.utility.Constants.TYPE_HOTEL
 import com.mobile.travelaja.utility.Globals.getBaseUrl
 import com.mobile.travelaja.utility.Globals.getToken
 import com.mobile.travelaja.utility.Globals.setLog
+import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.module.cart.model.*
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
@@ -40,7 +41,7 @@ import android.view.View
 import android.util.Log
 import java.util.*
 
-class CartAdapterNew(val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -147,7 +148,6 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
 
         btnDetail.visibility = View.GONE
         line_center.visibility = View.GONE
-        btnRemove.text = "Remove"
 
         val dialog = Globals.showPopup(option,layout)
 
@@ -188,6 +188,7 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }
 
             itemView.tv_pnr_train_cart.text         = if (data.pnrCode.isEmpty()) "-" else data.pnrCode
+
             itemView.tv_name_train_cart.text        = data.titleTrain
             itemView.tv_class_train_cart.text       = data.classTrain
 
@@ -219,6 +220,21 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }catch (e:Exception){
                 setLog("Error parsing progress")
             }
+
+            itemView.img_arrow.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+
+            /*if (data.typeTrip==0){
+                itemView.img_arrow.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+            }
+            else {
+                itemView.img_arrow.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_arrow_one_way))
+                if (data.isBackTrain){
+                    itemView.img_arrow.rotation = 180F
+                }
+                else {
+                    itemView.img_arrow.rotation = 0f
+                }
+            }*/
 
             itemView.tv_price_train_cart.text       = data.price
 
@@ -415,7 +431,7 @@ class CartAdapterNew(val context: Context): androidx.recyclerview.widget.Recycle
             }
 
             itemView.tv_status_flight_cart.text            = data.status
-            itemView.tv_pnr_flight_cart.text               = data.pnrCode
+            itemView.tv_pnr_flight_cart.text               = if (data.pnrCode.isEmpty()) "-" else data.pnrCode
             itemView.tv_number_seat_flight_cart.text       = data.numberSheet
             itemView.tv_class_flight_cart.text             = data.classFlight
 

@@ -1013,6 +1013,7 @@ Please add your trip item for Approval."
     <string name="or">or</string>
     <string name="view_detail">View Detail</string>
     <string name="remove_purchase_history">Remove Purchase History</string>
+    <string name="remove_item">Remove</string>
     <string name="back_to_purchase_list">Back to Purchase List</string>
     <string name="back_to_homepage">Back to Homepage</string>
     <string name="other">Other</string>
