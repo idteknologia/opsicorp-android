@@ -185,6 +185,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 mData.number_sheet  = resultListFlightModel.numberSeat
                 mData.airlineNumber = resultListFlightModel.flightNumber
                 mData.terminal      = resultListFlightModel.terminal
+                mData.isMultiCity   = Constants.multitrip
 
                 mData.date_arrival_departure = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","EEE, dd MMM yyyy")
                 mData.timeDeparture = resultListFlightModel.departTime

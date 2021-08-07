@@ -160,6 +160,7 @@ class ListParticipantsDataMapper {
                                 dataHotel.address     = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address.toString()
 
                                 dataHotel.dateBooking = tripHotelsItem?.bookedDate.toString()
+                                dataHotel.ticketedDate = tripHotelsItem?.ticketedDate.toString()
                                 dataHotel.starRating  = tripHotelsItem?.rating.toString()
                                 dataHotel.price       = tripHotelsItem?.amount.toString()
                                 dataHotel.reasonCode  = it.reasonCode.toString()

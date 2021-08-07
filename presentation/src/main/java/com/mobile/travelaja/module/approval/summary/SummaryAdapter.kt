@@ -244,7 +244,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             tv_status_hotel.text        = data.status
             tv_name_hotel.text          = data.nameHotel
             tv_address_hotel.text       = data.address
-            tv_date_booking_hotel.text  = DateConverter().getDate(data.dateBooking,"yyyy-mm-dd","EEE, dd MMMM yyyy")
+            tv_date_booking_hotel.text  = DateConverter().getDate(data.checkIn,"yyyy-MM-dd","EEE, dd MMMM yyyy")
             tv_price_hotel.text         = "IDR "+Globals.formatAmount(data.price.split(".")[0])
 
             val stars = ArrayList<ImageView>()

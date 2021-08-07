@@ -11,6 +11,7 @@ class ItemHotelModel{
     var nameHotel   = ""
     var address     = ""
     var dateBooking = ""
+    var ticketedDate = ""
     var starRating  = ""
     var price       = ""
     var employId    = ""

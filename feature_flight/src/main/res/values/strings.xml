@@ -522,6 +522,7 @@ Please add your trip item for Approval."
     <string name="processing"> Processing... </string>
     <string name="please_wait"> Please Wait... </string>
     <string name="please_wait2">Please Wait</string>
+    <string name="please">Please</string>
     <string name="its_just_second">It just a second</string>
     <string name="invalid_address"> Invalid Address </string>
     <string name="no_internet"> Internet Connection is not Available </string>

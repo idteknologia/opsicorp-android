@@ -896,6 +896,7 @@ Please add your trip item for Approval."
     <string name="booking_id">Booking ID</string>
     <string name="expired_in">Expired in</string>
     <string name="select">Select</string>
+    <string name="please">Please</string>
     <string name="warning_delete_this_tripplan">Apa Anda yakin ingin menghapus tripplan ini?</string>
     <string name="select_your_purpose">Select your purpose</string>
     <string name="select_your_origin">Select your origin</string>
@@ -905,6 +906,7 @@ Please add your trip item for Approval."
     <string name="select_your_bank_transfer">Select your Bank Transfer</string>
     <string name="fill_your_cash_amount">Fill your Cash Advance Amount</string>
     <string name="limit_cash_advance">Your cash advance are beyond limit</string>
+    <string name="name_must_not_empty">Fill your Contacts Name</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>

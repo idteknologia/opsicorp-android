@@ -104,7 +104,7 @@ class FlightFragmentNew : BaseFragment(),
         )
         Globals.typeAccomodation = "Flight"
 
-        /*checkTypeOrder()*/
+        checkTypeOrder()
         setOnClick()
         initRecycleView()
         setDataDefaultOneTrip()
@@ -113,7 +113,7 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun checkTypeOrder() {
-        if (Constants.isBisnisTrip) {
+        /*if (Constants.isBisnisTrip) {
             lay_parent_passager.visibility = View.GONE
             lay_air_class.gone()
             lay_air_pref.gone()
@@ -121,6 +121,11 @@ class FlightFragmentNew : BaseFragment(),
             lay_parent_passager.visibility = View.VISIBLE
             lay_air_class.visible()
             lay_air_pref.visible()
+        }*/
+        if ((Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/")){
+            cardExtras.gone()
+        } else {
+            cardExtras.visible()
         }
     }
 

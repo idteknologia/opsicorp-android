@@ -29,6 +29,7 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
 import com.opsicorp.hotel_feature.adapter.OnclickRecyclerBookingContact
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ContactFlightRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class BookingContactHotelActivity : BaseActivity(),
@@ -213,8 +214,8 @@ class BookingContactHotelActivity : BaseActivity(),
         adapter.setData(dataContacts)
 
         val dataProfile = getProfile()
-        tv_name_contact.text        = dataProfile.name
-        tv_number_contact.text      = dataProfile.homePhone
+        et_name_contact.setText(dataProfile.name)
+        et_number_contact.setText(dataProfile.phone)
         tv_email_contact.text       = dataProfile.email
     }
 
@@ -326,7 +327,10 @@ class BookingContactHotelActivity : BaseActivity(),
     }
 
     fun getReservasedHotel(){
-        if (checkEmptyListContactName()){
+        val firstName = et_name_contact.text.toString()
+        val fNameEmpty = firstName.isBlank() || firstName.isEmpty()
+        setLog(Serializer.serialize(dataReservationHotelRequest()))
+        if (checkEmptyListContactName() || fNameEmpty){
             showAllert("Sorry","Please complete input guest name")
         }
         else {
@@ -442,12 +446,23 @@ class BookingContactHotelActivity : BaseActivity(),
     }
 
     private fun getContactHotelRequest(): ContactReservationHotelRequest {
+        val fullname = et_name_contact.text.toString()
+        val names = fullname.split(" ")
+        var lastName = ""
+        if (names.size > 1){
+            for (i in 1 until names.size){
+                val n = names[i]
+                if (n.isNotBlank()){
+                    lastName = lastName.plus("$n ")
+                }
+            }
+        }
         val data = ContactReservationHotelRequest()
         data.email     = getProfile().email
-        data.firstName = getProfile().firstName
+        data.firstName = names.first()
         data.title     = getProfile().title
-        data.lastName  = getProfile().lastName
-        data.mobilePhone = getProfile().mobilePhone
+        data.lastName  = lastName
+        data.mobilePhone = "+62${et_number_contact.text}"
         data.remark    = parsingDataRemark()
         return data
     }

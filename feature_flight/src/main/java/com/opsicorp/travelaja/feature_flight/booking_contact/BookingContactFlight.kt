@@ -41,6 +41,7 @@ import java.lang.Exception
 import android.view.View
 import android.os.Bundle
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
+import kotlinx.android.synthetic.main.detail_cart_item_adapter.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 
@@ -82,7 +83,11 @@ class BookingContactFlight : BaseActivity(),
         btn_next.setTextButton("Continue")
 
         val datedepar = DateConverter().setDateFormat3(dataOrder.dateDeparture)
-        toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}", " ${datedepar}") //- 1 pax
+        if (dataOrder.routes.isNotEmpty()){
+            toolbar.setDoubleTitle("${dataOrder.routes.first().originName} - ${dataOrder.routes.last().destinationName}", " ${DateConverter().setDateFormat3(dataOrder.routes.first().dateDeparture)}") //- 1 pax
+        } else {
+            toolbar.setDoubleTitle("${dataOrder.originName} - ${dataOrder.destinationName}", " ${datedepar}") //- 1 pax
+        }
 
         toolbar.doubleTitleGravity(toolbar.START)
 
@@ -95,9 +100,9 @@ class BookingContactFlight : BaseActivity(),
 
     private fun setDataContact() {
         val dataProfile = getProfile()
-        tv_number_contact.text = dataProfile.homePhone
+        et_number_contact.setText(dataProfile.mobilePhone)
         tv_email_contact.text = dataProfile.email
-        tv_name_contact.text = dataProfile.name
+        et_name_contact.setText(dataProfile.name)
 
         if (Constants.multitrip){
             adapter.setData(dataOrder.routes.first().flightResult.passenger)
@@ -373,8 +378,10 @@ class BookingContactFlight : BaseActivity(),
     }
 
     fun getReservased() {
-        setLog("Test Reservasi",Serializer.serialize(getDataFlight()))
-        showLoadingOpsicorp(true)
+        val firstName = et_name_contact.text.toString()
+        if (firstName.isNotBlank() && firstName.isNotEmpty()){
+            setLog("Test Reservasi",Serializer.serialize(getDataFlight()))
+            showLoadingOpsicorp(true)
         GetDataAccomodation(getBaseUrl()).getReservationFlight(Globals.getToken(), getDataFlight(), object : CallbackReserveFlight {
             override fun successLoad(data: ReserveFlightModel) {
                 if (data.errorMessage.equals("")) {
@@ -390,6 +397,9 @@ class BookingContactFlight : BaseActivity(),
                 hideLoadingOpsicorp()
             }
         })
+        } else {
+            Globals.showAlert(getString(com.mobile.travelaja.R.string.please), getString(com.mobile.travelaja.R.string.name_must_not_empty), this)
+        }
     }
 
     private fun phoneContactIsEmpty(): Boolean {
@@ -534,13 +544,25 @@ class BookingContactFlight : BaseActivity(),
     }
 
     private fun getContactValidationFlightRequest(): ContactFlightRequest {
+        val fullname = et_name_contact.text.toString()
+        val names = fullname.split(" ")
+        var lastName = ""
+        if (names.size > 1){
+            for (i in 1 until names.size){
+                val n = names[i]
+                if (n.isNotBlank()){
+                    lastName = lastName.plus("$n ")
+                }
+            }
+        }
+
         val contact = ContactFlightRequest()
         contact.email = getProfile().email
-        contact.homePhone = "08167133923"//getProfile().phone
-        contact.firstName = getProfile().firstName
-        contact.title = "Mr"//getProfile().title
-        contact.lastName = getProfile().lastName
-        contact.mobilePhone = "08167133923"//getProfile().phone
+        contact.homePhone = getProfile().homePhone
+        contact.firstName = names.first()
+        contact.title = getProfile().title
+        contact.lastName = lastName
+        contact.mobilePhone = "+62${et_number_contact.text}"
         return contact
     }
 

@@ -144,7 +144,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     private fun setToolbar(depart: String) {
-        val departing = if (depart.contains(" ")) DateConverter().getDate(depart.split(" ")[0],"yyyy-MM-dd","EEE, yyyy MMM dd") else DateConverter().getDate(depart,"yyyy-MM-dd","EEE, yyyy MMM dd")
+        val departing = if (depart.contains(" ")) DateConverter().getDate(depart.split(" ")[0],"yyyy-MM-dd","dd MMM yyyy") else DateConverter().getDate(depart,"yyyy-MM-dd","EEE, yyyy MMM dd")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {

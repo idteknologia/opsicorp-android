@@ -33,6 +33,9 @@ import opsigo.com.domainlayer.model.create_trip_plane.RoutesItinerary
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
 import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -58,7 +61,6 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
     var isCashAdvance = false
     var picCostCentreEmpty = true
     var bankTransferEmpty = true
-    var cashAmountLimit = false
 
 
     override fun onMain() {
@@ -175,23 +177,47 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 return false
             }
         })
-        et_min.addTextChangedListener(object: TextWatcher{
+        et_min.addTextChangedListener(object : TextWatcher {
+            var textValue = ""
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                try {
+                    if (!s.isNullOrEmpty()) {
+                        val sEdit = s.toString().replace(".","")
+                        val value = sEdit.toInt()
+                        cashAdvanceValue = value
+                        textValue = Globals.formatCurrency(value)
+                        if (value > cashAdvanceValueLimit) {
+                            Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this@RevieBudgetPertaminaActivity)
+                            checkEmptyField(false)
+                        } else {
+                            checkEmptyField(true)
+                        }
+                    } else {
+                        cashAdvanceValue = 0
+                        textValue = ""
+                    }
+                }
+                catch (e:Exception){
+                    e.printStackTrace()
+                }
+
 
             }
 
             override fun afterTextChanged(s: Editable?) {
-                /*if ( s.toString().toInt() > cashAdvanceValueLimit) {
-                    cashAmountLimit = true
-                    checkEmptyField()
-                } else {
-                    cashAmountLimit = false
-                    checkEmptyField()
-                }*/
+                try {
+                    et_min.removeTextChangedListener(this)
+                    et_min.setText(textValue)
+                    et_min.setSelection(textValue.length)
+                    et_min.addTextChangedListener(this)
+                }
+                catch (e:Exception){
+                    e.printStackTrace()
+                }
             }
 
         })
@@ -288,12 +314,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         }*/
     }
 
-    fun checkEmptyField() {
-        if (cashAmountLimit) {
+    fun checkEmptyField(enable : Boolean) {
+        if (enable) {
             changeButtonNextOrangeColor()
         } else {
             changeButtonNextGrayColor()
-            /*Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this)*/
+
         }
     }
 
@@ -436,7 +462,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             et_min -> {
                 if (et_min.text.isNotEmpty()) {
                     isCashAdvance = true
-                    cashAdvanceValue = et_min.text.toString().toInt()
+
                 } else {
                     isCashAdvance = false
                     cashAdvanceValue = 0
