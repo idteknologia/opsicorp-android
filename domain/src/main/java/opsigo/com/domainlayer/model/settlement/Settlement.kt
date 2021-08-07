@@ -168,7 +168,7 @@ data class ExpenseType(
 }
 
 data class CalculateTransportResult(
-    var isSuccess: Boolean, var amount: Double
+    var isSuccess: Boolean, var amount: Double,var Currency: String
 )
 
 data class SubmitResult(var isSuccess: Boolean, var isApproverSet: Boolean)

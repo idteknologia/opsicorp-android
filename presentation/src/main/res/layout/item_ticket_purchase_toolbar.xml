@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="origin"
+            type="String" />
+        <variable
+            name="destination"
+            type="String" />
+        <variable
+            name="originView"
+            type="String" />
+        <variable
+            name="destinationView"
+            type="String" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:background="@color/colorPrimary"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvNameOri"
+        style="@style/TextLato_Normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@{origin}"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Soekarno Hatta" />
+
+    <TextView
+        android:id="@+id/tvStationOri"
+        style="@style/TextLato_Normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:maxLines="1"
+        android:gravity="end"
+        android:ellipsize="end"
+        android:textColor="#ffffff"
+        android:textSize="12sp"
+        android:text="@{originView}"
+        android:visibility="@{originView.empty ? View.GONE : View.VISIBLE}"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameOri"
+        tools:text="International Airport" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="15dp"
+        android:layout_height="10dp"
+        android:src="@drawable/panah_putih"
+        app:layout_constraintBottom_toBottomOf="@+id/tvStationOri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvNameOri" />
+
+    <TextView
+        android:id="@+id/tvNameDest"
+        style="@style/TextLato_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:text="@{destination}"
+        android:layout_marginStart="8dp"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Soekarno Hatta" />
+
+    <TextView
+        android:id="@+id/tvStationDest"
+        style="@style/TextLato_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="#ffffff"
+        android:maxLines="1"
+        android:text="@{destinationView}"
+        android:visibility="@{destinationView.empty ? View.GONE : View.VISIBLE}"
+        android:ellipsize="end"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tvNameDest"
+        tools:text="International Airport" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
