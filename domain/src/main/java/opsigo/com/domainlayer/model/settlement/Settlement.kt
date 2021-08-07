@@ -168,7 +168,7 @@ data class ExpenseType(
 }
 
 data class CalculateTransportResult(
-    var isSuccess: Boolean, var amount: Double
+    var isSuccess: Boolean, var amount: Double,var Currency: String
 )
 
 data class SubmitResult(var isSuccess: Boolean, var isApproverSet: Boolean)
@@ -228,6 +228,7 @@ open class RouteTransport : Parcelable, BaseObservable() {
 class IntercityTransport : RouteTransport(), Parcelable {
     @SerializedName("Amount")
     var Amount: Number = 0
+    @get:Bindable
     @SerializedName("Distance")
     var Distance: Number? = null
     @SerializedName("TripType")

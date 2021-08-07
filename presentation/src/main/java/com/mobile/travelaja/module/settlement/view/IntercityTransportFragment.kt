@@ -11,6 +11,7 @@ import com.mobile.travelaja.base.list.BaseListFragment
 import com.mobile.travelaja.module.settlement.view.adapter.IntercityTransportAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.IntercityTransportViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
+import kotlinx.android.synthetic.main.base_list_fragment.*
 import opsigo.com.domainlayer.model.settlement.IntercityTransport
 import opsigo.com.domainlayer.model.settlement.RouteTransport
 
@@ -69,6 +70,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
                 dialog.show()
             }
         }
+        binding.rvBaseList.clearFocus()
     }
 
     private fun setRoute() {

@@ -77,12 +77,12 @@
 <!--                        android:paddingBottom="18dp"/>-->
 
                     <EditText
+                        android:id ="@+id/et_url"
                         android:focusable="true"
                         android:focusedByDefault="true"
                         android:focusableInTouchMode="true"
                         android:background="@android:color/white"
                         android:singleLine="true"
-                        android:id ="@+id/et_url"
                         style="@style/RobotoBold"
                         android:layout_width ="wrap_content"
                         android:layout_height ="wrap_content"

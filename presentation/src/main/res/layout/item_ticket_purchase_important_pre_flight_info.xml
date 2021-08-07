@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="@dimen/margin_default"
+    android:paddingBottom="@dimen/margin_default"
+    android:background="@color/white">
+
+    <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Important Pre-Flight info"
+        style="@style/TextLato_Bold"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitle" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_marginTop="11dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_chevron_up_orange"
+        android:layout_marginRight="@dimen/margin_default"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivId"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/ic_info_pre_flight"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <TextView
+        android:id="@+id/tvInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="51dp"
+        style="@style/TextLato_Normal"
+        android:textSize="12sp"
+        android:textColor="#939396"
+        android:text="@string/important_info_passenger_need_flight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivId"
+        app:layout_constraintTop_toTopOf="@+id/ivId" />
+    <ImageView
+        android:id="@+id/ivTimer"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/ic_stop_watch"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvInfo" />
+
+    <TextView
+        android:id="@+id/tvArrive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="51dp"
+        style="@style/TextLato_Normal"
+        android:textSize="12sp"
+        android:textColor="#939396"
+        android:text="@string/important_info_arrive_flight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivTimer"
+        app:layout_constraintTop_toTopOf="@+id/ivTimer" />
+
+    <ImageView
+        android:id="@+id/ivTimeListed"
+        android:layout_width="32dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/ic_expiry_time"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvArrive" />
+
+    <TextView
+        android:id="@+id/tvTimeListed"
+        style="@style/TextLato_Normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="51dp"
+        android:text="@string/important_info_time_listed_flight"
+        android:textColor="#939396"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTimeListed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivTimeListed"
+        app:layout_constraintTop_toTopOf="@+id/ivTimeListed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

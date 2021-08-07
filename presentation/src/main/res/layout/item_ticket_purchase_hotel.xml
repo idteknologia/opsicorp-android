@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_default">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="16sp"
+        style="@style/TextLato_Bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="The Trans Luxury Bandung" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:rating="5" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/TextLato_Normal"
+        android:textSize="12sp"
+        android:textColor="#91929e"
+        android:drawableStart="@drawable/ic_place_green"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+        tools:text="Arjuna, Bandung" />
+
+    <View
+        android:id="@+id/divider"
+        style="@style/Divider"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvLocation" />
+
+    <TextView
+        android:id="@+id/tvTitleCheckIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        style="@style/TextLato_Bold"
+        android:textSize="12sp"
+        android:textColor="#939396"
+        app:layout_constraintStart_toStartOf="@+id/tvDateCheckIn"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        android:text="Chek In" />
+
+    <TextView
+        android:id="@+id/tvDateCheckIn"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCheckIn"
+        tools:text="Thu, 18 Apr" />
+
+    <TextView
+        android:id="@+id/tvTimeCheckIn"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textColor="#00776a"
+        android:textSize="12sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tvTitleCheckIn"
+        app:layout_constraintStart_toStartOf="@+id/tvDateCheckIn"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateCheckIn"
+        tools:text="14:00" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="1dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="17dp"
+        android:background="#d3d3d8"
+        app:layout_constraintBottom_toBottomOf="@+id/tvValueNight"
+        app:layout_constraintEnd_toStartOf="@+id/tvValueNight"
+        app:layout_constraintTop_toTopOf="@+id/tvValueNight" />
+
+    <TextView
+        android:id="@+id/tvValueNight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_night_hotels"
+        android:drawablePadding="5dp"
+        style="@style/TextLato_Normal"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimeCheckIn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleCheckIn"
+        tools:text="1 night(s)" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="1dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="17dp"
+        android:background="#d3d3d8"
+        app:layout_constraintBottom_toBottomOf="@+id/tvValueNight"
+        app:layout_constraintStart_toEndOf="@+id/tvValueNight"
+        app:layout_constraintTop_toTopOf="@+id/tvValueNight" />
+
+    <TextView
+        android:id="@+id/tvTitleCheckOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chek Out"
+        style="@style/TextLato_Bold"
+        android:textSize="12sp"
+        android:textColor="#939396"
+        app:layout_constraintEnd_toEndOf="@+id/tvDateCheckOut"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleCheckIn" />
+
+    <TextView
+        android:id="@+id/tvDateCheckOut"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view4"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCheckOut"
+        tools:text="Thu, 18 Apr" />
+
+
+    <TextView
+        android:id="@+id/tvTimeCheckOut"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textColor="#00776a"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvDateCheckOut"
+        app:layout_constraintLeft_toLeftOf="@+id/tvDateCheckOut"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateCheckOut"
+        tools:text="14:00" />
+
+    <View
+        android:id="@+id/divider2"
+        style="@style/Divider"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeCheckIn"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tvBookingContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Booking Contact"
+        style="@style/TextLato_Bold"
+        android:textSize="12sp"
+        android:textColor="#009688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+    <TextView
+        android:id="@+id/tvNameContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextLato_Bold"
+        android:textSize="14sp"
+        android:textColor="#939396"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvBookingContact"
+        tools:text="Vodyrizam" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

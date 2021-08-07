@@ -49,7 +49,7 @@ class AddressActivity : BaseActivity(), LoginView {
             finish()
         }
         viewModel.login.observe(this) {
-            Globals.setBaseUrl(this, PERTAMINA_URL)
+            Globals.setBaseUrl(this, getString(R.string.base_api_pertamina))
             val data = DataLoginModel()
             data.employId = it.employeeId
             data.token = it.accessToken
@@ -107,10 +107,8 @@ class AddressActivity : BaseActivity(), LoginView {
                             "codeVerifier" to codeVerifier,
                             "grant_type" to "password"
                         )
-                        viewModel.onLogin("${PERTAMINA_URL}token",body)
+                        viewModel.onLogin("${getString(R.string.base_api_pertamina)}token",body)
                     }
-
-
                 }
             }
         }
@@ -122,7 +120,7 @@ class AddressActivity : BaseActivity(), LoginView {
             val url = et_url.text.toString().toLowerCase()
             val baseUrl = "https://$url.opsicorp.com/"
             if (url.isNotEmpty()) {
-                if (baseUrl == PERTAMINA_URL) {
+                if (url.contains(getString(R.string.pertamina))) {
                     showDialog(getString(R.string.waiting))
                     OpenIdLogin.loginWithSSO(
                         this,

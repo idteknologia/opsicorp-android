@@ -22,6 +22,8 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
 
     fun setDistance(distance: Number, pos: Int) {
         val data = items[pos]
+        if (data.Distance == distance)
+            return
         data.Distance = distance
         val type = if (data.TripType == 1) 2 else 1
         val cost = (data.Cost.toDouble() * distance.toDouble()) * type
@@ -42,7 +44,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
     fun switchTransport(pos : Int , checked : Boolean){
         val data = items[pos]
         data.TripType = if (checked) 1 else 0
-        data.TotalAmount = if (checked) data.TotalAmount.toDouble() * 2 else data.TotalAmount
+        data.TotalAmount = if (checked) data.TotalAmount.toDouble() * 2 else data.TotalAmount.toDouble() / 2
     }
 
     fun getIntercityTransport(pos: Int, route: RouteTransport,golper: Int) {

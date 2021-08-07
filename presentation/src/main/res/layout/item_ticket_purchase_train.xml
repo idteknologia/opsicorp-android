@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="data"
+            type="com.mobile.travelaja.module.my_booking.eticket.model.Segment" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@{data.trainName}"
+        style="@style/TextLato_Bold"
+        tools:text="Argo Parahyangan"/>
+
+    <TextView
+        android:id="@+id/tvType"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="#80ade2"
+        android:text="@{data.currierNumber}"
+        android:textSize="10sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="KA-210" />
+
+    <TextView
+        android:id="@+id/tvTypeTicket"
+        style="@style/TextLato_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="#888888"
+        android:textSize="12sp"
+        android:text="@{data.category +` (`+data.classCode+`)`}"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvType"
+        tools:text="Executive(A)" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:imageLoadUrl="@{data.kaiImageUrl}"
+        app:layout_constraintBottom_toBottomOf="@+id/tvType"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintDimensionRatio="16:9"
+        tools:src="@drawable/train_logo" />
+    <View
+        android:id="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@+id/tvTypeTicket"
+        android:layout_marginTop="10dp"
+        style="@style/Divider"/>
+
+    <TextView
+        android:id="@+id/tvTimeOri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        style="@style/TextLato_Bold"
+        android:text="@{data.departTime}"
+        app:layout_constraintEnd_toEndOf="@+id/tvDateOri"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:text="16:55" />
+
+    <TextView
+        android:id="@+id/tvDateOri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        style="@style/TextLato_Bold"
+        android:textSize="10sp"
+        android:text="@{data.departDate}"
+        android:textColor="#939396"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeOri"
+        tools:layout_editor_absoluteX="0dp"
+        tools:text="Thu, 27 Apr" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_oval"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimeOri"
+        app:layout_constraintEnd_toStartOf="@+id/tvCityOri"
+        app:layout_constraintStart_toEndOf="@+id/tvTimeOri"
+        app:layout_constraintTop_toTopOf="@+id/tvTimeOri" />
+
+    <TextView
+        android:id="@+id/tvCityOri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        style="@style/TextLato_Normal"
+        android:text="@{data.originName}"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tvTimeOri"
+        tools:text="Jakarta (GMR)" />
+
+    <TextView
+        android:id="@+id/tvStationOri"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{data.airportOrigin +` Station`}"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tvCityOri"
+        tools:text="Gambir Station" />
+
+    <TextView
+        android:id="@+id/tvTimeDirection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        style="@style/TextLato_Normal"
+        android:textSize="10sp"
+        android:text="@{data.durationTime}"
+        android:textColor="#212121"
+        android:background="@drawable/rounded_green_stroke_2"
+        android:drawableStart="@drawable/ic_time_direction"
+        android:drawablePadding="5dp"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintStart_toStartOf="@+id/tvStationOri"
+        app:layout_constraintTop_toBottomOf="@+id/tvStationOri"
+        tools:text="3h 27m" />
+
+    <TextView
+        android:id="@+id/tvTimeDest"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@{data.arriveTime}"
+        app:layout_constraintEnd_toEndOf="@+id/tvDateOri"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeDirection"
+        tools:text="16:55" />
+
+    <TextView
+        android:id="@+id/tvDateDest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        style="@style/TextLato_Bold"
+        android:textSize="10sp"
+        android:text="@{data.arriveDate}"
+        android:textColor="#939396"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeDest"
+        tools:text="Thu, 27 Apr" />
+
+    <ImageView
+        android:id="@+id/imageViewPlace"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/point_arrival"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTimeDest"
+        app:layout_constraintEnd_toStartOf="@+id/tvCityDest"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvTimeOri"
+        app:layout_constraintTop_toTopOf="@+id/tvTimeDest"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvCityDest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        style="@style/TextLato_Normal"
+        android:textSize="12sp"
+        android:text="@{data.destinationName}"
+        android:textColor="#666666"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/tvTimeDest"
+        tools:text="Jakarta (GMR)" />
+
+    <TextView
+        android:id="@+id/tvStationDest"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        android:textSize="12sp"
+        android:text="@{data.airportDestination +` Station`}"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tvCityDest"
+        tools:text="Gambir Station" />
+
+    <View
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="@drawable/background_dot_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewPlace"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

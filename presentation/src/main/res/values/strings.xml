@@ -881,6 +881,8 @@ Please add your trip item for Approval."
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <!--config SSO Pertamina-->
+    <string name="pertamina" translatable="false">pertamina</string>
+    <string name="base_api_pertamina" translatable="false">https://digitravel.pertamina.com/</string>
     <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
     <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
     <!--config SSO Pertamina-->
@@ -1129,5 +1131,16 @@ Please add your trip item for Approval."
     <string name="enter_amount">Enter Amount</string>
 
 
+    <string name="warning_maximum_200_km">Maximum 200 km</string>
+    <string name="hotel_message_purchase_ticket">• Guaranteed Late Check-Out till <br />
+        • $5 Ya Kun Kaya Toast Food Voucher Per Room <br />
+        • $5 Old Chang Kee Food Voucher Per Room <br />
+        • 1 Customised Tote Bag <br />
+        • 1 Customised Lunch Bag
+    </string>
+    <string name="important_info_ticket_purchase">Bukti pemesanan ini harus <b>ditukarkan dengan Boarding Pass mulai 7x24 jam sebelum keberangkatan KA pada mesin check-in counter</b> di stasiun keberangkatan.</string>
+    <string name="important_info_passenger_need_flight">Passenger need to show this e-ticket and passenger identity when check-in.</string>
+    <string name="important_info_arrive_flight">Please arrive at the airport for check-in 90 minutes prior departure.</string>
+    <string name="important_info_time_listed_flight">The time listed above is the local airport time.</string>
 </resources>
 

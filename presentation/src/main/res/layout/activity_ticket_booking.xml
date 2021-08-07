@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="data"
+            type="com.mobile.travelaja.module.my_booking.eticket.model.TicketResult" />
+        <variable
+            name="type"
+            type="Integer" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f6f8f8"
+    tools:context=".module.my_booking.eticket.TicketBookingActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_ticket_purchase"
+        app:navigationIcon="@drawable/ic_close_white">
+
+        <include
+            android:id="@+id/includeToolbar"
+            layout="@layout/item_ticket_purchase_toolbar"
+            app:origin="@{data.origin}"
+            app:destination="@{data.destination}"
+            app:originView="@{data.originView}"
+            app:destinationView="@{data.destinationView}"/>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        android:layout_marginBottom="@dimen/margin_default">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvTitleTicket"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Train Itinerary" />
+
+            <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
+                android:id="@+id/ticketView"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleTicket"
+                app:ticketCornerType="rounded"
+                app:ticketDividerPadding="0dp"
+                app:ticketDividerType="dash"
+                app:ticketElevation="14dp"
+                app:ticketOrientation="horizontal"
+                app:ticketScallopPositionPercent="70"
+                app:ticketScallopRadius="14dp"
+                app:ticketShowBorder="false"
+                app:ticketShowDivider="true" />
+
+            <View
+                android:id="@+id/viewRvTicket"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleTicket"
+                tools:background="@color/colorPrimary" />
+
+            <View
+                android:id="@+id/dividerDash"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/viewRvTicket"
+                app:layout_constraintEnd_toEndOf="@id/viewRvTicket"
+                app:layout_constraintStart_toStartOf="@+id/viewRvTicket"
+                app:layout_constraintTop_toTopOf="@id/viewRvTicket" />
+
+            <View
+                android:id="@+id/backgroundRvTicket"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/rvTicket"
+                app:layout_constraintTop_toBottomOf="@+id/viewRvTicket"
+                tools:background="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvTitleBookingCode"
+                style="@style/ContentDescriptionTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="Booking Code"
+                android:textColor="#939396"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/viewRvTicket"
+                tools:text="Booking Code" />
+
+            <TextView
+                android:id="@+id/tvBookingCode"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:text="@{data.pnrCode}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleBookingCode"
+                tools:text="X4KDME" />
+
+            <ImageView
+                android:id="@+id/ivCopied"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_icon_copy"
+                app:layout_constraintBottom_toBottomOf="@+id/tvBookingCode"
+                app:layout_constraintStart_toEndOf="@+id/tvBookingCode"
+                app:layout_constraintTop_toTopOf="@+id/tvBookingCode" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="23dp"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:orientation="vertical"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/viewRvTicket"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_ticket_purchase_train"
+                tools:visibility="visible" />
+
+            <LinearLayout
+                android:id="@+id/containerInclude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/rvTicket">
+
+                <include
+                    android:id="@+id/includeHotel"
+                    layout="@layout/item_ticket_purchase_hotel_description" />
+
+                <include
+                    android:id="@+id/includeInfoImportant"
+                    layout="@layout/item_ticket_purchase_important_info" />
+
+                <include
+                    android:id="@+id/includeInfoPreFlight"
+                    layout="@layout/item_ticket_purchase_important_pre_flight_info" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerPassenger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/containerInclude"
+                tools:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tvTitlePassenger"
+                    style="@style/TextLato_Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="12dp"
+                    android:textColor="#009688"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Passenger(s)" />
+
+                <View
+                    android:id="@+id/dividerPassenger"
+                    style="@style/Divider"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitlePassenger" />
+
+                <TextView
+                    android:id="@+id/tvSubtitlePassenger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="29dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvTitlePassenger"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvTitlePassenger"
+                    tools:text="Bed Type"
+                    tools:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPassenger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/dividerPassenger"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_ticket_purchase_passenger_train" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/tvRelated"
+                style="@style/TextLato_Bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@drawable/rounded_button_filter_selected"
+                android:drawablePadding="20dp"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/margin_default"
+                android:paddingTop="9dp"
+                android:paddingEnd="@dimen/margin_default"
+                android:paddingBottom="9dp"
+                android:text="@string/related_item_s"
+                android:textColor="#f6f8f8"
+                android:visibility="@{type == 1 || type == 2? View.VISIBLE : View.GONE}"
+                app:drawableEndCompat="@drawable/ic_chevron_next"
+                app:layout_constraintTop_toBottomOf="@+id/containerPassenger" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitleTotalPrice"
+        style="@style/TextLato_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginBottom="6dp"
+        android:text="Total Price"
+        android:textColor="#939396"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvTotalPrice"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTotalPrice"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{data.amount.toString()}"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="IDR 1.500.819.000" />
+
+    <TextView
+        android:id="@+id/tvSendReceipt"
+        style="@style/TextLato_Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_default"
+        android:text="@string/send_receipt"
+        android:textColor="#009688"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalPrice"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleTotalPrice" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
