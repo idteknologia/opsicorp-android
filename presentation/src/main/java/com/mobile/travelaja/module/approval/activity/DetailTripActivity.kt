@@ -973,7 +973,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.endDate = tripSummary.returnDate
             model.route   = mappingRoutes(tripSummary.routes)
             model.attachment.addAll(addAttacthment())
-            model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
+            /*model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId*/
+            if (tripSummary.budgetId.isNullOrEmpty()){
+                model.buggetId = getProfile().costCenter
+            } else {
+                model.buggetId = tripSummary.budgetId
+            }
             model.costCenter = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
 
             model.businessTripType = tripSummary.businessTripType

@@ -486,6 +486,7 @@ class BookingContactFlight : BaseActivity(),
         header.status = dataTrip.statusNumber
         header.isBookAfterApprove = dataTrip.isBookAfterApprove
         header.isPrivateTrip = dataTrip.isPrivateTrip
+        header.budgetId = dataTrip.buggetId
 
         header.businessTripType = dataTrip.businessTripType
         header.remark           = dataTrip.remark
@@ -859,6 +860,7 @@ class BookingContactFlight : BaseActivity(),
         header.wbsNo = dataTrip.wbsNo
         header.isDomestic = dataTrip.isDomestik
         header.golper = dataTrip.golper
+        header.budgetId = dataTrip.buggetId
 
         if (dataTrip.purpose.equals("-")) {
             header.purpose = "Personal Trip"
