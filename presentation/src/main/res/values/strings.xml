@@ -881,6 +881,8 @@ Please add your trip item for Approval."
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
     <!--config SSO Pertamina-->
+    <string name="pertamina" translatable="false">pertamina</string>
+    <string name="base_api_pertamina" translatable="false">https://digitravel.pertamina.com/</string>
     <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
     <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
     <!--config SSO Pertamina-->
