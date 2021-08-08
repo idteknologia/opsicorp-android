@@ -592,7 +592,7 @@
                         android:textColor="@color/textColorButtonOutline"
                         android:textSize="14sp"
                         style="@style/RobotoMedium"
-                        android:text="@string/reject_all"
+                        android:text="@string/reject"
                         android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -613,7 +613,7 @@
                         android:textColor="@color/textButtonColor"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
-                        android:text="@string/approve_all"
+                        android:text="@string/approve"
                         android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />

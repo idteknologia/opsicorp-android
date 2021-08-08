@@ -150,8 +150,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="11dp"
-                            android:gravity="center_horizontal"
-                            android:lineSpacingExtra="1sp"
+                            android:textAlignment="textStart"
                             android:text="Created Date : 8 Feb 2019 09:46"
                             android:textColor="#939396"
                             android:textSize="12sp" />
@@ -280,11 +279,11 @@
 
                     <LinearLayout
                         android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_width="3dp"
                         android:layout_height="105dp"
-                        android:layout_toRightOf="@+id/line_detail"
+                        android:layout_toStartOf="@+id/image_barcode"
                         android:background="#f5f5f5"/>
 
                     <ImageView

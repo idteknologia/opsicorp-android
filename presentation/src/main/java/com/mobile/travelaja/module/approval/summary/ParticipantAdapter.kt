@@ -9,12 +9,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
 
 import java.util.ArrayList
 
-class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
+class ParticipantAdapter(val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -26,33 +27,33 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
 
-        return when (viewType){
+        return when (viewType) {
 
             VIEW_TYPE_APROVAL -> ParticipantHolderApproval(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_participant_list, parent, false))
 
-            else            -> ParticipantHolderParticipant(LayoutInflater.from(parent.getContext())
+            else -> ParticipantHolderParticipant(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_participant_list, parent, false))
         }
     }
 
-    fun setOnclickListener(onclickListenerRecyclerView: OnclickListenerRecyclerView){
+    fun setOnclickListener(onclickListenerRecyclerView: OnclickListenerRecyclerView) {
         this.onclick = onclickListenerRecyclerView
     }
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
 
-        when (items[position].isApproval){
+        when (items[position].isApproval) {
             true -> {
-                (holder as ParticipantHolderApproval).bind(items[position],position)
+                (holder as ParticipantHolderApproval).bind(items[position], position)
             }
             else -> {
-                (holder as ParticipantHolderParticipant).bind(items[position],position)
+                (holder as ParticipantHolderParticipant).bind(items[position], position)
             }
         }
     }
 
-    open inner class ViewHolder(itemView: View): androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
+    open inner class ViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun setData(data: ArrayList<ParticipantModel>) {
         items = data
@@ -60,50 +61,44 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (items.get(position).isApproval){
-            true        -> VIEW_TYPE_APROVAL
-            else        -> VIEW_TYPE_PARTICIPANT
+        return when (items.get(position).isApproval) {
+            true -> VIEW_TYPE_APROVAL
+            else -> VIEW_TYPE_PARTICIPANT
         }
     }
 
     inner class ParticipantHolderParticipant internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
-        var img_participant         :ImageView= itemView.findViewById(R.id.img_participant)
-        var tv_job_title            :TextView = itemView.findViewById(R.id.tv_jobtitle)
-        var tv_name                 :TextView = itemView.findViewById(R.id.tv_name)
-        var tv_budget_name          :TextView = itemView.findViewById(R.id.tv_budget_name)
-        var ic_chevron_next_orange  : ImageView = itemView.findViewById(R.id.btn_next)
-        var tv_status               :TextView = itemView.findViewById(R.id.tv_status)
-        var line_border             :LinearLayout = itemView.findViewById(R.id.line_border_bottom)
-
+        var img_participant: ImageView = itemView.findViewById(R.id.img_participant)
+        var tv_job_title: TextView = itemView.findViewById(R.id.tv_jobtitle)
+        var tv_name: TextView = itemView.findViewById(R.id.tv_name)
+        var tv_budget_name: TextView = itemView.findViewById(R.id.tv_budget_name)
+        var ic_chevron_next_orange: ImageView = itemView.findViewById(R.id.btn_next)
+        var tv_status: TextView = itemView.findViewById(R.id.tv_status)
+        var line_border: LinearLayout = itemView.findViewById(R.id.line_border_bottom)
 
 
         fun bind(data: ParticipantModel, position: Int) {
-            tv_job_title.text       = data.jobtitle
-            tv_status.text          = data.status
-            if (data.budgetCode.isNullOrEmpty() && data.budgetName.isNullOrEmpty()){
-                tv_budget_name.text     = data.email
-            } else {
-                tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
-            }
-            tv_name.text            = data.name
+            tv_job_title.text = data.jobtitle
+            tv_status.text = data.status
+            tv_budget_name.text = Globals.getProfile(context).costCenter + " - " + Globals.getProfile(context).costCenterDefaultText
+            tv_name.text = data.name
 
             tv_budget_name.visibility = View.VISIBLE
             ic_chevron_next_orange.visibility = View.VISIBLE
             tv_status.visibility = View.VISIBLE
 
-            if (data.status.toLowerCase().contains("reject")||data.status.toLowerCase().contains("expired")){
+            if (data.status.toLowerCase().contains("reject") || data.status.toLowerCase().contains("expired")) {
                 tv_status.setTextColor(context.resources.getColor(R.color.colorRed))
             }
-            if (data.status.toLowerCase().contains("approved")){
+            if (data.status.toLowerCase().contains("approved")) {
                 tv_status.setTextColor(context.resources.getColor(R.color.colorGreenApproval))
-            }
-            else {
+            } else {
                 tv_status.setTextColor(context.resources.getColor(R.color.colorYellowButton))
             }
 
 
-            if (data.imgUrl.isNotEmpty()){
+            if (data.imgUrl.isNotEmpty()) {
                 Picasso.get()
                         .load(data.imgUrl)
                         .fit()
@@ -111,20 +106,18 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
                         .into(img_participant)
             }
 
-            if (items.size==1){
+            if (items.size == 1) {
                 line_border.visibility = View.VISIBLE
-            }
-            else{
-                if (position==items.size-1){
+            } else {
+                if (position == items.size - 1) {
                     line_border.visibility = View.VISIBLE
-                }
-                else{
+                } else {
                     line_border.visibility = View.GONE
                 }
             }
 
             itemView.setOnClickListener {
-                onclick.onClick(-1,position)
+                onclick.onClick(-1, position)
             }
         }
 
@@ -132,30 +125,26 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
 
     inner class ParticipantHolderApproval internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
-        var img_participant         :ImageView= itemView.findViewById(R.id.img_participant)
-        var tv_job_title            :TextView = itemView.findViewById(R.id.tv_jobtitle)
-        var tv_name                 :TextView = itemView.findViewById(R.id.tv_name)
-        var line_border             :LinearLayout = itemView.findViewById(R.id.line_border_bottom)
-        var tv_budget_name          :TextView = itemView.findViewById(R.id.tv_budget_name)
-        var ic_chevron_next_orange  :ImageView = itemView.findViewById(R.id.btn_next)
-        var tv_status               :TextView = itemView.findViewById(R.id.tv_status)
+        var img_participant: ImageView = itemView.findViewById(R.id.img_participant)
+        var tv_job_title: TextView = itemView.findViewById(R.id.tv_jobtitle)
+        var tv_name: TextView = itemView.findViewById(R.id.tv_name)
+        var line_border: LinearLayout = itemView.findViewById(R.id.line_border_bottom)
+        var tv_budget_name: TextView = itemView.findViewById(R.id.tv_budget_name)
+        var ic_chevron_next_orange: ImageView = itemView.findViewById(R.id.btn_next)
+        var tv_status: TextView = itemView.findViewById(R.id.tv_status)
 
 
         fun bind(data: ParticipantModel, position: Int) {
-            tv_job_title.text       = data.jobtitle
-            tv_status.text          = data.status
-            if (data.budgetCode.isNullOrEmpty() && data.budgetName.isNullOrEmpty()){
-                tv_budget_name.text     = data.email
-            } else {
-                tv_budget_name.text     = data.budgetCode + " - " + data.budgetName
-            }
-            tv_name.text            = data.name
+            tv_job_title.text = data.jobtitle
+            tv_status.text = data.status
+            tv_budget_name.text = Globals.getProfile(context).costCenter + " - " + Globals.getProfile(context).costCenterDefaultText
+            tv_name.text = data.name
 
             tv_budget_name.visibility = View.GONE
             ic_chevron_next_orange.visibility = View.GONE
             tv_status.visibility = View.GONE
 
-            if (data.imgUrl.isNotEmpty()){
+            if (data.imgUrl.isNotEmpty()) {
                 Picasso.get()
                         .load(data.imgUrl)
                         .fit()
@@ -165,14 +154,12 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
 
 
 
-            if (items.size==1){
+            if (items.size == 1) {
                 line_border.visibility = View.VISIBLE
-            }
-            else{
-                if (position==items.size-1){
+            } else {
+                if (position == items.size - 1) {
                     line_border.visibility = View.VISIBLE
-                }
-                else{
+                } else {
                     line_border.visibility = View.GONE
                 }
             }
@@ -182,8 +169,8 @@ class ParticipantAdapter (val context: Context): androidx.recyclerview.widget.Re
 
     companion object {
 
-        val VIEW_TYPE_APROVAL      = 1
-        val VIEW_TYPE_PARTICIPANT  = 2
+        val VIEW_TYPE_APROVAL = 1
+        val VIEW_TYPE_PARTICIPANT = 2
 
     }
 

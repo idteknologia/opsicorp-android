@@ -30,7 +30,7 @@ class ApproverAdapter (val context: Context): androidx.recyclerview.widget.Recyc
         holder.itemView.btn_next.gone()
         holder.itemView.tv_jobtitle.text = data.profile.positionText
         holder.itemView.tv_name.text = data.profile.name
-        holder.itemView.tv_budget_name.text = data.profile.email
+        holder.itemView.tv_budget_name.text = data.profile.personId
         if (dataProfile.approval.travelRequestApproval.isNotEmpty()){
             if (dataProfile.approval.travelRequestApproval[position].isPjs){
                 holder.itemView.tv_status.text = "PJS"

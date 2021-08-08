@@ -64,24 +64,16 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         if (data.tripCode != null) {
             image_barcode.setImageBitmap(Globals.stringToBarcodeImage(data.tripCode))
         }
-        if (data.isDomestik.equals(true)){
-            tv_status.text = "Domestic Route"
-        } else {
-            tv_status.text = "International Route"
-        }
-
+        tv_status.text = data.tripType
         tv_tripcode.text = data.tripCode
         tv_purpose.text = data.purpose
         tv_activity_type_text.text = data.activityType
-        tv_created_date.text = "Created Date ${data.createDate.replace("Current Date","")}"
+        tv_created_date.text = "Created Date:${data.createDate.replace("Current Date","")}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
         /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
         tv_destination.text = data.destinationName
-        if (Globals.getProfile(this).approval.travelRequestApproval.isNotEmpty()){
-            val totalApprover = Globals.getProfile(this).approval.travelRequestApproval.size
-            tv_list_approval.text = "List Approver (${totalApprover})"
-        } else {
+        if (Globals.getProfile(this).approval.travelRequestApproval.isEmpty()){
             tv_list_approval.text = "List Approver (0)"
         }
 
@@ -107,7 +99,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         rv_approver.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approver.adapter = adapterApproval
 
-        if (data.isDomestik.equals(true)){
+        if (data.tripType == "Domestic Route"){
             dataApproval.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
                 it.isDomestic
             })
@@ -116,6 +108,9 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
                 !it.isDomestic
             })
         }
+        val totalApprover = dataApproval.size
+        tv_list_approval.text = "List Approver (${totalApprover})"
+
         adapterApproval.setData(dataApproval)
 
         if (dataApproval.isEmpty()){

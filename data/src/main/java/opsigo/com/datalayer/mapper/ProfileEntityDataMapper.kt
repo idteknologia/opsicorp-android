@@ -43,6 +43,7 @@ class ProfileEntityDataMapper{
         data.passport     = if (profileEntity.passportNumber==null) "" else profileEntity.passportNumber
         data.sim          = if (profileEntity.simNumber==null) "" else profileEntity.simNumber
         data.costCenter   = profileEntity.costCenterDefault.toString()
+        data.costCenterDefaultText = profileEntity.costCenterDefaultText.toString()
 
         data.approval = mappingApproval(profileEntity.approval)
 

@@ -369,7 +369,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     if (model.costCenterName.isNotEmpty()){
                         tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
                     } else {
-                        tv_cost_center.text = model.costCenterCode
+                        tv_cost_center.text = Globals.getProfile(this).costCenter + " - " + Globals.getProfile(this).costCenterDefaultText
                     }
 
 
@@ -408,7 +408,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_cost_center.text = "${tripSummary.tripParticipantModels[0].costCenterCode} - ${tripSummary.tripParticipantModels[0].costCenterName}"
             tv_mount.text = tripSummary.totalAllowance
         } else {
-            tv_cost_center.text = "-"
+            tv_cost_center.text = Globals.getProfile(this).costCenter + " - " + Globals.getProfile(this).costCenterDefaultText
             llAllowance.gone()
         }
     }

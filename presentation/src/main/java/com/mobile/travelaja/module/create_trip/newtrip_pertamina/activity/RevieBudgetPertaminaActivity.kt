@@ -345,6 +345,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 data.originName = dataTrip.routes.first().Origin
                 data.destinationName = tv_trip_route.text.toString()
                 data.activityType = dataTrip.nameActivity
+                data.tripType = tripRoute
                 Constants.DATA_CREATE_TRIP = Serializer.serialize(data)
                 setLog("Test Save", Serializer.serialize(Constants.DATA_CREATE_TRIP))
                 gotoActivity(SucessCreateTripPlaneActivity::class.java)

@@ -20,6 +20,7 @@ class ProfileModel {
     var homePhone           = ""
     var isApproval          = false
     var costCenter = ""
+    var costCenterDefaultText = ""
 
 
     var idNumber     = ""
