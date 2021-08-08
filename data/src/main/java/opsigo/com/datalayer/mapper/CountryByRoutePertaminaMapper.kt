@@ -16,7 +16,7 @@ class CountryByRoutePertaminaMapper {
             val mData = CountryHotel()
             mData.countryName = it.countryName.toString()
             mData.isoCountryCode = it.isoCountryCode.toString()
-            mData.cityHotelModel.addAll(listCityMapper(it.city))
+            mData.cityHotelModel.addAll(listCityMapper(it.city,it.countryName.toString()))
             data.add(mData)
         }
         return data
@@ -27,10 +27,11 @@ class CountryByRoutePertaminaMapper {
         return data
     }
 */
-    private fun listCityMapper(city: List<CityItem>): ArrayList<CityHotelModel> {
+    private fun listCityMapper(city: List<CityItem>,country:String): ArrayList<CityHotelModel> {
         val data = ArrayList<CityHotelModel>()
         city.forEach {
             val mData = CityHotelModel()
+            mData.country  = country
             mData.cityName = it.cityName.toString()
             mData.idCity   = it.cityKey.toString()
             mData.searchByCityKey = it.searchByCityKey

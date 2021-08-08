@@ -84,13 +84,16 @@ class HotelFragment : BaseFragment(),
                 countryByRoute = country
                 hideLoadingCity()
                 try {
+                    dataSelectCity.country      = country.first().cityHotelModel.find { it.cityName.equals(data.route.last().destinationName) }?.country.toString()
                     dataSelectCity.cityName     = country.first().cityHotelModel.find { it.cityName.equals(data.route.last().destinationName) }?.cityName.toString()
                     dataSelectCity.idCity       = country.first().cityHotelModel.find { it.cityName.equals(data.route.last().destinationName) }?.idCity.toString()
                 }catch (e:Exception){
+                    dataSelectCity.country     = country.first().cityHotelModel.last().country
                     dataSelectCity.cityName     = country.first().cityHotelModel.last().cityName
                     dataSelectCity.idCity       = country.first().cityHotelModel.last().idCity
                 }
                 dataSelectCountry.id        = country.first().isoCountryCode
+                tv_country.text             = dataSelectCity.country
                 setDataCityDefault()
             }
 

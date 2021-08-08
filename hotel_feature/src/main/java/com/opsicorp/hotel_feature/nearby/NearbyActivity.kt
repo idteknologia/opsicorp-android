@@ -176,12 +176,12 @@ class NearbyActivity : BaseActivity() {
         setDataCountry()
     }
 
-    fun setAdapterByCity(idCountry: String){
+    fun setAdapterByCity(country: SelectNationalModel){
         et_filter.hint = "Enter city name"
         typeSelect = Constants.SELECT_NEARBY_CITY
         rv_nearby.adapter = cityAdapter
         cityAdapter.setOnclickListener(onclickCity)
-        getDataCity(idCountry)
+        getDataCity(country)
     }
 
     fun setAdapeterByAirport(){
@@ -225,12 +225,12 @@ class NearbyActivity : BaseActivity() {
                 if (filterActif){
                     countryName = filterCountry[position].name
                     idCountry   = filterCountry[position].id
-                    val dataSelectCountry = filterCountry[position].id
+                    val dataSelectCountry = filterCountry[position]
                     setAdapterByCity(dataSelectCountry)
                 }else {
                     countryName = countryData[position].name
                     idCountry   = countryData[position].id
-                    val dataSelectCountry = countryData[position].id
+                    val dataSelectCountry = countryData[position]
                     setAdapterByCity(dataSelectCountry)
                 }
             }
@@ -311,37 +311,60 @@ class NearbyActivity : BaseActivity() {
 
 
     private fun setDataCountry() {
-        if (Constants.COUNTRY_HOTEL.isNotEmpty()){
+        if (getBaseUrl()==Constants.pertaminaUrl){
             countryData.clear()
-            val listdata = JSONArray(Globals.getDataPreferenceString(this,Constants.COUNTRY_HOTEL))
-            for (i in 0 until listdata.length()){
-                val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
+            countryByRoute.forEach {
                 val model = SelectNationalModel()
-                model.name      = mData.name
-                model.id        = mData.id
-                model.callCode  = mData.callCode
+                model.name      = it.countryName
+                model.id        = it.isoCountryCode
+                model.callCode  = ""
                 countryData.add(model)
                 countryAdapter.setData(countryData)
             }
-
         }
+        else {
+            if (Constants.COUNTRY_HOTEL.isNotEmpty()){
+                countryData.clear()
+                val listdata = JSONArray(Globals.getDataPreferenceString(this,Constants.COUNTRY_HOTEL))
+                for (i in 0 until listdata.length()){
+                    val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
+                    val model = SelectNationalModel()
+                    model.name      = mData.name
+                    model.id        = mData.id
+                    model.callCode  = mData.callCode
+                    countryData.add(model)
+                    countryAdapter.setData(countryData)
+                }
+            }
+        }
+
     }
 
-    private fun getDataCity(idCountry: String) {
-        viewShowLoading()
-        GetDataAccomodation(getBaseUrl()).getSearchCity(getToken(),idCountry,Globals.getConfigCompany(this).defaultTravelAgent,object : CallbackListCityHotel {
-            override fun successLoad(data: ArrayList<CityHotelModel>) {
-                clearFilter()
-                cityData.clear()
-                cityData.addAll(data)
-                cityAdapter.setData(cityData)
-                hideLoading()
+    private fun getDataCity(country: SelectNationalModel) {
+        if (getBaseUrl()==Constants.pertaminaUrl){
+            clearFilter()
+            cityData.clear()
+            countryByRoute.filter { it.countryName==country.name }.forEach {
+                cityData.addAll(it.cityHotelModel)
             }
+            cityAdapter.setData(cityData)
+        }
+        else {
+            viewShowLoading()
+            GetDataAccomodation(getBaseUrl()).getSearchCity(getToken(),country.id,Globals.getConfigCompany(this).defaultTravelAgent,object : CallbackListCityHotel {
+                override fun successLoad(data: ArrayList<CityHotelModel>) {
+                    clearFilter()
+                    cityData.clear()
+                    cityData.addAll(data)
+                    cityAdapter.setData(cityData)
+                    hideLoading()
+                }
 
-            override fun failedLoad(message: String) {
+                override fun failedLoad(message: String) {
 
-            }
-        })
+                }
+            })
+        }
     }
 
     private fun clearFilter() {
