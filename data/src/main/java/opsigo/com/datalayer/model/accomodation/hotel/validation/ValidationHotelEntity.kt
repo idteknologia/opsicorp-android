@@ -10,7 +10,7 @@ data class ValidationHotelEntity(
 	val bookingResult: BookingResult = BookingResult(),
 
 	@field:SerializedName("msgDoubleBook")
-	val msgDoubleBook: String? = "",
+	val msgDoubleBook: String = "",
 
 	@field:SerializedName("isViolated")
 	val isViolated: Boolean = false,

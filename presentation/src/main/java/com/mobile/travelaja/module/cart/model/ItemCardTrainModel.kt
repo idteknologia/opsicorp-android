@@ -37,5 +37,7 @@ class ItemCardTrainModel{
 
     var progressTrain = ""
     var price       = ""
+    var typeTrip    = 0
+    var isBackTrain = false
 
 }

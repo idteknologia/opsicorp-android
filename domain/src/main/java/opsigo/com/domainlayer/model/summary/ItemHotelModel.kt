@@ -3,7 +3,9 @@ package opsigo.com.domainlayer.model.summary
 class ItemHotelModel{
 
     var tripItemId  = ""
-    var pnrHotel    = ""
+    var pnrCode     = ""
+    var pnrId       = ""
+    var hotelId     = ""
     var typeHotel   = ""
     var description = ""
     var image       = ""

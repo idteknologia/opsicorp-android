@@ -1,11 +1,21 @@
 package opsigo.com.datalayer.datanetwork
 
-import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.cancel.CancelFlightRequest
 import opsigo.com.datalayer.request_model.reservation.ReservationFlightRequest
-import org.junit.Test
-import org.koin.test.KoinTest
-import java.util.*
+import opsigo.com.domainlayer.callback.CallbackArrayListString
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
+import opsigo.com.datalayer.request_model.accomodation.hotel.cancel.CancelHotelRequest
+import opsigo.com.domainlayer.callback.CallbackCountryByRoutePertamina
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
+import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
 import java.util.concurrent.CountDownLatch
+import kotlin.collections.ArrayList
+import org.koin.test.KoinTest
+import org.junit.Test
+import java.util.*
 
 
 class GetDataTestAccomodation:KoinTest{
@@ -66,12 +76,15 @@ class GetDataTestAccomodation:KoinTest{
             "  }\n" +
             "}"
 
+    val baseUrl = "https://basicqa.opsicorp.com"
+    val baseUrlPertamina = "https://pertamina-dtm3-qa.opsicorp.com"
+    val token = "Bearer d5c7ElQIh3bmJjQQzEq0ZY4xTeZhKRZ3JezvR9IufwWmzSb4l6OrTPBdAXvS2JPoJNWChPARZFtdttQKyeJlHv_rNV2wJ2A_-HjYDPm4rJ1w3hVjP7V-CzKt1NyRJa0xH9Gp0am-zfVF-997ceri5SoSwKBvMmw8Immyk4YB2u8KHrOl_zfZ_uHgDQoFtitIrcTECYIoOtvVov_Xajo6kD_ioJtlp5lYvVoByB2wTK5VoDRt75LWvjeHuMxOF-LlY034vzwF0q2On1yQUKHyTOISRkIUWl_EiQzd00GWWDlzhv_QLExMSquB390wxMfCea6TTDyq1QCibmpap94vVGSzawEjZSmLXEG1ETcBmFBieTJCr-xukrexN951tn3ff0WzM7idoc0Akydz2GZl01m1okcoBoCN1g8DGHqWVuXeROun2mhc9I_nxHlDdejgIRLhbQq-bb9zLBnb3cuHouivmU4P_lNTRSchTWPlinSmFayVrZjt6MIuRc4ELVSNaPoOI5o-SZSkSkbhKOKY5AHOiEQJ-Jenf7VW3qQXvDCuRrUxfzxQpOdmG2zm1e3y"
+
+
     @Test
     fun testApiSearchFlight() {
 
        val latch = CountDownLatch(1)
-
-        val token = "Bearer ZY59D_AD_78bbAYmP7LCYsGpx8bDhqJB4dkhukBawLUrV8VgfmhMBG-als0jGn5LG7SvnCvNjDc8IjMVmVnMgBMcFSsgI5QfsSSvryP3wcGlrMZruvD4CJB5Wp2-CedUNraaRjPOnMyMWCEDYM5mXEw5yJL92puaB-_4dx3tXCluZN5_0qdSlvCcVapRiQKWWAwcpjAY41EB6y70pSo9ao-MyxmRJtltm2wCaegnl-8-iJy0vUDl-055GzqSilv-7C5g_U0CNYDuUxg5XpMLHgxNniFt9gtDnQJYA0xHyHw4uXT3RVtZmLaCjwzs_G_T7mVk29ZMC4XLPu4NeVB45XT_tojzEj4vyB_0gcRcYQHJ0MGmdJmvB1OlK95zzyAEBdxDT724VwTiv3IZ2XsaO1EoDfA-sDfDBZW0xkA9UNQRFvhFst47oasra3IrSTeDKQt1AsVnAet08F4jsImfTrOT-hQ_VLpqBt_tRVLg8yELjeSdd9q2IQkrBfk91riEEqrw50PJLP5BnYSmAkDjAw"
 
         /*val data = FlightModelRequest()
         data.Origin = "CGK"
@@ -123,8 +136,123 @@ class GetDataTestAccomodation:KoinTest{
 
     }
 
-    fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<String, Any>{
-        val maps = HashMap<String, Any>()
+
+
+    @Test
+    fun testCancelFlight(){
+        val latch = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRemoveFlight(token,dataRequestCancelFligt(),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testCancelHotel(){
+        val latch = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRemoveHotel(token,dataRequestCancelHotel(),object :CallbackArrayListString{
+            override fun successLoad(data: ArrayList<String>) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun dataRequestCancelHotel(): HashMap<Any, Any> {
+        val data = CancelHotelRequest()
+        data.hotelId = ""
+        data.pnrId   = ""
+        data.travelAgent = ""
+        data.tripId      = ""
+        data.tripItemId  = ""
+        return classToHasMap(data,CancelHotelRequest::class.java)
+    }
+
+    private fun dataRequestCancelFligt(): HashMap<Any, Any> {
+        val data = CancelFlightRequest()
+        data.flightId = ""
+        data.pnrId    = ""
+        data.travelAgent = ""
+        data.tripPlanId  = ""
+        return classToHasMap(data,CancelFlightRequest::class.java)
+    }
+
+    @Test
+    fun testGetDestinationHotelFromRoutes(){
+        val travelAgent = "apidev"
+        val idTrip      = "f1b1ab79-08dd-462d-a468-476c5bb27c4e"
+        val latch       = CountDownLatch(1)
+        GetDataAccomodation(baseUrlPertamina).getCountryByRoutePertamina(token,idTrip,travelAgent,object :CallbackCountryByRoutePertamina{
+            override fun success(country: ArrayList<CountryHotel>) {
+                println(country.first().countryName)
+                latch.await()
+            }
+
+            override fun failed(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testGetRouteFlightAvailable(){
+        val latch       = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRouteFlightAvailable(token,dataRoute(),object :CallbackString{
+            override fun successLoad(string: String) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun dataRoute(): HashMap<Any, Any> {
+        val data = ValidationRouteAvailable()
+        data.schedule?.addAll(mapperRoute())
+        data.tripId = ""
+        return classToHasMap(data,ValidationRouteAvailable::class.java)
+    }
+
+    private fun mapperRoute(): ArrayList<ListScheduleItem> {
+        return ArrayList()
+    }
+
+    fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<Any, Any>{
+        val maps = HashMap<Any, Any>()
         for (field in nameClass.getDeclaredFields()) {
             if (!field.isAccessible()) {
                 field.setAccessible(true)

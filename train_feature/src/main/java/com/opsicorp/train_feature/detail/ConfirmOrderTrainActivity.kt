@@ -229,7 +229,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
     }
 
     private fun showOrHideNotComply() {
-        if (data.filter { it.notcomply }.isNotEmpty()){
+        if (data.filter { !it.notcomply }.isNotEmpty()){
             line_reason_code.visibility = View.VISIBLE
             line_reason_code.setOnClickListener(this)
         }
@@ -239,7 +239,7 @@ class ConfirmOrderTrainActivity : BaseActivity(),
     }
 
     override fun onClicked() {
-        if (data.filter { it.notcomply }.isNotEmpty()){
+        if (data.filter { !it.notcomply }.isNotEmpty()){
             if (allreadySelectReasonCode){
                 gotoActivity(BookingContactTrain::class.java)
             }

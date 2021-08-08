@@ -17,8 +17,10 @@ class ValidationHotelMapper {
         data.typeBed           = response.bookingResult.hotel.roomType.toString()
         data.remark            = response.bookingResult.hotel.remarkHotel.toString()
         data.isViolatedRules   = response.bookingResult.hotel.isViolatedHotelRules
+        data.isDoubleBiooking  = response.isDoubleBooking
+        data.messageDoubleBooking = response.msgDoubleBook
         data.causeViolatedRules = response.bookingResult.hotel.causeViolatedRules.toString()
-        data.travelProfileId   = ""
+        data.travelProfileId    = ""
 
         return data
     }

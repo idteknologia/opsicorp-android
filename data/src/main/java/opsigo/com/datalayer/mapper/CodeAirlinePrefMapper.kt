@@ -21,6 +21,8 @@ class CodeAirlinePrefMapper {
                 m.departDate = routesItem?.departDate
                 m.destination = routesItem?.destination
                 m.origin  = routesItem?.origin
+                m.originCity = routesItem?.originCity.toString()
+                m.destinationCity = routesItem?.destinationCity.toString()
                 model.routes?.add(m)
             }
             model.preferredAirlines = it?.preferredAirlines

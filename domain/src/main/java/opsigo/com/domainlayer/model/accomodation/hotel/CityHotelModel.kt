@@ -4,5 +4,8 @@ class CityHotelModel {
 	var cityName: String = ""
 	var idCity : String  = ""
 	var descrip : String = ""
-	val country:String   = ""
+	var country:String   = ""
+	var searchByCityKey  = false
+	var lat  : Double    = 0.0
+	var long : Double 	 = 0.0
 }

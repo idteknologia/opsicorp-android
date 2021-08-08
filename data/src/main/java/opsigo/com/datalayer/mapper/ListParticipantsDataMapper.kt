@@ -92,8 +92,8 @@ class ListParticipantsDataMapper {
 
                 if (!mData.trains.isNullOrEmpty()){
                     if (mData.trains.filter { it?.employeeId == data?.employeeId }.isNotEmpty()){
-                        mData.trains.filter { it?.employeeId == data?.employeeId }.forEachIndexed { index, tripTrainEntity ->
-                            tripTrainEntity?.tripTrains?.forEachIndexed { index, tripTrainsItem ->
+                        mData.trains.filter { it?.employeeId == data?.employeeId }.forEachIndexed { positionTrainEntity, tripTrainEntity ->
+                            tripTrainEntity?.tripTrains?.forEachIndexed { positionTripTrain, tripTrainsItem ->
                                 tripTrainsItem?.segments?.forEachIndexed { index, segmentsItem ->
                                     val dataTrain  = ItemTrainModel()
 
@@ -136,8 +136,10 @@ class ListParticipantsDataMapper {
                                     dataTrain.tripID           = if (mData.id==null) "" else mData.id
                                     dataTrain.tripItemID       = tripTrainsItem.tripItemId ?: ""
                                     dataTrain.referenceCode    = if (tripTrainsItem.referenceCode==null) "" else tripTrainsItem.referenceCode
-
                                     dataTrain.progressTrain    = tripTrainsItem.jobProgress?.progress.toString()
+
+                                    dataTrain.typeTrip         = tripTrainEntity.flightType
+                                    dataTrain.isBackTrain      = positionTripTrain==tripTrainEntity.tripTrains.size-1
 
                                     dataTrainModel.add(dataTrain)
                                 }
@@ -166,8 +168,10 @@ class ListParticipantsDataMapper {
                                 dataHotel.reasonCode  = it.reasonCode.toString()
                                 dataHotel.employId    = data.employeeId.toString()
                                 dataHotel.tripItemId  = tripHotelsItem?.tripItemId.toString()
+                                dataHotel.hotelId     = tripHotelsItem?.payments?.first()?.tripHotelId.toString()
                                 dataHotel.typeHotel   = tripHotelsItem?.roomType.toString()
-                                dataHotel.pnrHotel    = tripHotelsItem?.pnrId.toString()
+                                dataHotel.pnrCode     = tripHotelsItem?.pnrId.toString()
+                                dataHotel.pnrId       = tripHotelsItem?.pnrId.toString()
                                 dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address +" ,"+ tripHotelsItem.city.toString()
 
                                 dataHotelModel.add(dataHotel)

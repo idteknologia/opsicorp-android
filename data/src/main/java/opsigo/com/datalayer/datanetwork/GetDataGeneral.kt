@@ -12,6 +12,7 @@ import okhttp3.ResponseBody
 import opsigo.com.datalayer.model.accomodation.flight.upcomming.UpcomingFlightEntity
 import opsigo.com.datalayer.model.calendar.CalendarHolidayEntity
 import opsigo.com.datalayer.model.cart.SummaryEntity
+import opsigo.com.datalayer.model.myboking.ListMyBookingEntity
 import opsigo.com.datalayer.model.signin.version.RespVersionEntity
 import org.json.JSONObject
 import retrofit2.Call
@@ -258,6 +259,32 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
             }
         })
     }
+
+    /*override fun getListCart(token: String, size: Int, index: Int, itemTypes: String, callback: CallbackListMyBooking) {
+        apiOpsicorp.getListMyBooking(token,size,index,itemTypes).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failed(t.message.toString())
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try{
+                    val resp = response
+                    if(resp.isSuccessful){
+                        callback.success(MyBookingListMapper().mapper(Serializer.deserialize(response.body()?.string().toString(), ListMyBookingEntity::class.java)))
+                    }else{
+                        if(resp.code() == 401){
+                            Log.d("log","lakukan aksi ketika Unauthorized, login ulang")
+                        }
+                    }
+                }catch (e : Exception){
+                    val resp = response
+                    Log.d("log",":" + resp.body().toString())
+                    callback.failed("something wrong with data mapper")
+                }
+
+            }
+        })
+    }*/
 
 //    override fun getListCart(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String, callback: CallbackListCart) {
     override fun getListCart(token: String, size: String, index: String, orderBy: String, direction: String, callback: CallbackListCart) {

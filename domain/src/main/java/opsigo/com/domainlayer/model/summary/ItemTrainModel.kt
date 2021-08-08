@@ -47,4 +47,7 @@ class ItemTrainModel{
     var transit         = ""
     var employId        = ""
 
+    var isBackTrain     = false
+    var typeTrip        = 0
+
 }
