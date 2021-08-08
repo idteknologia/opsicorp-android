@@ -22,6 +22,7 @@ import com.mobile.travelaja.module.approval.summary.ParticipantAdapter
 import com.mobile.travelaja.module.approval.summary.ParticipantModel
 import com.mobile.travelaja.module.approval.summary.SummaryAdapter
 import com.mobile.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
+import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverAdapter
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -44,6 +45,7 @@ import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.domainlayer.callback.CallbackSummary
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
+import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.SummaryModel
@@ -76,19 +78,21 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     val dataParticipant = ArrayList<ParticipantModel>()
     val dataApproval = ArrayList<ParticipantModel>()
+    val dataApprover = ArrayList<TravelRequestApprovalModel>()
     val adapterParticpant by lazy { ParticipantAdapter(this) }
     val adapterApproval by lazy { ParticipantAdapter(this) }
+    val adapterApprover by lazy { ApproverAdapter(this) }
     val adapterItemOrder by lazy { SummaryAdapter(this) }
-
     var dataAttachment = ArrayList<UploadModel>()
     val adapter by inject<AttachmentAdapter> { parametersOf(dataAttachment) }
 
 
     override fun OnMain() {
-        initRecyclerViewApproval()
+        /*initRecyclerViewApproval()*/
         initRecyclerViewParticipant()
         initRecyclerViewAttachment()
         initRecyclerViewItem()
+        initRecyclerViewApprover()
 
         toolbar.callbackOnclickToolbar(this)
         toolbar.setTitleBar(getString(R.string.detail_tripplan))
@@ -209,6 +213,40 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         rv_approval.layoutManager = layoutManager
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApproval
+    }
+
+    fun initRecyclerViewApprover() {
+        tv_list_approval.visibility = View.VISIBLE
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        rv_approval.layoutManager = layoutManager
+        rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_approval.adapter = adapterApprover
+
+        if (!tripSummary.isDomestic == true){
+            dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
+                it.isDomestic
+            })
+        } else {
+            dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
+                !it.isDomestic
+            })
+        }
+        val totalApprover = dataApprover.size
+
+        tv_list_approval.visible()
+        tv_notice_title.gone()
+        rv_approval.visible()
+        tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
+        adapterApprover.setData(dataApprover)
+
+        if (dataApprover.isEmpty()){
+            tv_list_approval.gone()
+            rv_approval.gone()
+        } else {
+            tv_list_approval.visible()
+            rv_approval.visible()
+        }
     }
 
     private fun initRecyclerViewParticipant() {
@@ -380,7 +418,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             e.printStackTrace()
         }
 
-        if (dataApproval.isNotEmpty()) {
+        /*if (dataApproval.isNotEmpty()) {
             tv_list_approval.visibility = View.VISIBLE
             tv_notice_title.visibility = View.VISIBLE
             rv_approval.visibility = View.VISIBLE
@@ -390,7 +428,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             rv_approval.visibility = View.GONE
             tv_list_approval.visibility = View.GONE
             tv_notice_title.visibility = View.GONE
-        }
+        }*/
 
         if (dataParticipant.isNotEmpty()) {
             tv_list_participant_num.visibility = View.VISIBLE
