@@ -25,6 +25,8 @@ import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.item_custom.select_passager.TotalGuestHotel
+import opsigo.com.domainlayer.callback.CallbackCountryByRoutePertamina
+import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class HotelFragment : BaseFragment(),
@@ -46,15 +48,67 @@ class HotelFragment : BaseFragment(),
     var dataOffice          = NearbyOfficeModel()
     var dataAirport         = NearbyAirportModel()
 
+    var countryByRoute = ArrayList<CountryHotel>()
+
     lateinit var data: SuccessCreateTripPlaneModel
     var latitude  = ""
     var longitude = ""
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
+        data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         getReasonCode()
+        if (getBaseUrl()==Constants.pertaminaUrl)  {
+            getRouteFilter()
+        }
+        else {
+            getRouteDefault()
+        }
         setOnClickListener()
         setDateDefault()
         checkTypeOrder()
+    }
+
+    private fun getRouteDefault() {
+        dataSelectCity.cityName     = "Surabaya"
+        dataSelectCountry.id        = "ID"
+        dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
+        setDataCityDefault()
+    }
+
+    private fun getRouteFilter() {
+        showLoadingCity()
+        val travelAgent = getConfig().defaultTravelAgent
+        val idTrip      = data.idTripPlane
+        GetDataAccomodation(getBaseUrl()).getCountryByRoutePertamina(getToken(),idTrip,travelAgent,object : CallbackCountryByRoutePertamina {
+            override fun success(country: ArrayList<CountryHotel>) {
+                countryByRoute = country
+                hideLoadingCity()
+                try {
+                    dataSelectCity.cityName     = country.first().cityHotelModel.find { it.cityName.equals(data.route.last().destinationName) }?.cityName.toString()
+                    dataSelectCity.idCity       = country.first().cityHotelModel.find { it.cityName.equals(data.route.last().destinationName) }?.idCity.toString()
+                }catch (e:Exception){
+                    dataSelectCity.cityName     = country.first().cityHotelModel.last().cityName
+                    dataSelectCity.idCity       = country.first().cityHotelModel.last().idCity
+                }
+                dataSelectCountry.id        = country.first().isoCountryCode
+                setDataCityDefault()
+            }
+
+            override fun failed(message: String) {
+                Globals.showAlert(getString(R.string.sorry),message,requireContext())
+                hideLoadingCity()
+            }
+        })
+    }
+
+    fun showLoadingCity(){
+        shimmer_view_container.visibility = View.VISIBLE
+        tv_city.visibility = View.INVISIBLE
+    }
+
+    fun hideLoadingCity(){
+        shimmer_view_container.visibility = View.INVISIBLE
+        tv_city.visibility = View.VISIBLE
     }
 
     private fun setOnClickListener() {
@@ -81,42 +135,30 @@ class HotelFragment : BaseFragment(),
     }
 
     private fun setDateDefault() {
+        setDataCityDefault()
         if (Constants.isBisnisTrip){
-            data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
             setLog(Serializer.serialize(data))
             checkIn  = data.startDate
             checkOut = data.endDate
             setDurationDate(checkIn,DateConverter().decreaseDate(checkOut,"yyyy-MM-dd"))
-            setDataCityDefault()
             startDate(DateConverter().getDate(data.startDate,"yyyy-MM-dd","dd MMM yyyy"),data.startDate)
             endDate(DateConverter().getDate(data.endDate,"yyyy-MM-dd","dd MMM yyyy"),data.endDate)
         }
-        else{
-            data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
+        else {
             checkIn  = DateConverter().getDayFormatOpsicorp2()
             checkOut = DateConverter().getAfterDay("yyyy-MM-dd",1)
             setDurationDate(checkIn,checkOut)
             tv_duration.text = "1 Night(s)"
-            setDataCityDefault()
             startDate(DateConverter().getDay("dd MMM yyyy").replace("Current Date : ",""), DateConverter().getDayFormatOpsicorp2())
             endDate(DateConverter().getAfterDay("dd MMM yyyy",1),DateConverter().getAfterDay("yyyy-MM-dd",1) )
-
         }
     }
 
     private fun setDataCityDefault() {
         ic_airport.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_before_cheklist))
-        val data = Serializer.deserialize(
-                Constants.DATA_SUCCESS_CREATE_TRIP,
-                SuccessCreateTripPlaneModel::class.java
-        )
         typeDestination             = Constants.SELECT_NEARBY_CITY
-        dataSelectCity.cityName     = data.destinationName
-        dataSelectCountry.id        = "ID"
-        dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
         tv_city.text                = dataSelectCity.cityName
         tv_title_destination.text   = context?.getString(R.string.title_nearby_city)
-
     }
 
     private fun setDurationDate(startDate: String,endDate:String) {
@@ -176,7 +218,12 @@ class HotelFragment : BaseFragment(),
                 selectDuration()
             }
             btn_office -> {
-                getNearBySelected(Constants.SELECT_NEARBY_OFFICE)
+                if(getBaseUrl()==Constants.pertaminaUrl){
+                    Globals.showAlert(getString(R.string.sorry),getString(R.string.this_feature_is_not_available),requireContext())
+                }
+                else {
+                    getNearBySelected(Constants.SELECT_NEARBY_OFFICE)
+                }
             }
             btn_city -> {
                 getNearBySelected(Constants.SELECT_NEARBY_COUNTRY)
@@ -195,8 +242,13 @@ class HotelFragment : BaseFragment(),
                 }
             }
             ic_airport->{
-                if (ic_airport.drawable.constantState==ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist)?.constantState){
-                    setDataCityDefault()
+                if (getBaseUrl()!=Constants.pertaminaUrl){
+                    if (ic_airport.drawable.constantState==ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist)?.constantState){
+                        setDataCityDefault()
+                    }
+                    else {
+                        Globals.showAlert(getString(R.string.sorry),getString(R.string.this_feature_is_not_available),requireContext())
+                    }
                 }
             }
             lay_passanger-> {
@@ -213,6 +265,7 @@ class HotelFragment : BaseFragment(),
                 context,
                 Class.forName(Constants.BASE_PACKAGE_HOTEL +"nearby.NearbyActivity")
         )
+        intent.putExtra(Constants.COUNTRY_BY_ROUTE,Serializer.serialize(countryByRoute))
         intent.putExtra(Constants.TYPE_SELECT_NEARBY,selectNearbyOffice)
         gotoActivityForResultModule(requireContext(),intent,Constants.REQUEST_CODE_NEARBY)
     }

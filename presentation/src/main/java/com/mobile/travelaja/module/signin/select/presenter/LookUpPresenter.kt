@@ -65,7 +65,6 @@ class LookUpPresenter :KoinComponent {
             model.callCode  = it.callCode
             data.add(model)
         }
-
         adapter.setData(data)
     }
 

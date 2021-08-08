@@ -11,5 +11,14 @@ data class RoutesItem(
 	val destination: String? = null,
 
 	@field:SerializedName("DepartDate")
-	val departDate: String? = null
+	val departDate: String? = null,
+
+	@field:SerializedName("DestinationCity")
+	val destinationCity: String? = null,
+
+	@field:SerializedName("OriginCity")
+	val originCity: String? = null,
+
+	@field:SerializedName("TransportationId")
+	val transportationId: Int? = 0
 )

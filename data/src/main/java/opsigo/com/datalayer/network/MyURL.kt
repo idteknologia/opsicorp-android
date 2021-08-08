@@ -45,6 +45,7 @@ object MyURL {
     const val GET_SSR_FLIGHT      = "api/TripPlan/GetSsrFlight"
     const val GET_FARE_RULES      = "api/TripPlan/GetFareRules"
     const val REMOVE_FLIGHT       = "api/TripPlan/RemoveFlight"
+    const val VALIDATION_CONFLICT = "api/ValidateRouteFlightAvailable"
 
     // search train
     const val STATION_TRAIN     = "api/Lookup/GetStationList"
@@ -67,6 +68,7 @@ object MyURL {
     const val SINCRONIZE_HOTEL     = "apiv1/SynchronizeHotel"
     const val REMOVE_HOTEL         = "apiv1/RemoveHotel"
     const val REMARK_HOTEL         = "apiv1/UpdateHotelRemarks"
+    const val GET_COUNTRY_BY_ROUTE_PERTAMINA = "apiv1/GetDestinationHotelFromRoutes"
 
 //    const val COUNTRY            = "api/Lookup/Country"
     const val COUNTRY              = "api/MobileVersion/getcallcountry"
@@ -99,5 +101,8 @@ object MyURL {
     const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
     const val CHECK_AVAIBILITY_DATE = "api/TripPlan/ValidationTravelRequest"
     const val CHECK_CASH_ADVANCE    = "api/TripPlan/CheckAllowedRequestCashAdvance"
+
+    //personal trip
+    const val GET_LIST_MY_BOOKING = "api/PersonalTrip/PurchaseList"
 
 }

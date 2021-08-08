@@ -211,6 +211,7 @@ class BookingContactHotelActivity : BaseActivity(),
         }
 
         adapter.setData(dataContacts)
+        setGuestName()
 
         val dataProfile = getProfile()
         tv_name_contact.text        = dataProfile.name

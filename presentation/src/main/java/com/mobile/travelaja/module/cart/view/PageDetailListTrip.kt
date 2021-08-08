@@ -110,6 +110,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
         fun updateViewReserved()
         fun updateViewSaved()
         fun onClicked(views: Int)
+        fun viewLoading()
     }
 
     override fun onClick(v: View?) {
@@ -182,6 +183,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     private fun removeAllTrain() {
+        callback.viewLoading()
         data.forEachIndexed { index, cartModel ->
             if (cartModel.typeCard == Constants.TYPE_TRAIN){
                 removeTrain(cartModel.dataCardTrain.idTrain)
@@ -190,6 +192,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     private fun removeAllHotel() {
+        callback.viewLoading()
         data.forEachIndexed { index, cartModel ->
             if (cartModel.typeCard == Constants.TYPE_HOTEL){
                 removeHotel(index)
@@ -198,6 +201,7 @@ class PageDetailListTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     private fun removeAllFlight() {
+        callback.viewLoading()
         data.forEachIndexed { index, cartModel ->
             if (cartModel.typeCard == Constants.TYPE_FLIGHT){
                 removeFlight(index)

@@ -23,6 +23,7 @@ import com.opsicorp.hotel_feature.adapter.NearbyCountryAdapter
 import com.opsicorp.hotel_feature.adapter.NearbyAirportAdapter
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.hotel.CityHotelModel
+import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyOfficeModel
 import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
@@ -38,6 +39,8 @@ class NearbyActivity : BaseActivity() {
     var typeSelect = Constants.SELECT_NEARBY_OFFICE
     var countryName = "Indonesia"
     var idCountry   = ""
+
+    lateinit var countryByRoute: Array<CountryHotel>
 
     val countryAdapter by lazy { NearbyCountryAdapter(this,countryData) }
     val cityAdapter      by lazy { NearbyCityAdapter(this,cityData) }
@@ -126,6 +129,10 @@ class NearbyActivity : BaseActivity() {
 
     private fun viewTypeSelected() {
         typeSelect = intent.getIntExtra(Constants.TYPE_SELECT_NEARBY,Constants.SELECT_NEARBY_CITY)
+        val data = intent.getStringExtra(Constants.COUNTRY_BY_ROUTE)
+        if (data.toString().isNotEmpty()){
+            countryByRoute = Serializer.deserialize(data,Array<CountryHotel>::class.java)!!
+        }
         when(typeSelect){
             Constants.SELECT_NEARBY_COUNTRY -> {
                 setAdapterByCountry()
@@ -316,6 +323,7 @@ class NearbyActivity : BaseActivity() {
                 countryData.add(model)
                 countryAdapter.setData(countryData)
             }
+
         }
     }
 

@@ -175,7 +175,6 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun removeTrip(id: String) {
-
         GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
             override fun successLoad(boolean: Boolean) {
 
@@ -211,6 +210,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         showLoadingOpsicorp(false)
         pagePosition = DETAIL_BISNIS_TRIP
         getDataSummary(data.id)
+    }
+
+    override fun viewLoading() {
+        showDialog("Please waiting")
     }
 
     fun failedWarning(message: String) {
@@ -474,7 +477,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         nestedScrollUp()
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-                setLog(Serializer.serialize(summaryModel))
+                hideDialog()
                 tripSummary = summaryModel
                 hideLoadingOpsicorp()
                 updateViewSummary()

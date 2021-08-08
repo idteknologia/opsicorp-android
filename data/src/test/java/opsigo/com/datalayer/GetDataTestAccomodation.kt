@@ -4,7 +4,13 @@ import opsigo.com.datalayer.request_model.accomodation.flight.cancel.CancelFligh
 import opsigo.com.datalayer.request_model.reservation.ReservationFlightRequest
 import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.cancel.CancelHotelRequest
+import opsigo.com.domainlayer.callback.CallbackCountryByRoutePertamina
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
+import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
 import java.util.concurrent.CountDownLatch
 import kotlin.collections.ArrayList
 import org.koin.test.KoinTest
@@ -71,7 +77,8 @@ class GetDataTestAccomodation:KoinTest{
             "}"
 
     val baseUrl = "https://basicqa.opsicorp.com"
-    val token = "Bearer cjkgvciCRrOl0cWK7A26IAmY0q_Yg1AKl5pmcY4yDg9fRK3E9CaVjVUBXcjGPgogBHeV323cDGJ92kgve0COiFyEpMFPAhuFP7h4LYkeQGdt7NEj9rebl7-ov6kf3tgELMT_51b-Duo1f8XF2QUpccPXJ0s4OfmaQeX_cndJFo94J1THtE1rMuHMcCtt7Seknvn6DD7gtM6TcZrLc0j12iGPj1YQwL-yYNZI90KWO-eN8SGQ87CkUlrjahrRQ4Uvr5-M9Azib3RFXEeemLxquj5n1F_jvHjOkS8RGKb9qADObQcVaqwVCcHm3HxKvswiUTLaPTCPEhNN0aFF0vNa-hrxFR1TV6QpazS9_8P8kt--GQDdHPO2eVgFqYfy8snk6Bh8TaHbKnfJyXj5ZuIDcPzl9zfSLYtwI2r_3LnThy8EImKthrup9WSUjr88Y4kTOfZ0niHkU3y8jXa1xphCfS6CzNZURiKkLS8ak8fPDUcqEkcOQz7VcAzftLiODPGigqCtii8PHBPSpCrpMBZTu3aYNi2FwlCnP0ycc4r2mk6RFZ-W4Gzu5-H4eCGpQNq5"
+    val baseUrlPertamina = "https://pertamina-dtm3-qa.opsicorp.com"
+    val token = "Bearer d5c7ElQIh3bmJjQQzEq0ZY4xTeZhKRZ3JezvR9IufwWmzSb4l6OrTPBdAXvS2JPoJNWChPARZFtdttQKyeJlHv_rNV2wJ2A_-HjYDPm4rJ1w3hVjP7V-CzKt1NyRJa0xH9Gp0am-zfVF-997ceri5SoSwKBvMmw8Immyk4YB2u8KHrOl_zfZ_uHgDQoFtitIrcTECYIoOtvVov_Xajo6kD_ioJtlp5lYvVoByB2wTK5VoDRt75LWvjeHuMxOF-LlY034vzwF0q2On1yQUKHyTOISRkIUWl_EiQzd00GWWDlzhv_QLExMSquB390wxMfCea6TTDyq1QCibmpap94vVGSzawEjZSmLXEG1ETcBmFBieTJCr-xukrexN951tn3ff0WzM7idoc0Akydz2GZl01m1okcoBoCN1g8DGHqWVuXeROun2mhc9I_nxHlDdejgIRLhbQq-bb9zLBnb3cuHouivmU4P_lNTRSchTWPlinSmFayVrZjt6MIuRc4ELVSNaPoOI5o-SZSkSkbhKOKY5AHOiEQJ-Jenf7VW3qQXvDCuRrUxfzxQpOdmG2zm1e3y"
 
 
     @Test
@@ -129,6 +136,8 @@ class GetDataTestAccomodation:KoinTest{
 
     }
 
+
+
     @Test
     fun testCancelFlight(){
         val latch = CountDownLatch(1)
@@ -179,7 +188,6 @@ class GetDataTestAccomodation:KoinTest{
         return classToHasMap(data,CancelHotelRequest::class.java)
     }
 
-
     private fun dataRequestCancelFligt(): HashMap<Any, Any> {
         val data = CancelFlightRequest()
         data.flightId = ""
@@ -187,6 +195,60 @@ class GetDataTestAccomodation:KoinTest{
         data.travelAgent = ""
         data.tripPlanId  = ""
         return classToHasMap(data,CancelFlightRequest::class.java)
+    }
+
+    @Test
+    fun testGetDestinationHotelFromRoutes(){
+        val travelAgent = "apidev"
+        val idTrip      = "f1b1ab79-08dd-462d-a468-476c5bb27c4e"
+        val latch       = CountDownLatch(1)
+        GetDataAccomodation(baseUrlPertamina).getCountryByRoutePertamina(token,idTrip,travelAgent,object :CallbackCountryByRoutePertamina{
+            override fun success(country: ArrayList<CountryHotel>) {
+                println(country.first().countryName)
+                latch.await()
+            }
+
+            override fun failed(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testGetRouteFlightAvailable(){
+        val latch       = CountDownLatch(1)
+        GetDataAccomodation(baseUrl).getRouteFlightAvailable(token,dataRoute(),object :CallbackString{
+            override fun successLoad(string: String) {
+                latch.await()
+            }
+
+            override fun failedLoad(message: String) {
+                latch.await()
+            }
+        })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun dataRoute(): HashMap<Any, Any> {
+        val data = ValidationRouteAvailable()
+        data.schedule?.addAll(mapperRoute())
+        data.tripId = ""
+        return classToHasMap(data,ValidationRouteAvailable::class.java)
+    }
+
+    private fun mapperRoute(): ArrayList<ListScheduleItem> {
+        return ArrayList()
     }
 
     fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<Any, Any>{

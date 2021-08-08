@@ -266,6 +266,10 @@ interface UrlEndpoind {
     fun getRemoveFlight(@Header("Authorization") token:String,
                        @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
+    @POST(MyURL.VALIDATION_CONFLICT)
+    fun getRouteFlightAvailable(@Header("Authorization") token:String,
+                                @Body body: HashMap<Any, Any>):Call<ResponseBody>
+
     @POST(MyURL.SYNC_TRAIN)
     fun getSyncTrain(@Header("Authorization") token:String,
                      @Body body: HashMap<Any, Any>):Call<ResponseBody>
@@ -280,6 +284,11 @@ interface UrlEndpoind {
     @GET(MyURL.SEARCH_COUNTRI_HOTEL)
     fun getSearchCountry(@Header("Authorization") token:String,
                          @Query("travelAgent")travelAgent:String):Call<ResponseBody>
+
+    @GET(MyURL.GET_COUNTRY_BY_ROUTE_PERTAMINA)
+    fun getCountryByRoutePertamina(@Header("Authorization") token:String,
+                                   @Query("tripId")tripId:String,
+                                   @Query("travelAgent")travelAgent:String):Call<ResponseBody>
 
     @POST(MyURL.SEARCH_HOTEL)
     fun getSearchHotel(@Header("Authorization") token:String,
@@ -365,4 +374,11 @@ interface UrlEndpoind {
     @POST(MyURL.CHECK_CASH_ADVANCE)
     fun checkCashAdvance(@Header("Authorization") token: String,
                             @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
+    @GET(MyURL.GET_LIST_MY_BOOKING)
+    fun getListMyBooking(@Header("Authorization") token:String,
+                       @Query("Size")isoCountry:Int,
+                       @Query("Index")index:Int,
+                       @Query("ItemTypes")itemTypes:String):Call<ResponseBody>
+
 }

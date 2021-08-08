@@ -122,6 +122,7 @@ object Constants {
     var ONCLIK_OPTION_REMOVE_HOTEL_CART = 9062
     var KEY_INTENT_SELECT_FLIGHT = "key_intent_result_ok_select_flight"
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
+    val COUNTRY_BY_ROUTE         = "country_by_route"
     val DATA_DETAIL_HOTEL        = ""
     var DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"

@@ -258,7 +258,12 @@ class ConfirmationOrderHotel : BaseActivity(),
     override fun onClicked() {
         Constants.dataValidationHotel   = Serializer.serialize(dataValidation,ValidationHotelModel::class.java)
         Constants.dataConfirmationHotel = Serializer.serialize(dataConfirmation,ConfirmationHotelModel::class.java)
-        gotoActivity(BookingContactHotelActivity::class.java)
+        if (dataValidation.isDoubleBiooking){
+            showAllert(getString(R.string.sorry),dataValidation.messageDoubleBooking)
+        }
+        else {
+            gotoActivity(BookingContactHotelActivity::class.java)
+        }
     }
 
     private fun selectReasonCode() {

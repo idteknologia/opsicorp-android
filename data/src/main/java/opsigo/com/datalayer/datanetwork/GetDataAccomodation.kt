@@ -1,7 +1,9 @@
 package opsigo.com.datalayer.datanetwork
 
 import android.util.Log
+import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
@@ -14,6 +16,8 @@ import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.SearchHotelEnt
 import opsigo.com.datalayer.model.accomodation.flight.ProgressFlightEnitity
 import opsigo.com.datalayer.model.accomodation.flight.reservation.ReservationFlightEntity
 import opsigo.com.datalayer.model.accomodation.flight.validation.ValidationFlightEntity
+import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.CountryByRouteEntity
+import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.CountryByRouteEntityItem
 import opsigo.com.datalayer.model.accomodation.reasoncode.ResponseReasonCodeEntity
 import opsigo.com.datalayer.model.accomodation.train.ProgressTrainEnitity
 import opsigo.com.datalayer.model.accomodation.train.reservation.BookingTrainEntity
@@ -509,6 +513,35 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
         })
     }
 
+    override fun getRouteFlightAvailable(token: String, data: HashMap<Any,Any>, callback: CallbackString) {
+        apiOpsicorp.getRouteFlightAvailable(token,data).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isError").equals(true)){
+                            callback.failedLoad(json.getString("errorMsg"))
+                        }
+                        else{
+                            callback.successLoad("")
+                        }
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(e.message!!)
+                }
+            }
+        })
+    }
+
     override fun getSyncTrain(token: String, data: HashMap<Any,Any>, callback: CallbackArrayListString) {
         apiOpsicorp.getSyncTrain(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
@@ -583,6 +616,30 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                     }
                 }catch (e:Exception){
                     callback.failedLoad(e.message!!)
+                }
+            }
+        })
+    }
+
+    override fun getCountryByRoutePertamina(token: String, travelAgent: String,tripId:String, callback: CallbackCountryByRoutePertamina) {
+        apiOpsicorp.getCountryByRoutePertamina(token,travelAgent,tripId).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failed(t.message!!)
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful){
+                    val responseString = response.body()?.string()
+                    callback.success(CountryByRoutePertaminaMapper().mapping(Gson().fromJson(responseString!!, Array<CountryByRouteEntityItem>::class.java)))
+                }
+                else {
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callback.failed(message)
+                }
+                try {
+
+                }catch (e:Exception){
+                    callback.failed(e.message!!)
                 }
             }
         })

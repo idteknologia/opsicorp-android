@@ -1,6 +1,7 @@
 package opsigo.com.datalayer.mapper
 
 import com.google.gson.Gson
+import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
 
 object Serializer {
     private val gson = Gson()
@@ -14,6 +15,10 @@ object Serializer {
     }
 
     fun <T> deserialize(string: String?, clazz: Class<T>): T {
+        return gson.fromJson(string, clazz)
+    }
+
+    fun <T> deserialize(string: String?, clazz: Class<Array<T>>): Array<T>? {
         return gson.fromJson(string, clazz)
     }
 }
