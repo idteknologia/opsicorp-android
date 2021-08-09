@@ -563,7 +563,7 @@ class BookingContactFlight : BaseActivity(),
         contact.firstName = names.first()
         contact.title = getProfile().title
         contact.lastName = lastName
-        contact.mobilePhone = "+62${et_number_contact.text}"
+        contact.mobilePhone = "${etKodeArea.text.toString().replace("+","")}${et_number_contact.text}"
         return contact
     }
 

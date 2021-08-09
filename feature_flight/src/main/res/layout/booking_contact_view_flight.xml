@@ -144,7 +144,8 @@
                                 android:layout_height="15dp"
                                 android:background="@color/green_price"/>
 
-                            <TextView
+                            <EditText
+                                android:id="@+id/etKodeArea"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
