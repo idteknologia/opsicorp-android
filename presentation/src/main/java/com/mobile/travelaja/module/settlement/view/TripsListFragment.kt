@@ -65,6 +65,7 @@ class TripsListFragment : BaseListFragment<Trip>(),SearchView.OnQueryTextListene
 
     override fun dividerEnabled(): Boolean = true
     override fun isSearchVisible(): Boolean  = true
+    override fun isButtonBottomVisible(): Boolean = false
     override fun onQueryTextSubmit(query: String?): Boolean {
         return if (query.isNullOrEmpty() || query.isNullOrBlank()){
             false

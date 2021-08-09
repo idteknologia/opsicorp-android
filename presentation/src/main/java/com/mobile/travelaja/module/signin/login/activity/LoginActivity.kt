@@ -43,8 +43,6 @@ class LoginActivity : BaseActivity(),
 
     override fun getLayout(): Int {
         hideStatusBar()
-        if (Globals.getBaseUrl(this).isEmpty() || Globals.getBaseUrl(this).isBlank())
-            Globals.setBaseUrl(this, MyURL.URL_TRAVELAJA)
         return R.layout.login_activity_view_travel_aja
     }
 
@@ -196,7 +194,9 @@ class LoginActivity : BaseActivity(),
                 presenter.visibilityPasswordListener(eye_password, et_password, this)
             }
             btn_login_premium_account -> {
-                gotoActivity(AddressActivity::class.java)
+                val intent = Intent(getString(R.string.login_activity_filter))
+                startActivity(intent)
+//                gotoActivity(AddressActivity::class.java)
             }
             btn_login_with_email -> {
                 gotoRegisterUrl()

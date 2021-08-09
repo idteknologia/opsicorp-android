@@ -27,9 +27,9 @@ android {
     productFlavors {
         travelAja{
             dimension 'default'
-            applicationId "com.mobile.travelaja"
+            applicationId "com.opsicorp.travelaja"
             versionCode 1
-            versionName "1.0.10"
+            versionName "1"
         }
         opsicorp{
             dimension 'default'

@@ -22,6 +22,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     val selectedCode = ObservableField<String>()
 
     val isEnabledDetailInformation = ObservableBoolean(false)
+    val isEnabledDetailExpense = ObservableBoolean(false)
     val isEnableOverNight = ObservableBoolean(false)
     val isTravellingEnabled = ObservableBoolean(false)
 
@@ -59,6 +60,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private var job: Job? = null
 
     var modeTransports = mutableListOf<ModeTransport>()
+    var typeExpense = mutableListOf<ExpenseType>()
     var modeFlight = ""
     val isRemoveVisible = ObservableBoolean(false)
     var jobCalculateTransport: Job? = null
@@ -160,6 +162,11 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         isEnabledDetailInformation.set(checked)
     }
 
+    fun checkedExpense(checked: Boolean){
+        isEnabledDetailExpense.set(checked)
+    }
+
+
     fun checkedTravelling(checked: Boolean) {
         isTravellingEnabled.set(checked)
         if (!checked && isEnableOverNight.get()) {
@@ -224,6 +231,12 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         }else {
             _error.value = Event((result as Result.Error).exception)
         }
+    }
+
+    var _otherExpenses = arrayListOf<OtherExpense>()
+    fun addingOtherExpense(list : List<OtherExpense>){
+        _otherExpenses.clear()
+        _otherExpenses.addAll(list)
     }
 
 

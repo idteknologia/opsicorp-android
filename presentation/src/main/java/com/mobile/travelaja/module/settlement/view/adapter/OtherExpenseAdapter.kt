@@ -1,6 +1,9 @@
 package com.mobile.travelaja.module.settlement.view.adapter
 
 import android.view.View
+import androidx.core.widget.addTextChangedListener
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
@@ -12,6 +15,15 @@ import opsigo.com.domainlayer.model.settlement.OtherExpense
 
 class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel, var listener: ItemClickListener) :
     BaseListAdapter<OtherExpense>() {
+
+    init {
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun getLayoutItem(viewType: Int): Int = R.layout.item_other_expense
 
     override fun viewHolder(view: View, viewType: Int): RecyclerView.ViewHolder {
@@ -20,20 +32,59 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel, var listener: It
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is OtherExpenseViewHolder) {
-            val otherExpense = viewModel.otherExpenses[position]
-            holder.onBind(otherExpense,position)
+            val otherExpense = viewModel.items[position]
+            val isRemove = viewModel.isRemoveVisible
+            val indexEmpty = viewModel.indexEmpty
+            holder.onBind(otherExpense, position, isRemove, indexEmpty)
         }
     }
 
-    override fun getItemCount(): Int = viewModel.otherExpenses.size
+    override fun getItemCount(): Int = viewModel.items.size
 
     inner class OtherExpenseViewHolder(val binding: ItemOtherExpenseBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(otherExpense: OtherExpense,position: Int) {
+        fun onBind(
+            data: OtherExpense,
+            position: Int,
+            isRemove: ObservableBoolean,
+            indexEmpty: ObservableInt) {
             binding.position = position
-            binding.setVariable(BR.otherExpense,otherExpense)
+            binding.isRemove = isRemove
+            binding.indexEmpty = indexEmpty
+            binding.setVariable(BR.otherExpense, data)
             binding.listener = listener
             binding.executePendingBindings()
+            binding.etAmount.addTextChangedListener {
+                val value = it.toString()
+                if (binding.etAmount.isFocusable){
+                    if (value.isNotEmpty()) {
+                        val amount = value.toLong()
+                        data.Amount = amount
+                        viewModel.setItem(data, position)
+                    } else {
+                        data.Amount = 0
+                        viewModel.setItem(data, position)
+                    }
+                }
+            }
+
+//            binding.toggleButton.setOnClickListener {
+//                val text = binding.toggleButton.text.toString()
+//                data.Currency = text
+//                if (data.Amount.toLong() > 0) {
+//                    data.Amount = 0
+//                }
+//                viewModel.setItem(data, position)
+////                binding.etAmount.text.clear()
+//            }
+            binding.editTextNotes.addTextChangedListener {
+                val value = it.toString()
+                if (value.isNotEmpty()) {
+                    data.Description = value
+                    viewModel.setItem(data,position)
+//                    viewModel.addDescription(value, position)
+                }
+            }
         }
     }
 }

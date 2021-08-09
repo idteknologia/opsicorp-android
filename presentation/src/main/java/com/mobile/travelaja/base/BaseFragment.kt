@@ -23,6 +23,7 @@ import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactHRDia
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.module.signin.login.activity.LoginActivity
+import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
 import com.mobile.travelaja.utility.CallbackSnackBar
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
@@ -173,8 +174,13 @@ abstract class BaseFragment: Fragment()  {
         Globals.setDataPreferenceString(requireContext(),"username", "")
         Globals.setDataPreferenceString(requireContext(),Constants.IMAGE_LOGO_SPLASH,"")
         Globals.setDataPreferenceString(requireContext(),Constants.IMAGE_BACKGROUND_SPLASH,"")
-        gotoActivity(LoginActivity::class.java)
+        initActivity()
         activity?.finish()
+    }
+
+    private fun initActivity(){
+        val intent = Intent(getString(R.string.init_activity))
+        startActivity(intent)
     }
 
     fun getToken():String{

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -15,6 +16,7 @@ import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
+import opsigo.com.domainlayer.model.settlement.OtherExpense
 
 class CreateSettlementFragment : Fragment(),View.OnClickListener {
     private lateinit var viewModel: SettlementViewModel
@@ -67,6 +69,11 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
             }
         }
         viewModel.getDetailTrip()
+
+        setFragmentResultListener("Expense"){k,b->
+            val items = b.getParcelableArrayList<OtherExpense>("expenses")
+            viewModel.addingOtherExpense(items?.toList()!!)
+        }
     }
 
     private fun showTransportation(){
@@ -89,6 +96,7 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
             R.id.etBank -> navigateBank()
             R.id.ivBack -> activity?.finish()
             R.id.viewDetailInformation -> showTransportation()
+            R.id.viewDetailOtherExpense -> navigateOtherExpense()
             R.id.switchExpense -> {
                 if (v is SwitchMaterial && v.isChecked){
                     navigateOtherExpense()
@@ -109,8 +117,11 @@ class CreateSettlementFragment : Fragment(),View.OnClickListener {
         }
     }
 
+    // Todo Navigate Other Expense
     private fun navigateOtherExpense(){
-        val action = CreateSettlementFragmentDirections.actionCreateSettlementToOtherExpenseFragment()
+        val expenseTypes = viewModel.typeExpense
+        val others = viewModel._otherExpenses
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToOtherExpenseFragment(expenseTypes.toTypedArray(),others.toTypedArray())
         findNavController().navigate(action)
     }
 

@@ -76,4 +76,5 @@ class BankListFragment : BaseListFragment<Bank>() {
     override fun dividerEnabled(): Boolean = true
     override fun isSearchVisible(): Boolean = false
     override fun isButtonVisible(): Boolean = false
+    override fun isButtonBottomVisible(): Boolean  = false
 }

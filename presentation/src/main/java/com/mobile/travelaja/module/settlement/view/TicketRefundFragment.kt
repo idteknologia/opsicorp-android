@@ -51,6 +51,7 @@ class TicketRefundFragment : BaseListFragment<Ticket>(),ItemClickListener {
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
     override fun isButtonVisible(): Boolean = true
+    override fun isButtonBottomVisible(): Boolean = false
 
     override fun onRefresh() {
     }
@@ -84,5 +85,6 @@ class TicketRefundFragment : BaseListFragment<Ticket>(),ItemClickListener {
         binding.rvBaseList.removeViewAt(pos)
         adapter.notifyItemRemoved(pos)
     }
+
 
 }

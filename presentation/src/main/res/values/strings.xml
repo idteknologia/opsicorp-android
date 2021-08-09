@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="init_activity" translatable="false">com.opsigo.travelaja.LoginActivity</string>
+    <string name="login_activity_filter" translatable="false">com.opsigo.travelaja.AddressActivity</string>
+
     <string name="app_name">Opsicorp</string>
 
     <string name="map" translatable="false">AIzaSyB1KjdguRy_PjJH9EHrf9I1WUc0-EPVJ_c</string>
@@ -1143,5 +1146,14 @@ Please add your trip item for Approval."
     <string name="important_info_passenger_need_flight">Passenger need to show this e-ticket and passenger identity when check-in.</string>
     <string name="important_info_arrive_flight">Please arrive at the airport for check-in 90 minutes prior departure.</string>
     <string name="important_info_time_listed_flight">The time listed above is the local airport time.</string>
+    <string name="other_expense_description">Description <font color="#da2128">(Required)</font></string>
+    <string name="add_other_expense">+ Add Other Expense</string>
+    <string name="warning_not_complete_other_expense">Please make sure to complete the Other Expense form</string>
+    <string name="other_expense_idr">IDR</string>
+    <string name="other_expense_usd">USD</string>
+    <string name="expense_type">Please select your expense type ?</string>
+    <string name="alert_empty_expense_type">Sorry, Expense Type is Empty</string>
+    <string name="warning_back_settlement_other_expense">Press the save button to save other expense</string>
+
 </resources>
 

@@ -161,8 +161,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
 
 
     override fun dividerEnabled(): Boolean = false
-
     override fun isSearchVisible(): Boolean = false
+    override fun isButtonBottomVisible(): Boolean = false
 
     override fun onRefresh() {
 

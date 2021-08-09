@@ -43,6 +43,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
     override fun isButtonVisible(): Boolean = true
+    override fun isButtonBottomVisible(): Boolean  = false
 
     override fun onRefresh() {
 
