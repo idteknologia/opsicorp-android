@@ -73,7 +73,18 @@
         android:id="@+id/otherExpenseFragment"
         android:name="com.mobile.travelaja.module.settlement.view.OtherExpenseFragment"
         android:label="OtherExpenseFragment"
-        tools:layout="@layout/base_list_fragment"/>
+        tools:layout="@layout/base_list_fragment">
+        <argument
+            android:name="expenseType"
+            app:argType="opsigo.com.domainlayer.model.settlement.ExpenseType[]" />
+
+        <action
+            android:id="@+id/action_otherExpenseFragment_to_expenseTypeFragment"
+            app:destination="@id/expenseTypeFragment" />
+        <argument
+            android:name="otherExpenses"
+            app:argType="opsigo.com.domainlayer.model.settlement.OtherExpense[]" />
+    </fragment>
     <fragment
         android:id="@+id/ticketRefundFragment"
         android:name="com.mobile.travelaja.module.settlement.view.TicketRefundFragment"
@@ -95,6 +106,19 @@
             android:name="golper"
             app:argType="integer" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/expenseTypeFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.content.ExpenseTypeFragment"
+        android:label="ExpenseTypeFragment"
+        tools:layout="@layout/base_list_fragment">
+        <argument
+            android:name="expenseType"
+            app:argType="opsigo.com.domainlayer.model.settlement.ExpenseType[]" />
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 
 

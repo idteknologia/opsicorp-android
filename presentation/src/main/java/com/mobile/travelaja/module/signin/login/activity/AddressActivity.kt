@@ -120,7 +120,7 @@ class AddressActivity : BaseActivity(), LoginView {
             val url = et_url.text.toString().toLowerCase()
             val baseUrl = "https://$url.opsicorp.com/"
             if (url.isNotEmpty()) {
-                if (url.contains(getString(R.string.pertamina))) {
+                if (url.equals(getString(R.string.pertamina),false)) {
                     showDialog(getString(R.string.waiting))
                     OpenIdLogin.loginWithSSO(
                         this,

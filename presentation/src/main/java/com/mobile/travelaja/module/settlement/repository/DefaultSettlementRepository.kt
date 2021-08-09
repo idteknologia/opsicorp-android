@@ -86,7 +86,11 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
     override suspend fun getExpenseType(): Result<List<ExpenseType>> =
         try {
             val result = api.getExpenseType()
-            Result.Success(result)
+            if (result.isNotEmpty()){
+                Result.Success(result)
+            }else {
+                Result.Error(Throwable(Utils.EMPTY))
+            }
         } catch (t: Throwable) {
             Result.Error(t)
         }

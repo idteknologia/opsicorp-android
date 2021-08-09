@@ -98,6 +98,7 @@ class DetailSettlement : BaseObservable(){
     var TransportExpenses = mutableListOf<TransportExpenses>()
     @SerializedName("Routes")
     val Routes: MutableList<Route> = mutableListOf()
+    var OtherExpense = arrayListOf<OtherExpense>()
 
     fun cities(): List<String>{
         val cities = mutableSetOf<String>()

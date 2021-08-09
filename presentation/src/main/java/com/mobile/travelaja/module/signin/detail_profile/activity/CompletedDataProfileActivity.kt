@@ -121,6 +121,7 @@ class CompletedDataProfileActivity: BaseActivity() {
                 Globals.setDataPreferenceBolean(applicationContext,"first",true)
                 Globals.setDataPreferenceBolean(applicationContext,"login",true)
                 gotoActivity(HomeActivity::class.java)
+                finish()
             }
 
             override fun failedLoad(message: String) {

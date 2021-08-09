@@ -176,8 +176,6 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         } else {
             title_splash.setTextColor(Color.parseColor(config.mobileTextColorLogo))
         }
-
-
     }
 
 
