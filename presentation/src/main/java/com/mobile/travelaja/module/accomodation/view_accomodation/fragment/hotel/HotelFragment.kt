@@ -73,6 +73,7 @@ class HotelFragment : BaseFragment(),
         dataSelectCountry.id        = "ID"
         dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
         setDataCityDefault()
+        hideLoadingCity()
     }
 
     private fun getRouteFilter() {

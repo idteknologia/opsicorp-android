@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-
     <uses-feature
         android:name="android.hardware.location"
         android:required="true" />
@@ -48,7 +47,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map" />
-
         <activity
             android:name="com.mobile.travelaja.module.signin.splash.activity.SplashActivity"
             android:screenOrientation="portrait" />
@@ -59,6 +57,7 @@
         <activity
             android:name="com.mobile.travelaja.module.item_custom.map.TestActivity"
             android:screenOrientation="portrait" >
+
         </activity>
         <activity
             android:name="com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity"

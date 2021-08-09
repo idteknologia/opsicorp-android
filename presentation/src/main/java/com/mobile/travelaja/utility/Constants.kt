@@ -375,14 +375,13 @@ object Constants {
     val TYPE_HEADER_NOT_COMPLY = 6
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
-    var TYPE_FLIGHT_BUTTON = false
-
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
 
     var dataDepartureTime = ArrayList<AccomodationPreferanceModel>()
     var dataArrivalTime   = ArrayList<AccomodationPreferanceModel>()
     var dataNameTrainSelected     = ArrayList<AccomodationPreferanceModel>()
+
     var dataNameTrainAll  = ArrayList<AccomodationPreferanceModel>()
     var dataFilterMaxPriceAccomodation = 0
     var dataFIlterMinPriceAccomodation = 0
