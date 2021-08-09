@@ -12,7 +12,6 @@ import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 class FilterFlightAdapter (val context: Context, private var items: ArrayList<FilterFlightModel>): androidx.recyclerview.widget.RecyclerView.Adapter<FilterFlightAdapter.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
-    var check = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -32,21 +31,17 @@ class FilterFlightAdapter (val context: Context, private var items: ArrayList<Fi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = items.get(position)
 
-        holder.itemView.checkbox.isChecked = position == check
+        holder.itemView.checkbox.isChecked = data.isSelected
 
         holder.itemView.tv_name_time.text = data.name
         holder.itemView.tv_time.text      = data.time
 
         holder.itemView.setOnClickListener {
-            check = position
-            notifyDataSetChanged()
             onclick.onClick(-1,position)
         }
 
         holder.itemView.checkbox.setOnClickListener {
-            check = position
-            notifyDataSetChanged()
-
+            onclick.onClick(-1,position)
         }
     }
 

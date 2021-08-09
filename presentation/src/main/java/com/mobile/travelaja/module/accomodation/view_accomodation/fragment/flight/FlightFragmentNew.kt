@@ -60,6 +60,7 @@ import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCode
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import java.util.HashSet
 
 
 class FlightFragmentNew : BaseFragment(),
@@ -608,7 +609,7 @@ class FlightFragmentNew : BaseFragment(),
 
                         override fun failedLoad(message: String) {
                             hideDialog()
-                            Globals.showAlert("message",message,requireActivity())
+                            Globals.showAlert("Sorry",message,requireActivity())
                         }
                     })
                 }
@@ -667,7 +668,11 @@ class FlightFragmentNew : BaseFragment(),
     private fun dataRequestAirlinePref(dataOrder: OrderAccomodationModel): HashMap<Any, Any> {
         val data = AirlinePrefByCompanyRequest()
         data.preferredCarriers = ArrayList()
-        if (!Constants.multitrip){
+        if (dataTripPlan.route.size>1){
+            data.routes            = dataRoutesRequestMultiTrip(dataOrder)
+            data.flightTripType    = 3
+        }
+        else {
             if (Globals.ONE_TRIP){
                 data.flightTripType    = 1
             }
@@ -675,10 +680,6 @@ class FlightFragmentNew : BaseFragment(),
                 data.flightTripType    = 2
             }
             data.routes            = dataRoutesRequest(dataOrder)
-        }
-        else {
-            data.routes            = dataRoutesRequestMultiTrip(dataOrder)
-            data.flightTripType    = 3
         }
         data.cabinClassList    = dataCabinClass(dataOrder)
         data.travelAgent       = Globals.getConfigCompany(requireContext()).defaultTravelAgent
@@ -804,8 +805,18 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun openCityTo(position: Int) {
         val listCity = ArrayList<String>()
-        listCity.add("Jakarta")
-        listCity.add("Surabaya")
+
+        dataTripPlan.route.forEach {
+            listCity.add(it.originName)
+            listCity.add(it.destinationName)
+        }
+        /*
+        * remove duplicate items
+        * */
+        val set: Set<String> = HashSet(listCity)
+        listCity.clear()
+        listCity.addAll(set)
+
         val bundle = Bundle()
         currentPosition = position
         bundle.putString(SELECT_RESULT, "city")

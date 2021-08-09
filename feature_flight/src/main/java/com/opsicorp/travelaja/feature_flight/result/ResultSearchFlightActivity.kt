@@ -109,6 +109,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
+
                 when(views){
                     -1 ->{
                         if (!Constants.multitrip){
@@ -142,11 +143,13 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun gotoDetailFlight(position: Int) {
-        val bundle = Bundle()
+       /* val bundle = Bundle()
         val dataSelected = data[position].listFlightModel
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
         bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
-        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
+        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)*/
+        setLog(Serializer.serialize(data))
+
     }
 
     private fun getAirlineByCompany() {

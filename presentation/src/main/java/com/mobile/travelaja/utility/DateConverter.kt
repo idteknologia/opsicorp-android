@@ -21,6 +21,7 @@ class DateConverter {
         }
 
     }
+
     fun getDay(int: Int,formatDate:String):String{
         try {
             val calendar = Calendar.getInstance()
@@ -307,5 +308,15 @@ class DateConverter {
         c.add(Calendar.DATE, -1) // number of days to add
         val date = sdf.format(c.time) // dt is now the new date
         return date
+    }
+
+    fun stringToDate(formatInput: String,dateString:String):Date{
+        try {
+            val mdformat = SimpleDateFormat(formatInput)
+            val date = mdformat.parse(dateString)
+            return date
+        }catch (e:Exception){
+            return Date()
+        }
     }
 }
