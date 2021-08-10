@@ -137,30 +137,20 @@ class TransportExpenses : BaseObservable() {
 data class OtherEx(
     var ExpenseType: String = "",
     var Amount: Number = 0,
-    var expenseName:String = "",
-    var Description : String = "",
-    var Currency : String = ""
+    var expenseName: String = "",
+    var Description: String = "",
+    var Currency: String = ""
 )
 
 @Parcelize
-class OtherExpense : Parcelable {
-//    @get:Bindable
-    var expenseName: String = ""
-//        set(value) {
-//            field = value
-//            notifyPropertyChanged(BR.expenseName)
-//        }
-    var ExpenseType: String = ""
-    var Amount: Number = 0
-    var Description: String = ""
-
-//    @get:Bindable
+data class OtherExpense(
+    var expenseName: String = "",
+    var ExpenseType: String = "",
+    var Amount: Number = 0,
+    var Description: String = "",
     var Currency: String = ""
-//        set(value) {
-//            field = value
-//            notifyPropertyChanged(BR.currency)
-//        }
 
+) : Parcelable {
     fun getValueAmount(): String {
         return try {
             if (Amount.toLong() > 0) {
@@ -173,6 +163,7 @@ class OtherExpense : Parcelable {
         }
     }
 }
+
 
 @Parcelize
 data class ModeTransport(

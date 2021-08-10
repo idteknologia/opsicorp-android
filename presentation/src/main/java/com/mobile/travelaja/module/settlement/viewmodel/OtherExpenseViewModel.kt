@@ -16,11 +16,11 @@ import opsigo.com.domainlayer.model.settlement.OtherExpense
 
 class OtherExpenseViewModel(private val repository: SettlementRepository) : ViewModel() {
     val expenseTypes = mutableListOf<ExpenseType>()
-//    val items = mutableListOf<OtherExpense>()
+
+    //  val items = mutableListOf<OtherExpense>()
     val isRemoveVisible = ObservableBoolean(false)
     val indexEmpty = ObservableInt(-1)
     var items = ObservableArrayList<OtherExpense>()
-    var items2 = arrayListOf<OtherExpense>()
 
     private val _error = MutableLiveData<Event<Throwable>>()
     val error: LiveData<Event<Throwable>> = _error
@@ -32,18 +32,21 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
     val expenseType: LiveData<List<ExpenseType>> = _expenseType
 
 
-    fun getExpenseType() {
+    fun getExpenseType(isPcu : Boolean) {
         _loading.value = Event(true)
         viewModelScope.launch {
             val result = repository.getExpenseType()
-            compareExpenseType(result)
+            compareExpenseType(result,isPcu)
         }
     }
 
-    private fun compareExpenseType(result: Result<List<ExpenseType>>) {
+    private fun compareExpenseType(result: Result<List<ExpenseType>>,isPcu: Boolean) {
+        val typeFor = if (isPcu) 2 else 1
         if (result is Result.Success) {
             val list = result.data.filter {
-                !it.Description.isNullOrEmpty() || !it.ExpenseType.isNullOrEmpty()
+                !it.Description.isNullOrEmpty() &&
+                      !it.ExpenseType.isNullOrEmpty() &&
+                            it.TypeFor == typeFor
             }
             expenseTypes.addAll(list)
         } else {
@@ -53,39 +56,49 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
         _loading.value = Event(false)
     }
 
-    fun setItem(data: OtherExpense,position: Int){
-        val t = OtherExpense()
-        t.ExpenseType = data.ExpenseType
-        t.expenseName = data.expenseName
-        t.Description = data.Description
-        t.Amount = data.Amount
-        t.Currency = data.Currency
-        items[position] = data
-    }
-
-    fun setExpenseType(expenseType : ExpenseType,position: Int, currency : String){
-        val item = items[position]
-        item.ExpenseType = expenseType.ExpenseType
-        item.expenseName = expenseType.Description
-        item.Amount = 0
-        item.Currency = currency
-        item.Description = ""
+    fun setExpenseType(expenseType: ExpenseType, position: Int, currency: String) {
+        val item = getItem(position)
+        if (item != null) {
+            val tempData = OtherExpense(
+                expenseType.Description,
+                expenseType.ExpenseType,
+                0,
+                "",
+                currency
+            )
+            items[position] = tempData
+        }
     }
 
     fun setCurrency(currency: String, pos: Int) {
-        val item = items[pos]
-        item.Currency = currency
-        if (item.Amount.toLong() > 0){
-            item.Amount = 0
+        val item = getItem(pos)
+        if (item != null) {
+            val tempData = item.copy(
+                Amount = 0,
+                Currency = currency
+            )
+            items[pos] = tempData
         }
     }
 
     fun setAmount(amount: Number, pos: Int) {
-        items[pos].Amount = amount
+        val item = getItem(pos)
+        if (item != null) {
+            val tempData = item.copy(
+                Amount = amount
+            )
+            items[pos] = tempData
+        }
     }
 
     fun addDescription(notes: String, pos: Int) {
-        items[pos].Description = notes
+        val item = getItem(pos)
+        if (item != null) {
+            val tempData = item.copy(
+                Description = notes
+            )
+            items[pos] = tempData
+        }
     }
 
     fun addItem(currency: String) {
@@ -100,10 +113,19 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
         isRemoveVisible.set(items.size > 1)
     }
 
-    fun indexFirstEmpty() : Int {
-        val i =  items.indexOfFirst { it.ExpenseType.isEmpty() || it.Amount == 0 || it.Description.isEmpty() }
+    fun indexFirstEmpty(): Int {
+        val i =
+            items.indexOfFirst { it.ExpenseType.isEmpty() || it.Amount == 0 || it.Description.isEmpty() }
         indexEmpty.set(i)
-        return  i
+        return i
+    }
+
+    private fun getItem(pos: Int): OtherExpense? {
+        return try {
+            items[pos]
+        } catch (e: Exception) {
+            null
+        }
     }
 
 

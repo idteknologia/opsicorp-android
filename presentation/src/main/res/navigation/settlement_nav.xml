@@ -77,13 +77,17 @@
         <argument
             android:name="expenseType"
             app:argType="opsigo.com.domainlayer.model.settlement.ExpenseType[]" />
-
-        <action
-            android:id="@+id/action_otherExpenseFragment_to_expenseTypeFragment"
-            app:destination="@id/expenseTypeFragment" />
         <argument
             android:name="otherExpenses"
             app:argType="opsigo.com.domainlayer.model.settlement.OtherExpense[]" />
+        <argument
+            android:name="isPcu"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <action
+            android:id="@+id/action_otherExpenseFragment_to_expenseTypeFragment"
+            app:destination="@id/expenseTypeFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/ticketRefundFragment"

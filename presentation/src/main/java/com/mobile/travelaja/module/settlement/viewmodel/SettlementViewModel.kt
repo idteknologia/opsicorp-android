@@ -60,7 +60,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private var job: Job? = null
 
     var modeTransports = mutableListOf<ModeTransport>()
-    var typeExpense = mutableListOf<ExpenseType>()
+    var typeExpense = arrayOf<ExpenseType>()
     var modeFlight = ""
     val isRemoveVisible = ObservableBoolean(false)
     var jobCalculateTransport: Job? = null
@@ -233,10 +233,10 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         }
     }
 
-    var _otherExpenses = arrayListOf<OtherExpense>()
+    var otherExpenses : ArrayList<OtherExpense> = arrayListOf()
     fun addingOtherExpense(list : List<OtherExpense>){
-        _otherExpenses.clear()
-        _otherExpenses.addAll(list)
+        otherExpenses.clear()
+        otherExpenses.addAll(list)
     }
 
 

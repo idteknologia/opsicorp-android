@@ -7,13 +7,11 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.addCallback
 import androidx.core.os.bundleOf
-import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
@@ -21,32 +19,35 @@ import com.mobile.travelaja.base.list.BaseListFragment
 import com.mobile.travelaja.module.settlement.view.adapter.OtherExpenseAdapter
 import com.mobile.travelaja.module.settlement.view.content.ExpenseTypeFragment
 import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
-import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.ExpenseType
 import opsigo.com.domainlayer.model.settlement.OtherExpense
+import com.mobile.travelaja.module.settlement.view.CreateSettlementFragment.Companion.KEY_REQUEST
 
 class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener,DialogInterface.OnClickListener {
     private lateinit var viewModel: OtherExpenseViewModel
-    private lateinit var settlementViewModel: SettlementViewModel
     private lateinit var adapter: OtherExpenseAdapter
-    private var expenseTypes = arrayOf<String>()
     private var position = -1
-    private lateinit var typeExpenseDialog : MaterialAlertDialogBuilder
     private val args : OtherExpenseFragmentArgs by navArgs()
+    private var expenseTypes = arrayOf<ExpenseType>()
+    private var isPcu = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        requireActivity().onBackPressedDispatcher.addCallback(this) {
-//            showingWarning(
-//                R.string.alert,
-//                R.string.warning_back_settlement_transport_expense,
-//                R.string.dont_save,
-//                R.string.save,
-//                TransportExpenseFragment.WARNING_NAVIGATEUP
-//            )
-//        }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            showingWarning(
+                R.string.alert,
+                R.string.warning_back_settlement_transport_expense,
+                R.string.dont_save,
+                R.string.save,
+                TransportExpenseFragment.WARNING_NAVIGATEUP
+            )
+        }
+
+        arguments?.let {
+            isPcu = args.isPcu
+        }
     }
 
     override fun baseListAdapter(): BaseListAdapter<OtherExpense> {
@@ -89,13 +90,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             val data = bundle.get(ExpenseTypeFragment.DATA)
             val pos = bundle.getInt(ExpenseTypeFragment.POSITION)
             if (data is ExpenseType && pos != -1){
-                val item = OtherExpense()
-                item.ExpenseType = data.ExpenseType
-                item.expenseName = data.Description
-                viewModel.setItem(item,position)
-                val list = settlementViewModel._otherExpenses
-                println(list)
-//                viewModel.setExpenseType(data,position,getString(R.string.other_expense_idr))
+                viewModel.setExpenseType(data,pos,getString(R.string.other_expense_idr))
             }
         }
     }
@@ -105,29 +100,23 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             this,
             DefaultViewModelFactory(false, requireContext())
         ).get(OtherExpenseViewModel::class.java)
-
-        settlementViewModel = ViewModelProvider(
-            requireActivity(),
-            DefaultViewModelFactory(false, requireContext())
-        ).get(SettlementViewModel::class.java)
     }
 
+    // Todo add expense type
     private fun addTypeExpense() {
-        typeExpenseDialog = MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.expense_type)
-        val typeExpense = settlementViewModel.typeExpense
-        if (typeExpense.isNotEmpty() && viewModel.expenseTypes.isEmpty()){
-            viewModel.expenseTypes.clear()
-            viewModel.expenseTypes.addAll(typeExpense)
-            expenseTypes = typeExpense.map { it.Description }.toTypedArray()
+        val items = args.expenseType
+        if (items.isNotEmpty()){
+            expenseTypes = items
         }
     }
 
+    //Todo add items
     private fun addItems(){
-        val items2 = args.otherExpenses
-        if (items2.isNotEmpty() && viewModel.items.isEmpty()){
-            viewModel.items .clear()
-            viewModel.items.addAll(items2)
-            viewModel.isRemoveVisible.set(items2.size > 1)
+        val items = args.otherExpenses
+        if (items.isNotEmpty() && viewModel.items.isEmpty()){
+            viewModel.items.clear()
+            viewModel.items.addAll(items)
+            viewModel.isRemoveVisible.set(items.size > 1)
         }else if (viewModel.items.isEmpty()) {
             val item = OtherExpense()
             item.Currency = getString(R.string.other_expense_idr)
@@ -163,7 +152,6 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
                     val text = view.text.toString()
                     val d = viewModel.items[position]
                     d.Currency = text
-                    viewModel.setItem(d,position)
                 }
             }
             R.id.buttonRemove -> {
@@ -171,7 +159,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             }
             else->{
                 if (viewModel.expenseTypes.isEmpty()) {
-                    viewModel.getExpenseType()
+                    viewModel.getExpenseType(isPcu)
                 } else {
                     navigateExpenseType(position)
                 }
@@ -181,25 +169,14 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
     }
 
     private fun navigateExpenseType(position : Int){
-        val expenseTypes = viewModel.expenseTypes.toTypedArray()
         val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(expenseTypes,position)
         findNavController().navigate(action)
     }
 
     private fun setExpenseType() {
-//        if (expenseTypes.isEmpty()) {
-//            val expenseType = viewModel.expenseTypes
-//                .filter { !it.Description.isNullOrEmpty() || !it.ExpenseType.isNullOrEmpty() }
-//                .map {
-//                    it.Description
-//                }
-//            expenseTypes = expenseType.toTypedArray()
-//            typeExpenseDialog.setItems(expenseTypes,this).show()
-//        }
-
+        expenseTypes = viewModel.expenseTypes.toTypedArray()
         navigateExpenseType(position)
     }
-
 
     private fun setExpenseType(expenseType : ExpenseType,position: Int) {
         val item = viewModel.items[position]
@@ -222,6 +199,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         adapter.notifyItemRemoved(pos)
     }
 
+    //Todo save item
     private fun saveItem(){
         val indexEmpty = viewModel.indexFirstEmpty()
         if (indexEmpty != -1){
@@ -237,14 +215,11 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             }
             snackbar.show()
         } else {
-            val items = arrayListOf<OtherExpense>()
-            val list = viewModel.items.toList()
-            items.addAll(list)
-//            settlementViewModel.addingOtherExpense(items)
-            setFragmentResult("Expense", bundleOf("expenses" to items))
-            if (settlementViewModel.typeExpense.isEmpty()){
-                settlementViewModel.typeExpense.addAll(viewModel.expenseTypes)
-            }
+            val list : ArrayList<OtherExpense> = viewModel.items
+            val bundle = bundleOf()
+            bundle.putParcelableArrayList(KEY_OTHER_EXPENSE_LIST,list)
+            bundle.putParcelableArray(KEY_EXPENSE_TYPE_LIST,expenseTypes)
+            setFragmentResult(KEY_REQUEST, bundle)
             navigateUp()
         }
     }
@@ -269,5 +244,10 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             dialogInterface.dismiss()
             navigateUp()
         }
+    }
+
+    companion object{
+        const val KEY_OTHER_EXPENSE_LIST = "OTHER_EXPENSE_LIST"
+        const val KEY_EXPENSE_TYPE_LIST = "EXPENSE_TYPE_LIST"
     }
 }
