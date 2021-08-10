@@ -283,7 +283,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             rlCashAd.visible()
             tv_currency.text = dataCashAdvance.currency
             cashAdvanceValueLimit = dataCashAdvance.maxAmount.toInt()
-            et_min.hint = "Limit ${(dataCashAdvance.maxAmount)}"
+            et_min.hint = "Limit ${(Globals.formatAmount(dataCashAdvance.maxAmount))}"
         } else {
             rlCashAd.gone()
         }
@@ -300,18 +300,18 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             } else {
                 succesCreateTrip()
             }
-        } else {
-            succesCreateTrip()
-        }
-        /*if (dataCashAdvance.isAllowed.equals(true)) {
+        } else if (dataCashAdvance.isAllowed.equals(true)) {
             if (bankTransferEmpty == true) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_bank_transfer), this)
-            } else if (cashAmountEmpty == true) {
-                Globals.showAlert(getString(R.string.txt_please), getString(R.string.fill_your_cash_amount), this)
+            } else if (cashAdvanceValue > cashAdvanceValueLimit) {
+                Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this)
             } else {
                 succesCreateTrip()
             }
-        }*/
+        } else {
+            succesCreateTrip()
+        }
+
     }
 
     fun checkEmptyField(enable : Boolean) {
@@ -372,6 +372,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.isDomestic = !dataTrip.isInternational
         dataRequest.remark = dataTrip.notes
         dataRequest.wbsNo = dataTrip.wbsNumber
+        dataRequest.withPartner = dataTrip.isTripPartner
+        dataRequest.partnerName = dataTrip.tripPartnerName
 
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()

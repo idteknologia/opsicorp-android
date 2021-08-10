@@ -1,9 +1,11 @@
 package com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
@@ -34,7 +36,9 @@ class ApproverAdapter (val context: Context): androidx.recyclerview.widget.Recyc
         if (dataProfile.approval.travelRequestApproval.isNotEmpty()){
             if (dataProfile.approval.travelRequestApproval[position].isPjs){
                 holder.itemView.tv_status.text = "PJS"
+                holder.itemView.tv_status.setTextColor(Color.parseColor("#939396"))
             } else {
+                holder.itemView.tv_status.setTextColor(Color.parseColor("#939396"))
                 holder.itemView.tv_status.text = "NON-PJS"
             }
         }

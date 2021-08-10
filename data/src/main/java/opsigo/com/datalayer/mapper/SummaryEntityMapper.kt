@@ -3,6 +3,7 @@ package opsigo.com.datalayer.mapper
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.datalayer.model.cart.SummaryEntity
+import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.summary.*
 
 class SummaryEntityMapper() {
@@ -49,6 +50,12 @@ class SummaryEntityMapper() {
             uplaodModel.pathLocalImage = tripAttachmentsItem.description.toString()
             uplaodModel.statusUploaded = "success"
             summary.attactment.add(uplaodModel)
+        }
+
+        from.tripParticipants?.forEachIndexed { index, tripParticipantsItem ->
+            val tripParticipant = ParticipantPertamina()
+            tripParticipant.estTotal = tripParticipantsItem?.estTotal!!.toInt()
+            summary.tripParticipantItem.add(tripParticipant)
         }
 
         from.routes.forEachIndexed { index, routesItem ->

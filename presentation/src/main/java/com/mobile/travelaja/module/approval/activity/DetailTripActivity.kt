@@ -447,7 +447,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_mount.text = tripSummary.totalAllowance
         } else {
             tv_cost_center.text = Globals.getProfile(this).costCenter + " - " + Globals.getProfile(this).costCenterDefaultText
-            llAllowance.gone()
+            tv_mount.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
         }
     }
 

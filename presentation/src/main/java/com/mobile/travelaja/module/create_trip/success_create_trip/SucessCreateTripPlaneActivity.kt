@@ -68,7 +68,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_tripcode.text = data.tripCode
         tv_purpose.text = data.purpose
         tv_activity_type_text.text = data.activityType
-        tv_created_date.text = "Created Date:${data.createDate.replace("Current Date","")}"
+        tv_created_date2.text = "${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
         /*tv_destination.text = "${data.originName} - ${data.destinationName}"*/
@@ -136,7 +136,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_status.text = data.status
         tv_tripcode.text = data.tripCode
         tv_purpose.text = data.purpose
-        tv_created_date.text = "Created Date ${data.createDateView}"
+        tv_created_date2.text = "${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
         tv_activity_type.gone()

@@ -11,7 +11,10 @@ import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.base.BaseFragment
+import kotlinx.android.synthetic.main.manage_trip_fragment.*
 import kotlinx.android.synthetic.main.manage_trip_fragment_test.*
+import kotlinx.android.synthetic.main.manage_trip_fragment_test.line_dasboard
+import kotlinx.android.synthetic.main.manage_trip_fragment_test.line_list_approval
 
 class TestManageTripFragment : BaseFragment()
         ,TestDasboardApproval.CallbackDassboardApprofal
@@ -24,6 +27,7 @@ class TestManageTripFragment : BaseFragment()
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         checkPositionAmployer()
         line_list_approval.setInitCallback(this)
+        llTripHistory.setOnClickListener(this)
     }
 
     private fun checkPositionAmployer() {
@@ -52,7 +56,11 @@ class TestManageTripFragment : BaseFragment()
 
 
     override fun onClick(v: View?) {
-
+        when (v){
+            llTripHistory -> {
+                gotoActivity(TripHistoryActivity::class.java)
+            }
+        }
     }
 
     override fun waitingApprofal() {

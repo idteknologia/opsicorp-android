@@ -127,7 +127,7 @@
     <string name="trip_plan">Trip Plan</string>
     <string name="approval">Approval</string>
     <string name="trip_code">Trip Code</string>
-    <string name="created_date">Created Date</string>
+    <string name="created_date">Created Date :</string>
     <string name="created_by">Created By</string>
     <string name="expire_in">Expires in</string>
     <string name="detail">Detail</string>
@@ -1154,6 +1154,7 @@ Please add your trip item for Approval."
     <string name="expense_type">Please select your expense type ?</string>
     <string name="alert_empty_expense_type">Sorry, Expense Type is Empty</string>
     <string name="warning_back_settlement_other_expense">Press the save button to save other expense</string>
+    <string name="trip_history">Trip History</string>
 
 </resources>
 

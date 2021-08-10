@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             style="@style/RobotoMedium"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_width="wrap_content"
@@ -36,6 +36,7 @@
             android:lineSpacingMultiplier="1"
             android:lineSpacingExtra="4dp"
             android:text="@string/yourtrip_hasbeen_released"/>
+
 
         <!--        <com.opsigo.opsicorp.module.item_custom.button_top.ButtonTopRoundedOpsicorp-->
         <!--            android:layout_width="match_parent"-->

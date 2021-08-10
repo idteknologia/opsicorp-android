@@ -147,9 +147,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
         toolbar.setTitleBar("SSR (Special Service Request)")
         toolbar.hidenBtnCart()
         toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
         tvTotalPriceSsr.text = "IDR 0"
     }
 

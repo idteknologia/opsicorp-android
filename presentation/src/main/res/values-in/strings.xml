@@ -117,7 +117,7 @@
     <string name="trip_plan">Trip Plan</string>
     <string name="approval">Approval</string>
     <string name="trip_code">Trip Code</string>
-    <string name="created_date">Created Date</string>
+    <string name="created_date">Created Date :</string>
     <string name="created_by">Created By</string>
     <string name="expire_in">Expires in</string>
     <string name="detail">Detail</string>
@@ -676,5 +676,6 @@ Please add your trip item for Approval."
     <string name="contact_hr">You don\'t have Approver yet right now.<br>Please contact your HR Management!</br></string>
     <string name="sorry2">Sorry..</string>
     <string name="enter_amount">Enter Amount</string>
+    <string name="trip_history">Trip History</string>
     <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>

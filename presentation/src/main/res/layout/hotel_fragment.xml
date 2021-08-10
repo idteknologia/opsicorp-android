@@ -145,6 +145,7 @@
                         <LinearLayout
                             android:id="@+id/lay_city"
                             android:orientation="vertical"
+                            android:layout_marginStart="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="60dp">
 
@@ -153,7 +154,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:textColor="#2b9a8e"
+                                android:textColor="#91929e"
                                 android:text="@string/title_nearby_city" />
 
 
@@ -276,6 +277,7 @@
                             android:layout_below="@+id/lay_deaprture_date"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginEnd="10dp"
                             android:background="@color/colorLineEdittext">
 
                         </LinearLayout>
@@ -417,7 +419,7 @@
 
             <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_marginTop="43.5dp"
-                app:text="@string/search_hotel"
+                app:text="@string/search"
                 android:layout_marginBottom="33dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

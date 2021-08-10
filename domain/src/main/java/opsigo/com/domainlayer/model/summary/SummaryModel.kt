@@ -1,6 +1,7 @@
 package opsigo.com.domainlayer.model.summary
 
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
+import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 
 data class SummaryModel(
@@ -50,5 +51,6 @@ data class SummaryModel(
         var contact: ContactModel = ContactModel(),
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),
         var attactment :ArrayList<UploadModel> = ArrayList(),
+        var tripParticipantItem :ArrayList<ParticipantPertamina> = ArrayList(),
         var tripParticipantModels: List<TripParticipantsItemModel> = ArrayList()
 )

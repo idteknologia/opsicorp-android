@@ -201,6 +201,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".module.create_trip.newtrip_pertamina.activity.SelectBankTransferActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".module.manage_trip.TripHistoryActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".locale.AppLocaleChangeReceiver"

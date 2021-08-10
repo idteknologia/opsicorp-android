@@ -2619,7 +2619,10 @@ data class TripParticipantsItem(
 	val emergencyContactName: Any? = null,
 
 		@field:SerializedName("IsAnyPNRWithNotCompleted")
-	val isAnyPNRWithNotCompleted: Boolean = false
+	val isAnyPNRWithNotCompleted: Boolean = false,
+
+		@field:SerializedName("EstTotal")
+	var estTotal: Double = 0.0
 )
 
 data class TripParticipantCustomApprovalsItem(
