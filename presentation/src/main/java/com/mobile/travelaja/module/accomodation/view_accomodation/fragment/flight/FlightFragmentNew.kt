@@ -802,7 +802,6 @@ class FlightFragmentNew : BaseFragment(),
 
     }
 
-
     private fun openCityTo(position: Int) {
         val listCity = ArrayList<String>()
 
@@ -841,9 +840,19 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun openCityFrom(position: Int) {
-        var listCity = ArrayList<String>()
-        listCity.add("Jakarta")
-        listCity.add("Surabaya")
+        val listCity = ArrayList<String>()
+
+        dataTripPlan.route.forEach {
+            listCity.add(it.originName)
+            listCity.add(it.destinationName)
+        }
+        /*
+        * remove duplicate items
+        * */
+        val set: Set<String> = HashSet(listCity)
+        listCity.clear()
+        listCity.addAll(set)
+
         val bundle = Bundle()
         currentPosition = position
         bundle.putString(SELECT_RESULT, "city")

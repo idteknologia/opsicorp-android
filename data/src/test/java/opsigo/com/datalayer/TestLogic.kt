@@ -111,15 +111,28 @@ class TestLogic {
 
     @Test
     fun removeDuplicateElementArray(){
-        val data = ArrayList<String>()
-        data.add("Surabaya")
-        data.add("Surabaya")
-        val set: Set<String> = HashSet(data)
-        data.clear()
-        data.addAll(set)
+        val data = ArrayList<models>()
+        data.add(models("surabaya","1"))
+        data.add(models("surabaya","1"))
+
+        for (i in 0 until data.size) {
+            var j = i + 1
+            while (j < data.size) {
+                if (data.get(i).name.equals(data.get(j).name)) {
+                    data.removeAt(j)
+                    j--
+                }
+                j++
+            }
+        }
+
         data.forEach {
-            print(it)
+            println(it.name)
+            println(it.id)
         }
     }
-
+    class models(
+        val name :String= "",
+        val id  :String= ""
+        )
 }

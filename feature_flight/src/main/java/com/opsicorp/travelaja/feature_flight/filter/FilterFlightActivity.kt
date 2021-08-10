@@ -33,12 +33,12 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
         return R.layout.filter_flight_activity_new
     }
 
-    val d1="{\"listFlightModel\":{\n" +
+    val d1="{\n" +
             "      \"airline\":11,\n" +
-            "      \"arrivalDate\":\"2021-08-10 13:00:00\",\n" +
+            "      \"arrivalDate\":\"2021-08-10 06:00:00\",\n" +
             "      \"arriveDate\":\"2021-08-10\",\n" +
-            "      \"arriveDateTimeView\":\"2021-08-10 13:00\",\n" +
-            "      \"arriveTime\":\"13:00\",\n" +
+            "      \"arriveDateTimeView\":\"2021-08-10 06:00\",\n" +
+            "      \"arriveTime\":\"06:00\",\n" +
             "      \"classCode\":\"N\",\n" +
             "      \"classId\":\"N\",\n" +
             "      \"code\":\"N\",\n" +
@@ -54,7 +54,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "        \"nameFlight\":\"\",\n" +
             "        \"totalRows\":0\n" +
             "      },\n" +
-            "      \"dateDeparture\":\"Aug 8,2021 8:04:33 PM\",\n" +
+            "      \"dateDeparture\":null,\n" +
             "      \"departDate\":\"2021-08-10\",\n" +
             "      \"departTime\":\"11:30\",\n" +
             "      \"departureDate\":\"2021-08-10 11:30:00\",\n" +
@@ -102,9 +102,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "      \"transiteFlight\":[\n" +
             "        \n" +
             "      ]\n" +
-            "    }}"
+            "    }"
 
-    val d2 = "{\"listFlightModel\":{\n" +
+    val d2 = "{\n" +
             "      \"airline\":11,\n" +
             "      \"arrivalDate\":\"2021-08-10 17:00:00\",\n" +
             "      \"arriveDate\":\"2021-08-10\",\n" +
@@ -125,7 +125,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "        \"nameFlight\":\"\",\n" +
             "        \"totalRows\":0\n" +
             "      },\n" +
-            "      \"dateDeparture\":\"Aug 8,2021 8:04:33 PM\",\n" +
+            "      \"dateDeparture\":null,\n" +
             "      \"departDate\":\"2021-08-10\",\n" +
             "      \"departTime\":\"11:30\",\n" +
             "      \"departureDate\":\"2021-08-10 11:30:00\",\n" +
@@ -173,9 +173,9 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "      \"transiteFlight\":[\n" +
             "        \n" +
             "      ]\n" +
-            "    }}"
+            "    }"
 
-    val d3 = "{\"listFlightModel\":{\n" +
+    val d3 = "{\n" +
             "      \"airline\":11,\n" +
             "      \"arrivalDate\":\"2021-08-10 20:00:00\",\n" +
             "      \"arriveDate\":\"2021-08-10\",\n" +
@@ -196,7 +196,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "        \"nameFlight\":\"\",\n" +
             "        \"totalRows\":0\n" +
             "      },\n" +
-            "      \"dateDeparture\":\"Aug 8,2021 8:04:33 PM\",\n" +
+            "      \"dateDeparture\":null,\n" +
             "      \"departDate\":\"2021-08-10\",\n" +
             "      \"departTime\":\"11:30\",\n" +
             "      \"departureDate\":\"2021-08-10 11:30:00\",\n" +
@@ -244,7 +244,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
             "      \"transiteFlight\":[\n" +
             "        \n" +
             "      ]\n" +
-            "    }}"
+            "    }"
 
     var dataCabin = ArrayList<FilterFlightModel>()
     var dataDeparture  = ArrayList<FilterFlightModel>()
@@ -260,16 +260,16 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     var dataFilter = ArrayList<AccomodationResultModel>()
 
     override fun OnMain() {
+        dataFilter.add(dataDummy(d1))
+        dataFilter.add(dataDummy(d2))
+        dataFilter.add(dataDummy(d3))
+
         initToolbar()
         initRangeBar()
         initButtonTransit()
         initRecyclerView()
         addDataDummyTime()
         initButtonNext()
-
-        dataFilter.add(dataDummy(d1))
-        dataFilter.add(dataDummy(d2))
-        dataFilter.add(dataDummy(d3))
     }
 
     private fun dataDummy(string: String): AccomodationResultModel {
@@ -339,6 +339,7 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
                     -1 ->{
                         dataArrival[position].isSelected = !dataArrival[position].isSelected
                         adapterArrival.notifyItemChanged(position)
+                        filterData()
                     }
                 }
             }
@@ -424,16 +425,19 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     }
 
     fun filterData(){
+        val filterThemphorary = ArrayList<AccomodationResultModel>()
         if (!dataArrival.filter { it.isSelected }.isNullOrEmpty()){
             dataArrival.filter { it.isSelected }.forEachIndexed { index, filterFlightModel ->
-                dataFilter.filter {
+                val data = dataFilter.filter {
                     val timeArrival = DateConverter().stringToDate("yyyy-MM-dd HH:mm",it.listFlightModel.arrivalDate)
                     val afterTime   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[0]}")
                     val beforeArrival   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[0]}")
                     timeArrival.after(afterTime)&& timeArrival.before(beforeArrival)
                 }
+                if (data.isNotEmpty()) filterThemphorary.addAll(data)
             }
         }
+        setLog(filterThemphorary.size.toString())
     }
 
     private fun addNamesAirline() {
