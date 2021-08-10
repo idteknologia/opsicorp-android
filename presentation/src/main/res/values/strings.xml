@@ -1139,6 +1139,12 @@ Please add your trip item for Approval."
     <string name="expense_type">Please select your expense type ?</string>
     <string name="alert_empty_expense_type">Sorry, Expense Type is Empty</string>
     <string name="warning_back_settlement_other_expense">Press the save button to save other expense</string>
+    <string name="title_enter_distance_max_200">Enter Distance <font color="#da2128">Max. 200</font></string>
+    <string name="please_select_route">Please select route ?</string>
+    <string name="title_intercity_transport">Intercity Transport</string>
+    <string name="add_intercity_transport">+ Add Intercity Transport</string>
+    <string name="warning_back_settlement_intercity_transport">Press the save button to save intercity transport</string>
+    <string name="grand_total">Grand Total</string>
 
 </resources>
 

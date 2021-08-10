@@ -25,6 +25,8 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     val isEnabledDetailExpense = ObservableBoolean(false)
     val isEnableOverNight = ObservableBoolean(false)
     val isTravellingEnabled = ObservableBoolean(false)
+    val isEnabledIntercity = ObservableBoolean(false)
+
 
     private var currentResult: Flow<PagingData<Settlement>>? = null
 
@@ -166,7 +168,6 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         isEnabledDetailExpense.set(checked)
     }
 
-
     fun checkedTravelling(checked: Boolean) {
         isTravellingEnabled.set(checked)
         if (!checked && isEnableOverNight.get()) {
@@ -237,6 +238,14 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     fun addingOtherExpense(list : List<OtherExpense>){
         otherExpenses.clear()
         otherExpenses.addAll(list)
+    }
+
+    var intercityTransport : ArrayList<IntercityTransport> = arrayListOf()
+    var totalIntercity = 0.0
+    fun addingIntercityTransport(list : List<IntercityTransport>){
+        intercityTransport.clear()
+        intercityTransport.addAll(list)
+        totalIntercity = list.sumByDouble { it.TotalAmount.toDouble() }
     }
 
 

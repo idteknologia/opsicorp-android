@@ -13,22 +13,25 @@ import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.ExpenseType
+import opsigo.com.domainlayer.model.settlement.RouteTransport
 
-class ExpenseTypeFragment : BaseListFragment<ExpenseType>(),ExpenseTypeListener {
-    private lateinit var adapter : ExpenseTypeAdapter
-    private val args : ExpenseTypeFragmentArgs by navArgs()
+class SelectRouteFragment : BaseListFragment<RouteTransport>(),SelectRouteListener{
+    private lateinit var adapter :  SelectRouteAdapter
+    private val args : SelectRouteFragmentArgs by navArgs()
     private var position = -1
+    private var city = ""
 
-    override fun baseListAdapter(): BaseListAdapter<ExpenseType> {
+    override fun baseListAdapter(): BaseListAdapter<RouteTransport> {
         arguments?.let {
             position = args.position
+            city = args.nameCompare
         }
-        adapter = ExpenseTypeAdapter(this,args.nameCompare)
-        val items = args.expenseType
+        adapter = SelectRouteAdapter(this,city)
+        val items = args.route
         adapter.list = items.toMutableList()
         adapter.notifyDataSetChanged()
         isEnabledRefresh(false)
-        setTitleName(R.string.expense_type)
+        setTitleName(R.string.please_select_route)
         return adapter
     }
 
@@ -47,7 +50,7 @@ class ExpenseTypeFragment : BaseListFragment<ExpenseType>(),ExpenseTypeListener 
         }
     }
 
-    override fun onClickItem(data: ExpenseType) {
+    override fun onClickItem(data: RouteTransport) {
         if (position != -1){
             setFragmentResult(TYPE, bundleOf(DATA to data, POSITION to position))
             findNavController().navigateUp()

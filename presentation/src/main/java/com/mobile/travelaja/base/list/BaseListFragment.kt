@@ -10,6 +10,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -28,7 +29,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
     lateinit var binding: BaseListFragmentBinding
     private var snackbar: Snackbar? = null
     val isLoading = ObservableBoolean(false)
-
+    val textBottomValue = ObservableField("")
 
     abstract fun baseListAdapter(): BaseListAdapter<T>
 
@@ -54,6 +55,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding = BaseListFragmentBinding.inflate(inflater, container, false)
         binding.isSearch = isSearchVisible()
         binding.setVariable(BR.isLoading, isLoading)
+        binding.setVariable(BR.textBottomValue,textBottomValue)
         return binding.root
     }
 
@@ -76,8 +78,8 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.buttonBaseList.setOnClickListener(this)
         binding.includeSearch.root.isVisible = isSearchVisible()
         binding.buttonBaseList.isVisible = isButtonVisible()
-        binding.buttonBottom.isVisible = isButtonBottomVisible()
-        binding.buttonBottom.setOnClickListener(this)
+        binding.includeBottom.root.isVisible = isButtonBottomVisible()
+        binding.includeBottom.buttonBottom.setOnClickListener(this)
         binding.executePendingBindings()
     }
 
@@ -89,6 +91,19 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     fun setSubtitle(@StringRes subtitle: Int) {
         binding.tvSubtitle.setText(subtitle)
+    }
+
+    fun showingTotal(@StringRes title : Int ?,@StringRes currency : Int?){
+        binding.includeBottom.tvTitleTotal.isVisible = title != null
+        binding.includeBottom.tvTotalValue.isVisible = title != null
+        binding.includeBottom.tvTypePrice.isVisible = currency != null
+        if (title != null){
+            binding.includeBottom.tvTitleTotal.setText(title)
+        }
+
+        if (currency != null){
+            binding.includeBottom.tvTypePrice.setText(currency)
+        }
     }
 
     fun setHintSearch(hint: String) {
@@ -140,6 +155,16 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         findNavController().navigateUp()
     }
 
+    fun showWarning(@StringRes text: Int, @StringRes textAction: Int?) {
+        snackbar?.setText(text)
+        if (textAction != null) {
+            snackbar?.setAction(textAction) {
+                snackbar?.dismiss()
+            }
+        }
+        snackbar?.show()
+    }
+
     fun showingWarning(
         @StringRes title: Int,
         @StringRes message: Int,
@@ -149,17 +174,23 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
     ) {
         alert.setTitle(title).setMessage(message)
         alert.setPositiveButton(positiveName) { d, _ ->
-            onWarningClick(d,type,true)
+            onWarningClick(d, type, true)
         }
         if (negativeName != -1) {
             alert.setNegativeButton(negativeName) { d, _ ->
-                onWarningClick(d,type,false)
+                onWarningClick(d, type, false)
             }
         }
         alert.show()
     }
 
-    open fun onWarningClick(dialogInterface: DialogInterface,type : Int,isPositive : Boolean){
+    open fun onWarningClick(dialogInterface: DialogInterface, type: Int, isPositive: Boolean) {
 
+    }
+
+    // Todo scrolling nested for index item
+    fun scrollNestedByIndexItem(index: Int) {
+        val y = binding.rvBaseList.getChildAt(index).y - 30f
+        binding.nested.scrollTo(0, y.toInt())
     }
 }

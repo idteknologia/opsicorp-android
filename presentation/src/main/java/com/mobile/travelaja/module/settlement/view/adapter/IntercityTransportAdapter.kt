@@ -4,11 +4,8 @@ import android.text.InputFilter
 import android.text.Spanned
 import android.view.View
 import android.widget.Toast
-import androidx.core.text.isDigitsOnly
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
+import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.BR
@@ -42,7 +39,7 @@ class IntercityTransportAdapter(
         if (holder is IntercityTransportVH) {
             val model = viewModel.items[position]
             val isRemove = viewModel.isRemoveVisible
-            holder.onBind(model, isRemove, position)
+            holder.onBind(model, isRemove, position,viewModel.items)
         }
     }
 
@@ -57,11 +54,13 @@ class IntercityTransportAdapter(
         fun onBind(
             model: IntercityTransport,
             isRemove: ObservableBoolean,
-            position: Int
+            position: Int,
+            list : ObservableArrayList<IntercityTransport>
         ) {
             binding.listener = listener
             binding.isRemove = isRemove
             binding.position = position
+            binding.list = list
             binding.setVariable(BR.data, model)
             binding.executePendingBindings()
             binding.etDistance.filters = filter

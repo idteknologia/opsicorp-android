@@ -109,6 +109,16 @@
         <argument
             android:name="golper"
             app:argType="integer" />
+        <argument
+            android:name="items"
+            app:argType="opsigo.com.domainlayer.model.settlement.IntercityTransport[]" />
+
+        <action
+            android:id="@+id/action_intercityTransportFragment_to_selectRouteFragment"
+            app:destination="@id/selectRouteFragment" />
+        <argument
+            android:name="total"
+            app:argType="string" />
 
     </fragment>
     <fragment
@@ -117,12 +127,32 @@
         android:label="ExpenseTypeFragment"
         tools:layout="@layout/base_list_fragment">
         <argument
+            android:name="nameCompare"
+            app:argType="string" />
+        <argument
             android:name="expenseType"
             app:argType="opsigo.com.domainlayer.model.settlement.ExpenseType[]" />
         <argument
             android:name="position"
             app:argType="integer"
             android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectRouteFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.content.SelectRouteFragment"
+        android:label="SelectRouteFragment"
+        tools:layout="@layout/base_list_fragment">
+
+        <argument
+            android:name="route"
+            app:argType="opsigo.com.domainlayer.model.settlement.RouteTransport[]" />
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="nameCompare"
+            app:argType="string" />
     </fragment>
 
 

@@ -71,7 +71,6 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         super.onViewCreated(view, savedInstanceState)
         viewModel.loading.observe(viewLifecycleOwner) { event ->
             event?.getContentIfNotHandled()?.let { loading ->
-                binding.rvBaseList.isEnabled = !loading
                 if (!loading && viewModel.expenseTypes.isNotEmpty()) {
                     setExpenseType()
                 }
@@ -131,7 +130,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         if (v?.id == R.id.buttonBaseList){
             addItem()
         }else if (v?.id == R.id.buttonBottom) {
-            saveItem()
+            saveItems()
         }else {
             showingWarning(
                 R.string.alert,
@@ -159,7 +158,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             }
             else->{
                 if (viewModel.expenseTypes.isEmpty()) {
-                    viewModel.getExpenseType(isPcu)
+                    getExpenseType()
                 } else {
                     navigateExpenseType(position)
                 }
@@ -168,8 +167,20 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         binding.rvBaseList.clearFocus()
     }
 
+    private fun getExpenseType(){
+        if (!viewModel.isLoading){
+            viewModel.getExpenseType(isPcu)
+        }else {
+            showingWarning(
+                R.string.waiting, R.string.warning_loading, -1, R.string.ok,
+                TransportExpenseFragment.WARNING_ISLOADING
+            )
+        }
+    }
+
     private fun navigateExpenseType(position : Int){
-        val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(expenseTypes,position)
+        val exType = viewModel.getItem(position)?.expenseName ?: ""
+        val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(exType,expenseTypes,position)
         findNavController().navigate(action)
     }
 
@@ -199,8 +210,8 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         adapter.notifyItemRemoved(pos)
     }
 
-    //Todo save item
-    private fun saveItem(){
+    //Todo save item to detail
+    private fun saveItems(){
         val indexEmpty = viewModel.indexFirstEmpty()
         if (indexEmpty != -1){
             val y = binding.rvBaseList.getChildAt(indexEmpty).y - 30f
@@ -236,7 +247,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         super.onWarningClick(dialogInterface, type, isPositive)
         if (isPositive){
             if (type == TransportExpenseFragment.WARNING_NAVIGATEUP) {
-                saveItem()
+                saveItems()
             } else {
                 dialogInterface.dismiss()
             }

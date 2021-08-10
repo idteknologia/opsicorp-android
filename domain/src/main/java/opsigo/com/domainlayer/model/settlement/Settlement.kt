@@ -3,6 +3,8 @@ package opsigo.com.domainlayer.model.settlement
 import android.os.Parcelable
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableDouble
+import androidx.databinding.ObservableField
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import opsigo.com.domainlayer.BR
@@ -149,7 +151,6 @@ data class OtherExpense(
     var Amount: Number = 0,
     var Description: String = "",
     var Currency: String = ""
-
 ) : Parcelable {
     fun getValueAmount(): String {
         return try {
@@ -228,60 +229,28 @@ class Ticket : Parcelable, BaseObservable() {
 }
 
 @Parcelize
-open class RouteTransport : Parcelable, BaseObservable() {
-    @get:Bindable
-    var Route: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.route)
-        }
-
-    @get:Bindable
+data class RouteTransport(
+    var Route: String = "",
     var City: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.city)
-        }
-}
+) : Parcelable, BaseObservable()
 
 @Parcelize
-class IntercityTransport : RouteTransport(), Parcelable {
-    @SerializedName("Amount")
-    var Amount: Number = 0
-
-    @get:Bindable
+data class IntercityTransport(
+    var Route: String = "",
+    var City: String = "",
+    var Amount: Number = 0,
     @SerializedName("Distance")
-    var Distance: Number? = null
-
+    var Distance: Number? = null,
     @SerializedName("TripType")
-    var TripType: Int = 0
-
+    var TripType: Int = 0,
     @SerializedName("Currency")
-    var Currency: String = ""
-
-    @get:Bindable
+    var Currency: String = "",
     @SerializedName("TotalAmount")
-    var TotalAmount: Number = 0
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.totalAmount)
-        }
-
-    @get:Bindable
+    var TotalAmount: Number = 0,
     @SerializedName("Cost")
-    var Cost: Number = 0
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.cost)
-        }
-
-    @get:Bindable
+    var Cost: Number = 0,
     @SerializedName("IsFromPolicy")
     var IsFromPolicy: Boolean = false
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.isFromPolicy)
-        }
-}
+) : Parcelable
 
 data class IntercityTransportResult(@SerializedName("result") var result: IntercityTransport)

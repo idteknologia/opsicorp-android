@@ -16,8 +16,6 @@ import opsigo.com.domainlayer.model.settlement.OtherExpense
 
 class OtherExpenseViewModel(private val repository: SettlementRepository) : ViewModel() {
     val expenseTypes = mutableListOf<ExpenseType>()
-
-    //  val items = mutableListOf<OtherExpense>()
     val isRemoveVisible = ObservableBoolean(false)
     val indexEmpty = ObservableInt(-1)
     var items = ObservableArrayList<OtherExpense>()
@@ -27,12 +25,14 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
 
     private val _loading = MutableLiveData<Event<Boolean>>()
     val loading: LiveData<Event<Boolean>> = _loading
+    var isLoading = false
 
     private val _expenseType = MutableLiveData<List<ExpenseType>>()
     val expenseType: LiveData<List<ExpenseType>> = _expenseType
 
 
     fun getExpenseType(isPcu : Boolean) {
+        isLoading = true
         _loading.value = Event(true)
         viewModelScope.launch {
             val result = repository.getExpenseType()
@@ -54,6 +54,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
             _error.value = Event(t.exception)
         }
         _loading.value = Event(false)
+        isLoading = false
     }
 
     fun setExpenseType(expenseType: ExpenseType, position: Int, currency: String) {
@@ -74,9 +75,8 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
         val item = getItem(pos)
         if (item != null) {
             val tempData = item.copy(
-                Amount = 0,
-                Currency = currency
-            )
+                Amount   = 0,
+                Currency = currency)
             items[pos] = tempData
         }
     }
@@ -120,7 +120,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
         return i
     }
 
-    private fun getItem(pos: Int): OtherExpense? {
+    fun getItem(pos: Int): OtherExpense? {
         return try {
             items[pos]
         } catch (e: Exception) {

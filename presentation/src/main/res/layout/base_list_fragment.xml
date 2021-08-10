@@ -7,13 +7,17 @@
 
         <import type="android.view.View" />
         <import type="androidx.databinding.ObservableBoolean"/>
-
+        <import type="androidx.databinding.ObservableField"/>
+        <variable
+            name="textBottomValue"
+            type="ObservableField&lt;String>" />
         <variable
             name="isSearch"
             type="Boolean" />
         <variable
             name="isLoading"
             type="ObservableBoolean" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -106,7 +110,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/buttonBottom"
+            app:layout_constraintBottom_toTopOf="@+id/includeBottom"
             app:layout_constraintTop_toBottomOf="@+id/barrier"
             tools:layout_editor_absoluteX="0dp">
 
@@ -150,21 +154,10 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <Button
-            android:id="@+id/buttonBottom"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="30dp"
-            android:visibility="gone"
-            tools:visibility="visible"
-            style="@style/ButtonStyle"
-            android:text="@string/save"
-            android:textAllCaps="false"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+        <include
+            android:id="@+id/includeBottom"
+            layout="@layout/button_base_list"
+            app:textBottomValue="@{textBottomValue}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

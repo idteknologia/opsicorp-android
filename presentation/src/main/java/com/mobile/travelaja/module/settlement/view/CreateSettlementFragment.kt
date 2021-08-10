@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.ObservableBoolean
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,7 +19,9 @@ import com.mobile.travelaja.utility.Utils
 import opsigo.com.domainlayer.model.settlement.OtherExpense
 import com.mobile.travelaja.module.settlement.view.OtherExpenseFragment.Companion.KEY_OTHER_EXPENSE_LIST
 import com.mobile.travelaja.module.settlement.view.OtherExpenseFragment.Companion.KEY_EXPENSE_TYPE_LIST
+import com.mobile.travelaja.module.settlement.view.IntercityTransportFragment.Companion.KEY_INTERCITY_TRANSPORTS
 import opsigo.com.domainlayer.model.settlement.ExpenseType
+import opsigo.com.domainlayer.model.settlement.IntercityTransport
 
 class CreateSettlementFragment : Fragment(), View.OnClickListener {
     private lateinit var viewModel: SettlementViewModel
@@ -73,14 +76,26 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener {
         viewModel.getDetailTrip()
 
         setFragmentResultListener(KEY_REQUEST) { k, b ->
-            val items = b.getParcelableArrayList<OtherExpense>(KEY_OTHER_EXPENSE_LIST)
-            viewModel.addingOtherExpense(items?.toList()!!)
-            b.getParcelableArray(KEY_EXPENSE_TYPE_LIST)?.also {
-                if (viewModel.typeExpense.isEmpty() && it.isNotEmpty()) {
-                    viewModel.typeExpense = it as Array<ExpenseType>
+            if (k == KEY_REQUEST){
+                val items = b.getParcelableArrayList<OtherExpense>(KEY_OTHER_EXPENSE_LIST)
+                viewModel.addingOtherExpense(items?.toList()!!)
+                b.getParcelableArray(KEY_EXPENSE_TYPE_LIST)?.also {
+                    if (viewModel.typeExpense.isEmpty() && it.isNotEmpty()) {
+                        viewModel.typeExpense = it as Array<ExpenseType>
+                    }
                 }
             }
 
+        }
+        fragmentResultIntercityTransport()
+    }
+
+    private fun fragmentResultIntercityTransport(){
+        setFragmentResultListener(KEY_REQUEST_INTERCITY_TRANSPORT){k,b ->
+            if (k == KEY_REQUEST_INTERCITY_TRANSPORT){
+                val items = b.getParcelableArrayList<IntercityTransport>(KEY_INTERCITY_TRANSPORTS)
+                viewModel.addingIntercityTransport(items?.toList()!!)
+            }
         }
     }
 
@@ -109,6 +124,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener {
             R.id.ivBack -> activity?.finish()
             R.id.viewDetailInformation -> showTransportation()
             R.id.viewDetailOtherExpense -> navigateOtherExpense()
+            R.id.viewIntercity -> navigateIntercity()
             R.id.switchExpense -> {
                 if (v is SwitchMaterial && v.isChecked) {
                     navigateOtherExpense()
@@ -120,7 +136,9 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener {
                 }
             }
             R.id.switchIntercity -> {
-                if (v is SwitchMaterial && v.isChecked) {
+                if (v is SwitchMaterial) {
+                    viewModel.isEnabledIntercity.set(v.isChecked)
+                    if (v.isChecked)
                     navigateIntercity()
                 }
             }
@@ -155,13 +173,14 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener {
         findNavController().navigate(action)
     }
 
+    //Todo navigate intercity transport
     private fun navigateIntercity() {
         val golper = viewModel.submitSettlement.value?.Golper ?: 0
-        val action =
-            CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(
-                viewModel.routes.toTypedArray(),
-                golper
-            )
+        val items  = viewModel.intercityTransport.toTypedArray()
+        val total  = viewModel.totalIntercity.toString()
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(
+                     viewModel.routes.toTypedArray(),
+                     golper, items, total)
         findNavController().navigate(action)
     }
 
@@ -179,6 +198,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener {
 
     companion object {
         const val KEY_REQUEST = "CREATE_SETTLEMENT"
+        const val KEY_REQUEST_INTERCITY_TRANSPORT = "KEY_REQUEST_INTERCITY_TRANSPORT"
     }
 
 }
