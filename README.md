@@ -16,3 +16,7 @@ more information
 - path key : /opsicorpKey.jks
 - alias    : opsicorpKey
 - pass     : opsicorp
+
+- path key 2 : /travelAjaKey.jks
+- alias      : travelAjaKey
+- pass       : TravelAja

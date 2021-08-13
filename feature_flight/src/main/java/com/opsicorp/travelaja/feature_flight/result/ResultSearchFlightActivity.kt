@@ -143,12 +143,11 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun gotoDetailFlight(position: Int) {
-       /* val bundle = Bundle()
+        val bundle = Bundle()
         val dataSelected = data[position].listFlightModel
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
         bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
-        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)*/
-        setLog(Serializer.serialize(data))
+        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
 
     }
 
