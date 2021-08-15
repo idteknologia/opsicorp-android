@@ -15,8 +15,8 @@ ext {
   retofitVersion              = '2.6.0'
   rxJavaVersion               = '2.4.0'
   converterGsonVersion        = '2.3.0'
-  okhttpVersion               = '3.14.0'
-  okhttpLoggingVersion        = '3.4.1'
+  okhttpVersion               = '4.4.0'
+  okhttpLoggingVersion        = '4.4.0'
   annoTationProcesorVersion   = '8.5.1'
   annotationGlassfishVersion  = '10.0-b28'
   picassoVersion              = '2.71828'// 2.3.2

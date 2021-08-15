@@ -1,6 +1,7 @@
 package com.mobile.travelaja.module.item_custom.dialog_camera
 
 import android.app.Activity
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -17,6 +18,7 @@ import android.os.StrictMode
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -35,12 +37,14 @@ class DialogCamera : BaseDialogFragment() {
     protected val GALLERY_PICTURE = 1
     var imgFile: File ?= null
     private var pictureImagePath = ""
+    private var type : String ?= null
     private var tempFilePath = ""
     lateinit var callbackDialog: DialogCameraCallback
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pictureImagePath = ""
+        type = ""
     }
 
     override fun getLayout(): Int {
@@ -59,7 +63,7 @@ class DialogCamera : BaseDialogFragment() {
 //                openDirectory()
             } else {
                 if (imgFile != null && pictureImagePath.isNotEmpty()){
-                    callbackDialog.data(pictureImagePath, imgFile!!)
+                    callbackDialog.data(pictureImagePath, imgFile!!,type)
                     dismiss()
                 }
             }
@@ -105,6 +109,7 @@ class DialogCamera : BaseDialogFragment() {
             GALLERY_PICTURE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     try {
+                        println(data)
                         data?.data?.let { uri ->
                             val path = uri.path
                             println(path)
@@ -117,7 +122,7 @@ class DialogCamera : BaseDialogFragment() {
                                     "xls"
                                 ) || pictureImagePath.contains("xlsx")
                             ) {
-                                callbackDialog.data(pictureImagePath, File(pictureImagePath))
+                                callbackDialog.data(pictureImagePath, File(pictureImagePath),type)
                                 dismiss()
                             }
                         }
@@ -161,6 +166,12 @@ class DialogCamera : BaseDialogFragment() {
             type = "*/*"
         } // */* setType("image/*")
         startActivityForResult(pictureActionIntent, GALLERY_PICTURE)
+
+        //Todo getting pdf
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.setType("application/pdf")
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+//        startActivityForResult(intent,GALLERY_PICTURE)
     }
 
 //    fun openDirectory() {
@@ -187,6 +198,7 @@ class DialogCamera : BaseDialogFragment() {
         try {
             inputPfd = context?.contentResolver?.openFileDescriptor(uri, "r")
             val type = context?.contentResolver?.getType(uri)
+            this.type = type
             if (type.isNullOrEmpty()) {
                 return
             }
@@ -303,6 +315,7 @@ class DialogCamera : BaseDialogFragment() {
             e.printStackTrace()
             return
         }
+        type = "image/jpeg"
         pictureImagePath = tempFilePath
         image_selected.setImageURI(Uri.parse(pictureImagePath))
     }
@@ -400,5 +413,6 @@ class DialogCamera : BaseDialogFragment() {
     fun setCallbak(callback: DialogCameraCallback) {
         callbackDialog = callback
     }
+
 
 }

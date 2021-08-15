@@ -27,10 +27,16 @@ class DefaultViewModelFactory(private val isFake: Boolean, private val context: 
         if (modelClass.isAssignableFrom(SettlementViewModel::class.java)) {
             val repository = SettlementServiceLocator.instance(api).getRepository()
             return SettlementViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(TransportExpenseViewModel::class.java)){
+        }
+        else if (modelClass.isAssignableFrom(DraftSettlementViewModel::class.java)) {
+            val repository = SettlementServiceLocator.instance(api).getRepository()
+            return DraftSettlementViewModel(repository) as T
+        }
+        else if (modelClass.isAssignableFrom(TransportExpenseViewModel::class.java)){
             val repository = SettlementServiceLocator.instance(api).getRepository()
             return TransportExpenseViewModel(repository) as T
-        } else if (modelClass.isAssignableFrom(OtherExpenseViewModel::class.java)){
+        }
+        else if (modelClass.isAssignableFrom(OtherExpenseViewModel::class.java)){
             val repository = SettlementServiceLocator.instance(api).getRepository()
             return OtherExpenseViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(IntercityTransportViewModel::class.java)){

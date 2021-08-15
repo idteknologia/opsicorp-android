@@ -32,6 +32,8 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
     private val args : OtherExpenseFragmentArgs by navArgs()
     private var expenseTypes = arrayOf<ExpenseType>()
     private var isPcu = false
+    private var hasUpdate = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +56,17 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         setViewModel()
         addTypeExpense()
         addItems()
-        adapter = OtherExpenseAdapter(viewModel, this)
+        adapter = OtherExpenseAdapter(viewModel,binding.rvBaseList, this)
+        setUi()
+        return adapter
+    }
+
+    private fun setUi(){
+        setEnableButtonBottom(hasUpdate)
         setTitleName(R.string.other_expense, R.color.colorTextHint)
         setSubtitle(R.string.transportation_form)
         setButtonText(R.string.add_other_expense)
         isEnabledRefresh(false)
-        return adapter
     }
 
     override fun dividerEnabled(): Boolean = false
@@ -85,6 +92,13 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
                 }
             }
         }
+
+        viewModel.hasUpdate.observe(viewLifecycleOwner) { hasUpdate ->
+            if (!this.hasUpdate)
+                setEnableButtonBottom(true)
+            this.hasUpdate = hasUpdate
+        }
+
         setFragmentResultListener(ExpenseTypeFragment.TYPE){ key, bundle ->
             val data = bundle.get(ExpenseTypeFragment.DATA)
             val pos = bundle.getInt(ExpenseTypeFragment.POSITION)

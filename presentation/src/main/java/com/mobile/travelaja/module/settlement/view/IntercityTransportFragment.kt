@@ -35,6 +35,8 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     private var position = -1
     private var golper = 0
     private var total = 0.0
+    private var hasUpdate = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,6 +131,12 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
             }
         }
 
+        viewModel.hasUpdate.observe(viewLifecycleOwner) { hasUpdate ->
+            if (!this.hasUpdate)
+                setEnableButtonBottom(true)
+            this.hasUpdate = hasUpdate
+        }
+
         setFragmentResultListener(TYPE) { _, bundle ->
             val data = bundle.get(DATA)
             val pos = bundle.getInt(POSITION)
@@ -157,7 +165,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         if (items.isNotEmpty() && viewModel.items.isEmpty()) {
             viewModel.addItems(items)
         } else if (viewModel.items.isEmpty()) {
-            val item = IntercityTransport()
+            val item = IntercityTransport(Currency = getString(R.string.other_expense_idr))
             viewModel.addItems(arrayOf(item))
         }
     }
@@ -173,6 +181,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     }
 
     private fun setUi() {
+        setEnableButtonBottom(hasUpdate)
         setTitleName(R.string.title_intercity_transport, R.color.colorTextHint)
         setSubtitle(R.string.transportation_form)
         setButtonText(R.string.add_intercity_transport)
@@ -203,7 +212,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         val size = adapter.itemCount
         binding.rvBaseList.clearFocus()
         adapter.notifyItemInserted(size)
-        viewModel.addItem()
+        viewModel.addItem(getString(R.string.other_expense_idr))
     }
 
     private fun removeItem(pos: Int) {

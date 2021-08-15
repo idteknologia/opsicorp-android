@@ -3,15 +3,25 @@ package opsigo.com.domainlayer.model.settlement
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.google.gson.annotations.SerializedName
+import okhttp3.internal.Util
 import opsigo.com.domainlayer.BR
 import opsigo.com.domainlayer.model.trip.Route
+
+data class DetailDraftSettlement(
+    @SerializedName("model")
+    val model: DetailSettlement?
+)
 
 data class DetailSettlementResult(
     @SerializedName("trip")
     val trip: DetailSettlement?,
     var rateStay: Double,
     @SerializedName("listTicket")
-    val listTicket: List<Ticket> = listOf()
+    val listTicket: List<Ticket> = listOf(),
+    @SerializedName("errorMessage")
+    var errorMessage : String,
+    @SerializedName("isSuccess")
+    var isSuccess : Boolean
 )
 
 class DetailSettlement : BaseObservable(){
@@ -21,8 +31,13 @@ class DetailSettlement : BaseObservable(){
     var BankTransfer : String = ""
     @SerializedName("BankAccount")
     var BankAccount : String = ""
+    @get:Bindable
     @SerializedName("TripId")
     var TripId :String =  ""
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.tripId)
+    }
     @SerializedName("TripCode")
     @get:Bindable
     var TripCode : String = ""
@@ -60,26 +75,72 @@ class DetailSettlement : BaseObservable(){
     var AmountAllowance : Number =  0
     @SerializedName("CurrAllowance")
     var CurrAllowance : String =  ""
+    @get:Bindable
     @SerializedName("SpecificAreaTariff")
     var SpecificAreaTariff :Number =  0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.specificAreaTariff)
+    }
+    @get:Bindable
     @SerializedName("SpecificAreaDays")
     var SpecificAreaDays : Int = 0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.specificAreaDays)
+    }
+    @get:Bindable
     @SerializedName("UseSpecificArea")
     var UseSpecificArea : Boolean = false
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.useSpecificArea)
+    }
+    @get:Bindable
     @SerializedName("IsStaySpecArea")
     var IsStaySpecArea : Boolean = false
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.isStaySpecArea)
+        }
     @SerializedName("CurrSpecificArea")
     var CurrSpecificArea : String = ""
     @SerializedName("AllowanceResidential")
     var AllowanceResidential :Number =  0
+    @get:Bindable
     @SerializedName("TotalTransportExpense")
     var TotalTransportExpense : Number = 0
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.totalTransportExpense)
+    }
+    @get:Bindable
     @SerializedName("TotalOtherTransportExpense")
     var TotalOtherTransportExpense : Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.totalOtherTransportExpense)
+        }
+    @get:Bindable
     @SerializedName("TotalSpecificAreaExpense")
     var TotalSpecificAreaExpense : Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.totalSpecificAreaExpense)
+        }
+    @get:Bindable
     @SerializedName("TotalOtherExpense")
-    var TotalOtherExpense  :Number =  0
+    var TotalOtherExpense  :Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.totalOtherExpense)
+        }
+    @get:Bindable
+    var TotalOtherExpenseUSD  :Number = 0
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.totalOtherExpenseUSD)
+        }
     @SerializedName("TotalRefundTicket")
     var TotalRefundTicket :Number = 0
     @SerializedName("TotalCashAdvance")
@@ -98,7 +159,22 @@ class DetailSettlement : BaseObservable(){
     var TransportExpenses = mutableListOf<TransportExpenses>()
     @SerializedName("Routes")
     val Routes: MutableList<Route> = mutableListOf()
-    var OtherExpense = arrayListOf<OtherExpense>()
+    @SerializedName("OtherExpenses")
+    var OtherExpense = mutableListOf<OtherExpense>()
+    @SerializedName("TicketRefunds")
+    var TicketRefunds = mutableListOf<Ticket>()
+    @get:Bindable
+    @SerializedName("Attachments")
+    var Attachments = mutableListOf<Attachment>()
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.attachments)
+    }
+    @SerializedName("OtherTransportExpenses")
+    var OtherTransportExpenses = mutableListOf<IntercityTransport>()
+    @SerializedName("CreatedDateView")
+    var CreatedDateView  : String =  ""
+
 
     fun cities(): List<String>{
         val cities = mutableSetOf<String>()
@@ -107,6 +183,14 @@ class DetailSettlement : BaseObservable(){
             cities.add(it.Destination)
         }
         return cities.toList()
+    }
+
+    fun nameCities() : String {
+        var cities = ""
+        Routes.forEach {
+            cities += "${it.Origin} - ${it.Destination}"
+        }
+        return cities
     }
 
     fun routes() : List<RouteTransport> {
@@ -118,4 +202,11 @@ class DetailSettlement : BaseObservable(){
         }
         return routes
     }
+
+    fun totalTransportExpense() : Number {
+        val totalIdr = TransportExpenses.filter { it.Currency == "IDR" }
+            .sumOf { it.TotalAmount.toDouble() }
+        return totalIdr
+    }
+
 }

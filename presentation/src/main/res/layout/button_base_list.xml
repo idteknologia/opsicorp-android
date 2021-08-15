@@ -61,7 +61,7 @@
 
     <Button
         android:id="@+id/buttonBottom"
-        style="@style/ButtonStyle"
+        style="@style/ButtonStyle_Secondary"
         android:layout_width="0dp"
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"

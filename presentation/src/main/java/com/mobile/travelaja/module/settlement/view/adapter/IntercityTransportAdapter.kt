@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
@@ -39,7 +40,8 @@ class IntercityTransportAdapter(
         if (holder is IntercityTransportVH) {
             val model = viewModel.items[position]
             val isRemove = viewModel.isRemoveVisible
-            holder.onBind(model, isRemove, position,viewModel.items)
+            val indexEmpty = viewModel.indexEmpty
+            holder.onBind(model, isRemove, position,viewModel.items,indexEmpty)
         }
     }
 
@@ -55,11 +57,13 @@ class IntercityTransportAdapter(
             model: IntercityTransport,
             isRemove: ObservableBoolean,
             position: Int,
-            list : ObservableArrayList<IntercityTransport>
+            list : ObservableArrayList<IntercityTransport>,
+            indexEmpty: ObservableInt
         ) {
             binding.listener = listener
             binding.isRemove = isRemove
             binding.position = position
+            binding.indexEmpty = indexEmpty
             binding.list = list
             binding.setVariable(BR.data, model)
             binding.executePendingBindings()

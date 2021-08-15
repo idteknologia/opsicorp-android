@@ -48,7 +48,7 @@ class TicketBookingActivity : AppCompatActivity() {
     }
 
     private fun setData(){
-        ticket = TestUtil.getObject(this,R.raw.ticketresult)
+//        ticket = TestUtil.getObject(this,R.raw.ticketresult)
         type = TRAIN
         val data = intent.getParcelableExtra<TicketResult>("data")
         if (data != null){

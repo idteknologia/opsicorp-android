@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="com.mobile.travelaja.utility.Utils"/>
+        <variable
+            name="viewModel"
+            type="com.mobile.travelaja.module.settlement.viewmodel.DraftSettlementViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/ivChangeEdit"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/size_image_back"
+            android:layout_gravity="center"
+            android:scaleType="center"
+            android:text="@string/change_or_edit"
+            android:textAppearance="@style/TextButtonStyle"
+            android:textColor="#2b9a8e"
+            app:icon="@drawable/ic_back"
+            app:iconPadding="20dp"
+            app:iconTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_default"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSubmit"
+            app:layout_constraintTop_toBottomOf="@+id/ivChangeEdit">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvLabelReimbursement"
+                    style="@style/TextLato_Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/reimbursement_detail"
+                    android:textColor="#4a4a4a"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLabelSubtitleReimbursement"
+                    style="@style/TextLato_Normal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:text="@string/reimbursement_detail_subtitle"
+                    android:textColor="#91929e"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelReimbursement" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerTopDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:paddingStart="@dimen/margin_default"
+                    android:paddingTop="@dimen/margin_default"
+                    android:paddingEnd="@dimen/margin_default"
+                    android:paddingBottom="27dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelSubtitleReimbursement">
+
+                    <ImageView
+                        android:id="@+id/ivQR"
+                        android:layout_width="64dp"
+                        android:layout_height="0dp"
+                        app:generateQrCode="@{viewModel.submitSettlement.tripCode}"
+                        app:layout_constraintBottom_toTopOf="@+id/shareQa"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvTypeRoute"
+                        tools:background="#efefef" />
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="20dp"
+                        android:background="@color/divider"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/ivQR"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/shareQa"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/share_qr"
+                        android:textColor="#939396"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@+id/ivQR"
+                        app:layout_constraintStart_toStartOf="@+id/ivQR"
+                        app:layout_constraintTop_toTopOf="@+id/tvTimeCreated" />
+
+                    <TextView
+                        android:id="@+id/tvTypeRoute"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_approval_gray"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="3dp"
+                        android:text="@{viewModel.submitSettlement.routeType}"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="International route" />
+
+                    <TextView
+                        android:id="@+id/tvLabelTripCode"
+                        style="@style/TextLato_Normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/trip_code"
+                        android:textColor="#b2bbc6"
+                        android:textSize="10sp"
+                        app:layout_constraintEnd_toStartOf="@+id/view7"
+                        app:layout_constraintStart_toStartOf="@+id/tvTypeRoute"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTypeRoute" />
+
+                    <TextView
+                        android:id="@+id/tvTripCode"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="9dp"
+                        android:drawableStart="@drawable/ic_icon_copy"
+                        android:drawablePadding="6dp"
+                        android:text="@{viewModel.submitSettlement.tripCode}"
+                        app:layout_constraintEnd_toEndOf="@+id/tvLabelTripCode"
+                        app:layout_constraintStart_toStartOf="@+id/tvLabelTripCode"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelTripCode"
+                        tools:text="TP201802080003" />
+
+                    <TextView
+                        android:id="@+id/tvTimeCreated"
+                        style="@style/TextLato_Normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@{`Created : `+viewModel.submitSettlement.CreatedDateView}"
+                        app:layout_constraintEnd_toEndOf="@+id/tvLabelTripCode"
+                        app:layout_constraintStart_toStartOf="@+id/tvTripCode"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTripCode"
+                        tools:text="Created : 29 Maret 2021 - 09:46"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/containerConference"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginEnd="@dimen/margin_default"
+                    android:background="@drawable/bg_dialog_rounded_detail_trip"
+                    android:elevation="10dp"
+                    android:paddingStart="@dimen/margin_default"
+                    android:paddingTop="@dimen/margin_default"
+                    android:paddingEnd="@dimen/margin_default"
+                    android:paddingBottom="@dimen/margin_default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/containerTopDetail">
+
+                    <TextView
+                        android:id="@+id/tvNameBoardDate"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.submitSettlement.purpose}"
+                        android:textColor="#009688"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Conference Board April 2021" />
+
+                    <TextView
+                        android:id="@+id/tvLabelActivityType"
+                        style="@style/TextLato_Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/activity_type"
+                        android:textColor="#b2bbc6"
+                        android:textSize="10sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNameBoardDate" />
+
+                    <TextView
+                        android:id="@+id/tvActivityType"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@{viewModel.submitSettlement.tripType}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLabelActivityType"
+                        tools:text="Dinas Res Luar Kota" />
+
+                    <ImageView
+                        android:id="@+id/icPlace"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="16dp"
+                        android:src="@drawable/ic_point_gps_2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvActivityType"
+                        app:tint="@color/colorRed" />
+
+                    <TextView
+                        android:id="@+id/tvListRoute"
+                        style="@style/TextLato_Normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@{viewModel.submitSettlement.nameCities()}"
+                        android:textColor="#939396"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/icPlace"
+                        app:layout_constraintTop_toTopOf="@+id/icPlace"
+                        tools:text="Singapore - Jakarta - Argentina - Hongkong - Saudi Arabia" />
+
+                    <TextView
+                        android:id="@+id/tvStartDate"
+                        style="@style/SubtitleTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@{Utils.convertDate(viewModel.submitSettlement.startDate,`EEE, d MMM yyyy`)}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvListRoute"
+                        tools:text="Mon, 8 Feb 2021" />
+
+                    <ImageView
+                        android:id="@+id/icDestTime"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_arrow_one_way"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvStartDate"
+                        app:layout_constraintStart_toEndOf="@+id/tvStartDate"
+                        app:layout_constraintTop_toTopOf="@+id/tvStartDate" />
+
+                    <TextView
+                        android:id="@+id/tvEndDate"
+                        style="@style/SubtitleTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@{Utils.convertDate(viewModel.submitSettlement.endDate,`EEE, d MMM yyyy`)}"
+                        app:layout_constraintStart_toEndOf="@+id/icDestTime"
+                        app:layout_constraintTop_toTopOf="@+id/tvStartDate"
+                        tools:text="Mon, 8 Feb 2021" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/containerTripExpense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/containerConference">
+                    <include
+                        android:id="@+id/includeTripExpense"
+                        layout="@layout/settlement_draft_trip_expense"
+                        app:viewModel="@{viewModel}" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvLabelRefundTicket"
+                    style="@style/TextLato_Bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="25dp"
+                    android:text="@string/refund_ticket"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/containerTripExpense" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRefundTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="@dimen/margin_default"
+                    android:nestedScrollingEnabled="true"
+                    android:orientation="vertical"
+                    android:scrollbars="none"
+                    app:setDataTicketRefund="@{viewModel.submitSettlement.ticketRefunds}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelRefundTicket"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_draft_refund_ticket_settlement" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/buttonSubmit"
+            style="@style/ButtonStyle_Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

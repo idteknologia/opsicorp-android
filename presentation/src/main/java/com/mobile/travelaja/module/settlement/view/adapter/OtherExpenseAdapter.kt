@@ -13,7 +13,9 @@ import com.mobile.travelaja.module.settlement.view.ItemClickListener
 import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
 import opsigo.com.domainlayer.model.settlement.OtherExpense
 
-class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel, var listener: ItemClickListener) :
+class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
+                          val recyclerView: RecyclerView,
+                          var listener: ItemClickListener) :
     BaseListAdapter<OtherExpense>() {
 
     init {

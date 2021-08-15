@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="trip"
             type="opsigo.com.domainlayer.model.trip.Trip" />
@@ -13,14 +14,20 @@
         <variable
             name="selected"
             type="Boolean" />
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.TripsListener" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/clTripCode"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="@dimen/margin_default"
-    android:layout_marginRight="@dimen/margin_default">
+    android:paddingStart="@dimen/margin_default"
+    android:clickable="@{!selected}"
+    android:contentDescription="@{`clTripCode`+trip.Code}"
+    android:onClick="@{()->listener.onClickTripId(trip,2)}"
+    android:paddingEnd="0dp">
 
     <TextView
         android:id="@+id/tvIdTrip"
@@ -43,18 +50,17 @@
         android:visibility="gone"
         tools:text="Position"/>
 
-    <CheckBox
+    <ImageView
         android:id="@+id/checked"
-        android:layout_width="16dp"
-        android:layout_height="11dp"
-        android:button="@drawable/item_check"
-        android:checked="@{selected}"
-        android:clickable="false"
-        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_check_24"
+        android:visibility="@{selected ? View.VISIBLE : View.GONE}"
+        android:layout_marginEnd="@dimen/margin_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:checked="true" />
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/ivCenter"
@@ -83,17 +89,16 @@
     <TextView
         android:id="@+id/tvEndDate"
         style="@style/SubtitleTextStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@{trip.eDate()}"
         android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
+        app:layout_goneMarginEnd="@dimen/margin_default"
+        android:text="@{trip.eDate()}"
         app:layout_constraintBottom_toBottomOf="@+id/ivCenter"
-        app:layout_constraintLeft_toRightOf="@+id/ivCenter"
+        app:layout_constraintEnd_toStartOf="@+id/checked"
+        app:layout_constraintStart_toEndOf="@+id/ivCenter"
         app:layout_constraintTop_toTopOf="@+id/ivCenter"
         tools:text="Mon, 8 Feb 2021" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

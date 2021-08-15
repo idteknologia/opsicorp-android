@@ -1,14 +1,18 @@
 package opsigo.com.datalayer.network
 
 import okhttp3.Interceptor
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.model.ResultList
 import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.Trip
 import opsigo.com.domainlayer.model.trip.TripResult
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -40,6 +44,9 @@ interface ServiceApi {
     @GET("api/Settlement/GetDetailTrip")
     suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailSettlementResult
 
+    @GET("api/Settlement/Draft")
+    suspend fun getDetailSettlementDraft(@Query("id") tripId : String) : DetailDraftSettlement
+
     @POST("api/Settlement/GetSpecificAreaCompensation")
     suspend fun putSpecificAreaCompensation(@Body body:MutableMap<String,Int>) : RateStayResult
 
@@ -52,11 +59,15 @@ interface ServiceApi {
     @GET("api/Settlement/GetExpenseTypeList")
     suspend fun getExpenseType() : List<ExpenseType>
 
-    @POST("api/Settlement/Submit")
-    suspend fun submitSettlement(@Body submit : SubmitSettlement) : SubmitResult
+    @POST("api/Settlement/{path}}")
+    suspend fun submitSettlement(@Body submit : DetailSettlement,@Path("path") path : String ) : SubmitResult
 
     @POST("api/Settlement/GetIntercityTransportCompensation")
     suspend fun getIntercityTransportCompensation(@Body route : MutableMap<String,Any>) :IntercityTransportResult
+
+    @Multipart
+    @POST(MyURL.ATTACHMENT)
+    suspend fun uploadFile(@Part file: MultipartBody.Part?): UploadFileEntity
 
     companion object {
         fun createRequest(token: String, baseUrl: String): ServiceApi {

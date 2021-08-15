@@ -7,569 +7,644 @@
 
         <import type="android.view.View" />
 
+        <import type="com.mobile.travelaja.utility.Utils" />
+
         <variable
             name="viewModel"
             type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
+
         <variable
             name="clickListener"
             type="View.OnClickListener" />
 
     </data>
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="@dimen/size_image_back"
-            android:layout_height="@dimen/size_image_back"
-            android:onClick="@{clickListener}"
-            android:scaleType="center"
-            android:src="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ScrollView
-            android:id="@+id/scrollViewCreateSettlement"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_marginBottom="90dp"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="27dp"
-                tools:context=".module.settlement.view.CreateSettlementFragment">
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="67dp"
-                    android:background="#e0e0e1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_goneMarginLeft="20dp"
-                    app:layout_goneMarginTop="16dp" />
-
+                android:layout_height="wrap_content">
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    app:layout_constraintTop_toTopOf="@+id/view"
-                    app:layout_constraintBottom_toBottomOf="@+id/view"
-                    app:layout_constraintRight_toRightOf="parent"
-                    android:layout_marginRight="@dimen/margin_default"
-                    android:src="@drawable/ic_transfer"/>
-
-                <TextView
-                    android:id="@+id/tvCreateRemb"
-                    style="@style/TextButtonStyle"
-                    android:textColor="#24253d"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_default"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginRight="@dimen/margin_default"
-                    android:text="@string/create_reimburstment"
+                    android:id="@+id/ivBack"
+                    android:layout_width="@dimen/size_image_back"
+                    android:layout_height="@dimen/size_image_back"
+                    android:onClick="@{clickListener}"
+                    android:background="?attr/selectableItemBackground"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvLabelCreate"
-                    style="@style/TextInputLayout_Label"
+                    android:id="@+id/tvLastDraft"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/please_fill_all_trip_information_below"
-                    app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCreateRemb" />
-
-                <TextView
-                    android:id="@+id/labelBank"
-                    style="@style/ContentDescriptionTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="25dp"
-                    android:text="@string/bank_transfer"
-                    app:layout_constraintLeft_toLeftOf="@+id/etBank"
-                    app:layout_constraintTop_toBottomOf="@+id/view" />
-
-                <EditText
-                    android:id="@+id/etBank"
-                    style="@style/EditedSelected_NoEditable"
+                    android:layout_height="@dimen/size_image_back"
+                    android:text="@string/last_draft_reimbursement"
+                    android:gravity="center"
                     android:onClick="@{clickListener}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@{viewModel.submitSettlement.bankTransfer.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
-                    android:hint="@string/select_bank"
-                    android:paddingBottom="20dp"
-                    android:text="@{viewModel.submitSettlement.bankTransfer.empty ? null : viewModel.submitSettlement.bankAccount +` - `+viewModel.submitSettlement.bankTransfer}"
-                    app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-                    app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-                    app:layout_constraintTop_toBottomOf="@id/labelBank"
-                    tools:text="Bank Mandiri" />
+                    android:background="?attr/selectableItemBackground"
+                    android:visibility="@{viewModel.isDraftLabelVisible ? View.VISIBLE : View.GONE}"
+                    android:drawablePadding="15dp"
+                    style="@style/TextLato_Bold"
+                    android:textSize="14sp"
+                    android:textColor="#2b9a8e"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    app:layout_constraintEnd_toEndOf="parent"/>
 
-                <TextView
-                    android:id="@+id/labelTrip"
-                    style="@style/ContentDescriptionTextStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/trip_code"
-                    app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-                    app:layout_constraintTop_toBottomOf="@+id/etBank" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <EditText
-                    android:id="@+id/etTripCode"
-                    style="@style/EditedSelected_NoEditable"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:drawableEnd="@{viewModel.submitSettlement.tripCode.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
-                    android:hint="@string/select_trip_code"
-                    android:onClick="@{clickListener}"
-                    android:paddingBottom="20dp"
-                    android:text="@{viewModel.submitSettlement.tripCode}"
-                    android:textAppearance="@style/TextInputLayout_Input"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
-                    app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
-                    app:layout_constraintTop_toBottomOf="@+id/labelTrip" />
+
+
+            <ScrollView
+                android:id="@+id/scrollViewCreateSettlement"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/contentSelected"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_default"
-                    android:visibility="@{viewModel.submitSettlement.tripCode.empty? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toTopOf="@+id/barrier"
-                    app:layout_constraintTop_toBottomOf="@+id/etTripCode"
-                    tools:visibility="visible">
+                    android:layout_marginBottom="27dp"
+                    tools:context=".module.settlement.view.CreateSettlementFragment">
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="67dp"
+                        android:background="#e0e0e1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_goneMarginLeft="20dp"
+                        app:layout_goneMarginTop="16dp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="@dimen/margin_default"
+                        android:src="@drawable/ic_transfer"
+                        app:layout_constraintBottom_toBottomOf="@+id/view"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/view" />
 
                     <TextView
-                        android:id="@+id/tvViewDetailTrip"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvCreateRemb"
+                        style="@style/TextButtonStyle"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
-                        android:fontFamily="@font/lato_black"
-                        android:text="@string/view_detail_trip"
-                        android:textAllCaps="true"
-                        android:textColor="#b2bbc6"
-                        android:textSize="16sp"
-                        android:textStyle="normal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginRight="@dimen/margin_default"
+                        android:text="@string/create_reimburstment"
+                        android:textColor="#24253d"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <View
+                    <TextView
+                        android:id="@+id/tvLabelCreate"
+                        style="@style/TextInputLayout_Label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/please_fill_all_trip_information_below"
+                        app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCreateRemb" />
+
+                    <TextView
+                        android:id="@+id/labelBank"
+                        style="@style/ContentDescriptionTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginTop="25dp"
+                        android:alpha="@{viewModel.submitSettlement.tripCode.empty? 0.5f : 1f}"
+                        android:text="@string/bank_transfer"
+                        app:layout_constraintLeft_toLeftOf="@+id/etBank"
+                        app:layout_constraintTop_toBottomOf="@+id/etTripCode"
+                        tools:alpha="0.5" />
+
+                    <EditText
+                        android:id="@+id/etBank"
+                        style="@style/EditedSelected_NoEditable"
                         android:layout_width="0dp"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="5dp"
-                        android:background="#2b9a8e"
-                        app:layout_constraintLeft_toLeftOf="@id/tvViewDetailTrip"
-                        app:layout_constraintRight_toRightOf="@id/tvViewDetailTrip"
-                        app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip" />
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchTransportation"
-                        style="@style/Widget.App.Switch"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="41dp"
-                        android:checked="@{viewModel.isEnabledDetailInformation()}"
-                        android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInformation(checked)}"
-                        android:text="@string/transportation_to_airport_or_non_airport"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip"
-                        tools:checked="true" />
+                        android:alpha="@{viewModel.submitSettlement.tripCode.empty? 0.5f : 1f}"
+                        android:drawableEnd="@{viewModel.submitSettlement.bankTransfer.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
+                        android:enabled="@{!viewModel.submitSettlement.tripCode.empty}"
+                        android:hint="@string/select_bank"
+                        android:onClick="@{clickListener}"
+                        android:paddingBottom="20dp"
+                        android:text="@{viewModel.submitSettlement.bankTransfer.empty ? null : viewModel.submitSettlement.bankAccount +` - `+viewModel.submitSettlement.bankTransfer}"
+                        app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+                        app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
+                        app:layout_constraintTop_toBottomOf="@id/labelBank"
+                        tools:enabled="false"
+                        tools:text="Bank Mandiri" />
 
                     <TextView
-                        android:id="@+id/captionTransportation"
-                        style="@style/SwitchCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/caption_create_settlement_transportation"
-                        app:layout_constraintTop_toBottomOf="@+id/switchTransportation" />
-
-                    <TextView
-                        android:id="@+id/viewDetailInformation"
-                        style="@style/TextInputLayout_Label"
+                        android:id="@+id/labelTrip"
+                        style="@style/ContentDescriptionTextStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/view_detail"
-                        android:onClick="@{clickListener}"
-                        android:textColor="#2b9a8e"
-                        android:visibility="@{viewModel.isEnabledDetailInformation() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/captionTransportation"
-                        tools:visibility="visible"
-                        tools:ignore="RtlSymmetry" />
-
-                    <View
-                        android:id="@+id/dividerTransportation"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/viewDetailInformation" />
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchIntercity"
-                        style="@style/Widget.App.Switch"
-                        android:onClick="@{clickListener}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="@string/intercity_transport"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerTransportation"
-                        tools:checked="true" />
-
-                    <TextView
-                        android:id="@+id/captionIntercity"
-                        style="@style/SwitchCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/transportation_base_on_your_route"
-                        app:layout_constraintTop_toBottomOf="@+id/switchIntercity" />
-
-                    <TextView
-                        android:id="@+id/viewIntercity"
-                        style="@style/TextInputLayout_Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/view_detail"
-                        android:onClick="@{clickListener}"
-                        android:textColor="#2b9a8e"
-                        android:visibility="@{viewModel.isEnabledIntercity() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/captionIntercity"
-                        tools:visibility="visible"
-                        tools:ignore="RtlSymmetry" />
-
-                    <View
-                        android:id="@+id/dividerIntercity"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/viewIntercity" />
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchTraveling"
-                        style="@style/Widget.App.Switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedTravelling(checked)}"
-                        android:text="@string/did_you_traveling_to_specific_area"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerIntercity"
-                        tools:checked="true" />
-
-                    <TextView
-                        android:id="@+id/captionTraveling"
-                        style="@style/SwitchCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/spm_sbm_sts_pipeline_etc"
-                        app:layout_constraintTop_toBottomOf="@+id/switchTraveling" />
-
-                    <View
-                        android:id="@+id/dividerTraveling"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/captionTraveling" />
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchOvernight"
-                        style="@style/Widget.App.Switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:visibility="@{viewModel.isTravellingEnabled() ? View.VISIBLE : View.GONE}"
-                        android:checked="@{viewModel.isEnableOverNight()}"
-                        android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedOverNight(checked)}"
-                        android:text="@string/did_you_stay_overnight_in_specific_area"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerTraveling"
-                        tools:checked="true" />
-
-                    <TextView
-                        android:id="@+id/tvTitleIncDec"
-                        style="@style/TextButtonStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
                         android:layout_marginTop="20dp"
-                        android:text="@string/how_many_day_s"
-                        android:textColor="#2b9a8e"
-                        android:textSize="14sp"
-                        android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/switchOvernight"
-                        tools:visibility="visible" />
+                        android:text="@string/trip_code"
+                        app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+                        app:layout_constraintTop_toBottomOf="@+id/view" />
 
-                    <TextView
-                        android:id="@+id/tvTitlePricePerDay"
-                        style="@style/TextButtonStyle"
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/etTripCode"
+                        style="@style/EditedSelected_NoEditable"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/rate_per_day"
-                        android:textColor="#52575c"
-                        android:textSize="14sp"
-                        android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/tvTitleIncDec"
-                        tools:visibility="visible" />
+                        android:drawableEnd="@{viewModel.submitSettlement.tripCode.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
+                        android:hint="@string/select_trip_code"
+                        android:onClick="@{clickListener}"
+                        android:paddingBottom="20dp"
+                        android:text="@{viewModel.submitSettlement.tripCode}"
+                        android:textAppearance="@style/TextInputLayout_Input"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="@+id/tvCreateRemb"
+                        app:layout_constraintRight_toRightOf="@+id/tvCreateRemb"
+                        app:layout_constraintTop_toBottomOf="@+id/labelTrip" />
 
-                    <com.mobile.travelaja.module.settlement.view.IncreaseDecreaseView
-                        android:id="@+id/increaseDecreaseView"
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/contentSelected"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTitleIncDec"
-                        tools:visibility="visible" />
+                        android:layout_margin="@dimen/margin_default"
+                        android:visibility="@{viewModel.submitSettlement.tripId.empty? View.GONE : View.VISIBLE}"
+                        app:layout_constraintTop_toBottomOf="@+id/etBank"
+                        tools:visibility="visible">
 
-                    <LinearLayout
-                        android:id="@+id/containerValueRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:background="@drawable/card_background_grey"
-                        android:orientation="horizontal"
-                        android:visibility="@{viewModel.isEnableOverNight() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/increaseDecreaseView">
+                        <Button
+                            android:id="@+id/tvViewDetailTrip"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/lato_black"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/view_detail_trip"
+                            android:textAppearance="@style/TextLato_Normal"
+                            android:textAllCaps="true"
+                            android:textColor="#b2bbc6"
+                            android:textSize="16sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#2b9a8e"
+                            app:layout_constraintLeft_toLeftOf="@id/tvViewDetailTrip"
+                            app:layout_constraintRight_toRightOf="@id/tvViewDetailTrip"
+                            app:layout_constraintTop_toTopOf="@+id/tvViewDetailTrip" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchTransportation"
+                            style="@style/Widget.App.Switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="41dp"
+                            android:onClick="@{clickListener}"
+                            android:checked="@{viewModel.isEnabledDetailTransport()}"
+                            android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInformation(checked)}"
+                            android:text="@string/transportation_to_airport_or_non_airport"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip"
+                            tools:checked="true" />
 
                         <TextView
-                            android:id="@+id/tvValueTarif"
+                            android:id="@+id/captionTransportation"
+                            style="@style/SwitchCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/caption_create_settlement_transportation"
+                            app:layout_constraintTop_toBottomOf="@+id/switchTransportation" />
+
+                        <TextView
+                            android:id="@+id/viewDetailInformation"
+                            style="@style/TextInputLayout_Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{clickListener}"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/view_detail"
+                            android:textColor="#2b9a8e"
+                            android:visibility="@{viewModel.isEnabledDetailTransport() ? View.VISIBLE : View.GONE }"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/captionTransportation"
+                            tools:ignore="RtlSymmetry"
+                            tools:visibility="visible" />
+
+                        <View
+                            android:id="@+id/dividerTransportation"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDetailInformation" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchIntercity"
+                            style="@style/Widget.App.Switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/intercity_transport"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerTransportation"
+                            tools:checked="true" />
+
+                        <TextView
+                            android:id="@+id/captionIntercity"
+                            style="@style/SwitchCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/transportation_base_on_your_route"
+                            app:layout_constraintTop_toBottomOf="@+id/switchIntercity" />
+
+                        <TextView
+                            android:id="@+id/viewIntercity"
+                            style="@style/TextInputLayout_Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{clickListener}"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/view_detail"
+                            android:textColor="#2b9a8e"
+                            android:visibility="@{viewModel.isEnabledDetailIntercity() ? View.VISIBLE : View.GONE }"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/captionIntercity"
+                            tools:ignore="RtlSymmetry"
+                            tools:visibility="visible" />
+
+                        <View
+                            android:id="@+id/dividerIntercity"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintTop_toBottomOf="@+id/viewIntercity" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchTraveling"
+                            style="@style/Widget.App.Switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:checked="@{viewModel.submitSettlement.UseSpecificArea}"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/did_you_traveling_to_specific_area"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerIntercity"
+                            tools:checked="true" />
+
+                        <TextView
+                            android:id="@+id/captionTraveling"
+                            style="@style/SwitchCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/spm_sbm_sts_pipeline_etc"
+                            app:layout_constraintTop_toBottomOf="@+id/switchTraveling" />
+
+                        <View
+                            android:id="@+id/dividerTraveling"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintTop_toBottomOf="@+id/captionTraveling" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchOvernight"
+                            style="@style/Widget.App.Switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:checked="@{viewModel.submitSettlement.IsStaySpecArea}"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/did_you_stay_overnight_in_specific_area"
+                            android:visibility="@{viewModel.submitSettlement.UseSpecificArea ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerTraveling"
+                            tools:checked="true" />
+
+                        <TextView
+                            android:id="@+id/tvTitleIncDec"
                             style="@style/TextButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/how_many_day_s"
+                            android:textColor="#2b9a8e"
+                            android:textSize="14sp"
+                            android:visibility="@{viewModel.submitSettlement.IsStaySpecArea ? View.VISIBLE : View.GONE }"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/switchOvernight"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tvTitlePricePerDay"
+                            style="@style/TextButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rate_per_day"
+                            android:textColor="#52575c"
+                            android:textSize="14sp"
+                            android:visibility="@{viewModel.submitSettlement.IsStaySpecArea ? View.VISIBLE : View.GONE }"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvTitleIncDec"
+                            tools:visibility="visible" />
+
+                        <com.mobile.travelaja.module.settlement.view.IncreaseDecreaseView
+                            android:id="@+id/increaseDecreaseView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:visibility="@{viewModel.submitSettlement.IsStaySpecArea? View.VISIBLE : View.GONE }"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvTitleIncDec"
+                            app:setIncDecrease="@{viewModel.submitSettlement.SpecificAreaDays}"
+                            tools:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/containerValueRate"
                             android:layout_width="wrap_content"
                             android:layout_height="35dp"
                             android:background="@drawable/card_background_grey"
-                            android:gravity="center"
-                            android:paddingLeft="16dp"
-                            android:paddingRight="16dp"
-                            android:text="@{viewModel.submitSettlement.totalSpecificAreaExpense.toString()}"
-                            android:textColor="#52575c"
-                            android:textSize="14sp"
+                            android:orientation="horizontal"
+                            android:visibility="@{viewModel.submitSettlement.IsStaySpecArea? View.VISIBLE : View.GONE }"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/increaseDecreaseView"
-                            tools:text="7.000.000"
-                            tools:visibility="visible" />
+                            app:layout_constraintTop_toTopOf="@+id/increaseDecreaseView">
 
-                        <ProgressBar
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="8dp"
-                            android:visibility="@{viewModel.loadingPostDay ? View.VISIBLE : View.GONE}"
-                            tools:visibility="gone" />
-                    </LinearLayout>
+                            <TextView
+                                android:id="@+id/tvValueTarif"
+                                style="@style/TextButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:background="@drawable/card_background_grey"
+                                android:gravity="center"
+                                android:paddingLeft="16dp"
+                                android:paddingRight="16dp"
+                                android:text="@{Utils.formatCurrency(viewModel.submitSettlement.TotalSpecificAreaExpense)}"
+                                android:textColor="#52575c"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="@+id/increaseDecreaseView"
+                                tools:text="7.000.000"
+                                tools:visibility="visible" />
 
-                    <View
-                        android:id="@+id/dividerOvernight"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        android:visibility="@{viewModel.isTravellingEnabled() ? View.VISIBLE : View.GONE}"
-                        app:layout_constraintTop_toBottomOf="@+id/containerValueRate" />
+                            <ProgressBar
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="8dp"
+                                android:visibility="@{viewModel.loadingPostDay ? View.VISIBLE : View.GONE}"
+                                tools:visibility="gone" />
+                        </LinearLayout>
 
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchExpense"
-                        style="@style/Widget.App.Switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedExpense(checked)}"
-                        android:checked="@{viewModel.isEnabledDetailExpense()}"
-                        android:onClick="@{clickListener}"
-                        android:text="@string/other_expense"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerOvernight"
-                        tools:checked="true" />
+                        <View
+                            android:id="@+id/dividerOvernight"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            android:visibility="@{viewModel.submitSettlement.UseSpecificArea ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintTop_toBottomOf="@+id/containerValueRate" />
 
-                    <TextView
-                        android:id="@+id/captionExpense"
-                        style="@style/SwitchCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/airport_tax_fiskal_insurance_laundry_etc"
-                        app:layout_constraintTop_toBottomOf="@+id/switchExpense" />
-
-                    <TextView
-                        android:id="@+id/viewDetailOtherExpense"
-                        style="@style/TextInputLayout_Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{clickListener}"
-                        android:paddingTop="10dp"
-                        android:paddingEnd="16dp"
-                        android:text="@string/view_detail"
-                        android:textColor="#2b9a8e"
-                        android:visibility="@{viewModel.isEnabledDetailExpense() ? View.VISIBLE : View.GONE }"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/captionExpense"
-                        tools:ignore="RtlSymmetry"
-                        tools:visibility="visible" />
-                    <View
-                        android:id="@+id/dividerExpense"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/viewDetailOtherExpense" />
-
-                    <com.google.android.material.switchmaterial.SwitchMaterial
-                        android:id="@+id/switchRefund"
-                        style="@style/Widget.App.Switch"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:onClick="@{clickListener}"
-                        android:text="@string/ticket_refund"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerExpense"
-                        tools:checked="true" />
-
-                    <TextView
-                        android:id="@+id/captionRefund"
-                        style="@style/SwitchCaption"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:text="@string/only_for_flights_and_hotels_max_2_ticket_in_a_day"
-                        app:layout_constraintTop_toBottomOf="@+id/switchRefund" />
-
-                    <View
-                        android:id="@+id/dividerRefund"
-                        style="@style/Divider"
-                        android:layout_marginTop="15dp"
-                        app:layout_constraintTop_toBottomOf="@+id/captionRefund" />
-
-                    <TextView
-                        android:id="@+id/titleNotes"
-                        style="@style/TextInputLayout_Label"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="34dp"
-                        android:text="@string/notes_optional"
-                        android:textSize="14sp"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerRefund" />
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/et_notes"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11dp"
-                        app:counterEnabled="true"
-                        app:counterMaxLength="100"
-                        app:layout_constraintTop_toBottomOf="@+id/titleNotes"
-                        tools:ignore="RtlCompat"
-                        tools:text="@tools:sample/lorem/random">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextNotes"
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchExpense"
+                            style="@style/Widget.App.Switch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLength="100" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="15dp"
+                            android:checked="@{viewModel.isEnabledDetailExpense()}"
+                            android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedExpense(checked)}"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/other_expense"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerOvernight"
+                            tools:checked="true" />
 
-                    <View
-                        android:id="@+id/dividerNotes"
-                        style="@style/Divider"
-                        android:layout_marginTop="20dp"
-                        app:layout_constraintTop_toBottomOf="@+id/et_notes" />
+                        <TextView
+                            android:id="@+id/captionExpense"
+                            style="@style/SwitchCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/airport_tax_fiskal_insurance_laundry_etc"
+                            app:layout_constraintTop_toBottomOf="@+id/switchExpense" />
 
-                    <TextView
-                        android:id="@+id/tvDescDoc"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="19dp"
-                        android:lineSpacingExtra="7sp"
-                        android:text="@string/information_docs"
-                        android:textColor="#666666"
-                        android:textSize="12sp"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerNotes" />
+                        <TextView
+                            android:id="@+id/viewDetailOtherExpense"
+                            style="@style/TextInputLayout_Label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{clickListener}"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="16dp"
+                            android:text="@string/view_detail"
+                            android:textColor="#2b9a8e"
+                            android:visibility="@{viewModel.isEnabledDetailExpense() ? View.VISIBLE : View.GONE }"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/captionExpense"
+                            tools:ignore="RtlSymmetry"
+                            tools:visibility="visible" />
+
+                        <View
+                            android:id="@+id/dividerExpense"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            app:layout_constraintTop_toBottomOf="@+id/viewDetailOtherExpense" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchRefund"
+                            style="@style/Widget.App.Switch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:checked="@{viewModel.submitSettlement.ticketRefunds.size() > 0}"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/ticket_refund"
+                            android:visibility="@{viewModel.submitSettlement.ticketRefunds.size() > 0 ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerExpense"
+                            tools:checked="true" />
+
+                        <TextView
+                            android:id="@+id/captionRefund"
+                            style="@style/SwitchCaption"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/only_for_flights_and_hotels_max_2_ticket_in_a_day"
+                            android:visibility="@{viewModel.submitSettlement.ticketRefunds.size() > 0 ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintTop_toBottomOf="@+id/switchRefund" />
+
+                        <View
+                            android:id="@+id/dividerRefund"
+                            style="@style/Divider"
+                            android:layout_marginTop="15dp"
+                            android:visibility="@{viewModel.submitSettlement.ticketRefunds.size() > 0 ? View.VISIBLE : View.GONE}"
+                            app:layout_constraintTop_toBottomOf="@+id/captionRefund" />
+
+                        <TextView
+                            android:id="@+id/titleNotes"
+                            style="@style/TextLato_Bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="34dp"
+                            android:text="@string/notes_optional"
+                            android:textColor="#da2128"
+                            android:textSize="14sp"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerRefund" />
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/et_notes"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            app:counterEnabled="true"
+                            app:counterMaxLength="100"
+                            app:layout_constraintTop_toBottomOf="@+id/titleNotes"
+                            tools:ignore="RtlCompat"
+                            tools:text="@tools:sample/lorem/random">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/editTextNotes"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLength="100"
+                                android:onTextChanged="@{(text, start, before, count) -> viewModel.addComment(text)}"
+                                android:text="@{viewModel.submitSettlement.comment}" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <View
+                            android:id="@+id/dividerNotes"
+                            style="@style/Divider"
+                            android:layout_marginTop="20dp"
+                            app:layout_constraintTop_toBottomOf="@+id/et_notes" />
+
+                        <TextView
+                            android:id="@+id/tvDescDoc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="19dp"
+                            android:lineSpacingExtra="7sp"
+                            android:text="@string/information_docs"
+                            android:textColor="#666666"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerNotes" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvAttachment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="true"
+                            android:orientation="vertical"
+                            android:scrollbars="none"
+                            app:addAttachments="@{viewModel.submitSettlement.attachments}"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDescDoc"
+                            tools:itemCount="2"
+                            tools:listitem="@layout/item_attachment_settlement" />
+
+                        <Button
+                            android:id="@+id/btnUploadEvidence"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="19dp"
+                            android:onClick="@{clickListener}"
+                            android:text="@string/upload_evidence"
+                            android:textAllCaps="false"
+                            android:textAppearance="@style/TextButtonStyle"
+                            android:textColor="#24253d"
+                            android:textSize="14sp"
+                            app:cornerRadius="20dp"
+                            app:icon="@drawable/ic_up"
+                            app:iconPadding="5dp"
+                            app:iconTint="#24253D"
+                            app:layout_constraintTop_toBottomOf="@+id/rvAttachment"
+                            app:strokeColor="@color/colorPrimary"
+                            app:strokeWidth="2dp" />
+
+                        <View
+                            android:id="@+id/dividerEvidence"
+                            style="@style/Divider"
+                            android:layout_marginTop="19dp"
+                            app:layout_constraintTop_toBottomOf="@+id/btnUploadEvidence" />
+
+                        <TextView
+                            android:id="@+id/tvDisclaimer"
+                            style="@style/SubtitleTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="19dp"
+                            android:text="@string/disclaimer"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/dividerEvidence" />
+
+                        <CheckBox
+                            android:id="@+id/checkboxDeclare"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:checked="false"
+                            android:gravity="top"
+                            android:text="@string/i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules"
+                            android:textColor="#52575c"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDisclaimer" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <Button
-                        android:id="@+id/btnUploadEvidence"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="19dp"
-                        android:text="@string/upload_evidence"
-                        android:textAllCaps="false"
-                        android:textAppearance="@style/TextButtonStyle"
-                        android:textColor="#24253d"
-                        android:textSize="14sp"
-                        app:cornerRadius="20dp"
-                        app:icon="@drawable/ic_up"
-                        app:iconPadding="5dp"
-                        app:iconTint="#24253D"
-                        app:layout_constraintTop_toBottomOf="@+id/tvDescDoc"
-                        app:strokeColor="@color/colorPrimary"
-                        app:strokeWidth="2dp" />
-
-                    <View
-                        android:id="@+id/dividerEvidence"
-                        style="@style/Divider"
-                        android:layout_marginTop="19dp"
-                        app:layout_constraintTop_toBottomOf="@+id/btnUploadEvidence" />
-
-                    <TextView
-                        android:id="@+id/tvDisclaimer"
-                        style="@style/SubtitleTextStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="19dp"
-                        android:text="@string/disclaimer"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dividerEvidence" />
-
-                    <CheckBox
-                        android:id="@+id/checkboxDeclare"
+                        android:id="@+id/buttonSubmit"
+                        style="@style/ButtonStyle_Secondary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:checked="false"
-                        android:gravity="top"
-                        android:text="@string/i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules"
-                        android:textColor="#52575c"
-                        android:textSize="14sp"
-                        android:textStyle="normal"
-                        app:layout_constraintTop_toBottomOf="@+id/tvDisclaimer" />
-
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginTop="29dp"
+                        android:layout_marginRight="@dimen/margin_default"
+                        android:enabled="@{!viewModel.submitSettlement.bankTransfer.empty &amp;&amp; !viewModel.loading}"
+                        android:onClick="@{clickListener}"
+                        android:text="@string/continue_"
+                        tools:enabled="false"
+                        android:visibility="@{viewModel.submitSettlement.tripId.empty? View.VISIBLE : View.GONE}"
+                        app:layout_constraintTop_toBottomOf="@+id/etBank"
+                        tools:visibility="gone"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </LinearLayout>
 
-                <androidx.constraintlayout.widget.Barrier
-                    android:id="@+id/barrier"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:barrierDirection="top"
-                    app:constraint_referenced_ids="buttonSubmit" />
+        <View
+            android:id="@+id/viewAlpha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#80000000"
+            android:onClick="@{clickListener}"
+            android:visibility="@{viewModel.isExpandDetail() ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone" />
 
-                <Button
-                    android:id="@+id/buttonSubmit"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_default"
-                    android:layout_marginTop="29dp"
-                    android:layout_marginRight="@dimen/margin_default"
-                    android:onClick="@{clickListener}"
-                    android:background="@drawable/select_button_yellow"
-                    android:enabled="@{viewModel.buttonNextEnabled}"
-                    android:text="@string/submit"
-                    android:textAppearance="@style/TextButtonStyle"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-    </LinearLayout>
-
+        <include
+            android:id="@+id/includeExpand"
+            layout="@layout/expand_detail_create_settlement"
+            app:clickListener="@{clickListener}"
+            app:viewModel="@{viewModel}" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

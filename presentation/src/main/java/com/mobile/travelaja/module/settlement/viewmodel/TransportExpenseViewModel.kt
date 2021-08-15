@@ -22,6 +22,9 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
     var jobCalculateTransport: Job? = null
     var modeFlight: ModeTransport? = null
 
+    private val _hasUpdate = MutableLiveData<Boolean>()
+    val hasUpdate : LiveData<Boolean> = _hasUpdate
+
     private val _error = MutableLiveData<Event<Throwable>>()
     val error: LiveData<Event<Throwable>> = _error
 
@@ -35,7 +38,10 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
     val indexEmpty = ObservableInt(-1)
 
     var modeTransports = mutableListOf<ModeTransport>()
-    val totalTransport = MutableLiveData<Number>(0)
+//    val totalTransport = MutableLiveData<Number>(0)
+
+    private val _total = MutableLiveData<Number>(0)
+    val total: LiveData<Number> = _total
 
     fun getModeTransports(city: String, pos: Int) {
         if (modeTransports.isNotEmpty()) {
@@ -134,6 +140,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
             transport.nameTransportationMode = mode
             transport.TotalAmount = if (tripType == 0) amount else amount * 2
             updateTotal(amount, true,tempAmount)
+            _hasUpdate.value = true
         } else {
             val t = result as Result.Error
             _error.value = Event(t.exception)
@@ -159,6 +166,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         } else {
             updateTotal(amount, false,0)
         }
+        _hasUpdate.value = true
     }
 
     fun getVisibleRemove(): Boolean {
@@ -169,6 +177,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
     fun addTransport() {
         transportExpenses.add(TransportExpenses())
         isRemoveVisible.set(true)
+        _hasUpdate.value = true
     }
 
     //Todo remove item Transport Expense
@@ -177,6 +186,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         transportExpenses.removeAt(pos)
         updateTotal(totalAmount, false,0)
         isRemoveVisible.set(transportExpenses.size > 1)
+        _hasUpdate.value = true
     }
 
     fun indexFirstEmpty() : Int {
@@ -198,17 +208,21 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         } else {
             calculateTransportByType(TYPE_FLIGHT, modeFlight!!.Text, pos)
         }
+        _hasUpdate.value = true
     }
 
     private fun updateTotal(amount: Number, isAdding: Boolean,tempAmount : Number) {
-        var total = totalTransport.value?.toDouble() ?: 0.0
+        var total = _total.value?.toDouble() ?: 0.0
         if (isAdding) {
             total -= tempAmount.toDouble()
             total += amount.toDouble()
         } else {
             total -= amount.toDouble()
         }
-        totalTransport.value = total
+        _total.value = total
+    }
+    fun addTotal(total: Double) {
+        _total.value = total
     }
 
     companion object {

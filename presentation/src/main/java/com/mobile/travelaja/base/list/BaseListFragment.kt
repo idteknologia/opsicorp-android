@@ -81,6 +81,8 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.includeBottom.root.isVisible = isButtonBottomVisible()
         binding.includeBottom.buttonBottom.setOnClickListener(this)
         binding.executePendingBindings()
+        snackbar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT)
+
     }
 
     fun setTitleName(@StringRes title: Int, @ColorRes color: Int = 0) {
@@ -91,6 +93,10 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     fun setSubtitle(@StringRes subtitle: Int) {
         binding.tvSubtitle.setText(subtitle)
+    }
+
+    fun setButtonName(@StringRes name : Int){
+        binding.includeBottom.buttonBottom.setText(name)
     }
 
     fun showingTotal(@StringRes title : Int ?,@StringRes currency : Int?){
@@ -186,6 +192,10 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     open fun onWarningClick(dialogInterface: DialogInterface, type: Int, isPositive: Boolean) {
 
+    }
+
+    fun setEnableButtonBottom(enabled : Boolean){
+        binding.includeBottom.buttonBottom.isEnabled = enabled
     }
 
     // Todo scrolling nested for index item

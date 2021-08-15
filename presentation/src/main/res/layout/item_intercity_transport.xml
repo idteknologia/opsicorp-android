@@ -9,6 +9,10 @@
         <import type="androidx.databinding.ObservableArrayList"/>
         <import type="opsigo.com.domainlayer.model.settlement.IntercityTransport"/>
         <import type="android.view.View" />
+        <import type="androidx.databinding.ObservableInt"/>
+        <variable
+            name="indexEmpty"
+            type="ObservableInt" />
 
         <variable
             name="isRemove"
@@ -38,6 +42,7 @@
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="@color/white"
         app:cardElevation="4dp"
+        app:visibleEmpty="@{position == indexEmpty}"
         app:strokeColor="#f44336">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,13 +98,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:autofillHints="null"
-                android:drawableEnd="@{data.City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
+                android:drawableEnd="@{list[position].City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                 android:hint="@string/origin_city"
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
                 android:paddingBottom="20dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:contentDescription="@{`etRouteCity`+position}"
-                android:text="@{data.City}"
+                android:text="@{list[position].City}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelSelectRoute"
@@ -124,7 +129,7 @@
                 android:gravity="center"
                 android:inputType="numberDecimal"
                 tools:enabled="false"
-                android:enabled="@{!data.City.empty}"
+                android:enabled="@{!list[position].City.empty}"
                 android:text="@{String.valueOf(Utils.doubleParse(data.distance)??``)}"
                 android:textAppearance="@style/TextLato_Bold"
                 android:visibility="@{data.isFromPolicy ? View.GONE : View.VISIBLE}"
@@ -149,18 +154,19 @@
                 style="@style/TextButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/card_background_grey"
-                android:paddingLeft="16dp"
-                android:gravity="end|center_vertical"
-                android:paddingRight="16dp"
-                android:layout_marginEnd="@dimen/margin_default"
-                android:drawableStart="@drawable/ic_baseline_clear_multiline"
                 android:layout_marginStart="60dp"
-                android:text="@{Utils.formatCurrency(data.cost)}"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:background="@drawable/card_background_grey"
+                android:drawableStart="@drawable/ic_baseline_clear_multiline"
+                android:gravity="end|center_vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="@{Utils.formatCurrency(list[position].cost)}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tvLabelDistance"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelAmount"
                 tools:text="3500"
@@ -175,7 +181,7 @@
                 android:onClick="@{(v) -> listener.onClickItem(v,position)}"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:checked="@{data.tripType == 1}"
-                android:enabled="@{!data.city.empty}"
+                android:enabled="@{!list[position].city.empty}"
                 tools:enabled="false"
                 android:contentDescription="@{`switchRoundtrip`+position}"
                 android:text="@string/roundtrip"
@@ -219,8 +225,9 @@
             <TextView
                 android:id="@+id/tvTotal"
                 style="@style/TextButtonStyle"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
+                android:minWidth="100dp"
                 android:background="@drawable/card_background_grey"
                 android:gravity="center|start"
                 android:paddingLeft="16dp"
@@ -232,7 +239,7 @@
                 android:contentDescription="@{`tvTotal`+position}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelTotal"
-                tools:text="7000"
+                tools:text="218.110.37"
                 tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

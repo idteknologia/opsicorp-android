@@ -15,6 +15,9 @@ import opsigo.com.domainlayer.model.settlement.ExpenseType
 import opsigo.com.domainlayer.model.settlement.OtherExpense
 
 class OtherExpenseViewModel(private val repository: SettlementRepository) : ViewModel() {
+    private val _hasUpdate = MutableLiveData<Boolean>()
+    val hasUpdate : LiveData<Boolean> = _hasUpdate
+
     val expenseTypes = mutableListOf<ExpenseType>()
     val isRemoveVisible = ObservableBoolean(false)
     val indexEmpty = ObservableInt(-1)
@@ -29,7 +32,6 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
 
     private val _expenseType = MutableLiveData<List<ExpenseType>>()
     val expenseType: LiveData<List<ExpenseType>> = _expenseType
-
 
     fun getExpenseType(isPcu : Boolean) {
         isLoading = true
@@ -68,6 +70,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
                 currency
             )
             items[position] = tempData
+            _hasUpdate.value = true
         }
     }
 
@@ -78,6 +81,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
                 Amount   = 0,
                 Currency = currency)
             items[pos] = tempData
+            _hasUpdate.value = true
         }
     }
 
@@ -88,6 +92,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
                 Amount = amount
             )
             items[pos] = tempData
+            _hasUpdate.value = true
         }
     }
 
@@ -98,6 +103,7 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
                 Description = notes
             )
             items[pos] = tempData
+            _hasUpdate.value = true
         }
     }
 
@@ -106,11 +112,13 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
         item.Currency = currency
         items.add(item)
         isRemoveVisible.set(true)
+        _hasUpdate.value = true
     }
 
     fun removeItem(pos: Int) {
         items.removeAt(pos)
         isRemoveVisible.set(items.size > 1)
+        _hasUpdate.value = true
     }
 
     fun indexFirstEmpty(): Int {
@@ -127,6 +135,4 @@ class OtherExpenseViewModel(private val repository: SettlementRepository) : View
             null
         }
     }
-
-
 }

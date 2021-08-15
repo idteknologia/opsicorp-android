@@ -192,11 +192,16 @@ data class CalculateTransportResult(
     var isSuccess: Boolean, var amount: Double, var Currency: String
 )
 
-data class SubmitResult(var isSuccess: Boolean, var isApproverSet: Boolean)
+data class SubmitResult(
+    @SerializedName("isSuccess")
+    var isSuccess: Boolean,
+    var isApproverSet: Boolean)
 
 
 @Parcelize
 class Ticket : Parcelable, BaseObservable() {
+    @SerializedName("PnrCode")
+    var PnrCode:String = ""
     @SerializedName("TicketNumber")
     @get:Bindable
     var TicketNumber: String = ""
@@ -236,8 +241,11 @@ data class RouteTransport(
 
 @Parcelize
 data class IntercityTransport(
+    @SerializedName("Route")
     var Route: String = "",
+    @SerializedName("City")
     var City: String = "",
+    @SerializedName("Amount")
     var Amount: Number = 0,
     @SerializedName("Distance")
     var Distance: Number? = null,
@@ -254,3 +262,17 @@ data class IntercityTransport(
 ) : Parcelable
 
 data class IntercityTransportResult(@SerializedName("result") var result: IntercityTransport)
+
+data class Attachment(
+    @SerializedName("Id")
+    val Id : String,
+    @SerializedName("TripPlanId")
+    val TripPlanId : String,
+    @SerializedName("Description")
+    val Description : String,
+    @SerializedName("Url")
+    var Url : String,
+    @SerializedName("HasScanned")
+    val HasScanned: Boolean,
+    val type : String?
+)

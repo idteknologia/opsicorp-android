@@ -71,6 +71,7 @@
 
             <Button
                 android:id="@+id/buttonRemove"
+                android:contentDescription="@{`buttonRemove`+position}"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,6 +102,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin_default"
+                android:contentDescription="@{`etOriginCity`+position}"
                 android:drawableEnd="@{transport.City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                 android:hint="@string/origin_city"
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
@@ -115,6 +117,7 @@
 
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchNonFlight"
+                android:contentDescription="@{`switchNonFlight`+position}"
                 style="@style/Widget.App.Switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,6 +156,7 @@
                 android:visibility="@{transport.transportationType == 2 ? View.VISIBLE : View.GONE}" />
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchRoundtrip"
+                android:contentDescription="@{`switchRoundtrip`+position}"
                 style="@style/Widget.App.Switch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,6 +215,7 @@
 
             <TextView
                 android:id="@+id/tvValueAmount"
+                android:contentDescription="@{`tvValueAmount`+position}"
                 style="@style/TextButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="35dp"
@@ -230,6 +235,7 @@
 
             <TextView
                 android:id="@+id/tvTotalIdr"
+                android:contentDescription="@{`tvTotalIdr`+position}"
                 style="@style/TextButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="35dp"

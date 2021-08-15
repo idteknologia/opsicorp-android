@@ -13,8 +13,12 @@ import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.Event
 import opsigo.com.domainlayer.model.settlement.IntercityTransport
 import opsigo.com.domainlayer.model.settlement.RouteTransport
+import java.util.*
 
 class IntercityTransportViewModel(val repository: SettlementRepository) : ViewModel() {
+    private val _hasUpdate = MutableLiveData<Boolean>()
+    val hasUpdate : LiveData<Boolean> = _hasUpdate
+
     val isRemoveVisible = ObservableBoolean(false)
     val items = ObservableArrayList<IntercityTransport>()
     val indexEmpty = ObservableInt(-1)
@@ -31,6 +35,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
         this.items.clear()
         this.items.addAll(items)
         isRemoveVisible.set(items.size > 1)
+        _hasUpdate.value = true
     }
 
     fun setRoute(pos: Int, route: RouteTransport, golper: Int) {
@@ -53,10 +58,11 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
 
     private fun updateItem(position: Int, data: IntercityTransport) {
         items[position] = data
+        _hasUpdate.value = true
     }
 
-    fun addItem() {
-        items.add(IntercityTransport())
+    fun addItem(currency: String) {
+        items.add(IntercityTransport(Currency = currency))
         isRemoveVisible.set(true)
     }
 
@@ -65,6 +71,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
         items.removeAt(pos)
         updateTotal(totalAmount, 0, false)
         isRemoveVisible.set(items.size > 1)
+        _hasUpdate.value = true
     }
 
     fun switchTransport(pos: Int, checked: Boolean) {

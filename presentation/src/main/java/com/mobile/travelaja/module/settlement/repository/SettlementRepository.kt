@@ -2,6 +2,7 @@ package com.mobile.travelaja.module.settlement.repository
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
+import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.Trip
@@ -16,7 +17,9 @@ interface SettlementRepository {
     suspend fun getModeTransport() : Result<List<ModeTransport>>
     suspend fun calculateTransportExpense(body:MutableMap<String,Any>) : Result<CalculateTransportResult>
     suspend fun getExpenseType() : Result<List<ExpenseType>>
-    suspend fun submitSettlement(submit : SubmitSettlement) : Result<SubmitResult>
+    suspend fun submitSettlement(submit : DetailSettlement,path : String) : Result<SubmitResult>
     suspend fun getIntercityTransportCompensation( route : RouteTransport,golper : Int) :Result<IntercityTransport>
+    suspend fun getDetailDraft(idTrip : String) : Result<DetailDraftSettlement>
+    suspend fun uploadFile(uri : String,type : String?) : Result<UploadFileEntity>
 
 }

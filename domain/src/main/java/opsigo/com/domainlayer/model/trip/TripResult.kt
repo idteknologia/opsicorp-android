@@ -26,7 +26,9 @@ data class Trip(
     @SerializedName("StartDate")
     val startDate: String,
     @SerializedName("ReturnDate")
-    val returnDate: String
+    val returnDate: String,
+    @SerializedName("TripType")
+    val TripType:String
 ) {
 
     fun getDateNumber(): String {
@@ -56,7 +58,7 @@ data class Trip(
     private fun convertDate(date: String, format: String, local: Locale): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", local)
         val sdfOutput = SimpleDateFormat(format, local)
-        val dInput = sdf.parse(startDate)
+        val dInput = sdf.parse(date)
         return sdfOutput.format(dInput)
     }
 

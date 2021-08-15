@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="opsigo.com.domainlayer.model.trip.Trip" />
+
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.TripsListener" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginTop="@dimen/margin_default"
+        app:cardCornerRadius="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingEnd="0dp"
+            android:paddingBottom="@dimen/margin_default">
+
+            <ImageView
+                android:id="@+id/ivDetail"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="center"
+                android:contentDescription="@{`ivDetail`+data.Id}"
+                android:onClick="@{(v)->listener.onClickTripId(data,1)}"
+                android:src="@drawable/ic_arrow_one_way"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLabelDraft"
+                style="@style/TextLato_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@drawable/rounded_approval_gray"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="3dp"
+                android:text="Draft"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTripCode"
+                style="@style/TextLato_Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:text="@{data.code}"
+                android:textColor="#91929e"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelDraft"
+                tools:text="TP202103170002" />
+
+            <TextView
+                android:id="@+id/tvPurpose"
+                style="@style/TextLato_Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:text="@{data.tripType}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTripCode"
+                tools:text="Dinas non-residensial di luar tempat kedu" />
+
+            <View
+                android:id="@+id/divider"
+                style="@style/Divider"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintTop_toBottomOf="@+id/tvPurpose" />
+
+            <View
+                android:id="@+id/view8"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/divider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/tvLabelStartDate"
+                style="@style/TextLato_Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/start_date"
+                android:textColor="#079687"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{data.sDate()}"
+                app:layout_constraintEnd_toStartOf="@+id/view8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelStartDate"
+                tools:text="Mon, 8 Feb 2021" />
+
+            <TextView
+                android:id="@+id/tvLabelEndDate"
+                style="@style/TextLato_Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_date"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="@+id/divider"
+                app:layout_constraintTop_toTopOf="@+id/tvLabelStartDate" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="end"
+                android:text="@{data.eDate()}"
+                app:layout_constraintEnd_toEndOf="@+id/tvLabelEndDate"
+                app:layout_constraintStart_toEndOf="@+id/view8"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelEndDate"
+                tools:text="Mon, 8 Feb 2021" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
