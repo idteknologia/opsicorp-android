@@ -1169,5 +1169,6 @@ Please add your trip item for Approval."
     <string name="alert_not_include_transport_expense">Are you sure save Reimbursement not include with Transportation to Airport and/or non Airport</string>
     <string name="alert_not_include_intercity_transport">Are you sure save Reimbursement not include with Intercity transport</string>
     <string name="alert_not_include_other_expense">Are you sure save Reimbursement not include with Other Expense</string>
+    <string name="not_text"></string>
 </resources>
 
