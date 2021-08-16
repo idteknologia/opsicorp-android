@@ -5,11 +5,8 @@
 
     <dist:module
         dist:instant="false"
+        dist:onDemand="false"
         dist:title="@string/title_hotel_feature">
-        <dist:delivery>
-            <dist:on-demand />
-        </dist:delivery>
-
         <dist:fusing dist:include="true" />
     </dist:module>
 

@@ -16,6 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
@@ -107,6 +109,22 @@ abstract class BaseFragment: Fragment()  {
             e.printStackTrace()
             setToast("Error Halaman Tidak ada")
         }
+    }
+
+    fun installModule(nameModule: String,nameActivity: String){
+        val splitInstallManager = SplitInstallManagerFactory.create(requireContext())
+        val request =
+            SplitInstallRequest
+                .newBuilder()
+                .addModule(nameModule)
+                .build()
+        splitInstallManager
+            .startInstall(request)
+            .addOnSuccessListener { sessionId -> setLog("Success Install Module = ${sessionId}") }
+            .addOnFailureListener { exception -> setLog("Failed Install Module = ${exception.message}")  }
+            .addOnCompleteListener {
+                gotoActivityModule(requireContext(),nameActivity)
+            }
     }
 
     open fun gotoActivityModule(context: Context, intent: Intent) {
