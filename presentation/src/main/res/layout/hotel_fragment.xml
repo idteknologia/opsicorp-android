@@ -134,7 +134,7 @@
                         android:id="@+id/ic_address"
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="bottom"
-                        android:src="@drawable/ic_10_flight_landing"
+                        android:src="@drawable/ic_tower_gray"
                         android:layout_width="30dp"
                         android:layout_height="20dp" />
 
