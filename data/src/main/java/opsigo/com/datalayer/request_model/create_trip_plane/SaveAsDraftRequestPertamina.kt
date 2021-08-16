@@ -42,6 +42,12 @@ data class SaveAsDraftRequestPertamina (
         @field:SerializedName("IsDomestic")
         var  isDomestic: Boolean = false,
 
+        @field:SerializedName("WithPartner")
+        var  withPartner: Boolean = false,
+
+        @field:SerializedName("PartnerName ")
+        var  partnerName: String = "",
+
         @field:SerializedName("BusinessTripType")
         var  businessTripType: String = "",
 

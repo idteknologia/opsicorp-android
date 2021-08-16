@@ -134,7 +134,7 @@
                         android:id="@+id/ic_address"
                         android:layout_marginBottom="10dp"
                         android:layout_gravity="bottom"
-                        android:src="@drawable/ic_10_flight_landing"
+                        android:src="@drawable/ic_location"
                         android:layout_width="30dp"
                         android:layout_height="20dp" />
 
@@ -145,6 +145,7 @@
                         <LinearLayout
                             android:id="@+id/lay_city"
                             android:orientation="vertical"
+                            android:layout_marginStart="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="60dp">
 
@@ -153,23 +154,53 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
-                                android:textColor="#2b9a8e"
+                                android:textColor="#91929e"
                                 android:text="@string/title_nearby_city" />
 
-                            <TextView
-                                android:textColor="@color/colorTextHint"
-                                android:textColorHint="@color/colorTextHint"
-                                android:hint=""
-                                android:id="@+id/tv_city"
-                                android:paddingTop="8dp"
-                                android:paddingBottom="9dp"
-                                android:textAlignment="viewStart"
-                                android:gravity="center"
-                                android:textSize="@dimen/font_edittext"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                tools:ignore="RtlCompat" />
 
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:textColor="@color/colorTextHint"
+                                    android:textColorHint="@color/colorTextHint"
+                                    android:hint=""
+                                    android:text="cabkacad"
+                                    android:id="@+id/tv_city"
+                                    android:paddingTop="8dp"
+                                    android:paddingBottom="9dp"
+                                    android:textAlignment="viewStart"
+                                    android:gravity="center"
+                                    android:visibility="invisible"
+                                    android:textSize="@dimen/font_edittext"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    tools:ignore="RtlCompat" />
+
+                                <com.facebook.shimmer.ShimmerFrameLayout
+                                    android:layout_centerVertical="true"
+                                    android:layout_width="match_parent"
+                                    app:shimmer_auto_start="true"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/shimmer_view_container">
+                                    <TextView
+                                        android:textColorHint="@color/colorTextHint"
+                                        android:hint=""
+                                        android:background="#dddddd"
+                                        android:textColor="#dddddd"
+                                        android:text="Surabaya"
+                                        android:paddingTop="8dp"
+                                        android:paddingBottom="9dp"
+                                        android:textAlignment="viewStart"
+                                        android:gravity="center"
+                                        android:textSize="@dimen/font_edittext"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="20dp"
+                                        tools:ignore="RtlCompat" />
+
+                                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                            </RelativeLayout>
 
                         </LinearLayout>
 
@@ -246,6 +277,7 @@
                             android:layout_below="@+id/lay_deaprture_date"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
+                            android:layout_marginEnd="10dp"
                             android:background="@color/colorLineEdittext">
 
                         </LinearLayout>
@@ -387,7 +419,7 @@
 
             <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
                 android:layout_marginTop="43.5dp"
-                app:text="@string/search_hotel"
+                app:text="@string/search"
                 android:layout_marginBottom="33dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

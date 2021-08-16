@@ -1,18 +1,9 @@
 package com.mobile.travelaja.module.item_custom.map
 
-import android.Manifest
-import android.content.Intent
-import android.os.Build
 import com.mobile.travelaja.R
-import android.location.Location
-import com.opsicorp.sliderdatepicker.utils.CallbackCalendar
-import com.opsicorp.sliderdatepicker.utils.Constant.SINGGLE_SELECTED
 import com.mobile.travelaja.base.BaseActivity
-import com.mobile.travelaja.utility.Constants.CODE_MAP_ACTIVITY
-import com.mobile.travelaja.utility.Constants.READ_REQUEST_LOCATION
-import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Globals.gotoActivityModule
 import kotlinx.android.synthetic.main.layout_test.*
-import opsigo.com.datalayer.mapper.Serializer
 
 class TestActivity : BaseActivity() {
 //    ,CallbackCalendar
@@ -21,19 +12,19 @@ class TestActivity : BaseActivity() {
 
     override fun getLayout(): Int { return R.layout.layout_test }
 
+
+    val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.filter."
+
     override fun OnMain() {
         tvPermission.setOnClickListener {
-
+            gotoActivityModule(this, BASE_PACKAGE_MODULE + "FilterFlightActivity")
         }
 //        tvPermission.setOnClickListener {
 //            checkPermissionLocation()
 //        }
-
 //        getAllAirLine()
-
 //        calendarView.callbackCalendarListener(this)
 //        calendarView.typeSelected(SINGGLE_SELECTED)
-
     }
 
 /*

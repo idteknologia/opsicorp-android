@@ -87,11 +87,15 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
             holder.itemView.tv_terminal.text = "${context.getString(R.string.text_terminal)} "+data.terminal
         }
 
-        if (position==0){
+        if (data.isMultiCity.equals(true)){
             holder.itemView.title_trip.text = context.getString(R.string.departure_date)
-        }
-        else{
-            holder.itemView.title_trip.text = context.getString(R.string.arrival_date)
+        } else {
+            if (position==0){
+                holder.itemView.title_trip.text = context.getString(R.string.departure_date)
+            }
+            else{
+                holder.itemView.title_trip.text = context.getString(R.string.arrival_date)
+            }
         }
 
         if (data.notcomply){

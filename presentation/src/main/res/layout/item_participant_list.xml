@@ -95,18 +95,17 @@
 
             <TextView
                 android:id="@+id/tv_status"
-                style="@style/RobotoRegular"
+                style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
-                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
                 android:layout_marginTop="15dp"
                 android:layout_toEndOf="@+id/tv_jobtitle"
-                android:layout_toRightOf="@+id/tv_jobtitle"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:gravity="right"
                 android:text="Completely Rejected"
                 android:textColor="#eb0011"
-                android:textSize="10sp"/>
+                android:textSize="12sp"/>
 
 
             <TextView

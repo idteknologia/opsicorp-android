@@ -50,7 +50,6 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
     }
 
     override fun approveAll(token: String, data: HashMap<Any,Any>,callback: CallbackApprovAll) {
-
         apiOpsicorp.approvAll(token,data)
                 .enqueue(object :Callback<ResponseBody>{
                     override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

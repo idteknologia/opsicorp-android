@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.databinding.ItemBankLayoutBinding
+import com.mobile.travelaja.module.settlement.view.BankListener
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import opsigo.com.domainlayer.model.settlement.Bank
 
@@ -28,11 +29,17 @@ class BankListAdapter(val viewModel: SettlementViewModel) : BaseListAdapter<Bank
 
         fun onBind(bank : Bank){
             binding.bank = bank
-            binding.executePendingBindings()
             itemView.setOnClickListener {
-                viewModel.selectedBank(bank.Account , bank.BankName)
-                itemView.findNavController().navigateUp()
+                if (itemView.context is BankListener){
+                    (itemView.context as BankListener).onClickItemBank(bank.Id)
+                } else {
+                    itemClickByNav(bank)
+                }
             }
+        }
+        fun itemClickByNav(bank : Bank){
+            viewModel.selectedBank(bank.Account,bank.BankName)
+            itemView.findNavController().navigateUp()
         }
     }
 }

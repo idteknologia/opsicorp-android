@@ -7,6 +7,9 @@ data class TripParticipantsPertaminaItem(
         @field:SerializedName("UseCostCenterOther")
         var useCostCenterOther: Boolean = false,
 
+        @field:SerializedName("CostCenterPicEmail")
+        var costCenterPicEmail: String = "",
+
         @field:SerializedName("EmployeeId")
         var employeeId: String = "",
 
@@ -18,6 +21,9 @@ data class TripParticipantsPertaminaItem(
 
         @field:SerializedName("CashAdvance")
         var cashAdvance: Int = 0,
+
+        @field:SerializedName("CashAdvanceTransfer")
+        var cashAdvanceTransfer: String = "",
 
         @field:SerializedName("EstFlight")
         var estFlight: Int = 0,

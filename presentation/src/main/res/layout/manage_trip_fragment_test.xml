@@ -13,8 +13,36 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:id="@+id/llTripHistory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTripHistory"
+                style="@style/RobotoMedium"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/tintTextView"
+                android:text="@string/trip_history"
+                />
+
+            <ImageView
+                android:id="@+id/ivTripHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_history"/>
+        </LinearLayout>
+
         <TextView
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             style="@style/RobotoMedium"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_width="wrap_content"

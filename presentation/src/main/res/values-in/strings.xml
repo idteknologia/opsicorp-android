@@ -117,7 +117,7 @@
     <string name="trip_plan">Trip Plan</string>
     <string name="approval">Approval</string>
     <string name="trip_code">Trip Code</string>
-    <string name="created_date">Created Date</string>
+    <string name="created_date">Created Date :</string>
     <string name="created_by">Created By</string>
     <string name="expire_in">Expires in</string>
     <string name="detail">Detail</string>
@@ -647,7 +647,7 @@ Please add your trip item for Approval."
     <string name="warning_selected_singel_select_in_date_picker2">Tolong pilih satu tanggal</string>
 
     <string name="manage_transport">Kelola Tranport Anda</string>
-    <string name="title_manage_trip">Kelola Perjalanan</string>
+    <string name="title_manage_trip">Perjalanan</string>
     <string name="descrip_title_manange_trip">Silakan tambahkan item perjalanan Anda untuk Persetujuan</string>
     <string name="et_search_manage_trip">Ketik Kode perjalanan atau nama acara</string>
     <string name="draft">Draf</string>
@@ -670,5 +670,12 @@ Please add your trip item for Approval."
     <string name="txt_reimburstment">Reimbursement</string>
     <string name="txt_enter_trip_code">Enter Trip Code</string>
     <string name="notif_leave_page">Apakah anda yakin ingin meninggalkan halaman ini?</string>
+    <string name="pic_email_cost_center">PIC Email Cost Center</string>
+    <string name="to_main_menu">To Main Menu</string>
+    <string name="required_document">Required Document</string>
+    <string name="contact_hr">You don\'t have Approver yet right now.<br>Please contact your HR Management!</br></string>
+    <string name="sorry2">Sorry..</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="trip_history">Trip History</string>
     <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>

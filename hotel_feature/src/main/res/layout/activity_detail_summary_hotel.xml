@@ -20,10 +20,13 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/icClose"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_close_black"></ImageView>
+                android:src="@drawable/ic_close_black">
+
+            </ImageView>
 
             <LinearLayout
                 android:gravity="center"

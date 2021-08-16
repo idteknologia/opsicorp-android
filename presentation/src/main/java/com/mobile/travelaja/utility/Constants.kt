@@ -59,6 +59,7 @@ object Constants {
     var DATA_ROOM_HOTEL          = ""
     var DATA_LIST_TRAIN          = ""
     var DATA_CREATE_TRIP         = ""
+    var DATA_CASH_ADVANCE        = ""
     var LIST_DETAIL_PASSANGER    = ""
     val FROM_CART                = "from_cart"
     val DATA_DETAIL_TRAIN        = "data_detail_cart"
@@ -117,8 +118,11 @@ object Constants {
     val REQUEST_CODE_HOTEL_FILTER = 9066
     val SELECT_FLIGHT            = 9065
     val REQUEST_CODE_SELECT_FLIGHT = 9064
+    var ONCLIK_OPTION_REMOVE_FLIGHT_CART = 9063
+    var ONCLIK_OPTION_REMOVE_HOTEL_CART = 9062
     var KEY_INTENT_SELECT_FLIGHT = "key_intent_result_ok_select_flight"
     val TYPE_SELECT_NEARBY       = "type_select_nearby"
+    val COUNTRY_BY_ROUTE         = "country_by_route"
     val DATA_DETAIL_HOTEL        = ""
     var DATA_DETAIL_FLIGHT       = ""
     val TYPE_ACCOMODATION        = "type_hotel"
@@ -280,6 +284,7 @@ object Constants {
     var EMPLOY_ID                = "employId"
     var STATUS_MEMBER            = "statusMember"
     var ParticipantID            = "ParticipantID"
+    var DetailDestination        = ""
 
     var TripplanCode             = "TripplanCode"
     var TripplanIDX              = "TripplanID"
@@ -370,14 +375,13 @@ object Constants {
     val TYPE_HEADER_NOT_COMPLY = 6
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
-    var TYPE_FLIGHT_BUTTON = false
-
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
 
     var dataDepartureTime = ArrayList<AccomodationPreferanceModel>()
     var dataArrivalTime   = ArrayList<AccomodationPreferanceModel>()
     var dataNameTrainSelected     = ArrayList<AccomodationPreferanceModel>()
+
     var dataNameTrainAll  = ArrayList<AccomodationPreferanceModel>()
     var dataFilterMaxPriceAccomodation = 0
     var dataFIlterMinPriceAccomodation = 0

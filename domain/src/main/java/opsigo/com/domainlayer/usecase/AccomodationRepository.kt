@@ -23,8 +23,9 @@ interface AccomodationRepository {
     fun getBookingHotel(token: String,data:HashMap<Any,Any>,callback: CallbackBookingHotel)
     fun getSyncHotel(token: String,data:HashMap<Any,Any>,callback: CallbackArrayListString)
     fun getUpdateRemarkHotel(token: String,data:HashMap<Any,Any>,callback: CallbackUploadFile)
-    fun getRemoveHotel(token: String,tripItemId:String,tripId:String,hotelId:String,pnrId:String,travelAgent:String,callback: CallbackUploadFile)
+    fun getRemoveHotel(token: String, data: HashMap<Any, Any>, callback: CallbackArrayListString)
     fun getListCompanyHotel(token: String, notEmptyLatlong: Boolean, callback: CallbackListCompany)
+    fun getCountryByRoutePertamina(token: String, travelAgent: String,idTrip:String, callback: CallbackCountryByRoutePertamina)
 
     fun getSyncronizeFlight(token: String,data:HashMap<Any,Any>,callback: CallbackArrayListString)
     fun getValidationFlight(token:String,data:HashMap<Any,Any>,callback: CallbackValidationFlight)
@@ -38,5 +39,6 @@ interface AccomodationRepository {
     fun getSeatMapFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackSeatMapFlight)
     fun getSsrFlight(token: String, data:HashMap<Any,Any>, callbackSeatMap: CallbackGetSsr)
     fun getFareRules(token: String, data: HashMap<Any, Any>, callback: CallbackGetFareRules)
-
+    fun getRemoveFlight(token: String, data: HashMap<Any,Any>, callback: CallbackArrayListString)
+    fun getRouteFlightAvailable(token: String, data: HashMap<Any,Any>, callback: CallbackString)
 }

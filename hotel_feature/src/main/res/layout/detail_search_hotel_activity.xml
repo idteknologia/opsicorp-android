@@ -17,7 +17,7 @@
         android:layout_marginTop="-1dp"
         android:layout_below="@+id/toolbar"
         android:id="@+id/line_search_toolbar"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:gravity="center"

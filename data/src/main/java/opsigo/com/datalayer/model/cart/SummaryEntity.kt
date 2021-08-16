@@ -222,7 +222,7 @@ data class SummaryEntity(
 	val tripBudgetComponents: Any? = null,
 
 		@field:SerializedName("TrnNumber")
-	val trnNumber: Any? = null,
+	val trnNumber: String? = null,
 
 		@field:SerializedName("TotalExpenditureHotel")
 	val totalExpenditureHotel: Int = 0,
@@ -894,6 +894,30 @@ data class PaymentsItem(
 		val seq: Int = 0
 )
 
+data class PaymentsItemHotel(
+
+	@field:SerializedName("Amount")
+	val amount: Double = 0.0,
+
+	@field:SerializedName("Currency")
+	val currency: String? = null,
+
+	@field:SerializedName("Title")
+	val title: String? = null,
+
+	@field:SerializedName("Id")
+	val id: String? = null,
+
+	@field:SerializedName("Code")
+	val code: String? = null,
+
+	@field:SerializedName("TripHotelId")
+	val tripHotelId: String? = null,
+
+	@field:SerializedName("Seq")
+	val seq: Int = 0
+)
+
 data class Passport(
 
 		@field:SerializedName("Expire")
@@ -1187,7 +1211,7 @@ data class TripHotelsItems(
 		val isSync: Boolean = false,
 
 		@field:SerializedName("Payments")
-		val payments: List<PaymentsItem?>? = null,
+		val payments: List<PaymentsItemHotel?>? = null,
 
 		@field:SerializedName("Hash")
 		val hash: Any? = null,
@@ -2595,7 +2619,10 @@ data class TripParticipantsItem(
 	val emergencyContactName: Any? = null,
 
 		@field:SerializedName("IsAnyPNRWithNotCompleted")
-	val isAnyPNRWithNotCompleted: Boolean = false
+	val isAnyPNRWithNotCompleted: Boolean = false,
+
+		@field:SerializedName("EstTotal")
+	var estTotal: Double = 0.0
 )
 
 data class TripParticipantCustomApprovalsItem(

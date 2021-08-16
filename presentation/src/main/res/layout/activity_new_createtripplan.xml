@@ -12,7 +12,7 @@
         android:fitsSystemWindows="true"
         android:background="@color/white">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/layScroll"
             android:visibility="visible"
             android:layout_width="match_parent"
@@ -625,21 +625,33 @@
                     android:layout_height="2dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:background="#b2bbc6">
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvDescDoc"
+                    android:id="@+id/tvDescDoc1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    android:lineSpacingExtra="7sp"
+                    android:layout_marginBottom="10dp"
+                    style="@style/RobotoBold"
+                    android:textColor="#da2128"
+                    android:textSize="14sp"
+                    android:text="@string/required_document" />
+
+                <TextView
+                    android:id="@+id/tvDescDoc2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:textColor="#666666"
+                    android:lineSpacingExtra="7sp"
                     android:textSize="12sp"
-                    tools:text="@string/information_docs" />
+                    android:text="@string/information_docs" />
 
                 <LinearLayout
                     android:id="@+id/layListAttachment"
@@ -660,6 +672,7 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_attachment"
+                    android:nestedScrollingEnabled="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
@@ -773,7 +786,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 </layout>

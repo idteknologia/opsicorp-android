@@ -1,23 +1,22 @@
 package com.opsicorp.travelaja.feature_flight.result
 
-import android.util.Log
 import android.view.View
 import com.mobile.travelaja.utility.*
-import com.mobile.travelaja.base.BaseActivity
 import androidx.core.content.ContextCompat
+import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.base.BaseActivity
+import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import opsigo.com.datalayer.mapper.Serializer
-import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackSeatMapFlight
 import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import kotlinx.android.synthetic.main.confirm_flight_order_new.*
+import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.SeatAirlineModel
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import com.opsicorp.travelaja.feature_flight.adapter.ConfirmationFlightAdapter
-import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ConfirmationFlightModel
 import com.opsicorp.travelaja.feature_flight.booking_contact.BookingContactFlight
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
@@ -90,8 +89,6 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun dataRequestSeatMap(): HashMap<Any, Any> {
-
-        //        dataFlight = Serializer.deserialize(Globals.DATA_FLIGHT, ResultListFlightModel::class.java)
         val data = SeatMapFlightRequest()
         data.adult  = 1
         data.child = 0
@@ -185,6 +182,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 mData.number_sheet  = resultListFlightModel.numberSeat
                 mData.airlineNumber = resultListFlightModel.flightNumber
                 mData.terminal      = resultListFlightModel.terminal
+                mData.isMultiCity   = Constants.multitrip
 
                 mData.date_arrival_departure = DateConverter().getDate(resultListFlightModel.departDate,"yyyy-MM-dd","EEE, dd MMM yyyy")
                 mData.timeDeparture = resultListFlightModel.departTime
@@ -308,16 +306,6 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
         if (Constants.multitrip){
             val dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
-
-/*
-                tv_prize_departure.text     = StringUtils().setCurrency("IDR", dataOrder.routes.first().flightResult.price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                tvPassengerTotal1.text      = "${dataOrder.totalPassengerString} /Pax"
-                tv_station_departure.text   = "${dataOrder.routes.first().flightResult.origin} - ${dataOrder.routes.first().flightResult.destination}"
-                line_arrival.visibility     = View.VISIBLE
-                tv_prize_arrival.text       =  StringUtils().setCurrency("IDR", dataOrder.routes.last().flightResult.price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
-                tv_station_arrival.text     = "${dataOrder.routes.last().flightResult.origin} - ${dataOrder.routes.last().flightResult.destination}"
-                tvPassengerTotal2.text      = "${dataOrder.totalPassengerString} /Pax"
-*/
 
             dataFligt.clear()
             dataOrder.routes.forEach {

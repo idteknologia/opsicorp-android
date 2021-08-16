@@ -1053,4 +1053,18 @@ object Globals {
         }
     }
 
+    fun formatCurrency(value : Number) : String{
+        try {
+            val format = NumberFormat.getCurrencyInstance()
+            val symbol = (format as DecimalFormat).decimalFormatSymbols
+            symbol.currencySymbol = ""
+            symbol.groupingSeparator = '.'
+            format.minimumFractionDigits = 0
+            format.decimalFormatSymbols = symbol
+            return  format.format(value)
+        }catch (t : Throwable){
+            return ""
+        }
+    }
+
 }

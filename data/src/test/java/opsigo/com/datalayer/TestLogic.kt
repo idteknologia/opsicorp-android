@@ -3,8 +3,6 @@ package opsigo.com.datalayer
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.signin.DataLoginModel
 import org.junit.Test
-import java.text.DateFormat
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -95,4 +93,46 @@ class TestLogic {
         }
     }
 
+    @Test
+    fun testConverterDate(){
+        val date = stringToDate("yyyy-MM-dd HH:mm","2021-08-10 13:20:10")
+        print(SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date))
+    }
+
+    fun stringToDate(formatInput: String,dateString:String):Date{
+        try {
+            val mdformat = SimpleDateFormat(formatInput)
+            val date = mdformat.parse(dateString)
+            return date
+        }catch (e: Exception){
+            return Date()
+        }
+    }
+
+    @Test
+    fun removeDuplicateElementArray(){
+        val data = ArrayList<models>()
+        data.add(models("surabaya","1"))
+        data.add(models("surabaya","1"))
+
+        for (i in 0 until data.size) {
+            var j = i + 1
+            while (j < data.size) {
+                if (data.get(i).name.equals(data.get(j).name)) {
+                    data.removeAt(j)
+                    j--
+                }
+                j++
+            }
+        }
+
+        data.forEach {
+            println(it.name)
+            println(it.id)
+        }
+    }
+    class models(
+        val name :String= "",
+        val id  :String= ""
+        )
 }

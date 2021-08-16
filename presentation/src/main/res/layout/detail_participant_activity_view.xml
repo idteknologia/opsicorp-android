@@ -96,7 +96,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="14sp"
                                 android:textColor="#24253d"
-                                android:gravity="center_horizontal"
+                                android:textAlignment="textStart"
                                 android:text="IBM Workshop "
                                 />
 

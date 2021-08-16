@@ -15,6 +15,7 @@ import opsigo.com.datalayer.model.profile.ProfileEntity
 import opsigo.com.domainlayer.usecase.LoginRepository
 import opsigo.com.datalayer.model.general.CountryEntity
 import opsigo.com.datalayer.model.profile.ConfigEntity
+import opsigo.com.datalayer.model.profile.ProfileNewEntity
 import opsigo.com.domainlayer.callback.*
 
 class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
@@ -59,7 +60,7 @@ class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 try {
                     if (response.code()==200){
-                        callbackProfile.successLoad(ProfileEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(), ProfileEntity::class.java)))
+                        callbackProfile.successLoad(ProfileEntityDataMapper().transform(Serializer.deserialize(response.body()?.string().toString(), ProfileNewEntity::class.java)))
                     }
                     else if(response.code()==401){
                         callbackProfile.failedLoad("token")

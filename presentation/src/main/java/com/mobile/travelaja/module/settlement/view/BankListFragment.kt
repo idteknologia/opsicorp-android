@@ -14,13 +14,13 @@ import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.Bank
 
 class BankListFragment : BaseListFragment<Bank>() {
-    private lateinit var adapter : BankListAdapter
+    private lateinit var adapter: BankListAdapter
     private lateinit var viewModel: SettlementViewModel
 
     override fun baseListAdapter(): BaseListAdapter<Bank> {
         viewModel = ViewModelProvider(
-            requireActivity(),
-            DefaultViewModelFactory(false, requireContext())
+                requireActivity(),
+                DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
         adapter = BankListAdapter(viewModel)
         setTitleName(R.string.select_bank_transfer)
@@ -30,7 +30,7 @@ class BankListFragment : BaseListFragment<Bank>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.bank.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 adapter.list = it.toMutableList()
                 adapter.notifyDataSetChanged()
             } else {
@@ -64,8 +64,12 @@ class BankListFragment : BaseListFragment<Bank>() {
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.ivBack){
-            findNavController().navigateUp()
+        if (v?.id == R.id.ivBack) {
+            if (activity is BankListener) {
+                (activity as BankListener).onIvBack()
+            } else {
+                findNavController().navigateUp()
+            }
         }
     }
 

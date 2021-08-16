@@ -80,8 +80,8 @@
                     android:textColor="#91929e"
                     android:text="@string/text_contacts_name" />
 
-                <TextView
-                    android:id="@+id/tv_name_contact"
+                <EditText
+                    android:id="@+id/et_name_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -144,7 +144,8 @@
                                 android:layout_height="15dp"
                                 android:background="@color/green_price"/>
 
-                            <TextView
+                            <EditText
+                                android:id="@+id/etKodeArea"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -167,8 +168,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginStart="10dp">
-                        <TextView
-                            android:id="@+id/tv_number_contact"
+                        <EditText
+                            android:id="@+id/et_number_contact"
                             android:layout_marginStart="9dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

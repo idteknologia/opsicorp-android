@@ -203,6 +203,9 @@ data class HeaderReservationHotelRequest(
 
         @field:SerializedName("IsPrivateTrip")
         var isPrivateTrip: Boolean = false,
+
+        @field:SerializedName("Remark")
+        var remark: String = ""
 )
 
 data class ContactReservationHotelRequest(

@@ -86,8 +86,8 @@
                     android:textColor="#91929e"
                     android:text="Contact&apos;s Name" />
 
-                <TextView
-                    android:id="@+id/tv_name_contact"
+                <EditText
+                    android:id="@+id/et_name_contact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
@@ -173,8 +173,8 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_marginLeft="10dp">
-                        <TextView
-                            android:id="@+id/tv_number_contact"
+                        <EditText
+                            android:id="@+id/et_number_contact"
                             android:layout_marginLeft="9dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

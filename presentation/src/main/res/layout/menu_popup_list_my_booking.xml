@@ -8,7 +8,7 @@
     android:background="@android:color/transparent">
 
     <LinearLayout
-        android:background="#009688"
+        android:background="@drawable/rounded_button_green_5_persen"
         android:layout_width="169dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -48,7 +48,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             style="@style/RobotoRegular"
-            android:text="@string/remove_purchase_history">
+            android:text="@string/remove_item">
         </TextView>
 
     </LinearLayout>

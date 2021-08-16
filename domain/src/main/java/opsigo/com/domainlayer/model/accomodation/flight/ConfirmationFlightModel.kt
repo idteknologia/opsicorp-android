@@ -37,6 +37,7 @@ class ConfirmationFlightModel {
     var totalPrice    = ""
 
     var notcomply      = false
+    var isMultiCity    = false
 
     var flightSegmentItem : ArrayList<FlightSegmentItem> = ArrayList()
     var dataReasonCode = ReasonCodeModel()

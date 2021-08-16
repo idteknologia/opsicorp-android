@@ -47,13 +47,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.my_booking.eticket.TicketBookingActivity">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".module.settlement.SettlementActivity"
@@ -112,9 +105,8 @@
         <activity
             android:name=".module.signin.login.activity.LoginActivity"
             android:screenOrientation="portrait">
+            <!-- this main -->
             <intent-filter>
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
                 <action android:name="${applicationId}.LoginActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -207,6 +199,10 @@
         <activity
             android:name=".module.payment.PaymentActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".module.create_trip.newtrip_pertamina.activity.SelectBankTransferActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".module.manage_trip.TripHistoryActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver
             android:name=".locale.AppLocaleChangeReceiver"

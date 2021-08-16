@@ -45,17 +45,6 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
         tv_prize_hotel.text = "IDR "+ Globals.formatAmount(data.price)
         btn_next_step.setOnClickListener(this)
 
-        tv_available_room.visibility = View.GONE
-
-        /*if (data.totalAvailable.toInt()!=0){
-            btn_next_step.setTextColor(resources.getColor(R.color.colorBlueTitle))
-            tv_available_room.visibility = View.GONE
-        }
-        else{
-            tv_available_room.text = "No available room"
-            tv_available_room.visibility = View.VISIBLE
-            btn_next_step.setTextColor(resources.getColor(R.color.colorBlueTitle))
-        }*/
     }
 
     private fun initTablayout() {
@@ -120,6 +109,17 @@ class DescriptionAndFacilityHotel : LinearLayout, View.OnClickListener {
             btn_next_step -> {
                 onclick.nextStep()
             }
+        }
+    }
+
+    fun setTotalRoom(totalRoom:Int) {
+        if (totalRoom>0){
+            tv_available_room.text = "Available $totalRoom Room"
+            tv_available_room.setTextColor(resources.getColor(R.color.colorBlueHotel))
+        }
+        else{
+            tv_available_room.text = "No available room"
+            tv_available_room.setTextColor(resources.getColor(R.color.colorRedUndo))
         }
     }
 

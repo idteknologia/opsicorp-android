@@ -297,7 +297,6 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         dataOrderCreatTrip.destination = tv_destination_city.text.toString()
         dataOrderCreatTrip.notes   = et_notes.text.toString()
         dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
-        dataOrderCreatTrip.tripcode = System.currentTimeMillis().toString()
         dataOrderCreatTrip.dateCreated  = DateConverter().getDay("dd MMMM yyyy HH:mm")
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
     android:id="@+id/nested_view"
     android:background="@android:color/white"
@@ -60,11 +60,11 @@
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="170dp">
+            android:layout_height="wrap_content">
 
             <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
                 android:id="@+id/ticketView"
@@ -111,7 +111,6 @@
                             android:layout_height="16dp"/>
 
                         <TextView
-                            android:visibility="gone"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
@@ -122,7 +121,6 @@
                             style="@style/RobotoRegular"/>
 
                         <LinearLayout
-                            android:visibility="gone"
                             android:layout_marginTop="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -147,15 +145,24 @@
                         </LinearLayout>
 
                         <TextView
-                            android:visibility="gone"
                             android:id="@+id/tv_created_date"
                             style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="11dp"
-                            android:gravity="center_horizontal"
-                            android:lineSpacingExtra="1sp"
-                            android:text="Created Date : 8 Feb 2019 09:46"
+                            android:textAlignment="textStart"
+                            android:text="@string/created_date"
+                            android:textColor="#939396"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_created_date2"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="11dp"
+                            android:textAlignment="textStart"
+                            tools:text="8 Feb 2019 09:46"
                             android:textColor="#939396"
                             android:textSize="12sp" />
 
@@ -175,41 +182,66 @@
                             android:id="@+id/tv_purpose"
                             style="@style/RobotoBold"
                             android:textColor="#009688"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="65dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:gravity="center_horizontal"
-                            android:text="IBM Workshop " />
+                            tools:text="IBM Workshop " />
+
+                        <TextView
+                            android:id="@+id/tv_activity_type"
+                            style="@style/RobotoRegular"
+                            android:textColor="#b2bbc6"
+                            android:layout_marginTop="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:gravity="center_horizontal"
+                            android:text="@string/activity_type"
+                            tools:ignore="SmallSp" />
+
+                        <TextView
+                            android:id="@+id/tv_activity_type_text"
+                            style="@style/RobotoBold"
+                            android:textColor="#24253d"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:gravity="center_horizontal"
+                            tools:text="Dinas Res Luar Kota" />
 
                         <LinearLayout
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="20dp">
 
                             <ImageView
                                 android:layout_gravity="center"
-                                android:src="@drawable/ic_point_gps"
-                                android:layout_width="14dp"
-                                android:layout_height="10dp" />
+                                android:src="@drawable/ic_gps_red"
+                                android:layout_width="16dp"
+                                android:layout_height="12dp"
+                                android:layout_marginEnd="10dp"/>
 
                             <TextView
                                 android:id="@+id/tv_destination"
                                 style="@style/RobotoRegular"
-                                android:layout_marginLeft="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
                                 android:fontFamily="sans-serif"
                                 android:textStyle="normal"
-                                android:text="Yogyakarta"
+                                tools:text="Singapore - Jakarta - Argentina - Hongkong - Saudi Arabia"
                                 />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_marginTop="10dp"
+                            android:layout_marginBottom="20dp"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
@@ -223,7 +255,7 @@
                             <TextView
                                 android:id="@+id/tv_start_date"
                                 style="@style/RobotoMedium"
-                                android:layout_marginLeft="6dp"
+                                android:layout_marginStart="6dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
@@ -244,7 +276,7 @@
                             <TextView
                                 android:id="@+id/tv_end_date"
                                 style="@style/RobotoMedium"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginEnd="5dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
@@ -260,11 +292,11 @@
 
                     <LinearLayout
                         android:layout_marginTop="20dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_width="3dp"
                         android:layout_height="105dp"
-                        android:layout_toRightOf="@+id/line_detail"
+                        android:layout_toStartOf="@+id/image_barcode"
                         android:background="#f5f5f5"/>
 
                     <ImageView
@@ -304,151 +336,181 @@
             android:orientation="vertical">
 
 
-        <TextView
-            style="@style/RobotoBold"
-            android:layout_marginLeft="34dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#24253d"
-            android:text="@string/tips_today"/>
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_marginLeft="34dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#24253d"
+                android:text="@string/tips_today"/>
 
-        <ImageView
-            android:src="@drawable/image_loading_finish"
-            android:layout_marginLeft="34dp"
-            android:layout_width="35dp"
-            android:layout_marginTop="8dp"
-            android:layout_height="7dp"/>
+            <ImageView
+                android:src="@drawable/image_loading_finish"
+                android:layout_marginLeft="34dp"
+                android:layout_width="35dp"
+                android:layout_marginTop="8dp"
+                android:layout_height="7dp"/>
 
-        <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="34dp"
-            android:layout_marginRight="34dp">
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="1.  " />
-            <TextView
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="@string/you_can_add_trip_item_later_in_manage_trip_menu_expired_in_1_day_and_will_be_deleted" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginLeft="34dp"
+                android:layout_marginRight="34dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="1.  " />
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="@string/you_can_add_trip_item_later_in_manage_trip_menu_expired_in_1_day_and_will_be_deleted" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="34dp"
-            android:layout_marginLeft="34dp">
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="2.  " />
-            <TextView
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="@string/you_can_share_qrcode_with_same_company_policy_only_as_a_booker" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginRight="34dp"
+                android:layout_marginLeft="34dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="2.  " />
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="@string/you_can_share_qrcode_with_same_company_policy_only_as_a_booker" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_marginRight="34dp"
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="34dp">
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_marginRight="34dp"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="3.  " />
-            <TextView
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                android:textColor="#24253d"
-                android:text="@string/you_will_get_the_best_price_for_all_trip_item_match_with_your_travel_policy_budget_and_availability" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginLeft="34dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="3.  " />
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#24253d"
+                    android:text="@string/you_will_get_the_best_price_for_all_trip_item_match_with_your_travel_policy_budget_and_availability" />
+            </LinearLayout>
         </LinearLayout>
 
     <LinearLayout
         android:visibility="visible"
-        android:id="@+id/line_pertamina"
+        android:id="@+id/line_approver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tv_list_approval"
+            android:layout_marginStart="@dimen/margin_default"
             style="@style/RobotoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_default"
-            android:layout_marginLeft="@dimen/margin_default"
-            android:text="@string/trip_plan_info"
+            android:textSize="18sp"
             android:textColor="#24253d"
-            android:textSize="18sp" />
+            android:text="List Approval (5)"
+            />
 
-        <LinearLayout
-            android:layout_marginTop="12dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:id="@+id/rv_approver"
+            android:visibility="visible"
+            android:background="#f9f9f9"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="25dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/margin_default"
-            android:layout_marginRight="@dimen/margin_default">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                android:text="1.  " />
-            <TextView
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                android:text="@string/trip_plan_info1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/margin_default"
-            android:layout_marginRight="@dimen/margin_default">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                android:text="2.  " />
-            <TextView
-                style="@style/RobotoRegular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#24253d"
-                android:text="@string/trip_plan_info2" />
-        </LinearLayout>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
+        <LinearLayout
+            android:visibility="visible"
+            android:id="@+id/line_pertamina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:text="@string/trip_plan_info"
+                android:textColor="#24253d"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#24253d"
+                    android:text="1.  " />
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#24253d"
+                    android:text="@string/trip_plan_info1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#24253d"
+                    android:text="2.  " />
+                <TextView
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#24253d"
+                    android:text="@string/trip_plan_info2" />
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -525,7 +587,7 @@
                     android:textColor="@color/textButtonColor"
                     android:textSize="16sp"
                     style="@style/RobotoMedium"
-                    android:text="@string/submit"
+                    android:text="@string/close"
                     android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

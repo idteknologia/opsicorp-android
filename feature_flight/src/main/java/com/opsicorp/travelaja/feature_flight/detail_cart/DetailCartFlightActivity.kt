@@ -28,9 +28,9 @@ class DetailCartFlightActivity : BaseActivity() {
         initRecyclerView()
         initPriceRv()
         if (dataOrder.dataCardFlight.isComply.equals(true)){
-            line_reason_code.visible()
-        } else {
             line_reason_code.gone()
+        } else {
+            line_reason_code.visible()
         }
     }
 

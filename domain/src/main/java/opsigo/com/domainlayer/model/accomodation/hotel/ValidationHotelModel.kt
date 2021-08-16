@@ -1,6 +1,8 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
 class ValidationHotelModel {
+    var messageDoubleBooking = ""
+    var isDoubleBiooking  = false
     var isViolatedRules   = false
     var causeViolatedRules = ""
     var breakfast         = ""

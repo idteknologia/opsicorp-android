@@ -1,6 +1,7 @@
 package opsigo.com.domainlayer.model.summary
 
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
+import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 
 data class SummaryModel(
@@ -19,6 +20,7 @@ data class SummaryModel(
         var budget: String = "",
         var budgetId : String = "",
         var expiredRemaining :String = "",
+        var trnNumber :String = "",
         var homepage: String? = null,
         var imdbId: String? = null,
         var creationDate :String= "",
@@ -49,5 +51,6 @@ data class SummaryModel(
         var contact: ContactModel = ContactModel(),
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),
         var attactment :ArrayList<UploadModel> = ArrayList(),
+        var tripParticipantItem :ArrayList<ParticipantPertamina> = ArrayList(),
         var tripParticipantModels: List<TripParticipantsItemModel> = ArrayList()
 )

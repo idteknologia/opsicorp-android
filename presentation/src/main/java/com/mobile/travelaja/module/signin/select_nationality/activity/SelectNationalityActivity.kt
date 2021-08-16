@@ -104,7 +104,16 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
                 presenter.getDataNationality()
             }
             else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataCity()
+                try {
+                    if (intent.getBundleExtra("data")?.getStringArrayList("listCity")?.isNotEmpty()!!){
+                        presenter.getDataCity(intent.getBundleExtra("data")?.getStringArrayList("listCity")!!)
+                    }
+                    else {
+                        presenter.getDataCity()
+                    }
+                }catch (e:Exception){
+                    presenter.getDataCity()
+                }
             }
             else if("purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 lay_search.visibility = View.GONE

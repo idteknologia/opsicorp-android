@@ -2,6 +2,7 @@ package com.mobile.travelaja.module.cart.activity
 
 import com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.datalayer.request_model.accomodation.flight.reservation.IssuedAllRequest
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -13,6 +14,7 @@ import com.mobile.travelaja.module.cart.view.PageListBisnisTrip
 import com.mobile.travelaja.module.cart.view.PageDetailListTrip
 import com.mobile.travelaja.module.cart.model.CartHeaderModel
 import com.mobile.travelaja.module.home.activity.HomeActivity
+import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.domainlayer.model.summary.ItemFlightModel
 import com.mobile.travelaja.module.payment.PaymentActivity
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
@@ -22,9 +24,9 @@ import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import kotlinx.android.synthetic.main.empty_cart_view.*
 import com.mobile.travelaja.module.cart.model.CartModel
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import android.content.BroadcastReceiver
-import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.domainlayer.callback.*
 import com.mobile.travelaja.utility.*
 import android.content.IntentFilter
@@ -39,8 +41,6 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
-import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.reservation.IssuedAllRequest
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -175,7 +175,6 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     private fun removeTrip(id: String) {
-
         GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
             override fun successLoad(boolean: Boolean) {
 
@@ -213,6 +212,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         getDataSummary(data.id)
     }
 
+    override fun viewLoading() {
+        showDialog("Please waiting")
+    }
+
     fun failedWarning(message: String) {
         if (message.isNotEmpty()) {
             showAlert(getString(R.string.sorry), message)
@@ -245,9 +248,11 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         when(pagePosition){
             DETAIL_BISNIS_TRIP -> {
                 showDetailBisnisTrip()
+                idTripPlant = tripSummary.tripId
                 page_list_detail_trip.setPurpose(tripSummary.purpose)
                 page_list_detail_trip.setTimeLimit(tripSummary.expiredRemaining)
                 page_list_detail_trip.setTripCode(tripSummary.tripCode)
+                page_list_detail_trip.setIdTrip(tripSummary.tripId)
                 page_list_detail_trip.setData(getDataTrip())
                 page_list_detail_trip.callbackOnclickButton(this)
             }
@@ -309,9 +314,11 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 //arrival
                 model.dataCardTrain.destination = itemTrainModel.destinationName
                 model.dataCardTrain.stationArrival = itemTrainModel.stationArrival
-                model.dataCardTrain.dateArrival = itemTrainModel.dateArrival
-                model.dataCardTrain.timeArrival = itemTrainModel.timeArrival
-                model.dataCardTrain.progressTrain = itemTrainModel.progressTrain
+                model.dataCardTrain.dateArrival    = itemTrainModel.dateArrival
+                model.dataCardTrain.timeArrival    = itemTrainModel.timeArrival
+                model.dataCardTrain.progressTrain  = itemTrainModel.progressTrain
+                model.dataCardTrain.typeTrip       = itemTrainModel.typeTrip
+                model.dataCardTrain.isBackTrain    = itemTrainModel.isBackTrain
 
                 val sPrice = StringUtils().setCurrency("IDR", java.lang.Double.parseDouble(itemTrainModel.price), false)
                 model.dataCardTrain.price = sPrice
@@ -403,7 +410,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardHotel.image = it.image
                 model.dataCardHotel.status = it.status
                 model.dataCardHotel.nameHotel = it.nameHotel
-                model.dataCardHotel.tripIdHotel = it.tripItemId
+                model.dataCardHotel.tripItemId = it.tripItemId
                 model.dataCardHotel.checkIn = it.checkIn
                 model.dataCardHotel.checkOut = it.checkOut
                 model.dataCardHotel.address = it.address
@@ -411,12 +418,14 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardHotel.starRating = it.starRating
                 model.dataCardHotel.price = it.price
                 model.dataCardHotel.reasonCode = it.reasonCode
-                model.dataCardHotel.pnrHotel = it.pnrHotel
-                model.dataCardHotel.typeHotel = it.typeHotel
+                model.dataCardHotel.pnrCode    = it.pnrCode
+                model.dataCardHotel.pnrId      = it.pnrId
+                model.dataCardHotel.hotelId    = it.hotelId
+                model.dataCardHotel.typeHotel  = it.typeHotel
                 model.dataCardHotel.descreption = it.description
 
                 val modelItem = ModelItemTrip()
-                modelItem.id = it.pnrHotel
+                modelItem.id = it.pnrCode
                 modelItem.name = it.nameHotel
                 if ("pending".equals(it.status.toLowerCase())) {
                     modelItem.progress = "100.00"
@@ -468,7 +477,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         nestedScrollUp()
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-                setLog(Serializer.serialize(summaryModel))
+                hideDialog()
                 tripSummary = summaryModel
                 hideLoadingOpsicorp()
                 updateViewSummary()
@@ -509,7 +518,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     private fun viewSavedListener() {
         btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
         tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
-        line_warning.visibility = View.VISIBLE
+        showWarningWaiting()
         line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
     }
 
@@ -543,29 +552,36 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
         if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()) {
             btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
-            line_warning.visibility = View.VISIBLE
+            showWarningWaiting()
             tv_warning_cart.text = "${getString(R.string.please_wait_we_try_to_connecting)} ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
         } else {
             if (itemsTrip.filter { it.status == "Expired" }.isNotEmpty()) {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
-                line_warning.visibility = View.GONE
+                hideWarningWaiting()
             } else {
                 if (itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty()) {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                     tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
-                    line_warning.visibility = View.VISIBLE
+                    showWarningWaiting()
                     line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
                 }
-                /*else if (itemsTrip.filter { it.status.toLowerCase().contains("pending") }.isNotEmpty()){
-
-                }*/
                 else {
                     btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_yellow)
-                    line_warning.visibility = View.GONE
+                    hideWarningWaiting()
                 }
             }
 
         }
+    }
+
+    fun showWarningWaiting(){
+        line_warning.visibility = View.VISIBLE
+        shadow_line_bottom.visibility = View.GONE
+    }
+
+    fun hideWarningWaiting(){
+        line_warning.visibility = View.GONE
+        shadow_line_bottom.visibility = View.VISIBLE
     }
 
     fun submitTripPlant(view: View) {
@@ -577,7 +593,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 issuedAll()
             }
             else {
-                if (Constants.codeCompanyTravelAja==getProfile().companyCode||tripSummary.type==Constants.PERSONAL_TRIP) {
+                if (tripSummary.type==Constants.PERSONAL_TRIP) {
                     bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
                     gotoActivityWithBundle(PaymentActivity::class.java, bundle)
                 } else {
@@ -686,7 +702,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
     }
 
     fun gotoAddItem() {
-        if (tripSummary.contact.employeeId.equals(getProfile().employId)) {
+        if (tripSummary.tripParticipantModels.filter { it.employId.contains(getProfile().employId)}.isNotEmpty()) {
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId
@@ -709,7 +725,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
                 val bundle = Bundle()
-                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.ADD_ITEM_PERSONAL_TRIP)
+                bundle.putInt(Constants.TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             } else {
                 showAlert(getString(R.string.message_sorry), getString(R.string.info_expired_trip))
@@ -753,10 +769,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
                 //showLoadingOpsicorp(true)
 
-                val vProgress = intent?.getStringExtra("vProgress")
-                val vText = intent?.getStringExtra("vText")
-                val vPnrId = intent?.getStringExtra("vPnrId")
-                val PnrCode = intent?.getStringExtra("PnrCode")
+                val vProgress = intent.getStringExtra("vProgress")
+                val vText = intent.getStringExtra("vText")
+                val vPnrId = intent.getStringExtra("vPnrId")
+                val PnrCode = intent.getStringExtra("PnrCode")
 
                 tvProgress.text = vProgress
                 tvTestStatus.text = vText

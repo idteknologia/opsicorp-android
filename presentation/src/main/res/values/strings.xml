@@ -127,7 +127,7 @@
     <string name="trip_plan">Trip Plan</string>
     <string name="approval">Approval</string>
     <string name="trip_code">Trip Code</string>
-    <string name="created_date">Created Date</string>
+    <string name="created_date">Created Date :</string>
     <string name="created_by">Created By</string>
     <string name="expire_in">Expires in</string>
     <string name="detail">Detail</string>
@@ -762,7 +762,7 @@ Please add your trip item for Approval."
     <string name="txt_domestic_route">Domestic Route</string>
     <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
     <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
-    <string name="information_docs">Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br />  <b>Maximum file size : 1 MB</b></string>
+    <string name="information_docs"><br/><b>e.g.</b>invitation letter, official letter, PJS Document<br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br />  <b>Maximum file size : 1 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>
@@ -901,11 +901,17 @@ Please add your trip item for Approval."
     <string name="booking_id">Booking ID</string>
     <string name="expired_in">Expired in</string>
     <string name="select">Select</string>
+    <string name="please">Please</string>
     <string name="warning_delete_this_tripplan">Apa Anda yakin ingin menghapus tripplan ini?</string>
     <string name="select_your_purpose">Select your purpose</string>
     <string name="select_your_origin">Select your origin</string>
     <string name="select_your_destination">Select your destination</string>
     <string name="fill_your_note">Fill your note</string>
+    <string name="fill_your_pic_email">Fill PIC Email Cost Center</string>
+    <string name="select_your_bank_transfer">Select your Bank Transfer</string>
+    <string name="fill_your_cash_amount">Fill your Cash Advance Amount</string>
+    <string name="limit_cash_advance">Your cash advance are beyond limit</string>
+    <string name="name_must_not_empty">Fill your Contacts Name</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
     <string name="what_is_your_travel_purpose">What is your Travel purpose?</string>
@@ -1014,6 +1020,7 @@ Please add your trip item for Approval."
     <string name="or">or</string>
     <string name="view_detail">View Detail</string>
     <string name="remove_purchase_history">Remove Purchase History</string>
+    <string name="remove_item">Remove</string>
     <string name="back_to_purchase_list">Back to Purchase List</string>
     <string name="back_to_homepage">Back to Homepage</string>
     <string name="other">Other</string>
@@ -1120,6 +1127,14 @@ Please add your trip item for Approval."
     <string name="non_udara_">Non-Udara</string>
     <string name="udara_">Udara</string>
     <string name="txt_failed_upload_file_size_is_to_large">File upload failed: Size is to large.</string>
+    <string name="pic_email_cost_center">PIC Email Cost Center</string>
+    <string name="to_main_menu">To Main Menu</string>
+    <string name="required_document">Required Document</string>
+    <string name="contact_hr">You don\'t have Approver yet right now.<br>Please contact your HR Management!</br></string>
+    <string name="sorry2">Sorry..</string>
+    <string name="enter_amount">Enter Amount</string>
+
+
     <string name="warning_maximum_200_km">Maximum 200 km</string>
     <string name="hotel_message_purchase_ticket">• Guaranteed Late Check-Out till <br />
         • $5 Ya Kun Kaya Toast Food Voucher Per Room <br />
@@ -1170,5 +1185,7 @@ Please add your trip item for Approval."
     <string name="alert_not_include_intercity_transport">Are you sure save Reimbursement not include with Intercity transport</string>
     <string name="alert_not_include_other_expense">Are you sure save Reimbursement not include with Other Expense</string>
     <string name="not_text"></string>
+    <string name="trip_history">Trip History</string>
+
 </resources>
 

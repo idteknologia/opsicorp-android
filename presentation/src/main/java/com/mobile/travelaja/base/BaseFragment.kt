@@ -24,6 +24,7 @@ import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactHRDialog
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.module.signin.login.activity.LoginActivity
@@ -49,6 +50,7 @@ abstract class BaseFragment: Fragment()  {
     val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
     val dialogContactAdmin = ContactAdminDialog()
+    val dialogContactHRDialog = ContactHRDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -336,6 +338,10 @@ abstract class BaseFragment: Fragment()  {
         dialogContactAdmin.showDialogLoading(requireContext(),disable)
     }
 
+    fun showDialogContactHR(disable: Boolean){
+        dialogContactHRDialog.showDialogLoading(requireContext(),disable)
+    }
+
     fun hideDialogContruction(){
         try {
             dialogContruction.dismiss()
@@ -347,6 +353,14 @@ abstract class BaseFragment: Fragment()  {
     fun hideDialogContactAdmin(){
         try {
             dialogContactAdmin.dismiss()
+        }catch (e: Exception){
+
+        }
+    }
+
+    fun hideDialogContactHR(){
+        try {
+            dialogContactHRDialog.dismiss()
         }catch (e: Exception){
 
         }

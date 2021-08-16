@@ -18,28 +18,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-<!--        <LinearLayout-->
-<!--            android:emplaoyId="@+emplaoyId/layInfo"-->
-<!--            android:layout_marginTop="0dp"-->
-<!--            android:layout_marginLeft="0dp"-->
-<!--            android:layout_marginRight="0dp"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_alignParentLeft="true">-->
-
-<!--            -->
-<!--            <LinearLayout-->
-<!--                android:focusable="true"-->
-<!--                android:focusableInTouchMode="true"-->
-<!--                android:layout_width="0px"-->
-<!--                android:layout_height="0px"/>-->
-
-<!--        </LinearLayout>-->
-
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/layScroll"
             android:visibility="visible"
             android:layout_width="match_parent"
@@ -61,6 +40,7 @@
 
 
                 <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
                     android:layout_marginBottom="30dp"
@@ -766,23 +746,22 @@
 
 
                         <EditText
-                            android:textColorHint="#24253d"
-                            android:textColor="#24253d"
-                            android:background="@drawable/rounded_button_corner_grey"
+                            android:layout_marginTop="11dp"
                             android:id="@+id/et_notes"
-                            android:paddingTop="8dp"
-                            android:paddingBottom="9dp"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:textAlignment="viewStart"
-                            android:gravity="center"
-                            android:maxLength="100"
-                            android:textSize="@dimen/font_edittext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:ignore="RtlCompat"
-                            android:paddingStart="5dp" />
-
+                            android:background="@drawable/rounded_button_corner_grey"
+                            android:gravity="center"
+                            android:maxLength="100"
+                            android:maxLines="3"
+                            android:lines="3"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textAlignment="viewStart"
+                            android:textColor="#24253d"
+                            android:textColorHint="#24253d"
+                            android:textSize="@dimen/font_edittext"
+                            tools:ignore="RtlCompat" />
 
                     </LinearLayout>
 
@@ -816,9 +795,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="14.5dp"
                     android:background="#b2bbc6">
-
                 </LinearLayout>
 
                 <TextView
@@ -852,6 +830,7 @@
 
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
                     android:id="@+id/rv_attachment"
                     android:background="@android:color/white"
                     android:layout_marginTop="4dp"
@@ -962,7 +941,7 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
         <LinearLayout

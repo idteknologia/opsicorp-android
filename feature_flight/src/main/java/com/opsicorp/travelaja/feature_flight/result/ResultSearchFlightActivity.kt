@@ -38,10 +38,14 @@ import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import opsigo.com.datalayer.network.MyURL
+import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class ResultSearchFlightActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult, KoinComponent,
@@ -105,6 +109,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
+
                 when(views){
                     -1 ->{
                         if (!Constants.multitrip){
@@ -143,6 +148,7 @@ class ResultSearchFlightActivity : BaseActivity(),
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
         bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
         gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
+
     }
 
     private fun getAirlineByCompany() {
@@ -167,6 +173,17 @@ class ResultSearchFlightActivity : BaseActivity(),
             })
         }
 
+    }
+
+    private fun dataRoute(data :ArrayList<ListScheduleItem>): HashMap<Any, Any> {
+        val dataTripPlan = Serializer.deserialize(
+            Constants.DATA_SUCCESS_CREATE_TRIP,
+            SuccessCreateTripPlaneModel::class.java
+        )
+        val mData = ValidationRouteAvailable()
+        mData.schedule.addAll(data)
+        mData.tripId = dataTripPlan.idTripPlane
+        return Globals.classToHashMap(mData, ValidationRouteAvailable::class.java)
     }
 
     private fun dataRequestAirlinePref(): HashMap<Any, Any> {

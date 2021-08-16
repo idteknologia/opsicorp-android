@@ -7,6 +7,7 @@ import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
+import opsigo.com.datalayer.model.travel_request.CashAdvanceEntity
 import javax.inject.Inject
 import java.lang.Exception
 import org.json.JSONObject
@@ -168,6 +169,32 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)
             }
+        })
+    }
+
+    override fun checkCashAdvance(token: String, tripData: HashMap<Any, Any>, callback: CallbackCashAdvance) {
+        apiOpsicorp.checkCashAdvance(token, tripData).enqueue(object : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val data = response.body()?.string()
+                        callback.successLoad(CashAdvanceMapper().mapping(Serializer.deserialize(data,CashAdvanceEntity::class.java)))
+                    }
+                    else{
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }catch (e: Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+            callback.failedLoad(t.message.toString())
+            }
+
         })
     }
 

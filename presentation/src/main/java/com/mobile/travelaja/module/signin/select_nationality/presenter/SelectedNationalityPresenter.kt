@@ -6,6 +6,8 @@ import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.mobile.travelaja.module.signin.select_nationality.adapter.SelectNationalityAdapter
 import com.mobile.travelaja.module.signin.select_nationality.view.SelectNationalityView
 import com.mobile.travelaja.utility.*
+import com.mobile.travelaja.utility.Globals.setLog
+import opsigo.com.datalayer.mapper.Serializer
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
@@ -114,9 +116,26 @@ class SelectedNationalityPresenter :KoinComponent {
 
     fun getDataCity() {
         data.clear()
+        Constants.DATA_CITY.forEach {
+            setLog(Serializer.serialize(it))
+        }
         data.addAll(Constants.DATA_CITY)
         adapter.setData(data)
+    }
 
+    fun getDataCity(listCity:ArrayList<String>) {
+        data.clear()
+        Constants.DATA_CITY.forEach {
+            setLog(Serializer.serialize(it))
+        }
+        data.addAll(Constants.DATA_CITY)
+        val dataFilter = ArrayList<SelectNationalModel>()
+        listCity.forEachIndexed { index, c ->
+            dataFilter.addAll(data.filter { it.name.toLowerCase().contains(c.toLowerCase()) })
+        }
+        data.clear()
+        data.addAll(dataFilter)
+        adapter.setData(data)
     }
 
     fun getDataSelectBudged(){
