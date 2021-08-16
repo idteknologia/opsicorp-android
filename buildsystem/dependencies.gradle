@@ -52,7 +52,7 @@ ext {
           kotlinJre             : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
           kotlinJdk8            : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version",
           kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-          appcompact            : 'androidx.appcompat:appcompat:1.0.0',
+          appcompact            : 'androidx.appcompat:appcompat:1.3.1',
           supportDesign         : 'com.google.android.material:material:1.3.0',
           constraint            : 'androidx.constraintlayout:constraintlayout:1.1.3',
           gson                  : "com.google.code.gson:gson:${gsonVersion}",

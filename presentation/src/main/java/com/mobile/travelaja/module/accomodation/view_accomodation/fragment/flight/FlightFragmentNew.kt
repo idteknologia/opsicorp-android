@@ -594,7 +594,9 @@ class FlightFragmentNew : BaseFragment(),
                 mFlightMulti.totalPassenger = totalAdult + totalChild + totalInfant
                 mFlightMulti.classFlightCode = "1"
                 Globals.DATA_ORDER_FLIGHT = Serializer.serialize(mFlightMulti, OrderAccomodationModel::class.java)
-                gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
+                val nameActivity = BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity"
+//                gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
+                installModule("feature_flight",nameActivity)
             }
         }
         else {
@@ -604,7 +606,10 @@ class FlightFragmentNew : BaseFragment(),
             Constants.multitrip             = false
             Globals.DATA_LIST_FLIGHT = ""
             Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
-            gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
+            val nameActivity = BASE_PACKAGE_MODULE + "ResultSearchFlightActivity"
+            installModule("feature_flight",nameActivity)
+
+//            gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE + "ResultSearchFlightActivity")
         }
         setLog("Test Reservasi",Serializer.serialize(Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)))
     }

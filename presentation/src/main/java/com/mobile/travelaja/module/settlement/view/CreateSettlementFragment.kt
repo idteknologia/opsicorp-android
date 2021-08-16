@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.settlement.view
 
+import android.content.pm.PackageManager
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -37,6 +39,7 @@ import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.Comp
 import opsigo.com.domainlayer.model.settlement.*
 
 import java.io.File
+import java.util.jar.Manifest
 
 class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraCallback {
     private lateinit var viewModel: SettlementViewModel
@@ -464,6 +467,25 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         }
         alert.show()
     }
+
+    fun isCameraPermissionGranted(): Boolean {
+        return PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.CAMERA
+        )
+    }
+
+    fun isStoragePermissionGranted(): Boolean {
+        return PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.READ_EXTERNAL_STORAGE
+        ) && PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            requireContext(),
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    }
+
+
 
     companion object {
         const val KEY_REQUEST = "CREATE_SETTLEMENT"
