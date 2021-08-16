@@ -176,6 +176,7 @@ object Constants {
     var DATA_RESULT_FLIGHT_MULTI_CITY    = ArrayList<AccomodationResultModel>()
     val OPTION_HOTEL_REJECT      = 76
     var isBisnisTrip             = true
+    var isAllreadyFilterFlight   = false
 
     //hotel
     val ONCLICK_INFO_CANCELATION_HOTEL = 8001

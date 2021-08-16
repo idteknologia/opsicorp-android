@@ -38,6 +38,7 @@ import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationMode
 import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.utility.Constants.isAllreadyFilterFlight
 import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
@@ -67,7 +68,6 @@ class ResultSearchFlightActivity : BaseActivity(),
     var departureDate = ""
     var positionRoutes = 0
     var totalGetDataFlight = 0
-    var isAllreadyFilterFlight = false
     lateinit var dataOrder: OrderAccomodationModel
     var data = ArrayList<AccomodationResultModel>()
     var dataCabin      = ArrayList<FilterFlightModel>()
@@ -378,8 +378,10 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onResume() {
         if (Globals.ALL_READY_SELECT_DEPARTING){
-            isAllreadyFilterFlight = false
-            setDataArrival()
+            setLog("-----------------")
+            if (!isAllreadyFilterFlight){
+                setDataArrival()
+            }
         }
         super.onResume()
         setToolbar()
@@ -417,7 +419,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun setDataArrival() {
         data.clear()
         data.addAll(Constants.DATA_FLIGHT_ARRIVAL)
-        adapter.setDataList(Constants.DATA_FLIGHT_ARRIVAL,this)
+        adapter.setDataList(data,this)
     }
 
     private fun addDataDummyFlight() {
@@ -432,6 +434,7 @@ class ResultSearchFlightActivity : BaseActivity(),
         when(requestCode){
             Constants.GET_FILTER -> {
                 if (resultCode== Activity.RESULT_OK){
+                    isAllreadyFilterFlight = true
                     dataPrefarance = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_PREFARANCE)!!
                     dataArrival    = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_ARRIVAL)!!
                     dataDeparture  = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_DEPARTURE)!!
@@ -439,7 +442,6 @@ class ResultSearchFlightActivity : BaseActivity(),
                     dataFilter     = data?.getParcelableArrayListExtra(Constants.REQUEST_FLIGHT_FILTER)!!
                     filterTransit  = data?.getIntExtra(Constants.FILTER_FLIGHT_TRANSIT,-1)
                     adapter.setDataList(dataFilter,this)
-                    isAllreadyFilterFlight = true
                 }
             }
         }
