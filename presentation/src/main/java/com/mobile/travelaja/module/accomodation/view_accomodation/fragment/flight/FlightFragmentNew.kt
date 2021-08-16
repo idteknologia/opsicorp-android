@@ -1,12 +1,12 @@
 package com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight
 
-import android.util.Log
 import android.view.View
 import android.os.Bundle
 import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
+import com.mobile.travelaja.R
 import android.content.Context
 import android.widget.TextView
 import android.widget.PopupWindow
@@ -19,7 +19,6 @@ import com.mobile.travelaja.base.InitApplications
 import com.opsicorp.sliderdatepicker.utils.Constant
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobile.travelaja.R
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
@@ -404,18 +403,12 @@ class FlightFragmentNew : BaseFragment(),
                 openCalendar()
             }
             lay_parent_passager -> {
-                /*val fm = requireActivity().getSupportFragmentManager()
-                val selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
-                selectPassager.show(fm, "yesNoAlert")
-                selectPassager.callback = this
-                selectPassager.setLimitSelect(4,3,2)*/
                 val totalPassangerFlight = TotalPassengerFlight()
                 totalPassangerFlight.setLimitSelect(5, 2, 3)
                 totalPassangerFlight.setCurrentSelect(totalAdult, totalInfant, totalChild)
                 totalPassangerFlight.create(requireContext(), this)
             }
             lay_air_class -> {
-                /*airlineClass()*/
                 val cabinClass = CabisClassDialog()
                 cabinClass.setCurrentSelect(nameClassAirline)
                 cabinClass.create(requireContext(), this)
@@ -436,7 +429,10 @@ class FlightFragmentNew : BaseFragment(),
 
         selectAccomodationPreferance.setCallbackListener(object :
             SelectAccomodationPreferance.CallbackSelectPreferance {
-            override fun callback(string: String) {
+            override fun callback(
+                string: String,
+                dataAirlines: ArrayList<AccomodationPreferanceModel>
+            ) {
                 tv_airline_prreferance.text = string
             }
         })

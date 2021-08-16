@@ -291,6 +291,12 @@ class DataDummyAccomodation {
         times.add("12:00 - 18:00")
         times.add("18:00 - 24:00")
 
+/*        val times = ArrayList<String>()
+        times.add("23:59 - 05:59")
+        times.add("05:59 - 11:59")
+        times.add("11:59 - 17:59")
+        times.add("17:59 - 23:59")*/
+
         names.forEachIndexed { index, s ->
             val mData = FilterFlightModel()
             mData.id = "${index+1}"

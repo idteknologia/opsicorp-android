@@ -30,6 +30,7 @@ import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import kotlinx.android.synthetic.main.detail_departing_flight_activity_new.toolbar
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.utility.Constants.isAllreadyFilterFlight
 import com.opsicorp.travelaja.feature_flight.flight_info.activity.FlightInfoActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
@@ -365,6 +366,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             }
         }
         else{
+            isAllreadyFilterFlight = false
             if (Globals.ALL_READY_SELECT_DEPARTING){
                 saveDataListAccomodation()
                 Globals.ALL_READY_SELECT_DEPARTING = false

@@ -1,6 +1,10 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
-class FacilityFlightModel {
-    var nameFacility = ""
-    var valueFacility = ""
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class FacilityFlightModel (
+    var nameFacility  :String = "",
+    var valueFacility :String = "",
+):Parcelable

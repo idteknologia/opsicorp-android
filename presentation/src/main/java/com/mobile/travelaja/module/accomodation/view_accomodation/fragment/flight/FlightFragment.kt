@@ -419,11 +419,11 @@ class FlightFragment : BaseFragment(),
         val selectAccomodationPreferance = SelectAccomodationPreferance(true,R.style.CustomDialog,dataPrefarance)
         selectAccomodationPreferance.show(requireFragmentManager(),"dialog")
 
-        selectAccomodationPreferance.setCallbackListener(object :SelectAccomodationPreferance.CallbackSelectPreferance{
-            override fun callback(string: String) {
+        /*selectAccomodationPreferance.setCallbackListener(object :SelectAccomodationPreferance.CallbackSelectPreferance{
+            override fun callback(string: String.da) {
                 tv_airline_prreferance.text = string
             }
-        })
+        })*/
     }
 
     private fun addNamesAirline() {
