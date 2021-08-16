@@ -1,11 +1,15 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
-class SelectedSsrModel {
-    var id = ""
-    var ssrCode = ""
-    var price =""
-    var curency = ""
-    var ssrName = ""
-    var ssrType = ""
-    var ssrTypeName = ""
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class SelectedSsrModel (
+    var id          :String = "",
+    var ssrCode     :String = "",
+    var price       :String = "",
+    var curency     :String = "",
+    var ssrName     :String = "",
+    var ssrType     :String = "",
+    var ssrTypeName :String = ""
+):Parcelable

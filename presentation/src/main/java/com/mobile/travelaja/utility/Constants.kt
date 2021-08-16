@@ -14,6 +14,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 
 
 object Constants {
+
     val URL_REGISTER = "https://travelaja.id/register/basic"
     val pertaminaUrl = "https://pertamina-dtm3-qa.opsicorp.com/"
     val KEY_IS_PARTICIPANT  = "isParticipant"
@@ -37,7 +38,6 @@ object Constants {
     val SHOWCASE_ID         = ""
     var CODE_SEARCH_AIRLINE = ArrayList<CodeSearchAirLineModel>()
     var DATA_SEAT_AIRLINE   = ArrayList<SeatAirlineModel>()
-//    var DATA_FLIGHT_MULTI_CITY = DataMultiTripOrder()
     var DATA_SSR            = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
@@ -172,7 +172,7 @@ object Constants {
     val OPTION_FLIGHT_REJECT     = 68
 
     val OPTION_TRAIN_REJECT      = 59
-    var DATA_FLIGHT_ARIVAL       = ArrayList<AccomodationResultModel>()
+    var DATA_FLIGHT_ARRIVAL       = ArrayList<AccomodationResultModel>()
     var DATA_RESULT_FLIGHT_MULTI_CITY    = ArrayList<AccomodationResultModel>()
     val OPTION_HOTEL_REJECT      = 76
     var isBisnisTrip             = true
@@ -270,6 +270,7 @@ object Constants {
     var Duration                 = "Duration"
     var Amount                   = "Amount"
     var AmountS                  = "AmountS"
+    val REQUEST_FLIGHT_FILTER    = "request flight filter"
 
     var IS_RETURN                = "IS_RETURN"
     //public static String IS_FROM_SELECT = "IS_FROM_SELECT";
@@ -315,6 +316,13 @@ object Constants {
     var FILE_NAME_CITY_TRIP        = "ct_trip.op"
     var FILE_NAME_COUNTRY_TRIP     = "cntr_trip.op"
     var FILE_NAME_STATION_TRAIN    = "st_train.op"
+
+    val FILTER_FLIGHT_PREFARANCE = "flight_preferance"
+    val FILTER_FLIGHT_CABIN      = "flight_cabin"
+    val FILTER_FLIGHT_DEPARTURE  = "flight_departure"
+    val FILTER_FLIGHT_ARRIVAL    = "flight_arrival"
+    val IS_ALLREADY_FLITER_FLIGHT = "isAllreadyFilter"
+    val FILTER_FLIGHT_TRANSIT    = "filter_transit"
 
     object SendTo {
         val Participant = 0
@@ -375,6 +383,10 @@ object Constants {
     val TYPE_HEADER_NOT_COMPLY = 6
     val TYPE_HEADER_SOLD_OUT   = 7
     val TYPE_LOADING_HOTEL     = 8
+
+    val ON_DIRECT              = 0
+    val ON_ONE_TRANSIT         = 1
+    val ON_TWO_TRANSIT         = 2
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
 

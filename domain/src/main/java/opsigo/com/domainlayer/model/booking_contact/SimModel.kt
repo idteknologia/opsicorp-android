@@ -1,13 +1,15 @@
 package opsigo.com.domainlayer.model.booking_contact
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-class SimModel {
-    var id          = ""
-    var idSim       = ""
-    var title       = ""
-    var name        = ""
-    var email       = ""
-    var birthDate   = ""
-    var mobilePhone = ""
-}
+@Parcelize
+class SimModel (
+    var id          :String = "",
+    var idSim       :String = "",
+    var title       :String = "",
+    var name        :String = "",
+    var email       :String = "",
+    var birthDate   :String = "",
+    var mobilePhone :String = ""
+):Parcelable

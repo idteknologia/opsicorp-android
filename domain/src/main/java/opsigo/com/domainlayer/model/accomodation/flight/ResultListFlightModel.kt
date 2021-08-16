@@ -1,80 +1,73 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ResultListFlightModel {
+@Parcelize
+class ResultListFlightModel(
 
     /*var dataSSR         = SsrModel()*/
-    var dataFareRules   = ArrayList<FareRulesModel>()
-    var dataSeat        = SeatAirlineModel()
-    var originAirport   = ""
-    var destinationAirport = ""
-    var airline         = 0
-    var facility        = ArrayList<FacilityFlightModel>()
-    var passenger       = ArrayList<BookingContactAdapterModel>()
-    var notComply       = false
+    var dataFareRules   : ArrayList<FareRulesModel> = ArrayList(),
+    var dataSeat        : SeatAirlineModel = SeatAirlineModel(),
+    var facility        : ArrayList<FacilityFlightModel> = ArrayList(),
+    var passenger       : ArrayList<BookingContactAdapterModel> = ArrayList(),
+    var notComply       :Boolean = false,
+    var airline         :Int = 0,
+    var totalTransit    :Int = 0,
 
-    var titleAirline    = ""
-    var totalTransit    = 0
-    var numberSeat       = ""
-    var terminal        = ""
-    var imgAirline      = ""
-    var flightNumber    = ""
-    var number          = ""
-    var flightType      = ""
-    var flightTypeView  = ""
+    var originAirport      :String = "",
+    var destinationAirport :String = "",
+    var titleAirline       :String = "",
+    var numberSeat         :String = "",
+    var terminal           :String = "",
+    var imgAirline         :String = "",
+    var flightNumber       :String = "",
+    var number             :String = "",
+    var flightType         :String = "",
+    var flightTypeView     :String = "",
 
-    var departDate      = ""
-    var departureDate   = ""
-    var departTime      = ""
-    var dateDeparture   = Date()
+    var departDate      :String = "",
+    var departureDate   :String = "",
+    var departTime      :String = "",
+    var arrivalDate     :String = "",
+    var arriveDate      :String = "",
+    var arriveTime      :String = "",
+    var duration        :String = "",
+    var origin          :String = "",
+    var originName      :String = "",
+    var destination     :String = "",
+    var destinationName :String = "",
+    var durationView    :String = "",
+    var id              :String = "",
+    var flightId        :String = "",
+    var selectedClassId :String = "",
+    var nameClass       :String = "",
+    var classCode       :String = "",
+    var classId         :String = "",
+    var code            :String = "",
+    var dateDeparture   :Date = Date(),
 
-    var arrivalDate     = ""
-    var arriveDate      = ""
-    var arriveDateTimeView  = ""
-    var arriveTime      = ""
+    var arriveDateTimeView          :String= "",
+    var durationIncludeTransit      :String= "",
+    var durationIncludeTransitView  :String= "",
 
-    //var actionTime      = ""
+    var price           :Double = 0.0,
+    var isAvailable     :Boolean = false,
+    var isComply        :Boolean = false,
+    var isConnecting    :Boolean = false,
+    var isMultiClass    :Boolean = false,
+    var isHolderFlight  :Boolean = false,
 
-    var duration        = ""
+    var num             :String = "",
+    var seq             :String = "0",
+    var fareBasisCode   :String = "",
+    var fareRuleKeys    :String = "",
+    var sequence        :Int= 0,
+    var isFlightArrival :Boolean= false,
 
-    var origin          = ""
-    var originName      = ""
-    var destination     = ""
-    var destinationName = ""
-
-    var durationView    = ""
-    var durationIncludeTransit      = ""
-    var durationIncludeTransitView  = ""
-
-
-    var id              = ""
-    var flightId        = ""
-
-    var nameClass        = ""
-    var classCode       = ""
-    var classId         = ""
-
-    var code            = ""
-
-    var price           = 0.0
-    var isAvailable     = false
-    var isComply        = false
-    var isConnecting    = false
-    var isMultiClass    = false
-    var isHolderFlight  = false
-
-    var num             = ""
-    var seq             = "0"
-    var sequence        = 0
-    var fareBasisCode   = ""
-    var fareRuleKeys    = ""
-    var isFlightArrival = false
-
-    var transiteFlight  = ArrayList<TransiteFlight>()
-
-
-}
+    var transiteFlight  : ArrayList<TransiteFlight> = ArrayList()
+): Parcelable

@@ -1,10 +1,14 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
-class RiviewHotelModel {
-    var time    = ""
-    var id      = ""
-    var massage = ""
-    var name    = ""
-    var rating  = 0
-    var image   = ""
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class RiviewHotelModel (
+    var time    :String = "",
+    var id      :String = "",
+    var massage :String = "",
+    var name    :String = "",
+    var rating  :Int = 0,
+    var image   :String = ""
+    ):Parcelable

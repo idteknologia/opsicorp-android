@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.app.DialogFragment
 import android.content.DialogInterface
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -20,7 +22,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     lateinit var buttonSearch : ButtonDefaultOpsicorp
     lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
     var data = ArrayList<AccomodationPreferanceModel>()
-    val adapter by lazy { AccomodationPreferanceAdapter(context!!,data) }
+    val adapter by lazy { AccomodationPreferanceAdapter(requireContext(),data) }
 
     @SuppressLint("WrongConstant")
     override fun onMain(fragment: View) {
@@ -36,6 +38,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
         toolbar.changeImageBtnBack(R.drawable.ic_close_white)
         toolbar.singgleTitleGravity(toolbar.START)
         toolbar.callbackOnclickToolbar(this)
+
         buttonSearch.callbackOnclickButton(this)
         buttonSearch.setTextButton(getString(R.string.set_flight_preference))
 
@@ -43,10 +46,10 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         recyclerView.layoutManager = layoutManager
-        recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter
 
         adapter.setOnclickListener(object : OnclickListenerRecyclerView {
@@ -97,20 +100,25 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     }
 
     override fun onClicked() {
-        dismiss()
 
         var dataName = ""
         data.filter {
             it.checked
         }.forEachIndexed { index, accomodationPreferanceModel ->
-            dataName = dataName+accomodationPreferanceModel.name+" ,"
+            if (index!=data.filter { it.checked }.size-1){
+                dataName = dataName+accomodationPreferanceModel.name+ " , "
+            }
+            else {
+                dataName = dataName+accomodationPreferanceModel.name
+            }
         }
-        callback.callback("${dataName}")
+
+        callback.callback(dataName,data)
+        dismiss()
     }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        data.clear()
     }
 
     lateinit var callback : CallbackSelectPreferance
@@ -120,7 +128,7 @@ class SelectAccomodationPreferance : BaseBottomSheetDialogFrament,ToolbarOpsicor
     }
 
     interface CallbackSelectPreferance{
-        fun callback(string: String)
+        fun callback(string: String,data:ArrayList<AccomodationPreferanceModel>)
     }
 
 }

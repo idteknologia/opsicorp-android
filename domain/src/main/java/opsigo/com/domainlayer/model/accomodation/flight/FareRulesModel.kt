@@ -1,7 +1,11 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
-class FareRulesModel {
-    var fareRulesCode = ""
-    var fareRulesName = ""
-    var fareRulesValues = ArrayList<String>()
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class FareRulesModel (
+    var fareRulesCode   :String = "",
+    var fareRulesName   :String = "",
+    var fareRulesValues :ArrayList<String> = ArrayList()
+): Parcelable

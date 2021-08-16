@@ -58,6 +58,7 @@
             android:name="com.mobile.travelaja.module.item_custom.map.TestActivity"
             android:screenOrientation="portrait" >
 
+
         </activity>
         <activity
             android:name="com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity"

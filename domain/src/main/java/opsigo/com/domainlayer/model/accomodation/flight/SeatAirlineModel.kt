@@ -1,9 +1,13 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
-class SeatAirlineModel {
-    var nameFlight  = ""
-    var nameAirCraft = ""
-    var flightNumber = ""
-    var totalRows = 0
-    var dataSeat  = ArrayList<SeatFlightModel>()
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class SeatAirlineModel (
+    var nameFlight   :String = "",
+    var nameAirCraft :String = "",
+    var flightNumber :String = "",
+    var totalRows    :Int = 0,
+    var dataSeat     :ArrayList<SeatFlightModel> = ArrayList()
+): Parcelable

@@ -2,11 +2,11 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import java.util.*
 import android.view.View
-import android.os.Bundle
 import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
+import android.os.Bundle
 import androidx.transition.Fade
 import kotlin.collections.HashMap
 import java.text.SimpleDateFormat
@@ -14,9 +14,9 @@ import org.koin.core.KoinComponent
 import kotlin.collections.ArrayList
 import com.mobile.travelaja.utility.*
 import androidx.transition.Transition
-import com.mobile.travelaja.base.BaseActivity
 import org.koin.core.parameter.parametersOf
 import androidx.transition.TransitionManager
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.opsicorp.travelaja.feature_flight.R
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -33,18 +33,18 @@ import com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
 import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import opsigo.com.datalayer.network.MyURL
 import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
-import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class ResultSearchFlightActivity : BaseActivity(),
@@ -59,24 +59,28 @@ class ResultSearchFlightActivity : BaseActivity(),
         return R.layout.detail_search_filter_activity_new
     }
 
-    var current_sort = 0
-    val nameStation = ArrayList<String>()
-    lateinit var dataOrder: OrderAccomodationModel
-    var data = ArrayList<AccomodationResultModel>()
-    var dataFilter = ArrayList<AccomodationResultModel>()
-    val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
-    var departureDate = ""
     var prizeMax = 0
     var prizeMin = 0
-    var totalGetDataFlight = 0
-    lateinit var dataCodeAirline: AirlineCodeCompanyModel
-
-    val timeSelectFilterDeparture = ArrayList<String>()
-    val timeSelectFilterArrival = ArrayList<String>()
-    val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
-    val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+    var filterTransit = -1
+    var current_sort = 0
+    var isLoading = false
+    var departureDate = ""
     var positionRoutes = 0
-    
+    var totalGetDataFlight = 0
+    var isAllreadyFilterFlight = false
+    lateinit var dataOrder: OrderAccomodationModel
+    var data = ArrayList<AccomodationResultModel>()
+    var dataCabin      = ArrayList<FilterFlightModel>()
+    var dataDeparture  = ArrayList<FilterFlightModel>()
+    var dataArrival    = ArrayList<FilterFlightModel>()
+    lateinit var dataCodeAirline: AirlineCodeCompanyModel
+    var dataFilter     = ArrayList<AccomodationResultModel>()
+    var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
+    val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
+    val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
+    val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
+
+
     override fun OnMain() {
         initItemViews()
     }
@@ -143,13 +147,17 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun gotoDetailFlight(position: Int) {
-       /* val bundle = Bundle()
-        val dataSelected = data[position].listFlightModel
+        val bundle = Bundle()
+        var dataSelected = ResultListFlightModel()
+        if (isAllreadyFilterFlight){
+            dataSelected = dataFilter[position].listFlightModel
+        }
+        else{
+            dataSelected = data[position].listFlightModel
+        }
         Globals.DATA_FLIGHT = Serializer.serialize(dataSelected, ResultListFlightModel::class.java)
         bundle.putInt(Constants.positionFlightMulticity,positionRoutes)
-        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)*/
-        setLog(Serializer.serialize(data))
-
+        gotoActivityWithBundle(DetailResultFlightActivity::class.java,bundle)
     }
 
     private fun getAirlineByCompany() {
@@ -157,6 +165,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             mappingByDate()
         }
         else {
+            isLoading = true
             GetDataAccomodation(getBaseUrl()).getPreferedFlight(getToken(),dataRequestAirlinePref(),object : CallbackAirlinePreference {
                 override fun successLoad(data: AirlineCodeCompanyModel) {
                     clearDataListFlight()
@@ -169,7 +178,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                 }
 
                 override fun failedLoad(message: String) {
-
+                    isLoading = false
                 }
             })
         }
@@ -267,7 +276,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun clearDataListFlight() {
         data.clear()
 //        dataFromServer.clear()
-        Constants.DATA_FLIGHT_ARIVAL.clear()
+        Constants.DATA_FLIGHT_ARRIVAL.clear()
         dataFilter.clear()
     }
 
@@ -294,7 +303,7 @@ class ResultSearchFlightActivity : BaseActivity(),
                         data.add(it)
                     }
                     mData.filter { it.listFlightModel.isFlightArrival == true }.forEach {
-                        Constants.DATA_FLIGHT_ARIVAL.add(it)
+                        Constants.DATA_FLIGHT_ARRIVAL.add(it)
                     }
                     /*data.clear()
                     data.addAll(dataFromServer)*/
@@ -309,6 +318,7 @@ class ResultSearchFlightActivity : BaseActivity(),
             }
 
             override fun failed(error: String) {
+                isLoading = false
                 showAllert("Sorry",error)
             }
         })
@@ -327,6 +337,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun checkEmptyData() {
+        isLoading = false
         if (data.isEmpty()){
             empty_result.visibility = View.VISIBLE
             rv_result_flightnew.gone()
@@ -367,6 +378,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onResume() {
         if (Globals.ALL_READY_SELECT_DEPARTING){
+            isAllreadyFilterFlight = false
             setDataArrival()
         }
         super.onResume()
@@ -404,8 +416,8 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun setDataArrival() {
         data.clear()
-        data.addAll(Constants.DATA_FLIGHT_ARIVAL)
-        adapter.setDataList(Constants.DATA_FLIGHT_ARIVAL,this)
+        data.addAll(Constants.DATA_FLIGHT_ARRIVAL)
+        adapter.setDataList(Constants.DATA_FLIGHT_ARRIVAL,this)
     }
 
     private fun addDataDummyFlight() {
@@ -420,15 +432,14 @@ class ResultSearchFlightActivity : BaseActivity(),
         when(requestCode){
             Constants.GET_FILTER -> {
                 if (resultCode== Activity.RESULT_OK){
-                    timeSelectFilterArrival.clear()
-                    timeSelectFilterDeparture.clear()
-                    nameStation.clear()
-                    Constants.dataDepartureTime.forEachIndexed { index, accomodationPreferanceModel -> timeSelectFilterDeparture.add(accomodationPreferanceModel.time)}
-                    Constants.dataArrivalTime.forEachIndexed { index, accomodationPreferanceModel -> timeSelectFilterArrival.add(accomodationPreferanceModel.time)}
-                    Constants.dataNameTrainSelected.forEachIndexed { index, accomodationPreferanceModel -> nameStation.add(accomodationPreferanceModel.name) }
-                    this.prizeMax = Constants.dataFilterMaxPriceAccomodation
-                    this.prizeMin = Constants.dataFIlterMinPriceAccomodation
-
+                    dataPrefarance = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_PREFARANCE)!!
+                    dataArrival    = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_ARRIVAL)!!
+                    dataDeparture  = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_DEPARTURE)!!
+                    dataCabin      = data?.getParcelableArrayListExtra(Constants.FILTER_FLIGHT_CABIN)!!
+                    dataFilter     = data?.getParcelableArrayListExtra(Constants.REQUEST_FLIGHT_FILTER)!!
+                    filterTransit  = data?.getIntExtra(Constants.FILTER_FLIGHT_TRANSIT,-1)
+                    adapter.setDataList(dataFilter,this)
+                    isAllreadyFilterFlight = true
                 }
             }
         }
@@ -504,61 +515,12 @@ class ResultSearchFlightActivity : BaseActivity(),
         adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
     }
 
-    fun filterByTimeDeparture(){
-        timeSelectFilterDeparture.forEachIndexed { index, s ->
-            dataFilter.clear()
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0
-                    && it.listTrainModel.dateDeparture.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[0]}"))
-                    && it.listTrainModel.dateDeparture.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[1]}"))})
-            if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
-                dataFilter.add(headerNotAvailable())
-                dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0
-                        && it.listTrainModel.dateDeparture.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[0]}"))
-                        && it.listTrainModel.dateDeparture.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateDeparture)+" ${s.split("-")[1]}"))})
-            }
-            adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
-        }
-    }
-
-
-
-    fun filterByTimeArrivalTime(){
-        timeSelectFilterArrival.forEachIndexed { index, s ->
-            dataFilter.clear()
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0
-                    && it.listTrainModel.dateArrival.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.trim().split("-")[0]}"))
-                    && it.listTrainModel.dateArrival.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.trim().split("-")[1]}"))})
-
-            if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
-                dataFilter.add(headerNotAvailable())
-                dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0
-                        && it.listTrainModel.dateArrival.after(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.split("-")[0]}"))
-                        && it.listTrainModel.dateArrival.before(tFormarter.parse(dFormarter.format(it.listTrainModel.dateArrival)+" ${s.split("-")[1]}"))})
-            }
-            adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
-        }
-    }
-
     fun filterByPrizeTrain(){
         dataFilter.clear()
         dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0&&it.listTrainModel.price.toInt()>prizeMin&&it.listTrainModel.price.toInt()<prizeMax})
         if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
             dataFilter.add(headerNotAvailable())
             dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0&&it.listTrainModel.price.toInt()>prizeMin&&it.listTrainModel.price.toInt()<prizeMax})
-        }
-        adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
-    }
-
-    fun filterByNameTrain(){
-        dataFilter.clear()
-        nameStation.forEachIndexed { index, s ->
-            dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()>0&&it.listTrainModel.nameStation==s})
-        }
-        if (data.filter { it.listTrainModel.totalSeat.toInt()==0}.isNotEmpty()){
-            dataFilter.add(headerNotAvailable())
-            nameStation.forEachIndexed { index, s ->
-                dataFilter.addAll(data.filter { it.listTrainModel.totalSeat.toInt()==0&&it.listTrainModel.nameStation==s})
-            }
         }
         adapter.setDataList(dataFilter,this@ResultSearchFlightActivity)
     }
@@ -576,8 +538,18 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     override fun onFilter() {
-        if (data.isNotEmpty()){
-            gotoActivityResult(FilterFlightActivity::class.java,Constants.GET_FILTER)
+        if (data.isNotEmpty()&&!isLoading){
+            val intent = Intent(this,FilterFlightActivity::class.java)
+            intent.putExtra(Constants.IS_ALLREADY_FLITER_FLIGHT,isAllreadyFilterFlight)
+            if (isAllreadyFilterFlight){
+                intent.putExtra(Constants.FILTER_FLIGHT_TRANSIT,filterTransit)
+                intent.putExtra(Constants.FILTER_FLIGHT_ARRIVAL,dataArrival)
+                intent.putExtra(Constants.FILTER_FLIGHT_DEPARTURE,dataDeparture)
+                intent.putExtra(Constants.FILTER_FLIGHT_CABIN,dataCabin)
+                intent.putExtra(Constants.FILTER_FLIGHT_PREFARANCE,dataPrefarance)
+            }
+            intent.putExtra(Constants.REQUEST_FLIGHT_FILTER,data)
+            gotoActivityResultIntent(intent,Constants.GET_FILTER)
         }
     }
 
