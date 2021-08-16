@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.SettlementDraftDetailFragmentBinding
 import com.mobile.travelaja.module.settlement.view.adapter.RefundsAdapter
+import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.DraftSettlementViewModel
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
@@ -29,8 +31,15 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var fromSubmit = false
         arguments?.let {
             idTrip = args.idTrip
+            fromSubmit = args.fromSubmit
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            if (fromSubmit)
+                activity?.finish()
+            else findNavController().navigateUp()
         }
     }
 
@@ -59,6 +68,15 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
             it.getContentIfNotHandled()?.let { t ->
                 Utils.handleErrorMessage(requireContext(), t) { errorString ->
                     Toast.makeText(requireContext(), errorString, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        viewModel.successSubmit.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { isSuccess ->
+                if (isSuccess) {
+                    //Todo navigate to waiting approval
+                    Toast.makeText(context,"success",Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -102,7 +120,7 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
                 findNavController().navigate(action)
             }
         }else{
-            //Todo submit
+            viewModel.submit("Submit")
         }
     }
 }

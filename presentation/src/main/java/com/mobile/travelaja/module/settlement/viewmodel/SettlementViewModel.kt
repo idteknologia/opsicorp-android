@@ -112,10 +112,10 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     //Todo observe list trip code
-    fun getTripCodes() {
+    fun getTripCodes(tripType : Int) {
         _loading.value = true
         viewModelScope.launch {
-            val result = repository.getTripCodes()
+            val result = repository.getTripCodes(tripType)
             compareTripCodes(result)
         }
     }

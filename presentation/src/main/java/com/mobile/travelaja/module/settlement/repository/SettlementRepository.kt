@@ -11,7 +11,7 @@ import retrofit2.http.Body
 interface SettlementRepository {
     fun getSettlements(query : MutableMap<String,Any>) : Flow<PagingData<Settlement>>
     suspend fun getBanks() : Result<List<Bank>>
-    suspend fun getTripCodes() : Result<List<Trip>>
+    suspend fun getTripCodes(typeTrip : Int) : Result<List<Trip>>
     suspend fun getDetailTrip(idTrip : String) : Result<DetailSettlementResult>
     suspend fun updateRateOvernight(typeWork : Int , countDay : Int) : Result<RateStayResult>
     suspend fun getModeTransport() : Result<List<ModeTransport>>

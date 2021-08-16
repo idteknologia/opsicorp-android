@@ -24,6 +24,7 @@ import com.mobile.travelaja.databinding.FragmentCreateSettlementBinding
 import com.mobile.travelaja.databinding.TripDetailDialogBinding
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCameraCallback
+import com.mobile.travelaja.module.settlement.FilePermissionListener
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
@@ -47,6 +48,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
     private val fileDialog = DialogCamera()
     private lateinit var adapter: AttachmentAdapter
     private lateinit var bottomSheet: BottomSheetBehavior<ConstraintLayout>
+    private var filePermissionGranted = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -176,6 +178,11 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         Toast.makeText(context, "City is Empty", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onStart() {
+        super.onStart()
+        filePermissionGranted = isCameraPermissionGranted() && isStoragePermissionGranted()
+    }
+
     //Todo onclick
     override fun onClick(v: View?) {
         when (v?.id) {
@@ -270,7 +277,11 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 }
             }
             R.id.btnUploadEvidence -> {
+                if (filePermissionGranted)
                 fileDialog.show(childFragmentManager, "GettingFile")
+                else{
+                    (activity as FilePermissionListener).onPermissionInputFile(filePermissionGranted)
+                }
             }
             R.id.linearLayoutExpandDetail -> {
                 if (bottomSheet.state == BottomSheetBehavior.STATE_EXPANDED) {
@@ -374,8 +385,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         idTrip?.let {
             val action =
                 CreateSettlementFragmentDirections.actionCreateSettlementToSettlementDetailDraftFragment(
-                    it
-                )
+                    it,true)
             findNavController().navigate(action)
             viewModel.isDraftLabelVisible.set(true)
         }
@@ -484,6 +494,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
+
 
 
 

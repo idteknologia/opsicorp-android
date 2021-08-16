@@ -225,6 +225,22 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         _total.value = total
     }
 
+    fun addingTransportExpense(list : List<TransportExpenses>){
+        transportExpenses.clear()
+        list.forEach {
+            val data = TransportExpenses()
+            data.City = it.City
+            data.Amount = it.Amount
+            data.Currency = it.Currency
+            data.TotalAmount = it.TotalAmount
+            data.TransportationMode = it.TransportationMode
+            data.TransportationType = it.TransportationType
+            data.nameTransportationMode = it.nameTransportationMode
+            data.TripType = it.TripType
+            transportExpenses.add(data)
+        }
+    }
+
     companion object {
         const val TYPE = "Type"
         const val CITY = "City"

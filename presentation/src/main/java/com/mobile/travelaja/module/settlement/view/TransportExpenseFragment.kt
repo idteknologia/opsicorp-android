@@ -75,8 +75,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         val transports = data!!.TransportExpenses
         if (transports.isNotEmpty() && viewModel.transportExpenses.isEmpty()) {
             viewModel.addTotal(data.TotalTransportExpense.toDouble())
-            viewModel.transportExpenses.clear()
-            viewModel.transportExpenses.addAll(transports)
+            viewModel.addingTransportExpense(transports)
             viewModel.isRemoveVisible.set(transports.size > 1)
         } else {
             viewModel.transportExpenses.add(TransportExpenses())

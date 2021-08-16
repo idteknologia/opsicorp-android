@@ -38,8 +38,9 @@ interface ServiceApi {
     @GET("api/Settlement/GetBankTransfer")
     suspend fun getBanks():List<Bank>
 
-    @GET("api/Settlement/GetTripList")
-    suspend fun getTripCodes():List<Trip>
+    //GetTripList
+    @GET("api/Settlement/{path}")
+    suspend fun getTripCodes(@Path("path") path : String,@QueryMap map: MutableMap<String, Int>):List<Trip>
 
     @GET("api/Settlement/GetDetailTrip")
     suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailSettlementResult
@@ -59,8 +60,8 @@ interface ServiceApi {
     @GET("api/Settlement/GetExpenseTypeList")
     suspend fun getExpenseType() : List<ExpenseType>
 
-    @POST("api/Settlement/{path}}")
-    suspend fun submitSettlement(@Body submit : DetailSettlement,@Path("path") path : String ) : SubmitResult
+    @POST("api/Settlement/{path}")
+    suspend fun submitSettlement(@Path("path") path : String, @Body submit : DetailSettlement ) : SubmitResult
 
     @POST("api/Settlement/GetIntercityTransportCompensation")
     suspend fun getIntercityTransportCompensation(@Body route : MutableMap<String,Any>) :IntercityTransportResult

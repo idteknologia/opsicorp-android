@@ -195,6 +195,7 @@ data class CalculateTransportResult(
 data class SubmitResult(
     @SerializedName("isSuccess")
     var isSuccess: Boolean,
+    @SerializedName("isApproverSet")
     var isApproverSet: Boolean)
 
 

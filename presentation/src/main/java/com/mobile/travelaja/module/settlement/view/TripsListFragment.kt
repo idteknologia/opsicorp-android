@@ -23,11 +23,16 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
     private lateinit var adapter: TripsListAdapter
     private lateinit var viewModel: SettlementViewModel
     private val args: TripsListFragmentArgs by navArgs()
+    private var viewType = TripsListAdapter.TYPE_SELECTED
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.let {
+            viewType = args.viewType
+        }
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            if (args.viewType == TripsListAdapter.TYPE_DRAFT)
+            if (viewType == TripsListAdapter.TYPE_DRAFT)
                 activity?.finish()
             else findNavController().navigateUp()
         }
@@ -35,7 +40,7 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
 
     override fun baseListAdapter(): BaseListAdapter<Trip> {
         viewModel = ViewModelProvider(
-            requireActivity(),
+            this,
             DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
         adapter = TripsListAdapter(this, args.idTrip, args.viewType)
@@ -64,7 +69,7 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
         viewModel.error.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { t ->
                 showError(t) {
-                    viewModel.getTripCodes()
+                    viewModel.getTripCodes(viewType)
                 }
             }
         }
@@ -72,14 +77,14 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             isRefreshing(loading)
         }
-        viewModel.getTripCodes()
+        viewModel.getTripCodes(viewType)
         setHintSearch(getString(R.string.txt_enter_trip_code))
         setSearchListener(this)
     }
 
     override fun onRefresh() {
         hiddenError()
-        viewModel.getTripCodes()
+        viewModel.getTripCodes(viewType)
     }
 
     override fun onClick(v: View?) {

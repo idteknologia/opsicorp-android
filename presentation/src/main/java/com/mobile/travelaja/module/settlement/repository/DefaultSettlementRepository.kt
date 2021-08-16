@@ -3,6 +3,7 @@ package com.mobile.travelaja.module.settlement.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter
 import com.mobile.travelaja.utility.Utils
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MediaType.Companion.toMediaType
@@ -30,9 +31,15 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             Result.Error(t)
         }
 
-    override suspend fun getTripCodes(): Result<List<Trip>> =
+    override suspend fun getTripCodes(typeTrip : Int): Result<List<Trip>> =
         try {
-            val list = api.getTripCodes()
+            val map = mutableMapOf<String,Int>()
+            var path = "GetTripList"
+            if (typeTrip == TripsListAdapter.TYPE_DRAFT){
+                map["Status"] = 0
+                path = "List"
+            }
+            val list = api.getTripCodes(path,map)
             Result.Success(list)
         } catch (t: Throwable) {
             Result.Error(t)
@@ -104,7 +111,8 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
 
     override suspend fun submitSettlement(submit: DetailSettlement,path : String): Result<SubmitResult> =
         try {
-            val result = api.submitSettlement(submit,path)
+            println(submit)
+            val result = api.submitSettlement(path,submit)
             Result.Success(result)
         } catch (t: Throwable) {
             Result.Error(t)

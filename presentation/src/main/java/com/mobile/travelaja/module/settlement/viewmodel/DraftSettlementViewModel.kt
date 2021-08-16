@@ -9,6 +9,7 @@ import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.Event
 import opsigo.com.domainlayer.model.settlement.DetailDraftSettlement
 import opsigo.com.domainlayer.model.settlement.DetailSettlement
+import opsigo.com.domainlayer.model.settlement.SubmitResult
 
 class DraftSettlementViewModel(private val repository: SettlementRepository) : ViewModel() {
     var submitSettlement = MutableLiveData(DetailSettlement())
@@ -17,6 +18,9 @@ class DraftSettlementViewModel(private val repository: SettlementRepository) : V
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
+
+    private val _successSubmit = MutableLiveData<Event<Boolean>>()
+    val successSubmit : LiveData<Event<Boolean>> = _successSubmit
 
     var tripCode : String = ""
     fun getDetailTrip(_tripCode : String) {
@@ -39,6 +43,29 @@ class DraftSettlementViewModel(private val repository: SettlementRepository) : V
             _error.value = Event(e.exception)
         }
         _loading.value = false
+    }
+
+    //Todo submit
+    fun submit(path : String) {
+        if (getDetailSubmit() == null){
+            return
+        }
+        viewModelScope.launch {
+            val result = repository.submitSettlement(getDetailSubmit()!!,path)
+            compareSubmitResult(result)
+        }
+    }
+
+    private fun compareSubmitResult(result: Result<SubmitResult>) {
+        if (result is Result.Success) {
+            _successSubmit.value = Event(result.data.isSuccess)
+        } else {
+            _error.value = Event((result as Result.Error).exception)
+        }
+    }
+
+    fun getDetailSubmit() : DetailSettlement?{
+        return submitSettlement.value
     }
 
 }
