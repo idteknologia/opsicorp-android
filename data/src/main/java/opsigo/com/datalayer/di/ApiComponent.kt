@@ -1,12 +1,7 @@
 package opsigo.com.datalayer.di
 
 import dagger.Component
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.datanetwork.GetDataLogin
-import opsigo.com.datalayer.datanetwork.GetDataTripPlane
-import opsigo.com.datalayer.datanetwork.GetDataApproval
-import opsigo.com.datalayer.datanetwork.GetDataAccomodation
-import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.datanetwork.*
 
 @CustomScope
 @Component(modules = [ApiModule::class], dependencies = [NetworkComponent::class])
@@ -17,4 +12,5 @@ interface ApiComponent {
     fun inject(getDataApproval: GetDataApproval)
     fun inject(getAccomodation: GetDataAccomodation)
     fun inject(getAccomodation: GetDataTravelRequest)
+    fun inject(getMyBooking: GetDataMyBooking)
 }

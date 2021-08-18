@@ -1,14 +1,14 @@
-package opsigo.com.datalayer.model.myboking
+package opsigo.com.datalayer.model.accomodation.purchase
 
 import com.google.gson.annotations.SerializedName
 
-data class ListMyBookingEntity(
+data class PurchaseListEntity(
 
 	@field:SerializedName("total")
 	val total: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<DataItem> = ArrayList(),
+	val data: List<DataItem?>? = null,
 
 	@field:SerializedName("errorMessage")
 	val errorMessage: String? = null,
@@ -26,7 +26,7 @@ data class DataItem(
 	val destination: String? = null,
 
 	@field:SerializedName("IsRoundtrip")
-	val isRoundtrip: Boolean = false,
+	val isRoundtrip: Boolean? = null,
 
 	@field:SerializedName("PaymentStatusText")
 	val paymentStatusText: String? = null,
@@ -35,7 +35,7 @@ data class DataItem(
 	val destinationCity: String? = null,
 
 	@field:SerializedName("ItemType")
-	val itemType: Int = 0,
+	val itemType: Int? = null,
 
 	@field:SerializedName("ItemTypeText")
 	val itemTypeText: String? = null,

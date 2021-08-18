@@ -63,6 +63,8 @@
                     </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/tv_date"
+                        style="@style/RobotoRegular"
                         android:layout_marginTop="5dp"
                         android:paddingLeft="19dp"
                         android:layout_width="wrap_content"
@@ -137,6 +139,7 @@
                                 android:text="@string/other_dates" />
 
                             <ImageView
+                                android:visibility="invisible"
                                 android:layout_centerVertical="true"
                                 android:layout_width="17dp"
                                 android:layout_height="13dp"
@@ -194,6 +197,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="20dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
@@ -235,6 +239,7 @@
                                 </LinearLayout>
 
                                 <LinearLayout
+                                    android:layout_marginTop="5dp"
                                     android:layout_marginRight="20dp"
                                     android:layout_width="match_parent"
                                     android:layout_height="1dp"
@@ -284,6 +289,7 @@
                         app:ael_interpolator="accelerateDecelerate">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:nestedScrollingEnabled="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/rv_product_type_filter">
@@ -293,6 +299,7 @@
 
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_marginBottom="17dp"
                         android:layout_marginTop="15dp"
                         android:background="@android:color/white"
@@ -329,6 +336,7 @@
                         android:layout_marginBottom="20dp">
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:nestedScrollingEnabled="false"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/rv_payment_method_filter">
@@ -346,6 +354,7 @@
                         android:orientation="horizontal">
 
                         <RelativeLayout
+                            android:id="@+id/btn_riset"
                             android:background="@drawable/rounded_orange_stroke_1"
                             android:layout_marginRight="3dp"
                             android:layout_width="0dp"
@@ -364,6 +373,7 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/btn_next"
                             android:background="@drawable/rounded_button_yellow"
                             android:layout_marginLeft="3dp"
                             android:layout_width="0dp"

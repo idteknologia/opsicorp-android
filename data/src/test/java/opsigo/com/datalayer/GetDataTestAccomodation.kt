@@ -2,19 +2,20 @@ package opsigo.com.datalayer.datanetwork
 
 import opsigo.com.datalayer.request_model.accomodation.flight.cancel.CancelFlightRequest
 import opsigo.com.datalayer.request_model.reservation.ReservationFlightRequest
-import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.cancel.CancelHotelRequest
-import opsigo.com.domainlayer.callback.CallbackCountryByRoutePertamina
-import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
 import opsigo.com.domainlayer.model.accomodation.hotel.CountryHotel
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
+import opsigo.com.domainlayer.model.my_booking.MyBookingModel
 import java.util.concurrent.CountDownLatch
 import kotlin.collections.ArrayList
 import org.koin.test.KoinTest
 import org.junit.Test
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -78,8 +79,7 @@ class GetDataTestAccomodation:KoinTest{
 
     val baseUrl = "https://basicqa.opsicorp.com"
     val baseUrlPertamina = "https://pertamina-dtm3-qa.opsicorp.com"
-    val token = "Bearer d5c7ElQIh3bmJjQQzEq0ZY4xTeZhKRZ3JezvR9IufwWmzSb4l6OrTPBdAXvS2JPoJNWChPARZFtdttQKyeJlHv_rNV2wJ2A_-HjYDPm4rJ1w3hVjP7V-CzKt1NyRJa0xH9Gp0am-zfVF-997ceri5SoSwKBvMmw8Immyk4YB2u8KHrOl_zfZ_uHgDQoFtitIrcTECYIoOtvVov_Xajo6kD_ioJtlp5lYvVoByB2wTK5VoDRt75LWvjeHuMxOF-LlY034vzwF0q2On1yQUKHyTOISRkIUWl_EiQzd00GWWDlzhv_QLExMSquB390wxMfCea6TTDyq1QCibmpap94vVGSzawEjZSmLXEG1ETcBmFBieTJCr-xukrexN951tn3ff0WzM7idoc0Akydz2GZl01m1okcoBoCN1g8DGHqWVuXeROun2mhc9I_nxHlDdejgIRLhbQq-bb9zLBnb3cuHouivmU4P_lNTRSchTWPlinSmFayVrZjt6MIuRc4ELVSNaPoOI5o-SZSkSkbhKOKY5AHOiEQJ-Jenf7VW3qQXvDCuRrUxfzxQpOdmG2zm1e3y"
-
+    val token = "Bearer zfwbC5ZI0jwFNUgUq8sAEXD4t_CFxqcbjXsTa-_YWw7qpEvzxYbnYFm6Y0zKHkoVfGkOXXqlTI3Lvw-wk2B0tRIk5ZoVM1SuHa0v8ePTNxSGY4M7yXokj9N41uSMDWiKv0TybUlhvIr8XhNmykL8Qm2SpX9w07r0hfkCTGrGQ-VQyInScGgfLTwyqu9KhVz77pXcf_H1NqX23Y4THJPl8UyoWB0MBZZA2aTtJ_edKFb7fBpegYIEPNzsK16ZSbPDemsxlFC6u7_0685CXEQX7xfaceqKflYcUF2ACS3RKdYn-_MsXvORTIu30pxXubDXqzYd208lyJpWZ7JJ3UUUR-ED7NlPHNcll023QOmGln0QZgHHGajJrR5dLLcyJCQCh08vxP7rqo7eMzZM-1CXkjKSORBacWNVhjBuKDRf0ooUfzbwvUz40zI1mWJyHBVVwAhr6If5Rl6yRSuH-IV5vu2GSzDHoGaENh3QpN9shVjgeTcTd5z7_MHVIzLV-2MOAEAFIhhnALzdxvpOHaM9TbRn1pAp_dIzhqEGSfLeXWh7nnv1SE38L74GiU9bCdINfBkuLFqOlhyAsrGHtFnC6Q"
 
     @Test
     fun testApiSearchFlight() {
@@ -249,6 +249,64 @@ class GetDataTestAccomodation:KoinTest{
 
     private fun mapperRoute(): ArrayList<ListScheduleItem> {
         return ArrayList()
+    }
+
+    @Test
+    fun testGetListMyBookingTest(){
+        val latch       = CountDownLatch(1)
+            GetDataMyBooking(baseUrl).getListMyBooking(token,10,1,"0,1,2",firstDateQuery().first,firstDateQuery().second,object :CallbackListMyBooking{
+                override fun success(data: ArrayList<MyBookingModel>) {
+                    println(Serializer.serialize(data))
+                    latch.await()
+                }
+
+                override fun failed(message: String) {
+                    print(message)
+                    latch.await()
+                }
+            })
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    fun firstDateQuery():Pair<String,String>{
+        val referenceDate = Date()
+        val c: Calendar = Calendar.getInstance()
+        c.setTime(referenceDate)
+        c.add(Calendar.MONTH, -3)
+
+        val calendar = Calendar.getInstance()
+        val mdformat = SimpleDateFormat("yyyy-MM-dd")
+        val toDay  = mdformat.format(calendar.getTime())
+
+        return Pair(SimpleDateFormat("yyyy-MM-dd").format(c.getTime()),toDay)
+    }
+
+    @Test
+    fun testGetDetailMyBookingTest(){
+        val idTrain = "2b589018-c123-4b9a-8d29-43f7cd3931f3"
+        val idHotel = "892048b8-224e-416f-86ce-1e74c9d5902f"
+        val idFlight = "1e696e4e-9a18-448f-88ef-afcea84a6c3f"
+        val latch       = CountDownLatch(1)
+        GetDataMyBooking(baseUrl).getDetailMyBooking(token,idTrain,object :CallbackDetailMyBooking{
+            override fun success(data: DetailMyBookingModel) {
+                println(Serializer.serialize(data))
+                latch.await()
+            }
+
+            override fun failed(message: String) {
+                println(message)
+                latch.await()
+            }
+        })
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun classToHasMap(objects: Any, nameClass:Class<*>):HashMap<Any, Any>{

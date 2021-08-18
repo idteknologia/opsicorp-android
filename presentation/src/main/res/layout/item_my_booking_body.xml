@@ -6,6 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_date_my_booking"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginRight="@dimen/margin_default"
+        style="@style/RobotoMedium"
+        android:textColor="#24253d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="December 2019">
+    </TextView>
+
     <androidx.cardview.widget.CardView
         android:layout_marginBottom="5dp"
         app:cardCornerRadius="4dp"
@@ -79,8 +92,22 @@
                     android:layout_toRightOf="@+id/ic_icon_transport">
                 </TextView>
 
+                <TextView
+                    android:visibility="gone"
+                    android:layout_toRightOf="@+id/ic_icon_transport"
+                    android:id="@+id/tv_name_hotel"
+                    style="@style/RobotoRegular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bandung"
+                    android:layout_centerVertical="true"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#24253d">
+                </TextView>
 
                <LinearLayout
+                   android:id="@+id/line_transportation"
                    android:layout_toEndOf="@+id/ic_icon_transport"
                    android:layout_centerVertical="true"
                    android:layout_marginLeft="10dp"

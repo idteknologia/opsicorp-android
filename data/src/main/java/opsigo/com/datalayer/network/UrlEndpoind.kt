@@ -377,8 +377,15 @@ interface UrlEndpoind {
 
     @GET(MyURL.GET_LIST_MY_BOOKING)
     fun getListMyBooking(@Header("Authorization") token:String,
-                       @Query("Size")isoCountry:Int,
-                       @Query("Index")index:Int,
-                       @Query("ItemTypes")itemTypes:String):Call<ResponseBody>
+                         @Query("Size")isoCountry:Int,
+                         @Query("Index")index:Int,
+                         @Query("ItemTypes")itemTypes:String,
+                         @Query("dateFrom")dateFrom:String,
+                         @Query("dateTo")dateTo:String):Call<ResponseBody>
+
+    @GET(MyURL.DETAIL_MY_BOOKING)
+    fun getDetailMyBooking(@Header("Authorization") token:String,
+                         @Query("id")isoCountry:String):Call<ResponseBody>
+
 
 }

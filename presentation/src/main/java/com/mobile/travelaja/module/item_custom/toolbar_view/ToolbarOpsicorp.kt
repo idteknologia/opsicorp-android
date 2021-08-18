@@ -86,6 +86,7 @@ class ToolbarOpsicorp : LinearLayout, View.OnClickListener {
         btn_card.setOnClickListener(this)
         logo_center.setOnClickListener(this)
         btn_reset.setOnClickListener(this)
+        line_btn_filter.setOnClickListener(this)
         line_btn_add_more_item.setOnClickListener(this)
     }
 

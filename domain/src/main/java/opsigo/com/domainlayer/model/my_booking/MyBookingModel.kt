@@ -1,15 +1,18 @@
 package opsigo.com.domainlayer.model.my_booking
 
-class MyBookingModel {
-    var type = ""
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    var typeAccomdation = ""
-    var date = ""
-    var idBooking = ""
-    var prize     = ""
-    var cityDeparture = ""
-    var cityArrival   = ""
-    var nameAccomodation = ""
-    var statusPayment = ""
-
-}
+@Parcelize
+data class MyBookingModel (
+    var type : String = "",
+    var typeAccomdation : Int = 0,
+    var date : String = "",
+    var idBooking : String = "",
+    var prize     : String = "",
+    var cityDeparture : String = "",
+    var cityArrival   : String = "",
+    var nameAccomodation : String = "",
+    var statusPayment : String = "",
+    var isRoundtrip:Boolean = false
+        ):Parcelable
