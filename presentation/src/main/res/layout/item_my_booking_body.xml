@@ -47,7 +47,6 @@
                     android:text="Booking ID: 34536515661"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
                 </TextView>
 
                 <TextView
@@ -93,6 +92,7 @@
                 </TextView>
 
                 <TextView
+                    android:singleLine="true"
                     android:visibility="gone"
                     android:layout_toRightOf="@+id/ic_icon_transport"
                     android:id="@+id/tv_name_hotel"

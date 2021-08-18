@@ -35,6 +35,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
     var homeFragment        = HomeFragment()
     var manageTripFragment  = TestManageTripFragment()
     var myBookingFragment   = MyBookingFragment()
+    var REQUEST_CODE_CALENDAR = 76
 
     private var isSelectApprovedAll = false
 
@@ -223,6 +224,9 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when(requestCode){
+            REQUEST_CODE_CALENDAR -> {
+                myBookingFragment.onActivityResult(requestCode,resultCode,data)
+            }
             Constants.OPEN_DETAIL_TRIP_PLANE -> {
                 approvalFragment.onActivityResult(requestCode,resultCode,data)
             }

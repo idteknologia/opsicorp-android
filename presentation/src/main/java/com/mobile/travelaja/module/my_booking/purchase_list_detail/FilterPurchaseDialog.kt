@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
+import android.app.Activity
 import android.view.View
 import android.view.Gravity
 import android.graphics.Color
@@ -15,11 +16,13 @@ import com.mobile.travelaja.utility.Globals
 import androidx.core.widget.NestedScrollView
 import android.graphics.drawable.ColorDrawable
 import android.widget.RelativeLayout
+import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.mobile.travelaja.module.my_booking.model.FilterPurchaseModel
 import com.mobile.travelaja.module.my_booking.adapter.FilterPurchaceAdapter
 import com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+import com.opsicorp.sliderdatepicker.utils.Constant
 
 
 class FilterPurchaseDialog(var context: Context) {
@@ -32,12 +35,16 @@ class FilterPurchaseDialog(var context: Context) {
     lateinit var btnShowPurchaseDate :ImageView
     lateinit var btnRiset : RelativeLayout
     lateinit var btnNext  : RelativeLayout
+    lateinit var tvDateTo : TextView
+    lateinit var tvDateFrom : TextView
     lateinit var tvDate : TextView
     lateinit var expandDablePaymentMethod : ExpandableLinearLayout
     lateinit var expandableProductType    : ExpandableLinearLayout
     lateinit var expandablePurchaseDate   : ExpandableLinearLayout
     lateinit var callback : CallbackFilterPurchase
     lateinit var views : View
+    var dateTo   = ""
+    var dateFrom = ""
     val data by lazy { ArrayList<FilterPurchaseModel>() }
     val dataPayment by lazy { ArrayList<FilterPurchaseModel>() }
     val adapterProductType by lazy { FilterPurchaceAdapter(context, data) }
@@ -45,17 +52,19 @@ class FilterPurchaseDialog(var context: Context) {
 
     var alertDialog: AlertDialog? = null
 
-    fun create(dateFrom: String, dateTo: String, dataFilterType: ArrayList<FilterPurchaseModel>,callbackFilterPurchase: CallbackFilterPurchase){
+    fun create(dateFrom: String, dateTo: String, dataFilterType: ArrayList<FilterPurchaseModel>,callbackFilterPurchase: CallbackFilterPurchase) {
         val adb = AlertDialog.Builder(context)
         callback = callbackFilterPurchase
         views = LayoutInflater.from(context).inflate(R.layout.filter_purchase_list,null)
         btnShowProduct = views.findViewById(R.id.btn_show_product)
         btnShowPayment = views.findViewById(R.id.btn_show_payment_methode)
         btnShowPurchaseDate = views.findViewById(R.id.btn_show_purchase_date)
-        scrollView     = views.findViewById(R.id.scroll)
+        scrollView    = views.findViewById(R.id.scroll)
         tvDate        = views.findViewById(R.id.tv_date)
         btnNext       = views.findViewById(R.id.btn_next)
         btnRiset      = views.findViewById(R.id.btn_riset)
+        tvDateTo      = views.findViewById(R.id.tv_date_to)
+        tvDateFrom    = views.findViewById(R.id.tv_date_from)
 
         expandableProductType = views.findViewById(R.id.expand_product_type)
         expandablePurchaseDate = views.findViewById(R.id.expand_purchase_date)
@@ -73,6 +82,16 @@ class FilterPurchaseDialog(var context: Context) {
             changeImage(btnShowPurchaseDate,2)
         }
 
+        tvDateTo.setOnClickListener {
+            NewCalendarViewOpsicorp().showCalendarView(context as Activity, Constant.DOUBLE_SELECTED)
+        }
+        tvDateFrom.setOnClickListener {
+            NewCalendarViewOpsicorp().showCalendarView(context as Activity,Constant.DOUBLE_SELECTED)
+        }
+        this.dateFrom = dateFrom
+        this.dateTo   = dateTo
+        tvDateFrom.text = DateConverter().getDate(dateFrom,"yyyy-MM-dd","dd MMM yyyy")
+        tvDateTo.text = DateConverter().getDate(dateTo,"yyyy-MM-dd","dd MMM yyyy")
         tvDate.text = "${DateConverter().getDate(dateFrom,"yyyy-MM-dd","dd MMM yyyy")} - ${DateConverter().getDate(dateTo,"yyyy-MM-dd","dd MMM yyyy")}"
         initRecyclerView()
         addData(dataFilterType)
@@ -81,7 +100,7 @@ class FilterPurchaseDialog(var context: Context) {
 
         }
         btnNext.setOnClickListener {
-            callback.filter(dateTo,dateFrom,data)
+            callback.filter(this.dateTo,this.dateFrom,data)
             alertDialog?.dismiss()
         }
 
@@ -93,7 +112,6 @@ class FilterPurchaseDialog(var context: Context) {
         alertDialog?.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         alertDialog?.show()
         alertDialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-
     }
 
     private fun changeImage(image: ImageView?, i: Int) {
