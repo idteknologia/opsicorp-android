@@ -7,9 +7,8 @@ class MapperModelListMybooking {
     fun mapper(data :ArrayList<MyBookingModel>): ArrayList<MyBookingModel>{
         val mData = ArrayList<MyBookingModel>()
 
-        var lastDate = ""
         data.forEachIndexed { index, myBookingModel ->
-            if (!lastDate.equals(myBookingModel.date.split("-")[1])){
+            if (myBookingModel.date.split(" ").size>1){
                 val headerData = MyBookingModel()
                 headerData.type = "Header"
                 headerData.date = myBookingModel.date
@@ -19,7 +18,6 @@ class MapperModelListMybooking {
             else{
                 mData.add(myBookingModel)
             }
-            lastDate = myBookingModel.date.split("-")[1]
         }
         return mData
     }

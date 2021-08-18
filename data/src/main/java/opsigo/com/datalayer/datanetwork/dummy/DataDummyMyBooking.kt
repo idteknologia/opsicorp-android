@@ -7,7 +7,7 @@ class DataDummyMyBooking {
 
         val data = ArrayList<MyBookingModel>()
         val date = ArrayList<String>()
-        val type = ArrayList<String>()
+        val type = ArrayList<Int>()
         val name = ArrayList<String>()
 
         name.add("Trans Luxury Bandung")
@@ -20,10 +20,10 @@ class DataDummyMyBooking {
         date.add("20-9-2019")
         date.add("20-8-2019")
 
-        type.add("Hotel")
-        type.add("Flight")
-        type.add("Flight")
-        type.add("Train")
+        type.add(1)
+        type.add(0)
+        type.add(0)
+        type.add(1)
 
         date.forEachIndexed { index, s ->
             val mData = MyBookingModel()
