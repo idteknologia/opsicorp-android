@@ -1,5 +1,7 @@
 package com.mobile.travelaja.module.my_booking.home_my_booking
 
+import android.app.AlertDialog
+import android.content.Intent
 import java.util.*
 import android.os.Build
 import android.os.Bundle
@@ -22,12 +24,14 @@ import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.mobile.travelaja.module.my_booking.adapter.MyBookingAdapter
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.my_booking.model.FilterPurchaseModel
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.FilterPurchaseDialog
 
 
 class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
-    ToolbarOpsicorp.OnclickButtonListener,ButtonDefaultOpsicorp.OnclickButtonListener{
+    ToolbarOpsicorp.OnclickButtonListener,ButtonDefaultOpsicorp.OnclickButtonListener,
+    NewCalendarViewOpsicorp.CallbackResult{
 
     override fun getLayout(): Int { return R.layout.my_booking_layout }
 
@@ -36,6 +40,7 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     val adapter by lazy { MyBookingAdapter(requireContext(), data) }
     var dateFrom = ""
     var dateTo   = ""
+    lateinit var dialogFiter: FilterPurchaseDialog
     val dataFilterType by lazy { ArrayList<FilterPurchaseModel>() }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
@@ -46,25 +51,26 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     }
 
     fun showFilter(){
-        FilterPurchaseDialog(requireContext()).create(dateFrom,dateTo,dataFilterType,object :FilterPurchaseDialog.CallbackFilterPurchase{
-            override fun filter(
-                dateTo: String,
-                dateFrom: String,
-                itemType: ArrayList<FilterPurchaseModel>
-            ) {
-                this@MyBookingFragment.dateTo = dateTo
-                this@MyBookingFragment.dateFrom = dateFrom
-                dataFilterType.clear()
-                dataFilterType.addAll(itemType)
-                var typeItem = ""
-                dataFilterType.forEach {
-                    if (it.checlist){
-                        typeItem = typeItem+it.id+","
+        dialogFiter = FilterPurchaseDialog(requireContext())
+        dialogFiter.create(dateFrom,dateTo,dataFilterType,object :FilterPurchaseDialog.CallbackFilterPurchase{
+                override fun filter(
+                    dateTo: String,
+                    dateFrom: String,
+                    itemType: ArrayList<FilterPurchaseModel>
+                ) {
+                    this@MyBookingFragment.dateTo = dateTo
+                    this@MyBookingFragment.dateFrom = dateFrom
+                    dataFilterType.clear()
+                    dataFilterType.addAll(itemType)
+                    var typeItem = ""
+                    dataFilterType.forEach {
+                        if (it.checlist){
+                            typeItem = typeItem+it.id+","
+                        }
                     }
+                    getData(dateFrom,dateTo,typeItem)
                 }
-                getData(dateFrom,dateTo,typeItem)
-            }
-        })
+            })
     }
 
     private fun initToolbar() {
@@ -195,5 +201,24 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
             mData.id = index.toString()
             dataFilterType.add(mData)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        NewCalendarViewOpsicorp().resultCalendarView(requestCode, resultCode, data,this)
+    }
+
+    override fun startDate(displayStartDate: String, startDate: String) {
+        dialogFiter?.dateFrom = startDate
+        dialogFiter?.tvDateFrom?.text = displayStartDate
+    }
+
+    override fun endDate(displayEndDate: String, endDate: String) {
+        dialogFiter?.dateTo = endDate
+        dialogFiter?.tvDateTo?.text  = displayEndDate
+    }
+
+    override fun canceledCalendar() {
+
     }
 }
