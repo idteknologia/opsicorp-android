@@ -583,11 +583,18 @@ class FlightFragmentNew : BaseFragment(),
         dataOrder.classFlightName = nameClassAirline
 
         dataOrder.totalPassengerString = tv_passanger_new.text.toString()
-        dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
-        dataOrder.adult = totalAdult
+        if (dataTripPlan.isTripPartner.equals(true)){
+            dataOrder.adult = totalAdult + 1
+            dataOrder.totalPassengerInt = "${totalAdult + 1},${totalChild},${totalInfant}"
+            dataOrder.totalPassenger = totalAdult + 1 + totalChild + totalInfant
+        } else {
+            dataOrder.adult = totalAdult
+            dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
+            dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
+        }
         dataOrder.child = totalChild
         dataOrder.infant = totalInfant
-        dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
+
         dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
         Globals.DATA_LIST_FLIGHT    = ""
 

@@ -410,9 +410,20 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         }
         if (dataOrder.adult > 1){
             for (i in 0 until dataOrder.adult -1) {
-                val mData = BookingContactAdapterModel()
-                mData.typeContact = Constants.ADULT
-                datalist.dataFlight.last().passenger.add(mData)
+                if (dataTripPlan.isTripPartner.equals(true)){
+                    if (i == 0){
+                        val mData = BookingContactAdapterModel()
+                        mData.idcard.fullname = dataTripPlan.tripPartnerName
+                        mData.pasport.fullname = dataTripPlan.tripPartnerName
+                        mData.sim.name = dataTripPlan.tripPartnerName
+                        mData.typeContact = Constants.ADULT
+                        datalist.dataFlight.last().passenger.add(mData)
+                    }
+                } else {
+                    val mData = BookingContactAdapterModel()
+                    mData.typeContact = Constants.ADULT
+                    datalist.dataFlight.last().passenger.add(mData)
+                }
             }
         }
         for (i in 0 until dataOrder.child) {

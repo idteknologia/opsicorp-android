@@ -487,6 +487,8 @@ class BookingContactFlight : BaseActivity(),
         header.isBookAfterApprove = dataTrip.isBookAfterApprove
         header.isPrivateTrip = dataTrip.isPrivateTrip
         header.budgetId = dataTrip.buggetId
+        header.withPartner = dataTrip.isTripPartner
+        header.partnerName = dataTrip.tripPartnerName
 
         header.businessTripType = dataTrip.businessTripType
         header.remark           = dataTrip.remark

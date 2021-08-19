@@ -23,6 +23,8 @@ class SuccessCreateTripPlaneModel {
     var costCenter   = ""
     var trnNumber    = ""
     var tripType     = ""
+    var isTripPartner = false
+    var tripPartnerName = ""
 
     var businessTripType = ""
     var wbsNo       = ""
