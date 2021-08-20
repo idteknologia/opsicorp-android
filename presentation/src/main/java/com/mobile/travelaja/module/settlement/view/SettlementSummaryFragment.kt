@@ -15,7 +15,6 @@ import com.mobile.travelaja.module.settlement.view.adapter.AttachmentAdapter
 import com.mobile.travelaja.module.settlement.view.adapter.SummaryPersonalAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.DraftSettlementViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
-import org.koin.android.ext.android.bind
 
 class SettlementSummaryFragment : Fragment() {
     private lateinit var binding : SettlementSummaryFragmentBinding
