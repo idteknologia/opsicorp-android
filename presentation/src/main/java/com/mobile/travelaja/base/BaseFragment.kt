@@ -176,8 +176,12 @@ abstract class BaseFragment: Fragment()  {
 
         val request = requestBuilder.build()
         manager.startInstall(request).addOnSuccessListener {
+            println("listener dynamic feature : success = ${it}")
 
         }.addOnFailureListener {
+            println("listener dynamic feature : FAILED error = ${it.message}")
+        }.addOnCompleteListener {
+            println("listener dynamic feature : complete success = it")
 
         }
     }

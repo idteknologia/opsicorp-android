@@ -74,8 +74,16 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
         }
         val mode = modeFlight!!.Text
         if (hasSameTransport(city, mode)) {
-            getTransportExpense(pos).TransportationType = NON_FLIGHT
-            getTransportExpense(pos).City = city
+            val transport = getTransportExpense(pos)
+            val tempTotal = transport.TotalAmount
+            transport.TransportationType = NON_FLIGHT
+            transport.City = city
+            transport.TotalAmount = 0
+            transport.Amount = 0
+            transport.TransportationMode = 0
+            transport.nameTransportationMode = ""
+            transport.TripType = 0
+            updateTotal(tempTotal, false,0)
             return
         }
         calculateTransportExpense(
@@ -190,7 +198,7 @@ class TransportExpenseViewModel(private val repository: SettlementRepository) : 
     }
 
     fun indexFirstEmpty() : Int {
-      val i =   transportExpenses.indexOfFirst {
+      val i = transportExpenses.indexOfFirst {
           it.City.isEmpty() || (it.TransportationType == NON_FLIGHT && it.nameTransportationMode.isEmpty()) }
         indexEmpty.set(i)
       return  i

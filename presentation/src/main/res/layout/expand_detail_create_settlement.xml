@@ -236,7 +236,7 @@
                     app:layout_constraintTop_toTopOf="@+id/tvLabelOtherExpense"
                     style="@style/TextLato_Normal"
                     app:totalValueIdr="@{viewModel.submitSettlement.totalOtherExpense}"
-                    app:totalValueUsd="@{viewModel.submitSettlement.totalOtherExpenseUSD}"
+                    app:totalValueUsd="@{viewModel.submitSettlement.totalOtherExpenseUsd}"
                     android:gravity="end"
                     android:textColor="@color/colorTextHint"
                     tools:text="2.500.000 IDR\n 2.500 USD" />

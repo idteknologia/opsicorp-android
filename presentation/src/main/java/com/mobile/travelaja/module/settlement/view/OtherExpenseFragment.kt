@@ -193,7 +193,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
     }
 
     private fun navigateExpenseType(position : Int){
-        val exType = viewModel.getItem(position)?.expenseName ?: ""
+        val exType = viewModel.getItem(position)?.ExpenseName ?: ""
         val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(exType,expenseTypes,position)
         findNavController().navigate(action)
     }
@@ -206,7 +206,7 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
     private fun setExpenseType(expenseType : ExpenseType,position: Int) {
         val item = viewModel.items[position]
         item.ExpenseType = expenseType.ExpenseType
-        item.expenseName = expenseType.Description
+        item.ExpenseName = expenseType.Description
     }
 
     private fun addItem(){

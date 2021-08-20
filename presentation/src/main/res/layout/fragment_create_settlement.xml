@@ -29,37 +29,51 @@
             android:layout_marginBottom="90dp"
             android:orientation="vertical">
 
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/ivBack"
                     android:layout_width="@dimen/size_image_back"
                     android:layout_height="@dimen/size_image_back"
-                    android:onClick="@{clickListener}"
                     android:background="?attr/selectableItemBackground"
+                    android:onClick="@{clickListener}"
                     android:scaleType="center"
                     android:src="@drawable/ic_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+
+
                 <TextView
                     android:id="@+id/tvLastDraft"
+                    style="@style/TextLato_Bold"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/size_image_back"
-                    android:text="@string/last_draft_reimbursement"
+                    android:background="?attr/selectableItemBackground"
+                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
+                    android:drawablePadding="15dp"
                     android:gravity="center"
                     android:onClick="@{clickListener}"
-                    android:background="?attr/selectableItemBackground"
-                    android:visibility="@{viewModel.isDraftLabelVisible ? View.VISIBLE : View.GONE}"
-                    android:drawablePadding="15dp"
-                    style="@style/TextLato_Bold"
-                    android:textSize="14sp"
+                    android:text="@string/last_draft_reimbursement"
                     android:textColor="#2b9a8e"
-                    android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
-                    app:layout_constraintEnd_toEndOf="parent"/>
+                    android:textSize="14sp"
+                    android:visibility="@{viewModel.isDraftLabelVisible ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/linearProgressIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/ivBack"
+                tools:visibility="visible" />
+
             <ScrollView
                 android:id="@+id/scrollViewCreateSettlement"
                 android:layout_width="match_parent"
@@ -188,8 +202,8 @@
                             android:fontFamily="@font/lato_black"
                             android:onClick="@{clickListener}"
                             android:text="@string/view_detail_trip"
-                            android:textAppearance="@style/TextLato_Normal"
                             android:textAllCaps="true"
+                            android:textAppearance="@style/TextLato_Normal"
                             android:textColor="#b2bbc6"
                             android:textSize="16sp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -199,8 +213,8 @@
                         <View
                             android:layout_width="0dp"
                             android:layout_height="2dp"
-                            android:layout_marginTop="40dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginEnd="8dp"
                             android:background="#2b9a8e"
                             app:layout_constraintLeft_toLeftOf="@id/tvViewDetailTrip"
@@ -213,9 +227,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="41dp"
-                            android:onClick="@{clickListener}"
                             android:checked="@{viewModel.isEnabledDetailTransport()}"
-                            android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInformation(checked)}"
+                            android:onClick="@{clickListener}"
                             android:text="@string/transportation_to_airport_or_non_airport"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/tvViewDetailTrip"
@@ -236,6 +249,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{clickListener}"
+                            android:background="?attr/selectableItemBackground"
                             android:paddingTop="10dp"
                             android:paddingEnd="16dp"
                             android:text="@string/view_detail"
@@ -258,6 +272,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
+                            android:checked="@{viewModel.isEnabledDetailIntercity()}"
                             android:onClick="@{clickListener}"
                             android:text="@string/intercity_transport"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -279,6 +294,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{clickListener}"
+                            android:background="?attr/selectableItemBackground"
                             android:paddingTop="10dp"
                             android:paddingEnd="16dp"
                             android:text="@string/view_detail"
@@ -424,8 +440,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:checked="@{viewModel.isEnabledDetailExpense()}"
-                            android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedExpense(checked)}"
+                            android:checked="@{viewModel.isEnabledOtherExpense()}"
                             android:onClick="@{clickListener}"
                             android:text="@string/other_expense"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -447,11 +462,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:onClick="@{clickListener}"
+                            android:background="?attr/selectableItemBackground"
                             android:paddingTop="10dp"
                             android:paddingEnd="16dp"
                             android:text="@string/view_detail"
                             android:textColor="#2b9a8e"
-                            android:visibility="@{viewModel.isEnabledDetailExpense() ? View.VISIBLE : View.GONE }"
+                            android:visibility="@{viewModel.isEnabledOtherExpense() ? View.VISIBLE : View.GONE }"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/captionExpense"
                             tools:ignore="RtlSymmetry"
@@ -620,10 +636,10 @@
                         android:enabled="@{!viewModel.submitSettlement.bankTransfer.empty &amp;&amp; !viewModel.loading}"
                         android:onClick="@{clickListener}"
                         android:text="@string/continue_"
-                        tools:enabled="false"
                         android:visibility="@{viewModel.submitSettlement.tripId.empty? View.VISIBLE : View.GONE}"
                         app:layout_constraintTop_toBottomOf="@+id/etBank"
-                        tools:visibility="gone"/>
+                        tools:enabled="false"
+                        tools:visibility="gone" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

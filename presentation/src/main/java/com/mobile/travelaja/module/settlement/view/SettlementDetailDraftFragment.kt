@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.databinding.SettlementDraftDetailFragmentBinding
 import com.mobile.travelaja.module.settlement.view.adapter.RefundsAdapter
-import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.DraftSettlementViewModel
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
@@ -58,10 +57,9 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        viewModel.getDetailTrip(idTrip)
+        viewModel.getDetailTrip("Draft",idTrip)
         setTicketRefund()
 
         viewModel.error.observe(viewLifecycleOwner) {
@@ -76,7 +74,8 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
             it.getContentIfNotHandled()?.let { isSuccess ->
                 if (isSuccess) {
                     //Todo navigate to waiting approval
-                    Toast.makeText(context,"success",Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(context,"success",Toast.LENGTH_SHORT).show()
+                    navigateToSummary()
                 }
             }
         }
@@ -121,6 +120,15 @@ class SettlementDetailDraftFragment : Fragment() ,View.OnClickListener{
             }
         }else{
             viewModel.submit("Submit")
+//            navigateToSummary()
         }
+    }
+
+    private fun navigateToSummary(){
+        val action = SettlementDetailDraftFragmentDirections.actionSettlementDetailDraftFragmentToTripFragment(1,null)
+        findNavController().navigate(action)
+//        val intent = Intent(requireContext(),DetailTripActivity::class.java)
+//        intent.putExtras(bundleOf(Constants.KEY_INTENT_TRIPID to idTrip))
+//        startActivity(intent)
     }
 }

@@ -27,20 +27,42 @@ data class Trip(
     val startDate: String,
     @SerializedName("ReturnDate")
     val returnDate: String,
+    @SerializedName("EndDate")
+    val EndDate: String,
     @SerializedName("TripType")
-    val TripType:String
+    val TripType: String,
+    @SerializedName("TripCode")
+    val TripCode: String,
+    @SerializedName("StatusView")
+    val StatusView : String,
+    @SerializedName("Routes")
+    val Routes: MutableList<Route> = mutableListOf()
 ) {
 
+    fun nameCities(): String {
+        var cities = ""
+        Routes.forEach {
+            cities += "${it.Origin} - ${it.Destination}"
+        }
+        return cities
+    }
+
     fun getDateNumber(): String {
-        return convertDate("dd")
+        return convertDate("dd", startDate)
     }
 
     fun getMonth(): String {
-        return convertDate("MMM")
+        return convertDate("MMM", startDate)
     }
 
     fun getDay(): String {
-        return convertDate("EEEE")
+        return convertDate("EEEE", startDate)
+    }
+
+    fun getDirectionDate(): String {
+        val sDate = convertDate("dd MMM", startDate)
+        val eDate = convertDate("dd MMM", EndDate)
+        return "$sDate - $eDate"
     }
 
     fun isToday(): Boolean {
@@ -55,18 +77,30 @@ data class Trip(
 
     fun eDate(): String = convertDate(returnDate, "EEE, d MMM yyyy", Locale.getDefault())
 
-    private fun convertDate(date: String, format: String, local: Locale): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", local)
-        val sdfOutput = SimpleDateFormat(format, local)
-        val dInput = sdf.parse(date)
-        return sdfOutput.format(dInput)
+    fun endDate(): String = convertDate(EndDate, "EEE, d MMM yyyy", Locale.getDefault())
+
+
+    private fun convertDate(date: String?, format: String, local: Locale): String {
+        if (!date.isNullOrEmpty()) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", local)
+            val sdfOutput = SimpleDateFormat(format, local)
+            val dInput = sdf.parse(date)
+            return sdfOutput.format(dInput)
+        } else {
+            return ""
+        }
+
     }
 
-    private fun convertDate(format: String): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in"))
-        val sdfOutput = SimpleDateFormat(format, Locale("in"))
-        val dInput = sdf.parse(startDate)
-        return sdfOutput.format(dInput)
+    private fun convertDate(format: String, date: String?): String {
+        if (!date.isNullOrEmpty()) {
+            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale("in"))
+            val sdfOutput = SimpleDateFormat(format, Locale("in"))
+            val dInput = sdf.parse(date)
+            return sdfOutput.format(dInput)
+        } else {
+            return ""
+        }
     }
 }
 
@@ -94,34 +128,34 @@ data class DetailTrip(
     @SerializedName("SpecificAreaTariff")
     val SpecificAreaTariff: Int,
     @SerializedName("CompanyCode")
-    val CompanyCode:String,
+    val CompanyCode: String,
     @SerializedName("CompanyName")
-    val CompanyName:String,
+    val CompanyName: String,
     @SerializedName("RouteType")
-    val RouteType:String,
+    val RouteType: String,
     @SerializedName("TripType")
-    val TripType:String,
+    val TripType: String,
     @SerializedName("CostCenter")
     val CostCenter: String,
     @SerializedName("IsDomestic")
-    val IsDomestic : Boolean,
+    val IsDomestic: Boolean,
     @SerializedName("WbsNo")
-    val WbsNo:String,
+    val WbsNo: String,
     @SerializedName("LaundryPcs")
     val LaundryPcs: Any,
     @SerializedName("AmountLaundry")
-    val AmountLaundry : Number,
+    val AmountLaundry: Number,
     @SerializedName("CurrLaundry")
-    val CurrLaundry : String,
+    val CurrLaundry: String,
     @SerializedName("Routes")
     val Routes: MutableList<Route> = mutableListOf()
-){
-    fun cities(): List<String>{
-       val cities = mutableSetOf<String>()
+) {
+    fun cities(): List<String> {
+        val cities = mutableSetOf<String>()
         Routes.forEach {
             cities.add(it.Origin)
             cities.add(it.Destination)
-       }
+        }
         return cities.toList()
     }
 }
@@ -132,5 +166,5 @@ data class Route(
     @SerializedName("Origin")
     val Origin: String,
     @SerializedName("Destination")
-    val Destination : String
+    val Destination: String
 )

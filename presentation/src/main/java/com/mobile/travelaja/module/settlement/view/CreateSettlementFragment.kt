@@ -40,7 +40,6 @@ import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.Comp
 import opsigo.com.domainlayer.model.settlement.*
 
 import java.io.File
-import java.util.jar.Manifest
 
 class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraCallback {
     private lateinit var viewModel: SettlementViewModel
@@ -187,13 +186,14 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.etBank -> navigateBank()
-            R.id.ivBack -> activity?.finish()
+            R.id.ivBack -> {
+                activity?.finish()
+            }
             R.id.viewDetailInformation -> navigateTransportExpense()
             R.id.viewDetailOtherExpense -> navigateOtherExpense()
             R.id.viewIntercity -> navigateIntercity()
             R.id.switchExpense -> {
                 if (v is SwitchMaterial) {
-                    viewModel.isEnabledDetailExpense.set(v.isChecked)
                     if (v.isChecked)
                         navigateOtherExpense()
                     else {
@@ -224,7 +224,6 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
             R.id.switchIntercity -> {
                 if (v is SwitchMaterial) {
-                    viewModel.isEnabledDetailIntercity.set(v.isChecked)
                     if (v.isChecked)
                         navigateIntercity()
                     else {
@@ -298,6 +297,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
             else -> navigateTripCode(TYPE_SELECTED)
         }
+        binding.root.clearFocus()
     }
 
     private fun navigateTransportExpense() {
@@ -360,7 +360,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
     }
 
     private fun navigateTripCode(viewType: Int) {
-        val idString = viewModel.submitSettlement.value?.TripId
+        val idString = viewModel.tempTripId
         val action = CreateSettlementFragmentDirections.actionCreateSettlementToTripCodeFragment(
             idString,
             viewType
@@ -381,7 +381,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
 
 
     private fun navigateDetailDraft() {
-        val idTrip = viewModel.getDetailSubmit()?.TripId
+        val idTrip = viewModel.getDetailSubmit()?.Id
         idTrip?.let {
             val action =
                 CreateSettlementFragmentDirections.actionCreateSettlementToSettlementDetailDraftFragment(
@@ -389,6 +389,11 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             findNavController().navigate(action)
             viewModel.isDraftLabelVisible.set(true)
         }
+    }
+
+    private fun navigateToSummary(){
+        val action = CreateSettlementFragmentDirections.actionCreateSettlementToTripFragment(-1,null)
+        findNavController().navigate(action)
     }
 
     private fun showDraftDialog() {
@@ -436,6 +441,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         viewModel.uploadFile(pos, data)
     }
 
+    //Todo show warning
     private fun showWarning(
         @StringRes title: Int,
         message: Any,
@@ -456,9 +462,18 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                     d.dismiss()
                 }
                 WARNING_NOT_INCLUDE_TICKET_REFUND -> viewModel.getDetailSubmit()?.TicketRefunds?.clear()
-                WARNING_NOT_INCLUDE_TRANSPORT_EXPENSE -> viewModel.clearTransportExpense()
-                WARNING_NOT_INCLUDE_INTERCITY_TRANSPORT -> viewModel.clearTransportIntercity()
-                WARNING_NOT_INCLUDE_OTHER_EXPENSE -> viewModel.clearOtherExpenses()
+                WARNING_NOT_INCLUDE_TRANSPORT_EXPENSE -> {
+                    viewModel.clearTransportExpense()
+                    viewModel.isEnabledDetailTransport.set(false)
+                }
+                WARNING_NOT_INCLUDE_INTERCITY_TRANSPORT ->{
+                    viewModel.clearTransportIntercity()
+                    viewModel.isEnabledDetailIntercity.set(false)
+                }
+                WARNING_NOT_INCLUDE_OTHER_EXPENSE -> {
+                    viewModel.isEnabledOtherExpense.set(false)
+                    viewModel.clearOtherExpenses()
+                }
             }
         }
         if (negativeName != -1) {
@@ -494,9 +509,6 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
     }
-
-
-
 
     companion object {
         const val KEY_REQUEST = "CREATE_SETTLEMENT"

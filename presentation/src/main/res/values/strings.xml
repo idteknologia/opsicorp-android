@@ -529,6 +529,8 @@ Please add your trip item for Approval."
     <string name="its_just_second">It just a second</string>
     <string name="invalid_address"> Invalid Address </string>
     <string name="no_internet"> Internet Connection is not Available </string>
+    <string name="warning_timeout"> Sorry, this request timeout </string>
+
 
     <string name="permission_rejected"> Permission not Granted! </string>
     <string name="permission_camera_storage"> Need Camera and Storage Permissions! </string>

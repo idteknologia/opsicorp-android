@@ -35,11 +35,16 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
         try {
             val map = mutableMapOf<String,Int>()
             var path = "GetTripList"
+            var list = listOf<Trip>()
             if (typeTrip == TripsListAdapter.TYPE_DRAFT){
                 map["Status"] = 0
                 path = "List"
+                val result = api.getTripCodesDraft(path,map)
+                list = result.items
+            }else {
+                val result = api.getTripCodes(path,map)
+                list = result
             }
-            val list = api.getTripCodes(path,map)
             Result.Success(list)
         } catch (t: Throwable) {
             Result.Error(t)
@@ -52,10 +57,25 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
 //            val rateStay = api.putSpecificAreaCompensation(mutableMapOf("Golper" to typeWorker,"IsStay" to 1))
 //            result.rateStay = rateStay.result
             if (result.trip != null) {
-                result.trip?.TicketRefunds?.addAll(result.listTicket)
+                result.listTicket.forEach {
+                    it.PnrCode = it.TicketNumber
+                    result.trip?.TicketRefunds?.add(it)
+                }
                 Result.Success(result)
             } else {
                 Result.Error(Throwable(result.errorMessage))
+            }
+        } catch (t: Throwable) {
+            Result.Error(t)
+        }
+
+    override suspend fun getDetailDraft(path : String,idTrip: String): Result<DetailDraftSettlement> =
+        try {
+            val result = api.getDetailSettlementDraft(path,idTrip)
+            if (result.model != null ) {
+                Result.Success(result)
+            } else {
+                Result.Error(Throwable(Utils.EMPTY))
             }
         } catch (t: Throwable) {
             Result.Error(t)
@@ -136,17 +156,7 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             Result.Error(t)
         }
 
-    override suspend fun getDetailDraft(idTrip: String): Result<DetailDraftSettlement> =
-        try {
-            val result = api.getDetailSettlementDraft(idTrip)
-            if (result.model != null) {
-                Result.Success(result)
-            } else {
-                Result.Error(Throwable(Utils.EMPTY))
-            }
-        } catch (t: Throwable) {
-            Result.Error(t)
-        }
+
 
     override suspend fun uploadFile(uri: String,type : String?): Result<UploadFileEntity> =
         try {

@@ -64,8 +64,8 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
             routes = args.route
             golper = args.golper
         }
-        setUi()
         adapter = IntercityTransportAdapter(viewModel, this)
+        setUi()
         return adapter
     }
 

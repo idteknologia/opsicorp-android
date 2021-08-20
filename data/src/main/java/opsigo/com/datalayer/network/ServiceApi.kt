@@ -22,8 +22,7 @@ interface ServiceApi {
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripResult(@QueryMap map: MutableMap<String, String>): TripResult
 
-    @GET(MyURL.LIST_APPROVE)
-    suspend fun getTripList(@QueryMap map: MutableMap<String, Any>): ResultList<Trip>
+
 
     @FormUrlEncoded
     @POST
@@ -38,15 +37,22 @@ interface ServiceApi {
     @GET("api/Settlement/GetBankTransfer")
     suspend fun getBanks():List<Bank>
 
+    @GET("api/Settlement/List")
+    suspend fun getTripList(@QueryMap map: MutableMap<String, Any>): ResultList<Trip>
+
     //GetTripList
     @GET("api/Settlement/{path}")
     suspend fun getTripCodes(@Path("path") path : String,@QueryMap map: MutableMap<String, Int>):List<Trip>
 
+    //GetTripList
+    @GET("api/Settlement/{path}")
+    suspend fun getTripCodesDraft(@Path("path") path : String,@QueryMap map: MutableMap<String, Int>):ResultList<Trip>
+
     @GET("api/Settlement/GetDetailTrip")
     suspend fun getDetailTrip(@Query("tripId") tripId : String) : DetailSettlementResult
 
-    @GET("api/Settlement/Draft")
-    suspend fun getDetailSettlementDraft(@Query("id") tripId : String) : DetailDraftSettlement
+    @GET("api/Settlement/{path}")
+    suspend fun getDetailSettlementDraft(@Path("path") path : String, @Query("id") tripId : String) : DetailDraftSettlement
 
     @POST("api/Settlement/GetSpecificAreaCompensation")
     suspend fun putSpecificAreaCompensation(@Body body:MutableMap<String,Int>) : RateStayResult

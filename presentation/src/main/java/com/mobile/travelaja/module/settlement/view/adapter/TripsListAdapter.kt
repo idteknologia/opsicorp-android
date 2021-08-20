@@ -36,8 +36,9 @@ class TripsListAdapter(val listener : TripsListener,var name : String?,var type 
 
     inner class TripsListViewHolder(val binding : ItemTripPageBinding) : RecyclerView.ViewHolder(binding.root){
         fun onBind(trip : Trip){
+            val selected = trip.Id == name
             binding.trip = trip
-            binding.selected = trip.Id == name
+            binding.selected = selected
             binding.listener = listener
             binding.executePendingBindings()
         }

@@ -100,7 +100,7 @@
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
                 android:paddingBottom="20dp"
                 android:contentDescription="@{`etTypeExpense`+position}"
-                android:text="@{otherExpense.expenseName}"
+                android:text="@{otherExpense.ExpenseName}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelTypeExpense"

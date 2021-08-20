@@ -15,6 +15,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default"
         android:layout_marginEnd="@dimen/margin_default"
+        android:elevation="2dp"
+        android:layout_marginBottom="2dp"
         app:cardCornerRadius="6dp"
         android:layout_marginTop="15dp">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +46,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:textSize="16sp"
-                android:text="@{Utils.formatCurrency(data.amount)}"
+                android:text="@{Utils.formatCurrency(data.price)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelRefundAmount"
                 tools:text="1.500.000" />
@@ -65,7 +67,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="@{data.pnrCode}"
+                android:text="@{data.ticketNumber}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivTicket"
                 app:layout_constraintEnd_toStartOf="@+id/tvAmount"
                 app:layout_constraintStart_toEndOf="@+id/ivTicket"

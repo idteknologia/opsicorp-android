@@ -9,7 +9,7 @@ import com.mobile.travelaja.databinding.ItemAttachmentSettlementBinding
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import opsigo.com.domainlayer.model.settlement.Attachment
 
-class AttachmentAdapter(val recyclerView: RecyclerView, val viewModel : SettlementViewModel) : BaseListAdapter<Attachment>() {
+class AttachmentAdapter(val recyclerView: RecyclerView, val viewModel : SettlementViewModel?) : BaseListAdapter<Attachment>() {
     init {
         setHasStableIds(true)
     }
@@ -28,9 +28,14 @@ class AttachmentAdapter(val recyclerView: RecyclerView, val viewModel : Settleme
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is AttachmentAdapterViewHolder) {
             val data = list[position]
-            val loading = viewModel.isLoadingFile
-            val error = viewModel.isErrorFile
-            holder.onBind(data, position,loading,error)
+            if (viewModel!= null){
+                val loading = viewModel.isLoadingFile
+                val error = viewModel.isErrorFile
+                holder.onBind(data, position,loading,error)
+            }else {
+                holder.onBind(data,position, ObservableInt(-1),ObservableInt(-1))
+            }
+
         }
     }
 
@@ -52,12 +57,17 @@ class AttachmentAdapter(val recyclerView: RecyclerView, val viewModel : Settleme
             }
 
             binding.tvFailed.setOnClickListener {
-                viewModel.uploadFile(position + 1,data)
+                retry(position,data)
             }
         }
 
         private fun delete(position : Int) {
-            viewModel.deleteFile(position)
+            viewModel?.deleteFile(position)
+        }
+
+        private fun retry(position : Int, data : Attachment){
+            viewModel?.uploadFile(position + 1,data)
+
         }
     }
 }

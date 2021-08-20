@@ -18,6 +18,9 @@
             android:name="selectedCode"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_tripFragment_to_settlementSummaryFragment"
+            app:destination="@id/settlementSummaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/tripCodeFragment"
@@ -59,6 +62,12 @@
             app:destination="@id/createSettlement"
             app:popUpTo="@+id/createSettlement"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_settlementDetailDraftFragment_to_settlementSummaryFragment"
+            app:destination="@id/settlementSummaryFragment" />
+        <action
+            android:id="@+id/action_settlementDetailDraftFragment_to_tripFragment"
+            app:destination="@id/tripFragment" />
 
     </fragment>
     <fragment
@@ -87,6 +96,9 @@
         <action
             android:id="@+id/action_createSettlement_to_settlementDetailDraftFragment"
             app:destination="@id/settlementDetailDraftFragment" />
+        <action
+            android:id="@+id/action_createSettlement_to_tripFragment"
+            app:destination="@id/tripFragment" />
     </fragment>
     <fragment android:id="@+id/settlements"
         android:name="com.mobile.travelaja.module.settlement.view.SettlementsFragment"
@@ -193,6 +205,14 @@
         <argument
             android:name="nameCompare"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settlementSummaryFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.SettlementSummaryFragment"
+        android:label="SettlementSummaryFragment"
+        tools:layout="@layout/settlement_summary_fragment">
+        <argument android:name="idTrip"
+                  app:argType="string"/>
     </fragment>
 
 

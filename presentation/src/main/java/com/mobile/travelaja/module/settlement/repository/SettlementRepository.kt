@@ -19,7 +19,7 @@ interface SettlementRepository {
     suspend fun getExpenseType() : Result<List<ExpenseType>>
     suspend fun submitSettlement(submit : DetailSettlement,path : String) : Result<SubmitResult>
     suspend fun getIntercityTransportCompensation( route : RouteTransport,golper : Int) :Result<IntercityTransport>
-    suspend fun getDetailDraft(idTrip : String) : Result<DetailDraftSettlement>
+    suspend fun getDetailDraft(path : String,idTrip : String) : Result<DetailDraftSettlement>
     suspend fun uploadFile(uri : String,type : String?) : Result<UploadFileEntity>
 
 }

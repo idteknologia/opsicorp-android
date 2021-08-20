@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Utils
 import opsigo.com.domainlayer.model.settlement.Attachment
+import opsigo.com.domainlayer.model.settlement.Passenger
 
 object BindingsAdapter {
     @JvmStatic
@@ -16,6 +17,15 @@ object BindingsAdapter {
         adapter.list = list
         adapter.notifyDataSetChanged()
     }
+
+    @JvmStatic
+    @BindingAdapter("addDataPersonalSummary")
+    fun addDataPersonalSummary(recyclerView: RecyclerView, list : MutableList<Passenger>){
+        val adapter = recyclerView.adapter as SummaryPersonalAdapter
+        adapter.list = list
+        adapter.notifyDataSetChanged()
+    }
+
 
     @BindingAdapter("app:totalValueIdr","app:totalValueUsd")
     @JvmStatic

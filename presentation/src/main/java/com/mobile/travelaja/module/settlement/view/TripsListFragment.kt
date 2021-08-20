@@ -39,8 +39,9 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
     }
 
     override fun baseListAdapter(): BaseListAdapter<Trip> {
+        val owner = if (viewType == TripsListAdapter.TYPE_DRAFT) requireActivity() else this
         viewModel = ViewModelProvider(
-            this,
+            owner,
             DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
         adapter = TripsListAdapter(this, args.idTrip, args.viewType)

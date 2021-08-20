@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tvLabelOverNight"
         style="@style/TextLato_Normal"
-        app:formatTextIdr="@{viewModel.submitSettlement.specificAreaTariff}"
+        app:formatTextIdr="@{viewModel.submitSettlement.totalSpecificArea}"
         android:textColor="@color/colorTextHint"
         tools:text="2.500.000 IDR" />
 
@@ -159,7 +159,7 @@
         app:layout_constraintTop_toTopOf="@+id/tvLabelOtherExpense"
         style="@style/TextLato_Normal"
         app:totalValueIdr="@{viewModel.submitSettlement.totalOtherExpense}"
-        app:totalValueUsd="@{viewModel.submitSettlement.totalOtherExpenseUSD}"
+        app:totalValueUsd="@{viewModel.submitSettlement.totalOtherExpenseUsd}"
         android:textColor="@color/colorTextHint"
         tools:text="2.500.000 IDR" />
 
@@ -185,6 +185,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/tvLabelTotal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:formatTextIdr="@{viewModel.submitSettlement.totalExpenseSubmit}"
         style="@style/TextLato_Bold"
         tools:text="9.170.000 IDR"/>
 
@@ -194,6 +195,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tvTotalIdr"
         app:layout_constraintEnd_toEndOf="parent"
+        app:formatTextUsd="@{viewModel.submitSettlement.totalExpenseSubmitUsd}"
         style="@style/TextLato_Bold"
         android:layout_marginTop="12dp"
         tools:text="300 USD"/>

@@ -13,6 +13,7 @@ import com.squareup.picasso.Picasso
 import net.openid.appauth.AuthorizationException
 import retrofit2.HttpException
 import java.io.IOException
+import java.net.SocketTimeoutException
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -27,6 +28,9 @@ object Utils {
         callback: (errorString: String) -> Unit
     ) {
         if (t is IOException) {
+            if (t is SocketTimeoutException){
+                callback.invoke(context.getString(R.string.warning_timeout))
+            }else
             callback.invoke(context.getString(R.string.no_internet))
         } else if (t is AuthorizationException) {
             if (t.code == 1) {
@@ -115,6 +119,14 @@ object Utils {
     fun formatTextCurrency(textView : TextView,amountIdr : Number?){
         val idr = formatCurrency(amountIdr)
         val idrLabel = textView.context.getString(R.string.other_expense_idr)
+        "$idr $idrLabel".also { textView.text = it }
+    }
+
+    @BindingAdapter("app:formatTextUsd")
+    @JvmStatic
+    fun formatTextCurrencyUsd(textView : TextView,amountIdr : Number?){
+        val idr = formatCurrency(amountIdr)
+        val idrLabel = textView.context.getString(R.string.other_expense_usd)
         "$idr $idrLabel".also { textView.text = it }
     }
 

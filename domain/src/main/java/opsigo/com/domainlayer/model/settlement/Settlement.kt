@@ -146,7 +146,7 @@ data class OtherEx(
 
 @Parcelize
 data class OtherExpense(
-    var expenseName: String = "",
+    var ExpenseName: String = "",
     var ExpenseType: String = "",
     var Amount: Number = 0,
     var Description: String = "",
@@ -196,7 +196,10 @@ data class SubmitResult(
     @SerializedName("isSuccess")
     var isSuccess: Boolean,
     @SerializedName("isApproverSet")
-    var isApproverSet: Boolean)
+    var isApproverSet: Boolean,
+    @SerializedName("errorMessage")
+    var errorMessage : String
+    )
 
 
 @Parcelize
@@ -266,14 +269,14 @@ data class IntercityTransportResult(@SerializedName("result") var result: Interc
 
 data class Attachment(
     @SerializedName("Id")
-    val Id : String,
+    var Id : String,
     @SerializedName("TripPlanId")
-    val TripPlanId : String,
+    var TripPlanId : String,
     @SerializedName("Description")
-    val Description : String,
+    var Description : String,
     @SerializedName("Url")
     var Url : String,
     @SerializedName("HasScanned")
-    val HasScanned: Boolean,
-    val type : String?
+    var HasScanned: Boolean,
+    var type : String?
 )
