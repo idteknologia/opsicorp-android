@@ -6,13 +6,11 @@ import androidx.activity.addCallback
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.paging.PageListAdapter
 import com.mobile.travelaja.base.paging.PageListFragment
 import com.mobile.travelaja.module.settlement.view.adapter.TripAdapter
-import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.TripViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import kotlinx.coroutines.Job
