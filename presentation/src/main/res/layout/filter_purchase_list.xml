@@ -95,6 +95,7 @@
 
 
                         <RelativeLayout
+                            android:id="@+id/line_90_days"
                             android:paddingLeft="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="52dp">
@@ -109,6 +110,7 @@
                                 android:text="Past 90 Days" />
 
                             <ImageView
+                                android:id="@+id/img_check_90_days"
                                 android:layout_centerVertical="true"
                                 android:layout_width="17dp"
                                 android:layout_height="13dp"
@@ -125,6 +127,7 @@
 
 
                         <RelativeLayout
+                            android:id="@+id/line_other_days"
                             android:paddingLeft="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="52dp">
@@ -139,6 +142,7 @@
                                 android:text="@string/other_dates" />
 
                             <ImageView
+                                android:id="@+id/img_check_other_days"
                                 android:visibility="invisible"
                                 android:layout_centerVertical="true"
                                 android:layout_width="17dp"
@@ -286,7 +290,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/expand_product_type"
                         app:ael_duration="200"
-                        app:ael_expanded="false"
+                        app:ael_expanded="true"
                         android:orientation="vertical"
                         app:ael_interpolator="accelerateDecelerate">
 

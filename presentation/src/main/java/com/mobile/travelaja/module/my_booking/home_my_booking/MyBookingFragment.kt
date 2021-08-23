@@ -1,11 +1,10 @@
 package com.mobile.travelaja.module.my_booking.home_my_booking
 
-import android.app.AlertDialog
-import android.content.Intent
 import java.util.*
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.content.Intent
 import com.mobile.travelaja.R
 import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
@@ -22,10 +21,10 @@ import opsigo.com.domainlayer.callback.CallbackListMyBooking
 import opsigo.com.domainlayer.model.my_booking.MyBookingModel
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.mobile.travelaja.module.my_booking.adapter.MyBookingAdapter
-import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.my_booking.model.FilterPurchaseModel
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.FilterPurchaseDialog
 
 
@@ -209,13 +208,14 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     }
 
     override fun startDate(displayStartDate: String, startDate: String) {
-        dialogFiter?.dateFrom = startDate
-        dialogFiter?.tvDateFrom?.text = displayStartDate
+        dialogFiter.dateFrom = startDate
+        dialogFiter.bind.tvDateFrom.text = displayStartDate
     }
 
     override fun endDate(displayEndDate: String, endDate: String) {
-        dialogFiter?.dateTo = endDate
-        dialogFiter?.tvDateTo?.text  = displayEndDate
+        dialogFiter.dateTo = endDate
+        dialogFiter.bind.tvDateTo.text = displayEndDate
+        dialogFiter.onCheckOtherDays()
     }
 
     override fun canceledCalendar() {
