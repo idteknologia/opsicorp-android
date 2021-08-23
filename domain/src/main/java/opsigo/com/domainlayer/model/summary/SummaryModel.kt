@@ -42,6 +42,8 @@ data class SummaryModel(
         var isDomestic :Boolean = false,
         var isBookAfterApprove :Boolean = false,
         var isPrivateTrip :Boolean = false,
+        var isTripPartner :Boolean = false,
+        var parterName :String = "",
         var wbsNo : String = "",
         var golper : Int = 0,
 

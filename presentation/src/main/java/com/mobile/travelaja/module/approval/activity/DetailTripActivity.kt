@@ -996,6 +996,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
             model.trnNumber = tripSummary.trnNumber
+            model.isTripPartner = tripSummary.isTripPartner
+            model.tripPartnerName = tripSummary.parterName
             if(tripSummary.routes.isNotEmpty()){
                 model.originId = tripSummary.origin
                 model.originName = tripSummary.routes.first().origin

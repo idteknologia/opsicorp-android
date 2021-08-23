@@ -105,10 +105,10 @@ class BookingContactFlight : BaseActivity(),
         et_name_contact.setText(dataProfile.name)
 
         if (Constants.multitrip){
-            adapter.setData(dataOrder.routes.first().flightResult.passenger)
+            adapter.setData(dataOrder.routes.last().flightResult.passenger)
         }
         else {
-            adapter.setData(dataListFlight.dataFlight.first().passenger)
+            adapter.setData(dataListFlight.dataFlight.last().passenger)
         }
         initPrice()
     }
@@ -167,9 +167,10 @@ class BookingContactFlight : BaseActivity(),
             dataOrder.routes.forEach {
                 totalPrice =  totalPrice+it.flightResult.price
             }
+            val totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataOrder.routes.size} pax"
-            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
-            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
+            tv_price.text               = "${Globals.formatAmount(totalPricing)} IDR"
         }
         else {
             dataFligt.clear()
@@ -181,9 +182,10 @@ class BookingContactFlight : BaseActivity(),
             dataListFlight.dataFlight.forEach {
                 totalPrice =  totalPrice+it.price
             }
+            val totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataListFlight.dataFlight.size} pax"
-            tv_price_total.text         = "${Globals.formatAmount((totalPrice+totalPriceBaggage().toDouble()))} IDR"
-            tv_price.text               = "${Globals.formatAmount((totalPrice+totalPriceBaggage().toDouble()))} IDR"
+            tv_price_total.text         = "${Globals.formatAmount((totalPricing+totalPriceBaggage().toDouble()))} IDR"
+            tv_price.text               = "${Globals.formatAmount((totalPricing+totalPriceBaggage().toDouble()))} IDR"
         }
 
         //total baggage

@@ -30,7 +30,6 @@ import com.mobile.travelaja.module.item_custom.dialog_cabin_class.CabisClassDial
 import com.mobile.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.mobile.travelaja.utility.Constants.SELECT_RESULT
-import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
@@ -45,7 +44,6 @@ import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_pref
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_class
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_return_date
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_departur_date
-import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
@@ -129,7 +127,7 @@ class FlightFragmentNew : BaseFragment(),
             lay_air_class.visible()
             lay_air_pref.visible()
         }*/
-        if ((Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/")){
+        if ((Globals.getBaseUrl(requireContext()) == "https://dtmqa.opsinfra.net/")){
             cardExtras.gone()
         } else {
             cardExtras.visible()
@@ -585,12 +583,12 @@ class FlightFragmentNew : BaseFragment(),
         dataOrder.totalPassengerString = tv_passanger_new.text.toString()
         if (dataTripPlan.isTripPartner.equals(true)){
             dataOrder.adult = totalAdult + 1
-            dataOrder.totalPassengerInt = "${totalAdult + 1},${totalChild},${totalInfant}"
-            dataOrder.totalPassenger = totalAdult + 1 + totalChild + totalInfant
+            dataOrder.totalPassenger = "${totalAdult + 1},${totalChild},${totalInfant}"
+            dataOrder.totalPassengerInteger = totalAdult + 1 + totalChild + totalInfant
         } else {
             dataOrder.adult = totalAdult
-            dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
-            dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
+            dataOrder.totalPassenger = "${totalAdult},${totalChild},${totalInfant}"
+            dataOrder.totalPassengerInteger = totalAdult + totalChild + totalInfant
         }
         dataOrder.child = totalChild
         dataOrder.infant = totalInfant
@@ -646,10 +644,15 @@ class FlightFragmentNew : BaseFragment(),
             if (isEmptyMulticity().first) {
                 Globals.showAlert("sorry", "Please Select Flight ${isEmptyMulticity().second}", requireActivity())
             } else {
-                mFlightMulti.adult = totalAdult
+                if (dataTripPlan.isTripPartner.equals(true)){
+                    mFlightMulti.adult = totalAdult +1
+                    mFlightMulti.totalPassengerInteger = totalAdult + 1 + totalChild + totalInfant
+                } else {
+                    mFlightMulti.adult = totalAdult
+                    mFlightMulti.totalPassengerInteger = totalAdult + totalChild + totalInfant
+                }
                 mFlightMulti.child = totalChild
                 mFlightMulti.infant = totalInfant
-                mFlightMulti.totalPassenger = totalAdult + totalChild + totalInfant
                 mFlightMulti.classFlightCode = "1"
                 Globals.DATA_ORDER_FLIGHT = Serializer.serialize(mFlightMulti, OrderAccomodationModel::class.java)
                 gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")

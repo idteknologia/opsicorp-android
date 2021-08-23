@@ -172,7 +172,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
-                if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+                if (getBaseUrl(context) == "https://dtmqa.opsinfra.net/") {
                     onCompleted()
                     top_button.completedButtonSelected()
                 } else {
