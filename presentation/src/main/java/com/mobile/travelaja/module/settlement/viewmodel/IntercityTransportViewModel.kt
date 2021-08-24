@@ -17,7 +17,7 @@ import java.util.*
 
 class IntercityTransportViewModel(val repository: SettlementRepository) : ViewModel() {
     private val _hasUpdate = MutableLiveData<Boolean>()
-    val hasUpdate : LiveData<Boolean> = _hasUpdate
+    val hasUpdate: LiveData<Boolean> = _hasUpdate
 
     val isRemoveVisible = ObservableBoolean(false)
     val items = ObservableArrayList<IntercityTransport>()
@@ -26,16 +26,41 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
     private val _total = MutableLiveData<Number>(0)
     val total: LiveData<Number> = _total
 
+    private val _routes = MutableLiveData<Array<RouteTransport>>()
+    val routes: LiveData<Array<RouteTransport>> = _routes
+
     var loading = false
 
     private val _error = MutableLiveData<Event<Throwable>>()
     val error: LiveData<Event<Throwable>> = _error
 
+    fun addRoutes(array: Array<RouteTransport>) {
+        if (routes.value.isNullOrEmpty() && array.isNotEmpty()) {
+            _routes.value = array
+            enableRoute()
+        }
+    }
+
+    private fun enableRoute() {
+        val arr = mutableListOf<RouteTransport>()
+        routes.value?.forEach {routeTransport ->
+            val data = routeTransport.copy(enabled = true)
+            arr.add(data)
+        }
+        items.forEach { item ->
+            val index = arr.indexOfFirst { it.Route == item.Route }
+            if (index != -1) {
+                arr[index].enabled = false
+            }
+        }
+        _routes.value = arr.toTypedArray()
+
+    }
+
     fun addItems(items: Array<IntercityTransport>) {
         this.items.clear()
         this.items.addAll(items)
         isRemoveVisible.set(items.size > 1)
-        _hasUpdate.value = true
     }
 
     fun setRoute(pos: Int, route: RouteTransport, golper: Int) {
@@ -64,6 +89,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
     fun addItem(currency: String) {
         items.add(IntercityTransport(Currency = currency))
         isRemoveVisible.set(true)
+        _hasUpdate.value = true
     }
 
     fun removeItem(pos: Int) {
@@ -72,6 +98,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
         updateTotal(totalAmount, 0, false)
         isRemoveVisible.set(items.size > 1)
         _hasUpdate.value = true
+        enableRoute()
     }
 
     fun switchTransport(pos: Int, checked: Boolean) {
@@ -102,17 +129,29 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
         if (result is Result.Success) {
             val data = getItem(pos)
             if (data != null) {
+                val tempRoute = data.Route
                 data.Route = route.Route
                 data.City = route.City
+                val intercity = result.data
+                var amount = intercity.Cost
+                var distance = intercity.Distance ?: 1
+                if (!intercity.IsFromPolicy) {
+                    distance = if (distance.toDouble() > 200) 200 else distance
+                    amount = intercity.Amount.toDouble() * distance.toDouble()
+                }
                 val item = data.copy(
                     Route = route.Route,
                     City = route.City,
                     IsFromPolicy = result.data.IsFromPolicy,
-                    Cost = result.data.Cost,
-                    TotalAmount = result.data.TotalAmount
+                    Cost = amount,
+                    TotalAmount = amount,
+                    Distance = distance,
+                    Amount = result.data.Amount,
+                    TripType = 0
                 )
                 updateItem(pos, item)
-                updateTotal(result.data.TotalAmount, data.TotalAmount, true)
+                updateTotal(amount, data.TotalAmount, true)
+                enableRoute()
             }
         } else {
             val t = result as Result.Error

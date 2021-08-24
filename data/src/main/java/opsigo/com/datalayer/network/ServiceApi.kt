@@ -73,7 +73,7 @@ interface ServiceApi {
     suspend fun getIntercityTransportCompensation(@Body route : MutableMap<String,Any>) :IntercityTransportResult
 
     @Multipart
-    @POST(MyURL.ATTACHMENT)
+    @POST("api/UploadNewAttachment")
     suspend fun uploadFile(@Part file: MultipartBody.Part?): UploadFileEntity
 
     companion object {

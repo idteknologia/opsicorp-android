@@ -27,7 +27,7 @@ class SettlementSummaryFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.settlement_summary_fragment,container,false)
         binding = SettlementSummaryFragmentBinding.bind(view)
         setViewModel()

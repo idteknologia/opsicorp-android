@@ -198,7 +198,7 @@ data class SubmitResult(
     @SerializedName("isApproverSet")
     var isApproverSet: Boolean,
     @SerializedName("errorMessage")
-    var errorMessage : String
+    var errorMessage : Any
     )
 
 
@@ -240,8 +240,14 @@ class Ticket : Parcelable, BaseObservable() {
 @Parcelize
 data class RouteTransport(
     var Route: String = "",
-    var City: String = ""
-) : Parcelable, BaseObservable()
+    var City: String = "",
+    var enabled : Boolean = true
+) : Parcelable, BaseObservable(){
+
+    override fun toString(): String {
+        return City
+    }
+}
 
 @Parcelize
 data class IntercityTransport(

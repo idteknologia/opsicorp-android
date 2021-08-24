@@ -17,6 +17,7 @@ import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
 import com.mobile.travelaja.base.list.BaseListFragment
 import com.mobile.travelaja.module.settlement.view.adapter.IntercityTransportAdapter
+import com.mobile.travelaja.module.settlement.view.adapter.RouteAdapter
 import com.mobile.travelaja.module.settlement.viewmodel.IntercityTransportViewModel
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.IntercityTransport
@@ -36,6 +37,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     private var golper = 0
     private var total = 0.0
     private var hasUpdate = false
+    private lateinit var routeAdapter : RouteAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,10 +66,16 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
             routes = args.route
             golper = args.golper
         }
-        adapter = IntercityTransportAdapter(viewModel, this)
+        viewModel.addRoutes(routes)
+        routeAdapter = RouteAdapter(requireContext())
+        routeAdapter.clear()
+        routeAdapter.addAll(routes.toMutableList())
+        routeAdapter.notifyDataSetChanged()
+        adapter = IntercityTransportAdapter(routeAdapter,viewModel, this,golper)
         setUi()
         return adapter
     }
+
 
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
@@ -136,7 +144,12 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
                 setEnableButtonBottom(true)
             this.hasUpdate = hasUpdate
         }
-
+        viewModel.routes.observe(viewLifecycleOwner){
+            it.forEachIndexed { index, routeTransport ->
+             routeAdapter.getItem(index)?.enabled = routeTransport.enabled
+            }
+            routeAdapter.notifyDataSetChanged()
+        }
         setFragmentResultListener(TYPE) { _, bundle ->
             val data = bundle.get(DATA)
             val pos = bundle.getInt(POSITION)
@@ -172,7 +185,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
 
     private fun addRoutes() {
         val items = routes.map { it.City }.toTypedArray()
-        dialog = MaterialAlertDialogBuilder(requireContext()).setTitle("Ticket Number")
+        dialog = MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.please_select_route)
         dialog.setItems(items) { d, pos ->
             val route = routes[pos]
             viewModel.setRoute(this.position, route, golper)
@@ -220,6 +233,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         viewModel.removeItem(pos)
         binding.rvBaseList.removeViewAt(pos)
         adapter.notifyItemRemoved(pos)
+         adapter.notifyDataSetChanged()
     }
 
     private fun saveItems() {

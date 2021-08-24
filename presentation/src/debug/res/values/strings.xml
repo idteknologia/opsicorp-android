@@ -1,4 +1,4 @@
 <resources>
-    <string name="base_api_pertamina" translatable="false">https://pertamina-dtm3-qa.opsicorp.com/</string>
+    <string name="base_api_pertamina" translatable="false">https://dtmqa.opsinfra.net/</string>
     <string name="tkn" translatable="false">uk10zugMsk3-fGlbq9Fy_JHrYYYP_ZJEEt4xw2NlF8Xd2441SO99a95lUv8L0kwj7H8revYggfLI11tMUDFSRDSddiDwsw6GFRECUGd4uuG2xOFb9QwcLpenQGKQju3x4utBB3WTRD_xeYjghWvunQGnNHsNGbtV5VnPS0SZDPzrasjLD2p13PcUtKKok-QERdIG9Jbxu0PxP4PsaZTUF5EwpUmLuSP-CFiACUubXvO9CLayhkenqnfXizfFmJmazxEPfu5asT9N9Uwzj9OX476vdjYK6ww7iHKrgaqCEuVdijf3aLgqNch0PecxtoWxvm33BzOwPWarME5PapuFycHeOGEFXQ6JzDGBG9TP6tDbfYme42UBjuNPdjx6oam4PJzQHmyIR3VbuvsJkLtuc7OAyTR15HscohO6YEZ1G1J5p6GKNUAOMbQvbqkONv2pZKjgLiUdeefHyYgKivhZog1BzPpNA3ge0LVrJZ4Gy81sSQrJHRb6mQDEaHxSZQz6lBgCaAql3FqrGzYgjo1-tXotHUhcVGTC9RaUmj4cv91Voapc9U6Kx1QqDQIuEUKk</string>
 </resources>

@@ -3,7 +3,9 @@ package com.mobile.travelaja.module.settlement.view
 import android.content.pm.PackageManager
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -111,6 +113,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         viewModel.successSubmit.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { isSuccess ->
                 if (isSuccess) {
+                    viewModel.buttonNextEnabled.set(false)
                     navigateDetailDraft()
                 }
             }
@@ -137,6 +140,12 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         fragmentResultIntercityTransport()
         fragmentResultTripCode()
         setRecyclerAttachment()
+        val text = getString(R.string.txt_document_description)
+        binding.tvDescDoc.text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(text, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            Html.fromHtml(text)
+        }
     }
 
     private fun setRecyclerAttachment() {
@@ -378,7 +387,6 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             showWarning()
         }
     }
-
 
     private fun navigateDetailDraft() {
         val idTrip = viewModel.getDetailSubmit()?.Id

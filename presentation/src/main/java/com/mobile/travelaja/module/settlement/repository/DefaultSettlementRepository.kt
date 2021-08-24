@@ -131,7 +131,6 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
 
     override suspend fun submitSettlement(submit: DetailSettlement,path : String): Result<SubmitResult> =
         try {
-            println(submit)
             val result = api.submitSettlement(path,submit)
             Result.Success(result)
         } catch (t: Throwable) {

@@ -135,7 +135,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tvLabelOverNight"
                     style="@style/TextLato_Normal"
-                    app:formatTextIdr="@{viewModel.submitSettlement.specificAreaTariff}"
+                    app:formatTextIdr="@{viewModel.submitSettlement.totalSpecificAreaExpense}"
                     android:textColor="@color/colorTextHint"
                     tools:text="2.500.000 IDR" />
 

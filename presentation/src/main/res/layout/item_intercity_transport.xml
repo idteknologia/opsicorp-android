@@ -4,12 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="com.mobile.travelaja.utility.Utils" />
+
         <import type="androidx.databinding.ObservableBoolean" />
-        <import type="androidx.databinding.ObservableArrayList"/>
-        <import type="opsigo.com.domainlayer.model.settlement.IntercityTransport"/>
+
+        <import type="androidx.databinding.ObservableArrayList" />
+
+        <import type="opsigo.com.domainlayer.model.settlement.IntercityTransport" />
+
         <import type="android.view.View" />
-        <import type="androidx.databinding.ObservableInt"/>
+
+        <import type="androidx.databinding.ObservableInt" />
+
         <variable
             name="indexEmpty"
             type="ObservableInt" />
@@ -26,7 +33,9 @@
             name="position"
             type="Integer" />
 
-        <variable name="list" type="ObservableArrayList&lt;IntercityTransport>"/>
+        <variable
+            name="list"
+            type="ObservableArrayList&lt;IntercityTransport>" />
 
         <variable
             name="data"
@@ -34,6 +43,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardIntercity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_default"
@@ -42,28 +52,28 @@
         android:layout_marginBottom="10dp"
         app:cardBackgroundColor="@color/white"
         app:cardElevation="4dp"
-        app:visibleEmpty="@{position == indexEmpty}"
-        app:strokeColor="#f44336">
+        app:strokeColor="#f44336"
+        app:visibleEmpty="@{position == indexEmpty}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/margin_default"
             android:paddingTop="@dimen/margin_default"
-            android:paddingBottom="@dimen/margin_default"
-            android:paddingEnd="0dp">
+            android:paddingEnd="0dp"
+            android:paddingBottom="@dimen/margin_default">
 
             <TextView
                 android:id="@+id/tvPosition"
                 style="@style/SubtitleTextStyle"
-                tools:text="Transport 1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="@dimen/margin_default"
                 android:text="@{`Position `+(position+1)}"
                 android:textColor="#91929e"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Transport 1" />
 
             <Button
                 android:id="@+id/buttonRemove"
@@ -86,7 +96,7 @@
                 style="@style/ContentDescriptionTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="25dp"
                 android:text="Select Route"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -97,44 +107,82 @@
                 style="@style/EditedSelected_NoEditable"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
                 android:autofillHints="null"
                 android:drawableEnd="@{list[position].City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
                 android:hint="@string/origin_city"
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
                 android:paddingBottom="20dp"
-                android:layout_marginEnd="@dimen/margin_default"
-                android:contentDescription="@{`etRouteCity`+position}"
                 android:text="@{list[position].City}"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelSelectRoute"
                 tools:text="Jakarta - Bali" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxStrokeColor="@color/white"
+                app:boxStrokeWidth="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@{`etRouteCity`+position}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelSelectRoute">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteSelectRoute"
+                    style="@style/EditedSelected_NoEditable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@{list[position].City.empty ? @drawable/ic_chevron_down_editext_end : @drawable/ic_chevron_down_editext_end_selected}"
+                    android:hint="@string/origin_city"
+                    android:inputType="none"
+                    android:padding="0dp"
+                    android:text="@{list[position].City}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelSelectRoute" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/dividerRoute"
+                style="@style/Divider"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/menu" />
+
             <TextView
                 android:id="@+id/tvLabelDistance"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/etRoute"
-                android:text="@string/title_enter_distance_max_200"
                 android:layout_marginTop="20dp"
-                style="@style/TextLato_Normal"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+                android:text="@string/title_enter_distance_max_200"
+                android:visibility="@{list[position].isFromPolicy ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/tvLabelSelectRoute"
+                app:layout_constraintTop_toBottomOf="@+id/menu" />
 
             <EditText
                 android:id="@+id/etDistance"
                 android:layout_width="89dp"
                 android:layout_height="wrap_content"
                 android:contentDescription="@{`etDistance`+position}"
-                android:gravity="center"
-                android:inputType="numberDecimal"
-                tools:enabled="false"
+                android:editable="false"
                 android:enabled="@{!list[position].City.empty}"
-                android:text="@{String.valueOf(Utils.doubleParse(data.distance)??``)}"
+                android:gravity="center"
+                android:inputType="none"
+                android:text="@{String.valueOf(Utils.doubleParse(list[position].Distance)??``)}"
                 android:textAppearance="@style/TextLato_Bold"
-                android:visibility="@{data.isFromPolicy ? View.GONE : View.VISIBLE}"
-                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="@{list[position].isFromPolicy ? View.GONE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/tvLabelSelectRoute"
                 app:layout_constraintTop_toTopOf="@+id/tvCost"
+                tools:enabled="false"
                 tools:text="200" />
 
             <TextView
@@ -142,10 +190,11 @@
                 style="@style/TextLato_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:text="Currency"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:gravity="center"
+                android:text="@string/currency"
                 android:textColor="#52575c"
+                android:visibility="@{list[position].isFromPolicy ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvLabelDistance" />
 
@@ -162,9 +211,10 @@
                 android:gravity="end|center_vertical"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:text="@{Utils.formatCurrency(list[position].cost)}"
+                android:text="@{Utils.formatCurrency(list[position].amount)}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
+                android:visibility="@{list[position].isFromPolicy ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/tvLabelDistance"
@@ -175,36 +225,39 @@
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switchRoundtrip"
                 style="@style/Widget.App.Switch"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:onClick="@{(v) -> listener.onClickItem(v,position)}"
                 android:layout_marginEnd="@dimen/margin_default"
-                android:checked="@{data.tripType == 1}"
-                android:enabled="@{!list[position].city.empty}"
-                tools:enabled="false"
+                android:checked="@{list[position].tripType == 1}"
                 android:contentDescription="@{`switchRoundtrip`+position}"
+                android:enabled="@{!list[position].city.empty}"
+                android:onClick="@{(v) -> listener.onClickItem(v,position)}"
                 android:text="@string/roundtrip"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvLabelSelectRoute"
                 app:layout_constraintTop_toBottomOf="@+id/tvCost"
-                tools:checked="true" />
+                tools:checked="true"
+                tools:enabled="false" />
 
 
             <TextView
                 android:id="@+id/captionRoundtrip"
                 style="@style/SwitchCaption"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="@dimen/margin_default"
                 android:text="@string/select_transportation_mode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvLabelSelectRoute"
                 app:layout_constraintTop_toBottomOf="@+id/switchRoundtrip" />
 
             <View
                 android:id="@+id/dividerRoundtrip"
                 style="@style/Divider"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/captionRoundtrip" />
 
 
@@ -214,11 +267,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/margin_default"
                 android:text="@string/total_idr"
                 android:textColor="#52575c"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvPosition"
                 app:layout_constraintTop_toBottomOf="@+id/dividerRoundtrip"
                 tools:visibility="visible" />
 
@@ -227,17 +279,17 @@
                 style="@style/TextButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:minWidth="100dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/card_background_grey"
+                android:contentDescription="@{`tvTotal`+position}"
                 android:gravity="center|start"
+                android:minWidth="100dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:layout_marginTop="10dp"
                 android:text="@{Utils.formatCurrency(list[position].TotalAmount)}"
                 android:textColor="#52575c"
                 android:textSize="14sp"
-                android:contentDescription="@{`tvTotal`+position}"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvLabelSelectRoute"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelTotal"
                 tools:text="218.110.37"
                 tools:visibility="visible" />

@@ -50,7 +50,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     val loading: LiveData<Boolean> = _loading
 
     private val _successSubmit = MutableLiveData<Event<Boolean>>()
-    val successSubmit : LiveData<Event<Boolean>> = _successSubmit
+    val successSubmit: LiveData<Event<Boolean>> = _successSubmit
 
     var submitSettlement = MutableLiveData(DetailSettlement())
     var tickets = listOf<Ticket>()
@@ -82,7 +82,6 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
      */
     fun getDetailTrip() {
         _loading.value = true
-        isEnabledDetailTransport.set(false)
         viewModelScope.launch {
             val result = repository.getDetailTrip(tempTripId)
             compareDetailTrip(result)
@@ -93,7 +92,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         if (result is Result.Success) {
             val data = result.data
             tempTripId = ""
-            completingDetail(data.trip)
+            completingDetail(data.trip, false)
             tickets = data.listTicket
         } else {
             val e = result as Result.Error
@@ -102,27 +101,41 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         _loading.value = false
     }
 
-    private fun completingDetail(detail : DetailSettlement?){
+    private fun completingDetail(detail: DetailSettlement?, isDraft: Boolean) {
         detail?.let {
-            val totTransportExpense = detail.TransportExpenses.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }.sumByDouble { it.TotalAmount.toDouble() }
-            val totOtherTransportExpense = detail.OtherTransportExpenses.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }.sumByDouble { it.TotalAmount.toDouble() }
-            val totOtherIdr = detail.OtherExpense.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR  }.sumByDouble { it.Amount.toDouble()}
-            val totOtherUsd = detail.OtherExpense.filter { it.Currency == USD }.sumByDouble { it.Amount.toDouble()}
+            if (!isDraft) {
+                isEnabledDetailTransport.set(false)
+                isEnabledDetailIntercity.set(false)
+                isEnabledOtherExpense.set(false)
+            }
+            val totTransportExpense =
+                detail.TransportExpenses.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+                    .sumByDouble { it.TotalAmount.toDouble() }
+            val totOtherTransportExpense =
+                detail.OtherTransportExpenses.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+                    .sumByDouble { it.TotalAmount.toDouble() }
+            val totOtherIdr =
+                detail.OtherExpense.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+                    .sumByDouble { it.Amount.toDouble() }
+            val totOtherUsd = detail.OtherExpense.filter { it.Currency == USD }
+                .sumByDouble { it.Amount.toDouble() }
             detail.TotalTransportExpense = totTransportExpense
             detail.TotalOtherTransportExpense = totOtherTransportExpense
             detail.TotalOtherExpense = totOtherIdr
             detail.TotalOtherExpenseUsd = totOtherUsd
             var laundry = 0.0
-            if (detail.AmountLaundry != null){
+            if (detail.AmountLaundry != null) {
                 laundry = detail.AmountLaundry.toDouble()
             }
-            detail.TotalExpenseSubmit = totOtherIdr + totTransportExpense + totOtherTransportExpense + laundry + detail.getTotalSpecificArea().toDouble()
+            detail.TotalExpenseSubmit =
+                totOtherIdr + totTransportExpense + totOtherTransportExpense + laundry + detail.getTotalSpecificArea()
+                    .toDouble()
             detail.TotalExpenseSubmitUsd = totOtherUsd
             routes = detail.routes()
-            if (bankAccountSelected.isNotEmpty() || detail.BankAccount.isNullOrEmpty()){
+            if (bankAccountSelected.isNotEmpty() || detail.BankAccount.isNullOrEmpty()) {
                 detail.BankAccount = bankAccountSelected
             }
-            if (bankTransferSelected.isNotEmpty()  || detail.BankTransfer.isNullOrEmpty()){
+            if (bankTransferSelected.isNotEmpty() || detail.BankTransfer.isNullOrEmpty()) {
                 detail.BankTransfer = bankTransferSelected
             }
             submitSettlement.value = detail
@@ -130,7 +143,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     //Todo observe list trip code
-    fun getTripCodes(tripType : Int) {
+    fun getTripCodes(tripType: Int) {
         _loading.value = true
         viewModelScope.launch {
             val result = repository.getTripCodes(tripType)
@@ -239,23 +252,34 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     //Todo submit
-    fun submit(path : String) {
-        if (getDetailSubmit() == null){
+    fun submit(path: String) {
+        if (getDetailSubmit() == null) {
             return
         }
         _loading.value = true
         viewModelScope.launch {
-            val result = repository.submitSettlement(getDetailSubmit()!!,path)
+            val result = repository.submitSettlement(getDetailSubmit()!!, path)
             compareSubmitResult(result)
         }
     }
 
     private fun compareSubmitResult(result: Result<SubmitResult>) {
         if (result is Result.Success) {
-            if (result.data.isSuccess){
-                _successSubmit.value = Event(result.data.isSuccess)
-            }else {
-                _error.value = Event(Throwable(result.data.errorMessage))
+            val submit = result.data
+            _successSubmit.value = Event(submit.isSuccess)
+            if (!submit.isSuccess) {
+                val error = submit.errorMessage
+                var strError = ""
+                if (error is String)
+                    strError = error
+                if (error is List<*>){
+                    error.forEach {
+                        if (it is String){
+                            strError += it
+                        }
+                    }
+                }
+                _error.value = Event(Throwable(strError))
             }
         } else {
             _error.value = Event((result as Result.Error).exception)
@@ -297,8 +321,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
             isErrorFile.set(if (isSuccess) -1 else position + 1)
             val detail = getDetailSubmit()
             val attachments = detail?.Attachments?.get(position)
-            if (isSuccess || attachments != null){
-                attachments!!.Url = result.data.url
+            if (isSuccess || attachments != null) {
+                attachments!!.Id = result.data.url
+                attachments.Url = result.data.url
                 attachments.TripPlanId = detail.Id
                 submitSettlement.value?.Attachments?.set(position, attachments)
             }
@@ -311,18 +336,19 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         isLoadingFile.set(-1)
     }
 
-    fun addListRefunds(){
+    fun addListRefunds() {
         getDetailSubmit()?.TicketRefunds?.addAll(tickets)
     }
 
-    fun addComment(char : CharSequence){
+    fun addComment(char: CharSequence) {
         submitSettlement.value?.Comment = char.toString()
     }
 
     fun addingOtherExpense(list: List<OtherExpense>) {
         val detail = getDetailSubmit()
-        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR  }.sumByDouble { it.Amount.toDouble()}
-        val totalUsd = list.filter { it.Currency == USD }.sumByDouble { it.Amount.toDouble()}
+        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+            .sumByDouble { it.Amount.toDouble() }
+        val totalUsd = list.filter { it.Currency == USD }.sumByDouble { it.Amount.toDouble() }
         detail?.OtherExpense = list.toMutableList()
         detail?.TotalOtherExpense = totalIdr
         detail?.TotalOtherExpenseUsd = totalUsd
@@ -332,16 +358,19 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
 
     fun addingIntercityTransport(list: List<IntercityTransport>) {
         val detail = getDetailSubmit()
-        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }.sumByDouble { it.TotalAmount.toDouble() }
+        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+            .sumByDouble { it.TotalAmount.toDouble() }
         detail?.OtherTransportExpenses = list.toMutableList()
         detail?.TotalOtherTransportExpense = totalIdr
-        val enabled = detail?.OtherTransportExpenses != null && detail.OtherTransportExpenses.size > 0
+        val enabled =
+            detail?.OtherTransportExpenses != null && detail.OtherTransportExpenses.size > 0
         isEnabledDetailIntercity.set(enabled)
     }
 
-    fun addingTransportExpense(list : List<TransportExpenses>,modes: List<ModeTransport>){
+    fun addingTransportExpense(list: List<TransportExpenses>, modes: List<ModeTransport>) {
         val detail = getDetailSubmit()
-        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }.sumByDouble { it.TotalAmount.toDouble() }
+        val totalIdr = list.filter { it.Currency.isNullOrEmpty() || it.Currency == IDR }
+            .sumByDouble { it.TotalAmount.toDouble() }
         detail?.TransportExpenses?.clear()
         list.forEach {
             val data = TransportExpenses()
@@ -356,28 +385,28 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
             detail?.TransportExpenses?.add(data)
         }
         detail?.TotalTransportExpense = totalIdr
-        if (modeTransports.isEmpty()){
+        if (modeTransports.isEmpty()) {
             modeTransports.addAll(modes)
         }
         val enabled = detail?.TransportExpenses != null && detail.TransportExpenses.size > 0
         isEnabledDetailTransport.set(enabled)
     }
 
-    fun clearTransportExpense(){
+    fun clearTransportExpense() {
         val detail = getDetailSubmit()
         detail?.TransportExpenses?.clear()
         detail?.TotalTransportExpense = 0
         isEnabledOtherExpense.set(false)
     }
 
-    fun clearTransportIntercity(){
+    fun clearTransportIntercity() {
         val detail = getDetailSubmit()
         detail?.OtherTransportExpenses?.clear()
         detail?.TotalOtherTransportExpense = 0
         isEnabledDetailIntercity.set(false)
     }
 
-    fun clearOtherExpenses(){
+    fun clearOtherExpenses() {
         val detail = getDetailSubmit()
         detail?.OtherExpense?.clear()
         detail?.TotalOtherExpense = 0
@@ -385,13 +414,13 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     fun changeEditDraft(detail: DetailSettlement) {
-        submitSettlement.value = detail
+        completingDetail(detail, true)
         isEnabledDetailTransport.set(detail.TransportExpenses.isNotEmpty())
         isEnabledOtherExpense.set(detail.OtherExpense.isNotEmpty())
         isEnabledDetailIntercity.set(detail.OtherTransportExpenses.isNotEmpty())
     }
 
-    fun getDetailSubmit() : DetailSettlement?{
+    fun getDetailSubmit(): DetailSettlement? {
         return submitSettlement.value
     }
 

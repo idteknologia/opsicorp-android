@@ -12,6 +12,14 @@ import opsigo.com.domainlayer.model.trip.Trip
 
 class TripsListAdapter(val listener : TripsListener,var name : String?,var type : Int = TYPE_SELECTED) : BaseListAdapter<Trip>() {
 
+    init {
+        setHasStableIds(true)
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun getLayoutItem(viewType: Int): Int = if (viewType == TYPE_SELECTED) R.layout.item_trip_page else R.layout.item_trip_page_draft
 
     override fun getItemViewType(position: Int): Int {
