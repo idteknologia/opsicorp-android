@@ -37,6 +37,7 @@ class SummaryEntityMapper() {
         summary.trnNumber         = from.trnNumber.toString()
         summary.isDomestic        = from.isDomestic
         summary.isBookAfterApprove = from.isBookAfterApprove
+        summary.isApproval          = from.isApproval
         summary.isPrivateTrip       = from.isPrivateTrip
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()

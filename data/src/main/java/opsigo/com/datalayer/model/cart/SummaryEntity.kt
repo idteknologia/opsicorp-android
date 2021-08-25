@@ -2677,6 +2677,15 @@ data class TripParticipantCustomApprovalsItem(
     @field:SerializedName("ApproverName")
     val approverName: String = "",
 
+    @field:SerializedName("ApproverPositionId")
+    val approverPositionId: String = "",
+
+    @field:SerializedName("ApproverPositionName")
+    val approverPositionName: String = "",
+
+    @field:SerializedName("ApproverIsPjs")
+    val approverIsPjs: Boolean = false,
+
     @field:SerializedName("Id")
     val id: String = "",
 

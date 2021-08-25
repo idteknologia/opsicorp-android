@@ -41,6 +41,7 @@ data class SummaryModel(
         var costCenter :String = "",
         var isDomestic :Boolean = false,
         var isBookAfterApprove :Boolean = false,
+        var isApproval :Boolean = false,
         var isPrivateTrip :Boolean = false,
         var isTripPartner :Boolean = false,
         var parterName :String = "",

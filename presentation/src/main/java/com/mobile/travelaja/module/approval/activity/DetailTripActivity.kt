@@ -23,6 +23,7 @@ import com.mobile.travelaja.module.approval.summary.ParticipantModel
 import com.mobile.travelaja.module.approval.summary.SummaryAdapter
 import com.mobile.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverAdapter
+import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverCustomAdapter
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -33,7 +34,6 @@ import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
-import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.ApprovalAllRequest
 import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
@@ -41,11 +41,11 @@ import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.*
 import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
-import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.domainlayer.callback.CallbackSummary
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
+import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import opsigo.com.domainlayer.model.summary.SummaryModel
@@ -77,10 +77,10 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     var isUpdateSummary = false
 
     val dataParticipant = ArrayList<ParticipantModel>()
-    val dataApproval = ArrayList<ParticipantModel>()
+    val dataApproval = ArrayList<ParticipantModelDomain>()
     val dataApprover = ArrayList<TravelRequestApprovalModel>()
     val adapterParticpant by lazy { ParticipantAdapter(this) }
-    val adapterApproval by lazy { ParticipantAdapter(this) }
+    val adapterApproval by lazy { ApproverCustomAdapter(this) }
     val adapterApprover by lazy { ApproverAdapter(this) }
     val adapterItemOrder by lazy { SummaryAdapter(this) }
     var dataAttachment = ArrayList<UploadModel>()
@@ -88,11 +88,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
 
     override fun OnMain() {
-        /*initRecyclerViewApproval()*/
+
         initRecyclerViewParticipant()
         initRecyclerViewAttachment()
         initRecyclerViewItem()
-        initRecyclerViewApprover()
+
 
         toolbar.callbackOnclickToolbar(this)
         toolbar.setTitleBar(getString(R.string.detail_tripplan))
@@ -149,6 +149,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 mapperlistParticipantAndApproval()
                 /*postEstimateCost()*/
                 hideLoadingOpsicorp()
+                initRecyclerViewApproval()
             }
 
             override fun failedLoad(message: String) {
@@ -213,6 +214,19 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         rv_approval.layoutManager = layoutManager
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApproval
+
+        dataApproval.addAll(tripSummary.tripParticipantModels.first().dataApproval)
+        val totalApprover = dataApproval.size
+        tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
+        adapterApproval.setData(dataApproval)
+
+        if (dataApproval.isEmpty()){
+            tv_list_approval.gone()
+            rv_approval.gone()
+        } else {
+            tv_list_approval.visible()
+            rv_approval.visible()
+        }
     }
 
     fun initRecyclerViewApprover() {
@@ -231,6 +245,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
                 !it.isDomestic
             })
+
         }
         val totalApprover = dataApprover.size
 
@@ -354,10 +369,10 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     private fun setDataApproval() {
-        dataApproval.clear()
+        /*dataApproval.clear()*/
         dataParticipant.clear()
 
-        if (tripSummary.tripParticipantModels.filter {
+        /*if (tripSummary.tripParticipantModels.filter {
                     it.employId == getProfile().employId
                 }.isNullOrEmpty()) {
             // get approval by id participant
@@ -379,7 +394,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     dataApproval.add(mDataParticipant)
                 }
             }
-        }
+        }*/
 
         //get participant by approval
         try {
@@ -511,9 +526,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
         if (tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Completely Rejected") {
-            line_add_trip_item.visibility = View.GONE
+            line_add_trip_item.gone()
+        } else if (tripSummary.isApproval.equals(true)) {
+            line_add_trip_item.gone()
         } else {
-            line_add_trip_item.visibility = View.VISIBLE
+            line_add_trip_item.visible()
         }
 
         tv_notes.text = tripSummary.remark
@@ -839,7 +856,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     fun rejectOrApproveSelected(action: String) {
         showDialog("")
-        GetDataApproval(getBaseUrl()).approveAll(Globals.getToken(), dataBodyApproved(action), object : CallbackApprovAll {
+        GetDataApproval(getBaseUrl()).approveItem(Globals.getToken(), dataBodyApproved(action), object : CallbackApprovAll {
             override fun successLoad(data: String) {
                 hideDialog()
                 when (action) {

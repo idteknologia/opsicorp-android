@@ -18,6 +18,9 @@ class ListApprovalDataMapper: Mapper<ArrayList<TripParticipantCustomApprovalsIte
                 approval.id    = data?.id.toString()
                 approval.employId = data?.approverId.toString()
                 approval.name  = data?.approverName.toString()
+                approval.positionName = data?.approverPositionName.toString()
+                approval.positionId = data?.approverPositionId.toString()
+                approval.isPjs = if (data?.approverIsPjs==null) false else data.approverIsPjs
                 approval.layer = if (data?.layers==null) -1 else data.layers
                 approval.isCompletelyReviewed = if (data?.isCompletelyReviewed==null) false else data.isCompletelyReviewed
                 approval.followUpFlight = exception(data?.followUpAirline)
