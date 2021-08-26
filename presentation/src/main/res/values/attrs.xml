@@ -106,6 +106,10 @@
             <enum name="normal" value="0" />
             <enum name="dash" value="1" />
         </attr>
+        <attr name="ticketDividerDesign" format="enum">
+            <enum name="color" value="0" />
+            <enum name="punch" value="1" />
+        </attr>
         <attr name="ticketDividerDashGap" format="dimension" />
         <attr name="ticketDividerDashLength" format="dimension" />
         <attr name="ticketCornerType" format="enum">
@@ -116,6 +120,24 @@
         <attr name="ticketCornerRadius" format="dimension" />
         <attr name="android:elevation" />
         <attr name="ticketElevation" format="dimension" />
+        <attr name="view" format="reference" />
+        <attr name="ticketDividerLocation">
+            <flag name="none" value="0" />
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
+            <flag name="left" value="4" />
+            <flag name="right" value="8" />
+        </attr>
+
+        <attr name="ticketPunchLocation">
+            <flag name="none" value="0" />
+            <flag name="top" value="1" />
+            <flag name="bottom" value="2" />
+            <flag name="left" value="4" />
+            <flag name="right" value="8" />
+        </attr>
+        <attr name="ticketPunchRadius" format="dimension" />
+
     </declare-styleable>
 
     <declare-styleable name="WheelPicker">

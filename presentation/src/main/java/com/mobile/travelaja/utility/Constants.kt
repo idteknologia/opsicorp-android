@@ -318,12 +318,13 @@ object Constants {
     var FILE_NAME_COUNTRY_TRIP     = "cntr_trip.op"
     var FILE_NAME_STATION_TRAIN    = "st_train.op"
 
-    val FILTER_FLIGHT_PREFARANCE = "flight_preferance"
-    val FILTER_FLIGHT_CABIN      = "flight_cabin"
-    val FILTER_FLIGHT_DEPARTURE  = "flight_departure"
-    val FILTER_FLIGHT_ARRIVAL    = "flight_arrival"
-    val IS_ALLREADY_FLITER_FLIGHT = "isAllreadyFilter"
-    val FILTER_FLIGHT_TRANSIT    = "filter_transit"
+    val FILTER_FLIGHT_PREFARANCE   = "flight_preferance"
+    val FILTER_FLIGHT_CABIN        = "flight_cabin"
+    val FILTER_FLIGHT_DEPARTURE    = "flight_departure"
+    val FILTER_FLIGHT_ARRIVAL      = "flight_arrival"
+    val IS_ALLREADY_FLITER_FLIGHT  = "isAllreadyFilter"
+    val FILTER_FLIGHT_TRANSIT      = "filter_transit"
+    val DATA_SELECT_PURCHASE       = "dataPuchase"
 
     object SendTo {
         val Participant = 0

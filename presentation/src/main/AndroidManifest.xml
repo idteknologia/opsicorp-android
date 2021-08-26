@@ -73,12 +73,12 @@
                 <action android:name="${applicationId}.AddressActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-
-
         </activity>
         <activity
             android:name=".module.item_custom.map.TestActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".module.accomodation.view_accomodation.activity.AccomodationActivity"
             android:screenOrientation="portrait" />

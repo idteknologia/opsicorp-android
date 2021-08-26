@@ -64,7 +64,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Train Itinerary" />
 
-            <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
+            <com.mobile.travelaja.module.item_custom.ticket_view.TicketViews
                 android:id="@+id/ticketView"
                 android:layout_width="match_parent"
                 android:layout_height="130dp"

@@ -27,7 +27,6 @@ import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.FilterPurchaseDialog
 
-
 class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     ToolbarOpsicorp.OnclickButtonListener,ButtonDefaultOpsicorp.OnclickButtonListener,
     NewCalendarViewOpsicorp.CallbackResult{

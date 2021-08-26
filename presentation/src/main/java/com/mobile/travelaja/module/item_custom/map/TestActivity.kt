@@ -4,6 +4,8 @@ import com.mobile.travelaja.R
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals.gotoActivityModule
 import kotlinx.android.synthetic.main.layout_test.*
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 
 class TestActivity : BaseActivity() {
 //    ,CallbackCalendar
@@ -12,13 +14,29 @@ class TestActivity : BaseActivity() {
 
     override fun getLayout(): Int { return R.layout.layout_test }
 
-
     val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.filter."
 
     override fun OnMain() {
-        tvPermission.setOnClickListener {
-            gotoActivityModule(this, BASE_PACKAGE_MODULE + "FilterFlightActivity")
+
+        val data = ArrayList<String>()
+        val mAdapter = TestAdapter(this,data)
+
+        val linearLayoutManager = LinearLayoutManager(this)
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        rvTest.layoutManager = linearLayoutManager
+        rvTest.itemAnimator  = DefaultItemAnimator()
+        rvTest.adapter       = mAdapter
+
+
+        for (i in 0 until 4){
+            data.add("oke")
+            data.add("wokeeeee")
         }
+        mAdapter.setData(data)
+
+       /* tvPermission.setOnClickListener {
+            gotoActivityModule(this, BASE_PACKAGE_MODULE + "FilterFlightActivity")
+        }*/
 //        tvPermission.setOnClickListener {
 //            checkPermissionLocation()
 //        }

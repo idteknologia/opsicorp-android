@@ -107,7 +107,6 @@ class DetailHotelActivity : BaseActivity(),
 
     private fun initWebview() {
         val url = "<object width=\"360\" height=\"178\" style=\"border: 1px solid #cccccc;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
-        setLog("--------------------")
         setLog(url)
         webview.loadData(url, "text/html", null)
         webview.setWebViewClient(WebViewClient())

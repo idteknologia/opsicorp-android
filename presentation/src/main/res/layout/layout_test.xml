@@ -1,230 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#f6f8f8">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="permission"
-        android:id="@+id/tvPermission"/>
-
- <!--   <Button
-        android:visibility="gone"
-        android:id="@+id/tv_current_lication"
-        android:layout_width="wrap_content"
-        android:text="get current location"
-        android:layout_height="wrap_content">
-    </Button>
-
-    <Button
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/open_map"
-        android:text="open map">
-    </Button>
-    <RelativeLayout
-        android:visibility="gone"
-        android:paddingTop="17dp"
-        android:paddingBottom="20dp"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/line_depart"
-            android:layout_marginLeft="59dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_time_departure"
-                android:textSize="12.5sp"
-                android:layout_marginBottom="5dp"
-                android:textColor="#24253d"
-                style="@style/RobotoMedium"
-                android:text="13:00"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginBottom="5dp"
-                android:id="@+id/tv_date_departure"
-                android:textSize="11.3sp"
-                android:textColor="#8024253d"
-                style="@style/RobotoMedium"
-                android:text="27 Apr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_toEndOf="@+id/line_depart"
-            android:id="@+id/line_detail_depart"
-            android:layout_marginLeft="36dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
+        <com.mobile.travelaja.module.item_custom.ticket_view.TicketCustomView
+            android:layout_width="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/line_depart">
-            <TextView
-                android:id="@+id/tv_name_departure"
-                android:textSize="12.5sp"
-                android:textColor="#24253d"
-                style="@style/RobotoMedium"
-                android:layout_marginBottom="5dp"
-                android:text="Jakarta (CGK)"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_airport_departure"
-                android:textSize="11.3sp"
-                android:textColor="#8024253d"
-                style="@style/RobotoMedium"
-                android:text="Soekarno Hatta International Airport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_weight="1"
+            app:ticketBackgroundColor="@color/white"
+            app:ticketCornerRadius="8dp"
+            app:ticketCornerType="rounded"
+            app:ticketDividerColor="#d3d3d8"
+            app:ticketDividerDesign="color"
+            app:ticketDividerLocation="top"
+            app:ticketDividerPadding="5dp"
+            app:ticketDividerType="dash"
+            app:ticketDividerWidth="1dp"
+            app:ticketElevation="5dp"
+            app:ticketOrientation="vertical"
+            app:ticketPunchLocation="none"
+            app:ticketPunchRadius="12dp"
+            app:ticketScallopRadius="10dp"
+            app:ticketShowBorder="false"
+            app:ticketShowDivider="true"
+            app:view="@id/price_holder6">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="9dp"
-                android:layout_marginTop="6dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:background="@drawable/rounded_blue_stroke_50_persen">
-
-                <ImageView
-                    android:layout_marginRight="6dp"
-                    android:layout_marginLeft="9dp"
-                    android:layout_gravity="center"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
-                    android:src="@drawable/ic_clock_black"/>
+                android:id="@+id/option6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackground"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_margin="2dp"
-                    android:id="@+id/line_total_duration"
-                    android:gravity="center"
-                    android:textSize="10sp"
-                    android:textColor="#212121"
-                    style="@style/RobotoMedium"
-                    android:text="Total Duration : 1h 35m"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:id="@+id/text6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="24dp"
+                    android:text="Vertical Ticket View"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlCompat" />
+
+                <LinearLayout
+                    android:id="@+id/price_holder6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@color/white"
+                    android:paddingStart="22dp"
+                    android:orientation="vertical"
+                    android:paddingEnd="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/rvTest"/>
+
+                </LinearLayout>
+
             </LinearLayout>
 
+        </com.mobile.travelaja.module.item_custom.ticket_view.TicketCustomView>
 
+    </LinearLayout>
 
-
-
-        </LinearLayout>
-
-
-
-
-
-        <LinearLayout
-            android:layout_toEndOf="@+id/line_depart"
-            android:layout_marginLeft="14dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/line_depart">
-            <ImageView
-                android:id="@+id/dote_progress"
-                android:src="@drawable/point_departure"
-                android:layout_width="9dp"
-                android:layout_height="9dp"
-                android:orientation="vertical">
-            </ImageView>
-            <View
-                android:id="@+id/line_after_dote_progress"
-                android:orientation="vertical"
-                android:background="@drawable/line_dot"
-                android:layout_width="1dp"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_height="66dp">
-            </View>
-
-            <ImageView
-                android:visibility="visible"
-                android:background="@drawable/point_arrival"
-                android:layout_width="9dp"
-                android:layout_height="9dp"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="8.9dp"
-            android:layout_toEndOf="@+id/line_depart"
-            android:layout_below="@+id/line_detail_depart"
-            android:layout_marginLeft="36dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/line_depart">
-            <TextView
-                android:id="@+id/tv_name_arrival"
-                android:textSize="12.5sp"
-                android:textColor="#24253d"
-                style="@style/RobotoMedium"
-                android:layout_marginBottom="5dp"
-                android:text="Jakarta (CGK)"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_airport_arrival"
-                android:textSize="11.3sp"
-                android:textColor="#8024253d"
-                style="@style/RobotoMedium"
-                android:text="Soekarno Hatta International Airport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_marginTop="31dp"
-            android:layout_below="@+id/line_depart"
-            android:layout_marginLeft="59dp"
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_time_arrival"
-                android:textSize="12.5sp"
-                android:textColor="#24253d"
-                style="@style/RobotoMedium"
-                android:text="13:00"
-                android:layout_marginBottom="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_date_arrival"
-                android:textSize="11.3sp"
-                android:textColor="#8024253d"
-                style="@style/RobotoMedium"
-                android:text="27 Apr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <com.opsicorp.sliderdatepicker.lib.CalendarVertical
-        android:layout_width="match_parent"
-        android:id="@+id/calendarView"
-        android:layout_height="match_parent">
-    </com.opsicorp.sliderdatepicker.lib.CalendarVertical>
--->
 </LinearLayout>
