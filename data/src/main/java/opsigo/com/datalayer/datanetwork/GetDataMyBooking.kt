@@ -53,10 +53,10 @@ class GetDataMyBooking(baseUrl:String) : BaseGetData(), MyBookingRequestReposito
     override fun getDetailMyBooking(token: String, id: String,callback: CallbackDetailMyBooking) {
         apiOpsicorp.getDetailMyBooking(token,id).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                val data = response.body()?.string()
+                callback.success(DetalMyBookingMapper().mapping(Serializer.deserialize(data, DetailMyBookingEntity::class.java)))
                 try {
-                    if (response.isSuccessful){
-                        val data = response.body()?.string()
-                        callback.success(DetalMyBookingMapper().mapping(Serializer.deserialize(data, DetailMyBookingEntity::class.java)))
+                   if (response.isSuccessful){
                     }
                     else{
                         val json = JSONObject(response.errorBody()?.string())

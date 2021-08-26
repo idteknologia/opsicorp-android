@@ -1,11 +1,12 @@
 package opsigo.com.datalayer.model.myboking
 
 import com.google.gson.annotations.SerializedName
+import opsigo.com.domainlayer.model.my_booking.PriceListModel
 
 data class DetailMyBookingEntity(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: Data = Data(),
 
 	@field:SerializedName("errorMessage")
 	val errorMessage: String? = null,
@@ -17,7 +18,7 @@ data class DetailMyBookingEntity(
 data class Data(
 
 	@field:SerializedName("PriceDetails")
-	val priceDetails: List<Any?>? = null,
+	val priceDetails: ArrayList<PriceMyBookingEntity> = ArrayList(),
 
 	@field:SerializedName("Trains")
 	val trains: List<Any> = ArrayList(),
@@ -78,4 +79,16 @@ data class BookingContact(
 
 	@field:SerializedName("MobilePhone")
 	val mobilePhone: String? = null
+)
+
+data class PriceMyBookingEntity(
+
+	@field:SerializedName("Amount")
+	val amount: Double = 0.0,
+
+	@field:SerializedName("Title")
+	val title: String? = null,
+
+	@field:SerializedName("Index")
+	val index: Int? = null
 )

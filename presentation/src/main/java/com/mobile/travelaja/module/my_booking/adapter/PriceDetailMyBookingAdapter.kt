@@ -5,31 +5,31 @@ import android.view.ViewGroup
 import android.content.Context
 import android.view.LayoutInflater
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals
+import kotlin.collections.ArrayList
 import kotlinx.android.synthetic.main.item_price_detail_my_booking.view.*
 import opsigo.com.domainlayer.model.my_booking.PriceListModel
-import java.util.*
-import kotlin.collections.ArrayList
 
-class PriceDetailMyBookingAdapter (context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<PriceDetailMyBookingAdapter.ViewHolder>() {
+class PriceDetailMyBookingAdapter (val context: Context): androidx.recyclerview.widget.RecyclerView.Adapter<PriceDetailMyBookingAdapter.ViewHolder>() {
 
-    val context = context
     var items: ArrayList<PriceListModel> = ArrayList()
+
     override fun getItemCount(): Int {
         return items.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(parent.context)
+        val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_price_detail_my_booking, parent, false)
 
         return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, positionParent: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val data = items.get(positionParent)
+        val data = items.get(position)
         holder.itemView.tv_name_price.text = data.title.toString()
-        holder.itemView.tv_price.text = data.amount.toString()
+        holder.itemView.tv_price.text = "IDR ${Globals.formatAmount(data.amount)}"
     }
 
     fun setData(data:ArrayList<PriceListModel>) {
