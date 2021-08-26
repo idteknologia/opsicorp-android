@@ -125,13 +125,16 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
         }
 
-        viewModel.successFetchModeTransport.observe(viewLifecycleOwner){
-            it.getContentIfNotHandled()?.let {success ->
-                viewModel.isEnabledDetailTransport.set(success)
-                if (success){
+        viewModel.successFetchModeTransport.observe(viewLifecycleOwner) {
+            it.getContentIfNotHandled()?.let { success ->
+                if (success) {
                     navigateTransportExpense()
-                }else {
-                    Toast.makeText(requireContext(),"Mode Transportation is Empty",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.alert_mode_transportation_empty),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -210,9 +213,9 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 activity?.finish()
             }
             R.id.viewDetailInformation -> {
-                if (viewModel.modeTransports.isNotEmpty()){
+                if (viewModel.modeTransports.isNotEmpty()) {
                     navigateTransportExpense()
-                }else {
+                } else {
                     viewModel.getModeTransport()
                 }
             }
@@ -279,9 +282,9 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             R.id.switchTransportation -> {
                 if (v is SwitchMaterial) {
                     if (v.isChecked) {
-                        if (viewModel.modeTransports.isNotEmpty()){
+                        if (viewModel.modeTransports.isNotEmpty()) {
                             navigateTransportExpense()
-                        }else {
+                        } else {
                             viewModel.getModeTransport()
                         }
                     } else {
@@ -307,8 +310,8 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
             R.id.btnUploadEvidence -> {
                 if (filePermissionGranted)
-                fileDialog.show(childFragmentManager, "GettingFile")
-                else{
+                    fileDialog.show(childFragmentManager, "GettingFile")
+                else {
                     (activity as FilePermissionListener).onPermissionInputFile(filePermissionGranted)
                 }
             }
@@ -323,7 +326,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 navigateTripCode(TYPE_DRAFT)
             }
             R.id.buttonNext -> {
-                viewModel.submit("Save",getString(R.string.save_settlement_failed))
+                viewModel.submit("Save", getString(R.string.save_settlement_failed))
             }
             else -> navigateTripCode(TYPE_SELECTED)
         }
@@ -336,7 +339,8 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         val cities = data?.cities()?.toTypedArray()
         val tripCode = data?.TripCode
         if (cities.isNullOrEmpty()) {
-            val warning = "${getString(R.string.this_trip)} $tripCode ${getString(R.string.alert_not_have_route)}"
+            val warning =
+                "${getString(R.string.this_trip)} $tripCode ${getString(R.string.alert_not_have_route)}"
             showWarning(
                 R.string.sorry,
                 warning,
@@ -363,7 +367,8 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         val golper = detail?.Golper ?: 0
         val items = detail?.OtherTransportExpenses?.toTypedArray()
         val total = detail?.TotalOtherTransportExpense.toString()
-        val action = CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToIntercityTransportFragment(
                 viewModel.routes.toTypedArray(),
                 golper, items ?: arrayOf(), total
             )
@@ -415,14 +420,16 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         idTrip?.let {
             val action =
                 CreateSettlementFragmentDirections.actionCreateSettlementToSettlementDetailDraftFragment(
-                    it,true)
+                    it, true
+                )
             findNavController().navigate(action)
             viewModel.isDraftLabelVisible.set(true)
         }
     }
 
-    private fun navigateToSummary(){
-        val action = CreateSettlementFragmentDirections.actionCreateSettlementToTripFragment(-1,null)
+    private fun navigateToSummary() {
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToTripFragment(-1, null)
         findNavController().navigate(action)
     }
 
@@ -483,7 +490,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         alert.setCancelable(false)
         alert.setTitle(title)
         if (message is String)
-        alert.setMessage(message)
+            alert.setMessage(message)
         else alert.setMessage(message as Int)
         alert.setPositiveButton(positiveName) { d, _ ->
             when (type) {
@@ -496,7 +503,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                     viewModel.clearTransportExpense()
                     viewModel.isEnabledDetailTransport.set(false)
                 }
-                WARNING_NOT_INCLUDE_INTERCITY_TRANSPORT ->{
+                WARNING_NOT_INCLUDE_INTERCITY_TRANSPORT -> {
                     viewModel.clearTransportIntercity()
                     viewModel.isEnabledDetailIntercity.set(false)
                 }

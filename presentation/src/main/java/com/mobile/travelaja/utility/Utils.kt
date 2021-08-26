@@ -72,6 +72,17 @@ object Utils {
         }
     }
 
+    @JvmStatic
+    fun doubleParseStr(value: Number?): String{
+        try {
+            val format = DecimalFormat("###.###")
+            return format.format(value)
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            return ""
+        }
+    }
+
     fun getDurationTime(startTime: String?, endTime: String?): String? {
         try {
             val format = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())

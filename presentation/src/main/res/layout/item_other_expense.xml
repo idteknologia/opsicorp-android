@@ -8,6 +8,7 @@
         <import type="androidx.databinding.ObservableBoolean"/>
         <import type="android.view.View"/>
         <import type="androidx.databinding.ObservableInt"/>
+        <import type="com.mobile.travelaja.utility.Utils"/>
 
         <variable
             name="isRemove"
@@ -127,9 +128,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textSize="18sp"
-                android:text="@{otherExpense.valueAmount}"
+                android:text="@{Utils.doubleParseStr(otherExpense.amount)}"
                 tools:text="20.000.000"
                 tools:enabled="false"
+                android:maxLength="13"
                 android:contentDescription="@{`etAmount`+position}"
                 android:enabled="@{!otherExpense.expenseName.empty}"
                 android:textAppearance="@style/TextLato_Bold"

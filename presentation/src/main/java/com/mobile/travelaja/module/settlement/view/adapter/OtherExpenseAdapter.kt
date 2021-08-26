@@ -54,7 +54,7 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
             binding.position = position
             binding.isRemove = isRemove
             binding.indexEmpty = indexEmpty
-            binding.isUsd = data.Currency == "USD"
+            binding.isUsd = data.Currency.contains("usd",true)
             binding.setVariable(BR.otherExpense, data)
             binding.listener = listener
             binding.executePendingBindings()
@@ -62,7 +62,7 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
                 val value = it.toString()
                 if (binding.etAmount.isFocusable) {
                     if (value.isNotEmpty()) {
-                        val amount = value.toLong()
+                        val amount = value.toDouble()
                         viewModel.setAmount(amount, position)
                     } else {
                         viewModel.setAmount(0, position)

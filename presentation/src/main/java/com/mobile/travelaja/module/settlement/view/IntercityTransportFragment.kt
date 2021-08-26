@@ -185,7 +185,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         if (items.isNotEmpty() && viewModel.items.isEmpty()) {
             viewModel.addItems(items)
         } else if (viewModel.items.isEmpty()) {
-            val item = IntercityTransport(Currency = getString(R.string.other_expense_idr))
+            val item = IntercityTransport(Currency = getString(R.string.other_expense_idr),IsFromPolicy = true)
             viewModel.addItems(arrayOf(item))
         }
     }
