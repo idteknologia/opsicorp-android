@@ -306,6 +306,8 @@
                     android:src="@drawable/ic_flight"
                     android:layout_centerVertical="true"/>
                 <TextView
+                    android:singleLine="true"
+                    android:id="@+id/tv_airline_prreferance_filter"
                     android:onClick="airlinesPreferance"
                     android:layout_marginStart="7dp"
                     android:layout_toEndOf="@+id/img_airline"

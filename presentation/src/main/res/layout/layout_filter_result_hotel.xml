@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#f6f8f8"
     android:layout_width="match_parent"
@@ -49,72 +50,77 @@
                 </TextView>
 
                 <LinearLayout
+                    android:layout_marginTop="7dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="8dp"
-                    android:paddingRight="8dp"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:layout_marginTop="7dp"
-                    android:background="@drawable/rounded_button_type_hotel">
-
-                    <TextView
-                        android:id="@+id/tv_type_hotel"
-                        style="@style/RobotoRegular"
+                    android:orientation="horizontal">
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hotels"
-                        android:textColor="#2b9a8e"
-                        android:textSize="8dp"/>
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:background="@drawable/rounded_button_type_hotel">
+
+                        <TextView
+                            android:id="@+id/tv_type_hotel"
+                            style="@style/RobotoRegular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hotels"
+                            android:textColor="#2b9a8e"
+                            android:textSize="8dp"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:visibility="invisible"
+                            android:id="@+id/star_1"
+                            android:layout_marginLeft="2dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="10dp" />
+                        <ImageView
+                            android:visibility="invisible"
+                            android:id="@+id/star_2"
+                            android:layout_marginLeft="2dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="10dp" />
+                        <ImageView
+                            android:visibility="invisible"
+                            android:id="@+id/star_3"
+                            android:layout_marginLeft="2dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="10dp" />
+                        <ImageView
+                            android:visibility="invisible"
+                            android:id="@+id/star_4"
+                            android:layout_marginLeft="2dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="10dp" />
+                        <ImageView
+                            android:visibility="invisible"
+                            android:id="@+id/star_5"
+                            android:layout_marginLeft="2dp"
+                            android:src="@mipmap/ic_star"
+                            android:layout_width="14dp"
+                            android:layout_height="10dp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_marginTop="6dp"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:visibility="invisible"
-                        android:id="@+id/star_1"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_star"
-                        android:layout_width="14dp"
-                        android:layout_height="10dp" />
-                    <ImageView
-                        android:visibility="invisible"
-                        android:id="@+id/star_2"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_star"
-                        android:layout_width="14dp"
-                        android:layout_height="10dp" />
-                    <ImageView
-                        android:visibility="invisible"
-                        android:id="@+id/star_3"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_star"
-                        android:layout_width="14dp"
-                        android:layout_height="10dp" />
-                    <ImageView
-                        android:visibility="invisible"
-                        android:id="@+id/star_4"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_star"
-                        android:layout_width="14dp"
-                        android:layout_height="10dp" />
-                    <ImageView
-                        android:visibility="invisible"
-                        android:id="@+id/star_5"
-                        android:layout_marginLeft="2dp"
-                        android:src="@mipmap/ic_star"
-                        android:layout_width="14dp"
-                        android:layout_height="10dp" />
-
-                </LinearLayout>
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -142,7 +148,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp">
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_alignParentRight="true"
@@ -150,34 +156,73 @@
                         style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="9sp"
+                        android:textSize="10dp"
                         android:textColor="#5499e4"
                         android:gravity="end"
                         android:text="8 Room(s) available" />
 
-                    <TextView
-                        style="@style/RobotoRegular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="9sp"
-                        android:textColor="#cccccc"
-                        android:text="@string/room_night" />
-
                 </RelativeLayout>
 
+
+                <LinearLayout
+                    android:layout_marginTop="7dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="11dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textStyle="normal"
+                        android:textSize="9sp"
+                        android:textColor="#b2bbc6"
+                        android:text="Room / Night - "/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="11dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textStyle="normal"
+                        android:textSize="9sp"
+                        android:textColor="#009688"
+                        android:text="Starts from"/>
+
+                    <TextView
+                        android:id="@+id/tv_not_comply_hotel"
+                        android:layout_width="match_parent"
+                        android:layout_height="14dp"
+                        android:fontFamily="@font/lato_regular"
+                        android:textStyle="bold"
+                        android:textSize="9sp"
+                        android:textColor="#eb0011"
+                        android:lineSpacingExtra="4.5sp"
+                        android:gravity="end"
+                        android:text="Not Comply"/>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp">
+                    android:layout_marginTop="3dp">
                     <TextView
                         android:id="@+id/tv_prize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/tintTextView"
+                        android:textColor="#24253d"
                         android:textSize="14dp"
                         style="@style/RobotoBold"
-                        android:text="IDR 1.275.000">
+                        android:text="1.275.000">
+                    </TextView>
+
+                    <TextView
+                        android:layout_marginTop="2.9dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_toRightOf="@+id/tv_prize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#b2bbc6"
+                        android:textSize="10dp"
+                        style="@style/RobotoBold"
+                        android:text="IDR">
                     </TextView>
 
                     <ImageView

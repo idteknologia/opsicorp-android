@@ -16,11 +16,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
-import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
-import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
@@ -51,11 +48,6 @@ abstract class BaseFragment: Fragment()  {
     val dialogContruction = UnderContructionDialog()
     val dialogContactAdmin = ContactAdminDialog()
     val dialogContactHRDialog = ContactHRDialog()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        manager = SplitInstallManagerFactory.create(requireContext())
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val fragment : View = inflater.inflate(getLayout(), container, false)
@@ -107,13 +99,32 @@ abstract class BaseFragment: Fragment()  {
 
     open fun gotoActivityModule(context: Context, namaActivity: String) {
         try {
-            val intent = Intent(context, Class.forName(namaActivity))
+            val intent = Intent(
+                    context,
+                    Class.forName(namaActivity)
+            )
             context.startActivity(intent)
         } catch (e: Exception) {
             setLog(e.message.toString())
             e.printStackTrace()
             setToast("Error Halaman Tidak ada")
         }
+    }
+
+    fun installModule(nameModule: String,nameActivity: String){
+        val splitInstallManager = SplitInstallManagerFactory.create(requireContext())
+        val request =
+            SplitInstallRequest
+                .newBuilder()
+                .addModule(nameModule)
+                .build()
+        splitInstallManager
+            .startInstall(request)
+            .addOnSuccessListener { sessionId -> setLog("Success Install Module = ${sessionId}") }
+            .addOnFailureListener { exception -> setLog("Failed Install Module = ${exception.message}")  }
+            .addOnCompleteListener {
+                gotoActivityModule(requireContext(),nameActivity)
+            }
     }
 
     open fun gotoActivityModule(context: Context, intent: Intent) {
@@ -125,79 +136,6 @@ abstract class BaseFragment: Fragment()  {
             setToast("Error Halaman Tidak ada")
         }
     }
-
-    private lateinit var manager: SplitInstallManager
-    /** Listener used to handle changes in state for install requests. */
-    private val listener = SplitInstallStateUpdatedListener { state ->
-        val multiInstall = state.moduleNames().size > 1
-        val names = state.moduleNames().joinToString(" - ")
-        when (state.status()) {
-            SplitInstallSessionStatus.DOWNLOADING -> {
-                //  In order to see this, the application has to be uploaded to the Play Store.
-//                displayLoadingState(state, "Downloading $names")
-                println("listener dynamic feature : Downloading")
-            }
-            SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION -> {
-                println("listener dynamic feature : REQUIRES_USER_CONFIRMATION")
-
-                /*
-                  This may occur when attempting to download a sufficiently large module.
-                  In order to see this, the application has to be uploaded to the Play Store.
-                  Then features can be requested until the confirmation path is triggered.
-                 */
-//                startIntentSender(state.resolutionIntent()?.intentSender, null, 0, 0, 0)
-            }
-            SplitInstallSessionStatus.INSTALLED -> {
-                println("listener dynamic feature : INSTALLED")
-//                onSuccessfulLoad(names, launch = !multiInstall)
-                gotoActivityModule(requireContext(),this.activityName)
-            }
-
-            SplitInstallSessionStatus.INSTALLING -> {
-                println("listener dynamic feature : INSTALLING")
-
-//                displayLoadingState(state, "Installing $names")
-            }
-            SplitInstallSessionStatus.FAILED -> {
-                println("listener dynamic feature : FAILED")
-//                toastAndLog("Error: ${state.errorCode()} for module ${state.moduleNames()}")
-            }
-        }
-    }
-
-    private lateinit var activityName : String
-    //Todo install module
-    fun installModule(moduleName : String ,activityName : String){
-        this.activityName = activityName
-        val requestBuilder = SplitInstallRequest.newBuilder()
-        if (!manager.installedModules.contains(moduleName)){
-            requestBuilder.addModule(moduleName)
-        }
-
-        val request = requestBuilder.build()
-        manager.startInstall(request).addOnSuccessListener {
-            println("listener dynamic feature : success = ${it}")
-
-        }.addOnFailureListener {
-            println("listener dynamic feature : FAILED error = ${it.message}")
-        }.addOnCompleteListener {
-            println("listener dynamic feature : complete success = it")
-
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        manager.registerListener(listener)
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        manager.unregisterListener(listener)
-
-    }
-
 
     open fun gotoActivityForResultModule(context: Context, intent: Intent,code:Int) {
         try {

@@ -57,18 +57,29 @@ class FilterTransitOpsicorp : LinearLayout, View.OnClickListener {
 
     override fun onClick(v: View?) {
         if(v==btn_direct||v==tv_direct){
-            onclick.onDirect()
-            changeViewButton(0)
+            onDirectSeleted()
         }
         else if(v==btn_one_transit||v==tv_one_transit){
-            changeViewButton(1)
-            onclick.onOneTransit()
+            oneTransitSeleted()
         }
         else if(v==btn_two_transit||v==tv_two_transit){
-            onclick.onTwoTransit()
-            changeViewButton(2)
-
+            twoTransitSeleted()
         }
+    }
+
+    fun twoTransitSeleted() {
+        onclick.onTwoTransit()
+        changeViewButton(2)
+    }
+
+    fun oneTransitSeleted() {
+        changeViewButton(1)
+        onclick.onOneTransit()
+    }
+
+    fun onDirectSeleted(){
+        onclick.onDirect()
+        changeViewButton(0)
     }
 
     private fun changeViewButton(i: Int) {
@@ -81,6 +92,13 @@ class FilterTransitOpsicorp : LinearLayout, View.OnClickListener {
                 linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter)
                 textviews.get(index).setTextColor(resources.getColor(R.color.colorTextHint))
             }
+        }
+    }
+
+    fun resetSelected() {
+        lines.forEachIndexed { index, linearLayout ->
+            linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter)
+            textviews.get(index).setTextColor(resources.getColor(R.color.colorTextHint))
         }
     }
 

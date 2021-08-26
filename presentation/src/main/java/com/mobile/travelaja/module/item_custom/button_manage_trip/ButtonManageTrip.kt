@@ -37,7 +37,7 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.button_right_left_rounded, this)
 
-        if (getBaseUrl(context) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+        if (getBaseUrl(context) == "https://dtmqa.opsinfra.net/") {
             ll_master_button.gone()
         } else {
             ll_master_button.visible()

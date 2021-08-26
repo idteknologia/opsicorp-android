@@ -15,6 +15,7 @@
         android:layout_height="40dp"
         android:gravity="center">
         <TextView
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="20 Mar 2019 - 20 Dec 2019"
@@ -44,11 +45,17 @@
         </include>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginBottom="58dp"
             android:id="@+id/rv_my_booking"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="visible"/>
+
+        <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/loading_view"
+            android:visibility="gone"/>
+
 
     </FrameLayout>
 

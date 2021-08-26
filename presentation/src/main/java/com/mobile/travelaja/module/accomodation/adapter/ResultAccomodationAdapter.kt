@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import android.content.Context
 import android.widget.TextView
 import com.mobile.travelaja.R
-import com.mobile.travelaja.utility.*
-import com.mobile.travelaja.utility.Globals.setLog
-import com.squareup.picasso.Picasso
 import android.widget.ImageView
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import com.squareup.picasso.Picasso
+import com.mobile.travelaja.utility.*
 import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.utility.Globals.setLog
 import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import opsigo.com.domainlayer.model.accomodation.train.ResultListTrainModel
@@ -231,8 +231,9 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             itemView.tv_name_hotel.text         = data.listHotelModel.nameHotel
             itemView.tv_type_hotel.text         = data.listHotelModel.typeHotel
             itemView.tv_city.text               = data.listHotelModel.city
+            itemView.tv_not_comply_hotel.visibility = View.GONE
             itemView.tv_available.text          = "${data.listHotelModel.totalAvailable} ${context.getString(R.string.room_s_available)} "
-            itemView.tv_prize.text              = "IDR ${Globals.formatAmount(data.listHotelModel.price)} ${context.getString(R.string.slice_room_night)}"
+            itemView.tv_prize.text              = "${Globals.formatAmount(data.listHotelModel.price)}"
 
             setLog(data.listHotelModel.nameHotel)
             setLog(data.listHotelModel.starRating)

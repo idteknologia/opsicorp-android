@@ -262,7 +262,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     private fun businessTrip() {
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
-            if (Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/"){
+            if (Globals.getBaseUrl(requireContext()) == "https://dtmqa.opsinfra.net/"){
                 if (Globals.getProfile(requireContext()).approval.travelRequestApproval.isEmpty()){
                     showContactHr()
                 } else {

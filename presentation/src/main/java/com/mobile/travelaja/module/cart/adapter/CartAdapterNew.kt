@@ -589,7 +589,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
         val data = SyncHotelRequest()
         data.hotelId  = mData.tripItemId
         data.maxRetry = 0
-        data.pnrId    = mData.pnrCode
+        data.pnrId    = mData.pnrId
         data.travelAgent = Globals.getConfigCompany(context).defaultTravelAgent
         return Globals.classToHashMap(data,SyncHotelRequest::class.java)
     }

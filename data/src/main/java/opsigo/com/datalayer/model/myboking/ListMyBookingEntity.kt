@@ -8,7 +8,7 @@ data class ListMyBookingEntity(
 	val total: Int? = null,
 
 	@field:SerializedName("data")
-	val data: List<DataItem?>? = null,
+	val data: List<DataItem> = ArrayList(),
 
 	@field:SerializedName("errorMessage")
 	val errorMessage: String? = null,
@@ -26,7 +26,7 @@ data class DataItem(
 	val destination: String? = null,
 
 	@field:SerializedName("IsRoundtrip")
-	val isRoundtrip: Boolean? = null,
+	val isRoundtrip: Boolean = false,
 
 	@field:SerializedName("PaymentStatusText")
 	val paymentStatusText: String? = null,
@@ -35,7 +35,7 @@ data class DataItem(
 	val destinationCity: String? = null,
 
 	@field:SerializedName("ItemType")
-	val itemType: Int? = null,
+	val itemType: Int = 0,
 
 	@field:SerializedName("ItemTypeText")
 	val itemTypeText: String? = null,

@@ -1,17 +1,21 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
-class SelectRoomModel {
-    var typeRefund  = ""
-    var titleRoom   = ""
-    var BedFacility = ""
-    var listFacility = ""
-    var policyDescription = ""
-    var prize       = ""
-    var roomCodeHash    = ""
-    var roomKey         = ""
-    var breakfastType   = ""
-    var isBreakfast     = false
-    var cancelLimit     = ""
-    var isGuaranteedBooking = false
-    var isFullCharge        = false
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class SelectRoomModel (
+    var typeRefund          :String = "",
+    var titleRoom           :String = "",
+    var BedFacility         :String = "",
+    var listFacility        :String = "",
+    var policyDescription   :String = "",
+    var prize               :String = "",
+    var roomCodeHash        :String = "",
+    var roomKey             :String = "",
+    var breakfastType       :String = "",
+    var cancelLimit         :String = "",
+    var isBreakfast         :Boolean = false,
+    var isGuaranteedBooking :Boolean = false,
+    var isFullCharge        :Boolean = false,
+):Parcelable

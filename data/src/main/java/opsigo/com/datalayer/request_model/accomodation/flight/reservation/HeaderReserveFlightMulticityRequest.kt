@@ -67,6 +67,12 @@ data class HeaderReserveFlightMulticityRequest(
         @field:SerializedName("Golper")
         var golper: Int = 0,
 
+        @field:SerializedName("PartnerName")
+        var partnerName: String = "",
+
+        @field:SerializedName("WithPartner")
+        var withPartner: Boolean = false,
+
         @field:SerializedName("Routes")
         var routes: ArrayList<RoutestRequest> = ArrayList(),
 

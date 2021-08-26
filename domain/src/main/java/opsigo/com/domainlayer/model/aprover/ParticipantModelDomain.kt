@@ -10,6 +10,9 @@ class ParticipantModelDomain {
     var layer    = 0
     var followUpHotel = ""
     var followUpTrain = ""
+    var positionName = ""
+    var positionId = ""
+    var isPjs = false
     var isCompletelyReviewed = false
     var followUpFlight = ""
 }

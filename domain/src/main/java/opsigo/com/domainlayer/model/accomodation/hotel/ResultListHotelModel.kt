@@ -1,30 +1,33 @@
 package opsigo.com.domainlayer.model.accomodation.hotel
 
-class ResultListHotelModel {
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    var checkIn      = ""
-    var checkOut     = ""
-    var duration     = ""
-    var imageHotelSorcut = ""
-    var imageHotel   = ""
-    var typeHotel    = ""
-    var starRating   = ""
-    var totalGuest   = 1
-    var rating       = ""
-    var price        = ""
-    var correlationId   = ""
-    var city            = ""
-    var idCity          = ""
-    var idCountry       = ""
-    var totalAvailable  = ""
-    var nameHotel    = ""
-    var addressHotel = ""
-    var lat          = ""
-    var long         = ""
-    var hotelKey     = ""
-    var room         = ArrayList<SelectRoomModel>()
-    var galery       = ArrayList<GaleryModel>()
-    var reviews      = ArrayList<RiviewHotelModel>()
-    var faciltyHotel = ArrayList<FacilityHotelModel>()
-    var descriptioHotel = ""
-}
+@Parcelize
+class ResultListHotelModel (
+    var checkIn      :String = "",
+    var checkOut     :String = "",
+    var duration     :String = "",
+    var imageHotelSorcut :String = "",
+    var imageHotel   :String = "",
+    var typeHotel    :String = "",
+    var starRating   :String = "",
+    var totalGuest   :Int = 1,
+    var rating          :String = "",
+    var price           :String = "",
+    var correlationId   :String = "",
+    var city            :String = "",
+    var idCity          :String = "",
+    var idCountry       :String = "",
+    var totalAvailable  :String = "",
+    var nameHotel       :String = "",
+    var addressHotel    :String = "",
+    var lat             :String = "",
+    var long            :String = "",
+    var hotelKey        :String = "",
+    var room            :ArrayList<SelectRoomModel>    = ArrayList(),
+    var galery          :ArrayList<GaleryModel>        = ArrayList(),
+    var reviews         :ArrayList<RiviewHotelModel>   = ArrayList(),
+    var faciltyHotel    :ArrayList<FacilityHotelModel> = ArrayList(),
+    var descriptioHotel :String = ""
+): Parcelable

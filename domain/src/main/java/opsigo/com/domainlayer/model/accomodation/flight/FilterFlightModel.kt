@@ -1,11 +1,13 @@
 package opsigo.com.domainlayer.model.accomodation.flight
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-class FilterFlightModel {
-    var id   = ""
-    var name = ""
-    var time = ""
-    var isSelected = false
-
-}
+@Parcelize
+class FilterFlightModel (
+    var id   :String = "",
+    var name :String = "",
+    var time :String = "",
+    var isSelected :Boolean = false
+    ) : Parcelable

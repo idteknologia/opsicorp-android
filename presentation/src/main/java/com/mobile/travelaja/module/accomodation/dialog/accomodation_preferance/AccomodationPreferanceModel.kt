@@ -1,8 +1,12 @@
 package com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance
 
-class AccomodationPreferanceModel {
-    var checked = false
-    var name = ""
-    var id   = ""
-    var time = ""
-}
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class AccomodationPreferanceModel(
+    var checked :Boolean = false,
+    var name : String = "",
+    var id   : String = "",
+    var time : String = ""
+): Parcelable

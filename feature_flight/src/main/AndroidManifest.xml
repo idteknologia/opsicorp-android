@@ -4,11 +4,9 @@
     package="com.opsicorp.travelaja.feature_flight">
 
     <dist:module
+        dist:instant="false"
+        dist:onDemand="false"
         dist:title="@string/title_feature_flight">
-        <dist:delivery>
-            <dist:on-demand />
-        </dist:delivery>
-
         <dist:fusing dist:include="true" />
     </dist:module>
 
@@ -78,6 +76,10 @@
         <activity
             android:name=".multi_city.FlightMultiCityListActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="${applicationId}.FlightMultiCityListActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
 
     </application>

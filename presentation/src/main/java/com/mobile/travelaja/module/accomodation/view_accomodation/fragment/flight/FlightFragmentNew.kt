@@ -1,12 +1,12 @@
 package com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight
 
-import android.util.Log
 import android.view.View
 import android.os.Bundle
 import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
 import android.view.ViewGroup
+import com.mobile.travelaja.R
 import android.content.Context
 import android.widget.TextView
 import android.widget.PopupWindow
@@ -19,7 +19,6 @@ import com.mobile.travelaja.base.InitApplications
 import com.opsicorp.sliderdatepicker.utils.Constant
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobile.travelaja.R
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
@@ -31,7 +30,6 @@ import com.mobile.travelaja.module.item_custom.dialog_cabin_class.CabisClassDial
 import com.mobile.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
 import com.mobile.travelaja.utility.Constants.SELECT_RESULT
-import opsigo.com.domainlayer.model.signin.CountryModel
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment_2.*
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
@@ -46,7 +44,6 @@ import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_pref
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_class
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_return_date
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_departur_date
-import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
@@ -130,7 +127,7 @@ class FlightFragmentNew : BaseFragment(),
             lay_air_class.visible()
             lay_air_pref.visible()
         }*/
-        if ((Globals.getBaseUrl(requireContext()) == "https://pertamina-dtm3-qa.opsicorp.com/")){
+        if ((Globals.getBaseUrl(requireContext()) == "https://dtmqa.opsinfra.net/")){
             cardExtras.gone()
         } else {
             cardExtras.visible()
@@ -404,18 +401,12 @@ class FlightFragmentNew : BaseFragment(),
                 openCalendar()
             }
             lay_parent_passager -> {
-                /*val fm = requireActivity().getSupportFragmentManager()
-                val selectPassager = SelectAgePassanger(true,R.style.CustomDialog)
-                selectPassager.show(fm, "yesNoAlert")
-                selectPassager.callback = this
-                selectPassager.setLimitSelect(4,3,2)*/
                 val totalPassangerFlight = TotalPassengerFlight()
                 totalPassangerFlight.setLimitSelect(5, 2, 3)
                 totalPassangerFlight.setCurrentSelect(totalAdult, totalInfant, totalChild)
                 totalPassangerFlight.create(requireContext(), this)
             }
             lay_air_class -> {
-                /*airlineClass()*/
                 val cabinClass = CabisClassDialog()
                 cabinClass.setCurrentSelect(nameClassAirline)
                 cabinClass.create(requireContext(), this)
@@ -436,7 +427,10 @@ class FlightFragmentNew : BaseFragment(),
 
         selectAccomodationPreferance.setCallbackListener(object :
             SelectAccomodationPreferance.CallbackSelectPreferance {
-            override fun callback(string: String) {
+            override fun callback(
+                string: String,
+                dataAirlines: ArrayList<AccomodationPreferanceModel>
+            ) {
                 tv_airline_prreferance.text = string
             }
         })
@@ -587,11 +581,18 @@ class FlightFragmentNew : BaseFragment(),
         dataOrder.classFlightName = nameClassAirline
 
         dataOrder.totalPassengerString = tv_passanger_new.text.toString()
-        dataOrder.totalPassengerInt = "${totalAdult},${totalChild},${totalInfant}"
-        dataOrder.adult = totalAdult
+        if (dataTripPlan.isTripPartner.equals(true)){
+            dataOrder.adult = totalAdult + 1
+            dataOrder.totalPassenger = "${totalAdult + 1},${totalChild},${totalInfant}"
+            dataOrder.totalPassengerInteger = totalAdult + 1 + totalChild + totalInfant
+        } else {
+            dataOrder.adult = totalAdult
+            dataOrder.totalPassenger = "${totalAdult},${totalChild},${totalInfant}"
+            dataOrder.totalPassengerInteger = totalAdult + totalChild + totalInfant
+        }
         dataOrder.child = totalChild
         dataOrder.infant = totalInfant
-        dataOrder.totalPassenger = totalAdult + totalChild + totalInfant
+
         dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
         Globals.DATA_LIST_FLIGHT    = ""
 
@@ -643,10 +644,15 @@ class FlightFragmentNew : BaseFragment(),
             if (isEmptyMulticity().first) {
                 Globals.showAlert("sorry", "Please Select Flight ${isEmptyMulticity().second}", requireActivity())
             } else {
-                mFlightMulti.adult = totalAdult
+                if (dataTripPlan.isTripPartner.equals(true)){
+                    mFlightMulti.adult = totalAdult +1
+                    mFlightMulti.totalPassengerInteger = totalAdult + 1 + totalChild + totalInfant
+                } else {
+                    mFlightMulti.adult = totalAdult
+                    mFlightMulti.totalPassengerInteger = totalAdult + totalChild + totalInfant
+                }
                 mFlightMulti.child = totalChild
                 mFlightMulti.infant = totalInfant
-                mFlightMulti.totalPassenger = totalAdult + totalChild + totalInfant
                 mFlightMulti.classFlightCode = "1"
                 Globals.DATA_ORDER_FLIGHT = Serializer.serialize(mFlightMulti, OrderAccomodationModel::class.java)
                 val nameActivity = BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity"

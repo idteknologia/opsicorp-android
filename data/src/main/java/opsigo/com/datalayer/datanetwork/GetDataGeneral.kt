@@ -1,25 +1,23 @@
 package opsigo.com.datalayer.datanetwork
 
-import android.util.Log
-import opsigo.com.data.network.UrlEndpoind
-import opsigo.com.datalayer.mapper.*
-import opsigo.com.datalayer.model.*
-import opsigo.com.datalayer.model.approval.list_approval.ListApprovalEntity
-import opsigo.com.domainlayer.callback.*
-import opsigo.com.domainlayer.usecase.GeneralRepository
-
-import okhttp3.ResponseBody
-import opsigo.com.datalayer.model.accomodation.flight.upcomming.UpcomingFlightEntity
-import opsigo.com.datalayer.model.calendar.CalendarHolidayEntity
-import opsigo.com.datalayer.model.cart.SummaryEntity
-import opsigo.com.datalayer.model.myboking.ListMyBookingEntity
-import opsigo.com.datalayer.model.signin.version.RespVersionEntity
-import org.json.JSONObject
 import retrofit2.Call
+import android.util.Log
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
+import org.json.JSONObject
 import javax.inject.Inject
+import okhttp3.ResponseBody
+import opsigo.com.datalayer.mapper.*
+import opsigo.com.domainlayer.callback.*
+import opsigo.com.data.network.UrlEndpoind
+import opsigo.com.datalayer.model.cart.SummaryEntity
+import opsigo.com.domainlayer.usecase.GeneralRepository
+import opsigo.com.datalayer.model.calendar.CalendarHolidayEntity
+import opsigo.com.datalayer.model.signin.version.RespVersionEntity
+import opsigo.com.datalayer.model.approval.list_approval.ListApprovalEntity
+import opsigo.com.datalayer.model.accomodation.flight.upcomming.UpcomingFlightEntity
+
 
 class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
     @Inject
@@ -122,7 +120,7 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
             }
         })
     }
-//
+
 //    override fun getDataAirlinePreference(token: String,jobTitleId:String,companyCode:String ,callbackAirlinePreference: CallbackAirlinePreference) {
 //        apiOpsicorp.getAirlineprefered(token,jobTitleId,companyCode).enqueue(object :Callback<ResponseBody>{
 //            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
