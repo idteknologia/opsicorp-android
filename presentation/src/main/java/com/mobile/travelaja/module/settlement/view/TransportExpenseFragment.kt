@@ -32,13 +32,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            showWarning(
-                R.string.alert,
-                R.string.warning_back_settlement_transport_expense,
-                R.string.dont_save,
-                R.string.save,
-                WARNING_NAVIGATEUP
-            )
+            backAction()
         }
     }
 
@@ -53,8 +47,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
 
-        setDataTransports()
         setModeTransports()
+        setDataTransports()
         adapter =
             TransportExpenseAdapter(viewModel, modes = viewModel.modeTransports, listener = this)
         setUi()
@@ -87,8 +81,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         if (modes.isNotEmpty()) {
             viewModel.modeTransports.clear()
             viewModel.modeTransports.addAll(modes)
-            viewModel.modeFlight =
-                viewModel.modeTransports.last { it.Value == SettlementViewModel.TYPE_FLIGHT }
+            viewModel.modeFlight = viewModel.modeTransports.last { it.Value == SettlementViewModel.TYPE_FLIGHT }
         }
     }
 
@@ -97,8 +90,11 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         viewModel.error.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { t ->
                 Utils.handleErrorMessage(requireContext(), t) { error ->
-                    val errorDesc =
-                        if (error == Utils.EMPTY) getString(R.string.empty_mode_transports) else error
+                    val errorDesc = when (error) {
+                        Utils.EMPTY -> getString(R.string.empty_mode_transports)
+                        MODE_NOT_SUPPORT -> getString(R.string.mode_transport_not_support)
+                        else -> error
+                    }
                     Toast.makeText(requireContext(), errorDesc, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -131,6 +127,11 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
                 setEnableButtonBottom(true)
             this.hasUpdate = hasUpdate
         }
+
+        viewModel.loading.observe(viewLifecycleOwner){ loading ->
+            isLoading.set(loading)
+        }
+
     }
 
     private fun saveTransports() {
@@ -168,7 +169,6 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             }.show()
     }
 
-
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
     override fun isButtonBottomVisible(): Boolean = true
@@ -183,6 +183,12 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         } else if (v?.id == R.id.buttonBottom) {
             saveTransports()
         } else {
+            backAction()
+        }
+    }
+
+    private fun backAction(){
+        if (hasUpdate){
             showWarning(
                 R.string.alert,
                 R.string.warning_back_settlement_transport_expense,
@@ -190,6 +196,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
                 R.string.save,
                 WARNING_NAVIGATEUP
             )
+        }else {
+            navigateBack()
         }
     }
 
@@ -238,6 +246,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     override fun onClickItem(view: View, position: Int) {
         when (view.id) {
             R.id.buttonRemove -> {
+                if (viewModel.loading.value == true)
+                    return
                 removeTransport(position)
             }
             R.id.etOriginCity -> {
@@ -275,6 +285,7 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         const val WARNING_NAVIGATEUP = 1
         const val WARNING_SAME_DATA = 2
         const val WARNING_ISLOADING = 3
+        const val MODE_NOT_SUPPORT = "mode not support"
     }
 
 

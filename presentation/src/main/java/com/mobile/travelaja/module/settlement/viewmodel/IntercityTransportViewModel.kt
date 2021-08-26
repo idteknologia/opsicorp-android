@@ -13,7 +13,6 @@ import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.Event
 import opsigo.com.domainlayer.model.settlement.IntercityTransport
 import opsigo.com.domainlayer.model.settlement.RouteTransport
-import java.util.*
 
 class IntercityTransportViewModel(val repository: SettlementRepository) : ViewModel() {
     private val _hasUpdate = MutableLiveData<Boolean>()
@@ -29,7 +28,9 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
     private val _routes = MutableLiveData<Array<RouteTransport>>()
     val routes: LiveData<Array<RouteTransport>> = _routes
 
-    var loading = false
+    var isLoading = false
+    private val _loading = MutableLiveData<Boolean>()
+    val loading : LiveData<Boolean> = _loading
 
     private val _error = MutableLiveData<Event<Throwable>>()
     val error: LiveData<Event<Throwable>> = _error
@@ -87,7 +88,7 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
     }
 
     fun addItem(currency: String) {
-        items.add(IntercityTransport(Currency = currency))
+        items.add(IntercityTransport(Currency = currency,IsFromPolicy = true))
         isRemoveVisible.set(true)
         _hasUpdate.value = true
     }
@@ -114,7 +115,11 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
 
     //Todo get request
     fun getIntercityTransport(pos: Int, route: RouteTransport, golper: Int) {
-        loading = true
+        if (isLoading){
+            return
+        }
+        isLoading = true
+        _loading.value = true
         viewModelScope.launch {
             val result = repository.getIntercityTransportCompensation(route, golper)
             compareIntercityTransport(result, pos, route)
@@ -157,7 +162,8 @@ class IntercityTransportViewModel(val repository: SettlementRepository) : ViewMo
             val t = result as Result.Error
             _error.value = Event(t.exception)
         }
-        loading = false
+        isLoading = false
+        _loading.value = false
     }
 
     fun indexFirstEmpty(): Int {

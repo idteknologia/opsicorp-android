@@ -15,6 +15,7 @@ import opsigo.com.datalayer.network.ServiceApi
 import opsigo.com.domainlayer.model.settlement.*
 import opsigo.com.domainlayer.model.trip.Trip
 import java.io.File
+import com.mobile.travelaja.module.settlement.view.TransportExpenseFragment.Companion.MODE_NOT_SUPPORT
 
 
 class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepository {
@@ -112,7 +113,11 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
     override suspend fun calculateTransportExpense(body: MutableMap<String, Any>): Result<CalculateTransportResult> =
         try {
             val result = api.calculateTransportExpense(body)
-            Result.Success(result)
+            if (result.amount > 0 && result.Currency.isNotEmpty()){
+                Result.Success(result)
+            }else{
+                Result.Error(Throwable(MODE_NOT_SUPPORT))
+            }
         } catch (t: Throwable) {
             Result.Error(t)
         }

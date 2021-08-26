@@ -54,6 +54,7 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
             binding.position = position
             binding.isRemove = isRemove
             binding.indexEmpty = indexEmpty
+            binding.isUsd = data.Currency == "USD"
             binding.setVariable(BR.otherExpense, data)
             binding.listener = listener
             binding.executePendingBindings()
@@ -70,6 +71,8 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
             }
 
             binding.toggleButton.setOnClickListener {
+                val checked = binding.toggleButton.isChecked
+                println(checked)
                 val text = binding.toggleButton.text.toString()
                 viewModel.setCurrency(text, position)
                 binding.etAmount.text.clear()

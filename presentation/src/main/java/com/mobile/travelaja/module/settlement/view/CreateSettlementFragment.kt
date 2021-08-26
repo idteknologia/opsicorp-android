@@ -125,6 +125,17 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
         }
 
+        viewModel.successFetchModeTransport.observe(viewLifecycleOwner){
+            it.getContentIfNotHandled()?.let {success ->
+                viewModel.isEnabledDetailTransport.set(success)
+                if (success){
+                    navigateTransportExpense()
+                }else {
+                    Toast.makeText(requireContext(),"Mode Transportation is Empty",Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
         setFragmentResultListener(KEY_REQUEST) { k, b ->
             if (k == KEY_REQUEST) {
                 val items = b.getParcelableArrayList<OtherExpense>(KEY_OTHER_EXPENSE_LIST)
@@ -198,7 +209,13 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             R.id.ivBack -> {
                 activity?.finish()
             }
-            R.id.viewDetailInformation -> navigateTransportExpense()
+            R.id.viewDetailInformation -> {
+                if (viewModel.modeTransports.isNotEmpty()){
+                    navigateTransportExpense()
+                }else {
+                    viewModel.getModeTransport()
+                }
+            }
             R.id.viewDetailOtherExpense -> navigateOtherExpense()
             R.id.viewIntercity -> navigateIntercity()
             R.id.switchExpense -> {
@@ -262,7 +279,11 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             R.id.switchTransportation -> {
                 if (v is SwitchMaterial) {
                     if (v.isChecked) {
-                        navigateTransportExpense()
+                        if (viewModel.modeTransports.isNotEmpty()){
+                            navigateTransportExpense()
+                        }else {
+                            viewModel.getModeTransport()
+                        }
                     } else {
                         showWarning(
                             R.string.warning,
@@ -302,13 +323,14 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 navigateTripCode(TYPE_DRAFT)
             }
             R.id.buttonNext -> {
-                viewModel.submit("Save")
+                viewModel.submit("Save",getString(R.string.save_settlement_failed))
             }
             else -> navigateTripCode(TYPE_SELECTED)
         }
         binding.root.clearFocus()
     }
 
+    //Todo Navigate Transport Expense
     private fun navigateTransportExpense() {
         val data = viewModel.getDetailSubmit()
         val cities = data?.cities()?.toTypedArray()
@@ -527,7 +549,6 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         const val WARNING_NOT_INCLUDE_TRANSPORT_EXPENSE = 3
         const val WARNING_NOT_INCLUDE_INTERCITY_TRANSPORT = 4
         const val WARNING_NOT_INCLUDE_OTHER_EXPENSE = 5
-
     }
 
 

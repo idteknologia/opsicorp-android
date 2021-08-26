@@ -26,7 +26,6 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     val isEnabledDetailTransport = ObservableBoolean(false)
     val isEnabledOtherExpense = ObservableBoolean(false)
     val isEnabledDetailIntercity = ObservableBoolean(false)
-    val isEnableOverNight = ObservableBoolean(false)
     val isTravellingEnabled = ObservableBoolean(false)
     val isDraftLabelVisible = ObservableBoolean(false)
 
@@ -65,6 +64,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private var job: Job? = null
 
     var modeTransports = mutableListOf<ModeTransport>()
+    private val _successFetchModeTransport = MutableLiveData<Event<Boolean>>()
+    val successFetchModeTransport : LiveData<Event<Boolean>> = _successFetchModeTransport
+
     var typeExpense = arrayOf<ExpenseType>()
     var jobCalculateTransport: Job? = null
     var tempTripId = ""
@@ -189,6 +191,27 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         return newResult
     }
 
+    fun getModeTransport(){
+        _loading.value = true
+        viewModelScope.launch {
+            val result = repository.getModeTransport()
+            compareModeTransport(result)
+        }
+    }
+
+    private fun compareModeTransport(result: Result<List<ModeTransport>>) {
+        if (result is Result.Success) {
+            val modes = result.data
+            modeTransports.clear()
+            modeTransports.addAll(modes)
+            _successFetchModeTransport.value = Event(modes.isNotEmpty())
+        } else {
+            val t = result as Result.Error
+            _error.value = Event(t.exception)
+        }
+        _loading.value = false
+    }
+
     fun checkedInformation(checked: Boolean) {
         isEnabledDetailTransport.set(checked)
     }
@@ -208,7 +231,6 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
 
     fun checkedOverNight(checked: Boolean) {
         submitSettlement.value?.IsStaySpecArea = checked
-        isEnableOverNight.set(checked)
         if (checked) {
             updateRateDay()
         } else {
@@ -252,24 +274,24 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     }
 
     //Todo submit
-    fun submit(path: String) {
+    fun submit(path: String,errorDesc : String) {
         if (getDetailSubmit() == null) {
             return
         }
         _loading.value = true
         viewModelScope.launch {
             val result = repository.submitSettlement(getDetailSubmit()!!, path)
-            compareSubmitResult(result)
+            compareSubmitResult(result,errorDesc)
         }
     }
 
-    private fun compareSubmitResult(result: Result<SubmitResult>) {
+    private fun compareSubmitResult(result: Result<SubmitResult>,errorDesc: String) {
         if (result is Result.Success) {
             val submit = result.data
             _successSubmit.value = Event(submit.isSuccess)
             if (!submit.isSuccess) {
                 val error = submit.errorMessage
-                var strError = ""
+                var strError = errorDesc
                 if (error is String)
                     strError = error
                 if (error is List<*>){
@@ -380,7 +402,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
             data.TotalAmount = it.TotalAmount
             data.TransportationMode = it.TransportationMode
             data.TransportationType = it.TransportationType
-            data.nameTransportationMode = it.nameTransportationMode
+            data.TransportationModeName = it.TransportationModeName
             data.TripType = it.TripType
             detail?.TransportExpenses?.add(data)
         }

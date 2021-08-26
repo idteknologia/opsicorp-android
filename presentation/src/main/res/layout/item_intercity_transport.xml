@@ -127,6 +127,8 @@
                 app:boxStrokeWidth="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:endIconDrawable="@drawable/ic_chevron_down_editext_end"
+                app:endIconTint="#ffb733"
                 app:hintEnabled="false"
                 android:layout_marginStart="5dp"
                 android:contentDescription="@{`etRouteCity`+position}"

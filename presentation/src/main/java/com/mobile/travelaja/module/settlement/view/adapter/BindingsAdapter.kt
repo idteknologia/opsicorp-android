@@ -48,4 +48,10 @@ object BindingsAdapter {
         val iconExpandUp = textView.context.resources.getDrawable(R.drawable.ic_up_expand)
         textView.setCompoundDrawablesWithIntrinsicBounds(if (isExpand)iconExpandDown else iconExpandUp,null,null,null)
     }
+
+    @BindingAdapter("app:textWithHtml")
+    @JvmStatic
+    fun setTextHtml(textView: TextView,text : Int){
+
+    }
 }

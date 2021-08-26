@@ -110,7 +110,7 @@ class TransportExpenses : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.transportationType)
         }
-    var nameTransportationMode: String = ""
+    var TransportationModeName: String = ""
 
     @get:Bindable
     var TransportationMode: Int = 0
@@ -171,7 +171,8 @@ data class ModeTransport(
     var id: Int,
     var Disabled: Boolean,
     val Text: String,
-    val Value: Int
+    val Value: Int,
+    val ValueInt: Int
 ) : Parcelable
 
 @Parcelize
@@ -189,7 +190,9 @@ data class ExpenseType(
 }
 
 data class CalculateTransportResult(
-    var isSuccess: Boolean, var amount: Double, var Currency: String
+    var isSuccess: Boolean, var amount: Double,
+    @SerializedName("currency")
+    var Currency: String
 )
 
 data class SubmitResult(
@@ -198,14 +201,15 @@ data class SubmitResult(
     @SerializedName("isApproverSet")
     var isApproverSet: Boolean,
     @SerializedName("errorMessage")
-    var errorMessage : Any
-    )
+    var errorMessage: Any
+)
 
 
 @Parcelize
 class Ticket : Parcelable, BaseObservable() {
     @SerializedName("PnrCode")
-    var PnrCode:String = ""
+    var PnrCode: String = ""
+
     @SerializedName("TicketNumber")
     @get:Bindable
     var TicketNumber: String = ""
@@ -241,8 +245,8 @@ class Ticket : Parcelable, BaseObservable() {
 data class RouteTransport(
     var Route: String = "",
     var City: String = "",
-    var enabled : Boolean = true
-) : Parcelable, BaseObservable(){
+    var enabled: Boolean = true
+) : Parcelable, BaseObservable() {
 
     override fun toString(): String {
         return City
@@ -275,14 +279,14 @@ data class IntercityTransportResult(@SerializedName("result") var result: Interc
 
 data class Attachment(
     @SerializedName("Id")
-    var Id : String,
+    var Id: String,
     @SerializedName("TripPlanId")
-    var TripPlanId : String,
+    var TripPlanId: String,
     @SerializedName("Description")
-    var Description : String,
+    var Description: String,
     @SerializedName("Url")
-    var Url : String,
+    var Url: String,
     @SerializedName("HasScanned")
     var HasScanned: Boolean,
-    var type : String?
+    var type: String?
 )

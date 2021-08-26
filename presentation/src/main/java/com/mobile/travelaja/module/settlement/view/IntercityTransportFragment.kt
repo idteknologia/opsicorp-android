@@ -37,24 +37,31 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     private var golper = 0
     private var total = 0.0
     private var hasUpdate = false
-    private lateinit var routeAdapter : RouteAdapter
-
+    private lateinit var routeAdapter: RouteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            showingWarning(
-                R.string.alert,
-                R.string.warning_back_settlement_transport_expense,
-                R.string.dont_save,
-                R.string.save,
-                TransportExpenseFragment.WARNING_NAVIGATEUP
-            )
+            actionBack()
         }
         arguments?.let {
             if (args.total.isNotEmpty()) {
                 total = args.total.toDouble()
             }
+        }
+    }
+
+    private fun actionBack() {
+        if (hasUpdate) {
+            showingWarning(
+                R.string.alert,
+                R.string.warning_back_settlement_intercity_transport,
+                R.string.dont_save,
+                R.string.save,
+                TransportExpenseFragment.WARNING_NAVIGATEUP
+            )
+        } else {
+            navigateUp()
         }
     }
 
@@ -71,11 +78,10 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         routeAdapter.clear()
         routeAdapter.addAll(routes.toMutableList())
         routeAdapter.notifyDataSetChanged()
-        adapter = IntercityTransportAdapter(routeAdapter,viewModel, this,golper)
+        adapter = IntercityTransportAdapter(routeAdapter, viewModel, this, golper)
         setUi()
         return adapter
     }
-
 
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
@@ -92,13 +98,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         } else if (v?.id == R.id.buttonBottom) {
             saveItems()
         } else {
-            showingWarning(
-                R.string.alert,
-                R.string.warning_back_settlement_transport_expense,
-                R.string.dont_save,
-                R.string.save,
-                TransportExpenseFragment.WARNING_NAVIGATEUP
-            )
+            actionBack()
         }
         binding.rvBaseList.clearFocus()
     }
@@ -106,6 +106,8 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     override fun onClickItem(view: View, position: Int) {
         when (view.id) {
             R.id.buttonRemove -> {
+                if (viewModel.loading.value == true)
+                    return
                 removeItem(position)
             }
             R.id.switchRoundtrip -> {
@@ -144,12 +146,17 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
                 setEnableButtonBottom(true)
             this.hasUpdate = hasUpdate
         }
-        viewModel.routes.observe(viewLifecycleOwner){
+        viewModel.routes.observe(viewLifecycleOwner) {
             it.forEachIndexed { index, routeTransport ->
-             routeAdapter.getItem(index)?.enabled = routeTransport.enabled
+                routeAdapter.getItem(index)?.enabled = routeTransport.enabled
             }
             routeAdapter.notifyDataSetChanged()
         }
+
+        viewModel.loading.observe(viewLifecycleOwner) { loading ->
+            isLoading.set(loading)
+        }
+
         setFragmentResultListener(TYPE) { _, bundle ->
             val data = bundle.get(DATA)
             val pos = bundle.getInt(POSITION)
@@ -203,7 +210,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
     }
 
     private fun navigateRoute(position: Int) {
-        if (viewModel.loading) {
+        if (viewModel.isLoading) {
             showingWarning(
                 R.string.waiting, R.string.warning_loading, -1, R.string.ok,
                 TransportExpenseFragment.WARNING_ISLOADING
@@ -233,7 +240,7 @@ class IntercityTransportFragment : BaseListFragment<IntercityTransport>(), ItemC
         viewModel.removeItem(pos)
         binding.rvBaseList.removeViewAt(pos)
         adapter.notifyItemRemoved(pos)
-         adapter.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
     }
 
     private fun saveItems() {
