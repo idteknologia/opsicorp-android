@@ -98,6 +98,14 @@ class FlightMultiCityListActivity : BaseActivity(),
         }
 
         adapter.setOnclickListener(this)
+
+        rv_total_price.apply {
+            val lm          = LinearLayoutManager(this@FlightMultiCityListActivity)
+            lm.orientation  = LinearLayoutManager.VERTICAL
+            layoutManager   = lm
+            itemAnimator    = DefaultItemAnimator()
+            adapter    = this@FlightMultiCityListActivity.adapterPrice
+        }
     }
 
     private fun initToolbar() {
@@ -214,6 +222,7 @@ class FlightMultiCityListActivity : BaseActivity(),
     }
 
     private fun saveDataSsr(dataFlight: ResultListFlightModel,dataSsr: SsrModel,ssrNotEmpty:Boolean) {
+        val dataTripPlan = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
 
         val mDataBooker = BookingContactAdapterModel()
         mDataBooker.typeContact = Constants.ADULT
@@ -232,9 +241,20 @@ class FlightMultiCityListActivity : BaseActivity(),
         }
         if (dataOrder.adult > 1){
             for (i in 0 until dataOrder.adult -1) {
-                val mData = BookingContactAdapterModel()
-                mData.typeContact = Constants.ADULT
-                dataFlight.passenger.add(mData)
+                if (dataTripPlan.isTripPartner.equals(true)){
+                    if (i == 0){
+                        val mData = BookingContactAdapterModel()
+                        mData.idcard.fullname = dataTripPlan.tripPartnerName
+                        mData.pasport.fullname = dataTripPlan.tripPartnerName
+                        mData.sim.name = dataTripPlan.tripPartnerName
+                        mData.typeContact = Constants.ADULT
+                        dataFlight.passenger.add(mData)
+                    }
+                } else {
+                    val mData = BookingContactAdapterModel()
+                    mData.typeContact = Constants.ADULT
+                    dataFlight.passenger.add(mData)
+                }
             }
         }
         for (i in 0 until dataOrder.child) {
@@ -464,8 +484,9 @@ class FlightMultiCityListActivity : BaseActivity(),
         dataOrder.routes.forEach {
             totalPrice =  totalPrice+it.flightResult.price
         }
-        tv_price.text = "${getString(R.string.total_price_for_1_pax)} ${dataFLigt.dataFlight.size} pax"
-        tv_price.text = "${Globals.formatAmount(totalPrice)} IDR"
+        val totalPricing = totalPrice * dataOrder.totalPassengerInteger
+        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax"
+        tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
     }
 
     private fun showOrHideDetailPrice() {

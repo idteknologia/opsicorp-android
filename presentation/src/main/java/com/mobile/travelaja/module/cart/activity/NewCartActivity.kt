@@ -589,7 +589,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-            if (Globals.getBaseUrl(applicationContext) == "https://pertamina-dtm3-qa.opsicorp.com/") {
+            if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
                 issuedAll()
             }
             else {

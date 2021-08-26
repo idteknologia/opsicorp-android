@@ -92,20 +92,19 @@
             </RelativeLayout>-->
 
 
-
             <TextView
                 android:id="@+id/tv_status"
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="16dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginStart="10sp"
                 android:layout_marginTop="15dp"
                 android:layout_toEndOf="@+id/tv_jobtitle"
-                android:layout_alignParentEnd="true"
                 android:gravity="right"
                 android:text="Completely Rejected"
                 android:textColor="#eb0011"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
 
             <TextView
@@ -123,15 +122,15 @@
 
             <TextView
                 android:id="@+id/tv_budget_name"
-                android:layout_below="@id/tv_name"
-                android:layout_marginTop="4dp"
-                android:layout_marginLeft="40dp"
+                style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                style="@style/RobotoRegular"
+                android:layout_below="@id/tv_name"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="4dp"
+                android:text="B1000089 - Budget Cabang 4"
                 android:textColor="#91929e"
-                android:text="B1000089 - Budget Cabang 4" />
+                android:textSize="12sp" />
 
 
             <ImageView

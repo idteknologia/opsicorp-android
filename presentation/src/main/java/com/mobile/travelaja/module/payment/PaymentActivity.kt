@@ -2,8 +2,6 @@ package com.mobile.travelaja.module.payment
 
 import android.content.Intent
 import android.graphics.Bitmap
-import android.os.Build
-import android.os.Bundle
 import android.webkit.WebResourceError
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -11,7 +9,6 @@ import android.webkit.WebViewClient
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.home.activity.HomeActivity
-import com.mobile.travelaja.module.item_custom.success_view.SuccessView
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
@@ -23,7 +20,6 @@ import opsigo.com.datalayer.request_model.create_trip_plane.ContactRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.SubmitTripPlant
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsItem
 import opsigo.com.domainlayer.callback.CallbackPayment
-import opsigo.com.domainlayer.callback.CallbackString
 import opsigo.com.domainlayer.callback.CallbackSubmitTripPlant
 import opsigo.com.domainlayer.callback.CallbackSummary
 import opsigo.com.domainlayer.model.PaymentModel
@@ -108,10 +104,11 @@ class PaymentActivity : BaseActivity(),
                 if (tripSummary.paymentStatusView.equals("Paid")){
                     hideDialog()
                     if (tripSummary.type==Constants.PERSONAL_TRIP){
+                        showDialog(getString(R.string.payment_success))
                         paymentSuccess()
                     }else {
                         showDialog(getString(R.string.payment_success))
-                        onBackPressed()
+                        gotoMainMenu()
                     }
                 } else {
                     hideDialog()
@@ -138,11 +135,11 @@ class PaymentActivity : BaseActivity(),
         showLoadingOpsicorp(true)
         GetDataTripPlane(getBaseUrl()).submitTripPlant(getToken(), getDataTripItem(), object : CallbackSubmitTripPlant {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
+                hideDialog()
                 hideLoadingOpsicorp()
-                val bundle = Bundle()
-                bundle.putString(Constants.TRIP_CODE,data.tripCode)
-                bundle.putString(Constants.ID_TRIP_PLANE,data.idTripPlane)
-                gotoActivityWithBundle(SuccessView::class.java,bundle)
+                val intent = Intent(applicationContext,HomeActivity::class.java)
+                intent.putExtra(Constants.FROM_PAYMENT, true)
+                startActivity(intent)
             }
 
             override fun failedLoad(message: String) {
@@ -192,6 +189,7 @@ class PaymentActivity : BaseActivity(),
     }
 
     private fun gotoMainMenu() {
+        hideDialog()
         val intent = Intent(applicationContext,HomeActivity::class.java)
         intent.putExtra(Constants.FROM_PAYMENT, true)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP

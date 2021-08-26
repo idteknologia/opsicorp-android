@@ -16,7 +16,7 @@ import opsigo.com.domainlayer.model.signin.CountryModel
 object Constants {
 
     val URL_REGISTER = "https://travelaja.id/register/basic"
-    val pertaminaUrl = "https://pertamina-dtm3-qa.opsicorp.com/"
+    val pertaminaUrl = "https://dtmqa.opsinfra.net/"
     val KEY_IS_PARTICIPANT  = "isParticipant"
     val KEY_IS_APPROVAL     = "isApproval"
     val codeCompanyTravelAja = "000009"
@@ -158,6 +158,7 @@ object Constants {
     val IMAGE_LOGO_SPLASH        = "cache_image_logo_splash"
     val IMAGE_BACKGROUND_SPLASH  = "cache_image_splash"
     val OPEN_DETAIL_TRIP_PLANE   = 67
+    val OPEN_MY_BOOKING          = 69
     val BASE_URL                 = "BASE_URL"
     var key                      = ""
     var poition: Int             = 0

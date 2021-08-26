@@ -48,7 +48,7 @@
                 android:visibility="visible"
                 android:layout_marginTop="29dp"
                 android:layout_width="match_parent"
-                android:layout_height="230dp">
+                android:layout_height="250dp">
 
                 <com.mobile.travelaja.module.item_custom.ticket_view.TicketViews
                     android:layout_width="match_parent"
@@ -223,13 +223,13 @@
                     <TextView
                         android:id="@+id/tv_purpose"
                         style="@style/RobotoBold"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#009688"
-                        android:gravity="center_horizontal"
                         android:text="IBM Workshop " />
 
                     <LinearLayout
@@ -263,6 +263,7 @@
                     <LinearLayout
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="7dp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
@@ -436,7 +437,6 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:nestedScrollingEnabled="false"
                 android:id="@+id/rv_approval"
-                android:visibility="visible"
                 android:background="#f9f9f9"
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"

@@ -109,10 +109,10 @@ class DetailPassengerActivity : BaseActivity()
 //        val totalPassangerTrain  = dataOrderTrain.totalPassangerInt.split(",")[0].toInt()+dataOrderTrain.totalPassangerInt.split(",")[1].toInt()+dataOrderTrain.totalPassangerInt.split(",")[2].toInt()
 
         if("Flight".equals(type)){
-            return Pair(dataOrderflight.totalPassengerInt,"")
+            return Pair(dataOrderflight.totalPassenger,"")
         }
         else{
-            return Pair("",dataOrderTrain.totalPassengerInt)
+            return Pair("",dataOrderTrain.totalPassenger)
         }
     }
 

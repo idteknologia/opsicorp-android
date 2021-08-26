@@ -201,7 +201,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 mData.time_arrival  = resultListFlightModel.arriveTime
                 mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
 
-                mData.totalPassenger = "Adult x1"
+                mData.totalPassenger = "${dataOrder.totalPassengerInteger} /Pax"
                 mData.totalPassengerInt = (dataOrder.adult + dataOrder.child + dataOrder.infant)
                 mData.totalPrice    = StringUtils().setCurrency("IDR",  resultListFlightModel.price * mData.totalPassengerInt , false)
 
@@ -247,7 +247,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 mData.time_arrival  = resultListFlightModel.arriveTime
                 mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
 
-                mData.totalPassenger = "${dataOrder.totalPassengerString} /Pax"
+                mData.totalPassenger = "${dataOrder.totalPassengerInteger} /Pax"
                 mData.totalPassengerInt = (dataOrder.adult + dataOrder.child + dataOrder.infant)
                 mData.totalPrice    = StringUtils().setCurrency("IDR",  resultListFlightModel.price * mData.totalPassengerInt , false)
 
@@ -316,9 +316,10 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             dataOrder.routes.forEach {
                 totalPrice =  totalPrice+it.flightResult.price
             }
+            var totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataOrder.routes.size} pax"
-            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
-            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price.text               = "${Globals.formatAmount(totalPricing)} IDR"
+            tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
 
         }else {
             val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
@@ -333,9 +334,10 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             dataListFlight.dataFlight.forEach {
                 totalPrice =  totalPrice+it.price
             }
+            var totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataFligt.size} pax"
-            tv_price.text               = "${Globals.formatAmount(totalPrice)} IDR"
-            tv_price_total.text         = "${Globals.formatAmount(totalPrice)} IDR"
+            tv_price.text               = "${Globals.formatAmount(totalPricing)} IDR"
+            tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
             /*tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
             tvPassengerTotal1.text    = "${dataOrder.totalPassengerString} /Pax"
             tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"

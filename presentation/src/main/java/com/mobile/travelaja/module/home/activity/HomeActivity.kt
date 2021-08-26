@@ -61,6 +61,10 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             getDataCountryHotel()
         }
 
+        if (intent.getBooleanExtra(Constants.FROM_PAYMENT,false)){
+            four()
+        }
+
         Log.e(" TAG log ",Globals.getProfile(this).companyCode)
     }
 
