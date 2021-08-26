@@ -128,6 +128,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         if (intent.extras != null && intent.extras!!.containsKey(Constants.KEY_INTENT_TRIP_CODE)) {
             getSummary()
         }
+
     }
 
     private fun copyToClip() {
@@ -150,6 +151,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 /*postEstimateCost()*/
                 hideLoadingOpsicorp()
                 initRecyclerViewApproval()
+
             }
 
             override fun failedLoad(message: String) {
@@ -525,15 +527,17 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
+        tv_notes.text = tripSummary.remark
+
+        val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
+
         if (tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Completely Rejected") {
             line_add_trip_item.gone()
-        } else if (tripSummary.isApproval.equals(true)) {
+        } else if (!debug) {
             line_add_trip_item.gone()
         } else {
             line_add_trip_item.visible()
         }
-
-        tv_notes.text = tripSummary.remark
 
         try {
             if (tripSummary.remark?.isEmpty()!!) {
