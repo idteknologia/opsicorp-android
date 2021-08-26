@@ -1,32 +1,36 @@
-//package com.opssigo.opsicorp.module.item_custom.ticket_view.ticket_view;
 package com.mobile.travelaja.module.item_custom.ticket_view;
-
-//package com.opssigo.opsicorp.module.item_custom.ticket_view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
-import androidx.annotation.IntDef;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.FrameLayout;
 
+import androidx.annotation.IntDef;
 
 import com.mobile.travelaja.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import opsigo.com.domainlayer.BuildConfig;
 
 import static android.graphics.Bitmap.Config.ALPHA_8;
 import static android.graphics.Color.BLACK;
@@ -34,60 +38,94 @@ import static android.graphics.Color.TRANSPARENT;
 import static android.graphics.Paint.ANTI_ALIAS_FLAG;
 import static android.graphics.PorterDuff.Mode.SRC_IN;
 
-//import com.opssigo.opsicorp.module.item_custom.ticket_view.Utils;
-
 /**
  * Created by Vipul Asri on 31/10/17.
  */
 
-public class TicketView extends View {
+public class TicketCustomView extends FrameLayout {
 
-    public static final String TAG = com.mobile.travelaja.module.item_custom.ticket_view.TicketView.class.getSimpleName();
+    public static final String TAG = TicketCustomView.class.getSimpleName();
+    private int mViewID;
+    private View mView;
+    private @DividerLocation
+    int mDividerLocation;
+
+    private @PunchLocation
+    int mPunchLocation;
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({com.mobile.travelaja.module.item_custom.ticket_view.TicketView.Orientation.HORIZONTAL, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.Orientation.VERTICAL})
+    @IntDef({Orientation.HORIZONTAL, Orientation.VERTICAL})
     public @interface Orientation {
         int HORIZONTAL = 0;
         int VERTICAL = 1;
     }
 
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({com.mobile.travelaja.module.item_custom.ticket_view.TicketView.DividerType.NORMAL, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.DividerType.DASH})
+    @IntDef({DividerType.NORMAL, DividerType.DASH})
     public @interface DividerType {
         int NORMAL = 0;
         int DASH = 1;
     }
 
+
     @Retention(RetentionPolicy.SOURCE)
-    @IntDef({com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.NORMAL, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED})
+    @IntDef({DividerDesign.COLOR, DividerDesign.PUNCH})
+    public @interface DividerDesign {
+        int COLOR = 0;
+        int PUNCH = 1;
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({CornerType.NORMAL, CornerType.ROUNDED})
     public @interface CornerType {
         int NORMAL = 0;
         int ROUNDED = 1;
         int SCALLOP = 2;
     }
 
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({DividerLocation.NONE, DividerLocation.TOP, DividerLocation.BOTTOM, DividerLocation.LEFT, DividerLocation.RIGHT})
+    public @interface DividerLocation {
+        int NONE = 0;
+        int TOP = 1;
+        int BOTTOM = 2;
+        int LEFT = 4;
+        int RIGHT = 8;
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({PunchLocation.NONE, PunchLocation.TOP, PunchLocation.BOTTOM, PunchLocation.LEFT, PunchLocation.RIGHT})
+    public @interface PunchLocation {
+        int NONE = 0;
+        int TOP = 1;
+        int BOTTOM = 2;
+        int LEFT = 4;
+        int RIGHT = 8;
+    }
+
     private Paint mBackgroundPaint = new Paint();
     private Paint mBorderPaint = new Paint();
     private Paint mDividerPaint = new Paint();
-    private int mOrientation;
+    private int mOrientation = Orientation.HORIZONTAL;
     private Path mPath = new Path();
     private boolean mDirty = true;
-    private float mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY;
-    private RectF mRect = new RectF();
+    private float mTopDividerStartX, mTopDividerStartY, mTopDividerStopX, mTopDividerStopY;
+    private float mBottomDividerStartX, mBottomDividerStartY, mBottomDividerStopX, mBottomDividerStopY;
+    private float mLeftDividerStartX, mLeftDividerStartY, mLeftDividerStopX, mLeftDividerStopY;
+    private float mRightDividerStartX, mRightDividerStartY, mRightDividerStopX, mRightDividerStopY;
     private RectF mRoundedCornerArc = new RectF();
     private RectF mScallopCornerArc = new RectF();
-    private int mScallopHeight;
-    private float mScallopPosition;
-    private float mScallopPositionPercent;
     private int mBackgroundColor;
     private boolean mShowBorder;
     private int mBorderWidth;
     private int mBorderColor;
     private boolean mShowDivider;
     private int mScallopRadius;
+    private int mPunchRadius;
     private int mDividerDashLength;
     private int mDividerDashGap;
     private int mDividerType;
+    private int mDividerDesign;
     private int mDividerWidth;
     private int mDividerColor;
     private int mCornerType;
@@ -97,24 +135,44 @@ public class TicketView extends View {
     private final Paint mShadowPaint = new Paint(ANTI_ALIAS_FLAG);
     private float mShadowBlurRadius = 0f;
 
-    public TicketView(Context context) {
+    public TicketCustomView(Context context) {
         super(context);
         init(null);
     }
 
-    public TicketView(Context context, AttributeSet attrs) {
+    public TicketCustomView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public TicketView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TicketCustomView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
     @Override
+    protected void dispatchDraw(Canvas canvas) {
+        // call block() here if you want to draw behind children
+        super.dispatchDraw(canvas);
+        // call block() here if you want to draw over children
+
+        if (mShowDivider) {
+
+            if (mDividerLocation == (mDividerLocation | DividerLocation.TOP))
+                canvas.drawLine(mTopDividerStartX, mTopDividerStartY, mTopDividerStopX, mTopDividerStopY, mDividerPaint);
+            if (mDividerLocation == (mDividerLocation | DividerLocation.BOTTOM))
+                canvas.drawLine(mBottomDividerStartX, mBottomDividerStartY, mBottomDividerStopX, mBottomDividerStopY, mDividerPaint);
+            if (mDividerLocation == (mDividerLocation | DividerLocation.LEFT))
+                canvas.drawLine(mLeftDividerStartX, mLeftDividerStartY, mLeftDividerStopX, mLeftDividerStopY, mDividerPaint);
+            if (mDividerLocation == (mDividerLocation | DividerLocation.RIGHT))
+                canvas.drawLine(mRightDividerStartX, mRightDividerStartY, mRightDividerStopX, mRightDividerStopY, mDividerPaint);
+
+        }
+
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
         if (mDirty) {
             doLayout();
         }
@@ -122,48 +180,31 @@ public class TicketView extends View {
             canvas.drawBitmap(mShadow, 0f, mShadowBlurRadius / 2f, null);
         }
         canvas.drawPath(mPath, mBackgroundPaint);
+        canvas.clipPath(mPath);
+
         if (mShowBorder) {
             canvas.drawPath(mPath, mBorderPaint);
         }
-        if (mShowDivider) {
-            canvas.drawLine(mDividerStartX, mDividerStartY, mDividerStopX, mDividerStopY, mDividerPaint);
-        }
+
+        super.onDraw(canvas);
     }
 
     private void doLayout() {
-        float offset;
+        RectF mRect = new RectF();
         float left = getPaddingLeft() + mShadowBlurRadius;
         float right = getWidth() - getPaddingRight() - mShadowBlurRadius;
-        float top = getPaddingTop() + (mShadowBlurRadius / 2);
+        float top = getPaddingTop() + mShadowBlurRadius + (mShadowBlurRadius / 2);
         float bottom = getHeight() - getPaddingBottom() - mShadowBlurRadius - (mShadowBlurRadius / 2);
         mPath.reset();
 
-        if (mOrientation == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.Orientation.HORIZONTAL) {
-            offset = ((top + bottom) / mScallopPosition) - mScallopRadius;
+        if (mOrientation == Orientation.VERTICAL) {
 
-            if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED) {
+            if (mCornerType == CornerType.ROUNDED) {
                 mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
                 mPath.lineTo(left + mCornerRadius, top);
 
                 mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
-
-            } else if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.SCALLOP) {
-                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
-
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
-
-            } else {
-                mPath.moveTo(left, top);
-                mPath.lineTo(right, top);
-            }
-
-            mRect.set(right - mScallopRadius, top + offset, right + mScallopRadius, mScallopHeight + offset + top);
-            mPath.arcTo(mRect, 270, -180.0f, false);
-
-            if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED) {
 
                 mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
                 mPath.lineTo(right - mCornerRadius, bottom);
@@ -171,51 +212,9 @@ public class TicketView extends View {
                 mPath.lineTo(left + mCornerRadius, bottom);
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
 
-            } else if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.SCALLOP) {
-
-                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
-
-                mPath.lineTo(left + mCornerRadius, bottom);
-                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
-
-            } else {
-                mPath.lineTo(right, bottom);
-                mPath.lineTo(left, bottom);
-            }
-
-            mRect.set(left - mScallopRadius, top + offset, left + mScallopRadius, mScallopHeight + offset + top);
-            mPath.arcTo(mRect, 90.0f, -180.0f, false);
-            mPath.close();
-
-        } else {
-            offset = (((right + left) / mScallopPosition) - mScallopRadius);
-
-            if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED) {
-                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
-                mPath.lineTo(left + mCornerRadius, top);
-
-            } else if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.SCALLOP) {
-
+            } else if (mCornerType == CornerType.SCALLOP) {
                 mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
                 mPath.lineTo(left + mCornerRadius, top);
-
-            } else {
-                mPath.moveTo(left, top);
-            }
-
-            mRect.set(left + offset, top - mScallopRadius, mScallopHeight + offset + left, top + mScallopRadius);
-            mPath.arcTo(mRect, 180.0f, -180.0f, false);
-
-            if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED) {
-
-                mPath.lineTo(right - mCornerRadius, top);
-                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
-
-                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
-                mPath.lineTo(right - mCornerRadius, bottom);
-
-            } else if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.SCALLOP) {
 
                 mPath.lineTo(right - mCornerRadius, top);
                 mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
@@ -223,41 +222,159 @@ public class TicketView extends View {
                 mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
                 mPath.lineTo(right - mCornerRadius, bottom);
 
+                mPath.lineTo(left + mCornerRadius, bottom);
+                mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
             } else {
+                mPath.moveTo(left, top);
                 mPath.lineTo(right, top);
                 mPath.lineTo(right, bottom);
+                mPath.lineTo(left, bottom);
             }
 
-            mRect.set(left + offset, bottom - mScallopRadius, mScallopHeight + offset + left, bottom + mScallopRadius);
-            mPath.arcTo(mRect, 0.0f, -180.0f, false);
 
-            if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.ROUNDED) {
+            if (mView != null) {
+                if (mDividerLocation == (mDividerLocation | DividerLocation.TOP)) {
+                    Path topP = new Path();
+                    mRect.set(left - mScallopRadius, mView.getTop() - mScallopRadius, left + mScallopRadius, mScallopRadius + mView.getTop());
+                    topP.addArc(mRect, 90.0f, -180.0f);
+                    mRect.set(right - mScallopRadius, mView.getTop() - mScallopRadius, right + mScallopRadius, mScallopRadius + mView.getTop());
+                    topP.addArc(mRect, 270, -180.0f);
+
+                    mPath.op(topP, Path.Op.DIFFERENCE);
+
+
+                    mTopDividerStartX = left + mScallopRadius + mDividerPadding;
+                    mTopDividerStartY = mView.getTop();
+                    mTopDividerStopX = right - mScallopRadius - mDividerPadding;
+                    mTopDividerStopY = mView.getTop();
+                }
+
+                if (mDividerLocation == (mDividerLocation | DividerLocation.BOTTOM)) {
+                    Path bottomP = new Path();
+                    mRect.set(left - mScallopRadius, mView.getBottom() - mScallopRadius, left + mScallopRadius, mScallopRadius + mView.getBottom());
+                    bottomP.addArc(mRect, 90.0f, -180.0f);
+                    mRect.set(right - mScallopRadius, mView.getBottom() - mScallopRadius, right + mScallopRadius, mScallopRadius + mView.getBottom());
+                    bottomP.addArc(mRect, 270, -180.0f);
+
+                    mPath.op(bottomP, Path.Op.DIFFERENCE);
+
+                    mBottomDividerStartX = left + mScallopRadius + mDividerPadding;
+                    mBottomDividerStartY = mView.getBottom();
+                    mBottomDividerStopX = right - mScallopRadius - mDividerPadding;
+                    mBottomDividerStopY = mView.getBottom();
+                }
+            }
+
+            if (mPunchLocation == (mPunchLocation | PunchLocation.TOP)) {
+                Path topC = new Path();
+
+                mRect.set(((getRight() - getLeft()) / 2f) - mPunchRadius, top - (mPunchRadius * 1.5f), ((getRight() - getLeft()) / 2f) + mPunchRadius, top + (mPunchRadius  / 1.5f));
+                topC.addArc(mRect, 0f, 360f);
+
+                mPath.op(topC, Path.Op.DIFFERENCE);
+            }
+
+            if (mPunchLocation == (mPunchLocation | PunchLocation.BOTTOM)) {
+                Path bottomC = new Path();
+
+                mRect.set(((getRight() - getLeft()) / 2f) - mPunchRadius, bottom - (mPunchRadius / 1.5f), ((getRight() - getLeft()) / 2f) + mPunchRadius, bottom + (mPunchRadius * 1.5f));
+                bottomC.addArc(mRect, 0f, 360f);
+
+                mPath.op(bottomC, Path.Op.DIFFERENCE);
+            }
+
+        } else {
+
+            if (mCornerType == CornerType.ROUNDED) {
+                mPath.arcTo(getTopLeftCornerRoundedArc(top, left), 180.0f, 90.0f, false);
+                mPath.lineTo(left + mCornerRadius, top);
+
+                mPath.lineTo(right - mCornerRadius, top);
+                mPath.arcTo(getTopRightCornerRoundedArc(top, right), -90.0f, 90.0f, false);
+
+                mPath.arcTo(getBottomRightCornerRoundedArc(bottom, right), 0.0f, 90.0f, false);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
                 mPath.arcTo(getBottomLeftCornerRoundedArc(left, bottom), 90.0f, 90.0f, false);
                 mPath.lineTo(left, bottom - mCornerRadius);
 
-            } else if (mCornerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.SCALLOP) {
+            } else if (mCornerType == CornerType.SCALLOP) {
+
+                mPath.arcTo(getTopLeftCornerScallopArc(top, left), 90.0f, -90.0f, false);
+                mPath.lineTo(left + mCornerRadius, top);
+
+                mPath.lineTo(right - mCornerRadius, top);
+                mPath.arcTo(getTopRightCornerScallopArc(top, right), 180.0f, -90.0f, false);
+
+                mPath.arcTo(getBottomRightCornerScallopArc(bottom, right), 270.0f, -90.0f, false);
+                mPath.lineTo(right - mCornerRadius, bottom);
 
                 mPath.arcTo(getBottomLeftCornerScallopArc(left, bottom), 0.0f, -90.0f, false);
                 mPath.lineTo(left, bottom - mCornerRadius);
 
             } else {
+                mPath.moveTo(left, top);
+                mPath.lineTo(right, top);
+                mPath.lineTo(right, bottom);
                 mPath.lineTo(left, bottom);
             }
-            mPath.close();
-        }
 
-        // divider
-        if (mOrientation == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.Orientation.HORIZONTAL) {
-            mDividerStartX = left + mScallopRadius + mDividerPadding;
-            mDividerStartY = mScallopRadius + top + offset;
-            mDividerStopX = right - mScallopRadius - mDividerPadding;
-            mDividerStopY = mScallopRadius + top + offset;
-        } else {
-            mDividerStartX = mScallopRadius + left + offset;
-            mDividerStartY = top + mScallopRadius + mDividerPadding;
-            mDividerStopX = mScallopRadius + left + offset;
-            mDividerStopY = bottom - mScallopRadius - mDividerPadding;
+
+            if (mView != null) {
+                if (mDividerLocation == (mDividerLocation | DividerLocation.LEFT)) {
+
+                    Path leftP = new Path();
+
+                    mRect.set(mView.getLeft() - mScallopRadius, bottom - mScallopRadius, mScallopRadius + mView.getLeft(), bottom + mScallopRadius);
+                    leftP.addArc(mRect, 0f, 360f);
+                    mRect.set(mView.getLeft() - mScallopRadius, top - mScallopRadius, mScallopRadius + mView.getLeft(), top + mScallopRadius);
+                    leftP.addArc(mRect, 0f, 360f);
+
+                    mPath.op(leftP, Path.Op.DIFFERENCE);
+
+
+                    mLeftDividerStartX = mView.getLeft();
+                    mLeftDividerStartY = top + mScallopRadius + mDividerPadding;
+                    mLeftDividerStopX = mView.getLeft();
+                    mLeftDividerStopY = bottom - mScallopRadius - mDividerPadding;
+                }
+
+                if (mDividerLocation == (mDividerLocation | DividerLocation.RIGHT)) {
+
+                    Path rightP = new Path();
+
+                    mRect.set(mView.getRight() - mScallopRadius, bottom - mScallopRadius, mScallopRadius + mView.getRight(), bottom + mScallopRadius);
+                    rightP.addArc(mRect, 0f, 360f);
+                    mRect.set(mView.getRight() - mScallopRadius, top - mScallopRadius, mScallopRadius + mView.getRight(), top + mScallopRadius);
+                    rightP.addArc(mRect, 0f, 360f);
+
+                    mPath.op(rightP, Path.Op.DIFFERENCE);
+
+                    mRightDividerStartX = mView.getRight();
+                    mRightDividerStartY = top + mScallopRadius + mDividerPadding;
+                    mRightDividerStopX = mView.getRight();
+                    mRightDividerStopY = bottom - mScallopRadius - mDividerPadding;
+                }
+            }
+
+            if (mPunchLocation == (mPunchLocation | PunchLocation.LEFT)) {
+                Path leftC = new Path();
+
+                mRect.set(left - (mPunchRadius * 1.5f), ((getBottom() - getTop()) / 2f) - mPunchRadius, (mPunchRadius / 1.5f) + left, ((getBottom() - getTop()) / 2f) + mPunchRadius);
+                leftC.addArc(mRect, 0f, 360f);
+
+                mPath.op(leftC, Path.Op.DIFFERENCE);
+            }
+
+            if (mPunchLocation == (mPunchLocation | PunchLocation.RIGHT)) {
+                Path rightC = new Path();
+
+                mRect.set(right - (mPunchRadius / 1.5f), ((getBottom() - getTop()) / 2f) - mPunchRadius, (mPunchRadius * 1.5f) + right, ((getBottom() - getTop()) / 2f) + mPunchRadius);
+                rightC.addArc(mRect, 0f, 360f);
+
+                mPath.op(rightC, Path.Op.DIFFERENCE);
+            }
+
         }
 
         generateShadow();
@@ -294,23 +411,30 @@ public class TicketView extends View {
 
     private void init(AttributeSet attrs) {
         if (attrs != null) {
+            TypedValue a = new TypedValue();
+            getContext().getTheme().resolveAttribute(android.R.attr.windowBackground, a, true);
+
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TicketView);
-            mOrientation = typedArray.getInt(R.styleable.TicketView_ticketOrientation, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.Orientation.HORIZONTAL);
+            mOrientation = typedArray.getInt(R.styleable.TicketView_ticketOrientation, Orientation.HORIZONTAL);
             mBackgroundColor = typedArray.getColor(R.styleable.TicketView_ticketBackgroundColor, getResources().getColor(android.R.color.white));
             mScallopRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketScallopRadius, Utils.dpToPx(20f, getContext()));
-            mScallopPositionPercent = typedArray.getFloat(R.styleable.TicketView_ticketScallopPositionPercent, 50);
             mShowBorder = typedArray.getBoolean(R.styleable.TicketView_ticketShowBorder, false);
             mBorderWidth = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketBorderWidth, Utils.dpToPx(2f, getContext()));
             mBorderColor = typedArray.getColor(R.styleable.TicketView_ticketBorderColor, getResources().getColor(android.R.color.black));
             mShowDivider = typedArray.getBoolean(R.styleable.TicketView_ticketShowDivider, false);
-            mDividerType = typedArray.getInt(R.styleable.TicketView_ticketDividerType, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.DividerType.NORMAL);
+            mDividerType = typedArray.getInt(R.styleable.TicketView_ticketDividerType, DividerType.NORMAL);
+            mDividerDesign = typedArray.getInt(R.styleable.TicketView_ticketDividerDesign, DividerDesign.COLOR);
             mDividerWidth = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketDividerWidth, Utils.dpToPx(2f, getContext()));
             mDividerColor = typedArray.getColor(R.styleable.TicketView_ticketDividerColor, getResources().getColor(android.R.color.darker_gray));
             mDividerDashLength = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketDividerDashLength, Utils.dpToPx(8f, getContext()));
             mDividerDashGap = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketDividerDashGap, Utils.dpToPx(4f, getContext()));
-            mCornerType = typedArray.getInt(R.styleable.TicketView_ticketCornerType, com.mobile.travelaja.module.item_custom.ticket_view.TicketView.CornerType.NORMAL);
+            mCornerType = typedArray.getInt(R.styleable.TicketView_ticketCornerType, CornerType.NORMAL);
             mCornerRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketCornerRadius, Utils.dpToPx(4f, getContext()));
             mDividerPadding = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketDividerPadding, Utils.dpToPx(10f, getContext()));
+            mViewID = typedArray.getResourceId(R.styleable.TicketView_view, -1);
+            mDividerLocation = typedArray.getInt(R.styleable.TicketView_ticketDividerLocation, DividerLocation.NONE);
+            mPunchLocation = typedArray.getInt(R.styleable.TicketView_ticketPunchLocation, PunchLocation.NONE);
+            mPunchRadius = typedArray.getDimensionPixelSize(R.styleable.TicketView_ticketPunchRadius, Utils.dpToPx(20f, getContext()));
             float elevation = 0f;
             if (typedArray.hasValue(R.styleable.TicketView_ticketElevation)) {
                 elevation = typedArray.getDimension(R.styleable.TicketView_ticketElevation, elevation);
@@ -329,25 +453,34 @@ public class TicketView extends View {
 
         initElements();
 
+        setWillNotDraw(false);
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     private void initElements() {
 
         if (mDividerWidth > mScallopRadius) {
-            mDividerWidth = mScallopRadius;
-            Log.w(TAG, "You cannot apply divider width greater than scallop radius. Applying divider width to scallop radius.");
+//            mDividerWidth = mScallopRadius;
+            if (BuildConfig.DEBUG)
+                Log.w(TAG, "You cannot apply divider width greater than scallop radius. Applying divider width to scallop radius.");
         }
-
-        mScallopPosition = 100 / mScallopPositionPercent;
-        mScallopHeight = mScallopRadius * 2;
 
         setBackgroundPaint();
         setBorderPaint();
-        setDividerPaint();
+
+        if (mDividerDesign == DividerDesign.COLOR)
+            setDividerPaintAsColor();
+        else
+            setDividerPaintAsPunchThrough();
 
         mDirty = true;
         invalidate();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mView = findViewById(mViewID);
     }
 
     private void setBackgroundPaint() {
@@ -355,6 +488,9 @@ public class TicketView extends View {
         mBackgroundPaint.setAntiAlias(true);
         mBackgroundPaint.setColor(mBackgroundColor);
         mBackgroundPaint.setStyle(Paint.Style.FILL);
+
+        if (mShadowBlurRadius > 0f)
+            mBackgroundPaint.setShadowLayer(mShadowBlurRadius, 0, 0, Color.parseColor("#D3000000"));
     }
 
     private void setBorderPaint() {
@@ -365,13 +501,26 @@ public class TicketView extends View {
         mBorderPaint.setStyle(Paint.Style.STROKE);
     }
 
-    private void setDividerPaint() {
-        mDividerPaint.setAlpha(0);
+    private void setDividerPaintAsPunchThrough() {
+        mDividerPaint = new Paint();
+        mDividerPaint.setAntiAlias(true);
+        mDividerPaint.setStrokeWidth(mDividerWidth);
+
+        if (mDividerType == DividerType.DASH)
+            mDividerPaint.setPathEffect(new DashPathEffect(new float[]{(float) mDividerDashLength, (float) mDividerDashGap}, 0.0f));
+        else
+            mDividerPaint.setPathEffect(new PathEffect());
+        mDividerPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    private void setDividerPaintAsColor() {
+        mDividerPaint = new Paint();
+        mDividerPaint.setAlpha(1);
         mDividerPaint.setAntiAlias(true);
         mDividerPaint.setColor(mDividerColor);
         mDividerPaint.setStrokeWidth(mDividerWidth);
 
-        if (mDividerType == com.mobile.travelaja.module.item_custom.ticket_view.TicketView.DividerType.DASH)
+        if (mDividerType == DividerType.DASH)
             mDividerPaint.setPathEffect(new DashPathEffect(new float[]{(float) mDividerDashLength, (float) mDividerDashGap}, 0.0f));
         else
             mDividerPaint.setPathEffect(new PathEffect());
@@ -423,15 +572,6 @@ public class TicketView extends View {
 
     public void setOrientation(int orientation) {
         this.mOrientation = orientation;
-        initElements();
-    }
-
-    public float getScallopPositionPercent() {
-        return mScallopPositionPercent;
-    }
-
-    public void setScallopPositionPercent(float scallopPositionPercent) {
-        this.mScallopPositionPercent = scallopPositionPercent;
         initElements();
     }
 
@@ -563,7 +703,8 @@ public class TicketView extends View {
 
     public void setTicketElevation(float elevation) {
         if (!isJellyBeanAndAbove()) {
-            Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
+            if (BuildConfig.DEBUG)
+                Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
             return;
         }
         setShadowBlurRadius(elevation);
@@ -572,11 +713,13 @@ public class TicketView extends View {
 
     private void setShadowBlurRadius(float elevation) {
         if (!isJellyBeanAndAbove()) {
-            Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
+            if (BuildConfig.DEBUG)
+                Log.w(TAG, "Ticket elevation only works with Android Jelly Bean and above");
             return;
         }
         float maxElevation = Utils.dpToPx(24f, getContext());
         mShadowBlurRadius = Math.min(25f * (elevation / maxElevation), 25f);
+//        mShadowBlurRadius = Utils.dpToPx(50f, getContext());
     }
 
     private boolean isJellyBeanAndAbove() {

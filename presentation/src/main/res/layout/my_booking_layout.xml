@@ -45,6 +45,7 @@
         </include>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="#f6f8f8"
             android:id="@+id/rv_my_booking"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

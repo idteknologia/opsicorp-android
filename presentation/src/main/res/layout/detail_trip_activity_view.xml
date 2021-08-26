@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
 
-                <com.mobile.travelaja.module.item_custom.ticket_view.TicketView
+                <com.mobile.travelaja.module.item_custom.ticket_view.TicketViews
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_default"

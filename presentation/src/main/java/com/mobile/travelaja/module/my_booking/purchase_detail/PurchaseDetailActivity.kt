@@ -1,101 +1,143 @@
 package com.mobile.travelaja.module.my_booking.purchase_detail
 
 import android.os.Build
+import android.text.Html
 import android.view.View
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
-import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
 import com.mobile.travelaja.utility.Globals
+import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivityBinding
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import opsigo.com.datalayer.datanetwork.GetDataMyBooking
+import opsigo.com.domainlayer.model.summary.ItemTrainModel
+import opsigo.com.domainlayer.model.my_booking.ItemFlightModel
+import opsigo.com.domainlayer.callback.CallbackDetailMyBooking
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.purchase_activity.*
+import com.mobile.travelaja.databinding.PurchaseActivityBinding
+import opsigo.com.domainlayer.model.my_booking.ItemHotelPurchase
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.my_booking.adapter.PriceDetailMyBookingAdapter
+import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
 
-
-
-class PurchaseDetailActivity : BaseActivity(),
+class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         OnclickListenerRecyclerView,
         ToolbarOpsicorp.OnclickButtonListener{
 
-    override fun getLayout(): Int { return R.layout.purchase_activity }
-
-    val data by lazy { ArrayList<PurchaseDetailProductModel>() }
-    val adapter by lazy { PurchaseDetailProductAdapter(this,data) }
-
-    override fun OnMain() {
-        initToolbar()
-        initRecyclerView()
-        Globals.scrollToUp(nested_view)
+    override fun bindLayout(): PurchaseActivityBinding {
+        return PurchaseActivityBinding.inflate(layoutInflater)
     }
 
+    override fun onMain() {
+        initToolbar()
+        initRecyclerView()
+        setInformationTravel()
+        Globals.scrollToUp(viewBinding.nestedView)
+    }
+
+    private fun setInformationTravel() {
+        viewBinding.btnContactUs.setOnClickListener {
+
+        }
+        viewBinding.btnSendMessage.setOnClickListener {
+
+        }
+        val first = "To better assist you, please give your  "
+        val next  = "<font color='#009688'>booking ID</font>"
+        val last  = "when you contact to our Customer service, Thank you. "
+        viewBinding.tvInfoTravel.text = Html.fromHtml(first + next+last)
+    }
+
+
+    val data by lazy { ArrayList<Any>() }
+    val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
+    val priceAdapter = PriceDetailMyBookingAdapter(this)
+
+
     private fun initToolbar() {
-        toolbar.hidenBtnCart()
+        viewBinding.toolbar.hidenBtnCart()
 
         if (Globals.typeAccomodation=="Flight"||Globals.typeAccomodation=="Train"){
-            toolbar.showTitleRoundtripLeft("Surabaya","Jakarta")
+            viewBinding.toolbar.showTitleRoundtripLeft("Surabaya","Jakarta")
         }
         else{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                toolbar.doubleTitleGravity(toolbar.START)
-                toolbar.setDoubleTitle("Trans Luxury Bandung","Arjuna, Bandung")
+                viewBinding.toolbar.doubleTitleGravity(viewBinding.toolbar.START)
+                viewBinding.toolbar.setDoubleTitle("Trans Luxury Bandung","Arjuna, Bandung")
             }
         }
-        toolbar.callbackOnclickToolbar(this)
+        viewBinding.toolbar.callbackOnclickToolbar(this)
     }
 
     fun showDetailData(views: View){
-        if (btn_drop_down.drawable.constantState!!.equals(resources.getDrawable(R.drawable.ic_chevron_up_green).constantState)){
-            btn_drop_down.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down_green))
-            lay_detail.collapse()
+        if (viewBinding.btnDropDown.drawable.constantState!!.equals(resources.getDrawable(R.drawable.ic_chevron_up_green).constantState)){
+            viewBinding.btnDropDown.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down_green))
+            viewBinding.layDetail.collapse()
         }
         else{
-            btn_drop_down.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_green))
-            lay_detail.expand()
+            viewBinding.btnDropDown.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_green))
+            viewBinding.layDetail.expand()
         }
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        rv_product_detail.layoutManager = layoutManager
-        rv_product_detail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_product_detail.adapter = adapter
+        viewBinding.rvProductDetail.apply {
+            val lm = LinearLayoutManager(this@PurchaseDetailActivity)
+            layoutManager = lm
+            itemAnimator = DefaultItemAnimator()
+            adapter = adapterItem
+        }
 
-        adapter.setOnclickListener(this)
+        viewBinding.rvPrice.apply {
+            val lm = LinearLayoutManager(this@PurchaseDetailActivity)
+            lm.orientation = LinearLayoutManager.VERTICAL
+            layoutManager = lm
+            itemAnimator  = DefaultItemAnimator()
+            adapter       = priceAdapter
+        }
+        adapterItem.setOnclickListener(this)
 
-        addDataDummy()
+        getData()
     }
 
-    private fun addDataDummy() {
+    private fun getData() {
+        data.clear()
+        showLoadingOpsicorp(false)
+        GetDataMyBooking(getBaseUrl()).getDetailMyBooking(getToken(),intent?.getStringExtra(Constants.DATA_SELECT_PURCHASE).toString(),object : CallbackDetailMyBooking{
+            override fun success(data: DetailMyBookingModel) {
+                hideLoadingOpsicorp()
+                when(data.itemType){
+                    Constants.TripType.Airline -> {
+                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemFlightModel>)
+                    }
+                    Constants.TripType.KAI -> {
+                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemTrainModel>)
+                    }
+                    Constants.TripType.Hotel -> {
+                        this@PurchaseDetailActivity.data.add(data.dataItem as ItemHotelPurchase)
+                    }
+                }
+                adapterItem.setData(this@PurchaseDetailActivity.data)
+                setDataView(data)
+            }
 
-        if (Globals.typeAccomodation=="Flight"){
-            for (i in 0..1){
-                val mData = PurchaseDetailProductModel()
-                mData.typeAccomodation = "Flight"
-                mData.type             = "E-ticket Issued"
-                mData.arrival          = "Surabaya"
-                mData.departure        = "Jakarta"
-                data.add(mData)
+            override fun failed(message: String) {
+                hideLoadingOpsicorp()
+                showAllert(getString(R.string.sorry),message)
             }
-        }
-        else if (Globals.typeAccomodation=="Train"){
-            for (i in 0..1){
-                val mData = PurchaseDetailProductModel()
-                mData.typeAccomodation = "Train"
-                mData.type             = "E-ticket Issued"
-                mData.arrival          = "Surabaya"
-                mData.departure        = "Jakarta"
-                data.add(mData)
-            }
-        }
-        else {
-            for (i in 0..1){
-                val mData = PurchaseDetailProductModel()
-                mData.typeAccomodation = "Hotel"
-                mData.type             = "Voucher Issued"
-                mData.departure        = "Trans Luxury Bandung"
-                mData.arrival          = ""
-                data.add(mData)
-            }
-        }
+        })
+    }
+
+    private fun setDataView(data: DetailMyBookingModel) {
+        setLog("---------->")
+        setLog(Serializer.serialize(data))
+        viewBinding.tvPurchaseDate.text = data.purchasedDate
+        viewBinding.tvTypePayment.text = data.paymentMethod
+        viewBinding.tvTotalPrice.text = Globals.formatAmount(data.totalPaid)
+        priceAdapter.setData(data.priceDetails)
+
     }
 
     override fun onClick(views: Int, position: Int) {

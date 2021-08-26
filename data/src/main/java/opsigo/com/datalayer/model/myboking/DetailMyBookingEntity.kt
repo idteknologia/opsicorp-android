@@ -44,7 +44,7 @@ data class Data(
 	val purchasedDate: String? = null,
 
 	@field:SerializedName("TotalPaid")
-	val totalPaid: Double? = null,
+	val totalPaid: Double = 0.0,
 
 	@field:SerializedName("PaymentMethod")
 	val paymentMethod: String? = null,
@@ -56,7 +56,7 @@ data class Data(
 	val paymentStatus: Int? = null,
 
 	@field:SerializedName("Hotel")
-	val hotel: Any? = null
+	val hotel: HotelItemMyBookingEntity = HotelItemMyBookingEntity()
 )
 
 data class BookingContact(

@@ -1,21 +1,21 @@
 package com.mobile.travelaja.module.my_booking.adapter
 
 import android.view.View
-import android.content.Intent
 import android.view.ViewGroup
 import com.mobile.travelaja.R
 import android.content.Context
+import android.content.Intent
 import android.widget.TextView
 import android.widget.ImageView
 import android.view.LayoutInflater
 import androidx.core.content.ContextCompat
+import com.mobile.travelaja.module.my_booking.purchase_detail.PurchaseDetailActivity
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import opsigo.com.domainlayer.model.my_booking.MyBookingModel
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_my_booking_body.view.*
-import com.mobile.travelaja.module.my_booking.purchase_detail.PurchaseDetailActivity
 
 class MyBookingAdapter (var context: Context, private var items: ArrayList<MyBookingModel>): androidx.recyclerview.widget.RecyclerView.Adapter<MyBookingAdapter.ViewHolder>() {
 
@@ -99,16 +99,7 @@ class MyBookingAdapter (var context: Context, private var items: ArrayList<MyBoo
             val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
 
             btnDetail.setOnClickListener {
-                if (items.get(position).typeAccomdation== Constants.TripType.Airline){
-                    Globals.typeAccomodation = "Flight"
-                }
-                else if(items.get(position).typeAccomdation== Constants.TripType.KAI){
-                    Globals.typeAccomodation = "Train"
-                }
-                else {
-                    Globals.typeAccomodation = "Hotel"
-                }
-                context.startActivity(Intent(context, PurchaseDetailActivity::class.java))
+                gotoDetailPurchase(position)
             }
 
             btnRemove.setOnClickListener {
@@ -121,17 +112,7 @@ class MyBookingAdapter (var context: Context, private var items: ArrayList<MyBoo
         }
 
         holder.itemView.setOnClickListener {
-            onclick.onClick(-1,position)
-            if (items.get(position).typeAccomdation== Constants.TripType.Airline){
-                Globals.typeAccomodation = "Flight"
-            }
-            else if(items.get(position).typeAccomdation== Constants.TripType.KAI){
-                Globals.typeAccomodation = "Train"
-            }
-            else {
-                Globals.typeAccomodation = "Hotel"
-            }
-            context.startActivity(Intent(context, PurchaseDetailActivity::class.java))
+            gotoDetailPurchase(position)
         }
 
         if (position==items.size-1){
@@ -150,6 +131,12 @@ class MyBookingAdapter (var context: Context, private var items: ArrayList<MyBoo
 
     private fun setIconAccomodation(imageDrawable: Int,itemView: ImageView) {
         itemView.setImageDrawable(context.resources.getDrawable(imageDrawable))
+    }
+
+    fun gotoDetailPurchase(position: Int){
+        val intent = Intent(context, PurchaseDetailActivity::class.java)
+        intent.putExtra(Constants.DATA_SELECT_PURCHASE,items[position].idBooking)
+        context.startActivity(intent)
     }
 
     class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row)
