@@ -2347,6 +2347,9 @@ data class TripParticipantsItem(
     @field:SerializedName("JobTitle")
     val jobTitle: String? = null,
 
+    @field:SerializedName("PositionName")
+    var positionName: String? = null,
+
     @field:SerializedName("PassportExpMonth")
     val passportExpMonth: Any? = null,
 

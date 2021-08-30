@@ -410,7 +410,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     model.idParticipant = tripParticipantsItemModel.id
                     model.status = tripSummary.statusView
                     model.isApproval = false
-                    model.jobtitle = Globals.getProfile(this).approval.reqPosName
+                    model.jobtitle = tripParticipantsItemModel.positionName
                     model.email = Globals.getProfile(this).approval.reqEmail
                     model.costCenterCode = tripParticipantsItemModel.costCenterCode
                     model.costCenterName = tripParticipantsItemModel.costCenterName

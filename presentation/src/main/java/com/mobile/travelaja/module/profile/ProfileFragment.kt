@@ -16,6 +16,7 @@ import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNati
 import com.mobile.travelaja.utility.StringUtils
 import com.squareup.picasso.Picasso
 import com.mobile.travelaja.base.BaseFragment
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.profile_fragment.*
 import opsigo.com.datalayer.mapper.CountryMapper
 import opsigo.com.datalayer.mapper.Serializer
@@ -104,14 +105,13 @@ class ProfileFragment : BaseFragment(),
     }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
-        btn_logout.changeBackground(R.color.colorGrayRoundWhite)
-
         val sign_out: String = getString(R.string.sign_out)
 
         tv_version.text = "Ver 1.0.11 debug"
 
         btn_logout.setTextButton(sign_out)
-        btn_logout.changeBackground(R.color.colorGrayRoundWhite)
+        btn_logout.changeTextColorButton(R.color.textButtonColor)
+        btn_logout.changeBackground(R.color.buttonColor)
         btn_logout.callbackOnclickButton(this)
 
         lay_language.setOnClickListener(this)
@@ -138,7 +138,7 @@ class ProfileFragment : BaseFragment(),
         }
 
         tv_name.text      = StringUtils().setUppercaseFirstLetter(dataProfile.firstName) + " " + StringUtils().setUppercaseFirstLetter(dataProfile.lastName)
-        tv_position.text  = dataProfile.position
+        tv_position.text  = Globals.getProfile(requireContext()).approval.reqPosName
         tv_address.text   = dataProfile.address
         tv_email.text     = dataProfile.email
 
