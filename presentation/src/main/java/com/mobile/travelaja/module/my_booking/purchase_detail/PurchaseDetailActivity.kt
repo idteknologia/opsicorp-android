@@ -30,6 +30,10 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         return PurchaseActivityBinding.inflate(layoutInflater)
     }
 
+    val data by lazy { ArrayList<Any>() }
+    val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
+    val priceAdapter by lazy { PriceDetailMyBookingAdapter(this) }
+
     override fun onMain() {
         initToolbar()
         initRecyclerView()
@@ -46,14 +50,9 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         }
         val first = "To better assist you, please give your  "
         val next  = "<font color='#009688'>booking ID</font>"
-        val last  = "when you contact to our Customer service, Thank you. "
+        val last  = " when you contact to our Customer service, Thank you. "
         viewBinding.tvInfoTravel.text = Html.fromHtml(first + next+last)
     }
-
-
-    val data by lazy { ArrayList<Any>() }
-    val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
-    val priceAdapter = PriceDetailMyBookingAdapter(this)
 
 
     private fun initToolbar() {
@@ -90,13 +89,12 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
             adapter = adapterItem
         }
 
-        viewBinding.rvPrice.apply {
-            val lm = LinearLayoutManager(this@PurchaseDetailActivity)
-            lm.orientation = LinearLayoutManager.VERTICAL
-            layoutManager = lm
-            itemAnimator  = DefaultItemAnimator()
-            adapter       = priceAdapter
-        }
+        val layoutManegePolicy = LinearLayoutManager(this)
+        layoutManegePolicy.orientation = LinearLayoutManager.VERTICAL
+        viewBinding.rvPrice.layoutManager = layoutManegePolicy
+        viewBinding.rvPrice.itemAnimator  = DefaultItemAnimator()
+        viewBinding.rvPrice.adapter       = priceAdapter
+
         adapterItem.setOnclickListener(this)
 
         getData()
@@ -135,7 +133,7 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         setLog(Serializer.serialize(data))
         viewBinding.tvPurchaseDate.text = data.purchasedDate
         viewBinding.tvTypePayment.text = data.paymentMethod
-        viewBinding.tvTotalPrice.text = Globals.formatAmount(data.totalPaid)
+        viewBinding.tvTotalPrice.text = "IDR ${Globals.formatAmount(data.totalPaid)}"
         priceAdapter.setData(data.priceDetails)
 
     }

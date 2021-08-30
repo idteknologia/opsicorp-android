@@ -1,18 +1,15 @@
 package opsigo.com.datalayer.mapper
 
-import opsigo.com.datalayer.model.myboking.Data
+import opsigo.com.datalayer.model.myboking.*
 import opsigo.com.domainlayer.model.my_booking.*
-import opsigo.com.datalayer.model.myboking.GuestsItem
 import opsigo.com.domainlayer.model.summary.ItemTrainModel
-import opsigo.com.datalayer.model.myboking.DetailMyBookingEntity
-import opsigo.com.datalayer.model.myboking.HotelItemMyBookingEntity
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 
 class DetalMyBookingMapper {
     fun mapping(deserialize: DetailMyBookingEntity): DetailMyBookingModel {
         deserialize.apply {
             val data = DetailMyBookingModel(
-                this.data?.priceDetails as ArrayList<PriceListModel>,
+                mappingPrice(this.data.priceDetails),
                 this.data.paymentStatusText,
                 this.data.itemType,
                 bookingContactMapper(this.data),
@@ -26,6 +23,14 @@ class DetalMyBookingMapper {
             )
             return data
         }
+    }
+
+    private fun mappingPrice(priceDetails: ArrayList<PriceMyBookingEntity>): ArrayList<PriceListModel> {
+        val data = ArrayList<PriceListModel>()
+        priceDetails.forEach {
+            data.add(PriceListModel(it.amount,it.title,it.index))
+        }
+        return data
     }
 
     private fun bookingContactMapper(data: Data): PurchaseBookingContactModel? {

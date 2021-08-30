@@ -251,7 +251,6 @@ class FlightFragmentNew : BaseFragment(),
                 Constants.DATA_SUCCESS_CREATE_TRIP,
                 SuccessCreateTripPlaneModel::class.java
         )
-
         if (data.route.isNotEmpty()){
             data.route.forEachIndexed { index, routeMultiCityModel ->
                 val orderFlight = RouteMultiCityModel()
@@ -263,6 +262,19 @@ class FlightFragmentNew : BaseFragment(),
                 if (Constants.DATA_CITY.filter { it.name.contains(routeMultiCityModel.destinationName) }.isNotEmpty()){
                     orderFlight.destinationName = routeMultiCityModel.destinationName
                     orderFlight.idDestination   = Constants.DATA_CITY.filter { it.name.toLowerCase().equals(routeMultiCityModel.destinationName.toLowerCase()) }.first().id
+                }
+                mFlightMulti.routes.add(orderFlight)
+            }
+            if (data.route.size==1){
+                val orderFlight = RouteMultiCityModel()
+                orderFlight.dateDeparture   = data.route.first().dateDeparture
+                if (Constants.DATA_CITY.filter { it.name.contains(data.route.first().destinationName) }.isNotEmpty()){
+                    orderFlight.originName   = data.route.first().destinationName
+                    orderFlight.idOrigin     = Constants.DATA_CITY.filter { it.name.toLowerCase().equals(data.route.first().destinationName.toLowerCase()) }.first().id
+                }
+                if (Constants.DATA_CITY.filter { it.name.contains(data.route.first().originName) }.isNotEmpty()){
+                    orderFlight.destinationName = data.route.first().originName
+                    orderFlight.idDestination   = Constants.DATA_CITY.filter { it.name.toLowerCase().equals(data.route.first().originName.toLowerCase()) }.first().id
                 }
                 mFlightMulti.routes.add(orderFlight)
             }
@@ -679,7 +691,7 @@ class FlightFragmentNew : BaseFragment(),
     private fun dataRequestAirlinePref(dataOrder: OrderAccomodationModel): HashMap<Any, Any> {
         val data = AirlinePrefByCompanyRequest()
         data.preferredCarriers = ArrayList()
-        if (dataTripPlan.route.size>1){
+        if (typeTrip=="multi_city"){
             data.routes            = dataRoutesRequestMultiTrip(dataOrder)
             data.flightTripType    = 3
         }

@@ -41,6 +41,9 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
+import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
+import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
+import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import java.util.*
 
 class NewCartActivity : BaseActivity(), View.OnClickListener,
@@ -706,21 +709,45 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId
-            model.status = tripSummary.status
+            model.status = tripSummary.statusView
+            model.statusNumber = tripSummary.status.toInt()
             model.tripCode = tripSummary.tripCode
             model.createDate = tripSummary.creationDate
             model.timeExpired = tripSummary.expiredRemaining
-            model.destinationName = tripSummary.destinationName
-            model.destinationId = tripSummary.destination
-            model.originId = tripSummary.origin
-            model.originName = tripSummary.originName
+            model.trnNumber = tripSummary.trnNumber
+            model.isTripPartner = tripSummary.isTripPartner
+            model.tripPartnerName = tripSummary.parterName
+            if(tripSummary.routes.isNotEmpty()){
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.routes.first().origin
+                model.destinationName = tripSummary.routes.first().destination
+                model.destinationId = tripSummary.destination
+            } else {
+                model.originId = tripSummary.origin
+                model.originName = tripSummary.originName
+                model.destinationName = tripSummary.destinationName
+                model.destinationId = tripSummary.destination
+            }
+            model.route   = mappingRoutes(tripSummary.routes)
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
-            model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId
+            model.attachment.addAll(addAttacthment())
+            if (tripSummary.budgetId.isNullOrEmpty()){
+                model.buggetId = getProfile().costCenter
+            } else {
+                model.buggetId = tripSummary.budgetId
+            }
             model.costCenter = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
-            Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
-            setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
+            model.businessTripType = tripSummary.businessTripType
+            model.remark      = tripSummary.remark.toString()
+            model.wbsNo       = tripSummary.wbsNo
+            model.isDomestik  = tripSummary.isDomestic
+            model.isBookAfterApprove = tripSummary.isBookAfterApprove
+            model.isPrivateTrip = tripSummary.isPrivateTrip
+            model.golper      = tripSummary.golper
+
+            Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {
@@ -804,5 +831,30 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun addAttacthment(): ArrayList<TripAttachmentItemModel> {
+        val data = ArrayList<TripAttachmentItemModel>()
+        tripSummary.attactment.forEach {
+            val model = TripAttachmentItemModel()
+            model.description = it.nameImage
+            model.url         = it.url
+            model.id          = it.id
+            setLog(" Test attachment => ${Serializer.serialize(model)}")
+            data.add(model)
+        }
+        return data
+    }
+
+    private fun mappingRoutes(routes: ArrayList<RoutesItemPertamina>): ArrayList<RouteMultiCityModel> {
+        val data = ArrayList<RouteMultiCityModel>()
+        routes.forEach {
+            val mData = RouteMultiCityModel()
+            mData.destinationName = it.destination
+            mData.originName    = it. origin
+            mData.dateDeparture = it.departureDate
+            data.add(mData)
+        }
+        return data
     }
 }

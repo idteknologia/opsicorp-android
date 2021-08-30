@@ -217,18 +217,20 @@
                             </LinearLayout>
                         </RelativeLayout>
 
+
+
+
                         <com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                            android:layout_marginTop="20dp"
                             app:ael_duration="200"
                             android:id="@+id/lay_detail"
                             app:ael_expanded="true"
-                            android:layout_marginTop="20dp"
                             app:ael_interpolator="accelerateDecelerate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
                             android:orientation="vertical">
-
                             <LinearLayout
                                 android:orientation="vertical"
                                 android:id="@+id/line_doted"
@@ -237,15 +239,13 @@
                                 android:layerType="software"
                                 android:background="@drawable/background_dot_orange">
                             </LinearLayout>
-
-
-
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rv_price"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:nestedScrollingEnabled="false">
                             </androidx.recyclerview.widget.RecyclerView>
+
                         </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
 
                         <LinearLayout
