@@ -5,15 +5,11 @@ plugins {
     id 'kotlin-kapt'
 }
 android {
-    compileSdkVersion 30
+    compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.khoiron.train_feature"
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
@@ -29,21 +25,12 @@ android {
     productFlavors {
         travelAja{
             dimension 'default'
-            applicationId "com.opsicorp.travelaja"
-            versionCode 1
-            versionName "1"
         }
         opsicorp{
             dimension 'default'
-            applicationId "com.opsigo.travelaja"
-            versionCode 1
-            versionName "1.0.10"
         }
         opsicorp_dev{
             dimension 'default'
-            applicationId "com.opsigo.opsicorp"
-            versionCode 14
-            versionName "1.0.10"
         }
     }
     compileOptions {
