@@ -1194,5 +1194,6 @@ Please add your trip item for Approval."
     <string name="save_settlement_failed">Save failed : </string>
     <string name="mode_transport_not_support">Sorry, mode transport is not available</string>
     <string name="alert_mode_transportation_empty">Mode Transportation is Empty</string>
+    <string name="your_pic_email">your-pic-email@gmail.com</string>
 </resources>
 
