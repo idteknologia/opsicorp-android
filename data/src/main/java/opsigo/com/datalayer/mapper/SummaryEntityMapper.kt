@@ -64,7 +64,7 @@ class SummaryEntityMapper() {
         from.routes.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
-                routesItinerary.transportation = routesItem.transportation.toInt()
+                routesItinerary.transportation = routesItem.transportation
                 routesItinerary.origin = routesItem.origin.toString()
                 routesItinerary.destination = routesItem.destination.toString()
                 routesItinerary.departureDate = routesItem.departureDate.toString()

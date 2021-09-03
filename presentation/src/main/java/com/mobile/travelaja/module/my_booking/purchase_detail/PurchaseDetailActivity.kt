@@ -1,22 +1,19 @@
 package com.mobile.travelaja.module.my_booking.purchase_detail
 
 import android.os.Build
+import android.os.Bundle
 import android.text.Html
 import android.view.View
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
-import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.base.BaseActivityBinding
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.datalayer.datanetwork.GetDataMyBooking
-import opsigo.com.domainlayer.model.summary.ItemTrainModel
-import opsigo.com.domainlayer.model.my_booking.ItemFlightModel
 import opsigo.com.domainlayer.callback.CallbackDetailMyBooking
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.mobile.travelaja.databinding.PurchaseActivityBinding
-import opsigo.com.domainlayer.model.my_booking.ItemHotelPurchase
 import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.my_booking.adapter.PriceDetailMyBookingAdapter
@@ -30,6 +27,7 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         return PurchaseActivityBinding.inflate(layoutInflater)
     }
 
+    var dataDetailPurchase = DetailMyBookingModel()
     val data by lazy { ArrayList<Any>() }
     val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
     val priceAdapter by lazy { PriceDetailMyBookingAdapter(this) }
@@ -106,15 +104,16 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         GetDataMyBooking(getBaseUrl()).getDetailMyBooking(getToken(),intent?.getStringExtra(Constants.DATA_SELECT_PURCHASE).toString(),object : CallbackDetailMyBooking{
             override fun success(data: DetailMyBookingModel) {
                 hideLoadingOpsicorp()
+                dataDetailPurchase = data
                 when(data.itemType){
                     Constants.TripType.Airline -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemFlightModel>)
+                        this@PurchaseDetailActivity.data.addAll(data.dataFlight)
                     }
                     Constants.TripType.KAI -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemTrainModel>)
+                        this@PurchaseDetailActivity.data.addAll(data.dataTrain)
                     }
                     Constants.TripType.Hotel -> {
-                        this@PurchaseDetailActivity.data.add(data.dataItem as ItemHotelPurchase)
+                        this@PurchaseDetailActivity.data.add(data.dataHotel)
                     }
                 }
                 adapterItem.setData(this@PurchaseDetailActivity.data)
@@ -129,8 +128,6 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     }
 
     private fun setDataView(data: DetailMyBookingModel) {
-        setLog("---------->")
-        setLog(Serializer.serialize(data))
         viewBinding.tvPurchaseDate.text = data.purchasedDate
         viewBinding.tvTypePayment.text = data.paymentMethod
         viewBinding.tvTotalPrice.text = "IDR ${Globals.formatAmount(data.totalPaid)}"
@@ -139,7 +136,10 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     }
 
     override fun onClick(views: Int, position: Int) {
-        gotoActivity(PurchaseDetailListActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,1)
+        bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,dataDetailPurchase)
+        gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
     }
 
     override fun btnBack() {
@@ -153,6 +153,5 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     override fun btnCard() {
 
     }
-
 
 }

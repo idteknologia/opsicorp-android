@@ -2,7 +2,6 @@ package com.opsicorp.travelaja.feature_flight.ssr
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -116,7 +115,7 @@ class SsrActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, Butto
         }
 
         val dataProfile = Globals.getProfile(applicationContext)
-        tvPassengerSsr.text = "${dataProfile.title}.${dataProfile.name}"
+        tvPassengerSsr.text = "${dataProfile.title}.${dataProfile.fullName}"
         adapter.setData(datalist.dataFlight,currentPositionPassenger)
         adapter2.setData(datalist.dataFlight)
         initPrice()

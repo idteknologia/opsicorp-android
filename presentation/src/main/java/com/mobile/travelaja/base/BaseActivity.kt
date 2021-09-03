@@ -33,6 +33,7 @@ import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackIdDevice
+import opsigo.com.domainlayer.model.ConfigModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.koin.core.KoinComponent
 import java.lang.Exception
@@ -437,5 +438,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
+    fun getConfigCompany(): ConfigModel {
+        return Serializer.deserialize(Globals.getDataPreferenceString(this, "config"), ConfigModel::class.java)
+    }
 
 }

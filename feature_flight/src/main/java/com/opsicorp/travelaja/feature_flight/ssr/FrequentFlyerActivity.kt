@@ -8,8 +8,6 @@ import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.frequent_flyer.*
 import kotlinx.android.synthetic.main.frequent_flyer.toolbar
-import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
-import opsigo.com.datalayer.mapper.Serializer
 
 class FrequentFlyerActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListener, ButtonDefaultOpsicorp.OnclickButtonListener {
     override fun getLayout(): Int {
@@ -25,7 +23,7 @@ class FrequentFlyerActivity : BaseActivity(), ToolbarOpsicorp.OnclickButtonListe
 
     private fun setData() {
         val dataProfile = Globals.getProfile(applicationContext)
-        tvPassengerFf.text = dataProfile.name
+        tvPassengerFf.text = dataProfile.fullName
     }
 
     private fun initToolbar() {

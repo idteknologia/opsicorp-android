@@ -2,6 +2,7 @@ package com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flig
 
 import android.view.View
 import android.os.Bundle
+import java.util.HashSet
 import org.json.JSONArray
 import android.app.Activity
 import android.content.Intent
@@ -17,26 +18,19 @@ import opsigo.com.datalayer.mapper.Serializer
 import android.graphics.drawable.BitmapDrawable
 import com.mobile.travelaja.base.InitApplications
 import com.opsicorp.sliderdatepicker.utils.Constant
+import opsigo.com.domainlayer.callback.CallbackString
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
-import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
-import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
-import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth
-import com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
-import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
-import com.mobile.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
-import com.mobile.travelaja.module.item_custom.select_passager.TotalPassengerFlight
-import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.mobile.travelaja.utility.Constants.SELECT_RESULT
+import kotlinx.android.synthetic.main.contruction_view.*
 import opsigo.com.domainlayer.callback.CallbackReasonCode
 import kotlinx.android.synthetic.main.flight_fragment_2.*
+import com.mobile.travelaja.utility.Constants.SELECT_RESULT
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_to
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_from
 import opsigo.com.domainlayer.model.accomodation.ReasonCodeModel
 import kotlinx.android.synthetic.main.flight_fragment_2.btn_next
+import opsigo.com.domainlayer.callback.CallbackAirlinePreference
 import kotlinx.android.synthetic.main.flight_fragment_2.btn_switch
 import kotlinx.android.synthetic.main.flight_fragment_2.top_button
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_end_date
@@ -44,21 +38,26 @@ import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_pref
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_air_class
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_return_date
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_departur_date
+import com.mobile.travelaja.module.item_custom.button_swicth.ButtonSwicth
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import kotlinx.android.synthetic.main.flight_fragment_2.lay_parent_passager
 import kotlinx.android.synthetic.main.flight_fragment_2.tv_airline_prreferance
+import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
-import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
-import opsigo.com.domainlayer.callback.CallbackAirlinePreference
-import opsigo.com.domainlayer.callback.CallbackString
-import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
+import com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
+import com.mobile.travelaja.module.item_custom.dialog_cabin_class.CabisClassDialog
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.item_custom.select_passager.TotalPassengerFlight
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
-
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
+import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
+import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
-import java.util.HashSet
-
+import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.SelectAccomodationPreferance
+import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.adapter.FlightMultiAdapter
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
 
 class FlightFragmentNew : BaseFragment(),
     OnclickListenerRecyclerView,
@@ -109,12 +108,27 @@ class FlightFragmentNew : BaseFragment(),
         )
         Globals.typeAccomodation = "Flight"
 
-        checkTypeOrder()
-        setOnClick()
-        initRecycleView()
-        setDataDefaultOneTrip()
-        setDataDefault()
-        getReasonCode()
+        if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.UDARA) }.size==1){
+            top_button.visibility = View.GONE
+        }
+
+        if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.NON_UDARA) }.size==dataTripPlan.route.size){
+            line_not_availble_flight.visibility = View.VISIBLE
+            tv_description_not_available.text   = getString(R.string.not_available_flight)
+            rlExtraBackground.visibility        = View.GONE
+            line_parent.visibility              = View.GONE
+        }
+        else {
+            rlExtraBackground.visibility        = View.VISIBLE
+            line_parent.visibility              = View.VISIBLE
+            line_not_availble_flight.visibility = View.GONE
+            checkTypeOrder()
+            setOnClick()
+            initRecycleView()
+            setDataDefaultOneTrip()
+            setDataDefault()
+            getReasonCode()
+        }
     }
 
     private fun checkTypeOrder() {
@@ -608,7 +622,7 @@ class FlightFragmentNew : BaseFragment(),
         dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
         Globals.DATA_LIST_FLIGHT    = ""
 
-        if (getBaseUrl()==Constants.pertaminaUrl){
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
             showDialog("Waiting check available route")
             GetDataAccomodation(getBaseUrl()).getPreferedFlight(getToken(),dataRequestAirlinePref(dataOrder),object :
                 CallbackAirlinePreference {
@@ -894,43 +908,6 @@ class FlightFragmentNew : BaseFragment(),
             )
         }
     }
-/*
-
-    private fun selectCityFrom() {
-        var listCity = ArrayList<String>()
-        listCity.add("Jakarta")
-        listCity.add("Surabaya")
-        val bundle = Bundle()
-        bundle.putString("emplaoyId", "city")
-        bundle.putString("invisibleSearch", "yes")
-        bundle.putString("searchHint", "Enter city or airport name")
-        bundle.putString("titleHeader", "Select Cities and Airports")
-        bundle.putStringArrayList("listCity",listCity)
-        gotoActivityResultWithBundle(
-            SelectNationalityActivity::class.java,
-            bundle,
-            SELECT_CODE_COUNTRY_FROM
-        )
-
-    }
-
-    private fun selectCityTo() {
-        var listCity = ArrayList<String>()
-        listCity.add("Jakarta")
-        listCity.add("Surabaya")
-        val bundle = Bundle()
-        bundle.putString("emplaoyId", "city")
-        bundle.putString("invisibleSearch", "yes")
-        bundle.putString("searchHint", "Enter city or airport name")
-        bundle.putString("titleHeader", "Select Cities and Airports")
-        bundle.putStringArrayList("listCity",listCity)
-        gotoActivityResultWithBundle(
-            SelectNationalityActivity::class.java,
-            bundle,
-            SELECT_CODE_COUNTRY_TO
-        )
-    }
-*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

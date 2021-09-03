@@ -14,7 +14,9 @@ class DetalMyBookingMapper {
                 this.data.itemType,
                 bookingContactMapper(this.data),
                 this.data.code,
-                itemMapper(this.data),
+                if (this.data.itemType==0) this.data.flights as ArrayList<ItemFlightModel> else ArrayList(),
+                if (this.data.itemType==1) mappingHotel(data.hotel) else ItemHotelPurchase() ,
+                if (this.data.itemType==2) this.data.trains as ArrayList<ItemTrainModel> else ArrayList(),
                 this.data.purchasedDate,
                 this.data.totalPaid,
                 this.data.paymentMethod,
@@ -25,6 +27,7 @@ class DetalMyBookingMapper {
         }
     }
 
+
     private fun mappingPrice(priceDetails: ArrayList<PriceMyBookingEntity>): ArrayList<PriceListModel> {
         val data = ArrayList<PriceListModel>()
         priceDetails.forEach {
@@ -33,7 +36,7 @@ class DetalMyBookingMapper {
         return data
     }
 
-    private fun bookingContactMapper(data: Data): PurchaseBookingContactModel? {
+    private fun bookingContactMapper(data: Data): PurchaseBookingContactModel {
         data.bookingContact.apply {
             return PurchaseBookingContactModel(
                 this?.email.toString(),
@@ -46,7 +49,7 @@ class DetalMyBookingMapper {
         }
     }
 
-    private fun itemMapper(data: Data?): Any {
+    /*private fun itemMapper(data: Data?): Any {
         when(data?.itemType){
             0 -> {
                 //flight
@@ -61,9 +64,9 @@ class DetalMyBookingMapper {
                 return data?.trains as List<ItemTrainModel>
             }
         }
-    }
+    }*/
 
-    private fun mappingHotel(hotel: HotelItemMyBookingEntity): Any {
+    private fun mappingHotel(hotel: HotelItemMyBookingEntity): ItemHotelPurchase {
         hotel.apply {
             val data = ItemHotelPurchase()
             data.voucerCode      = this.pnrCode

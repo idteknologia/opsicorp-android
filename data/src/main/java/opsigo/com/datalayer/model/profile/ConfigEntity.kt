@@ -42,6 +42,10 @@ data class ConfigEntity(
 	@field:SerializedName("ShowBusinessTrip")
 	var showBusinessTrip: Boolean = false,
 
+
+	@field:SerializedName("Client")
+    var client: Int = 0,
+
 	@field:SerializedName("DefaultOrigin")
 	var defaultOrigin: String = "",
 

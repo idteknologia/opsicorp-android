@@ -845,7 +845,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     fun showApproveAllDialog(view: View) {
-        if (getBaseUrl()==Constants.pertaminaUrl) {
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM) {
             approveOrRejectItemRequest("1", "1")
             /*saveToDraft()*/
         } else {
@@ -1082,6 +1082,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             mData.destinationName = it.destination
             mData.originName    = it. origin
             mData.dateDeparture = it.departureDate
+            mData.transportationType = it.transportation
             data.add(mData)
         }
         return data

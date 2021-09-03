@@ -15,6 +15,7 @@ class ConfigModel {
     var isShowCreateTripOnMobile = false
     var showFamilyTime           = false
     var showBusinessTrip         = false
+    var codeCompany              = 0
     var mobileBackgroundImage    = ""
     var mobileBackgroundColor    = ""
     var mobileLogo               = ""

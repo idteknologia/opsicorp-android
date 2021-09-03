@@ -1,18 +1,24 @@
 package opsigo.com.domainlayer.model.my_booking
 
 import java.util.ArrayList
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import opsigo.com.domainlayer.model.summary.ItemTrainModel
 
-data class DetailMyBookingModel(
-	val priceDetails: ArrayList<PriceListModel> = ArrayList(),
-	val paymentStatusText: String? = null,
-	val itemType: Int? = null,
-	val bookingContact: PurchaseBookingContactModel? = null,
-	val code: String? = null,
-	val dataItem: Any? = null,
-	val purchasedDate: String? = null,
-	val totalPaid: Double = 0.0,
-	val paymentMethod: String? = null,
-	val id: String? = null,
-	val paymentStatus: Int? = null
-)
+@Parcelize
+class DetailMyBookingModel(
+	var priceDetails: ArrayList<PriceListModel> = ArrayList(),
+	var paymentStatusText: String? = null,
+	var itemType: Int? = null,
+	var bookingContact: PurchaseBookingContactModel? = null,
+	var code: String? = null,
+	var dataFlight: ArrayList<ItemFlightModel> = ArrayList(),
+	var dataHotel : ItemHotelPurchase = ItemHotelPurchase(),
+	var dataTrain : ArrayList<ItemTrainModel> = ArrayList(),
+	var purchasedDate: String? = null,
+	var totalPaid: Double = 0.0,
+	var paymentMethod: String? = null,
+	var id: String? = null,
+	var paymentStatus: Int? = null
+):Parcelable
 

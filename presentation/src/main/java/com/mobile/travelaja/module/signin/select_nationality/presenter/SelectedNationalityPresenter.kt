@@ -131,7 +131,7 @@ class SelectedNationalityPresenter :KoinComponent {
         data.addAll(Constants.DATA_CITY)
         val dataFilter = ArrayList<SelectNationalModel>()
         listCity.forEachIndexed { index, c ->
-            dataFilter.addAll(data.filter { it.name.toLowerCase().contains(c.toLowerCase()) })
+            dataFilter.addAll(data.filter { it.name.toLowerCase().equals(c.toLowerCase()) })
         }
         data.clear()
         data.addAll(dataFilter)

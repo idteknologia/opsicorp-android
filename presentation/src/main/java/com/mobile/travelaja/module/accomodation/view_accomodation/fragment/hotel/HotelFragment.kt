@@ -57,7 +57,7 @@ class HotelFragment : BaseFragment(),
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         data = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         getReasonCode()
-        if (getBaseUrl()==Constants.pertaminaUrl)  {
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM)  {
             getRouteFilter()
         }
         else {
@@ -222,7 +222,7 @@ class HotelFragment : BaseFragment(),
                 selectDuration()
             }
             btn_office -> {
-                if(getBaseUrl()==Constants.pertaminaUrl){
+                if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
                     Globals.showAlert(getString(R.string.sorry),getString(R.string.this_feature_is_not_available),requireContext())
                 }
                 else {
@@ -246,7 +246,7 @@ class HotelFragment : BaseFragment(),
                 }
             }
             ic_airport->{
-                if (getBaseUrl()!=Constants.pertaminaUrl){
+                if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
                     if (ic_airport.drawable.constantState==ContextCompat.getDrawable(requireContext(),R.drawable.ic_after_checklist)?.constantState){
                         setDataCityDefault()
                     }

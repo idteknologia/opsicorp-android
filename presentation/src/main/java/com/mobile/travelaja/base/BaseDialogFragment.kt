@@ -1,6 +1,7 @@
 package com.unicode.kingmarket.Base
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,6 +14,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.utility.Globals
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.ConfigModel
 
 /**
  * Created by khoiron on 22/01/18.
@@ -92,10 +95,14 @@ abstract class BaseDialogFragment: DialogFragment()  {
     }
 
     fun getToken():String{
-        return Globals.getDataPreferenceString(context!!,"token")
+        return Globals.getDataPreferenceString(requireContext(),"token")
     }
 
     fun transparantBackground(){
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun getConfigCompany(): ConfigModel {
+        return Serializer.deserialize(Globals.getDataPreferenceString(requireContext(), "config"), ConfigModel::class.java)
     }
 }

@@ -14,6 +14,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:visibility="visible"
+        android:id="@+id/line_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true">
@@ -25,9 +26,9 @@
 
             <com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp
                 android:layout_width="match_parent"
+                android:visibility="visible"
                 android:id="@+id/top_button"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:layout_height="wrap_content">
             </com.mobile.travelaja.module.item_custom.button_top.ButtonTopRoundedOpsicorp>
 
@@ -35,7 +36,7 @@
                 android:id="@+id/cardFlightOneTrip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
@@ -645,4 +646,16 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/line_not_availble_flight"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/line_contruction"
+            layout="@layout/contruction_view">
+        </include>
+    </LinearLayout>
 </RelativeLayout>

@@ -1,27 +1,27 @@
 package com.mobile.travelaja.module.profile
 
+import java.util.*
+import android.util.Log
+import android.os.Bundle
+import android.view.View
+import java.lang.Exception
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import com.mobile.travelaja.R
-import com.mobile.travelaja.base.InitApplications
+import com.squareup.picasso.Picasso
 import com.mobile.travelaja.locale.AppLocale
+import com.mobile.travelaja.base.BaseFragment
+import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.utility.Constants
+import opsigo.com.datalayer.mapper.CountryMapper
 import com.mobile.travelaja.locale.LocaleManager
+import com.mobile.travelaja.base.InitApplications
 import com.mobile.travelaja.locale.LocalePrefrences
+import opsigo.com.datalayer.model.general.CountryEntity
+import kotlinx.android.synthetic.main.profile_fragment.*
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.signin.detail_profile.activity.DataProfileActivity
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import com.mobile.travelaja.utility.StringUtils
-import com.squareup.picasso.Picasso
-import com.mobile.travelaja.base.BaseFragment
-import kotlinx.android.synthetic.main.profile_fragment.*
-import opsigo.com.datalayer.mapper.CountryMapper
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.datalayer.model.general.CountryEntity
-import java.lang.Exception
-import java.util.*
 
 class ProfileFragment : BaseFragment(),
         ButtonDefaultOpsicorp.OnclickButtonListener,View.OnClickListener {
@@ -137,8 +137,8 @@ class ProfileFragment : BaseFragment(),
             img_dummy.visibility = View.GONE
         }
 
-        tv_name.text      = StringUtils().setUppercaseFirstLetter(dataProfile.firstName) + " " + StringUtils().setUppercaseFirstLetter(dataProfile.lastName)
-        tv_position.text  = dataProfile.position
+        tv_name.text      = dataProfile.fullName //StringUtils().setUppercaseFirstLetter(dataProfile.firstName) + " " + StringUtils().setUppercaseFirstLetter(dataProfile.lastName)
+        tv_position.text  = if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM) dataProfile.titleName else dataProfile.position
         tv_address.text   = dataProfile.address
         tv_email.text     = dataProfile.email
 

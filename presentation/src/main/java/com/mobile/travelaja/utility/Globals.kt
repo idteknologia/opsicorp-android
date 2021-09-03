@@ -3,8 +3,8 @@ package com.mobile.travelaja.utility
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
+import android.app.DownloadManager
+import android.content.*
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
@@ -24,6 +24,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.webkit.URLUtil
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
@@ -48,6 +49,7 @@ import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
+
 
 /**
  * Created by khoiron on 11/06/18.
@@ -1066,4 +1068,77 @@ object Globals {
         }
     }
 
+    interface CallbackDownload{
+        fun succeessDownload(parse: Uri, downloadMimeType: String)
+        fun failedDownload()
+    }
+
+    fun downloadFile(string:String,context: Context,callback:CallbackDownload) {
+        var reference: Long = 0
+        val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val uri: Uri = Uri.parse(string)
+
+        val attachmentDownloadCompleteReceive: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+
+                val extras = intent?.getExtras()
+                val q = DownloadManager.Query()
+                val downloaded_id = extras?.getLong(DownloadManager.EXTRA_DOWNLOAD_ID);
+
+                if (reference == downloaded_id) { // so it is my file that has been completed
+                    q.setFilterById(downloaded_id);
+                    val manager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                    val c = manager.query(q);
+                    if (c.moveToFirst()) {
+                        val status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                        val downloadLocalUri = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                        val downloadMimeType = c.getString(c.getColumnIndex(DownloadManager.COLUMN_MEDIA_TYPE));
+
+                        if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                            callback.succeessDownload(Uri.parse(downloadLocalUri),downloadMimeType)
+                        }
+                        else {
+                            callback.failedDownload()
+                        }
+                    }
+                    c.close();
+                }
+            }
+        }
+
+        context.registerReceiver(attachmentDownloadCompleteReceive,
+            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        )
+
+        val request: DownloadManager.Request = DownloadManager.Request(uri)
+        val fileName: String = URLUtil.guessFileName(string, null, null)
+        request.setTitle(fileName)
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,fileName);
+        reference = manager.enqueue(request)
+    }
+
+    fun openDownloadedAttachment(
+        context: Context,
+        attachmentUri: Uri,
+        attachmentMimeType: String
+    ) {
+        var attachmentUri: Uri? = attachmentUri
+        if (attachmentUri != null) {
+            // Get Content Uri.
+            if (ContentResolver.SCHEME_FILE.equals(attachmentUri.scheme)) {
+                // FileUri - Convert it to contentUri.
+                val file = File(attachmentUri.path)
+                attachmentUri = FileProvider.getUriForFile(context, "${context.getPackageName()}.fileprovider", file)
+            }
+            val openAttachmentIntent = Intent(Intent.ACTION_VIEW)
+            openAttachmentIntent.setDataAndType(attachmentUri, attachmentMimeType)
+            openAttachmentIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            try {
+                context.startActivity(openAttachmentIntent)
+            } catch (e: ActivityNotFoundException) {
+                setToast("please enable to open file",context)
+            }
+        }
+    }
 }

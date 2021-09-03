@@ -96,6 +96,11 @@ class ToolbarOpsicorp : LinearLayout, View.OnClickListener {
         line_title_purchase.visibility = View.VISIBLE
     }
 
+    fun showtitlePurchaseHotel(){
+        logo_center.visibility = View.VISIBLE
+        logo_center.text = context.getString(R.string.purchase_hotel_detail)
+    }
+
     fun setTitlePurchase(departureAirport: String
                          ,titleDepartureAirport: String,
                          arrivalAirport: String,

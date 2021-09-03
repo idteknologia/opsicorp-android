@@ -1156,5 +1156,7 @@ Please add your trip item for Approval."
     <string name="warning_back_settlement_other_expense">Press the save button to save other expense</string>
     <string name="trip_history">Trip History</string>
 
+    <string name="not_available_flight">This trip not available flight</string>
+    <string name="purchase_hotel_detail">E-ticket Itinerary</string>
 </resources>
 

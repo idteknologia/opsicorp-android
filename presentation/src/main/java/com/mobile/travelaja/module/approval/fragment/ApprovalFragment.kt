@@ -45,7 +45,7 @@ class ApprovalFragment : BaseFragment()
         // sementara.. selanjutnya bisa di kondisikan dari status jabatan / posisi
         // karyawan sebagai approfal atau bukan
         if (getProfile().isApproval){
-            tv_title.text = "Hi, ${getProfile().name.substring(0,1).toUpperCase()}${getProfile().name.substring(1,getProfile().name.length).toLowerCase()}"
+            tv_title.text = "Hi, ${getProfile().fullName.substring(0,1).toUpperCase()}${getProfile().fullName.substring(1,getProfile().fullName.length).toLowerCase()}"
             showDasboardApprofal()
         }
         else{

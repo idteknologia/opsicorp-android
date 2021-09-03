@@ -1,35 +1,36 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
+import android.view.View
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import android.webkit.WebViewClient
+import android.view.LayoutInflater
 import android.widget.LinearLayout
-import com.mobile.travelaja.R
+import android.webkit.WebViewClient
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.databinding.PageDetailHotelBinding
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
+import com.mobile.travelaja.module.my_booking.model.PassangerPurchaseModel
+import com.mobile.travelaja.module.my_booking.adapter.InfoSinggelTextAdapter
+import com.mobile.travelaja.module.my_booking.model.ImportanPreProductInfoModel
 import com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
 import com.mobile.travelaja.module.my_booking.adapter.ImportanPreProductInfoAdapter
-import com.mobile.travelaja.module.my_booking.adapter.InfoSinggelTextAdapter
 import com.mobile.travelaja.module.my_booking.adapter.PassangerPurchaseAdapterHotel
-import com.mobile.travelaja.module.my_booking.model.DetailHotelPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.ImportanPreProductInfoModel
-import com.mobile.travelaja.module.my_booking.model.PassangerPurchaseModel
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.page_detail_hotel.view.*
 
-class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
+class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
+
+    private var binding: PageDetailHotelBinding
 
     lateinit var onclick : OnclickButtonListener
-
     var latitude = "-6.175906"
     var longitude = "106.8121863"
-
+    var data = DetailMyBookingModel()
     val dataHotelMessage by lazy { ArrayList<String>() }
     val dataPolicy       by lazy { ArrayList<String>() }
     val dataRemark       by lazy { ArrayList<String>() }
     val dataRoomFacility by lazy { ArrayList<ImportanPreProductInfoModel>() }
     val dataGuest        by lazy { ArrayList< PassangerPurchaseModel>() }
-
     val adapterGuest     by lazy { PassangerPurchaseAdapterHotel(context, dataGuest)}
     val adapterRemark    by lazy { InfoSinggelTextAdapter(context,dataRemark) }
     val adapterPolicy    by lazy { InfoSinggelTextAdapter(context,dataPolicy) }
@@ -40,19 +41,10 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
         onclick = onclickButtonListener
     }
 
-    constructor(context: Context) : super(context) {
-        init()
-    }
-
-    @JvmOverloads
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int = 0) : super(context, attrs, defStyle) {
-
-        init()
-    }
-
-    private fun init() {
+    init {
+        binding = PageDetailHotelBinding.inflate(LayoutInflater.from(context))
+        addView(binding.root)
         setOrientation(VERTICAL)
-        View.inflate(context, R.layout.page_detail_hotel, this)
 
         initWebview()
         initExpandView()
@@ -62,9 +54,15 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
     }
 
     private fun initExpandView() {
-        btn_show_hotel_message.setOnClickListener(this)
-        btn_canceled_policy.setOnClickListener(this)
-        btn_remark.setOnClickListener(this)
+        binding.btnShowHotelMessage.setOnClickListener{
+            expandListener(binding.expandHotelMessage)
+        }
+        binding.btnCanceledPolicy.setOnClickListener{
+            expandListener(binding.expandCanceledPolicy)
+        }
+        binding.btnRemark.setOnClickListener{
+            expandListener(binding.expandRemark)
+        }
     }
 
 
@@ -93,26 +91,26 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
     private fun checkEmptyData() {
         if (dataHotelMessage.isEmpty()){
-            line_sparator_hotel_massage.visibility = View.GONE
+            binding.lineSparatorHotelMassage.visibility = View.GONE
         }
         else{
-            line_sparator_hotel_massage.visibility = View.VISIBLE
+            binding.lineSparatorHotelMassage.visibility = View.VISIBLE
         }
 
         if (dataRemark.isEmpty()){
-            line_separator_remark.visibility - View.GONE
+            binding.lineSeparatorRemark.visibility - View.GONE
         }
         else{
-            line_separator_remark.visibility = View.VISIBLE
+            binding.lineSeparatorRemark.visibility = View.VISIBLE
         }
     }
 
     private fun initRecyclerView() {
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-        rv_hotel_massage.layoutManager = layoutManager
-        rv_hotel_massage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_hotel_massage.adapter = adapterHotelMessage
+        binding.rvHotelMassage.layoutManager = layoutManager
+        binding.rvHotelMassage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvHotelMassage.adapter = adapterHotelMessage
 
         adapterHotelMessage.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
@@ -122,9 +120,9 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
         val layoutManagerRoom  = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManagerRoom.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-        rv_room_detail.layoutManager = layoutManagerRoom
-        rv_room_detail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_room_detail.adapter = adapterRoomfacility
+        binding.rvRoomDetail.layoutManager = layoutManagerRoom
+        binding.rvRoomDetail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRoomDetail.adapter = adapterRoomfacility
 
         adapterRoomfacility.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
@@ -134,9 +132,9 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
         val layoutManegePolicy = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManegePolicy.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-        rv_cancel_policy.layoutManager = layoutManegePolicy
-        rv_cancel_policy.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_cancel_policy.adapter       = adapterPolicy
+        binding.rvCancelPolicy.layoutManager = layoutManegePolicy
+        binding.rvCancelPolicy.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvCancelPolicy.adapter       = adapterPolicy
 
         adapterPolicy.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
@@ -146,9 +144,9 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
         val layoutManegeRemark = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManegeRemark.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-        rv_remark.layoutManager = layoutManegeRemark
-        rv_remark.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_remark.adapter       = adapterRemark
+        binding.rvRemark.layoutManager = layoutManegeRemark
+        binding.rvRemark.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRemark.adapter       = adapterRemark
 
         adapterRemark.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
@@ -158,9 +156,9 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
         val layoutManegeGuest = androidx.recyclerview.widget.LinearLayoutManager(context)
         layoutManegeGuest.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
-        rv_room_passanger.layoutManager = layoutManegeGuest
-        rv_room_passanger.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_room_passanger.adapter       = adapterGuest
+        binding.rvRoomPassanger.layoutManager = layoutManegeGuest
+        binding.rvRoomPassanger.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRoomPassanger.adapter       = adapterGuest
 
         adapterGuest.setOnclickListener(object :OnclickListenerRecyclerView{
             override fun onClick(views: Int, position: Int) {
@@ -172,17 +170,17 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
 
     private fun initWebview() {
         val url = "<object width=\"100%\" height=\"170\" style=\"border: none;margin:0 auto; padding:0; overflow-x:hidden;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
-        webview.loadData(url, "text/html", null)
-        webview.setWebViewClient(WebViewClient())
-        webview.clearCache(true)
-        webview.clearHistory()
-        webview.getSettings().setJavaScriptEnabled(true)
-        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true)
+        binding.webview.loadData(url, "text/html", null)
+        binding.webview.setWebViewClient(WebViewClient())
+        binding.webview.clearCache(true)
+        binding.webview.clearHistory()
+        binding.webview.getSettings().setJavaScriptEnabled(true)
+        binding.webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true)
 
-        map_line.setOnClickListener {
+        binding.mapLine.setOnClickListener {
             openMapListener()
         }
-        btn_direction.setOnClickListener {
+        binding.btnDirection.setOnClickListener {
             openMapListener()
         }
     }
@@ -196,19 +194,6 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
         fun onClicked()
     }
 
-    override fun onClick(v: View?) {
-        when(v){
-            btn_show_hotel_message -> {
-                expandListener(expand_hotel_message)
-            }
-            btn_canceled_policy -> {
-                expandListener(expand_canceled_policy)
-            }
-            btn_remark -> {
-                expandListener(expand_remark)
-            }
-        }
-    }
 
     private fun expandListener(expandHotelMessage: ExpandableLinearLayout) {
         if (expandHotelMessage.isExpanded){
@@ -227,7 +212,12 @@ class PageDetailHotelPurchase : LinearLayout, View.OnClickListener {
         visibility = View.GONE
     }
 
-    fun setDataHotel(data: DetailHotelPurchaseModel) {
+    fun setDataHotel(mData: DetailMyBookingModel) {
+        data = mData
+        showDataHotel()
+    }
+
+    private fun showDataHotel() {
 
     }
 }
