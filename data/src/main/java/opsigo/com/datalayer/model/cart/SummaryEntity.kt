@@ -379,7 +379,7 @@ data class RoutesItem(
     val destination: String? = null,
 
     @field:SerializedName("Transportation")
-    val transportation: Double = 0.0,
+    val transportation: Int = 0,
 
     @field:SerializedName("DepartureDateView")
     val departureDateView: String? = null,

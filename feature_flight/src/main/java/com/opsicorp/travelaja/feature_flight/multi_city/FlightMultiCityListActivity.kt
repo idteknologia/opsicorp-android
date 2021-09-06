@@ -275,7 +275,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         val model           = IdCartModel()
         model.id            = getProfile().employId
         model.title         = getProfile().title
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.idCart        = getProfile().idNumber
         model.mobilePhone   = getProfile().mobilePhone
         model.email         = getProfile().email
@@ -289,7 +289,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         model.id          = getProfile().employId
         model.idSim       = getProfile().sim
         model.title       = getProfile().title
-        model.name        = getProfile().name
+        model.name        = getProfile().fullName
         model.email       = getProfile().email
         model.birthDate   = getProfile().birthDate
         model.mobilePhone = getProfile().mobilePhone
@@ -299,7 +299,7 @@ class FlightMultiCityListActivity : BaseActivity(),
     private fun getPassportDataBooker(): PassportModel {
         val model = PassportModel()
         model.passporNumber = getProfile().passport
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.id            = getProfile().employId
         model.title         = getProfile().title
         model.birtDate      = getProfile().birthDate

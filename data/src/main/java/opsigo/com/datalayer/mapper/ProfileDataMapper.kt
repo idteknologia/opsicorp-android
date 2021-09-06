@@ -8,17 +8,17 @@ import opsigo.com.domainlayer.model.signin.ProfileApproverModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import java.util.ArrayList
 
-class ProfileEntityDataMapper{
+class ProfileDataMapper{
 
     fun transform(profileEntity: ProfileNewEntity): ProfileModel {
         val data = ProfileModel()
 
-        data.name        = profileEntity.fullName.toString()
+        data.fullName    = profileEntity.fullName.toString()
         data.firstName   = profileEntity.firstName.toString()
         data.lastName    = profileEntity.lastName.toString()
         data.nameAgent   = profileEntity.companyName.toString()
         data.position    = profileEntity.jobTitleName.toString()
-        data.address     = ""
+        data.titleName   = profileEntity.positionText.toString()
         data.email       = profileEntity.email.toString()
         data.employId           = profileEntity.employeeId.toString()
         data.phone              = profileEntity.mobilePhone.toString()

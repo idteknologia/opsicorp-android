@@ -1,6 +1,9 @@
 package opsigo.com.domainlayer.model.my_booking
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class ItemFlightModel(
 	val status: String? = null,
 	val passengers: List<PassengersItem?>? = null,
@@ -9,8 +12,9 @@ data class ItemFlightModel(
 	val segments: List<SegmentsItem?>? = null,
 	val originCity: String? = null,
 	val pnrCode: String? = null
-)
+):Parcelable
 
+@Parcelize
 data class SegmentsItem(
 	val origin: String? = null,
 	val status: String? = null,
@@ -31,5 +35,5 @@ data class SegmentsItem(
 	val departureDate: String? = null,
 	val departureDateDisplay: String? = null,
 	val seq: Int? = null
-)
+):Parcelable
 

@@ -1,7 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.seat_map
 
 import android.content.Intent
-import android.os.Build
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.opsicorp.travelaja.feature_flight.R
@@ -47,7 +46,7 @@ class SelectSeatActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButtonLi
             datalist = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
         }
         val dataProfile = Globals.getProfile(applicationContext)
-        tvPassengerSeat.text = "${dataProfile.title}.${dataProfile.name}"
+        tvPassengerSeat.text = "${dataProfile.title}.${dataProfile.fullName}"
         adapter.setData(datalist.dataFlight)
     }
 

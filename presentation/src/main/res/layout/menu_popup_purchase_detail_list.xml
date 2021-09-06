@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_marginRight="10dp"
+    android:layout_marginEnd="50dp"
     android:background="@drawable/rounded_button_white_r5"
     android:layout_height="wrap_content">
 
@@ -54,4 +54,22 @@
         android:textColor="#24253d"
         android:text="@string/back_to_homepage"
         />
+
+    <LinearLayout
+        android:layout_width="132dp"
+        android:layout_marginRight="7dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="7dp"
+        android:background="#d3d3d8"/>
+
+    <TextView
+        android:id="@+id/btn_download"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        android:text="@string/download_itinerary"/>
 </LinearLayout>

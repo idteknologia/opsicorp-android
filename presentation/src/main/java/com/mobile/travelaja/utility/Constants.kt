@@ -41,6 +41,7 @@ object Constants {
     var DATA_SSR            = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
+    val KEY_DATA_PARCELABLE      = "key_data_parcelable"
     val TYPE_PASSANGGER_ADULT    = "1"
     val TYPE_PASSANGGER_CHILD    = "2"
     val TYPE_PASSANGGER_INFANT   = "3"
@@ -110,6 +111,7 @@ object Constants {
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
     val KEY_POSITION_CART_FLIGHT = "keyCartFlight"
     val KEY_POSITION_SELECT_PASSENGER = "keySelectPassenger"
+    val KEY_POSITION_SELECTED_ITEM = "positionSelectedItem"
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069
@@ -178,6 +180,9 @@ object Constants {
     val OPTION_HOTEL_REJECT      = 76
     var isBisnisTrip             = true
     var isAllreadyFilterFlight   = false
+
+    var UDARA     = 1
+    var NON_UDARA = 2
 
     //hotel
     val ONCLICK_INFO_CANCELATION_HOTEL = 8001
@@ -327,6 +332,22 @@ object Constants {
     val IS_ALLREADY_FLITER_FLIGHT  = "isAllreadyFilter"
     val FILTER_FLIGHT_TRANSIT      = "filter_transit"
     val DATA_SELECT_PURCHASE       = "dataPuchase"
+
+
+    object CodeCompany {
+        var  Standard        = 1
+        var  Carrefour       = 2
+        var  Newcrest        = 3
+        var  Connectures     = 4
+        var  Avrist          = 5
+        var  Ericson         = 6
+        var  BPM             = 7
+        var  Pertamina       = 8
+        var  Pegadaian       = 9
+        var  BRI             = 10
+        var  PertaminaDTM    = 11
+        var  TravelAjaBasic  = 12
+    }
 
     object SendTo {
         val Participant = 0

@@ -41,7 +41,6 @@ import java.lang.Exception
 import android.view.View
 import android.os.Bundle
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
-import kotlinx.android.synthetic.main.detail_cart_item_adapter.*
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
 
@@ -102,7 +101,7 @@ class BookingContactFlight : BaseActivity(),
         val dataProfile = getProfile()
         et_number_contact.setText(dataProfile.mobilePhone)
         tv_email_contact.text = dataProfile.email
-        et_name_contact.setText(dataProfile.name)
+        et_name_contact.setText(dataProfile.fullName)
 
         if (Constants.multitrip){
             adapter.setData(dataOrder.routes.last().flightResult.passenger)
@@ -365,7 +364,7 @@ class BookingContactFlight : BaseActivity(),
             showAllert("Sorry",getString(R.string.booking_contact_not_empty))
         }
         else {
-            if (Constants.pertaminaUrl==getBaseUrl()){
+            if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
                 if (phoneContactIsEmpty()){
                     showAllert("Sorry",getString(R.string.phone_contact_not_empty))
                 }
@@ -457,7 +456,7 @@ class BookingContactFlight : BaseActivity(),
     }
 
     private fun getDataFlight(): HashMap<Any, Any> {
-        if(getBaseUrl()==Constants.pertaminaUrl){
+        if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
             val model = ReserveFlightMulticityRequest()
             model.dataBooking = getDataBooking()
             model.header = getHeaderMulticity()

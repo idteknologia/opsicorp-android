@@ -185,8 +185,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         if (dataProfile.imageUrl.isNotEmpty())
             Picasso.get().load(dataProfile.imageUrl)
                     .into(img_profile)
-        if (dataProfile.name.isNotEmpty()) {
-            tvAlphabetName.text = generateAlphabetName(dataProfile.name)
+        if (dataProfile.fullName.isNotEmpty()) {
+            tvAlphabetName.text = generateAlphabetName(dataProfile.fullName)
         }
         setTypeAccount()
         setImageContent()
@@ -231,14 +231,14 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
 
     private fun formatName(dataProfile: ProfileModel): String {
         var name = ""
-        if (dataProfile.name.length > 15) {
-            if ((dataProfile.name.split(" ")[1].length + dataProfile.name.split(" ")[0].length) < 15) {
-                name = dataProfile.name.split(" ")[0] + " " + dataProfile.name.split(" ")[1]
+        if (dataProfile.fullName.length > 15) {
+            if ((dataProfile.fullName.split(" ")[1].length + dataProfile.fullName.split(" ")[0].length) < 15) {
+                name = dataProfile.fullName.split(" ")[0] + " " + dataProfile.fullName.split(" ")[1]
             } else {
-                name = dataProfile.name.split(" ")[0]
+                name = dataProfile.fullName.split(" ")[0]
             }
         } else {
-            name = dataProfile.name
+            name = dataProfile.fullName
         }
         return name
     }

@@ -1188,6 +1188,9 @@ Please add your trip item for Approval."
     <string name="alert_not_include_other_expense">Are you sure save Reimbursement not include with Other Expense</string>
     <string name="not_text"></string>
     <string name="trip_history">Trip History</string>
+
+    <string name="not_available_flight">This trip not available flight</string>
+    <string name="purchase_hotel_detail">E-ticket Itinerary</string>
     <string name="open_setting">Setting Application</string>
     <string name="alert_application_need_permission_storage_and_camera">Application need permission Storage &amp; Camera access</string>
     <string name="currency">Currency</string>

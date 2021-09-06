@@ -1,7 +1,10 @@
 package opsigo.com.domainlayer.model.my_booking
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 
+@Parcelize
 data class ItemHotelPurchase(
 	var voucerCode: String? = null,
 	var hotelName: String? = null,
@@ -20,12 +23,13 @@ data class ItemHotelPurchase(
 	var roomsTotal: Int? = null,
 	var facility : ArrayList<FacilityHotelModel> = ArrayList(),
 	var guests: List<GuestsItems?>? = null
-)
+):Parcelable
 
+@Parcelize
 data class GuestsItems(
 	var firstName: String? = null,
 	var bedType: String? = null,
 	var maxBedType :String? = null,
 	var index: Int? = null,
-)
+):Parcelable
 

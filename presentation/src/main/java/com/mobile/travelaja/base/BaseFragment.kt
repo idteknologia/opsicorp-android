@@ -315,4 +315,8 @@ abstract class BaseFragment: Fragment()  {
     fun hideLoadingOpsicorp(){
         loading.dismiss()
     }
+
+    fun getConfigCompany(): ConfigModel {
+        return Serializer.deserialize(Globals.getDataPreferenceString(requireContext(), "config"), ConfigModel::class.java)
+    }
 }

@@ -32,6 +32,8 @@ import android.view.View
 import android.util.Log
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }
@@ -94,6 +96,16 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
             e.printStackTrace()
             btn_bottom_accomodation.visibility = View.VISIBLE
             initButtonBottom()
+        }
+
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            val dataTripPlan = Serializer.deserialize(
+                Constants.DATA_SUCCESS_CREATE_TRIP,
+                SuccessCreateTripPlaneModel::class.java
+            )
+            if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.UDARA) }.isEmpty()){
+                btn_bottom_accomodation.setButtonSelectedPosition(1)
+            }
         }
 
     }

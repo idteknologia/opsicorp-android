@@ -43,6 +43,9 @@ data class ProfileNewEntity(
 	@field:SerializedName("JobTitleName")
 	val jobTitleName: String? = null,
 
+	@field:SerializedName("PositionText")
+	val positionText: String? = null,
+
 	@field:SerializedName("SignedUserIdOutlook")
 	val signedUserIdOutlook: Any? = null,
 

@@ -311,7 +311,7 @@ class NearbyActivity : BaseActivity() {
 
 
     private fun setDataCountry() {
-        if (getBaseUrl()==Constants.pertaminaUrl){
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
             countryData.clear()
             countryByRoute.forEach {
                 val model = SelectNationalModel()
@@ -341,7 +341,7 @@ class NearbyActivity : BaseActivity() {
     }
 
     private fun getDataCity(country: SelectNationalModel) {
-        if (getBaseUrl()==Constants.pertaminaUrl){
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
             clearFilter()
             cityData.clear()
             countryByRoute.filter { it.countryName==country.name }.forEach {

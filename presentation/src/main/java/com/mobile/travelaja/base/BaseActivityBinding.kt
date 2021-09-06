@@ -20,6 +20,7 @@ import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.ConfigModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 
 
@@ -152,6 +153,7 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
 
     fun gotoActivityWithBundle(clas : Class<*>?,bundle: Bundle){
         val intent = Intent(this,clas)
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
         intent.putExtra("data",bundle)
         startActivity(intent)
     }
@@ -200,5 +202,9 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
 
     fun showAllert(title: String, message: String) {
         Globals.showAlert(title, message, this)
+    }
+
+    fun getConfigCompany(): ConfigModel {
+        return Serializer.deserialize(Globals.getDataPreferenceString(this, "config"), ConfigModel::class.java)
     }
 }

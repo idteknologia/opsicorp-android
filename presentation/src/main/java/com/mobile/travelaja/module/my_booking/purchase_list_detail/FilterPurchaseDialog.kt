@@ -13,10 +13,10 @@ import android.view.LayoutInflater
 import kotlin.collections.ArrayList
 import com.mobile.travelaja.utility.Globals
 import android.graphics.drawable.ColorDrawable
-import com.mobile.travelaja.databinding.FilterPurchaseListBinding
 import com.mobile.travelaja.utility.DateConverter
 import com.opsicorp.sliderdatepicker.utils.Constant
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.databinding.FilterPurchaseListBinding
 import com.mobile.travelaja.module.my_booking.model.FilterPurchaseModel
 import com.mobile.travelaja.module.my_booking.adapter.FilterPurchaceAdapter
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
