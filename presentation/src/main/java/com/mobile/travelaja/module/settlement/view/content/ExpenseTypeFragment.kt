@@ -26,7 +26,6 @@ class ExpenseTypeFragment : BaseListFragment<ExpenseType>(),ExpenseTypeListener 
         adapter = ExpenseTypeAdapter(this,args.nameCompare)
         val items = args.expenseType
         adapter.list = items.toMutableList()
-        adapter.notifyDataSetChanged()
         isEnabledRefresh(false)
         setTitleName(R.string.expense_type)
         return adapter

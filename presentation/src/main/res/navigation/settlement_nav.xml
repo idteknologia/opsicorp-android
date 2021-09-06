@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/settlement_nav"
-    app:startDestination="@id/createSettlement">
+    app:startDestination="@id/settlementFragment">
     <fragment
         android:id="@+id/tripFragment"
         android:name="com.mobile.travelaja.module.settlement.view.TripFragment"
@@ -214,6 +214,10 @@
         <argument android:name="idTrip"
                   app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/settlementFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.fragment.SettlementFragment"
+        android:label="SettlementFragment" />
 
 
 </navigation>

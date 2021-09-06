@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="module.signin.login.activity.TokenIdamanActivity">
+
+    <TextView
+        android:id="@+id/tvTitleCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:text="Code"/>
+
+    <TextView
+        android:id="@+id/tvCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:layout_marginTop="16dp"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCode" />
+
+    <TextView
+        android:id="@+id/tvTitleCodeVerifier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tvCode"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:text="Code Verifier "/>
+
+    <TextView
+        android:id="@+id/tvCodeVerifier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true"
+        android:layout_marginTop="16dp"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleCodeVerifier" />
+
+    <Button
+        android:id="@+id/btnCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Copy Code"
+        app:layout_constraintTop_toBottomOf="@+id/tvCodeVerifier" />
+
+    <Button
+        android:id="@+id/btnCodeVerifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copy Code Verifier"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCodeVerifier" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

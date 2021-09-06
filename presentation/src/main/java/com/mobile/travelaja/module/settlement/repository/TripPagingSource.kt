@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.settlement.repository
 
+import androidx.paging.PagingState
 import com.mobile.travelaja.base.paging.PageKeyedPagingSource
 import opsigo.com.domainlayer.model.ResultList
 import opsigo.com.datalayer.network.ServiceApi
@@ -13,4 +14,5 @@ class TripPagingSource(private val api : ServiceApi, private val query : Mutable
         query["OrderBy"] = "Code"
         return api.getTripList(query)
     }
+
 }

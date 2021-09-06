@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import opsigo.com.domainlayer.model.Event
 import opsigo.com.domainlayer.model.trip.Trip
 
-class TripViewModel(private val repository : TripRepository) : ViewModel() {
+class TripViewModel(val repository : TripRepository) : ViewModel() {
     private var currentResult: Flow<PagingData<Trip>>? = null
 
     private val _searchQuery = MutableLiveData<Event<String>>()

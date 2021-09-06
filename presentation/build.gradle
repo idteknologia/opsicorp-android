@@ -16,6 +16,7 @@ android {
         }
     }
     compileSdkVersion rootProject.compileSdkVersion
+
     defaultConfig {
         applicationId "com.opsigo.travelaja"
         minSdkVersion rootProject.minSdkVersion
@@ -26,14 +27,12 @@ android {
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         signingConfig signingConfigs.releases
-
         manifestPlaceholders = [
                 'appAuthRedirectScheme': 'com.mobile.travelaja'
         ]
     }
     buildTypes {
         release {
-            minifyEnabled
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -118,6 +117,12 @@ android {
     }
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion "1.5.21"
+        kotlinCompilerExtensionVersion compose_version
     }
 }
 
@@ -143,7 +148,7 @@ dependencies {
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
     testImplementation testDependencies.robolectric
-    testImplementation 'androidx.test:core:1.0.0'
+    testImplementation 'androidx.test:core:1.4.0'
     testImplementation 'org.json:json:20140107'
 
 //    //noinspection GradleCompatible
@@ -196,7 +201,6 @@ dependencies {
 //    showcase
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
 
-//    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
@@ -220,7 +224,10 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.3.1"
 
 
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    debugImplementation ("androidx.fragment:fragment-testing:$fragment_version"){
+        exclude group: 'androidx.test', module: 'core'
+    }
     implementation 'com.google.android.play:core-ktx:1.8.1'
 
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -240,8 +247,16 @@ dependencies {
     // Integration with observables
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
     implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
-
     // UI Tests
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha12"
+    implementation 'com.google.accompanist:accompanist-swiperefresh:0.17.0'
+    androidTestImplementation "org.hamcrest:hamcrest:2.2"
+
 
 }

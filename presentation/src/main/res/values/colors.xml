@@ -159,6 +159,6 @@
     <color name="chipStrokeEnabled">#009688</color>
 
     <color name="colorBackground">#1FE71844</color>
-
+    <color name="chipStatus">#b2bbc6</color>
 
 </resources>

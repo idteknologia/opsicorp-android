@@ -1,6 +1,7 @@
 package com.mobile.travelaja.base.paging
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import opsigo.com.domainlayer.model.ResultList
 
 abstract class PageKeyedPagingSource<T:Any> : PagingSource<Int,T>() {
@@ -27,7 +28,10 @@ abstract class PageKeyedPagingSource<T:Any> : PagingSource<Int,T>() {
 
     abstract suspend fun getResultFromService(page : Int): ResultList<T>
 
-
-
-
+    override fun getRefreshKey(state: PagingState<Int, T>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
+                ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
+        }
+    }
 }
