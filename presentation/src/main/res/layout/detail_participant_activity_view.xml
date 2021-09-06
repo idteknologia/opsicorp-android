@@ -348,7 +348,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="90dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#939396"
@@ -380,13 +380,12 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
-                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="90dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#939396"
@@ -404,6 +403,228 @@
 
                     <TextView
                         android:id="@+id/tv_cost_center_price"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Flight"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_flight"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Hotel"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_hotel"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Trasportation"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_transportation"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Allowance"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_allowance"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Allowance Event"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_allowance_event"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Laundry"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_laundry"
                         style="@style/RobotoMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

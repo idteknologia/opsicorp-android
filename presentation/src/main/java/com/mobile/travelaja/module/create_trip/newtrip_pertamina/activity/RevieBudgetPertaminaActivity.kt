@@ -142,7 +142,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             val dataRoutes = RoutesItem()
             dataRoutes.transportation = routesItinerary.Transportation
             dataRoutes.departureDate = routesItinerary.DepartureDateView
-            dataRoutes.departureDateView = routesItinerary.DepartureDateView
+            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
             dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
@@ -305,9 +305,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 succesCreateTrip()
             }
         } else if (dataCashAdvance.isAllowed.equals(true)) {
-            if (bankTransferEmpty == true) {
-                Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_bank_transfer), this)
-            } else if (cashAdvanceValue > cashAdvanceValueLimit) {
+            if (cashAdvanceValue > cashAdvanceValueLimit) {
                 Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this)
                 tv_max_amount.visible()
                 tv_max_amount.text = "Max.${(Globals.formatAmount(dataCashAdvance.maxAmount))}"

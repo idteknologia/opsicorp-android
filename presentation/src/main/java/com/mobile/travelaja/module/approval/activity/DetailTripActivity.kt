@@ -148,7 +148,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
-                /*postEstimateCost()*/
+                postEstimateCost()
                 hideLoadingOpsicorp()
                 initRecyclerViewApproval()
 
@@ -290,6 +290,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                                 bundle.putString(Constants.EMPLOY_ID, dataParticipant[position].employId)
                                 bundle.putString(Constants.STATUS_MEMBER, dataParticipant[position].status)
                                 bundle.putString(Constants.DetailDestination, tv_destination.text.toString() )
+                                bundle.putString(Constants.EstCost, Serializer.serialize(tripCost, EstimatedCostTravelRequestModel::class.java))
                                 val status = dataParticipant[position].status
                                 gotoActivityResultWithBundle(DetailParticipantActivity::class.java, bundle, Constants.DETAIL_PERTICIPANT_INTENT)
 

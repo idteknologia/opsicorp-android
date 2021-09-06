@@ -23,6 +23,7 @@ import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
+import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import java.util.HashMap
 
 class DetailParticipantActivity : BaseActivity()
@@ -47,6 +48,8 @@ class DetailParticipantActivity : BaseActivity()
 
     var idTripCode    = ""
     var tripSummary   = SummaryModel()
+    var estCost = ""
+    var tripCost      = EstimatedCostTravelRequestModel()
     var idParticipant = ""
     var employId      = ""
     lateinit var dataAccomodation: TripParticipantsItemModel
@@ -60,6 +63,7 @@ class DetailParticipantActivity : BaseActivity()
         val bundle = intent.getBundleExtra("data")
         id  = bundle?.getString(Constants.KEY_INTENT_TRIPID).toString()
         str = bundle?.getString(Constants.Summary).toString()
+        estCost = bundle?.getString(Constants.EstCost).toString()
         status = bundle?.getString(Constants.STATUS_MEMBER).toString()
         jobTitle = Globals.getProfile(this).approval.reqPosName
         nameParticipant = Globals.getProfile(this).approval.reqName
@@ -69,6 +73,7 @@ class DetailParticipantActivity : BaseActivity()
         employId      = bundle?.getString(Constants.EMPLOY_ID).toString()
         destination = bundle?.getString(Constants.DetailDestination).toString()
         tripSummary = Serializer.deserialize(str,SummaryModel::class.java)
+        tripCost = Serializer.deserialize(estCost,EstimatedCostTravelRequestModel::class.java)
         idTripCode = tripSummary.tripCode
         updateView()
 
@@ -321,6 +326,13 @@ class DetailParticipantActivity : BaseActivity()
         tv_name.text     = nameParticipant
         tv_cost_center.text   = costCenter
         tv_budget_name.text   = budget
+        tv_cost_center_price.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
+        tv_est_flight.text = "IDR ${Globals.formatAmount(tripCost.estFlight)}"
+        tv_est_hotel.text = "IDR ${Globals.formatAmount(tripCost.estHotel)}"
+        tv_est_transportation.text = "IDR ${Globals.formatAmount(tripCost.estTransportation)}"
+        tv_est_allowance.text = "IDR ${Globals.formatAmount(tripCost.estAllowance)}"
+        tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripCost.estAllowanceEvent)}"
+        tv_est_laundry.text = "IDR ${Globals.formatAmount(tripCost.estLaundry)}"
 
     }
 

@@ -282,6 +282,7 @@ object Constants {
     var Reserve                  = "Reserve"
     var TripSummary              = "TripSummary"
     var Summary                  = "Summary"
+    var EstCost                  = "EstCost"
     var Number                   = "Number"
     var ID_PARTICIPANT           = "iDParticipant"
     var EMPLOY_ID                = "employId"
