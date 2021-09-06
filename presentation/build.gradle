@@ -116,13 +116,12 @@ android {
         enabled = true
     }
     buildFeatures {
-        viewBinding true
         compose true
     }
 
     composeOptions {
-        kotlinCompilerVersion "1.5.21"
         kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.21'
     }
 }
 
@@ -133,7 +132,6 @@ dependencies {
     def rootDependencies = rootProject.ext.rootDependencies
     def testDependencies = rootProject.ext.presentationTestDependencies
     def dataDependencies  = rootProject.ext.dataDependencies
-
 
     implementation "androidx.constraintlayout:constraintlayout:$constrainLayoutVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
@@ -153,9 +151,8 @@ dependencies {
 
 //    //noinspection GradleCompatible
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test:rules:1.4.0'
+//    androidTestImplementation 'androidx.test:rules:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
-//    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
     implementation 'androidx.annotation:annotation:1.0.0'
 
     implementation rootDependencies.gson
@@ -238,15 +235,15 @@ dependencies {
     // Material Design
     implementation "androidx.compose.material:material:$compose_version"
     // Material design icons
-    implementation "androidx.compose.material:material-icons-core:$compose_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+//    implementation "androidx.compose.material:material-icons-core:$compose_version"
+//    implementation "androidx.compose.material:material-icons-extended:$compose_version"
     // Integration with activities
     implementation 'androidx.activity:activity-compose:1.3.1'
     // Integration with ViewModels
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
     // Integration with observables
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
-    implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
+//    implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
     // UI Tests
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
