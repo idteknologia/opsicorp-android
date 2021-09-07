@@ -78,7 +78,7 @@ fun ItemSettlement(data: Trip) {
             top.linkTo(parent.top)
         })
         Text(
-            text = data.purpose,
+            text = data.Purpose,
             fontSize = 14.sp,
             fontFamily = fontFamily, fontWeight = FontWeight.Bold,
             modifier = Modifier.constrainAs(purpose) {

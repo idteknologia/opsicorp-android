@@ -20,6 +20,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -32,12 +34,14 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.paging.LoadState
 import androidx.paging.Pager
+import androidx.paging.PagingData
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Utils
+import kotlinx.coroutines.flow.Flow
 
 @Composable
 fun <T> ComposeListScreen(list: List<T>, content: @Composable (T) -> Unit) {
@@ -59,14 +63,9 @@ fun <T : Any> PagingListScreen(
     val lazyPagingItems = pager.flow.collectAsLazyPagingItems()
     val context = LocalContext.current
     val swipeRefreshState = rememberSwipeRefreshState(isRefreshing = true)
-
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (search, swipeRefresh) = createRefs()
+    Column(modifier = Modifier.fillMaxSize()) {
         SearchViewList(
             placeHolder = placeHolder,
-            modifier = Modifier.constrainAs(search) {
-                top.linkTo(parent.top)
-            },
             onSearch = {
                 onSearch.invoke(it)
                 lazyPagingItems.refresh()
@@ -75,36 +74,12 @@ fun <T : Any> PagingListScreen(
         SwipeRefresh(
             state = swipeRefreshState,
             modifier = Modifier
-                .constrainAs(swipeRefresh) {
-                    top.linkTo(search.bottom)
-                    bottom.linkTo(parent.bottom)
-                    height = Dimension.fillToConstraints
-                },
+                .fillMaxWidth(),
             onRefresh = {
                 lazyPagingItems.refresh()
             }) {
-
-            if (lazyPagingItems.loadState.refresh is LoadState.Error) {
-                swipeRefreshState.isRefreshing = false
-                val e = lazyPagingItems.loadState.refresh as LoadState.Error
-                var error = ""
-                Utils.handleErrorMessage(context, e.error) {
-                    error = it
-                }
-                if (lazyPagingItems.itemCount > 0) {
-                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
-                } else {
-                    EmptyListView(
-                        titleRes = R.string.uh_oh,
-                        buttonName = R.string.txt_try_again,
-                        subTitle = error
-                    ) {
-                        lazyPagingItems.retry()
-                    }
-
-                }
-            }
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(modifier = Modifier
+                .semantics { contentDescription = "paggingList" }) {
                 items(lazyPagingItems) { item ->
                     content(item)
                 }
@@ -113,27 +88,61 @@ fun <T : Any> PagingListScreen(
                         loadState.refresh is LoadState.Loading -> {
                             swipeRefreshState.isRefreshing = true
                         }
-                        loadState.refresh is LoadState.NotLoading -> {
-                            swipeRefreshState.isRefreshing = false
-                        }
                         loadState.append is LoadState.Loading -> {
-                            item { CircularProgressIndicator() }
+                            swipeRefreshState.isRefreshing = false
+                            item {
+                                Box(
+                                    modifier = Modifier.fillParentMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    CircularProgressIndicator()
+                                }
+                            }
                         }
+                        loadState.refresh is LoadState.Error -> {
+                            item {
+                                swipeRefreshState.isRefreshing = false
+                                val e = lazyPagingItems.loadState.refresh as LoadState.Error
+                                var error = ""
+                                Utils.handleErrorMessage(context, e.error) {
+                                    error = it
+                                }
+                                if (lazyPagingItems.itemCount > 0) {
+                                    Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+                                } else {
+                                    EmptyListView(
+                                        titleRes = R.string.uh_oh,
+                                        buttonName = R.string.txt_try_again,
+                                        subTitle = error
+                                    ) {
+                                        lazyPagingItems.retry()
+                                    }
+                                }
+                            }
+                        }
+
                         loadState.append is LoadState.Error -> {
-                            val e = lazyPagingItems.loadState.refresh as LoadState.Error
+                            item {
+                                Box(
+                                    modifier = Modifier.fillParentMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    ButtonChip(nameRes = R.string.txt_try_again) {
+                                        retry()
+                                    }
+                                }
+                            }
+                            val e = lazyPagingItems.loadState.append as LoadState.Error
                             Utils.handleErrorMessage(context, e.error) {
                                 Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                             }
-                            item {
-                                ButtonChip(nameRes = R.string.txt_try_again) {
-                                    retry()
-                                }
-                            }
+
                         }
                     }
                 }
             }
         }
+
     }
 }
 
@@ -295,7 +304,7 @@ fun EmptyListView(
                 }
                 .aspectRatio(16 / 9f))
         ButtonFilled(buttonName = buttonName,
-            onClick = onClickAction,
+            onClickAction = onClickAction,
             enabled = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -308,14 +317,16 @@ fun EmptyListView(
 @Composable
 fun ButtonFilled(
     @StringRes buttonName: Int,
-    onClick: () -> Unit,
+    onClickAction: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean
 ) {
-    Button(
-        onClick = onClick,
+    TextButton(
+        onClick = onClickAction,
         enabled = enabled,
-        modifier = modifier.height(dimensionResource(id = R.dimen.buttonHeight)),
+        modifier = modifier
+            .height(dimensionResource(id = R.dimen.buttonHeight))
+            .semantics { contentDescription = "ButtonRetry" },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(id = R.color.buttonColor),
             disabledBackgroundColor = Color.LightGray,
@@ -331,42 +342,46 @@ fun ButtonFilled(
     }
 }
 
-@Preview(device = Devices.PIXEL_2)
+@Preview()
 @Composable
 fun ButtonFilledPreview() {
-    ButtonFilled(
-        buttonName = R.string.txt_try_again,
-        onClick = { },
-        enabled = true,
-        modifier = Modifier.fillMaxWidth()
-    )
-}
-
-@Preview(device = Devices.PIXEL_2, showBackground = true, showSystemUi = true)
-@Composable
-fun EmptyListViewPreview() {
-    val error = "We're having difficulty connecting to the server Please check your connection."
-    EmptyListView(
-        titleRes = R.string.uh_oh,
-        buttonName = R.string.txt_try_again,
-        subTitle = error
-    ) {
-    }
-}
-
-@Preview(device = Devices.PIXEL_2, showBackground = true, showSystemUi = true)
-@Composable
-fun ListPreview() {
-    ComposeListScreen(list = listOf<String>("One")) {
-        Box(
-            modifier = Modifier
-                .fillMaxHeight()
-                .background(Color.Blue)
-        ) {
-            EmptyListViewPreview()
+    val count = remember { mutableStateOf(0) }
+    TextButton(
+        onClick = {
+            count.value++
         }
+    ) {
+        Text(
+            text = "click ${count.value}"
+        )
     }
 }
+
+//@Preview(device = Devices.PIXEL_2, showBackground = true, showSystemUi = true)
+//@Composable
+//fun EmptyListViewPreview() {
+//    val error = "We're having difficulty connecting to the server Please check your connection."
+//    EmptyListView(
+//        titleRes = R.string.uh_oh,
+//        buttonName = R.string.txt_try_again,
+//        subTitle = error
+//    ) {
+//    }
+//}
+//
+//@Preview(device = Devices.PIXEL_2, showBackground = true, showSystemUi = true)
+//@Composable
+//fun ListPreview() {
+//    ComposeListScreen(list = listOf<String>("One")) {
+//        Box(
+//            modifier = Modifier
+//                .fillMaxHeight()
+//                .background(Color.Blue)
+//        ) {
+//            EmptyListViewPreview()
+//        }
+//    }
+//}
 
 //@Preview
 //@Composable

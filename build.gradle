@@ -43,5 +43,5 @@ ext {
     coroutines_version = '1.4.1'
     viewModel_version ='2.3.1'
     paging_version = '3.0.0-alpha04'
-    compose_version = '1.1.0-alpha01'
+    compose_version = '1.0.1'
 }
