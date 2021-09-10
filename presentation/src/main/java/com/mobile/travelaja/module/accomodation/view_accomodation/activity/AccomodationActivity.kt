@@ -137,7 +137,11 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     override fun three() {
         //getFlightFragment()
-        getTrainFragment()
+        if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
+            showDialogNotAuthorized(false)
+        } else {
+            getTrainFragment()
+        }
     }
 
     override fun four() {
