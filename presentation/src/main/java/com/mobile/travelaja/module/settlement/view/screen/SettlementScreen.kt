@@ -1,10 +1,13 @@
 package com.mobile.travelaja.module.settlement.view.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -12,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -32,11 +36,20 @@ import opsigo.com.domainlayer.model.trip.Trip
 
 @Composable
 fun SettlementScreen(onClickClose: () -> Unit) {
-    val query = mutableMapOf<String, Any>()
+    val query by remember { mutableStateOf(mutableMapOf<String,Any>()) }
     val context = LocalContext.current
     val viewModel : TripViewModel = androidx.lifecycle.viewmodel.compose.viewModel(factory = DefaultViewModelFactory(false,context))
     val pager = viewModel.repository.pagingSettlement(query)
     var statePager by remember { mutableStateOf(pager) }
+    val selectedNames = listOf(
+        R.string.see_all,
+        R.string.draft,
+        R.string.waiting_for_approval,
+        R.string.ask_to_revise,
+        R.string.waiting_for_verification,
+        R.string.waiting_for_payment,
+        R.string.completed,
+        R.string.complain)
     PagingListScreen(
         placeHolder = R.string.txt_enter_trip_code,
         pager = statePager,
@@ -46,10 +59,25 @@ fun SettlementScreen(onClickClose: () -> Unit) {
             }
         },
         onSearch = {
-           query["Keyword"] = it
+            if (it.isNotEmpty()){
+                query["Keyword"] = it
+            }else{
+                query.remove("Keyword")
+            }
            statePager = viewModel.repository.pagingSettlement(query)
         },
-        onClickClose = onClickClose
+        onClickClose = onClickClose,
+        selectedNames = selectedNames,
+        selectedAction = {
+            val status =  selectedNames.indexOf(it)
+            query.remove("Keyword")
+            if (status != 0){
+                query["Status"] = status - 1
+            }else {
+                query.remove("Status")
+            }
+            statePager = viewModel.repository.pagingSettlement(query)
+        }
     )
 }
 
@@ -69,10 +97,14 @@ fun ItemSettlement(data: Trip) {
     )
     ConstraintLayout(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(
+                top = 16.dp,
+                end = dimensionResource(id = R.dimen.margin_default),
+                start = dimensionResource(id = R.dimen.margin_default)
+            )
             .fillMaxWidth()
     ) {
-        val (type, purpose, icon, dirDate, tripCode) = createRefs()
+        val (type, purpose, icon, dirDate, tripCode,divider) = createRefs()
         TextChip(text = data.StatusView, Modifier.constrainAs(type) {
             start.linkTo(parent.start)
             top.linkTo(parent.top)
@@ -113,6 +145,11 @@ fun ItemSettlement(data: Trip) {
             modifier = Modifier.constrainAs(tripCode) {
                 end.linkTo(parent.end)
                 top.linkTo(icon.top)
+            })
+        Divider(modifier = Modifier
+            .fillMaxWidth()
+            .constrainAs(divider) {
+                top.linkTo(tripCode.bottom, 16.dp)
             })
     }
 }

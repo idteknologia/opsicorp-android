@@ -80,6 +80,7 @@
 
     <dimen name="buttonHeight">46dp</dimen>
     <dimen name="buttonOval">38dp</dimen>
+    <dimen name="buttonSelected">32dp</dimen>
     <dimen name="size_image_btn_second_content">48dp</dimen>
     <dimen name="size_button_second_content">98dp</dimen>
     <dimen name="margin_default">20dp</dimen>

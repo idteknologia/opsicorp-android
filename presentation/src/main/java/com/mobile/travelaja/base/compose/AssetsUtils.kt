@@ -1,5 +1,6 @@
 package com.mobile.travelaja.base.compose
 
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -11,4 +12,6 @@ object AssetsUtils {
         Font(R.font.lato_bold, weight = FontWeight.Bold),
         Font(R.font.lato_black, weight = FontWeight.Black)
     )
+
+    val Red = Color(0xffff0000)
 }

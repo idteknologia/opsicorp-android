@@ -15,7 +15,7 @@ class TripListRepository(private val api : ServiceApi) : TripRepository {
         }.flow
 
     override fun pagingSettlement(query: MutableMap<String, Any>): Pager<Int, Trip> =
-        Pager(PagingConfig(PageKeyedPagingSource.SIZE)){
+        Pager(PagingConfig(PageKeyedPagingSource.SIZE,enablePlaceholders = false)){
             TripPagingSource(api,query)
         }
 }

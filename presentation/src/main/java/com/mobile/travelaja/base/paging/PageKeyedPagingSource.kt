@@ -2,13 +2,14 @@ package com.mobile.travelaja.base.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.mobile.travelaja.utility.Utils
 import okio.IOException
 import opsigo.com.domainlayer.model.ResultList
 import retrofit2.HttpException
 
 abstract class PageKeyedPagingSource<T:Any> : PagingSource<Int,T>() {
     companion object {
-        const val SIZE = 10
+        const val SIZE = 30
         const val INDEX_KEY = "Index"
         const val SIZE_KEY = "Size"
         private const val STARTING_PAGE_INDEX = 1
@@ -18,11 +19,16 @@ abstract class PageKeyedPagingSource<T:Any> : PagingSource<Int,T>() {
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
             val data = getResultFromService(page).items
-            LoadResult.Page(
+            if (data.isNotEmpty()){
+                LoadResult.Page(
                     data = data.toList(),
                     prevKey = null,
-                    nextKey = if (data.isEmpty()) null else page + 1
-            )
+                    nextKey = page + 1
+                )
+            }else {
+                LoadResult.Error(Throwable(Utils.EMPTY))
+            }
+
         } catch (e: Throwable) {
             LoadResult.Error(e)
         }catch (e:IOException){
