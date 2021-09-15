@@ -279,9 +279,9 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         m_endate            = mEndDate
     }
 
-    override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
+    /*override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
 
-    }
+    }*/
 
     override fun SuccessCreateTrip() {
         gotoSuccessTrip()

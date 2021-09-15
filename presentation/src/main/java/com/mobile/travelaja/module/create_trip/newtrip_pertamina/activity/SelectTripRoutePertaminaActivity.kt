@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
@@ -19,7 +20,11 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.TypeTran
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itinerary
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.ItineraryViewModel
 import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 
 class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     View.OnClickListener {
@@ -28,6 +33,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private var starDate = ""
     private var endDate = ""
     private var position = -1
+    var dataChangeTrip = ChangeTripModel()
 
     // format 15-07-2021
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +59,25 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         }
         binding.btAddOtherFlight.setOnClickListener {
            addItem()
+        }
+
+        getDataChangeTrip()
+    }
+
+    private fun getDataChangeTrip() {
+        dataChangeTrip = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_change_trip"), ChangeTripModel::class.java)
+        if (dataChangeTrip.isChangeTrip.equals(true)){
+            viewModel.itineraries.clear()
+            starDate = dataChangeTrip.startDate
+            endDate = dataChangeTrip.returnDate
+            dataChangeTrip.routes.forEach {
+                val itinerary = Itinerary(
+                        Transportation = it.transportation,
+                        Origin = it.origin,
+                        Destination = it.destination
+                )
+                viewModel.itineraries.add(itinerary)
+            }
         }
     }
 

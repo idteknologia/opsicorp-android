@@ -381,6 +381,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.wbsNo = dataTrip.wbsNumber
         dataRequest.withPartner = dataTrip.isTripPartner
         dataRequest.partnerName = dataTrip.tripPartnerName
+        dataRequest.isChangeTrip = dataTrip.isChangeTrip
+        dataRequest.trnNumber = dataTrip.trnNumber
+        dataRequest.tripCodeOld = dataTrip.tripCodeOld
+        dataRequest.tripIdOld = dataTrip.tripIdOld
 
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()

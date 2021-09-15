@@ -67,7 +67,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         val city          = Constants.DATA_CITY.filter { it.name.toLowerCase().contains("bandung") }.first() //"SURABAYA (SUB)"
 
         view.setDataAutomatically(startDateView,endDateView,city.name,city.id,startDate,endDate)
-        view.setDataAutomatically2(startDateView,endDateView,startDate,endDate)
+//        view.setDataAutomatically2(startDateView,endDateView,startDate,endDate)
     }
 
     private fun getDataCity() {

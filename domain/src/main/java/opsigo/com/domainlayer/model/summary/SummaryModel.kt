@@ -47,6 +47,7 @@ data class SummaryModel(
         var parterName :String = "",
         var wbsNo : String = "",
         var golper : Int = 0,
+        var isChangeTrip :Boolean = false,
 
         var paymentStatus: String = "",
         var paymentStatusView : String = "",

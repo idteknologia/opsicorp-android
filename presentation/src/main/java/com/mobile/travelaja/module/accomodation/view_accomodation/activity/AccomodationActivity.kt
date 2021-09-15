@@ -32,6 +32,7 @@ import android.view.View
 import android.util.Log
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
@@ -139,6 +140,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
         //getFlightFragment()
         if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
             showDialogNotAuthorized(false)
+            btn_bottom_accomodation.changeImageBtn(0)
         } else {
             getTrainFragment()
         }

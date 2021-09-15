@@ -101,6 +101,7 @@ object MyURL {
     const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
     const val CHECK_AVAIBILITY_DATE = "api/TripPlan/ValidationTravelRequest"
     const val CHECK_CASH_ADVANCE    = "api/TripPlan/CheckAllowedRequestCashAdvance"
+    const val CHANGE_TRIP           = "api/TripPlan/ChangeTrip"
 
     //personal trip
     const val GET_LIST_MY_BOOKING = "api/PersonalTrip/PurchaseList"

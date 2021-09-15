@@ -39,11 +39,14 @@ import opsigo.com.datalayer.request_model.create_trip_plane.CashAdvanceRequest
 import opsigo.com.datalayer.request_model.travel_request.CheckAvaibilityDateRequest
 import opsigo.com.domainlayer.callback.CallbackCashAdvance
 import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
+import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import java.io.File
+import java.util.ArrayList
 import java.util.HashMap
 
 
@@ -57,6 +60,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
     val presenter by inject<CreateTripPresenter> { parametersOf(this) }
     var dialogCamera = DialogCamera()
+    var dataChangeTrip = ChangeTripModel()
     var SELECT_CODE_PURPOSE = 98
     var SELECT_CODE_ACTIVITY = 78
     var READ_REQUEST_CODE = 67
@@ -84,6 +88,9 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         presenter.initRecyclerViewAttachment(rv_attachment)
 
         changeButtonNextGrayColor()
+        if (intent.getBooleanExtra(Constants.CHANGE_TRIP,false)){
+            getDataForChangeTrip()
+        }
     }
 
     private fun setTextDocs(){
@@ -92,6 +99,43 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs,Html.FROM_HTML_MODE_COMPACT)
         }else {
             viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs)
+        }
+    }
+
+    private fun getDataForChangeTrip() {
+        dataChangeTrip = Serializer.deserialize(Constants.DATA_CHANGE_TRIP, ChangeTripModel::class.java)
+
+        if (dataChangeTrip.isCbt){
+            btn_switch2.isChecked
+        } else if (dataChangeTrip.isDomestic) {
+            btn_switch.isChecked
+        }
+        et_purpose.text = dataChangeTrip.purpose
+        et_activity_type.text = dataChangeTrip.businessTripType
+        tv_from.text = DateConverter().getDate(dataChangeTrip.routes.first().departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
+        et_end_date.text = DateConverter().getDate(dataChangeTrip.routes.last().departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
+
+        m_startdate = dataChangeTrip.routes.first().departureDateView
+        m_endate = dataChangeTrip.routes.last().departureDateView
+        et_notes.setText(dataChangeTrip.remark)
+
+        purposeIsEmpty = false
+        activityIsEmpty = false
+        notesIsEmpty = false
+
+        checkEmptyField()
+
+        setDataAttachment(dataChangeTrip.attactment)
+    }
+
+    private fun setDataAttachment(mData: ArrayList<UploadModel>) {
+        if (mData.isNotEmpty()){
+            rv_attachment.visible()
+            presenter.dataAttachment.clear()
+            presenter.dataAttachment.addAll(mData)
+            presenter.adapter.setData(presenter.dataAttachment)
+        } else {
+            rv_attachment.gone()
         }
     }
 
@@ -240,12 +284,12 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         btn_next.isClickable = true
     }
 
-    override fun setDataAutomatically2(tvFrom: String, etEnd: String, mStartDate: String, mEndDate: String) {
-        tv_from.text = tvFrom
-        et_end_date.text = etEnd
-        m_startdate = mStartDate
-        m_endate = mEndDate
-    }
+//    override fun setDataAutomatically2(tvFrom: String, etEnd: String, mStartDate: String, mEndDate: String) {
+//        tv_from.text = tvFrom
+//        et_end_date.text = etEnd
+//        m_startdate = mStartDate
+//        m_endate = mEndDate
+//    }
 
     override fun onClicked() {
         presenter.createTripNow()
@@ -312,9 +356,17 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 dataOrderCreatTrip.statusCreateTrip = "Domestic Route"
             }
 
-
             val bundle = Bundle()
+            if (dataChangeTrip.isChangeTrip.equals(true)){
+                dataChangeTrip.startDate = m_startdate
+                dataChangeTrip.returnDate = m_endate
+                dataOrderCreatTrip.trnNumber = dataChangeTrip.trnNumber
+                dataOrderCreatTrip.tripCodeOld = dataChangeTrip.tripCodeOld
+                dataOrderCreatTrip.tripIdOld = dataChangeTrip.tripIdOld
+                dataOrderCreatTrip.isChangeTrip = dataChangeTrip.isChangeTrip
+            }
             bundle.putString("data_order", Serializer.serialize(dataOrderCreatTrip, DataBisnisTripModel::class.java))
+            bundle.putString("data_change_trip",Serializer.serialize(dataChangeTrip, ChangeTripModel::class.java))
 
             if (et_purpose.text == resources.getString(R.string.select_your_purpose)) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_purpose), this)
@@ -404,6 +456,10 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
                     checkCashAdvance(bundle)
                 }
+                /*bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
+                bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
+                bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
+                checkCashAdvance(bundle)*/
             }
 
             override fun failedLoad(message: String) {
@@ -431,15 +487,15 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         val data = CashAdvanceRequest()
         data.isDomestic = isDomestic
         data.activityType = et_activity_type.text.toString()
-        data.startDate = m_startdate
-        data.endDate = m_endate
+        data.startDate = tv_from.text.toString()
+        data.endDate = et_end_date.text.toString()
         return Globals.classToHashMap(data, CashAdvanceRequest::class.java)
     }
 
     private fun dataDate(): HashMap<Any, Any> {
         val data = CheckAvaibilityDateRequest()
-        data.endDate = m_endate//"2021-07-05"
-        data.startDate = m_startdate //"2021-06-30"
+        data.endDate = tv_from.text.toString()//"2021-07-05"
+        data.startDate = et_end_date.text.toString() //"2021-06-30"
         return Globals.classToHashMap(data, CheckAvaibilityDateRequest::class.java)
     }
 

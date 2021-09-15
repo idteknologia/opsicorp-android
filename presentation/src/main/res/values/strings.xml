@@ -1199,5 +1199,6 @@ Please add your trip item for Approval."
     <string name="alert_mode_transportation_empty">Mode Transportation is Empty</string>
     <string name="your_pic_email">your-pic-email@gmail.com</string>
     <string name="not_authorized">You are not authorized to view the <br>requested page. We Apologize for the</br> inconvenience.</string>
+    <string name="change_trip">Change Trip</string>
 </resources>
 

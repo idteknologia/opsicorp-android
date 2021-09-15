@@ -182,6 +182,9 @@ data class SummaryEntity(
     @field:SerializedName("IsPrivateTrip")
     val isPrivateTrip: Boolean = false,
 
+    @field:SerializedName("IsChangeTrip")
+    val isChangeTrip: Boolean = false,
+
     @field:SerializedName("PaymentTypeView")
     val paymentTypeView: String? = null,
 

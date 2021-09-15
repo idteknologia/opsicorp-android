@@ -632,33 +632,33 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal">
 
-                <!--<RelativeLayout
-                    android:visibility="gone"
-                    android:onClick="submitTripListener"
-                    android:id="@+id/line_btn_submit"
-                    android:background="@drawable/rounded_button_gray"
+                <RelativeLayout
+                    android:visibility="visible"
+                    android:onClick="changeTripListener"
+                    android:id="@+id/line_btn_change"
+                    android:background="@drawable/rounded_button_corner_yellow"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_marginRight="4sp"
+                    android:layout_marginEnd="4sp"
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:onClick="submitTripListener"
-                        android:id="@+id/btn_submit"
+                        android:onClick="changeTripListener"
+                        android:id="@+id/btn_change_trip"
                         android:textColor="#939396"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
                         style="@style/RobotoMedium"
-                        android:text="Submit"
+                        android:text="@string/change_trip"
                         android:layout_centerInParent="true"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
-                </RelativeLayout>-->
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:onClick="addTripItemListener"
                     android:id="@+id/line_add_trip_item"
                     android:background="@drawable/rounded_button_yellow"
-                    android:layout_marginLeft="4dp"
+                    android:layout_marginStart="4dp"
                     android:layout_width="0dp"
                     android:visibility="visible"
                     android:layout_weight="1"

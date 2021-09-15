@@ -191,7 +191,6 @@ class PaymentActivity : BaseActivity(),
     private fun gotoMainMenu() {
         hideDialog()
         val intent = Intent(applicationContext,HomeActivity::class.java)
-        intent.putExtra(Constants.FROM_PAYMENT, true)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
         finish()
