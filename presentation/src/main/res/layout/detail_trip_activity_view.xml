@@ -645,7 +645,7 @@
                     <TextView
                         android:onClick="changeTripListener"
                         android:id="@+id/btn_change_trip"
-                        android:textColor="#939396"
+                        android:textColor="#24253d"
                         android:textSize="16sp"
                         style="@style/RobotoMedium"
                         android:text="@string/change_trip"

@@ -485,7 +485,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             }
             et_min -> {
                 if (et_min.text.isNotEmpty()) {
-                    cashAdvanceValue = et_min.text.toString().toInt()
+                    cashAdvanceValue = et_min.text.toString().replace(".","").toInt()
                 } else {
                     cashAdvanceValue = 0
                 }

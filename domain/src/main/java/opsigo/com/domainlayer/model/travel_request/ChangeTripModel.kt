@@ -12,7 +12,7 @@ class ChangeTripModel(
         var purpose: String = "",
         var businessTripType: String = "",
         var remark: String? = null,
-        var isCbt :Boolean = false,
+        var isNonCbt :Boolean = false,
         var isDomestic :Boolean = false,
         var isBookAfterApprove :Boolean = false,
         var isApproval :Boolean = false,

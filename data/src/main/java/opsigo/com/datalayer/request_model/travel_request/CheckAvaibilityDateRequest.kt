@@ -8,5 +8,9 @@ data class CheckAvaibilityDateRequest(
 	var startDate: String? = null,
 
 	@field:SerializedName("EndDate")
-	var endDate: String? = null
+	var endDate: String? = null,
+
+	@field:SerializedName("TripCodeOld")
+	var tripCodeOld: String? = null
+
 )

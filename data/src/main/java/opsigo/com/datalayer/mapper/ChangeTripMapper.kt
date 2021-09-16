@@ -22,7 +22,7 @@ class ChangeTripMapper {
         summary.isApproval          = from.model.isApproval
         summary.isPrivateTrip       = from.model.isPrivateTrip
         summary.isChangeTrip        = from.model.isChangeTrip
-        summary.isCbt               = from.model.nonCbt
+        summary.isNonCbt               = from.model.nonCbt
         summary.isTripPartner = from.model.withPartner
         summary.parterName = from.model.partnerName.toString()
         summary.isDisableCbt = from.isDisableCbt
