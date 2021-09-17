@@ -1,10 +1,10 @@
 package com.mobile.travelaja.module.my_booking.model
 
 class DetailHotelPurchaseModel {
-    var id         = ""
-    var code       = ""
-    var nameHotel  = ""
-    var rating     = ""
+    var id                    = ""
+    var code                  = ""
+    var nameHotel             = ""
+    var rating                = ""
     var locationHotel         = ""
     var dateCheckIn           = ""
     var timeCheckIn           = ""

@@ -8,10 +8,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.mobile.travelaja.base.BaseActivity
@@ -27,6 +29,7 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.Approve
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
 import com.mobile.travelaja.module.payment.PaymentActivity
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
@@ -34,20 +37,20 @@ import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.ApprovalAllRequest
 import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.*
-import opsigo.com.domainlayer.callback.CallbackApprovAll
-import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
-import opsigo.com.domainlayer.callback.CallbackSummary
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import opsigo.com.domainlayer.model.summary.SummaryModel
 import opsigo.com.domainlayer.model.summary.SummaryModelItems
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
@@ -581,6 +584,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             title_trip_total.visibility = View.GONE
             lineBottomItemOrder.visibility = View.GONE
         }
+
+
+
     }
 
     private fun validationButtonApproval() {
@@ -714,7 +720,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         rv_item_order.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_item_order.adapter = adapterItemOrder
 
-
         adapterItemOrder.setOnclickListener(object : OnclickListenerRecyclerView {
             override fun onClick(views: Int, position: Int) {
                 when (views) {
@@ -737,7 +742,42 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     Constants.OPTION_HOTEL_REJECT -> {
                         approveOrRejectItemRequest("0", "1")
                     }
+                    Constants.DETAIL_TICKET_FLIGHT ->{
+                        gotoEticket(position,0)
+                    }
+                    Constants.DETAIL_TICKET_HOTEL -> {
+                        gotoEticket(position,1)
+                    }
                 }
+            }
+        })
+    }
+
+    private fun gotoEticket(position: Int,typeItem:Int) {
+        showLoadingOpsicorp(true)
+        var idItem = ""
+        when(typeItem){
+            0 -> {
+                idItem = dataItems[position].dataItemFlight.pnrCode
+            }
+            1 -> {
+                idItem = dataItems[position].dataItemHotel.hotelId
+            }
+            2 -> {
+                idItem = dataItems[position].dataItemTrain.pnrCode
+            }
+        }
+        GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket{
+            override fun successLoad(summaryModel: DetailMyBookingModel) {
+                hideLoadingOpsicorp()
+                val bundle = Bundle()
+                bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,0)
+                bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,summaryModel)
+                gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
+            }
+
+            override fun failedLoad(message: String) {
+                hideLoadingOpsicorp()
             }
         })
     }
@@ -805,9 +845,30 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         val layout = layoutInflater.inflate(R.layout.menu_popup_list_my_booking, null)
         val btnDetail = layout.findViewById(R.id.tv_view_detail) as TextView
         val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
+        val lineDownload = layout.findViewById(R.id.line_download) as LinearLayout
+        val btnDownload = layout.findViewById(R.id.tv_download_itenary) as TextView
+        val lineDownloadCoverLetter = layout.findViewById(R.id.line_download_cover_latter) as LinearLayout
+        val btnDownloadCoverLetter = layout.findViewById(R.id.tv_download_cover_latter) as TextView
 
-        btnDetail.text = "Back"
-        btnRemove.text = "Help and guide"
+
+        btnDetail.text      = "Back"
+        btnRemove.text      = "Help and guide"
+        btnDownload.text    = "Download itinerary"
+        btnDownloadCoverLetter.text  = "Download CoverLetter"
+
+        val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
+
+        if (isParticipant&&tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary!="null") {
+            lineDownload.visibility = View.VISIBLE
+            btnDownload.visibility  = View.VISIBLE
+        }
+
+        if (isParticipant&&tripSummary.coverLatter!="null") {
+            lineDownload.visibility = View.VISIBLE
+            btnDownload.visibility  = View.VISIBLE
+        }
+
+        val dialog = Globals.showPopup(toolbar.getImageCart(), layout)
 
         btnDetail.setOnClickListener {
             if (isUpdateSummary) {
@@ -821,12 +882,50 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
 
         btnRemove.setOnClickListener {
-
+            dialog.dismiss()
         }
 
-        Globals.showPopup(toolbar.getImageCart(), layout)
+        btnDownload.setOnClickListener {
+//            val url = "https://opsicorp.blob.core.windows.net/opsicorpdtmqa-trip-itinerary/Official_Letter%20TP202109090001.pdf"
+//            val url2 = "https://kkn.unnes.ac.id/lapkkn/11402_3324122015_Desa%20Tratemulyo_20141223_110650.pdf"
+            dialog.dismiss()
+            val idItinerary = tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary.toString()
+            getUrlFile(idItinerary)
+        }
+
+        btnDownloadCoverLetter.setOnClickListener {
+            dialog.dismiss()
+            getUrlFile(tripSummary.coverLatter)
+        }
     }
 
+    private fun getUrlFile(idFile:String) {
+        showDialog("Please Wait")
+        GetDataTripPlane(getBaseUrl()).getUrlFile(getToken(),idFile,object : CallbackGetUrlFile {
+            override fun success(url:String) {
+                dowloadFile(url)
+            }
+
+            override fun failed(string: String) {
+                hideDialog()
+                setToast(string)
+            }
+        })
+    }
+
+    private fun dowloadFile(url: String) {
+        Globals.downloadFile(url,this,object :Globals.CallbackDownload{
+            override fun succeessDownload(parse: Uri, downloadMimeType: String) {
+                hideDialog()
+                Globals.openDownloadedAttachment(this@DetailTripActivity,parse,downloadMimeType)
+            }
+
+            override fun failedDownload() {
+                hideDialog()
+                setToast("Download Failed")
+            }
+        })
+    }
 
     override fun onClick(view: View?) {
         when (view) {

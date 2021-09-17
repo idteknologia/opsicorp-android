@@ -20,7 +20,7 @@ data class Data(
 	val priceDetails: ArrayList<PriceMyBookingEntity> = ArrayList(),
 
 	@field:SerializedName("Trains")
-	val trains: ArrayList<Any> = ArrayList(),
+	val trains: ArrayList<TrainItemMyBookingEntity> = ArrayList(),
 
 	@field:SerializedName("PaymentStatusText")
 	val paymentStatusText: String? = null,
@@ -38,7 +38,7 @@ data class Data(
 	val code: String? = null,
 
 	@field:SerializedName("Flights")
-	val flights: ArrayList<Any>? = null,
+	val flights: ArrayList<FlightItemMyBookingEntity>? = null,
 
 	@field:SerializedName("PurchasedDate")
 	val purchasedDate: String? = null,

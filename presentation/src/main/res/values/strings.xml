@@ -1158,5 +1158,6 @@ Please add your trip item for Approval."
 
     <string name="not_available_flight">This trip not available flight</string>
     <string name="purchase_hotel_detail">E-ticket Itinerary</string>
+    <string name="title_ticket_hotel">Voucher Code</string>
 </resources>
 

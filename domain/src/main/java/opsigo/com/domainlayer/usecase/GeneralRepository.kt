@@ -16,4 +16,5 @@ interface GeneralRepository {
     fun getCheckVersion(token: String,version:String,type:String,callbackString: CallbackCheckVersion)
     fun getHolidayApi(year:String,idCountry:String,callbackHoliday:CallbackHoliday)
     fun getCheckIdDevice(year:String,idDevice:String,callback:CallbackIdDevice)
+    fun getDataEticket(token:String, id: String,idIten:String,typeItem:Int, callbackEticket: CallbackEticket)
 }

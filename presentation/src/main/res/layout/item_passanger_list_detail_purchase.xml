@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="@android:color/white"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <RelativeLayout
         android:paddingBottom="12dp"
@@ -26,18 +26,78 @@
 
 
 
-        <TextView
-            android:id="@+id/tv_name"
+        <LinearLayout
             android:layout_marginLeft="6dp"
             android:layout_toEndOf="@+id/tv_number"
+            android:layout_toRightOf="@+id/tv_number"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:textColor="#24253d"
-            android:text="Vody Andrian"
-            style="@style/RobotoRegular"
-            android:layout_toRightOf="@+id/tv_number">
-        </TextView>
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#24253d"
+                android:text="Vody Andrian"
+                style="@style/RobotoRegular">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_id_cart"
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_regular"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#939396"
+                tools:text="KTP - 36858786410001"/>
+
+            <TextView
+                android:id="@+id/tv_seat_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_black"
+                android:layout_marginTop="6dp"
+                android:textStyle="normal"
+                android:textSize="10sp"
+                android:textColor="#24253d"
+                tools:text="Executive 2 / Seat 8C"/>
+
+            <LinearLayout
+                android:id="@+id/line_total_baggage"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/tv_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_toRightOf="@+id/tv_number">
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/ic_bagage_purchase"/>
+
+
+                <TextView
+                    android:id="@+id/total_bagage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15 kg"
+                    style="@style/RobotoRegular"
+                    android:textColor="#939396"
+                    android:textSize="10dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp">
+                </TextView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
 
 
         <TextView
@@ -70,33 +130,6 @@
         </TextView>
 
 
-        <LinearLayout
-            android:layout_below="@+id/tv_name"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="6dp"
-            android:layout_toEndOf="@+id/tv_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_toRightOf="@+id/tv_number">
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="12dp"
-                android:src="@drawable/ic_bagage_purchase"/>
-
-
-            <TextView
-                android:id="@+id/total_bagage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="15 kg"
-                style="@style/RobotoRegular"
-                android:textColor="#939396"
-                android:textSize="10dp"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp">
-            </TextView>
-        </LinearLayout>
 
 
 

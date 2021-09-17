@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
-import com.mobile.travelaja.module.my_booking.model.PassangerPurchaseModel
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_passanger_list_detail_purchase_hotel.view.*
+import opsigo.com.domainlayer.model.my_booking.GuestsItems
 
-class PassangerPurchaseAdapterHotel (var context: Context, private var items: ArrayList<PassangerPurchaseModel>): androidx.recyclerview.widget.RecyclerView.Adapter<PassangerPurchaseAdapterHotel.ViewHolder>() {
+class PassangerPurchaseAdapterHotel (var context: Context, private var items: ArrayList<GuestsItems>): androidx.recyclerview.widget.RecyclerView.Adapter<PassangerPurchaseAdapterHotel.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
 
@@ -32,13 +32,13 @@ class PassangerPurchaseAdapterHotel (var context: Context, private var items: Ar
 
         val data = items.get(position)
 
-        holder.itemView.tv_name.text = data.Name
-        holder.itemView.tv_total_passager.text = "Max ${data.totalPassager} Guest/room"
+        holder.itemView.tv_name.text = data.firstName
+        holder.itemView.tv_total_passager.text = "Max ${data.maxBedType} Guest/room"
         holder.itemView.tv_number.text = (position+1).toString()
-
+        holder.itemView.tv_type_bed_type.text = data.bedType
     }
 
-    fun setData(data: ArrayList<PassangerPurchaseModel>) {
+    fun setData(data: ArrayList<GuestsItems>) {
         items = data
         notifyDataSetChanged()
     }

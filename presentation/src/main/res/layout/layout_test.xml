@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#f6f8f8">
+    android:background="@color/black">
 
-
-    <!--<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -89,6 +88,6 @@
 
         </com.mobile.travelaja.module.item_custom.ticket_view.TicketCustomView>
 
-    </LinearLayout>-->
+    </LinearLayout>
 
 </LinearLayout>

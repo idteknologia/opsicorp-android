@@ -46,7 +46,7 @@ class ItemTrainModel(
 
     //var date            = ""
 
-    var price           :String = "",
+    var price           :Double = 0.0,
     var transit         :String = "",
     var employId        :String = "",
 

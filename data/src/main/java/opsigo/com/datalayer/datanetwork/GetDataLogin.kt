@@ -6,16 +6,16 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.lang.Exception
 import javax.inject.Inject
-import okhttp3.ResponseBody
 import org.json.JSONObject
+import okhttp3.ResponseBody
 import opsigo.com.datalayer.mapper.*
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.model.signin.LoginEntity
 import opsigo.com.domainlayer.usecase.LoginRepository
 import opsigo.com.datalayer.model.general.CountryEntity
 import opsigo.com.datalayer.model.profile.ConfigEntity
 import opsigo.com.datalayer.model.profile.ProfileNewEntity
-import opsigo.com.domainlayer.callback.*
 
 class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
     @Inject

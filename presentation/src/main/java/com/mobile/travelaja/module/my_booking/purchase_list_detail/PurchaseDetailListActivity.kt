@@ -1,38 +1,27 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
-import android.app.DownloadManager
-import android.content.*
 import android.net.Uri
-import android.os.Environment
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.webkit.URLUtil
-import android.widget.TextView
-import androidx.core.content.FileProvider
+import android.content.*
+import android.util.Log
 import com.mobile.travelaja.R
+import android.widget.TextView
+import android.view.LayoutInflater
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.base.BaseActivityBinding
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.databinding.DetailPurchaseListActivityBinding
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.mobile.travelaja.module.my_booking.adapter.PurchaseDetailTripFlightAdapter
-import com.mobile.travelaja.module.my_booking.model.DetailFlightPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.DetailHotelPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.DetailTrainPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.PurchaseDetailTripFlightAndTrainModel
-import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageFlight
-import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageHote
-import com.mobile.travelaja.module.my_booking.purchase_list_detail.DummyDataPurchaseFlight.getDataPageTrain
-import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
-import java.io.File
-
+import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
+import com.mobile.travelaja.module.my_booking.adapter.SegmentMybookingAdapter
+import opsigo.com.datalayer.mapper.Serializer
 
 class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivityBinding>(),ToolbarOpsicorp.OnclickButtonListener{
 
     val dataFlight by lazy { ArrayList<PurchaseDetailTripFlightAndTrainModel>() }
-    val adapterFlighDetail by lazy { PurchaseDetailTripFlightAdapter(this,dataFlight) }
+    val adapterSegemntFligh by lazy { SegmentMybookingAdapter(this,dataFlight) }
     var positionSelectedItem = 0
     lateinit var dataPurchaseDetail: DetailMyBookingModel
 
@@ -50,6 +39,8 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     private fun setDataIntent() {
         positionSelectedItem = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KEY_POSITION_SELECTED_ITEM,0)!!
         dataPurchaseDetail   = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getParcelable<DetailMyBookingModel>(Constants.KEY_DATA_PARCELABLE)!!
+        Log.e("TAG",Serializer.serialize(dataPurchaseDetail))
+        Log.e("TAG",Serializer.serialize(positionSelectedItem))
     }
 
     private fun validationLayout() {
@@ -67,29 +58,42 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun initPageHotelDetail() {
-        viewBinding.flightHeader.lineFlightHeader.visibility = View.GONE
-        viewBinding.lineTicket.visibility   = View.VISIBLE
-        viewBinding.layDetailHotel.lineDetailHotel.visibility = View.VISIBLE
-        viewBinding.layDetailTrain.lineDetailTrain.visibility = View.GONE
-        viewBinding.toolbar.showtitlePurchaseHotel()
 //        val data : DetailHotelPurchaseModel = getDataPageHote()
+        viewBinding.toolbar.showtitlePurchaseHotel()
+        viewBinding.flightHeader.lineFlightHeader.visibility  = View.GONE
+        viewBinding.layDetailTrain.lineDetailTrain.visibility = View.GONE
+        viewBinding.layHeaderHotel.lineDetailHotel.visibility = View.VISIBLE
+        viewBinding.lineTicket.visibility                     = View.VISIBLE
+
+        viewBinding.tvTitleTicket.text  = getString(R.string.title_ticket_hotel)
+        viewBinding.tvPnrCode.text      = dataPurchaseDetail.dataHotel.voucerCode
+        viewBinding.layHeaderHotel.tvNameHotel.text         = dataPurchaseDetail.dataHotel.hotelName
+        viewBinding.layHeaderHotel.tvCity.text              = dataPurchaseDetail.dataHotel.area
+        viewBinding.layHeaderHotel.tvChekinDate.text        = DateConverter().getDate(dataPurchaseDetail.dataHotel.checkInDate.toString(),"yyyy-MM-dd HH:mm:ss","E, dd MMM")
+        viewBinding.layHeaderHotel.tvCheckinTime.text       = DateConverter().getDate(dataPurchaseDetail.dataHotel.checkInDate.toString(),"yyyy-MM-dd HH:mm:ss","HH:mm")
+        viewBinding.layHeaderHotel.tvCheckoutDate.text      = DateConverter().getDate(dataPurchaseDetail.dataHotel.checkOutDate.toString(),"yyyy-MM-dd HH:mm:ss","E, dd MMM")
+        viewBinding.layHeaderHotel.tvCheckoutTime.text      = DateConverter().getDate(dataPurchaseDetail.dataHotel.checkOutDate.toString(),"yyyy-MM-dd HH:mm:ss","HH:mm")
+        viewBinding.layHeaderHotel.tvNight.text             = "${dataPurchaseDetail.dataHotel.totalNight} night(s)"
+        viewBinding.layHeaderHotel.tvNameBookingContact.text = dataPurchaseDetail.bookingContact?.fullName.toString()
 
         viewBinding.pageHotel.showLayout()
         viewBinding.pageHotel.setDataHotel(dataPurchaseDetail)
+        Globals.viewRatingStarHotel(arrayListOf(viewBinding.layHeaderHotel.icStart1,viewBinding.layHeaderHotel.icStart2,viewBinding.layHeaderHotel.icStart3,viewBinding.layHeaderHotel.icStart4,viewBinding.layHeaderHotel.icStart5),dataPurchaseDetail.dataHotel.ratingStar.toDouble().toString())
         viewBinding.pageFlightAndTrain.hidenLayout()
     }
 
     private fun initPageFlightDetail() {
         viewBinding.flightHeader.lineFlightHeader.visibility = View.VISIBLE
+        viewBinding.flightHeader.pnrCodeFlight.text          = dataPurchaseDetail.dataFlight[positionSelectedItem].pnrCode.toString()
+        viewBinding.flightHeader.icCopyCode.setOnClickListener { Globals.copyText(dataPurchaseDetail.dataFlight[positionSelectedItem].pnrCode.toString(),this) }
         viewBinding.lineTicket.visibility = View.GONE
+        viewBinding.toolbar.showtitlePurchaseTrain(dataPurchaseDetail.dataFlight[positionSelectedItem].originCity,dataPurchaseDetail.dataFlight[positionSelectedItem].destinationCity)
 
         initRecyclerView()
-
-        val data: DetailFlightPurchaseModel = getDataPageFlight()
-        adapterFlighDetail.setData(data.flights)
+        adapterSegemntFligh.setData(dataPurchaseDetail.dataFlight[positionSelectedItem].Segment)
 
         viewBinding.pageFlightAndTrain.showLayout()
-        viewBinding.pageFlightAndTrain.setDataFlight(data)
+        viewBinding.pageFlightAndTrain.setDataFlight(dataPurchaseDetail.dataFlight[positionSelectedItem],dataPurchaseDetail.totalPaid)
         viewBinding.pageHotel.hidenlayout()
     }
 
@@ -99,31 +103,41 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
         layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
         viewBinding.flightHeader.rvDetailFlight.layoutManager = layoutManager
         viewBinding.flightHeader.rvDetailFlight.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        viewBinding.flightHeader.rvDetailFlight.adapter = adapterFlighDetail
-
-        adapterFlighDetail.setOnclickListener(object : OnclickListenerRecyclerView {
-            override fun onClick(views: Int, position: Int) {
-
-            }
-        })
+        viewBinding.flightHeader.rvDetailFlight.adapter = adapterSegemntFligh
     }
 
     private fun initPageTrainDetail() {
-        viewBinding.flightHeader.lineFlightHeader.visibility = View.GONE
-        viewBinding.lineTicket.visibility   = View.VISIBLE
-        viewBinding.layDetailHotel.lineDetailHotel.visibility = View.GONE
+        viewBinding.lineTicket.visibility                     = View.VISIBLE
+        viewBinding.flightHeader.lineFlightHeader.visibility  = View.GONE
+        viewBinding.layHeaderHotel.lineDetailHotel.visibility = View.GONE
         viewBinding.layDetailTrain.lineDetailTrain.visibility = View.VISIBLE
-        val data : DetailTrainPurchaseModel = getDataPageTrain()
+
+        val data = dataPurchaseDetail.dataTrain[positionSelectedItem]
+        viewBinding.layDetailTrain.tvNameTrain.text           = data.nameTrain
+        viewBinding.layDetailTrain.tvTrainCode.text           = data.trainCode
+        viewBinding.layDetailTrain.tvClassNameTrain.text      = data.className
+        viewBinding.layDetailTrain.tvTimeDeparture.text       = DateConverter().getDate(data.dateDeparture,"yyyy-MM-dd HH:mm","HH:mm")
+        viewBinding.layDetailTrain.tvTimeArrival.text         = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd HH:mm","HH:mm")
+        viewBinding.layDetailTrain.tvDateDeparture.text       = DateConverter().getDate(data.dateDeparture,"yyyy-MM-dd HH:mm","dd MMM")
+        viewBinding.layDetailTrain.tvDateArrival.text         = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd HH:mm","dd MMM")
+
+        viewBinding.layDetailTrain.tvDepartureTrain.text             = data.originCity
+        viewBinding.layDetailTrain.tvStationDepartureTrain.text      = data.originStation
+        viewBinding.layDetailTrain.tvArrivalTrain.text               = data.destinationCity
+        viewBinding.layDetailTrain.tvArrivalStationTrain.text        = data.destinationStation
+        viewBinding.layDetailTrain.tvTimeDurationTrain.text          = data.durationTime
+
+        viewBinding.tvPnrCode.text = dataPurchaseDetail.dataTrain[positionSelectedItem].pnrCode
+        viewBinding.toolbar.showtitlePurchaseTrain(dataPurchaseDetail.dataTrain[positionSelectedItem].originCity.toString(),dataPurchaseDetail.dataTrain[positionSelectedItem].destinationCity.toString())
+//        val data : DetailTrainPurchaseModel = getDataPageTrain()
         viewBinding.pageFlightAndTrain.showLayout()
-        viewBinding.pageFlightAndTrain.setDataTrain(data)
+        viewBinding.pageFlightAndTrain.setDataTrain(dataPurchaseDetail.dataTrain[positionSelectedItem],dataPurchaseDetail.totalPaid)
         viewBinding.pageHotel.hidenlayout()
     }
 
     private fun initToolbar() {
-        viewBinding.toolbar.showtitlePurchase()
         viewBinding.toolbar.changeImageCard(R.drawable.ic_setting_dot_tree_my_booking)
         viewBinding.toolbar.callbackOnclickToolbar(this)
-
     }
 
     private fun initPopUpMenu(view:View) {
@@ -155,9 +169,6 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
 //            Globals.downloadFile("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1024px-Image_created_with_a_mobile_phone.png",this)
         }
     }
-
-
-
 
     override fun btnBack() {
         finish()

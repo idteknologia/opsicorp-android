@@ -23,5 +23,6 @@ data class TripParticipantsItemModel (
         var dataApproval    : ArrayList<ParticipantModelDomain>,
         var itemFlightModel : List<ItemFlightModel>,
         var itemTrainModel  : List<ItemTrainModel>,
-        var itemHotelModel  : List<ItemHotelModel>
+        var itemHotelModel  : List<ItemHotelModel>,
+        var itinerary: String =""
 )

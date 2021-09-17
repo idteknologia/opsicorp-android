@@ -238,7 +238,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun dataCabinClass(): List<Int?> {
         val dataCabin = ArrayList<Int>()
         dataCabin.add(dataOrder.classFlightCode.toInt())
-        return dataCabin
+        return ArrayList()
     }
 
     private fun dataRoutesRequest(): List<RoutesItem?> {

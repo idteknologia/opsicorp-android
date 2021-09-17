@@ -1,13 +1,12 @@
 package opsigo.com.datalayer.datanetwork
 
-import com.google.gson.Gson
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.RoutesItem
 import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.datalayer.request_model.create_trip_plane.SaveAsDraftRequestPertamina
 import opsigo.com.datalayer.request_model.create_trip_plane.TripAttachmentsItemRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.TripParticipantsPertaminaItem
-import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import opsigo.com.domainlayer.callback.CallbackGetUrlFile
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import org.junit.Test
 import org.koin.test.KoinTest
@@ -17,9 +16,9 @@ import java.util.concurrent.CountDownLatch
 
 class GetDataTravelRequestTest:KoinTest{
 
-    val token = "Bearer YvbDdyPky92Zi2NDyeI_U9V3D6Pm1IHxL0wgAjXxrhdVkQvx6kO28QWeONiOGH6p-Se9yHyEgdjnEtBWsXhw6fYN0K_KK8ZDOmbRRILoJxCT5BBdk_-rTcWcesMSNSCCrJ_5SArmsan-o5usmQ3EVxHU6k41MCPMV1cCx2rkfUiHf8s8-UPgI0bIors83SqNLY75GN0kroIYrKTxYQ3drM5hWX6XB3peK2MrW2jOjquvFP6Na1UwY6r42TwRiq25y0XkrvIYQuuuw1LtaQzjrjiOIWrnc6PFvSCCFIG3MzWEssiO2hU3zyOcCycv0BIo5WZJCSWWQCQjzWo6F-bRna-ONUonItNDynXPuE-F7cQr7TLbWQWKsYC5hPvuDthm_ERl8yqnDo1N4gT86x7MbMX3eukKdde_rMvQv0pegHfUHulL0Sz44lmOd-o7blJhNZGzx_DRoY36iEyyjpbdWvOBFcRrwRmAGDWLe6_2IzPpJ4rBLpzjVp2Dl8Vn2xTs5R7yNEeUCJ5ePvigyub15nKP9v_sVQqtlPtvL37DFhWGYEbWujUllxg4qQzt13A1"
+    val token = "Bearer 0VwG7rkbRtqalg9KKhKanNasiaA-SMD-gYsXGZGZyzjqEdXPYCmrVtRX5GI3uYUtjIeCq2JRNX9bG4MS42QodSJ7SR7nVyswEbWiMP76pLIB7oiQXev9vIvmCIUa-hfD8bt5gvtCTB3QgflPTUGQQidy1t1XIqoZ6fn4dR4_VoAVHq9Ip4serPK4bnZwBuG_497oh9h9TfjOlCvdOZx12K74lsVkvVH663o-B0Ba3iUXrjCn7PeyljKBq4ceCsAylX3cJbz2mM_RjQ2Sqhe7BIyKlcjKWJycqBemOx9R7ifAPc19nY2s9glxXWFkVksZ8W2-9uD8ZQF-fTQ4ehlxnc3_qj0_6IGhbMkhU5e35mR6BuUJaRJ0_oixnhrivE8vBs8ALKaGelngNaIGv-6a8x6QLiIrm67YPpmo2rCdBlGAoUHMU5hOdH0thzrOi6gS7wuCzSO8u5DAYw0NNFn0VkYaqYntIMXfX-ONJkcQRlKU9hkkvrWCCIfrNOMPvAaO555RbF2B9LuMNCtkZH0_TB0I_UE1I0zJY0XepTpccnjF1N5V8vfVq9lB2aP5F61cZox6dy1RCBi90-kfudv4lLe9IMdJycSGIB0v-5oIqJA"
 
-    val url = "https://pertamina-dtm3-qa.opsicorp.com"
+    val url = "https://dtmqa.opsinfra.net"
 
     @Test
     fun testApiResponse() {
@@ -39,6 +38,31 @@ class GetDataTravelRequestTest:KoinTest{
                   latch.await()
               }
           })
+
+        try {
+            latch.await()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Test
+    fun testApiDownloadFile() {
+
+        val latch = CountDownLatch(1)
+        GetDataTripPlane(url).getUrlFile(token,"819dc8eb-7b57-4a66-9c8d-b79c5a01e38c",object : CallbackGetUrlFile {
+            override fun success(url: String) {
+                println(url)
+                println("success")
+                latch.await()
+            }
+
+            override fun failed(string: String) {
+                println(string)
+                println("failed")
+                latch.await()
+            }
+        })
 
         try {
             latch.await()

@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import android.util.Log
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
@@ -332,6 +333,31 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
                     }
                 } catch (e:Exception){
                     callback.failedLoad(messageFailed)
+                }
+            }
+
+        })
+    }
+
+    override fun getUrlFile(token: String,idItinerary: String, callbacGetUrlFile: CallbackGetUrlFile) {
+        apiOpsicorp.getUrlFile(token,idItinerary).enqueue(object : Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callbacGetUrlFile.failed(t.message!!)
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string().toString().replace("\"","")
+                        callbacGetUrlFile.success(responseString)
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callbacGetUrlFile.failed(message)
+                    }
+                } catch (e:Exception){
+                    callbacGetUrlFile.failed(messageFailed)
                 }
             }
 

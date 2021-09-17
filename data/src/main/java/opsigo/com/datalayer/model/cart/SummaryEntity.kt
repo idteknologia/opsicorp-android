@@ -48,7 +48,7 @@ data class SummaryEntity(
     val partnerName: String? = null,
 
     @field:SerializedName("TotalPaid")
-    val totalPaid: Int = 0,
+    val totalPaid: Double = 0.0,
 
     @field:SerializedName("BudgetView")
     val budgetView: Any? = null,
@@ -231,7 +231,7 @@ data class SummaryEntity(
     val trnNumber: String? = null,
 
     @field:SerializedName("TotalExpenditureHotel")
-    val totalExpenditureHotel: Int = 0,
+    val totalExpenditureHotel: Double = 0.0,
 
     @field:SerializedName("DurationDay")
     val durationDay: Int = 0,
@@ -351,7 +351,10 @@ data class SummaryEntity(
     val wbsNo: String? = null,
 
     @field:SerializedName("SubmitDateString")
-    val submitDateString: Any? = null
+    val submitDateString: Any? = null,
+
+    @field:SerializedName("CoverLetterUrl")
+    val coverLetterUrl: Any? = null
 )
 
 
@@ -508,7 +511,7 @@ data class Hotel(
     val isSync: Boolean = false,
 
     @field:SerializedName("Payments")
-    val payments: List<PaymentsItem?>? = null,
+    val payments: List<PaymentsItem> = ArrayList(),
 
     @field:SerializedName("Hash")
     val hash: Any? = null,
@@ -592,7 +595,7 @@ data class Hotel(
     val bookingNumber: Any? = null,
 
     @field:SerializedName("BookingCode")
-    val bookingCode: Any? = null,
+    val bookingCode: String? = "",
 
     @field:SerializedName("BookedDate")
     val bookedDate: String? = null,
@@ -628,7 +631,7 @@ data class Hotel(
     val amount: Int = 0,
 
     @field:SerializedName("TotalAmountApi")
-    val totalAmountApi: Int = 0,
+    val totalAmountApi: Double = 0.0,
 
     @field:SerializedName("Facilities")
     val facilities: Any? = null,
@@ -805,8 +808,112 @@ data class Hotel(
     val tripItemId: String? = null,
 
     @field:SerializedName("AmountPerNight")
-    val amountPerNight: Int = 0
+    val amountPerNight: Int = 0,
+
+    @field:SerializedName("HotelDetail")
+    val hotelDetail : HotelDetail = HotelDetail()
+
 )
+
+data class HotelDetail(
+
+    @field:SerializedName("IsHsre")
+    val isHsre: Boolean? = null,
+
+    @field:SerializedName("Description")
+    val description: String? = null,
+
+    @field:SerializedName("Email")
+    val email: String? = null,
+
+    @field:SerializedName("Address")
+    val address: String? = null,
+
+    @field:SerializedName("Telephone")
+    val telephone: String? = null,
+
+    @field:SerializedName("Images")
+    val images: List<ImagesItem?>? = null,
+
+    @field:SerializedName("ProviderHotelCode")
+    val providerHotelCode: String? = null,
+
+    @field:SerializedName("Website")
+    val website: String? = null,
+
+    @field:SerializedName("Latitude")
+    val latitude: Double? = null,
+
+    @field:SerializedName("Longitude")
+    val longitude: Double? = null,
+
+    @field:SerializedName("Facilities")
+    val facilities: List<FacilitiesItem?>? = null,
+
+    @field:SerializedName("Rooms")
+    val rooms: List<Any?>? = null,
+
+    @field:SerializedName("HotelKey")
+    val hotelKey: String? = null,
+
+    @field:SerializedName("Reviews")
+    val reviews: List<ReviewsItem?>? = null,
+
+    @field:SerializedName("ProviderCode")
+    val providerCode: String? = null,
+
+    @field:SerializedName("CancelPolicy")
+    val cancelPolicy: Any? = null,
+
+    @field:SerializedName("Facsimile")
+    val facsimile: String? = null,
+
+    @field:SerializedName("HotelName")
+    val hotelName: String? = null,
+
+    @field:SerializedName("IsoCountryCode")
+    val isoCountryCode: Any? = null
+)
+
+data class ImagesItem(
+
+    @field:SerializedName("Description")
+    val description: String? = null,
+
+    @field:SerializedName("ThumbUri")
+    val thumbUri: String? = null,
+
+    @field:SerializedName("ImageUri")
+    val imageUri: String? = null
+)
+
+data class FacilitiesItem(
+
+    @field:SerializedName("Description")
+    val description: String? = null,
+
+    @field:SerializedName("Code")
+    val code: String? = null
+)
+
+data class ReviewsItem(
+
+    @field:SerializedName("AuthorName")
+    val authorName: String? = null,
+
+    @field:SerializedName("Rating")
+    val rating: Int? = null,
+
+    @field:SerializedName("Text")
+    val text: String? = null,
+
+    @field:SerializedName("RelativeTime")
+    val relativeTime: String? = null,
+
+    @field:SerializedName("Uri")
+    val uri: String? = null
+)
+
 
 data class TripItemsItem(
 
@@ -1336,7 +1443,7 @@ data class TripHotelsItems(
     val amount: Int? = null,
 
     @field:SerializedName("TotalAmountApi")
-    val totalAmountApi: Int? = null,
+    val totalAmountApi: Double = 0.0,
 
     @field:SerializedName("Facilities")
     val facilities: Any? = null,
@@ -1345,7 +1452,7 @@ data class TripHotelsItems(
     val rooms: Int? = null,
 
     @field:SerializedName("AmountWithSf")
-    val amountWithSf: Int? = null,
+    val amountWithSf: Double? = 0.0,
 
     @field:SerializedName("CauseViolatedRulesParagraf")
     val causeViolatedRulesParagraf: String? = null,
@@ -1441,7 +1548,7 @@ data class TripHotelsItems(
     val discountType: Int? = null,
 
     @field:SerializedName("PlafondAmount")
-    val plafondAmount: Int? = null,
+    val plafondAmount: Double? = 0.0,
 
     @field:SerializedName("TravelAgent")
     val travelAgent: Any? = null,
@@ -1489,7 +1596,7 @@ data class TripHotelsItems(
     val isReschedule: Boolean = false,
 
     @field:SerializedName("TotalAmount")
-    val totalAmount: Int? = null,
+    val totalAmount: Double? = 0.0,
 
     @field:SerializedName("IsWithBreakfast")
     val isWithBreakfast: Boolean = false,
@@ -1513,7 +1620,7 @@ data class TripHotelsItems(
     val tripItemId: String? = null,
 
     @field:SerializedName("AmountPerNight")
-    val amountPerNight: Int? = null
+    val amountPerNight: Double? = null
 )
 
 data class RemarksItem(
@@ -1741,13 +1848,13 @@ data class TripHotelsItem(
     val listConflict: List<Any?>? = null,
 
     @field:SerializedName("Amount")
-    val amount: Int = 0,
+    val amount: Double = 0.0,
 
     @field:SerializedName("Purpose")
     val purpose: Any? = null,
 
     @field:SerializedName("TotalAmount")
-    val totalAmount: Int = 0,
+    val totalAmount: Double = 0.0,
 
     @field:SerializedName("ApprovalCode")
     val approvalCode: Any? = null,
@@ -2018,7 +2125,7 @@ data class TripTrainsItem(
     val isRemoved: Boolean = false,
 
     @field:SerializedName("AmountBeforeReserved")
-    val amountBeforeReserved: Int = 0,
+    val amountBeforeReserved: Double = 0.0,
 
     @field:SerializedName("OpsigoLastSync")
     val opsigoLastSync: String? = null,
@@ -2057,7 +2164,7 @@ data class TripTrainsItem(
     val timeLimit: String? = null,
 
     @field:SerializedName("Amount")
-    val amount: Int = 0,
+    val amount: Double = 0.0,
 
     @field:SerializedName("Contact")
     val contact: Contact? = null,
@@ -2453,7 +2560,7 @@ data class TripParticipantsItem(
     val companyName: String? = null,
 
     @field:SerializedName("TotalTripPaidHotel")
-    val totalTripPaidHotel: Int = 0,
+    val totalTripPaidHotel: Double = 0.0,
 
     @field:SerializedName("ShowButtonApproveHotel")
     val showButtonApproveHotel: Boolean = false,
@@ -2537,7 +2644,7 @@ data class TripParticipantsItem(
     val followUpBy: Any? = null,
 
     @field:SerializedName("TotalTripPaidTrain")
-    val totalTripPaidTrain: Int = 0,
+    val totalTripPaidTrain: Double = 0.0,
 
     @field:SerializedName("TripPlanItems")
     val tripPlanItems: List<TripPlanItemsItem?>? = null,
@@ -2627,7 +2734,10 @@ data class TripParticipantsItem(
     val isAnyPNRWithNotCompleted: Boolean = false,
 
     @field:SerializedName("EstTotal")
-    var estTotal: Double = 0.0
+    var estTotal: Double = 0.0,
+
+    @field:SerializedName("ItineraryUrl")
+    var itineraryUrl: String = ""
 )
 
 data class TripParticipantCustomApprovalsItem(
@@ -3071,7 +3181,7 @@ data class TripFlightsItem(
     val isRemoved: Boolean = false,
 
     @field:SerializedName("AmountBeforeReserved")
-    val amountBeforeReserved: Int = 0,
+    val amountBeforeReserved: Double = 0.0,
 
     @field:SerializedName("OpsigoLastSync")
     val opsigoLastSync: String? = null,

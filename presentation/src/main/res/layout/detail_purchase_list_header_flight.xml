@@ -1,10 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="30dp"
     android:id="@+id/line_flight_header"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.mobile.travelaja.module.item_custom.ticket_view.TicketCustomView
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:ticketBackgroundColor="@color/white"
+            app:ticketCornerRadius="8dp"
+            app:ticketCornerType="rounded"
+            app:ticketDividerColor="#d3d3d8"
+            app:ticketDividerDesign="color"
+            app:ticketDividerLocation="top"
+            app:ticketDividerPadding="5dp"
+            app:ticketDividerType="dash"
+            app:ticketDividerWidth="1dp"
+            app:ticketElevation="5dp"
+            app:ticketOrientation="vertical"
+            app:ticketPunchLocation="none"
+            app:ticketPunchRadius="12dp"
+            app:ticketScallopRadius="15dp"
+            app:ticketShowBorder="false"
+            app:ticketShowDivider="true"
+            app:view="@id/price_holder6">
+
+            <LinearLayout
+                android:id="@+id/option6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackground"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:id="@+id/text6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:paddingBottom="14dp"
+                    tools:ignore="RtlCompat" >
+
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_marginTop="14dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#2b9a8e"
+                        android:gravity="center_horizontal"
+                        android:text="@string/trip_code_with_symbol" />
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/pnr_code_flight"
+                            style="@style/RobotoMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            android:textColor="#24253d"
+                            android:gravity="center_horizontal"
+                            android:text="TP201802080003">
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/ic_copy_code"
+                            android:layout_marginStart="7dp"
+                            android:layout_width="19dp"
+                            android:layout_height="19dp"
+                            android:src="@drawable/ic_icon_copy">
+
+                        </ImageView>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/price_holder6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:id="@+id/rv_detail_flight"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.mobile.travelaja.module.item_custom.ticket_view.TicketCustomView>
+
+    </LinearLayout>
+
+    <!--
 
     <FrameLayout
         android:id="@+id/test"
@@ -71,7 +193,7 @@
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="10dp"
         android:layout_marginTop="113dp"
         android:background="@drawable/border_body_ticket">
 
@@ -93,5 +215,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         </androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-</RelativeLayout>
+    </LinearLayout>-->
+</LinearLayout>

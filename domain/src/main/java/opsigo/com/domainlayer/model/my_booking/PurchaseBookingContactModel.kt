@@ -5,11 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class PurchaseBookingContactModel(
-	val email: String? = null,
-	val firstName: String? = null,
-	val fullName: String? = null,
-	val title: String? = null,
-	val lastName: String? = null,
-	val mobilePhone: String? = null
+	var email: String? = null,
+	var firstName: String? = null,
+	var fullName: String? = null,
+	var title: String? = null,
+	var lastName: String? = null,
+	var mobilePhone: String? = null
 ):Parcelable
 

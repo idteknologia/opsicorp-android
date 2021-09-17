@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupWindow
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Constants
@@ -148,7 +149,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             tv_date_arrival.text     = DateConverter().getDate(data.dateDeparture,"yyyy-mm-dd","EEE, dd MMMM yyyy")
             time_departure.text      = data.timeDeparture+" "
             time_arrival.text        = data.timeArrival
-            tv_price.text            = "IDR "+Globals.formatAmount(data.price.split(".")[0])
+            tv_price.text            = "IDR "+Globals.formatAmount(data.price)
 
 
             btnOption.setOnClickListener {
@@ -164,7 +165,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         }
     }
 
-    inner class FlightHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class FlightHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var tv_dep_return_tittle :TextView = itemView.findViewById(R.id.tv_depart_return_title)
         var tv_airline      :TextView = itemView.findViewById(R.id.tv_airline)
@@ -178,6 +179,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_price        :TextView = itemView.findViewById(R.id.tv_price)
         var img_flight      :ImageView= itemView.findViewById(R.id.img_flight)
         var btnOptionFlight :ImageView= itemView.findViewById(R.id.btn_option_flight)
+        var btnDetailTicket :ImageView= itemView.findViewById(R.id.img_chevron)
 
 
         fun bind(data: ItemFlightModel, position: Int) {
@@ -220,11 +222,15 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                 btnOptionFlight.visibility = View.GONE
             }
 
+            btnDetailTicket.setOnClickListener {
+                onclick.onClick(Constants.DETAIL_TICKET_FLIGHT ,position)
+            }
+
         }
 
     }
 
-    inner class HotelHolder internal constructor(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
+    inner class HotelHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var img_hotel             :ImageView= itemView.findViewById(R.id.img_hotel)
         var tv_status_hotel       :TextView = itemView.findViewById(R.id.tv_status_hotel)
@@ -234,6 +240,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_price_hotel        :TextView = itemView.findViewById(R.id.tv_price_hotel)
         var line_spacing          :LinearLayout = itemView.findViewById(R.id.line_spacing)
         var btnOptionHotel        :ImageView = itemView.findViewById(R.id.btn_option_hotel)
+        var btnTicketViewHotel    :LinearLayout = itemView.findViewById(R.id.layTicketViewHotel)
         var star1                 :ImageView = itemView.findViewById(R.id.str1)
         var star2                 :ImageView = itemView.findViewById(R.id.str2)
         var star3                 :ImageView = itemView.findViewById(R.id.str3)
@@ -284,6 +291,10 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             }
             else{
                 btnOptionHotel.visibility = View.GONE
+            }
+
+            btnTicketViewHotel.setOnClickListener {
+                onclick.onClick(Constants.DETAIL_TICKET_HOTEL ,position)
             }
 
             Globals.setStartImage(stars,totalStart)
