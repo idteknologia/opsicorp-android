@@ -44,10 +44,7 @@ import opsigo.com.datalayer.request_model.ApprovalAllRequest
 import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.*
-import opsigo.com.domainlayer.callback.CallbackApprovAll
-import opsigo.com.domainlayer.callback.CallbackChangeTrip
-import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
-import opsigo.com.domainlayer.callback.CallbackSummary
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
@@ -773,7 +770,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 idItem = dataItems[position].dataItemTrain.pnrCode
             }
         }
-        GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket{
+        GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket {
             override fun successLoad(summaryModel: DetailMyBookingModel) {
                 hideLoadingOpsicorp()
                 val bundle = Bundle()
