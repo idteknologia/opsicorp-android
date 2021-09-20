@@ -2,8 +2,7 @@
 <LinearLayout
     android:paddingLeft="@dimen/margin_default"
     android:paddingRight="@dimen/margin_default"
-    android:paddingTop="15dp"
-    android:paddingBottom="15dp"
+    android:paddingTop="10dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="horizontal"
@@ -24,6 +23,8 @@
         android:layout_height="wrap_content"
         android:text="@string/passenger_need_to_show_this_e_ticket_and_passenger_identity_when_check_in"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:lineSpacingExtra="5dp"
         android:textSize="12dp"
         style="@style/RobotoRegular"
         android:textColor="#24253d"/>

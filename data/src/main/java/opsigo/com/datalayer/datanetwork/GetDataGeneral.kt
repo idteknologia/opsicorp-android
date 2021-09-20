@@ -337,4 +337,30 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
         })
     }
 
+    override fun getDataEticket(token:String, id: String,idIten:String,typeItem:Int, callbackEticket: CallbackEticket) {
+        apiOpsicorp.getDataSummary(token, id).enqueue(object :Callback<ResponseBody>{
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callbackEticket.failedLoad(t.message.toString())
+            }
+
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful){
+                    val summaryEntity = Serializer.deserialize(response.body()?.string().toString(), SummaryEntity::class.java)
+                    val summ = EticketMapper().mapper(summaryEntity,idIten,typeItem)
+                    callbackEticket.successLoad(summ)
+                }
+                else{
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callbackEticket.failedLoad(message)
+                }
+                /*try {
+
+                }catch (e:Exception){
+                    callbackSummary.failedLoad(messageFailed)
+                }*/
+            }
+        })
+    }
+
 }

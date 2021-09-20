@@ -1,13 +1,17 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
 import com.mobile.travelaja.module.my_booking.model.*
+import opsigo.com.domainlayer.model.my_booking.PassangerPurchaseModel
+import opsigo.com.domainlayer.model.my_booking.DetailFlightPurchaseModel
+import opsigo.com.domainlayer.model.my_booking.ImportanPreProductInfoModel
+import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 
 object DummyDataPurchaseFlight {
     fun getDataPageFlight(): DetailFlightPurchaseModel {
         val data = DetailFlightPurchaseModel()
 
         for (i in 0..1){
-            var mData =  PurchaseDetailTripFlightAndTrainModel()
+            val mData =  PurchaseDetailTripFlightAndTrainModel()
             mData.status                  = "Body"
             mData.nameFlight              = "Sriwijaya Air"
             mData.numberSeat              = "SA-110"
@@ -16,13 +20,13 @@ object DummyDataPurchaseFlight {
             mData.timeDeparture           = "13:00"
             mData.dateDepartute           = "Thu, 27 Apr"
             mData.nameAirportDepature     = "Jakarta (CGK)"
-            mData.addressAirportDeparture = "Soekarno Hatta International Airport"
+            mData.origin = "Soekarno Hatta International Airport"
             mData.terminalDeparture       = "Terminal 2F"
             mData.timeArrival             = "15:20"
             mData.totalHour               = "2h 20m"
             mData.dateArrival             = "Thu, 27 Apr"
             mData.nameStasiunArrival      = "Jogjakarta (JOG)"
-            mData.addressStationArrival   = "Adi Sutjipto Airport"
+            mData.destinantion   = "Adi Sutjipto Airport"
 
             data.flights.add(mData)
             if (i == 0){
@@ -49,13 +53,13 @@ object DummyDataPurchaseFlight {
         mData.timeDeparture           = "13:00"
         mData.dateDepartute           = "Thu, 27 Apr"
         mData.nameAirportDepature     = "Jakarta (CGK)"
-        mData.addressAirportDeparture = "Soekarno Hatta International Airport"
+        mData.origin = "Soekarno Hatta International Airport"
         mData.terminalDeparture       = "Terminal 2F"
         mData.timeArrival             = "15:20"
         mData.totalHour               = "2h 20m"
         mData.dateArrival             = "Thu, 27 Apr"
         mData.nameStasiunArrival      = "Jogjakarta (JOG)"
-        mData.addressStationArrival   = "Adi Sutjipto Airport"
+        mData.destinantion   = "Adi Sutjipto Airport"
 
         data.flights.add(mData)
 
@@ -75,12 +79,12 @@ object DummyDataPurchaseFlight {
             mData.age           = "Adult"
             mData.totalBagage   = "KTP - 36858786410001"
             mData.Name          = "Vody Andrian"
-            mData.totalPassager = "Executive 2 / Seat 8B"
+            mData.seatPassager = "Executive 2 / Seat 8B"
             data.passanger.add(mData)
         }
 
 
-        data.totalPrize  = "IDR 1.500.819.000 "
+        data.totalPrize  = "IDR 1.500.819.000"
         return data
     }
 
@@ -111,7 +115,7 @@ object DummyDataPurchaseFlight {
             mData.age           = "Adult"
             mData.totalBagage   = "KTP - 36858786410001"
             mData.Name          = "Vody Andrian"
-            mData.totalPassager = "Executive 2 / Seat 8B"
+            mData.seatPassager = "Executive 2 / Seat 8B"
             data.passanger.add(mData)
         }
 

@@ -15,4 +15,5 @@ interface CreateTripPlaneRepository {
     fun getDataCity(token:String,callback: CallbackListCityTrip)
     fun cancelTripplan(token: String,id:String,callback:CallbackCancelTripplan)
     fun checkExistTripPersonal(token:String,callback: CallbackString)
+    fun getUrlFile(token: String,idItinerary: String, callbacGetUrlFile: CallbackGetUrlFile)
 }

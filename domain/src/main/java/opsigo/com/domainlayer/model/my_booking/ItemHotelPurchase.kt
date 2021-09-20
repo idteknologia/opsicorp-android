@@ -22,7 +22,10 @@ data class ItemHotelPurchase(
 	var classRoom : String? = null,
 	var roomsTotal: Int? = null,
 	var facility : ArrayList<FacilityHotelModel> = ArrayList(),
-	var guests: List<GuestsItems?>? = null
+	var guests: List<GuestsItems> = ArrayList(),
+	var cancellationPolicy : ArrayList<String> = ArrayList(),
+	var dataRemark : ArrayList<String> = ArrayList(),
+	var area:String = ""
 ):Parcelable
 
 @Parcelize

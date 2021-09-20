@@ -35,6 +35,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.InitApplications
+import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -1120,7 +1121,7 @@ object Globals {
     }
 
     fun openDownloadedAttachment(
-        context: Context,
+        activity: Activity,
         attachmentUri: Uri,
         attachmentMimeType: String
     ) {
@@ -1130,15 +1131,102 @@ object Globals {
             if (ContentResolver.SCHEME_FILE.equals(attachmentUri.scheme)) {
                 // FileUri - Convert it to contentUri.
                 val file = File(attachmentUri.path)
-                attachmentUri = FileProvider.getUriForFile(context, "${context.getPackageName()}.fileprovider", file)
+                attachmentUri = FileProvider.getUriForFile(activity, "${activity.getPackageName()}.fileprovider", file)
             }
             val openAttachmentIntent = Intent(Intent.ACTION_VIEW)
             openAttachmentIntent.setDataAndType(attachmentUri, attachmentMimeType)
+            Log.e("TAG type ",attachmentMimeType)
             openAttachmentIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
             try {
-                context.startActivity(openAttachmentIntent)
+                activity.startActivity(openAttachmentIntent)
             } catch (e: ActivityNotFoundException) {
-                setToast("please enable to open file",context)
+                activity.startActivity(Intent(DownloadManager.ACTION_VIEW_DOWNLOADS))
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun viewRatingStarHotel(images:ArrayList<ImageView>,data:String) {
+        when(data){
+            "0.0" -> {
+                images.forEach {
+                    it.visibility = View.GONE
+                }
+//                itemView.star_1.visibility = View.GONE
+//                itemView.star_2.visibility = View.GONE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "1.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.GONE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "2.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0||index==1){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "3.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0||index==1||index==2){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "4.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index!=4){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.VISIBLE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "5.0" ->{
+                images.forEach {
+                    it.visibility = View.VISIBLE
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.VISIBLE
+//                itemView.star_5.visibility = View.VISIBLE
             }
         }
     }

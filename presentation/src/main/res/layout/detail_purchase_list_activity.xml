@@ -66,15 +66,16 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:id="@+id/tv_title_ticket"
                             style="@style/RobotoRegular"
-                            android:layout_marginTop="17dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="10sp"
-                            android:textStyle="normal"
-                            android:textColor="#939396"
+                            android:layout_marginTop="17dp"
                             android:gravity="center_horizontal"
-                            android:text="@string/airline_booking_code_pnr" />
+                            android:text="@string/airline_booking_code_pnr"
+                            android:textColor="#939396"
+                            android:textSize="10sp"
+                            android:textStyle="normal" />
 
                         <LinearLayout
                             android:layout_marginTop="8dp"
@@ -82,26 +83,27 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
+
                             <TextView
+                                android:id="@+id/tv_pnr_code"
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="16dp"
-                                android:textStyle="normal"
+                                android:text="TSG14T"
                                 android:textColor="#24253d"
-                                android:text="TSG14T">
-                            </TextView>
+                                android:textSize="16dp"
+                                android:textStyle="normal"></TextView>
                         </LinearLayout>
 
                         <include
-                            android:visibility="visible"
+                            android:visibility="gone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/lay_detail_hotel"
+                            android:id="@+id/lay_header_hotel"
                             layout="@layout/layout_detail_hotel_purchase"/>
 
                         <include
-                            android:visibility="gone"
+                            android:visibility="visible"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/lay_detail_train"

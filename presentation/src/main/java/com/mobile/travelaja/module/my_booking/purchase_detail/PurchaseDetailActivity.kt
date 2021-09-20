@@ -3,6 +3,7 @@ package com.mobile.travelaja.module.my_booking.purchase_detail
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.View
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
@@ -18,6 +19,7 @@ import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.my_booking.adapter.PriceDetailMyBookingAdapter
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
+import opsigo.com.datalayer.mapper.Serializer
 
 class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         OnclickListenerRecyclerView,
@@ -27,7 +29,7 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         return PurchaseActivityBinding.inflate(layoutInflater)
     }
 
-    var dataDetailPurchase = DetailMyBookingModel()
+    lateinit var dataDetailPurchase : DetailMyBookingModel
     val data by lazy { ArrayList<Any>() }
     val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
     val priceAdapter by lazy { PriceDetailMyBookingAdapter(this) }
@@ -104,20 +106,20 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         GetDataMyBooking(getBaseUrl()).getDetailMyBooking(getToken(),intent?.getStringExtra(Constants.DATA_SELECT_PURCHASE).toString(),object : CallbackDetailMyBooking{
             override fun success(data: DetailMyBookingModel) {
                 hideLoadingOpsicorp()
-                dataDetailPurchase = data
-                when(data.itemType){
-                    Constants.TripType.Airline -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataFlight)
-                    }
-                    Constants.TripType.KAI -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataTrain)
-                    }
-                    Constants.TripType.Hotel -> {
-                        this@PurchaseDetailActivity.data.add(data.dataHotel)
-                    }
-                }
-                adapterItem.setData(this@PurchaseDetailActivity.data)
                 setDataView(data)
+                dataDetailPurchase = data
+                 when(data.itemType){
+                     Constants.TripType.Airline -> {
+                         this@PurchaseDetailActivity.data.addAll(dataDetailPurchase.dataFlight)
+                     }
+                     Constants.TripType.KAI -> {
+                         this@PurchaseDetailActivity.data.addAll(dataDetailPurchase.dataTrain)
+                     }
+                     Constants.TripType.Hotel -> {
+                         this@PurchaseDetailActivity.data.add(dataDetailPurchase.dataHotel)
+                     }
+                 }
+                 adapterItem.setData(this@PurchaseDetailActivity.data)
             }
 
             override fun failed(message: String) {
@@ -137,7 +139,7 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
 
     override fun onClick(views: Int, position: Int) {
         val bundle = Bundle()
-        bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,1)
+        bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,position)
         bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,dataDetailPurchase)
         gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
     }

@@ -323,7 +323,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardTrain.typeTrip       = itemTrainModel.typeTrip
                 model.dataCardTrain.isBackTrain    = itemTrainModel.isBackTrain
 
-                val sPrice = StringUtils().setCurrency("IDR", java.lang.Double.parseDouble(itemTrainModel.price), false)
+                val sPrice = StringUtils().setCurrency("IDR", itemTrainModel.price, false)
                 model.dataCardTrain.price = sPrice
 
                 val modelItem = ModelItemTrip()

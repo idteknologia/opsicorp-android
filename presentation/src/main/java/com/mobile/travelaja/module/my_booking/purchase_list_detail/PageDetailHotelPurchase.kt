@@ -1,20 +1,21 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
 import android.view.View
+import com.mobile.travelaja.R
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.webkit.WebViewClient
 import com.mobile.travelaja.utility.Globals
+import opsigo.com.domainlayer.model.my_booking.GuestsItems
 import com.mobile.travelaja.databinding.PageDetailHotelBinding
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
-import com.mobile.travelaja.module.my_booking.model.PassangerPurchaseModel
+import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import com.mobile.travelaja.module.my_booking.adapter.InfoSinggelTextAdapter
-import com.mobile.travelaja.module.my_booking.model.ImportanPreProductInfoModel
 import com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout
-import com.mobile.travelaja.module.my_booking.adapter.ImportanPreProductInfoAdapter
+import com.mobile.travelaja.module.my_booking.adapter.FacilityHotelPurchaseAdapter
 import com.mobile.travelaja.module.my_booking.adapter.PassangerPurchaseAdapterHotel
 
 class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
@@ -29,12 +30,12 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     val dataHotelMessage by lazy { ArrayList<String>() }
     val dataPolicy       by lazy { ArrayList<String>() }
     val dataRemark       by lazy { ArrayList<String>() }
-    val dataRoomFacility by lazy { ArrayList<ImportanPreProductInfoModel>() }
-    val dataGuest        by lazy { ArrayList< PassangerPurchaseModel>() }
+    val dataRoomFacility by lazy { ArrayList<FacilityHotelModel>() }
+    val dataGuest        by lazy { ArrayList<GuestsItems>() }
     val adapterGuest     by lazy { PassangerPurchaseAdapterHotel(context, dataGuest)}
     val adapterRemark    by lazy { InfoSinggelTextAdapter(context,dataRemark) }
     val adapterPolicy    by lazy { InfoSinggelTextAdapter(context,dataPolicy) }
-    val adapterRoomfacility by lazy { ImportanPreProductInfoAdapter(context,dataRoomFacility) }
+    val adapterRoomfacility by lazy { FacilityHotelPurchaseAdapter(context,dataRoomFacility) }
     val adapterHotelMessage by lazy { InfoSinggelTextAdapter(context,dataHotelMessage) }
 
     fun callbackOnclickButton(onclickButtonListener: OnclickButtonListener){
@@ -50,7 +51,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         initExpandView()
         initRecyclerView()
         addData()
-        checkEmptyData()
+//        checkEmptyData()
     }
 
     private fun initExpandView() {
@@ -75,10 +76,8 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         dataRoomFacility.clear()
         dataGuest       .clear()
 
-        dataPolicy.addAll(DummyDataPurchaseFlight.addDataCancelPolicy())
-        dataRemark.addAll(DummyDataPurchaseFlight.addDataRemark())
-        dataRoomFacility.addAll(DummyDataPurchaseFlight.addDataRoomFacility())
-        dataGuest.addAll(DummyDataPurchaseFlight.addDataGuest())
+//        dataRoomFacility.addAll(DummyDataPurchaseFlight.addDataRoomFacility())
+//        dataGuest.addAll(DummyDataPurchaseFlight.addDataGuest())
         dataHotelMessage.addAll(DummyDataPurchaseFlight.addDataHotelMessage())
 
         adapterHotelMessage.setData(dataHotelMessage)
@@ -218,6 +217,61 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun showDataHotel() {
+        binding.tvHotelAddress.text = data.dataHotel.address
+        binding.tvPriceHotel.text   = "IDR ${Globals.formatAmount(data.totalPaid)}"
+        dataGuest.addAll(data.dataHotel.guests)
+        dataRoomFacility.addAll(mappingImageFacility(data.dataHotel.facility))
+//        dataPolicy.addAll(DummyDataPurchaseFlight.addDataCancelPolicy())
+//        dataRemark.addAll(DummyDataPurchaseFlight.addDataRemark())
+        adapterPolicy.setData(data.dataHotel.cancellationPolicy)
+        adapterRemark.setData(data.dataHotel.dataRemark)
+        adapterGuest.notifyDataSetChanged()
+        adapterRoomfacility.notifyDataSetChanged()
+    }
 
+    private fun mappingImageFacility(faciltyHotel: ArrayList<FacilityHotelModel>): ArrayList<FacilityHotelModel> {
+        val data = ArrayList<FacilityHotelModel>()
+        data.clear()
+        faciltyHotel.forEach {
+            when(it.code){
+                "AC"-> {
+                    it.image = R.drawable.ac
+                    data.add(it)
+                }
+                "RST"-> {
+                    it.image = R.drawable.ic_meal
+                    data.add(it)
+                }
+                "POOL"-> {
+                    it.image = R.drawable.ic_swimming_pool
+                    data.add(it)
+                }
+                "PRK"-> {
+                    it.image = R.drawable.ic_parkir
+                    data.add(it)
+                }
+                "RSVC"-> {
+                    it.image = R.drawable.ic_contact_center
+                    data.add(it)
+                }
+                "WIFI"-> {
+                    it.image = R.drawable.ic_wi_fi
+                    data.add(it)
+                }
+                "NOSMR"-> {
+                    it.image = R.drawable.ic_no_smoking
+                    data.add(it)
+                }
+                "SDBOX"-> {
+                    it.image = R.drawable.ic_safe_deposit_box
+                    data.add(it)
+                }
+                else -> {
+                    it.image = R.drawable.ac
+                    data.add(it)
+                }
+            }
+        }
+        return data
     }
 }

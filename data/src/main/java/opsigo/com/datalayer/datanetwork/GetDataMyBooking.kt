@@ -4,7 +4,7 @@ import opsigo.com.domainlayer.usecase.MyBookingRequestRepository
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.domainlayer.callback.*
 import okhttp3.ResponseBody
-import opsigo.com.datalayer.mapper.DetalMyBookingMapper
+import opsigo.com.datalayer.mapper.DetailMyBookingMapper
 import opsigo.com.datalayer.mapper.ListMyBookingMapper
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.model.myboking.DetailMyBookingEntity
@@ -53,11 +53,11 @@ class GetDataMyBooking(baseUrl:String) : BaseGetData(), MyBookingRequestReposito
     override fun getDetailMyBooking(token: String, id: String,callback: CallbackDetailMyBooking) {
         apiOpsicorp.getDetailMyBooking(token,id).enqueue(object : Callback<ResponseBody>{
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                val data = response.body()?.string()
-                callback.success(DetalMyBookingMapper().mapping(Serializer.deserialize(data, DetailMyBookingEntity::class.java)))
                 try {
                    if (response.isSuccessful){
-                    }
+                       val data = response.body()?.string()
+                       callback.success(DetailMyBookingMapper().mapping(Serializer.deserialize(data, DetailMyBookingEntity::class.java)))
+                   }
                     else{
                         val json = JSONObject(response.errorBody()?.string())
                         val message = json.optString("error_description")

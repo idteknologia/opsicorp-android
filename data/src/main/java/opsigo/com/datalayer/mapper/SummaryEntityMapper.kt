@@ -44,6 +44,7 @@ class SummaryEntityMapper() {
         summary.paymentStatusView = from.paymentStatusView.toString()
         summary.isTripPartner = from.isWithPartner
         summary.parterName = from.partnerName.toString()
+        summary.coverLatter = from.coverLetterUrl.toString()
 
 
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->

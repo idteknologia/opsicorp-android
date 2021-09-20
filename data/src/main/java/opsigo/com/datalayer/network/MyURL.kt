@@ -107,4 +107,6 @@ object MyURL {
     const val GET_LIST_MY_BOOKING = "api/PersonalTrip/PurchaseList"
     const val DETAIL_MY_BOOKING   = "api/PersonalTrip/PurchaseDetail"
 
+    const val GET_URL_FILE        = "api/TripPlan/DownloadFile"
+
 }

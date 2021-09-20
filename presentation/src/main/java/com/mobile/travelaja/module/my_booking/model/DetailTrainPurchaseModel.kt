@@ -1,5 +1,8 @@
 package com.mobile.travelaja.module.my_booking.model
 
+import opsigo.com.domainlayer.model.my_booking.ImportanPreProductInfoModel
+import opsigo.com.domainlayer.model.my_booking.PassangerPurchaseModel
+
 class DetailTrainPurchaseModel {
     var timeArrival             = ""
     var dateArrival             = ""

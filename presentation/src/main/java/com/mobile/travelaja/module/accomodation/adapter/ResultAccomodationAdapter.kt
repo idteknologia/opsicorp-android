@@ -238,50 +238,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             setLog(data.listHotelModel.nameHotel)
             setLog(data.listHotelModel.starRating)
 
-            when(data.listHotelModel.starRating){
-                "0.0" -> {
-                    itemView.star_1.visibility = View.GONE
-                    itemView.star_2.visibility = View.GONE
-                    itemView.star_3.visibility = View.GONE
-                    itemView.star_4.visibility = View.GONE
-                    itemView.star_5.visibility = View.GONE
-                }
-                "1.0" ->{
-                    itemView.star_1.visibility = View.VISIBLE
-                    itemView.star_2.visibility = View.GONE
-                    itemView.star_3.visibility = View.GONE
-                    itemView.star_4.visibility = View.GONE
-                    itemView.star_5.visibility = View.GONE
-                }
-                "2.0" ->{
-                    itemView.star_1.visibility = View.VISIBLE
-                    itemView.star_2.visibility = View.VISIBLE
-                    itemView.star_3.visibility = View.GONE
-                    itemView.star_4.visibility = View.GONE
-                    itemView.star_5.visibility = View.GONE
-                }
-                "3.0" ->{
-                    itemView.star_1.visibility = View.VISIBLE
-                    itemView.star_2.visibility = View.VISIBLE
-                    itemView.star_3.visibility = View.VISIBLE
-                    itemView.star_4.visibility = View.GONE
-                    itemView.star_5.visibility = View.GONE
-                }
-                "4.0" ->{
-                    itemView.star_1.visibility = View.VISIBLE
-                    itemView.star_2.visibility = View.VISIBLE
-                    itemView.star_3.visibility = View.VISIBLE
-                    itemView.star_4.visibility = View.VISIBLE
-                    itemView.star_5.visibility = View.GONE
-                }
-                "5.0" ->{
-                    itemView.star_1.visibility = View.VISIBLE
-                    itemView.star_2.visibility = View.VISIBLE
-                    itemView.star_3.visibility = View.VISIBLE
-                    itemView.star_4.visibility = View.VISIBLE
-                    itemView.star_5.visibility = View.VISIBLE
-                }
-            }
+            Globals.viewRatingStarHotel(arrayListOf(itemView.star_1,itemView.star_2,itemView.star_3,itemView.star_4,itemView.star_5),data.listHotelModel.starRating)
 
             itemView.setOnClickListener {
                 onclickAnimation.onClick(-3,position,itemView.img_hotel)

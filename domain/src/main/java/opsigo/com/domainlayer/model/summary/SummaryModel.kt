@@ -56,5 +56,6 @@ data class SummaryModel(
         var routes :ArrayList<RoutesItemPertamina> = ArrayList(),
         var attactment :ArrayList<UploadModel> = ArrayList(),
         var tripParticipantItem :ArrayList<ParticipantPertamina> = ArrayList(),
-        var tripParticipantModels: List<TripParticipantsItemModel> = ArrayList()
+        var tripParticipantModels: List<TripParticipantsItemModel> = ArrayList(),
+        var coverLatter : String = ""
 )

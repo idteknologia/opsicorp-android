@@ -35,6 +35,7 @@
 
 
             <TextView
+                android:id="@+id/tv_name_hotel"
                 android:layout_marginTop="5.1dp"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -54,26 +55,31 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/ic_start1"
                     android:layout_marginLeft="4dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="14dp"
                     android:layout_height="14dp" />
                 <ImageView
+                    android:id="@+id/ic_start2"
                     android:layout_marginLeft="4dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="14dp"
                     android:layout_height="14dp" />
                 <ImageView
+                    android:id="@+id/ic_start3"
                     android:layout_marginLeft="4dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="14dp"
                     android:layout_height="14dp" />
                 <ImageView
+                    android:id="@+id/ic_start4"
                     android:layout_marginLeft="4dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="14dp"
                     android:layout_height="14dp" />
                 <ImageView
+                    android:id="@+id/ic_start5"
                     android:layout_marginLeft="4dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="14dp"
@@ -81,33 +87,36 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginLeft="@dimen/margin_default"
-            android:layout_marginTop="7.7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="14dp"
-                android:layout_height="19dp"
-                android:src="@drawable/ic_place_green"></ImageView>
-
-            <TextView
-                android:layout_marginLeft="3dp"
+            <LinearLayout
                 android:layout_gravity="center"
+                android:layout_marginTop="7.7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
-                style="@style/RobotoRegular"
-                android:textColor="#91929e"
-                android:lineSpacingExtra="1sp"
-                android:text="Arjuna, Bandung">
-            </TextView>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/ic_place_green"></ImageView>
+
+                <TextView
+                    android:id="@id/tv_city"
+                    android:layout_marginLeft="3dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    style="@style/RobotoRegular"
+                    android:textColor="#91929e"
+                    android:lineSpacingExtra="1sp"
+                    android:text="Arjuna, Bandung">
+                </TextView>
+
+            </LinearLayout>
 
         </LinearLayout>
+
+
 
 
         <LinearLayout
@@ -145,7 +154,8 @@
                         />
 
                     <TextView
-                        android:layout_marginTop="2dp"
+                        android:id="@+id/tv_chekin_date"
+                        android:layout_marginTop="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -155,7 +165,8 @@
                     </TextView>
 
                     <TextView
-                        android:layout_marginTop="2dp"
+                        android:id="@+id/tv_checkin_time"
+                        android:layout_marginTop="3dp"
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -195,6 +206,7 @@
                         android:layout_height="16dp">
                     </ImageView>
                     <TextView
+                        android:id="@+id/tv_night"
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -232,7 +244,8 @@
                         />
 
                     <TextView
-                        android:layout_marginTop="2dp"
+                        android:id="@+id/tv_checkout_date"
+                        android:layout_marginTop="3dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
@@ -242,7 +255,8 @@
                     </TextView>
 
                     <TextView
-                        android:layout_marginTop="2dp"
+                        android:id="@+id/tv_checkout_time"
+                        android:layout_marginTop="3dp"
                         style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -281,6 +295,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/tv_name_booking_contact"
                 style="@style/RobotoBold"
                 android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"

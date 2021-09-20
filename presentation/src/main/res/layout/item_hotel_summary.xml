@@ -175,7 +175,7 @@
             android:layout_marginLeft="14dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:id="@+id/layArrow"
+            android:id="@+id/layTicketViewHotel"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
