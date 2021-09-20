@@ -7,7 +7,10 @@ import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.domainlayer.callback.*
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
+import opsigo.com.datalayer.model.cart.SummaryEntity
 import opsigo.com.datalayer.model.travel_request.CashAdvanceEntity
+import opsigo.com.datalayer.model.travel_request.ChangeTripEntity
+import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 import javax.inject.Inject
 import java.lang.Exception
 import org.json.JSONObject
@@ -193,6 +196,28 @@ class GetDataTravelRequest(baseUrl:String) : BaseGetData(),TravelRequestReposito
 
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
             callback.failedLoad(t.message.toString())
+            }
+
+        })
+    }
+
+    override fun changeTrip(token: String, tripId: String, callback: CallbackChangeTrip) {
+        apiOpsicorp.changeTrip(token,tripId).enqueue(object  : Callback<ResponseBody>{
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.isSuccessful){
+                    val summaryEntity = Serializer.deserialize(response.body()?.string().toString(), ChangeTripEntity::class.java)
+                    val summ = ChangeTripMapper().mapFrom(summaryEntity)
+                    callback.successLoad(summ)
+                }
+                else{
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callback.failedLoad(message)
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message.toString())
             }
 
         })

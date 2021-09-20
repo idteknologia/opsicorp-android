@@ -75,7 +75,7 @@ class TransportExpenseAdapter(
             binding.executePendingBindings()
             binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
                 val mode = group.findViewById<Chip>(checkedId)?.text
-                if (!binding.hasPendingBindings() && mode != null && transport.nameTransportationMode != mode.toString()) {
+                if (!binding.hasPendingBindings() && mode != null && transport.TransportationModeName != mode.toString()) {
                     viewModel.calculateTransportByType(
                         TransportExpenseViewModel.NON_FLIGHT,
                         mode.toString(),
@@ -94,7 +94,7 @@ class TransportExpenseAdapter(
                         if (v is Chip) {
                             v.text = it.Text
                         }
-                        v.id = it.id
+                        v.id = it.ValueInt
                         binding.chipGroup.addView(v)
                     }
                 }
@@ -106,7 +106,7 @@ class TransportExpenseAdapter(
         @JvmStatic
         @BindingAdapter("appCheckedMode")
         fun setModeChecked(chipGroup: ChipGroup, mode: Int) {
-            if (mode != 0)
+            if (mode > 1)
                 chipGroup.findViewById<Chip>(mode)?.isChecked = true
             else
                 chipGroup.clearCheck()

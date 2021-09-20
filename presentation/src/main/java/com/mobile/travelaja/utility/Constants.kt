@@ -60,6 +60,7 @@ object Constants {
     var DATA_ROOM_HOTEL          = ""
     var DATA_LIST_TRAIN          = ""
     var DATA_CREATE_TRIP         = ""
+    var DATA_CHANGE_TRIP         = ""
     var DATA_CASH_ADVANCE        = ""
     var LIST_DETAIL_PASSANGER    = ""
     val FROM_CART                = "from_cart"
@@ -72,6 +73,7 @@ object Constants {
     var TRIP_TYPE                = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
+    val CHANGE_TRIP              = "changeTrip"
     val PROGRESS_TRAIN_CALLBACK  = 9099
     val PROGRESS_FLIGHT_CALLBACK = 9100
     val PROGRESS_FLIGHT_SAVED    = 9101
@@ -290,6 +292,7 @@ object Constants {
     var Reserve                  = "Reserve"
     var TripSummary              = "TripSummary"
     var Summary                  = "Summary"
+    var EstCost                  = "EstCost"
     var Number                   = "Number"
     var ID_PARTICIPANT           = "iDParticipant"
     var EMPLOY_ID                = "employId"

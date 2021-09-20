@@ -2,4 +2,6 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:color="@color/chipTextColorEnable" android:state_checked="true"/>
     <item android:color="#91929e" android:state_checked="false"/>
+    <item android:color="@color/chipTextColorEnable" android:state_enabled="true"/>
+    <item android:color="#efefef" android:state_enabled="false"/>
 </selector>

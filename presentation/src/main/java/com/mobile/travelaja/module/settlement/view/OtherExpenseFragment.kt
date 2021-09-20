@@ -7,13 +7,11 @@ import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.addCallback
 import androidx.core.os.bundleOf
-import androidx.databinding.ObservableArrayList
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.list.BaseListAdapter
@@ -21,56 +19,73 @@ import com.mobile.travelaja.base.list.BaseListFragment
 import com.mobile.travelaja.module.settlement.view.adapter.OtherExpenseAdapter
 import com.mobile.travelaja.module.settlement.view.content.ExpenseTypeFragment
 import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
-import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.ExpenseType
 import opsigo.com.domainlayer.model.settlement.OtherExpense
+import com.mobile.travelaja.module.settlement.view.CreateSettlementFragment.Companion.KEY_REQUEST
 
-class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener,DialogInterface.OnClickListener {
+class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener,
+    DialogInterface.OnClickListener {
     private lateinit var viewModel: OtherExpenseViewModel
-    private lateinit var settlementViewModel: SettlementViewModel
     private lateinit var adapter: OtherExpenseAdapter
-    private var expenseTypes = arrayOf<String>()
     private var position = -1
-    private lateinit var typeExpenseDialog : MaterialAlertDialogBuilder
-    private val args : OtherExpenseFragmentArgs by navArgs()
+    private val args: OtherExpenseFragmentArgs by navArgs()
+    private var expenseTypes = arrayOf<ExpenseType>()
+    private var isPcu = false
+    private var hasUpdate = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        requireActivity().onBackPressedDispatcher.addCallback(this) {
-//            showingWarning(
-//                R.string.alert,
-//                R.string.warning_back_settlement_transport_expense,
-//                R.string.dont_save,
-//                R.string.save,
-//                TransportExpenseFragment.WARNING_NAVIGATEUP
-//            )
-//        }
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            actionBack()
+        }
+        arguments?.let {
+            isPcu = args.isPcu
+        }
+    }
+
+    private fun actionBack() {
+        if (hasUpdate) {
+            showingWarning(
+                R.string.alert,
+                R.string.warning_back_settlement_other_expense,
+                R.string.dont_save,
+                R.string.save,
+                TransportExpenseFragment.WARNING_NAVIGATEUP
+            )
+        } else {
+            navigateUp()
+        }
     }
 
     override fun baseListAdapter(): BaseListAdapter<OtherExpense> {
         setViewModel()
         addTypeExpense()
         addItems()
-        adapter = OtherExpenseAdapter(viewModel, this)
+        adapter = OtherExpenseAdapter(viewModel, binding.rvBaseList, this)
+        setUi()
+        return adapter
+    }
+
+    private fun setUi() {
+        setEnableButtonBottom(hasUpdate)
         setTitleName(R.string.other_expense, R.color.colorTextHint)
         setSubtitle(R.string.transportation_form)
         setButtonText(R.string.add_other_expense)
         isEnabledRefresh(false)
-        return adapter
     }
 
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
     override fun isButtonVisible(): Boolean = true
-    override fun isButtonBottomVisible(): Boolean  = true
+    override fun isButtonBottomVisible(): Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loading.observe(viewLifecycleOwner) { event ->
             event?.getContentIfNotHandled()?.let { loading ->
-                binding.rvBaseList.isEnabled = !loading
                 if (!loading && viewModel.expenseTypes.isNotEmpty()) {
                     setExpenseType()
                 }
@@ -80,55 +95,53 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         viewModel.error.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { error ->
                 Utils.handleErrorMessage(requireContext(), error) { errorString ->
-                    Toast.makeText(context, if (errorString != Utils.EMPTY)errorString else getString(R.string.alert_empty_expense_type),
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        if (errorString != Utils.EMPTY) errorString else getString(R.string.alert_empty_expense_type),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
-        setFragmentResultListener(ExpenseTypeFragment.TYPE){ key, bundle ->
+
+        viewModel.hasUpdate.observe(viewLifecycleOwner) { hasUpdate ->
+            if (!this.hasUpdate)
+                setEnableButtonBottom(true)
+            this.hasUpdate = hasUpdate
+        }
+
+        setFragmentResultListener(ExpenseTypeFragment.TYPE) { key, bundle ->
             val data = bundle.get(ExpenseTypeFragment.DATA)
             val pos = bundle.getInt(ExpenseTypeFragment.POSITION)
-            if (data is ExpenseType && pos != -1){
-                val item = OtherExpense()
-                item.ExpenseType = data.ExpenseType
-                item.expenseName = data.Description
-                viewModel.setItem(item,position)
-                val list = settlementViewModel._otherExpenses
-                println(list)
-//                viewModel.setExpenseType(data,position,getString(R.string.other_expense_idr))
+            if (data is ExpenseType && pos != -1) {
+                viewModel.setExpenseType(data, pos, getString(R.string.other_expense_idr))
             }
         }
     }
 
-    private fun setViewModel(){
+    private fun setViewModel() {
         viewModel = ViewModelProvider(
             this,
             DefaultViewModelFactory(false, requireContext())
         ).get(OtherExpenseViewModel::class.java)
-
-        settlementViewModel = ViewModelProvider(
-            requireActivity(),
-            DefaultViewModelFactory(false, requireContext())
-        ).get(SettlementViewModel::class.java)
     }
 
+    // Todo add expense type
     private fun addTypeExpense() {
-        typeExpenseDialog = MaterialAlertDialogBuilder(requireContext()).setTitle(R.string.expense_type)
-        val typeExpense = settlementViewModel.typeExpense
-        if (typeExpense.isNotEmpty() && viewModel.expenseTypes.isEmpty()){
-            viewModel.expenseTypes.clear()
-            viewModel.expenseTypes.addAll(typeExpense)
-            expenseTypes = typeExpense.map { it.Description }.toTypedArray()
+        val items = args.expenseType
+        if (items.isNotEmpty()) {
+            expenseTypes = items
         }
     }
 
-    private fun addItems(){
-        val items2 = args.otherExpenses
-        if (items2.isNotEmpty() && viewModel.items.isEmpty()){
-            viewModel.items .clear()
-            viewModel.items.addAll(items2)
-            viewModel.isRemoveVisible.set(items2.size > 1)
-        }else if (viewModel.items.isEmpty()) {
+    //Todo add items
+    private fun addItems() {
+        val items = args.otherExpenses
+        if (items.isNotEmpty() && viewModel.items.isEmpty()) {
+            viewModel.items.clear()
+            viewModel.items.addAll(items)
+            viewModel.isRemoveVisible.set(items.size > 1)
+        } else if (viewModel.items.isEmpty()) {
             val item = OtherExpense()
             item.Currency = getString(R.string.other_expense_idr)
             viewModel.items.add(item)
@@ -139,39 +152,32 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
     }
 
     override fun onClick(v: View?) {
-        if (v?.id == R.id.buttonBaseList){
+        if (v?.id == R.id.buttonBaseList) {
             addItem()
-        }else if (v?.id == R.id.buttonBottom) {
-            saveItem()
-        }else {
-            showingWarning(
-                R.string.alert,
-                R.string.warning_back_settlement_transport_expense,
-                R.string.dont_save,
-                R.string.save,
-                TransportExpenseFragment.WARNING_NAVIGATEUP
-            )
+        } else if (v?.id == R.id.buttonBottom) {
+            saveItems()
+        } else {
+           actionBack()
         }
         binding.rvBaseList.clearFocus()
     }
 
     override fun onClickItem(view: View, position: Int) {
         this.position = position
-        when(view.id){
+        when (view.id) {
             R.id.toggleButton -> {
-                if (view is ToggleButton){
+                if (view is ToggleButton) {
                     val text = view.text.toString()
                     val d = viewModel.items[position]
                     d.Currency = text
-                    viewModel.setItem(d,position)
                 }
             }
             R.id.buttonRemove -> {
                 removeItem(position)
             }
-            else->{
+            else -> {
                 if (viewModel.expenseTypes.isEmpty()) {
-                    viewModel.getExpenseType()
+                    getExpenseType()
                 } else {
                     navigateExpenseType(position)
                 }
@@ -180,41 +186,46 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         binding.rvBaseList.clearFocus()
     }
 
-    private fun navigateExpenseType(position : Int){
-        val expenseTypes = viewModel.expenseTypes.toTypedArray()
-        val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(expenseTypes,position)
+    private fun getExpenseType() {
+        if (!viewModel.isLoading) {
+            viewModel.getExpenseType(isPcu)
+        } else {
+            showingWarning(
+                R.string.waiting, R.string.warning_loading, -1, R.string.ok,
+                TransportExpenseFragment.WARNING_ISLOADING
+            )
+        }
+    }
+
+    private fun navigateExpenseType(position: Int) {
+        val exType = viewModel.getItem(position)?.ExpenseName ?: ""
+        val action = OtherExpenseFragmentDirections.actionOtherExpenseFragmentToExpenseTypeFragment(
+            exType,
+            expenseTypes,
+            position
+        )
         findNavController().navigate(action)
     }
 
     private fun setExpenseType() {
-//        if (expenseTypes.isEmpty()) {
-//            val expenseType = viewModel.expenseTypes
-//                .filter { !it.Description.isNullOrEmpty() || !it.ExpenseType.isNullOrEmpty() }
-//                .map {
-//                    it.Description
-//                }
-//            expenseTypes = expenseType.toTypedArray()
-//            typeExpenseDialog.setItems(expenseTypes,this).show()
-//        }
-
+        expenseTypes = viewModel.expenseTypes.toTypedArray()
         navigateExpenseType(position)
     }
 
-
-    private fun setExpenseType(expenseType : ExpenseType,position: Int) {
+    private fun setExpenseType(expenseType: ExpenseType, position: Int) {
         val item = viewModel.items[position]
         item.ExpenseType = expenseType.ExpenseType
-        item.expenseName = expenseType.Description
+        item.ExpenseName = expenseType.Description
     }
 
-    private fun addItem(){
+    private fun addItem() {
         val size = adapter.itemCount
         adapter.notifyItemInserted(size)
         viewModel.addItem(getString(R.string.other_expense_idr))
     }
 
     private fun removeItem(pos: Int) {
-        if (pos == viewModel.indexEmpty.get()){
+        if (pos == viewModel.indexEmpty.get()) {
             viewModel.indexEmpty.set(-1)
         }
         viewModel.removeItem(pos)
@@ -222,9 +233,10 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
         adapter.notifyItemRemoved(pos)
     }
 
-    private fun saveItem(){
+    //Todo save item to detail
+    private fun saveItems() {
         val indexEmpty = viewModel.indexFirstEmpty()
-        if (indexEmpty != -1){
+        if (indexEmpty != -1) {
             val y = binding.rvBaseList.getChildAt(indexEmpty).y - 30f
             binding.nested.scrollTo(0, y.toInt())
             val snackbar = Snackbar.make(
@@ -237,20 +249,17 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
             }
             snackbar.show()
         } else {
-            val items = arrayListOf<OtherExpense>()
-            val list = viewModel.items.toList()
-            items.addAll(list)
-//            settlementViewModel.addingOtherExpense(items)
-            setFragmentResult("Expense", bundleOf("expenses" to items))
-            if (settlementViewModel.typeExpense.isEmpty()){
-                settlementViewModel.typeExpense.addAll(viewModel.expenseTypes)
-            }
+            val list: ArrayList<OtherExpense> = viewModel.items
+            val bundle = bundleOf()
+            bundle.putParcelableArrayList(KEY_OTHER_EXPENSE_LIST, list)
+            bundle.putParcelableArray(KEY_EXPENSE_TYPE_LIST, expenseTypes)
+            setFragmentResult(KEY_REQUEST, bundle)
             navigateUp()
         }
     }
 
     override fun onClick(dialog: DialogInterface?, which: Int) {
-        if (which != -1){
+        if (which != -1) {
             val value = viewModel.expenseTypes[which]
             setExpenseType(value, position)
             dialog?.dismiss()
@@ -259,15 +268,20 @@ class OtherExpenseFragment : BaseListFragment<OtherExpense>(), ItemClickListener
 
     override fun onWarningClick(dialogInterface: DialogInterface, type: Int, isPositive: Boolean) {
         super.onWarningClick(dialogInterface, type, isPositive)
-        if (isPositive){
+        if (isPositive) {
             if (type == TransportExpenseFragment.WARNING_NAVIGATEUP) {
-                saveItem()
+                saveItems()
             } else {
                 dialogInterface.dismiss()
             }
-        }else {
+        } else {
             dialogInterface.dismiss()
             navigateUp()
         }
+    }
+
+    companion object {
+        const val KEY_OTHER_EXPENSE_LIST = "OTHER_EXPENSE_LIST"
+        const val KEY_EXPENSE_TYPE_LIST = "EXPENSE_TYPE_LIST"
     }
 }

@@ -19,10 +19,12 @@ import android.view.View
 import android.widget.TextView
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
+import com.mobile.travelaja.databinding.DialogNotAuthorizedBinding
 import com.mobile.travelaja.locale.AppLocale
 import com.mobile.travelaja.locale.AppLocaleChangeReceiver
 import com.mobile.travelaja.locale.LocaleManager
 import com.mobile.travelaja.locale.LocalePrefrences
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
@@ -46,6 +48,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
     val dialogError = DialogErrorConection()
+    val dialogNotAuthorized = NotAuthorizedDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +74,10 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = resources.getColor(R.color.colorPrimary)
         }
+    }
+
+    fun showDialogNotAuthorized(disable: Boolean){
+        dialogNotAuthorized.showDialogLoading(this,disable)
     }
 
     fun showDialogContruction(disable: Boolean) {

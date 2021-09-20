@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="data"
+            type="opsigo.com.domainlayer.model.trip.Trip" />
+
+        <variable
+            name="listener"
+            type="com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.TripsListener" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerTripItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingEnd="0dp"
+            android:paddingBottom="@dimen/margin_default">
+
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_baseline_attach_money_24"
+                android:backgroundTint="#efefef"
+                android:background="@drawable/bg_circle_fill"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="@+id/tvPurpose"
+                app:layout_constraintBottom_toBottomOf="@+id/icDate"/>
+
+            <TextView
+                android:id="@+id/tvLabelDraft"
+                style="@style/TextLato_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@drawable/rounded_approval_gray"
+                android:paddingStart="10dp"
+                android:paddingTop="3dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="3dp"
+                android:text="@{data.statusView}"
+                tools:text="Waiting for Approval"
+                android:textColor="@color/colorWhite"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tvTripCode"
+                style="@style/TextLato_Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{data.tripCode}"
+                android:textColor="#91929e"
+                android:textSize="12sp"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStartDate"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvStartDate"
+                tools:text="TP202103170002" />
+
+            <TextView
+                android:id="@+id/tvPurpose"
+                style="@style/TextLato_Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="13dp"
+                android:text="@{data.purpose}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelDraft"
+                tools:text="Dinas non-residensial di luar tempat kedu" />
+
+            <ImageView
+                android:id="@+id/icPlace"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                tools:visibility="gone"
+                android:visibility="@{data.nameCities().empty ? View.GONE : View.VISIBLE}"
+                android:src="@drawable/ic_point_gps_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPurpose" />
+
+            <TextView
+                android:id="@+id/tvListRoute"
+                style="@style/TextLato_Normal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@{data.nameCities()}"
+                android:visibility="@{data.nameCities().empty ? View.GONE : View.VISIBLE}"
+                android:textColor="#939396"
+                tools:visibility="gone"
+                android:layout_marginEnd="@dimen/margin_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/icPlace"
+                app:layout_constraintTop_toTopOf="@+id/icPlace"
+                tools:text="Singapore - Jakarta - Argentina - Hongkong - Saudi Arabia" />
+
+            <ImageView
+                android:id="@+id/icDate"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/departure_date"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvListRoute" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                style="@style/SubtitleTextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{data.directionDate}"
+                android:textSize="12sp"
+                android:layout_marginStart="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/icDate"
+                app:layout_constraintStart_toEndOf="@+id/icDate"
+                app:layout_constraintTop_toTopOf="@+id/icDate"
+                tools:text="Mon, 8 Feb 2021" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

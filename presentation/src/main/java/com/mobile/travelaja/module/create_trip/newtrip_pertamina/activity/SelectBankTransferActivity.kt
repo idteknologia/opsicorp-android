@@ -1,16 +1,21 @@
 package com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity
 
 import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.mobile.travelaja.R
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.module.settlement.view.BankListFragment
 import com.mobile.travelaja.module.settlement.view.BankListener
 
-class SelectBankTransferActivity : AppCompatActivity(), BankListener {
+class SelectBankTransferActivity : BaseActivity(), BankListener {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_select_bank_transfer)
+    val bankListFragment = BankListFragment()
+
+    override fun getLayout(): Int {
+        return R.layout.activity_select_bank_transfer
+    }
+
+    override fun OnMain() {
+        loadFragment(bankListFragment,R.id.fragmentBankList)
     }
 
     override fun onClickItemBank(id: String) {

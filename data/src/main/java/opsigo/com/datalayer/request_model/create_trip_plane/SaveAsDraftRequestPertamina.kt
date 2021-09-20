@@ -51,6 +51,18 @@ data class SaveAsDraftRequestPertamina (
         @field:SerializedName("BusinessTripType")
         var  businessTripType: String = "",
 
+        @field:SerializedName("IsChangeTrip")
+        var  isChangeTrip: Boolean = false,
+
+        @field:SerializedName("TrnNumber")
+        var  trnNumber: String = "",
+
+        @field:SerializedName("TripCodeOld")
+        var  tripCodeOld: String = "",
+
+        @field:SerializedName("TripIdOld")
+        var  tripIdOld: String = "",
+
         @field:SerializedName("TripAttachments")
         var  tripAttachments: List<TripAttachmentsItemRequest> = ArrayList<TripAttachmentsItemRequest>(),
 

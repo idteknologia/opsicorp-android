@@ -27,17 +27,12 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     private lateinit var viewModel: TransportExpenseViewModel
     private lateinit var settlementViewModel: SettlementViewModel
     private val args: TransportExpenseFragmentArgs by navArgs()
+    private var hasUpdate = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            showWarning(
-                R.string.alert,
-                R.string.warning_back_settlement_transport_expense,
-                R.string.dont_save,
-                R.string.save,
-                WARNING_NAVIGATEUP
-            )
+            backAction()
         }
     }
 
@@ -51,23 +46,30 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             requireActivity(),
             DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
-        setDataTransports()
+
         setModeTransports()
+        setDataTransports()
         adapter =
             TransportExpenseAdapter(viewModel, modes = viewModel.modeTransports, listener = this)
+        setUi()
+        return adapter
+    }
+
+    private fun setUi() {
+        setEnableButtonBottom(hasUpdate)
+        showingTotal(R.string.grand_total, R.string.other_expense_idr)
         setTitleName(R.string.transportation_form, R.color.colorTextHint)
         setSubtitle(R.string.transportation_to_airport_or_non_airport)
         setButtonText(R.string.add_transportation)
         isEnabledRefresh(false)
-        return adapter
     }
 
     private fun setDataTransports() {
-        val transports = settlementViewModel.submitSettlement.value!!.TransportExpenses
+        val data = settlementViewModel.getDetailSubmit()
+        val transports = data!!.TransportExpenses
         if (transports.isNotEmpty() && viewModel.transportExpenses.isEmpty()) {
-            viewModel.totalTransport.value = settlementViewModel.totalTransport.get()
-            viewModel.transportExpenses.clear()
-            viewModel.transportExpenses.addAll(transports)
+            viewModel.addTotal(data.TotalTransportExpense.toDouble())
+            viewModel.addingTransportExpense(transports)
             viewModel.isRemoveVisible.set(transports.size > 1)
         } else {
             viewModel.transportExpenses.add(TransportExpenses())
@@ -79,19 +81,20 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         if (modes.isNotEmpty()) {
             viewModel.modeTransports.clear()
             viewModel.modeTransports.addAll(modes)
-            viewModel.modeFlight =
-                viewModel.modeTransports.last { it.Value == SettlementViewModel.TYPE_FLIGHT }
+            viewModel.modeFlight = viewModel.modeTransports.last { it.Value == SettlementViewModel.TYPE_FLIGHT }
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.error.observe(viewLifecycleOwner) {
             it.getContentIfNotHandled()?.let { t ->
                 Utils.handleErrorMessage(requireContext(), t) { error ->
-                    val errorDesc =
-                        if (error == Utils.EMPTY) getString(R.string.empty_mode_transports) else error
+                    val errorDesc = when (error) {
+                        Utils.EMPTY -> getString(R.string.empty_mode_transports)
+                        MODE_NOT_SUPPORT -> getString(R.string.mode_transport_not_support)
+                        else -> error
+                    }
                     Toast.makeText(requireContext(), errorDesc, Toast.LENGTH_SHORT).show()
                 }
             }
@@ -112,12 +115,23 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
                 }
             }
         }
-        viewModel.totalTransport.observe(viewLifecycleOwner) {
-            settlementViewModel.totalTransport.set(it)
+        viewModel.total.observe(viewLifecycleOwner) {
+            if (it != null) {
+                val value = Utils.formatCurrency(it)
+                textBottomValue.set(value)
+            }
         }
-        settlementViewModel.saveAction = {
-            saveTransports()
+
+        viewModel.hasUpdate.observe(viewLifecycleOwner) { hasUpdate ->
+            if (!this.hasUpdate)
+                setEnableButtonBottom(true)
+            this.hasUpdate = hasUpdate
         }
+
+        viewModel.loading.observe(viewLifecycleOwner){ loading ->
+            isLoading.set(loading)
+        }
+
     }
 
     private fun saveTransports() {
@@ -135,13 +149,9 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             }
             snackbar.show()
         } else {
-            val transports = viewModel.transportExpenses
-            val total = viewModel.totalTransport.value
-            settlementViewModel.submitSettlement.value!!.TransportExpenses = transports
-            settlementViewModel.submitSettlement.value!!.TotalTransportExpense = total ?: 0
-            if (settlementViewModel.modeTransports.isEmpty()) {
-                settlementViewModel.modeTransports.addAll(viewModel.modeTransports)
-            }
+            val transportsExpense = viewModel.transportExpenses
+            val modeTransport = viewModel.modeTransports
+            settlementViewModel.addingTransportExpense(transportsExpense, modeTransport)
             navigateBack()
         }
     }
@@ -159,10 +169,9 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             }.show()
     }
 
-
     override fun dividerEnabled(): Boolean = false
     override fun isSearchVisible(): Boolean = false
-    override fun isButtonBottomVisible(): Boolean = false
+    override fun isButtonBottomVisible(): Boolean = true
 
     override fun onRefresh() {
 
@@ -171,7 +180,15 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
     override fun onClick(v: View?) {
         if (v?.id == R.id.buttonBaseList) {
             addTransport()
+        } else if (v?.id == R.id.buttonBottom) {
+            saveTransports()
         } else {
+            backAction()
+        }
+    }
+
+    private fun backAction(){
+        if (hasUpdate){
             showWarning(
                 R.string.alert,
                 R.string.warning_back_settlement_transport_expense,
@@ -179,6 +196,8 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
                 R.string.save,
                 WARNING_NAVIGATEUP
             )
+        }else {
+            navigateBack()
         }
     }
 
@@ -224,16 +243,11 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
         adapter.notifyItemRemoved(pos)
     }
 
-
-    companion object {
-        const val WARNING_NAVIGATEUP = 1
-        const val WARNING_SAME_DATA = 2
-        const val WARNING_ISLOADING = 3
-    }
-
     override fun onClickItem(view: View, position: Int) {
         when (view.id) {
             R.id.buttonRemove -> {
+                if (viewModel.loading.value == true)
+                    return
                 removeTransport(position)
             }
             R.id.etOriginCity -> {
@@ -266,5 +280,13 @@ class TransportExpenseFragment : BaseListFragment<TransportExpenses>(), ItemClic
             }
         }
     }
+
+    companion object {
+        const val WARNING_NAVIGATEUP = 1
+        const val WARNING_SAME_DATA = 2
+        const val WARNING_ISLOADING = 3
+        const val MODE_NOT_SUPPORT = "mode not support"
+    }
+
 
 }

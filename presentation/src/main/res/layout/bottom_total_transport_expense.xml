@@ -33,7 +33,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="@{Utils.formatCurrency(viewModel.totalTransport)}"
         style="@style/TextButtonStyle"
         android:textColor="#24253d"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +52,6 @@
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="139dp"
-        android:onClick="@{() -> viewModel.onClickSave()}"
         style="@style/ButtonStyle"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Save"/>

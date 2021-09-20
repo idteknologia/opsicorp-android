@@ -196,6 +196,7 @@ class ListParticipantsDataMapper {
                         data?.statusView.toString(),
                         data?.fullName.toString(),
                         data?.jobTitle.toString(),
+                        data?.positionName.toString(),
                         data?.employeeId.toString(),
                         ListApprovalDataMapper().mapFrom(data?.tripParticipantCustomApprovals),
                         dataFlightModel,

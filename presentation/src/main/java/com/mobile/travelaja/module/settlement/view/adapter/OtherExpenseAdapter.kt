@@ -13,7 +13,9 @@ import com.mobile.travelaja.module.settlement.view.ItemClickListener
 import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
 import opsigo.com.domainlayer.model.settlement.OtherExpense
 
-class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel, var listener: ItemClickListener) :
+class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
+                          val recyclerView: RecyclerView,
+                          var listener: ItemClickListener) :
     BaseListAdapter<OtherExpense>() {
 
     init {
@@ -47,42 +49,41 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel, var listener: It
             data: OtherExpense,
             position: Int,
             isRemove: ObservableBoolean,
-            indexEmpty: ObservableInt) {
+            indexEmpty: ObservableInt
+        ) {
             binding.position = position
             binding.isRemove = isRemove
             binding.indexEmpty = indexEmpty
+            binding.isUsd = data.Currency.contains("usd",true)
             binding.setVariable(BR.otherExpense, data)
             binding.listener = listener
             binding.executePendingBindings()
             binding.etAmount.addTextChangedListener {
                 val value = it.toString()
-                if (binding.etAmount.isFocusable){
+                if (binding.etAmount.isFocusable) {
                     if (value.isNotEmpty()) {
-                        val amount = value.toLong()
-                        data.Amount = amount
-                        viewModel.setItem(data, position)
+                        val amount = value.toDouble()
+                        viewModel.setAmount(amount, position)
                     } else {
-                        data.Amount = 0
-                        viewModel.setItem(data, position)
+                        viewModel.setAmount(0, position)
                     }
                 }
             }
 
-//            binding.toggleButton.setOnClickListener {
-//                val text = binding.toggleButton.text.toString()
-//                data.Currency = text
-//                if (data.Amount.toLong() > 0) {
-//                    data.Amount = 0
-//                }
-//                viewModel.setItem(data, position)
-////                binding.etAmount.text.clear()
-//            }
+            binding.toggleButton.setOnClickListener {
+                val checked = binding.toggleButton.isChecked
+                println(checked)
+                val text = binding.toggleButton.text.toString()
+                viewModel.setCurrency(text, position)
+                binding.etAmount.text.clear()
+            }
+
             binding.editTextNotes.addTextChangedListener {
                 val value = it.toString()
-                if (value.isNotEmpty()) {
-                    data.Description = value
-                    viewModel.setItem(data,position)
-//                    viewModel.addDescription(value, position)
+                if (binding.etAmount.isFocusable) {
+                    if (value.isNotEmpty()) {
+                        viewModel.addDescription(value, position)
+                    }
                 }
             }
         }

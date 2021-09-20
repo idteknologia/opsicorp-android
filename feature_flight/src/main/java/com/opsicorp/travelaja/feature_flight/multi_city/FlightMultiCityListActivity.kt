@@ -112,9 +112,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         toolbar.hidenBtnCart()
         toolbar.setTitleBar("Multi City")
         toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton("Book")
         tv_price.setText("0 IDR")
@@ -487,6 +485,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
         tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax"
         tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
+        tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
     }
 
     private fun showOrHideDetailPrice() {

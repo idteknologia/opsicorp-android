@@ -8,6 +8,7 @@
         <import type="androidx.databinding.ObservableBoolean"/>
         <import type="android.view.View"/>
         <import type="androidx.databinding.ObservableInt"/>
+        <import type="com.mobile.travelaja.utility.Utils"/>
 
         <variable
             name="isRemove"
@@ -18,7 +19,9 @@
         <variable
             name="otherExpense"
             type="opsigo.com.domainlayer.model.settlement.OtherExpense" />
-
+        <variable
+            name="isUsd"
+            type="Boolean" />
         <variable
             name="listener"
             type="com.mobile.travelaja.module.settlement.view.ItemClickListener" />
@@ -43,7 +46,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_default">
+            android:paddingTop="@dimen/margin_default"
+            android:paddingStart="@dimen/margin_default"
+            android:paddingBottom="@dimen/margin_default"
+            android:paddingEnd="0dp">
 
             <TextView
                 android:id="@+id/tvPosition"
@@ -97,10 +103,11 @@
                 android:onClick="@{(v)->listener.onClickItem(v,position)}"
                 android:paddingBottom="20dp"
                 android:contentDescription="@{`etTypeExpense`+position}"
-                android:text="@{otherExpense.expenseName}"
+                android:text="@{otherExpense.ExpenseName}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelTypeExpense"
+                android:layout_marginRight="@dimen/margin_default"
                 tools:text="Airport Tax" />
 
 
@@ -121,9 +128,10 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textSize="18sp"
-                android:text="@{otherExpense.valueAmount}"
+                android:text="@{Utils.doubleParseStr(otherExpense.amount)}"
                 tools:text="20.000.000"
                 tools:enabled="false"
+                android:maxLength="13"
                 android:contentDescription="@{`etAmount`+position}"
                 android:enabled="@{!otherExpense.expenseName.empty}"
                 android:textAppearance="@style/TextLato_Bold"
@@ -138,6 +146,7 @@
                 android:text="Currency"
                 android:gravity="center"
                 android:textColor="#52575c"
+                android:layout_marginEnd="@dimen/margin_default"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/toggleButton"
                 app:layout_constraintTop_toTopOf="@+id/tvLabelAmount" />
@@ -148,9 +157,9 @@
                 android:layout_height="wrap_content"
                 android:textOff="@string/other_expense_idr"
                 android:textOn="@string/other_expense_usd"
-                android:onClick="@{(v)->listener.onClickItem(v,position)}"
+                android:layout_marginEnd="@dimen/margin_default"
                 android:drawableEnd="@drawable/ic_arrow_dropdown"
-                android:checked="@{otherExpense.currency == @string/other_expense_usd}"
+                android:checked="@{isUsd}"
                 android:textAppearance="@style/TextLato_Bold"
                 android:contentDescription="@{`toggleButton`+position}"
                 android:textSize="18sp"
@@ -190,6 +199,7 @@
                     android:id="@+id/editTextNotes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_default"
                     android:text="@{otherExpense.description}"
                     android:contentDescription="@{`editTextNotes`+position}"
                     android:enabled="@{!otherExpense.expenseName.empty}"

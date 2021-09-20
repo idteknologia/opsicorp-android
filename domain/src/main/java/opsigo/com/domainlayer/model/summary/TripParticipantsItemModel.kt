@@ -19,6 +19,7 @@ data class TripParticipantsItemModel (
         var statusView : String,
         var fullName : String,
         var jobtitle : String,
+        var positionName : String,
         var employId : String,
         var dataApproval    : ArrayList<ParticipantModelDomain>,
         var itemFlightModel : List<ItemFlightModel>,

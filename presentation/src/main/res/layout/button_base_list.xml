@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+        <import type="androidx.databinding.ObservableField"/>
+        <variable
+            name="textBottomValue"
+            type="ObservableField&lt;String>" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_default"
+    android:background="@drawable/shape_expand_detail"
+    android:elevation="20dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvTitleTotal"
+        tools:text="Total Settlement"
+        style="@style/TextInputLayout_Label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonBottom"
+        android:layout_marginEnd="130dp"
+        android:textColor="#939396"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvTotalValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@{textBottomValue}"
+        style="@style/TextButtonStyle"
+        android:textColor="#24253d"
+        android:visibility="gone"
+        android:contentDescription="textviewValueBottom"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleTotal"
+        tools:text="7.500.000"/>
+
+    <TextView
+        android:id="@+id/tvTypePrice"
+        style="@style/TextButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        tools:text="IDR"
+        tools:visibility="visible"
+        android:textColor="#00776a"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTotalValue"
+        app:layout_constraintStart_toEndOf="@+id/tvTotalValue" />
+
+    <Button
+        android:id="@+id/buttonBottom"
+        style="@style/ButtonStyle_Secondary"
+        android:layout_width="0dp"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleTotal"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

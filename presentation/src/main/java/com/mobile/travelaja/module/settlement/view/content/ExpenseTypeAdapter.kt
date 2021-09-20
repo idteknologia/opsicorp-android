@@ -11,7 +11,7 @@ import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
 import com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel
 import opsigo.com.domainlayer.model.settlement.ExpenseType
 
-class ExpenseTypeAdapter(val listener : ExpenseTypeListener) : BaseListAdapter<ExpenseType>() {
+class ExpenseTypeAdapter(val listener : ExpenseTypeListener,val name : String) : BaseListAdapter<ExpenseType>() {
     override fun getLayoutItem(viewType: Int): Int  = R.layout.item_expense_type
 
     override fun viewHolder(view: View, viewType: Int): RecyclerView.ViewHolder {
@@ -30,6 +30,7 @@ class ExpenseTypeAdapter(val listener : ExpenseTypeListener) : BaseListAdapter<E
     inner class ExpenseTypeViewHolder(val binding : ItemExpenseTypeBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun onBind(data : ExpenseType){
+            binding.name = name
             binding.data = data
             binding.listener = listener
         }

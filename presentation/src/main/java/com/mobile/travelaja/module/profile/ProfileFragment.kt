@@ -104,14 +104,13 @@ class ProfileFragment : BaseFragment(),
     }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
-        btn_logout.changeBackground(R.color.colorGrayRoundWhite)
-
         val sign_out: String = getString(R.string.sign_out)
 
         tv_version.text = "Ver 1.0.11 debug"
 
         btn_logout.setTextButton(sign_out)
-        btn_logout.changeBackground(R.color.colorGrayRoundWhite)
+        btn_logout.changeTextColorButton(R.color.textButtonColor)
+        btn_logout.changeBackground(R.color.buttonColor)
         btn_logout.callbackOnclickButton(this)
 
         lay_language.setOnClickListener(this)

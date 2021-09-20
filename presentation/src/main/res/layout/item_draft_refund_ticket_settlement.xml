@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.mobile.travelaja.utility.Utils"/>
+        <variable
+            name="data"
+            type="opsigo.com.domainlayer.model.settlement.Ticket" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:elevation="2dp"
+        android:layout_marginBottom="2dp"
+        app:cardCornerRadius="6dp"
+        android:layout_marginTop="15dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tvLabelRefundAmount"
+                style="@style/TextLato_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:text="@{data.currency == `IDR` ? @string/refund_amount_ticket : @string/refund_amount_ticket_usd}"
+                android:textColor="#b2bbc6"
+                android:textSize="12sp"
+                tools:text="@string/refund_amount_ticket"
+                app:layout_constraintBottom_toTopOf="@+id/tvTicketId"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAmount"
+                style="@style/TextLato_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:textSize="16sp"
+                android:text="@{Utils.formatCurrency(data.price)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLabelRefundAmount"
+                tools:text="1.500.000" />
+
+            <ImageView
+                android:id="@+id/ivTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:iconTicket="@{data.category}"
+                tools:src="@drawable/ic_ticket_refund_hotel"/>
+
+            <TextView
+                android:id="@+id/tvTicketId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="@{data.ticketNumber}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivTicket"
+                app:layout_constraintEnd_toStartOf="@+id/tvAmount"
+                app:layout_constraintStart_toEndOf="@+id/ivTicket"
+                tools:text="786745353VBF" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/ivTicket"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
+                tools:text="Hotel Amaris Jakarta"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

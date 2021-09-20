@@ -1,15 +1,16 @@
 package com.mobile.travelaja.module.settlement.view.adapter
 
+import android.content.Context
 import android.text.InputFilter
 import android.text.Spanned
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Toast
-import androidx.core.text.isDigitsOnly
-import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doBeforeTextChanged
 import androidx.core.widget.doOnTextChanged
+import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableInt
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.travelaja.BR
 import com.mobile.travelaja.R
@@ -19,10 +20,13 @@ import com.mobile.travelaja.module.settlement.view.ItemClickListener
 import com.mobile.travelaja.module.settlement.viewmodel.IntercityTransportViewModel
 import com.mobile.travelaja.utility.Utils
 import opsigo.com.domainlayer.model.settlement.IntercityTransport
+import opsigo.com.domainlayer.model.settlement.RouteTransport
 
 class IntercityTransportAdapter(
+    val adapter: ArrayAdapter<RouteTransport>,
     val viewModel: IntercityTransportViewModel,
-    val listener: ItemClickListener
+    val listener: ItemClickListener,
+    val golper : Int
 ) : BaseListAdapter<IntercityTransport>() {
     init {
         setHasStableIds(true)
@@ -42,7 +46,8 @@ class IntercityTransportAdapter(
         if (holder is IntercityTransportVH) {
             val model = viewModel.items[position]
             val isRemove = viewModel.isRemoveVisible
-            holder.onBind(model, isRemove, position)
+            val indexEmpty = viewModel.indexEmpty
+            holder.onBind(model, isRemove, position,viewModel.items,indexEmpty)
         }
     }
 
@@ -57,30 +62,39 @@ class IntercityTransportAdapter(
         fun onBind(
             model: IntercityTransport,
             isRemove: ObservableBoolean,
-            position: Int
+            position: Int,
+            list : ObservableArrayList<IntercityTransport>,
+            indexEmpty: ObservableInt
         ) {
             binding.listener = listener
             binding.isRemove = isRemove
             binding.position = position
+            binding.indexEmpty = indexEmpty
+            binding.list = list
             binding.setVariable(BR.data, model)
             binding.executePendingBindings()
-            binding.etDistance.filters = filter
-            binding.etDistance.doOnTextChanged { text, start, count, after ->
-                val isNotLeadingZero = !text.isNullOrEmpty() && text.matches(Regex("^(?!0\\d)\\d+(?:\\.\\d{1,10})?\$")) ?:false
-                val isDotEnd = !text.isNullOrEmpty() && text.matches(Regex("^(?!0\\d)\\d+(?:\\.)?\$")) ?:false
-                if (!isNotLeadingZero && !isDotEnd){
-                    val t = Utils.doubleParse(text.toString().toDouble())
-                    if (t != null && t.toDouble() <= 200){
-                        binding.etDistance.setText("$t")
-                        binding.etDistance.setSelection(t.toString().length)
-                    }else {
-                        return@doOnTextChanged
-                    }
-                }
-                if (!text.isNullOrEmpty() && binding.etDistance.isFocusable) {
-                    viewModel.setDistance(text.toString().toDouble(), itemId.toInt())
-                }
+            binding.autoCompleteSelectRoute.setAdapter(adapter)
+            binding.autoCompleteSelectRoute.setOnItemClickListener { parent, view, pos, id ->
+                val route = parent.adapter.getItem(pos) as RouteTransport
+                viewModel.setRoute(position, route, golper)
             }
+//            binding.etDistance.filters = filter
+//            binding.etDistance.doOnTextChanged { text, start, count, after ->
+//                val isNotLeadingZero = !text.isNullOrEmpty() && text.matches(Regex("^(?!0\\d)\\d+(?:\\.\\d{1,10})?\$"))
+//                val isDotEnd = !text.isNullOrEmpty() && text.matches(Regex("^(?!0\\d)\\d+(?:\\.)?\$"))
+//                if (!isNotLeadingZero && !isDotEnd){
+//                    val t = Utils.doubleParse(text.toString().toDouble())
+//                    if (t != null && t.toDouble() <= 200){
+//                        binding.etDistance.setText("$t")
+//                        binding.etDistance.setSelection(t.toString().length)
+//                    }else {
+//                        return@doOnTextChanged
+//                    }
+//                }
+//                if (!text.isNullOrEmpty() && binding.etDistance.isFocusable) {
+//                    viewModel.setDistance(text.toString().toDouble(), itemId.toInt())
+//                }
+//            }
         }
     }
 }
@@ -125,7 +139,5 @@ class InputFilterMax(val listenMax : () -> Unit?) : InputFilter {
         }
         return source!!
     }
-
-
 
 }

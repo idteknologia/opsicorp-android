@@ -142,7 +142,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             val dataRoutes = RoutesItem()
             dataRoutes.transportation = routesItinerary.Transportation
             dataRoutes.departureDate = routesItinerary.DepartureDateView
-            dataRoutes.departureDateView = routesItinerary.DepartureDateView
+            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
             dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
@@ -165,6 +165,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         et_pic.setOnClickListener(this)
         et_min.setOnClickListener(this)
         etBank.setOnClickListener(this)
+        btn_switch_cash_advance.setOnClickListener(this)
         title_cost_name.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -192,8 +193,11 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                         textValue = Globals.formatCurrency(value)
                         if (value > cashAdvanceValueLimit) {
                             Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this@RevieBudgetPertaminaActivity)
+                            tv_max_amount.visible()
+                            tv_max_amount.text = "Max.${(Globals.formatAmount(dataCashAdvance.maxAmount))}"
                             checkEmptyField(false)
                         } else {
+                            tv_max_amount.gone()
                             checkEmptyField(true)
                         }
                     } else {
@@ -280,12 +284,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
 
         if (dataCashAdvance.isAllowed.equals(true)) {
-            rlCashAd.visible()
+            llCashAdvanceToggle.visible()
             tv_currency.text = dataCashAdvance.currency
             cashAdvanceValueLimit = dataCashAdvance.maxAmount.toInt()
-            et_min.hint = "Limit ${(Globals.formatAmount(dataCashAdvance.maxAmount))}"
+            /*et_min.hint = "Limit ${(Globals.formatAmount(dataCashAdvance.maxAmount))}"*/
         } else {
-            rlCashAd.gone()
+            llCashAdvanceToggle.gone()
         }
     }
 
@@ -301,11 +305,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 succesCreateTrip()
             }
         } else if (dataCashAdvance.isAllowed.equals(true)) {
-            if (bankTransferEmpty == true) {
-                Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_bank_transfer), this)
-            } else if (cashAdvanceValue > cashAdvanceValueLimit) {
+            if (cashAdvanceValue > cashAdvanceValueLimit) {
                 Globals.showAlert(getString(R.string.sorry), getString(R.string.limit_cash_advance), this)
+                tv_max_amount.visible()
+                tv_max_amount.text = "Max.${(Globals.formatAmount(dataCashAdvance.maxAmount))}"
             } else {
+                tv_max_amount.gone()
                 succesCreateTrip()
             }
         } else {
@@ -376,6 +381,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.wbsNo = dataTrip.wbsNumber
         dataRequest.withPartner = dataTrip.isTripPartner
         dataRequest.partnerName = dataTrip.tripPartnerName
+        dataRequest.isChangeTrip = dataTrip.isChangeTrip
+        dataRequest.trnNumber = dataTrip.trnNumber
+        dataRequest.tripCodeOld = dataTrip.tripCodeOld
+        dataRequest.tripIdOld = dataTrip.tripIdOld
 
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()
@@ -429,6 +438,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 onBackPressed()
             }
             tvCostNameAdd -> {
+                tvCostCenterTitle.text = "Please input new cost center"
                 title_cost_name.text.clear()
                 title_cost_name.hint = getProfile().costCenter
                 title_cost_name.isFocusableInTouchMode = true
@@ -451,6 +461,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
 
             }
             tvCostNameReset -> {
+                tvCostCenterTitle.text = "Cost Center"
                 costCenterName = getProfile().costCenter
                 title_cost_name.setText(costCenterName)
                 costCenterOther = false
@@ -464,12 +475,18 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                     picCostCentreEmpty = false
                 }
             }
+            btn_switch_cash_advance -> {
+                isCashAdvance = btn_switch_cash_advance.isChecked
+                if (isCashAdvance.equals(true)){
+                    rlCashAd.visible()
+                } else {
+                    rlCashAd.gone()
+                }
+            }
             et_min -> {
                 if (et_min.text.isNotEmpty()) {
-                    isCashAdvance = true
-
+                    cashAdvanceValue = et_min.text.toString().replace(".","").toInt()
                 } else {
-                    isCashAdvance = false
                     cashAdvanceValue = 0
                 }
             }

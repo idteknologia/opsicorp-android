@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.settlement.view
 
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.mobile.travelaja.base.paging.PageListAdapter
@@ -32,6 +33,10 @@ class SettlementsFragment : PageListFragment<Settlement>(){
         job?.cancel()
     }
 
+    override fun onClick(v: View?) {
+        TODO("Not yet implemented")
+    }
+
     private fun loadItems(){
         job?.cancel()
         job = lifecycleScope.launch {
@@ -39,5 +44,9 @@ class SettlementsFragment : PageListFragment<Settlement>(){
                 adapter.submitData(it)
             }
         }
+    }
+
+    override fun isSearchVisible(): Boolean {
+        TODO("Not yet implemented")
     }
 }

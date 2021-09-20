@@ -38,6 +38,7 @@ import com.mobile.travelaja.base.InitApplications
 import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import opsigo.com.datalayer.mapper.Serializer
@@ -373,7 +374,7 @@ object Globals {
                             .getResizedFile()
                     val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
                     val tsLong = System.currentTimeMillis() / 1000
-                    val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
+                    val image = RequestBody.create("image/jpeg".toMediaTypeOrNull(), resizedImage)
                     fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString() + ".jpeg", image)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -381,7 +382,7 @@ object Globals {
 
             } else {
                 val tsLong = System.currentTimeMillis() / 1000
-                val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
+                val image = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
                 fileToUpload = MultipartBody.Part.createFormData("cover_image", tsLong.toString() + ".jpeg", image)
             }
         }
@@ -424,7 +425,7 @@ object Globals {
                         val file_size_resized = Integer.parseInt((resizedImage.length() / 1024).toString())
                         setLog("size image file after compress = "+file_size_resized.toString())
                         val tsLong = System.currentTimeMillis() / 1000
-                        val image = RequestBody.create(MediaType.parse("image/jpeg"), resizedImage)
+                        val image = RequestBody.create("image/jpeg".toMediaTypeOrNull(), resizedImage)
                         fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".jpeg", image)
                     } catch (e: Exception) {
                         setLog(e.message.toString())
@@ -433,13 +434,13 @@ object Globals {
 
                 } else {
                     val tsLong = System.currentTimeMillis() / 1000
-                    val image = RequestBody.create(MediaType.parse("image/jpeg"), file)
+                    val image = RequestBody.create("image/jpeg".toMediaTypeOrNull(), file)
                     fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".jpeg", image)
                 }
             }
             else if (requestPicture.contains("pdf")||requestPicture.contains("doc")||requestPicture.contains("xls")||requestPicture.contains("xlsx")){
                 val tsLong = System.currentTimeMillis() / 1000
-                val image = RequestBody.create(MediaType.parse("application/${requestPicture.split(".").last().trim()}"), file)
+                val image = RequestBody.create("application/${requestPicture.split(".").last().trim()}".toMediaTypeOrNull(), file)
                 fileToUpload = MultipartBody.Part.createFormData(query, tsLong.toString() + ".${requestPicture.split(".").last().trim()}", image)
             }
 

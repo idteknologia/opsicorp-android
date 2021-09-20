@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -13,38 +15,46 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.mobile.travelaja.R
+import com.mobile.travelaja.databinding.PageListFragmentBinding
 import com.mobile.travelaja.utility.Utils
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
+import org.koin.android.ext.android.bind
 import kotlinx.coroutines.ExperimentalCoroutinesApi as ExperimentalCoroutinesApi1
 
-abstract class PageListFragment<T : Any> : Fragment() {
+abstract class PageListFragment<T : Any> : Fragment(),View.OnClickListener {
     private var snackbar: Snackbar? = null
     lateinit var adapter: PagingDataAdapter<T, RecyclerView.ViewHolder>
     abstract fun pageListAdapter(): PageListAdapter<T>
-    private lateinit var swpRefresh : SwipeRefreshLayout
-    private lateinit var rvList : RecyclerView
+    lateinit var binding : PageListFragmentBinding
+
+    abstract fun isSearchVisible(): Boolean
+
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.page_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.page_list_fragment,container,false)
+        binding = PageListFragmentBinding.bind(view)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        swpRefresh = view.findViewById(R.id.swpRefresh)
-        rvList = view.findViewById(R.id.rvList)
-        rvList.addItemDecoration(DividerItemDecoration(requireContext(),RecyclerView.VERTICAL))
+        binding.rvList.addItemDecoration(DividerItemDecoration(requireContext(),RecyclerView.VERTICAL))
         adapter = pageListAdapter()
+        binding.includeSearch.root.isVisible = isSearchVisible()
+        binding.ivBack.isVisible = !isSearchVisible()
+        binding.ivBack.setOnClickListener(this)
+        binding.includeSearch.buttonClose.setOnClickListener(this)
         lifecycleScope.launchWhenCreated {
             @OptIn(ExperimentalCoroutinesApi1::class)
             adapter.loadStateFlow.collectLatest { loadStates ->
-                swpRefresh.isRefreshing = loadStates.refresh is LoadState.Loading
+                binding.swpRefresh.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
 
@@ -56,7 +66,7 @@ abstract class PageListFragment<T : Any> : Fragment() {
                     // Only react to cases where Remote REFRESH completes i.e., NotLoading.
                     .filter { it.refresh is LoadState.NotLoading }
                     .collect {
-                        rvList.scrollToPosition(0)
+                        binding.rvList.scrollToPosition(0)
                     }
         }
 
@@ -65,7 +75,7 @@ abstract class PageListFragment<T : Any> : Fragment() {
                     adapter.refresh()
                 }
 
-        rvList.adapter = adapter.withLoadStateHeaderAndFooter(
+        binding.rvList.adapter = adapter.withLoadStateHeaderAndFooter(
                 header = PageLoadStateAdapter {
                     adapter.retry()
                 },
@@ -83,9 +93,21 @@ abstract class PageListFragment<T : Any> : Fragment() {
         }
     }
 
+    fun setHintSearch(hint: String) {
+        binding.includeSearch.searchView.queryHint = hint
+    }
+
+    fun setSearchListener(listener: SearchView.OnQueryTextListener) {
+        binding.includeSearch.searchView.setOnQueryTextListener(listener)
+    }
+
+    fun setSubmitSearchEnabled(isSubmitEnabled : Boolean){
+        binding.includeSearch.searchView.isSubmitButtonEnabled = isSubmitEnabled
+    }
+
     override fun onStart() {
         super.onStart()
-        swpRefresh.setOnRefreshListener {
+        binding.swpRefresh.setOnRefreshListener {
             adapter.refresh()
         }
     }

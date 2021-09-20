@@ -237,7 +237,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
     private fun showDialogCamera() {
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object : DialogCameraCallback {
-            override fun data(imagePath: String,file:File) {
+            override fun data(imagePath: String,file:File,type : String?) {
                 presenter.addDataAttactment(imagePath,file)
             }
         })
@@ -279,9 +279,9 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         m_endate            = mEndDate
     }
 
-    override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
+    /*override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
 
-    }
+    }*/
 
     override fun SuccessCreateTrip() {
         gotoSuccessTrip()

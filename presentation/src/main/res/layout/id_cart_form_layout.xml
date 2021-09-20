@@ -250,7 +250,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
                         android:textColor="#91929e"
-                        android:text="@string/txt_contacts_name" />
+                        android:text="@string/mobile_phone" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

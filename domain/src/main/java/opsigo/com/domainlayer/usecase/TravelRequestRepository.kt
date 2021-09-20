@@ -10,4 +10,5 @@ interface TravelRequestRepository {
     fun issuedAllTrip(token: String,tripid: HashMap<Any,Any>,callback: CallbackApprovAll)
     fun checkDateAvaibility(token: String, tripid: HashMap<Any,Any>, callback: CallbackString)
     fun checkCashAdvance(token: String, tripData: HashMap<Any,Any>, callback: CallbackCashAdvance)
+    fun changeTrip(token: String, tripId: String, callback: CallbackChangeTrip)
 }

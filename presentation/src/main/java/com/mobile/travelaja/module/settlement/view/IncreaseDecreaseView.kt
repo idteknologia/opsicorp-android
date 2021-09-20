@@ -78,7 +78,9 @@ class IncreaseDecreaseView(context: Context, attributes: AttributeSet) :
     companion object {
         @BindingAdapter("app:setIncDecrease")
         @JvmStatic
-        fun setIncDecrease(view: IncreaseDecreaseView, value: Int) {
+        fun setIncDecrease(view: IncreaseDecreaseView, value: Int?) {
+            if (value == null)
+                return
             view.setValue(1, value, null)
         }
     }

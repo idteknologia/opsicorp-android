@@ -15,19 +15,18 @@ import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import opsigo.com.domainlayer.model.settlement.ExpenseType
 
 class ExpenseTypeFragment : BaseListFragment<ExpenseType>(),ExpenseTypeListener {
-    private lateinit var viewModelSettlement: SettlementViewModel
-    private lateinit var viewModel: OtherExpenseViewModel
-    private val adapter =  ExpenseTypeAdapter(this)
+    private lateinit var adapter : ExpenseTypeAdapter
     private val args : ExpenseTypeFragmentArgs by navArgs()
     private var position = -1
 
     override fun baseListAdapter(): BaseListAdapter<ExpenseType> {
         arguments?.let {
-            val items = args.expenseType
             position = args.position
-            adapter.list = items.toMutableList()
-            adapter.notifyDataSetChanged()
         }
+        adapter = ExpenseTypeAdapter(this,args.nameCompare)
+        val items = args.expenseType
+        adapter.list = items.toMutableList()
+        adapter.notifyDataSetChanged()
         isEnabledRefresh(false)
         setTitleName(R.string.expense_type)
         return adapter
@@ -46,18 +45,6 @@ class ExpenseTypeFragment : BaseListFragment<ExpenseType>(),ExpenseTypeListener 
         if (v?.id == R.id.ivBack){
             findNavController().navigateUp()
         }
-    }
-
-    private fun setViewModel() {
-        viewModel = ViewModelProvider(
-            requireActivity(),
-            DefaultViewModelFactory(false, requireContext())
-        ).get(OtherExpenseViewModel::class.java)
-
-        viewModelSettlement = ViewModelProvider(
-            requireActivity(),
-            DefaultViewModelFactory(false, requireContext())
-        ).get(SettlementViewModel::class.java)
     }
 
     override fun onClickItem(data: ExpenseType) {

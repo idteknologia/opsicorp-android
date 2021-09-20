@@ -21,6 +21,9 @@ class InitActivity : AppCompatActivity() {
     }
 
     private fun compareActivity() {
+//        Globals.setDataPreferenceString(this, "token", "Bearer " + getString(R.string.tkn))
+//        Globals.setDataPreferenceBolean(this,  Constants.IsLogin, true)
+
         if (Globals.getDataPreferenceBolean(this, Constants.IsLogin)) {
             val intent = Intent(this,SplashActivity::class.java)
             intent.addFlags(

@@ -387,6 +387,9 @@ interface UrlEndpoind {
     fun getDetailMyBooking(@Header("Authorization") token:String,
                          @Query("id")isoCountry:String):Call<ResponseBody>
 
+    @GET(MyURL.CHANGE_TRIP)
+    fun changeTrip(@Header("Authorization")token:String,
+                          @Query("tripId")tripId:String): Call<ResponseBody>
     @GET(MyURL.GET_URL_FILE)
     fun getUrlFile(@Header("Authorization") token:String,
                            @Query("id")id:String):Call<ResponseBody>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.graphics.drawable.Drawable"/>
+
+        <variable
+            name="clickListener"
+            type="View.OnClickListener" />
+
+        <variable
+            name="viewModel"
+            type="com.mobile.travelaja.module.settlement.viewmodel.SettlementViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expandDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_expand_detail"
+        android:visibility="@{viewModel.submitSettlement.tripId.empty? View.GONE : View.VISIBLE}"
+        app:behavior_peekHeight="90dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutExpandDetail"
+            android:onClick="@{clickListener}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonNext"
+            app:layout_constraintTop_toTopOf="@+id/buttonNext">
+
+            <TextView
+                android:id="@+id/tvTitleTotal"
+                style="@style/TextLato_Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/ic_down_expand"
+                android:layout_marginStart="@dimen/margin_default"
+                android:text="@string/expand_detail"
+                android:drawablePadding="11dp"
+                android:textColor="#24253d"
+                android:textSize="14sp"
+                app:iconExpandTextView="@{viewModel.isExpandDetail()}"
+                app:layout_constraintEnd_toEndOf="@+id/tvSubtitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                style="@style/TextLato_Normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginTop="6dp"
+                android:text="@string/second_expend_detail_desc"
+                android:textColor="#939396"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitleTotal" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonNext"
+            style="@style/ButtonStyle_Secondary"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginEnd="@dimen/margin_default"
+            android:text="@string/next"
+            android:onClick="@{clickListener}"
+            android:enabled="@{viewModel.buttonNextEnabled &amp;&amp; !viewModel.loading}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutExpandDetail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:enabled="false"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/buttonNext">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default">
+
+                <TextView
+                    android:id="@+id/tvLabelTripExpense"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    style="@style/TextLato_Bold"
+                    android:textSize="18sp"
+                    android:text="@string/trip_expense"/>
+
+                <TextView
+                    android:id="@+id/tvLabelOverNight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelTripExpense"
+                    android:text="@string/stay_overnight"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="4dp"
+                    style="@style/TextLato_Normal"
+                    android:text="@{viewModel.submitSettlement.SpecificAreaDays +` `+ @string/days}"
+                    android:textColor="@color/redButtonColor"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLabelOverNight"
+                    app:layout_constraintEnd_toStartOf="@+id/tvOverNightTotal"
+                    app:layout_constraintStart_toEndOf="@+id/tvLabelOverNight"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelOverNight"
+                    tools:text="4 Days" />
+
+                <TextView
+                    android:id="@+id/tvOverNightTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelOverNight"
+                    style="@style/TextLato_Normal"
+                    app:formatTextIdr="@{viewModel.submitSettlement.totalSpecificAreaExpense}"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR" />
+
+                <TextView
+                    android:id="@+id/tvLabelLaundry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvLaundryTotal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOverNightTotal"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/laundry"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:id="@+id/tvLaundryTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelLaundry"
+                    style="@style/TextLato_Normal"
+                    app:formatTextIdr="@{viewModel.submitSettlement.amountLaundry}"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR" />
+
+                <TextView
+                    android:id="@+id/tvLabelTransportExpense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTransportExpenseTotal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLaundryTotal"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/airport_non_airport_trip_expense"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:id="@+id/tvTransportExpenseTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelTransportExpense"
+                    style="@style/TextLato_Normal"
+                    app:formatTextIdr="@{viewModel.submitSettlement.TotalTransportExpense}"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR" />
+
+                <TextView
+                    android:id="@+id/tvLabelTransportIntercity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvTransportIntercityTotal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTransportExpenseTotal"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/title_intercity_transport"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:id="@+id/tvTransportIntercityTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:formatTextIdr="@{viewModel.submitSettlement.totalOtherTransportExpense}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelTransportIntercity"
+                    style="@style/TextLato_Normal"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR" />
+
+                <TextView
+                    android:id="@+id/tvLabelOtherExpense"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvOtherExpenseTotal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTransportIntercityTotal"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/other_expense"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:id="@+id/tvOtherExpenseTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelOtherExpense"
+                    style="@style/TextLato_Normal"
+                    app:totalValueIdr="@{viewModel.submitSettlement.totalOtherExpense}"
+                    app:totalValueUsd="@{viewModel.submitSettlement.totalOtherExpenseUsd}"
+                    android:gravity="end"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR\n 2.500 USD" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
