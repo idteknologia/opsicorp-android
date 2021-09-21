@@ -1,3 +1,4 @@
+
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
 import android.view.View
@@ -90,17 +91,17 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
 
     private fun checkEmptyData() {
         if (dataHotelMessage.isEmpty()){
-            binding.lineSparatorHotelMassage.visibility = View.GONE
+            binding.lineHotelMessage.visibility = View.GONE
         }
         else{
-            binding.lineSparatorHotelMassage.visibility = View.VISIBLE
+            binding.lineHotelMessage.visibility = View.VISIBLE
         }
 
         if (dataRemark.isEmpty()){
-            binding.lineSeparatorRemark.visibility - View.GONE
+            binding.lineRemark.visibility - View.GONE
         }
         else{
-            binding.lineSeparatorRemark.visibility = View.VISIBLE
+            binding.lineRemark.visibility = View.VISIBLE
         }
     }
 
@@ -217,16 +218,17 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun showDataHotel() {
+//        dataPolicy.addAll(DummyDataPurchaseFlight.addDataCancelPolicy())
+//        dataRemark.addAll(DummyDataPurchaseFlight.addDataRemark())
         binding.tvHotelAddress.text = data.dataHotel.address
         binding.tvPriceHotel.text   = "IDR ${Globals.formatAmount(data.totalPaid)}"
         dataGuest.addAll(data.dataHotel.guests)
         dataRoomFacility.addAll(mappingImageFacility(data.dataHotel.facility))
-//        dataPolicy.addAll(DummyDataPurchaseFlight.addDataCancelPolicy())
-//        dataRemark.addAll(DummyDataPurchaseFlight.addDataRemark())
         adapterPolicy.setData(data.dataHotel.cancellationPolicy)
         adapterRemark.setData(data.dataHotel.dataRemark)
         adapterGuest.notifyDataSetChanged()
         adapterRoomfacility.notifyDataSetChanged()
+
     }
 
     private fun mappingImageFacility(faciltyHotel: ArrayList<FacilityHotelModel>): ArrayList<FacilityHotelModel> {
