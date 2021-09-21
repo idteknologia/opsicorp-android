@@ -108,5 +108,6 @@ object MyURL {
     const val DETAIL_MY_BOOKING   = "api/PersonalTrip/PurchaseDetail"
 
     const val GET_URL_FILE        = "api/TripPlan/DownloadFile"
-
+    const val API_REFUND          = "api/TripPlan/Refund"
+    const val API_RESCHEDULE      = "api/TripPlan/Reschedule"
 }

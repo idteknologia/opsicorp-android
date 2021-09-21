@@ -110,15 +110,16 @@ class DateConverter {
     }
 
     fun getDate(stringDate :String,formatInput:String,formatOutput:String):String{
-        try {
+//        try {
             val cal = Calendar.getInstance();
-            val sdf = SimpleDateFormat(formatInput)//"yyyy-MM-dd"
+            val sdf = SimpleDateFormat(formatInput,Locale.ENGLISH)//"yyyy-MM-dd"
             cal.setTime(sdf.parse(stringDate))
             val format = SimpleDateFormat(formatOutput,Locale.ENGLISH)//"EEEE, yyyy-MM-dd"
             return format.format(cal.getTime())
-        }catch (e:Exception){
-            return errorFormating
-        }
+//        }catch (e:Exception){
+//            e.printStackTrace()
+//            return errorFormating
+//        }
     }
 
     fun formatingDateDefault(format:String,stringDate: String):String{

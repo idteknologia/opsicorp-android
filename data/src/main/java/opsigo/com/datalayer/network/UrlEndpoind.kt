@@ -395,4 +395,11 @@ interface UrlEndpoind {
                            @Query("id")id:String):Call<ResponseBody>
 
 
+    @POST(MyURL.API_REFUND)
+    fun getRefund(@Header("Authorization") token: String,
+                         @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
+    @POST(MyURL.API_RESCHEDULE)
+    fun getReschedule(@Header("Authorization") token: String,
+                         @Body body: HashMap<Any, Any>) : Call<ResponseBody>
 }

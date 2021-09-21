@@ -141,8 +141,9 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataTrip.routes.forEachIndexed { index, routesItinerary ->
             val dataRoutes = RoutesItem()
             dataRoutes.transportation = routesItinerary.Transportation
-            dataRoutes.departureDate = routesItinerary.DepartureDateView
-            dataRoutes.departureDateView = DateConverter().getDate(routesItinerary.DepartureDateView, "dd MMM yyyy", "dd-MM-yyyy")
+            val date = routesItinerary.DepartureDateView
+            dataRoutes.departureDateView = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
+            dataRoutes.departureDate = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
             dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)

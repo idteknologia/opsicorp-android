@@ -867,8 +867,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
 
         if (isParticipant&&tripSummary.coverLatter!="null") {
-            lineDownload.visibility = View.VISIBLE
-            btnDownload.visibility  = View.VISIBLE
+            lineDownloadCoverLetter.visibility = View.VISIBLE
+            btnDownloadCoverLetter.visibility  = View.VISIBLE
         }
 
         val dialog = Globals.showPopup(toolbar.getImageCart(), layout)
@@ -925,7 +925,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
             override fun failedDownload() {
                 hideDialog()
-                setToast("Download Failed")
+                setToast("Failed access file url")
             }
         })
     }
