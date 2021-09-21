@@ -510,8 +510,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
     private fun dataDate(): HashMap<Any, Any> {
         val data = CheckAvaibilityDateRequest()
-        data.endDate = tv_from.text.toString()//"2021-07-05"
-        data.startDate = et_end_date.text.toString() //"2021-06-30"
+        data.endDate = et_end_date.text.toString()//"2021-07-05"
+        data.startDate = tv_from.text.toString() //"2021-06-30"
         data.tripCodeOld = dataChangeTrip.tripCodeOld
         return Globals.classToHashMap(data, CheckAvaibilityDateRequest::class.java)
     }

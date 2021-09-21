@@ -10,7 +10,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#cc000000"></LinearLayout>
+        android:background="#cc000000">
+
+    </LinearLayout>
 
     <LinearLayout
         android:elevation="3dp"
@@ -22,7 +24,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="@drawable/shadow_top"></LinearLayout>
+            android:background="@drawable/shadow_top">
+
+        </LinearLayout>
 
         <LinearLayout
             android:background="@android:color/white"
@@ -56,8 +60,8 @@
                         <TextView
                             android:id="@+id/tv_title_prize"
                             style="@style/RobotoRegular"
-                            android:layout_marginLeft="6dp"
-                            android:text="Total price for 1 pax"
+                            android:layout_marginStart="6dp"
+                            android:text="@string/total_price_for_1_pax"
                             android:textSize="12sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -68,7 +72,7 @@
                     android:id="@+id/tv_price"
                     android:gravity="left"
                     android:text="IDR 719.000"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     style="@style/RobotoMedium"
                     android:textColor="#00776a"
                     android:layout_marginTop="4dp"
@@ -98,7 +102,9 @@
                     app:text="Book"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_height="wrap_content"></com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+                    android:layout_height="wrap_content">
+
+                </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
 
             </LinearLayout>
         </LinearLayout>
@@ -141,6 +147,7 @@
                         android:text="Gajayana"/>
 
                     <TextView
+                        android:id="@+id/tv_item_pax"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"
