@@ -1,22 +1,25 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
-import android.net.Uri
 import android.view.View
-import android.content.*
-import android.util.Log
+import java.util.HashMap
 import com.mobile.travelaja.R
-import android.widget.TextView
 import android.view.LayoutInflater
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.base.BaseActivityBinding
+import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.datalayer.request_model.reschedule.*
+import opsigo.com.datalayer.datanetwork.GetDataApproval
+import com.mobile.travelaja.module.home.activity.HomeActivity
 import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.databinding.DetailPurchaseListActivityBinding
+import com.mobile.travelaja.databinding.MenuPopupPurchaseDetailListBinding
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 import com.mobile.travelaja.module.my_booking.adapter.SegmentMybookingAdapter
-import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.module.my_booking.refund.RescheduleDialog
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 
 class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivityBinding>(),ToolbarOpsicorp.OnclickButtonListener{
 
@@ -25,13 +28,18 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     var positionSelectedItem = 0
     lateinit var dataPurchaseDetail: DetailMyBookingModel
 
+    var dataAttacmennth: ArrayList<UploadModel> = ArrayList()
+    var startDate                               = ""
+    var endDate                                 = ""
+    var notes                                   = ""
+
     override fun bindLayout(): DetailPurchaseListActivityBinding {
         return DetailPurchaseListActivityBinding.inflate(layoutInflater)
     }
 
     override fun onMain() {
-        initToolbar()
         setDataIntent()
+        initToolbar()
         validationLayout()
         Globals.scrollToUp(viewBinding.nestedView)
     }
@@ -39,8 +47,6 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     private fun setDataIntent() {
         positionSelectedItem = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.KEY_POSITION_SELECTED_ITEM,0)!!
         dataPurchaseDetail   = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getParcelable<DetailMyBookingModel>(Constants.KEY_DATA_PARCELABLE)!!
-        Log.e("TAG",Serializer.serialize(dataPurchaseDetail))
-        Log.e("TAG",Serializer.serialize(positionSelectedItem))
     }
 
     private fun validationLayout() {
@@ -58,15 +64,14 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun initPageHotelDetail() {
-//        val data : DetailHotelPurchaseModel = getDataPageHote()
         viewBinding.toolbar.showtitlePurchaseHotel()
         viewBinding.flightHeader.lineFlightHeader.visibility  = View.GONE
         viewBinding.layDetailTrain.lineDetailTrain.visibility = View.GONE
         viewBinding.layHeaderHotel.lineDetailHotel.visibility = View.VISIBLE
         viewBinding.lineTicket.visibility                     = View.VISIBLE
 
-        viewBinding.tvTitleTicket.text  = getString(R.string.title_ticket_hotel)
-        viewBinding.tvPnrCode.text      = dataPurchaseDetail.dataHotel.voucerCode
+        viewBinding.tvTitleTicket.text                      = getString(R.string.title_ticket_hotel)
+        viewBinding.tvPnrCode.text                          = dataPurchaseDetail.dataHotel.voucerCode
         viewBinding.layHeaderHotel.tvNameHotel.text         = dataPurchaseDetail.dataHotel.hotelName
         viewBinding.layHeaderHotel.tvCity.text              = dataPurchaseDetail.dataHotel.area
         viewBinding.layHeaderHotel.tvChekinDate.text        = DateConverter().getDate(dataPurchaseDetail.dataHotel.checkInDate.toString(),"yyyy-MM-dd HH:mm:ss","E, dd MMM")
@@ -141,33 +146,234 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun initPopUpMenu(view:View) {
-        val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val layout = layoutInflater.inflate(R.layout.menu_popup_purchase_detail_list, null)
-        val btnReimbuirse     = layout.findViewById(R.id.btn_reimbursement) as TextView
-        val btnBackTopurchase = layout.findViewById(R.id.btn_back_to_purchase_list) as TextView
-        val btnbackToHompage  =  layout.findViewById(R.id.btn_back_to_homepage) as TextView
-        val btnDownload       = layout.findViewById(R.id.btn_download) as TextView
+        val binding  = MenuPopupPurchaseDetailListBinding.inflate(LayoutInflater.from(this))
+        val dialog = Globals.showPopup(view,binding.root)
 
-        val dialog = Globals.showPopup(view,layout)
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            val isRefund     = getDataIsRefund().first
+            val isReschedule = getDataIsRefund().second
+            if (!isRefund){
+                binding.btnReimbursement.visibility = View.VISIBLE
+                binding.lineRefund.visibility       = View.VISIBLE
+            }
+            else {
+                binding.btnReimbursement.visibility = View.GONE
+                binding.lineRefund.visibility       = View.GONE
+            }
+            if (!isReschedule){
+                binding.lineReschedule.visibility = View.VISIBLE
+                binding.btnReschedule.visibility  = View.VISIBLE
+            }
+            else {
+                binding.lineReschedule.visibility = View.GONE
+                binding.btnReschedule.visibility  = View.GONE
+            }
+        }
 
-        btnBackTopurchase.setOnClickListener { dialog.dismiss() }
-        btnReimbuirse.setOnClickListener { dialog.dismiss() }
-        btnbackToHompage.setOnClickListener { dialog.dismiss() }
-        btnDownload.setOnClickListener{
-            showDialog("Please Wait")
+        binding.btnReimbursement.setOnClickListener {
             dialog.dismiss()
-            Globals.downloadFile("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",this,object :Globals.CallbackDownload{
-                override fun succeessDownload(parse: Uri, downloadMimeType: String) {
+            refundListener()
+        }
+        binding.btnReschedule.setOnClickListener {
+            dialog.dismiss()
+            rescheduleListener()
+        }
+        binding.btnBackToHomepage.setOnClickListener {
+            gotoActivity(HomeActivity::class.java)
+        }
+        binding.btnBackToPurchase.setOnClickListener{
+            dialog.dismiss()
+            finish()
+        }
+    }
+
+    private fun getDataIsRefund(): Pair<Boolean,Boolean> {
+        when(dataPurchaseDetail.itemType){
+            Constants.TripType.Airline -> {
+                return Pair(dataPurchaseDetail.dataFlight[positionSelectedItem].Segment.first().isRefund,dataPurchaseDetail.dataFlight[positionSelectedItem].Segment.first().isReschedule)
+            }
+            Constants.TripType.KAI -> {
+                return Pair(dataPurchaseDetail.dataTrain[positionSelectedItem].isRefund,dataPurchaseDetail.dataTrain[positionSelectedItem].isReschedule)
+
+            }
+            else -> {
+                return Pair(dataPurchaseDetail.dataHotel.isRefund,dataPurchaseDetail.dataHotel.isReschedule)
+            }
+        }
+    }
+
+    private fun rescheduleListener() {
+        val dialog = RescheduleDialog(true,object : RescheduleDialog.CallbackRescheduleDialog{
+            override fun dataReturn(
+                mDataAttachment: ArrayList<UploadModel>,
+                mStartDate: String,
+                mEndDate: String,
+                mNotes: String
+            ) {
+                dataAttacmennth = mDataAttachment
+                startDate = mStartDate
+                endDate = mEndDate
+                notes = mNotes
+                getReschedule()
+            }
+        },true)
+        showDialogFragment(dialog)
+    }
+
+    private fun getReschedule() {
+        var data = dataRescheduleRequestFlight()
+        when(dataPurchaseDetail.itemType){
+            Constants.TripType.Airline -> {
+                data = dataRescheduleRequestFlight()
+            }
+            Constants.TripType.Hotel -> {
+                data = dataRescheduleRequestHotel()
+            }
+        }
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            showDialog("")
+            GetDataApproval(getBaseUrl()).reschedule(getToken(),data,object :CallbackString{
+                override fun successLoad(data: String) {
                     hideDialog()
-                    Globals.openDownloadedAttachment(this@PurchaseDetailListActivity,parse,downloadMimeType)
+                    setToast("Success")
                 }
 
-                override fun failedDownload() {
+                override fun failedLoad(message: String) {
                     hideDialog()
+                    setToast("failed")
                 }
             })
-//            Globals.downloadFile("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1024px-Image_created_with_a_mobile_phone.png",this)
         }
+    }
+
+    private fun dataRescheduleRequestFlight(): HashMap<Any, Any> {
+        val data = RescheduleFlightRequest()
+        data.tripCode       = dataPurchaseDetail.code
+        data.participant    = participantRequest()
+        data.reschedule     = rescheduleRequest()
+        data.attachment     = attatchmentRequest()
+        return Globals.classToHashMap(data, RescheduleFlightRequest::class.java)
+    }
+
+    private fun attatchmentRequest(): ArrayList<AttachmentItemReschedule> {
+        val data = ArrayList<AttachmentItemReschedule>()
+        dataAttacmennth.forEach {
+            data.add(AttachmentItemReschedule(it.nameImage,it.url))
+        }
+        return data
+    }
+
+    private fun rescheduleRequest(): Reschedule {
+        val data = Reschedule()
+        data.bookingCode = dataPurchaseDetail.dataFlight[positionSelectedItem].pnrCode
+        data.type        = 0
+        data.changeDate  = startDate
+        data.changeTime  = endDate
+        data.changeNotes = notes
+        return data
+    }
+
+    private fun participantRequest(): ParticipantReschedule {
+        val data  = ParticipantReschedule()
+        data.id   = dataPurchaseDetail.tripMemberId
+        return data
+    }
+
+    private fun dataRescheduleRequestHotel(): HashMap<Any, Any> {
+        val data = RescheduleHotelRequest()
+        data.tripCode           = data.tripCode
+        data.participant        = participantRequest()
+        data.rescheduleHotel    = rescheduleHotelRequest()
+        data.attachment         = attatchmentRequest()
+        return Globals.classToHashMap(data, RescheduleFlightRequest::class.java)
+    }
+
+    private fun rescheduleHotelRequest(): RescheduleHotel {
+        val data = RescheduleHotel()
+        data.bookingCode    = dataPurchaseDetail.dataHotel.voucerCode
+        data.type           = 1
+        data.changeCheckin  = startDate
+        data.changeCheckout = endDate
+        data.changeNotes    = notes
+        return data
+    }
+
+
+    private fun refundListener() {
+        val dialog = RescheduleDialog(true,object : RescheduleDialog.CallbackRescheduleDialog{
+            override fun dataReturn(
+                mDataAttachment: ArrayList<UploadModel>,
+                mStartDate: String,
+                mEndDate: String,
+                mNotes: String
+            ) {
+                dataAttacmennth = mDataAttachment
+                startDate = mStartDate
+                endDate = mEndDate
+                notes = mNotes
+                getRefund()
+            }
+        },false)
+        showDialogFragment(dialog)
+    }
+
+    private fun getRefund() {
+        showDialog("")
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            GetDataApproval(getBaseUrl()).refund(getToken(),refundRequest(),object :CallbackString{
+                override fun successLoad(data: String) {
+                    hideDialog()
+                    setToast("Success")
+                }
+
+                override fun failedLoad(message: String) {
+                    hideDialog()
+                    setToast("Failed")
+                }
+            })
+        }
+    }
+
+    private fun refundRequest(): HashMap<Any, Any> {
+        val refund = RefundRequest()
+        refund.tripCode        = dataPurchaseDetail.code
+        refund.listPnr         = dataPnrrequest()
+        refund.participant     = dataParticipantRequest()
+        return Globals.classToHashMap(refund,RefundRequest::class.java)
+    }
+
+    private fun dataParticipantRequest(): Participant {
+        val data = Participant()
+        data.id  = ""
+        return data
+    }
+
+    private fun dataPnrrequest(): ListPnr {
+        val data = ListPnr()
+        data.flights = listFlight()
+        data.hotels  = listHotel()
+        data.listAttachments = dataAttacthment()
+        return data
+    }
+
+    private fun dataAttacthment(): ArrayList<ListAttachmentsItem> {
+        val data = ArrayList<ListAttachmentsItem>()
+        dataAttacmennth.forEach {
+            data.add(ListAttachmentsItem(it.nameImage,it.url))
+        }
+        return data
+    }
+
+    private fun listHotel(): ArrayList<HotelsItem> {
+        val data = ArrayList<HotelsItem>()
+        data.add(HotelsItem(dataPurchaseDetail.dataHotel.idHotel))
+        return data
+    }
+
+    private fun listFlight(): ArrayList<FlightsItem> {
+        val data = ArrayList<FlightsItem>()
+        data.add(FlightsItem(dataPurchaseDetail.dataFlight[positionSelectedItem].idFlight))
+        return data
     }
 
     override fun btnBack() {

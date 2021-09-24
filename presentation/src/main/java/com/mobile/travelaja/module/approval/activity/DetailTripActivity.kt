@@ -16,6 +16,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
@@ -90,7 +91,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     val adapterItemOrder by lazy { SummaryAdapter(this) }
     var dataAttachment = ArrayList<UploadModel>()
     val adapter by inject<AttachmentAdapter> { parametersOf(dataAttachment) }
-
 
     override fun OnMain() {
 
@@ -716,8 +716,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     private fun initRecyclerViewItem() {
 
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_item_order.layoutManager = layoutManager
         rv_item_order.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_item_order.adapter = adapterItemOrder
@@ -758,31 +758,37 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     private fun gotoEticket(position: Int,typeItem:Int) {
         showLoadingOpsicorp(true)
+        var status = ""
         var idItem = ""
         when(typeItem){
             0 -> {
                 idItem = dataItems[position].dataItemFlight.pnrCode
+                status = dataItems[position].dataItemFlight.status
             }
             1 -> {
                 idItem = dataItems[position].dataItemHotel.hotelId
+                status = dataItems[position].dataItemFlight.status
             }
             2 -> {
                 idItem = dataItems[position].dataItemTrain.pnrCode
+                status = dataItems[position].dataItemFlight.status
             }
         }
-        GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket {
-            override fun successLoad(summaryModel: DetailMyBookingModel) {
-                hideLoadingOpsicorp()
-                val bundle = Bundle()
-                bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,0)
-                bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,summaryModel)
-                gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
-            }
+        if (status.toLowerCase()=="ticketed"){
+            GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket {
+                override fun successLoad(summaryModel: DetailMyBookingModel) {
+                    hideLoadingOpsicorp()
+                    val bundle = Bundle()
+                    bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,0)
+                    bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,summaryModel)
+                    gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
+                }
 
-            override fun failedLoad(message: String) {
-                hideLoadingOpsicorp()
-            }
-        })
+                override fun failedLoad(message: String) {
+                    hideLoadingOpsicorp()
+                }
+            })
+        }
     }
 
     fun approveOrRejectItemRequest(action: String, type: String) {

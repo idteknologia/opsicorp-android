@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/line_date"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lay_end_start"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="8dp"
+                android:src="@drawable/ic_date_check_in"
+                android:layout_width="@dimen/icon_edittext"
+                android:layout_height="@dimen/icon_edittext" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lay_deaprture_date"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <TextView
+                        android:id="@+id/tv_title_daparture_date"
+                        android:text="@string/departure_date"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:singleLine="true"
+                        android:id="@+id/tv_departure_date"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="9dp"
+                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:textSize="@dimen/font_half_lg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlCompat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/lay_deaprture_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorLineEdittext"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_return_date"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_marginRight="8dp"
+                android:src="@drawable/ic_date_check_out"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/lay_end_date"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <TextView
+                        android:id="@+id/tv_title_departure_time"
+                        android:text="@string/departure_time"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tv_departure_time"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="9dp"
+                        android:textAlignment="viewStart"
+                        android:gravity="center"
+                        android:textSize="@dimen/font_half_lg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:ignore="RtlCompat" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/lay_end_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorLineEdittext"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/line_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:id="@+id/layNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="11dp"
+                android:text="@string/notes"
+                android:textSize="14sp" />
+
+
+            <EditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_corner_grey"
+                android:gravity="start"
+                android:lines="3"
+                android:maxLength="100"
+                android:maxLines="4"
+                android:minLines="4"
+                android:padding="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="#24253d"
+                android:textColorHint="#24253d"
+                android:textSize="@dimen/font_half_lg"
+                tools:ignore="RtlCompat"
+                tools:text="@tools:sample/lorem/random" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_notes_count"
+            style="@style/RobotoRegular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layNotes"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:gravity="end"
+            android:text="@string/_0_100"
+            android:textColor="#b2bbc6"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/RobotoBold"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            android:lineSpacingExtra="6sp"
+            android:text="Attachment"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="13dp"
+            android:layout_height="1dp"
+            android:background="#b2bbc6">
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/line_description_attachment"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/RobotoBold"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:lineSpacingExtra="7sp"
+            android:text="@string/information" />
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_attachment">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:id="@+id/line_upload_file"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_button_camera"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp">
+        <LinearLayout
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/img_upload_file"
+                android:layout_width="18dp"
+                android:layout_height="15dp"
+                android:src="@drawable/ic_upload"/>
+            <TextView
+                android:id="@+id/title_upload_file"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/colorDarkGrayRound"
+                android:textSize="@dimen/font_half_lg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_attachment"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/btnReschedule"
+        app:text="Reschedule"
+        android:layout_marginRight="20dp">
+    </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>
+
+</LinearLayout>

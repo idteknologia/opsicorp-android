@@ -110,4 +110,5 @@ object MyURL {
     const val GET_URL_FILE        = "api/TripPlan/DownloadFile"
     const val API_REFUND          = "api/TripPlan/Refund"
     const val API_RESCHEDULE      = "api/TripPlan/Reschedule"
+    const val ATTACHMENT_RESCHEDULE = "api/UploadNewAttachment"
 }

@@ -45,9 +45,9 @@ class SegmentMybookingAdapter (var context: Context, private var items: ArrayLis
         }
 
         holder.itemView.tv_flight_name.text             = data.nameFlight
-        holder.itemView.tv_seat_number.text             = data.numberSeat
+        holder.itemView.tv_code_flight.text             = data.codeFlight
         holder.itemView.tv_calss.text                   = data.classFlight
-        holder.itemView.tv_type_accomodation.text       = data.typeFlight
+        holder.itemView.tv_flight_number.text           = data.flightNumber
         holder.itemView.tv_time_departure.text          = data.timeDeparture
         holder.itemView.tv_date_departure.text          = data.dateDepartute
         holder.itemView.tv_origin.text                  = data.origin

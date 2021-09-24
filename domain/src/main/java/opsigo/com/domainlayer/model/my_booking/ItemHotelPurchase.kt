@@ -25,7 +25,10 @@ data class ItemHotelPurchase(
 	var guests: List<GuestsItems> = ArrayList(),
 	var cancellationPolicy : ArrayList<String> = ArrayList(),
 	var dataRemark : ArrayList<String> = ArrayList(),
-	var area:String = ""
+	var area:String = "",
+	var isRefund : Boolean = false,
+	var isReschedule : Boolean = false,
+	var idHotel:String = ""
 ):Parcelable
 
 @Parcelize

@@ -18,6 +18,8 @@ data class ItemPurchaseTrainModel(
 	var destinationCity: String? = null,
 	var destinationStation :String = "",
 	var passager : ArrayList<PassengersTrainModel> = ArrayList(),
+	var isRefund : Boolean = false,
+	var isReschedule : Boolean = false
 ):Parcelable
 
 @Parcelize

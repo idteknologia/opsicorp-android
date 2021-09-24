@@ -18,6 +18,7 @@ class DetailMyBookingModel(
 	var totalPaid: Double = 0.0,
 	var paymentMethod: String? = null,
 	var id: String? = null,
-	var paymentStatus: Int? = null
+	var paymentStatus: Int? = null,
+	var tripMemberId : String = ""
 ):Parcelable
 

@@ -36,7 +36,7 @@ class ImportanPreProductInfoAdapter (var context: Context, private var items: Ar
         holder.itemView.tv_message_info.text = data.description
 
         holder.itemView.setOnClickListener {
-            onclick.onClick(-1,position)
+//            onclick.onClick(-1,position)
         }
 
     }

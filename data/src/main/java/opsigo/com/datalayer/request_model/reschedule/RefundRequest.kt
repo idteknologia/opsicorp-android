@@ -31,9 +31,6 @@ data class ListAttachmentsItem(
 	@field:SerializedName("Description")
 	val description: String? = null,
 
-	@field:SerializedName("Id")
-	val id: String? = null,
-
 	@field:SerializedName("Url")
 	val url: String? = null
 )

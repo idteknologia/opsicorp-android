@@ -1,7 +1,12 @@
 package com.mobile.travelaja.module.item_custom.map
 
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.base.BaseActivity
+import kotlinx.android.synthetic.main.layout_test.*
+import com.mobile.travelaja.module.my_booking.refund.RescheduleDialog
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import java.util.ArrayList
 
 class TestActivity : BaseActivity() {
     var latitude  = -7.3589299
@@ -12,6 +17,19 @@ class TestActivity : BaseActivity() {
     val BASE_PACKAGE_MODULE = "com.opsicorp.travelaja.feature_flight.filter."
 
     override fun OnMain() {
+        val dialog = RescheduleDialog(true,object :RescheduleDialog.CallbackRescheduleDialog{
+            override fun dataReturn(
+                dataAttachment: ArrayList<UploadModel>,
+                startDate: String,
+                endDate: String,
+                notes: String
+            ) {
+
+            }
+        },false)
+        test.setOnClickListener {
+            showDialogFragment(dialog)
+        }
 
         /*val data = ArrayList<String>()
         val mAdapter = TestAdapter(this,data)

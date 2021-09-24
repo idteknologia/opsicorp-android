@@ -11,7 +11,7 @@ class PurchaseDetailTripFlightAndTrainModel (
     var nameFlight              :String = "",
     var numberSeat              :String = "",
     var classFlight             :String = "",
-    var typeFlight              :String = "",
+    var codeFlight              :String = "",
     var timeDeparture           :String = "",
     var dateDepartute           :String = "",
     var nameAirportDepature     :String = "",
@@ -23,4 +23,7 @@ class PurchaseDetailTripFlightAndTrainModel (
     var layover                 :String = "",
     var nameAirportLayover      :String = "",
     var imageFlight             :String = "",
+    var isRefund                :Boolean=false,
+    var isReschedule            :Boolean=false,
+    var flightNumber            :String =""
 ):Parcelable

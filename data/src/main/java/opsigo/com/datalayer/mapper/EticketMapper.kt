@@ -31,6 +31,7 @@ class EticketMapper {
             data.paymentMethod     = this.paymentTypeView.toString()
             data.id                = this.id
             data.paymentStatus     = this.paymentStatus
+            data.tripMemberId      = this.tripParticipants?.first()?.id.toString()
             return data
         }
     }
@@ -98,6 +99,9 @@ class EticketMapper {
         hotel.cancellationPolicy = mappingCancellationPolicy(data?.cancellationPoliciesView)
         hotel.area             = data?.area.toString()
         hotel.ratingStar       = if (data?.rating==null)0 else data.rating
+        hotel.isRefund         = if (data?.isRefund!=null) data.isRefund else false
+        hotel.isReschedule     = if (data?.isReschedule!=null) data.isReschedule else false
+        hotel.idHotel          = data?.id.toString()
         return hotel
     }
 
@@ -164,6 +168,8 @@ class EticketMapper {
             mData.destinationCity        = train?.destinationView.toString()
             mData.destinationStation     = ""
             mData.passager               = mapperPassengeTrain(train?.passengers)
+            mData.isRefund               = false
+            mData.isReschedule           = false
             data.add(mData)
         }
         return data
@@ -198,6 +204,7 @@ class EticketMapper {
             mData.originCity      = flight?.originCity.toString()
             mData.pnrCode         = flight?.pnrCode.toString()
             mData.Segment         = mapperSegment(flight)
+            mData.idFlight        = flight?.id.toString()
             mData.passanger       = mapperPassengeFlight(flight)
             data.add(mData)
         }
@@ -210,7 +217,7 @@ class EticketMapper {
             val mData = PassangerPurchaseModel()
             mData.age             = it?.type.toString()
             mData.totalBagage     = "null"
-            mData.Name            = it?.fullName.toString()
+            mData.Name            = "${it?.firstName.toString()} ${it?.lastName.toString()}"
             mData.seatPassager    = it?.seatNumber.toString()
             data.add(mData)
         }
@@ -224,10 +231,11 @@ class EticketMapper {
             mData.status                 = flight.prgText.toString()
             mData.totalHour              = "null"
             mData.terminalDeparture      = "terminal null"
-            mData.nameFlight             = it?.airlineName.toString()
+            mData.nameFlight             = if (it?.airlineName.toString().isEmpty()) "null" else it?.airlineName.toString()
             mData.numberSeat             = "null"
             mData.classFlight            = "${it?.category} ${it?.classCode}"
-            mData.typeFlight             = it?.flightNumber.toString()
+            mData.codeFlight             = "null"
+            mData.flightNumber           = it?.flightNumber.toString()
             mData.timeDeparture          = it?.departTime.toString()
             mData.dateDepartute          = it?.departDate.toString()
             mData.nameAirportDepature    = it?.airportOrigin.toString()
@@ -239,6 +247,8 @@ class EticketMapper {
             mData.layover                = "null"
             mData.nameAirportLayover     = "null"
             mData.imageFlight            = it?.airlineImageUrl.toString()
+            mData.isRefund               = if (it?.isRefund!=null) it.isRefund else false
+            mData.isReschedule           = if (it?.isReschedule!=null) it.isReschedule else false
             data.add(mData)
         }
         return data

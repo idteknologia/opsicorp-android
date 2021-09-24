@@ -11,4 +11,5 @@ class DetailFlightMyBookingModel (
     var pnrCode    : String? = "",
     var Segment    : ArrayList<PurchaseDetailTripFlightAndTrainModel> = ArrayList(),
     var passanger  : ArrayList<PassangerPurchaseModel> = ArrayList(),
+    var idFlight: String = "",
 ):Parcelable

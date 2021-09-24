@@ -54,9 +54,9 @@ class PurchaseDetailTripFlightAdapter (context: Context, private var items: Arra
 
         fun bind(data: PurchaseDetailTripFlightAndTrainModel, position: Int) {
 //            itemView.tv_airport_name.text            = data.nameAirportDepature
-            itemView.tv_seat_number.text             = data.numberSeat
+            itemView.tv_flight_number.text             = data.numberSeat
             itemView.tv_calss.text                   = data.classFlight
-            itemView.tv_type_accomodation.text       = data.typeFlight
+            itemView.tv_code_flight.text       = data.codeFlight
             itemView.tv_time_departure.text          = data.timeDeparture
             itemView.tv_date_departure.text          = data.dateDepartute
 //            itemView.tv_name_city_departure.text     = data.nameAirportDepature

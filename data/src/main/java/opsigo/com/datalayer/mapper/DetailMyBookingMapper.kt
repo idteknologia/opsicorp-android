@@ -106,7 +106,7 @@ class DetailMyBookingMapper {
             data.nameFlight               = it?.airlineName.toString()
             data.numberSeat               = "number seat null"
             data.classFlight              = "${it?.classCategory} Class"
-            data.typeFlight               = it?.flightNumber.toString()
+            data.codeFlight               = it?.flightNumber.toString()
             data.timeDeparture            = it?.departureTimeDisplay.toString()
             data.dateDepartute            = it?.departureDate.toString()
             data.nameAirportDepature      = it?.originAirport.toString()

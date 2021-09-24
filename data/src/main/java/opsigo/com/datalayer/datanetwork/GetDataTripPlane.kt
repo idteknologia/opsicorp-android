@@ -105,6 +105,37 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
         })
     }
 
+    override fun uploadFileReschedule(token: String,data: MultipartBody.Part?, callback: CallbackUploadFile) {
+        apiOpsicorp.posDataAttachmentReschedule(token,data).enqueue(object : Callback<ResponseBody> {
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                callback.failedLoad(t.message!!)
+            }
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                try {
+                    if (response.isSuccessful){
+                        val data = response.body()?.string()!!
+                        val json = JSONObject(data)
+                        if (json.getBoolean("success")){
+                            val dataResponse = Serializer.deserialize(data, UploadFileEntity::class.java)
+                            callback.successLoad(UploadFileMapper().mapping(dataResponse))
+                        }
+                        else {
+                            val message = json.getString("errMsg")
+                            callback.failedLoad(message)
+                        }
+                    }
+                    else{
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.getString("errMsg")
+                        callback.failedLoad(message)
+                    }
+                }catch (e:Exception){
+                    callback.failedLoad(messageFailed)
+                }
+            }
+        })
+    }
+
     override fun getDataBudget(token: String, employeeId: String, travelAgentCode: String, callbackBudget: CallbackBudget) {
         apiOpsicorp.getDataBudget(token,employeeId,travelAgentCode).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {

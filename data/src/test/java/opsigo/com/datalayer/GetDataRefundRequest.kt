@@ -49,9 +49,10 @@ class GetDataRefundRequest:KoinTest{
         }
     }
 
-    private fun dataRescheduleRequestHotel(): HashMap<Any, Any> {
+
+    private fun dataRescheduleRequestFlight(): HashMap<Any, Any> {
         val data = RescheduleFlightRequest()
-        data.tripCode       = ""
+        data.tripCode       = "TP202109210008"
         data.participant    = participantRequest()
         data.reschedule     = rescheduleRequest()
         data.attachment     = attatchmentRequest()
@@ -60,29 +61,29 @@ class GetDataRefundRequest:KoinTest{
 
     private fun attatchmentRequest(): ArrayList<AttachmentItemReschedule> {
         val data = ArrayList<AttachmentItemReschedule>()
-        data.add(AttachmentItemReschedule("",""))
+        data.add(AttachmentItemReschedule("1632208164.jpeg","6db06e75-c83e-445c-8644-aeca8bcd3dc0","https:\\/\\/opsicorp.blob.core.windows.net\\/opsicorpdtmqa-trip-attachment\\/20210921.94034ab4-be4f-4a80-b718-1e44c74440dc.jpeg"))
         return data
     }
 
-    private fun rescheduleRequest(): Reschedule? {
+    private fun rescheduleRequest(): Reschedule {
         val data = Reschedule()
-        data.bookingCode = ""
+        data.bookingCode = "86TSN1"
         data.type        = 0
-        data.changeDate  = ""
-        data.changeTime  = ""
-        data.changeNotes = ""
+        data.changeDate  = "2021-10-10"
+        data.changeTime  = "07:00"
+        data.changeNotes = "tolong direschedule menjadi Jakarta semarang garuda 07.00 AM 10 oktober 2021"
         return data
     }
 
-    private fun participantRequest(): ParticipantReschedule? {
+    private fun participantRequest(): ParticipantReschedule {
         val data  = ParticipantReschedule()
-        data.id   = ""
+        data.id   = "c985df81-2ccc-499c-8c0f-cfc24ee19b0c"
         return data
     }
 
-    private fun dataRescheduleRequestFlight(): HashMap<Any, Any> {
+    private fun dataRescheduleRequestHotel(): HashMap<Any, Any> {
         val data = RescheduleHotelRequest()
-        data.tripCode           = ""
+        data.tripCode           = "TP202109210008"
         data.participant        = participantRequest()
         data.rescheduleHotel    = rescheduleHotelRequest()
         data.attachment         = attatchmentRequest()
@@ -91,14 +92,13 @@ class GetDataRefundRequest:KoinTest{
 
     private fun rescheduleHotelRequest(): RescheduleHotel {
         val data = RescheduleHotel()
-        data.bookingCode    = ""
-        data.type           = 0
-        data.changeCheckin  = ""
-        data.changeCheckout = ""
-        data.changeNotes    = ""
+        data.bookingCode    = "HS3VPNSRBV"
+        data.type           = 1
+        data.changeCheckin  = "2021-10-01"
+        data.changeCheckout = "2021-10-02"
+        data.changeNotes    = "tolong direschedule manjedi class deluxe"
         return data
     }
-
 
     @Test
     fun testApiRefund() {

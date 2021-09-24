@@ -37,7 +37,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/tv_seat_number"
+                android:id="@+id/tv_flight_number"
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,8 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/tv_type_accomodation"
+                android:layout_marginTop="3dp"
+                android:id="@+id/tv_code_flight"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

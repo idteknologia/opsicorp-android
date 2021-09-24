@@ -62,6 +62,7 @@
 
     <string name="departure_date">Departure Date</string>
     <string name="return_date">Return Date</string>
+    <string name="departure_time">Departure Time</string>
     <string name="reset_your_password">Reset Your Password</string>
 
 
@@ -1173,6 +1174,7 @@ Please add your trip item for Approval."
     <string name="trip_expense">Trip Expense</string>
     <string name="airport_non_airport_trip_expense">Airport or NON-Airport</string>
     <string name="refund_ticket">Refund Ticket</string>
+    <string name="reschedule_ticket">Reschedule</string>
     <string name="refund_amount_ticket">Refund Amount <font color="#2b9a8e">IDR</font></string>
     <string name="refund_amount_ticket_usd">Refund Amount <font color="#2b9a8e">USD</font></string>
     <string name="expand_detail">Expand Detail</string>

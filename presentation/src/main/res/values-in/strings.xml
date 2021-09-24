@@ -46,7 +46,7 @@
     <string name="contact_information">Contact Information</string>
     <string name="contact_information_caps">CONTACT INFORMATION</string>
     <string name="attachment_files_">Attachment Files : </string>
-    <string name="add_attachment">Tambah Attachment</string>
+    <string name="add_attachment">+ Tambah Attachment</string>
     <string name="pdf_file">File PDF</string>
     <string name="image_file">File Gambar</string>
 

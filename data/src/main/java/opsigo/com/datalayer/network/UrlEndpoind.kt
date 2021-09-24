@@ -110,7 +110,6 @@ interface UrlEndpoind {
                           ,@Part file: MultipartBody.Part?): Call<ResponseBody>
 
 
-
     @GET(MyURL.SELECT_BUDGET)
     fun posDataSelectBudget(@Header("Authorization")token:String,
                             @Query("EmployeeId")EmployeeId:String,
@@ -402,4 +401,10 @@ interface UrlEndpoind {
     @POST(MyURL.API_RESCHEDULE)
     fun getReschedule(@Header("Authorization") token: String,
                          @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
+    @Multipart
+    @POST(MyURL.ATTACHMENT_RESCHEDULE)
+    fun posDataAttachmentReschedule(@Header("Authorization")token:String
+                                    ,@Part file: MultipartBody.Part?): Call<ResponseBody>
+
 }
