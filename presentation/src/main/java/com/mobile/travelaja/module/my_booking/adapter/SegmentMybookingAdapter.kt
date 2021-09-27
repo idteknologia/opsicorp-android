@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.items_purchase_detail_flight_and_train.view.*
@@ -35,10 +36,10 @@ class SegmentMybookingAdapter (var context: Context, private var items: ArrayLis
 
         val data = items.get(position)
 
-        if (data.layover.isNotEmpty()||!data.layover.equals("null")){
+        if (data.isConnecting){
             holder.itemView.line_layover.visibility = View.VISIBLE
-            holder.itemView.tv_name_airport_layover.text = data.nameAirportLayover
             holder.itemView.tv_layover.text = data.layover
+            holder.itemView.tv_name_airport_layover.text = data.nameAirportLayover
         }
         else {
             holder.itemView.line_layover.visibility = View.GONE
@@ -49,13 +50,13 @@ class SegmentMybookingAdapter (var context: Context, private var items: ArrayLis
         holder.itemView.tv_calss.text                   = data.classFlight
         holder.itemView.tv_flight_number.text           = data.flightNumber
         holder.itemView.tv_time_departure.text          = data.timeDeparture
-        holder.itemView.tv_date_departure.text          = data.dateDepartute
+        holder.itemView.tv_date_departure.text          = DateConverter().getDate(data.dateDepartute,"yyyy-MM-dd","EEE, dd MMM")
         holder.itemView.tv_origin.text                  = data.origin
         holder.itemView.tv_name_station_departure.text  = data.nameAirportDepature
         holder.itemView.tv_terminal.text                = data.terminalDeparture
-        holder.itemView.line_total_duration.text        = data.totalHour
+        holder.itemView.line_total_duration.text        = data.totalHourDuration
         holder.itemView.tv_time_arrival.text            = data.timeArrival
-        holder.itemView.tv_date_arrival.text            = data.dateArrival
+        holder.itemView.tv_date_arrival.text            = DateConverter().getDate(data.dateArrival,"yyyy-MM-dd","EEE, dd MMM")
         holder.itemView.tv_destination.text             = data.destinantion
         holder.itemView.tv_name_station_arrival.text    = data.nameStasiunArrival
         holder.itemView.tv_bloc_station_arrival.text    = ""

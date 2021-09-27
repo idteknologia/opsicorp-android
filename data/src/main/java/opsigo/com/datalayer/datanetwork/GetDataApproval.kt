@@ -119,20 +119,24 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                     }
 
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                        if (response.isSuccessful){
-                            val responseString = response.body()?.string()
-                            val json = JSONObject(responseString)
-                            if (json.getBoolean("isSuccess")){
-                                callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                        try {
+                            if (response.isSuccessful){
+                                val responseString = response.body()?.string()
+                                val json = JSONObject(responseString)
+                                if (json.getBoolean("isSuccess")){
+                                    callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                                }
+                                else{
+                                    callback.failedLoad(json.getString("errorMessage"))
+                                }
                             }
-                            else{
-                                callback.failedLoad(json.getString("errorMessage"))
+                            else {
+                                val json = JSONObject(response.errorBody()?.string())
+                                val message = json.optString("error_description")
+                                callback.failedLoad(message)
                             }
-                        }
-                        else {
-                            val json = JSONObject(response.errorBody()?.string())
-                            val message = json.optString("error_description")
-                            callback.failedLoad(message)
+                        }catch (e:Exception){
+                            e.printStackTrace()
                         }
                     }
                 })
@@ -146,20 +150,24 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                 }
 
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                    if (response.isSuccessful){
-                        val responseString = response.body()?.string()
-                        /*val json = JSONObject(responseString)
-                        if (json.getBoolean("isSuccess")){
-                            callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                    try {
+                        if (response.isSuccessful){
+                            val responseString = response.body()?.string()
+                            val json = JSONObject(responseString)
+                            if (json.getBoolean("isSuccess")){
+                                callback.successLoad("success")
+                            }
+                            else{
+                                callback.failedLoad(json.getString("errorMessage"))
+                            }
                         }
-                        else{
-                            callback.failedLoad(json.getString("errorMessage"))
-                        }*/
-                    }
-                    else {
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callback.failedLoad(message)
+                        else {
+                            val json = JSONObject(response.errorBody()?.string())
+                            val message = json.optString("error_description")
+                            callback.failedLoad(message)
+                        }
+                    }catch (e:Exception){
+                        e.printStackTrace()
                     }
                 }
             })
@@ -175,13 +183,13 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        /*val json = JSONObject(responseString)
+                        val json = JSONObject(responseString)
                         if (json.getBoolean("isSuccess")){
-                            callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                            callback.successLoad("success")
                         }
                         else{
                             callback.failedLoad(json.getString("errorMessage"))
-                        }*/
+                        }
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

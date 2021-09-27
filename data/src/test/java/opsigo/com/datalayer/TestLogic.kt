@@ -135,4 +135,31 @@ class TestLogic {
         val name :String= "",
         val id  :String= ""
         )
+
+    @Test
+    fun testing(){
+        val t1 = "2021-10-10 18:00:00"
+        val t2 = "2021-10-10 20:30:00"
+        testCalculateHour(t1,t2)
+    }
+
+    fun testCalculateHour(t1 : String ,t2:String){
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+        val d1: Date = sdf.parse(t1)
+        val d2: Date = sdf.parse(t2)
+        val c1 = Calendar.getInstance()
+        val c2 = Calendar.getInstance()
+        c1.time = d1
+        c2.time = d2
+
+        if (c2[Calendar.HOUR_OF_DAY] < 12) {
+            c2[Calendar.DAY_OF_YEAR] = c2[Calendar.DAY_OF_YEAR] + 1
+        }
+        val elapsed = c2.timeInMillis - c1.timeInMillis
+        var minute  = ((elapsed /(1000*60)) % 60).toInt()
+        var hour    = ((elapsed /(1000*60*60)) % 24).toInt()
+        print("${hour}:${minute}")
+    }
 }

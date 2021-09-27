@@ -62,7 +62,7 @@ class PurchaseDetailTripFlightAdapter (context: Context, private var items: Arra
 //            itemView.tv_name_city_departure.text     = data.nameAirportDepature
             itemView.tv_name_station_departure.text  = data.origin
 //            itemView.tv_bloc_station_departure.text  = data.terminalDeparture
-            itemView.line_total_duration.text        = data.totalHour
+            itemView.line_total_duration.text        = data.totalHourDuration
             itemView.tv_time_arrival.text            = data.timeArrival
             itemView.tv_date_arrival.text            = data.dateArrival
 //            itemView.tv_name_city_arrival.text       = data.nameStasiunArrival

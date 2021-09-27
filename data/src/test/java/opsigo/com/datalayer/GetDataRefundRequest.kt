@@ -61,7 +61,7 @@ class GetDataRefundRequest:KoinTest{
 
     private fun attatchmentRequest(): ArrayList<AttachmentItemReschedule> {
         val data = ArrayList<AttachmentItemReschedule>()
-        data.add(AttachmentItemReschedule("1632208164.jpeg","6db06e75-c83e-445c-8644-aeca8bcd3dc0","https:\\/\\/opsicorp.blob.core.windows.net\\/opsicorpdtmqa-trip-attachment\\/20210921.94034ab4-be4f-4a80-b718-1e44c74440dc.jpeg"))
+        data.add(AttachmentItemReschedule("1632208164.jpeg","https:\\/\\/opsicorp.blob.core.windows.net\\/opsicorpdtmqa-trip-attachment\\/20210921.94034ab4-be4f-4a80-b718-1e44c74440dc.jpeg"))
         return data
     }
 
@@ -148,7 +148,7 @@ class GetDataRefundRequest:KoinTest{
 
     private fun dataAttacthment(): ArrayList<ListAttachmentsItem> {
         val data = ArrayList<ListAttachmentsItem>()
-        data.add(ListAttachmentsItem("","",""))
+        data.add(ListAttachmentsItem("",""))
         return data
     }
 

@@ -105,8 +105,8 @@ class ToolbarOpsicorp : LinearLayout, View.OnClickListener {
         logo_center.visibility = View.GONE
         line_title_purchase.visibility = View.GONE
 
-        tv_departure_train.text = arrival
-        tv_arrival_train.text = departure
+        tv_departure_train.text = departure
+        tv_arrival_train.text = arrival
     }
 
     fun showtitlePurchaseHotel(){

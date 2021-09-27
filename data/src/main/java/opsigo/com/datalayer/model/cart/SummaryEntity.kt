@@ -1,6 +1,8 @@
 package opsigo.com.datalayer.model.cart
 
 import com.google.gson.annotations.SerializedName
+import opsigo.com.datalayer.model.accomodation.flight.ssr.SsrDataEntity
+import opsigo.com.datalayer.model.accomodation.flight.ssr.SsrsItem
 import opsigo.com.datalayer.model.accomodation.train.reservation.SegmentsItemReservationEntity
 
 data class SummaryEntity(
@@ -2296,7 +2298,7 @@ data class PassengersItem(
     val firstName: String? = null,
 
     @field:SerializedName("Ssrs")
-    val ssrs: List<Any?>? = null,
+    val ssrs: List<SsrsItem?>? = null,
 
     @field:SerializedName("PicEmployeeId")
     val picEmployeeId: String? = null,

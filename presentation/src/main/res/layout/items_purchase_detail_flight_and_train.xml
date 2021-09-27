@@ -57,6 +57,7 @@
                 android:textSize="12sp" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="3dp"
                 android:id="@+id/tv_code_flight"
                 style="@style/RobotoRegular"
@@ -172,6 +173,7 @@
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="3dp"
                 android:id="@+id/tv_terminal"
                 android:textSize="10dp"

@@ -101,7 +101,7 @@ class DetailMyBookingMapper {
         segments?.forEach {
             val data = PurchaseDetailTripFlightAndTrainModel()
             data.status                   = "null"
-            data.totalHour                = "null"
+            data.totalHourDuration                = "null"
             data.terminalDeparture        = "terminal null"
             data.nameFlight               = it?.airlineName.toString()
             data.numberSeat               = "number seat null"

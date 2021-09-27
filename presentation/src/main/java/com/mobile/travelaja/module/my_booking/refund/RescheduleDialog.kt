@@ -218,10 +218,10 @@ class RescheduleDialog(val isFlight : Boolean = true, val callback:CallbackResch
     }
 
     interface CallbackRescheduleDialog{
-        fun dataReturn(dataAttachment :ArrayList<UploadModel>,
-                       startDate:String,
-                       endDate: String,
-                       notes:String)
+        fun dataReturn(mDataAttachment :ArrayList<UploadModel>,
+                       mStartDate:String,
+                       mEndDate: String,
+                       mNotes:String)
     }
 
 }

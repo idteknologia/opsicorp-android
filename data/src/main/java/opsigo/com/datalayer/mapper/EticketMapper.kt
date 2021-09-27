@@ -1,10 +1,11 @@
 package opsigo.com.datalayer.mapper
 
 import android.util.Log
+import opsigo.com.datalayer.model.cart.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import opsigo.com.domainlayer.model.my_booking.*
-import opsigo.com.datalayer.model.cart.*
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EticketMapper {
     fun mapper(summary:SummaryEntity,idItem:String,typeItem:Int): DetailMyBookingModel {
@@ -47,25 +48,20 @@ class EticketMapper {
                 summaryEntity.flights?.forEach {
                     val flight = it?.tripFlights?.find { it?.pnrCode==idItem }
                     if (flight!=null){
-                        flight.payments?.forEach {
-                            totalPay = if (it?.amount!=null) totalPay+it.amount else totalPay
-                        }
+                        totalPay = flight.payments?.find { it?.code.toString().toUpperCase().equals("TOTAL_PAID")}?.amount!!
                     }
                 }
             }
             1 -> {
                 val data = summaryEntity.tripHotels?.find { it?.hotel?.id==idItem }?.hotel
-                data?.payments?.forEach {
-                    totalPay = totalPay+it.amount
-                }
+                totalPay = data?.payments?.find { it?.code.toString().toUpperCase().equals("TOTAL_PAID")}?.amount!!
+
             }
             2 -> {
                 summaryEntity.trains?.forEach {
-                    val flight = it?.tripTrains?.find { it?.pnrCode==idItem }
-                    if (flight!=null){
-                        flight.payments?.forEach {
-                            totalPay = if (it?.amount!=null) totalPay+it.amount else totalPay
-                        }
+                    val train = it?.tripTrains?.find { it?.pnrCode==idItem }
+                    if (train!=null){
+                        totalPay = train.payments?.find { it?.code.toString().toUpperCase().equals("TOTAL_PAID")}?.amount!!
                     }
                 }
             }
@@ -141,7 +137,7 @@ class EticketMapper {
     private fun mappingFacility(hotelDetail: HotelDetail?): ArrayList<FacilityHotelModel> {
         Log.e("TAG",Serializer.serialize(hotelDetail!!))
         val vacility = ArrayList<FacilityHotelModel>()
-        hotelDetail?.facilities?.forEach {
+        hotelDetail.facilities?.forEach {
             val mData = FacilityHotelModel()
             mData.code = it?.code.toString()
             mData.name = it?.description.toString()
@@ -200,8 +196,8 @@ class EticketMapper {
             val flight = it?.tripFlights?.find { it?.pnrCode==idItem }
             val mData = DetailFlightMyBookingModel()
             mData.status          = flight?.prgText.toString()
-            mData.destinationCity = flight?.destinationCity.toString()
-            mData.originCity      = flight?.originCity.toString()
+            mData.originCity      = flight?.originView.toString()
+            mData.destinationCity = flight?.destinationView.toString()
             mData.pnrCode         = flight?.pnrCode.toString()
             mData.Segment         = mapperSegment(flight)
             mData.idFlight        = flight?.id.toString()
@@ -216,7 +212,11 @@ class EticketMapper {
         flight?.passengers?.forEach {
             val mData = PassangerPurchaseModel()
             mData.age             = it?.type.toString()
-            mData.totalBagage     = "null"
+            if (it?.ssrs?.filter { it?.ssrType==1 }!=null){
+                if (it.ssrs.filter { it?.ssrType==1 }.isNotEmpty()){
+                    mData.totalBagage = it.ssrs.find { it?.ssrType==1 }?.ssrName.toString()
+                }
+            }
             mData.Name            = "${it?.firstName.toString()} ${it?.lastName.toString()}"
             mData.seatPassager    = it?.seatNumber.toString()
             data.add(mData)
@@ -226,10 +226,10 @@ class EticketMapper {
 
     private fun mapperSegment(flight: TripFlightsItem?): ArrayList<PurchaseDetailTripFlightAndTrainModel> {
         val data =  ArrayList<PurchaseDetailTripFlightAndTrainModel>()
-        flight?.segments?.forEach {
+        flight?.segments?.forEachIndexed { index, it ->
             val mData = PurchaseDetailTripFlightAndTrainModel()
             mData.status                 = flight.prgText.toString()
-            mData.totalHour              = "null"
+            mData.totalHourDuration      = it?.duration.toString()
             mData.terminalDeparture      = "terminal null"
             mData.nameFlight             = if (it?.airlineName.toString().isEmpty()) "null" else it?.airlineName.toString()
             mData.numberSeat             = "null"
@@ -244,8 +244,15 @@ class EticketMapper {
             mData.dateArrival            = it?.arriveDate.toString()
             mData.nameStasiunArrival     = it?.airportDestination.toString()
             mData.destinantion           = it?.destinationName.toString()
-            mData.layover                = "null"
-            mData.nameAirportLayover     = "null"
+
+            if (index>0){
+                mData.isConnecting       = true
+                var arrivalDateTime1     = flight.segments[index-1]?.arriveDateTime
+                var arrivalDateTime2     = it?.arriveDateTime
+                mData.layover            = "Layover ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).first}h ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).second}m"
+                mData.nameAirportLayover = flight.segments[index-1]?.airportDestination.toString()
+            }
+
             mData.imageFlight            = it?.airlineImageUrl.toString()
             mData.isRefund               = if (it?.isRefund!=null) it.isRefund else false
             mData.isReschedule           = if (it?.isReschedule!=null) it.isReschedule else false
@@ -265,5 +272,25 @@ class EticketMapper {
             data.mobilePhone   = contact?.mobilePhone.toString()
             return data
         }
+    }
+
+    fun calculateHour(t1 : String ,t2:String):Pair<Int,Int>{
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+
+        val d1: Date = sdf.parse(t1)
+        val d2: Date = sdf.parse(t2)
+        val c1 = Calendar.getInstance()
+        val c2 = Calendar.getInstance()
+        c1.time = d1
+        c2.time = d2
+
+        if (c2[Calendar.HOUR_OF_DAY] < 12) {
+            c2[Calendar.DAY_OF_YEAR] = c2[Calendar.DAY_OF_YEAR] + 1
+        }
+        val elapsed = c2.timeInMillis - c1.timeInMillis
+        val minute  = ((elapsed /(1000*60)) % 60).toInt()
+        val hour    = ((elapsed /(1000*60*60)) % 24).toInt()
+        return Pair(hour,minute)
     }
 }

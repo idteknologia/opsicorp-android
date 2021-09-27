@@ -41,6 +41,12 @@ class PassangerPurchaseAdapter (var context: Context, private var items: ArrayLi
                 holder.itemView.tv_seat_number.visibility = View.GONE
                 holder.itemView.tv_age.text               = data.age
                 holder.itemView.total_bagage.text         = data.totalBagage
+                if (data.totalBagage.isEmpty()||data.totalBagage=="null"){
+                    holder.itemView.line_total_baggage.visibility   = View.GONE
+                }
+                else {
+                    holder.itemView.line_total_baggage.visibility   = View.VISIBLE
+                }
                 holder.itemView.tv_name.text              = data.Name
             }
             is PassengersTrainModel -> {

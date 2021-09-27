@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class PurchaseDetailTripFlightAndTrainModel (
     var status                  :String = "",
-    var totalHour               :String = "",
+    var totalHourDuration       :String = "",
     var terminalDeparture       :String = "",
     var nameFlight              :String = "",
     var numberSeat              :String = "",
@@ -25,5 +25,6 @@ class PurchaseDetailTripFlightAndTrainModel (
     var imageFlight             :String = "",
     var isRefund                :Boolean=false,
     var isReschedule            :Boolean=false,
-    var flightNumber            :String =""
+    var flightNumber            :String ="",
+    var isConnecting            :Boolean = false,
 ):Parcelable
