@@ -238,8 +238,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     fun initRecyclerViewApprover() {
         tv_list_approval.visibility = View.VISIBLE
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_approval.layoutManager = layoutManager
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApprover
@@ -272,8 +272,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     private fun initRecyclerViewParticipant() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_participant.layoutManager = layoutManager
         rv_participant.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_participant.adapter = adapterParticpant
@@ -757,7 +757,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     private fun gotoEticket(position: Int,typeItem:Int) {
-        showLoadingOpsicorp(true)
+
         var status = ""
         var idItem = ""
         when(typeItem){
@@ -767,14 +767,15 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             }
             1 -> {
                 idItem = dataItems[position].dataItemHotel.hotelId
-                status = dataItems[position].dataItemFlight.status
+                status = dataItems[position].dataItemHotel.status
             }
             2 -> {
                 idItem = dataItems[position].dataItemTrain.pnrCode
-                status = dataItems[position].dataItemFlight.status
+                status = dataItems[position].dataItemTrain.status
             }
         }
         if (status.toLowerCase()=="ticketed"){
+            showLoadingOpsicorp(true)
             GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket {
                 override fun successLoad(summaryModel: DetailMyBookingModel) {
                     hideLoadingOpsicorp()

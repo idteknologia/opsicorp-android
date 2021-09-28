@@ -245,12 +245,16 @@ class EticketMapper {
             mData.nameStasiunArrival     = it?.airportDestination.toString()
             mData.destinantion           = it?.destinationName.toString()
 
-            if (index>0){
-                mData.isConnecting       = true
-                var arrivalDateTime1     = flight.segments[index-1]?.arriveDateTime
-                var arrivalDateTime2     = it?.arriveDateTime
-                mData.layover            = "Layover ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).first}h ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).second}m"
-                mData.nameAirportLayover = flight.segments[index-1]?.airportDestination.toString()
+            if (flight.segments.size>1){
+                if (index!=flight.segments.size-1){
+                    if (flight.segments[index]?.num==flight.segments[index+1]?.num){
+                        mData.isConnecting       = true
+                        val arrivalDateTime1     = it?.arriveDateTime
+                        val arrivalDateTime2     = flight.segments[index+1]?.arriveDateTime
+                        mData.layover            = "Layover ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).first}h ${calculateHour(arrivalDateTime1.toString(),arrivalDateTime2.toString()).second}m"
+                        mData.nameAirportLayover = it?.airportDestination.toString()
+                    }
+                }
             }
 
             mData.imageFlight            = it?.airlineImageUrl.toString()

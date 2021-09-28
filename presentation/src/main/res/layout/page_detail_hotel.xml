@@ -159,6 +159,7 @@
         android:paddingBottom="11dp">
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
             android:id="@+id/line_hotel_message"
             app:cardElevation="3dp"
             android:layout_margin="4dp"

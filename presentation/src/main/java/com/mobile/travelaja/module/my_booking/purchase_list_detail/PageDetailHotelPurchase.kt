@@ -8,6 +8,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.webkit.WebViewClient
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.travelaja.utility.Globals
 import opsigo.com.domainlayer.model.my_booking.GuestsItems
 import com.mobile.travelaja.databinding.PageDetailHotelBinding
@@ -79,7 +81,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
 
 //        dataRoomFacility.addAll(DummyDataPurchaseFlight.addDataRoomFacility())
 //        dataGuest.addAll(DummyDataPurchaseFlight.addDataGuest())
-        dataHotelMessage.addAll(DummyDataPurchaseFlight.addDataHotelMessage())
+//        dataHotelMessage.addAll(DummyDataPurchaseFlight.addDataHotelMessage())
 
         adapterHotelMessage.setData(dataHotelMessage)
         adapterPolicy.setData(dataPolicy)
@@ -106,10 +108,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvHotelMassage.layoutManager = layoutManager
-        binding.rvHotelMassage.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvHotelMassage.itemAnimator = DefaultItemAnimator()
         binding.rvHotelMassage.adapter = adapterHotelMessage
 
         adapterHotelMessage.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -118,10 +120,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManagerRoom  = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManagerRoom.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManagerRoom  = LinearLayoutManager(context)
+        layoutManagerRoom.orientation = LinearLayoutManager.VERTICAL
         binding.rvRoomDetail.layoutManager = layoutManagerRoom
-        binding.rvRoomDetail.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRoomDetail.itemAnimator = DefaultItemAnimator()
         binding.rvRoomDetail.adapter = adapterRoomfacility
 
         adapterRoomfacility.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -175,7 +177,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         binding.webview.clearCache(true)
         binding.webview.clearHistory()
         binding.webview.getSettings().setJavaScriptEnabled(true)
-        binding.webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true)
+        binding.webview.settings.setJavaScriptCanOpenWindowsAutomatically(true)
 
         binding.mapLine.setOnClickListener {
             openMapListener()
@@ -228,7 +230,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         adapterRemark.setData(data.dataHotel.dataRemark)
         adapterGuest.notifyDataSetChanged()
         adapterRoomfacility.notifyDataSetChanged()
-
+        checkEmptyData()
     }
 
     private fun mappingImageFacility(faciltyHotel: ArrayList<FacilityHotelModel>): ArrayList<FacilityHotelModel> {
@@ -266,10 +268,6 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
                 }
                 "SDBOX"-> {
                     it.image = R.drawable.ic_safe_deposit_box
-                    data.add(it)
-                }
-                else -> {
-                    it.image = R.drawable.ac
                     data.add(it)
                 }
             }

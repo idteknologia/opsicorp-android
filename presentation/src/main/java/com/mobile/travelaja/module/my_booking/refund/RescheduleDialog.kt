@@ -153,10 +153,13 @@ class RescheduleDialog(val isFlight : Boolean = true, val callback:CallbackResch
         override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
             when(selectDateFrom){
                 0 -> {
-                    binding.tvDepartureDate.text = DateConverter().getDate("${p1}-${p2}-${p3}","yyyy-MM-dd","dd MMM yyyy")
+                    binding.tvDepartureDate.text = DateConverter().getDate("${p1}-${p2+1}-${p3}","yyyy-MM-dd","dd MMM yyyy")
+                    if (!isFlight){
+                        binding.tvDepartureTime.text = ""
+                    }
                 }
                 1 ->{
-                    binding.tvDepartureTime.text = DateConverter().getDate("${p1}-${p2}-${p3}","yyyy-MM-dd","dd MMM yyyy")
+                    binding.tvDepartureTime.text = DateConverter().getDate("${p1}-${p2+1}-${p3}","yyyy-MM-dd","dd MMM yyyy")
                 }
             }
         }
@@ -170,7 +173,14 @@ class RescheduleDialog(val isFlight : Boolean = true, val callback:CallbackResch
         val style = AlertDialog.THEME_HOLO_DARK
 
         val datePicker = DatePickerDialog(requireContext(), style,callbackDatePickerDialog, year, month, day)
-        datePicker.datePicker.setMinDate(c.getTimeInMillis())
+        if (selectDateFrom==1){
+            if (binding.tvDepartureDate.text.isNotEmpty()){
+                datePicker.datePicker.setMinDate(DateConverter().stringToDate("dd MMM yyyy",binding.tvDepartureDate.text.toString()).time)
+            }
+            else { datePicker.datePicker.setMinDate(c.getTimeInMillis()) }
+        }else {
+            datePicker.datePicker.setMinDate(c.getTimeInMillis())
+        }
         datePicker.show()
     }
 
@@ -189,7 +199,7 @@ class RescheduleDialog(val isFlight : Boolean = true, val callback:CallbackResch
             }else {
                 if (!isLoadingUpload()){
                     if (isSuccessUpload()){
-                        callback.dataReturn(dataAttachment,binding.tvDepartureDate.text.toString(),binding.tvDepartureTime.text.toString(),binding.tvNotesCount.text.toString())
+                        callback.dataReturn(dataAttachment,binding.tvDepartureDate.text.toString(),binding.tvDepartureTime.text.toString(),binding.etNotes.text.toString())
                         dismiss()
                     }
                     else {

@@ -42,6 +42,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     var DIALOG_RESCHEDULE                       = 0
     var DIALOG_REFUND                           = 1
     var typeDialogView                          = DIALOG_RESCHEDULE
+    var isFlightAndTrain                        = false
 
     override fun bindLayout(): DetailPurchaseListActivityBinding {
         return DetailPurchaseListActivityBinding.inflate(layoutInflater)
@@ -62,12 +63,15 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     private fun validationLayout() {
         when(dataPurchaseDetail.itemType){
             Constants.TripType.Airline -> {
+                isFlightAndTrain = true
                 initPageFlightDetail()
             }
             Constants.TripType.KAI -> {
+                isFlightAndTrain = true
                 initPageTrainDetail()
             }
             Constants.TripType.Hotel -> {
+                isFlightAndTrain = false
                 initPageHotelDetail()
             }
         }
@@ -214,7 +218,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun rescheduleListener() {
-        val dialog = RescheduleDialog(true,object : RescheduleDialog.CallbackRescheduleDialog{
+        val dialog = RescheduleDialog(isFlightAndTrain,object : RescheduleDialog.CallbackRescheduleDialog{
             override fun dataReturn(
                 mDataAttachment: ArrayList<UploadModel>,
                 mStartDate: String,
@@ -232,7 +236,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun getReschedule() {
-        var data = dataRescheduleRequestFlight()
+        var data = HashMap<Any, Any>()
         when(dataPurchaseDetail.itemType){
             Constants.TripType.Airline -> {
                 data = dataRescheduleRequestFlight()
@@ -292,11 +296,11 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
 
     private fun dataRescheduleRequestHotel(): HashMap<Any, Any> {
         val data = RescheduleHotelRequest()
-        data.tripCode           = data.tripCode
+        data.tripCode           = dataPurchaseDetail.code
         data.participant        = participantRequest()
         data.rescheduleHotel    = rescheduleHotelRequest()
         data.attachment         = attatchmentRequest()
-        return Globals.classToHashMap(data, RescheduleFlightRequest::class.java)
+        return Globals.classToHashMap(data, RescheduleHotelRequest::class.java)
     }
 
     private fun rescheduleHotelRequest(): RescheduleHotel {
