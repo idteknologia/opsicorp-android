@@ -11,7 +11,7 @@ data class RescheduleHotelRequest(
     var participant: ParticipantReschedule? = null,
 
     @field:SerializedName("Reschedule")
-    var rescheduleHotel: RescheduleHotel? = null,
+    var reschedule: RescheduleHotel? = null,
 
     @field:SerializedName("Attachment")
     var attachment: List<AttachmentItemReschedule?>? = null

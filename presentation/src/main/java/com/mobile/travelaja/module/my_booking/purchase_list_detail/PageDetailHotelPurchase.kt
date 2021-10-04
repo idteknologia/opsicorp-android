@@ -5,6 +5,7 @@ import android.view.View
 import com.mobile.travelaja.R
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.webkit.WebViewClient
@@ -98,9 +99,9 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         else{
             binding.lineHotelMessage.visibility = View.VISIBLE
         }
-
+        Log.e("TAG --->>> ",dataRemark.size.toString())
         if (dataRemark.isEmpty()){
-            binding.lineRemark.visibility - View.GONE
+            binding.lineRemark.visibility = View.GONE
         }
         else{
             binding.lineRemark.visibility = View.VISIBLE
@@ -228,8 +229,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         dataRoomFacility.addAll(mappingImageFacility(data.dataHotel.facility))
         adapterPolicy.setData(data.dataHotel.cancellationPolicy)
         adapterRemark.setData(data.dataHotel.dataRemark)
-        adapterGuest.notifyDataSetChanged()
-        adapterRoomfacility.notifyDataSetChanged()
+        adapterGuest.setData(dataGuest)
         checkEmptyData()
     }
 

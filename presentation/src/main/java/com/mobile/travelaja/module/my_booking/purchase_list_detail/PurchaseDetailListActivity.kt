@@ -169,19 +169,21 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
             if (!isRefund){
                 binding.btnReimbursement.visibility = View.VISIBLE
                 binding.lineRefund.visibility       = View.VISIBLE
+
+                if (!isReschedule){
+                    binding.lineReschedule.visibility = View.VISIBLE
+                    binding.btnReschedule.visibility  = View.VISIBLE
+                }
+                else {
+                    binding.lineReschedule.visibility = View.GONE
+                    binding.btnReschedule.visibility  = View.GONE
+                }
             }
             else {
                 binding.btnReimbursement.visibility = View.GONE
                 binding.lineRefund.visibility       = View.GONE
             }
-            if (!isReschedule){
-                binding.lineReschedule.visibility = View.VISIBLE
-                binding.btnReschedule.visibility  = View.VISIBLE
-            }
-            else {
-                binding.lineReschedule.visibility = View.GONE
-                binding.btnReschedule.visibility  = View.GONE
-            }
+
         }
 
         binding.btnReimbursement.setOnClickListener {
@@ -251,6 +253,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
                 override fun successLoad(data: String) {
                     hideDialog()
                     setToast("Success")
+                    finish()
                 }
 
                 override fun failedLoad(message: String) {
@@ -298,7 +301,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
         val data = RescheduleHotelRequest()
         data.tripCode           = dataPurchaseDetail.code
         data.participant        = participantRequest()
-        data.rescheduleHotel    = rescheduleHotelRequest()
+        data.reschedule    = rescheduleHotelRequest()
         data.attachment         = attatchmentRequest()
         return Globals.classToHashMap(data, RescheduleHotelRequest::class.java)
     }
@@ -339,6 +342,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
                 override fun successLoad(data: String) {
                     hideDialog()
                     setToast("Success")
+                    finish()
                 }
 
                 override fun failedLoad(message: String) {
@@ -389,7 +393,9 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
 
     private fun listFlight(): ArrayList<FlightsItem> {
         val data = ArrayList<FlightsItem>()
-        data.add(FlightsItem(dataPurchaseDetail.dataFlight[positionSelectedItem].idFlight))
+        if (dataPurchaseDetail.dataFlight.isNotEmpty()){
+            data.add(FlightsItem(dataPurchaseDetail.dataFlight[positionSelectedItem].idFlight))
+        }
         return data
     }
 
