@@ -3,6 +3,7 @@ package com.mobile.travelaja.module.approval.activity
 import android.R.attr.label
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DownloadManager
 import android.app.NotificationManager
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -10,6 +11,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -64,6 +66,12 @@ import org.koin.core.parameter.parametersOf
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.airbnb.lottie.network.NetworkFetcher.fetch
+import com.tonyodev.fetch2.*
+
+import com.tonyodev.fetch2.Fetch.Impl.getInstance
+import java.io.File
+import java.io.FileWriter
 
 
 class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp.OnclickButtonListener,
@@ -913,14 +921,46 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         showDialog("Please Wait")
         GetDataTripPlane(getBaseUrl()).getUrlFile(getToken(),idFile,object : CallbackGetUrlFile {
             override fun success(url:String) {
-                dowloadFile(url)
+                hideDialog()
+                dowloadByLib(url)
+//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                startActivity(browserIntent)
+//                dowloadFile(url)
             }
 
             override fun failed(string: String) {
+                val url2 = "http://repository.ubaya.ac.id/39665/1/Elita_Sertifikat%20HAKI%20Rekaman%20Video%20KKN%20FK%20Ubaya.pdf"
+                dowloadByLib(url2)
                 hideDialog()
-                setToast(string)
+//                setToast(string)
             }
         })
+    }
+
+    lateinit var fetch: Fetch
+
+    private fun dowloadByLib(url: String) {
+        try {
+            val fetchConfiguration: FetchConfiguration = FetchConfiguration.Builder(this)
+                .setDownloadConcurrentLimit(3)
+                .build()
+
+            fetch = getInstance(fetchConfiguration)
+
+            val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+
+            val request = Request(url,dir.absolutePath+"/Travelaja/Itin${System.currentTimeMillis()}.${url.split(".").last()}")
+            request.priority = Priority.HIGH
+            request.networkType = NetworkType.ALL
+
+            fetch.enqueue(request, { updatedRequest ->
+                setToast("Download Completed : ${updatedRequest.file}")
+            }) { error ->
+                setToast(error.throwable?.message.toString())
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
     private fun dowloadFile(url: String) {

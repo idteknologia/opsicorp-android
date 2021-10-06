@@ -45,11 +45,13 @@ class RescheduleDialog(val isFlight : Boolean = true, val callback:CallbackResch
 
     private fun setViewBinding() {
         if (!isReschedule){
+            binding.btnReschedule.setTextButton(getString(R.string.refund))
             binding.lineDate.visibility = View.GONE
             binding.lineNote.visibility = View.GONE
             binding.lineDescriptionAttachment.visibility = View.VISIBLE
         }
         else {
+            binding.btnReschedule.setTextButton(getString(R.string.reschedule_ticket))
             binding.lineDate.visibility = View.VISIBLE
             binding.lineNote.visibility = View.VISIBLE
             binding.lineDescriptionAttachment.visibility = View.GONE
