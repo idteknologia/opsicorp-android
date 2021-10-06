@@ -929,10 +929,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             }
 
             override fun failed(string: String) {
-                val url2 = "http://repository.ubaya.ac.id/39665/1/Elita_Sertifikat%20HAKI%20Rekaman%20Video%20KKN%20FK%20Ubaya.pdf"
-                dowloadByLib(url2)
-                hideDialog()
-//                setToast(string)
+                setToast(string)
             }
         })
     }
