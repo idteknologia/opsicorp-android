@@ -1,14 +1,14 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Build
 import android.view.View
 import java.util.HashMap
+import android.widget.Toast
 import com.mobile.travelaja.R
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Constants
@@ -18,14 +18,15 @@ import opsigo.com.domainlayer.callback.CallbackString
 import opsigo.com.datalayer.request_model.reschedule.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import com.mobile.travelaja.module.home.activity.HomeActivity
+import com.mobile.travelaja.utility.OnclikAllertSingelSelected
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
+import com.mobile.travelaja.module.my_booking.refund.RescheduleDialog
 import com.mobile.travelaja.databinding.DetailPurchaseListActivityBinding
 import com.mobile.travelaja.databinding.MenuPopupPurchaseDetailListBinding
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 import com.mobile.travelaja.module.my_booking.adapter.SegmentMybookingAdapter
-import com.mobile.travelaja.module.my_booking.refund.RescheduleDialog
-import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
+import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 
 class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivityBinding>(),ToolbarOpsicorp.OnclickButtonListener{
 
@@ -252,8 +253,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
             GetDataApproval(getBaseUrl()).reschedule(getToken(),data,object :CallbackString{
                 override fun successLoad(data: String) {
                     hideDialog()
-                    setToast("Success")
-                    finish()
+                    showDialogSuccess(getString(R.string.massage_success_reschedule))
                 }
 
                 override fun failedLoad(message: String) {
@@ -262,6 +262,15 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
                 }
             })
         }
+    }
+
+    private fun showDialogSuccess(message:String) {
+        Globals.showAlert("Succees",message, this,
+            object : OnclikAllertSingelSelected {
+            override fun onclik() {
+                finish()
+            }
+        })
     }
 
     private fun dataRescheduleRequestFlight(): HashMap<Any, Any> {
@@ -341,8 +350,7 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
             GetDataApproval(getBaseUrl()).refund(getToken(),refundRequest(),object :CallbackString{
                 override fun successLoad(data: String) {
                     hideDialog()
-                    setToast("Success")
-                    finish()
+                    showDialogSuccess(getString(R.string.massage_success_refund))
                 }
 
                 override fun failedLoad(message: String) {

@@ -1,13 +1,13 @@
 package com.mobile.travelaja.module.my_booking.adapter
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
+import android.content.Context
+import android.view.LayoutInflater
+import com.squareup.picasso.Picasso
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.items_purchase_detail_flight_and_train.view.*
 import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 

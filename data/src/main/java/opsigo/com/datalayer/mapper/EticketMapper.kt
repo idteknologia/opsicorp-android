@@ -1,10 +1,10 @@
 package opsigo.com.datalayer.mapper
 
-import android.util.Log
-import opsigo.com.datalayer.model.cart.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import opsigo.com.domainlayer.model.my_booking.*
+import opsigo.com.datalayer.model.cart.*
 import java.text.SimpleDateFormat
+import android.util.Log
 import java.util.*
 
 class EticketMapper {

@@ -11,6 +11,7 @@
 <!--    220-->
 
     <RelativeLayout
+        android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -237,41 +238,43 @@
 
 
         <LinearLayout
-            android:layout_marginTop="11dp"
-            android:layout_toEndOf="@+id/line_depart"
-            android:layout_below="@+id/line_detail_depart"
-            android:layout_marginLeft="36dp"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/line_depart">
-            <TextView
-                android:id="@+id/tv_destination"
-                android:textSize="12sp"
-                android:textColor="#666666"
-                style="@style/RobotoRegular"
-                android:text="Jakarta (CGK)"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="3dp"
-                android:id="@+id/tv_name_station_arrival"
-                android:textSize="12sp"
-                android:textColor="#212121"
-                style="@style/RobotoBold"
-                android:text="Soekarno Hatta International Airport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            android:layout_below="@+id/line_detail_depart"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="25.5dp"
+            android:layout_toEndOf="@+id/line_depart"
+            android:layout_toRightOf="@+id/line_depart"
+            android:orientation="vertical">
 
             <TextView
-                android:visibility="gone"
-                android:id="@+id/tv_bloc_station_arrival"
-                android:textSize="10dp"
-                android:textColor="#8024253d"
+                android:id="@+id/tv_destination"
                 style="@style/RobotoRegular"
-                android:text="Terminal 2F"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="Jakarta (CGK)"
+                android:textColor="#666666"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_name_station_arrival"
+                style="@style/RobotoBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Soekarno Hatta International Airport"
+                android:textColor="#212121"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_bloc_station_arrival"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terminal 2F"
+                android:textColor="#8024253d"
+                android:textSize="10dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
