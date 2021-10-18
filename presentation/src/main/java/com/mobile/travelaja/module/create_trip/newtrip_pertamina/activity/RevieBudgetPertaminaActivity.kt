@@ -143,7 +143,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             dataRoutes.transportation = routesItinerary.Transportation
             val date = routesItinerary.DepartureDateView
             dataRoutes.departureDateView = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
-            dataRoutes.departureDate = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
+            dataRoutes.departureDate = DateConverter().getDate(date, "dd MMM yyyy", "yyyy-MM-dd")
             dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
