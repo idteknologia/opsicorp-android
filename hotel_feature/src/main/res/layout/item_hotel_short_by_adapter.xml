@@ -22,11 +22,11 @@
 
         <ImageView
             android:id="@+id/ic_checklist"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="25dp"
-            android:layout_alignParentRight="true"
             android:layout_width="18dp"
             android:layout_height="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="25dp"
             android:src="@drawable/ic_check_orange"></ImageView>
 
     </RelativeLayout>
