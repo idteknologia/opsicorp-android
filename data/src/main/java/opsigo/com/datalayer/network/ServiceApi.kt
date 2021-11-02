@@ -22,8 +22,6 @@ interface ServiceApi {
     @GET(MyURL.LIST_APPROVE)
     suspend fun getTripResult(@QueryMap map: MutableMap<String, String>): TripResult
 
-
-
     @FormUrlEncoded
     @POST
     suspend fun onLogin(@Url url: String, @FieldMap body: MutableMap<String, Any>): LoginEntity

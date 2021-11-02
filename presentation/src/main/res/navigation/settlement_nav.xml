@@ -214,6 +214,10 @@
         <argument android:name="idTrip"
                   app:argType="string"/>
     </fragment>
+    <fragment
+        android:id="@+id/settlementFragment"
+        android:name="com.mobile.travelaja.module.settlement.view.fragment.SettlementFragment"
+        android:label="SettlementFragment" />
 
 
 </navigation>

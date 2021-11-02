@@ -1,7 +1,6 @@
 package opsigo.com.domainlayer.model.trip
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,13 +19,13 @@ data class Trip(
     @SerializedName("Code")
     val Code: String,
     @SerializedName("DestinationName")
-    val destinationName: String,
+    val DestinationName: String,
     @SerializedName("Purpose")
-    val purpose: String,
+    val Purpose: String,
     @SerializedName("StartDate")
-    val startDate: String,
+    val StartDate: String,
     @SerializedName("ReturnDate")
-    val returnDate: String,
+    val ReturnDate: String,
     @SerializedName("EndDate")
     val EndDate: String,
     @SerializedName("TripType")
@@ -48,19 +47,19 @@ data class Trip(
     }
 
     fun getDateNumber(): String {
-        return convertDate("dd", startDate)
+        return convertDate("dd", StartDate)
     }
 
     fun getMonth(): String {
-        return convertDate("MMM", startDate)
+        return convertDate("MMM", StartDate)
     }
 
     fun getDay(): String {
-        return convertDate("EEEE", startDate)
+        return convertDate("EEEE", StartDate)
     }
 
     fun getDirectionDate(): String {
-        val sDate = convertDate("dd MMM", startDate)
+        val sDate = convertDate("dd MMM", StartDate)
         val eDate = convertDate("dd MMM", EndDate)
         return "$sDate - $eDate"
     }
@@ -69,13 +68,13 @@ data class Trip(
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         val sdfOutput = SimpleDateFormat("yyyy-MM-dd")
         val now = sdfOutput.format(Date())
-        val dInput = sdfOutput.format(sdf.parse(startDate))
+        val dInput = sdfOutput.format(sdf.parse(StartDate))
         return now.equals(dInput)
     }
 
-    fun sDate(): String = convertDate(startDate, "EEE, d MMM yyyy", Locale.getDefault())
+    fun sDate(): String = convertDate(StartDate, "EEE, d MMM yyyy", Locale.getDefault())
 
-    fun eDate(): String = convertDate(returnDate, "EEE, d MMM yyyy", Locale.getDefault())
+    fun eDate(): String = convertDate(ReturnDate, "EEE, d MMM yyyy", Locale.getDefault())
 
     fun endDate(): String = convertDate(EndDate, "EEE, d MMM yyyy", Locale.getDefault())
 

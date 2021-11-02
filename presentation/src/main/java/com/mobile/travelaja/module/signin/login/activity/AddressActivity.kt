@@ -2,9 +2,11 @@ package com.mobile.travelaja.module.signin.login.activity
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.signin.login.OpenIdLogin
@@ -17,6 +19,7 @@ import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import kotlinx.android.synthetic.main.address_activity_view.*
 import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
+import module.signin.login.activity.TokenIdamanActivity
 import net.openid.appauth.*
 import opsigo.com.datalayer.datanetwork.GetDataLogin
 import opsigo.com.datalayer.mapper.Serializer
@@ -107,7 +110,9 @@ class AddressActivity : BaseActivity(), LoginView {
                             "codeVerifier" to codeVerifier,
                             "grant_type" to "password"
                         )
+//                        navigateTokenIdaman(code,codeVerifier)
                         viewModel.onLogin("${getString(R.string.base_api_pertamina)}token",body)
+
                     }
                 }
             }
@@ -117,8 +122,14 @@ class AddressActivity : BaseActivity(), LoginView {
     private fun onClickListener() {
         btnNext.setOnClickListener {
             //opsicorp-mobile
-            val url = et_url.text.toString().toLowerCase()
-            val baseUrl = "https://$url.opsicorp.com/"
+            var url = et_url.text.toString().toLowerCase()
+            var baseUrl = "https://$url.opsicorp.com/"
+            if (BuildConfig.DEBUG){
+                if (url.contains("opsinfradev",false)){
+                    url = getString(R.string.base_api_pertamina)
+                    baseUrl = getString(R.string.base_api_pertamina)
+                }
+            }
             if (url.isNotEmpty()) {
                 if (url.equals(getString(R.string.pertamina),false)) {
                     showDialog(getString(R.string.waiting))
@@ -178,7 +189,6 @@ class AddressActivity : BaseActivity(), LoginView {
         })
     }
 
-
     private fun failedWarning(message: String) {
         Globals.showAlert(getString(R.string.failed), message, this)
     }
@@ -193,13 +203,16 @@ class AddressActivity : BaseActivity(), LoginView {
         Globals.setDataPreferenceString(this, "username", data.userName)
     }
 
-
     override fun gotoSplashScreen() {
         gotoActivity(SplashActivity::class.java)
     }
 
-    companion object {
-        private const val PERTAMINA_URL = "https://pertamina-dtm3-qa.opsicorp.com/"
+    //Todo navigate token idaman for Kang Ezhar
+    private fun navigateTokenIdaman(code : String , codeVerifier : String){
+        val intent = Intent(this,TokenIdamanActivity::class.java)
+        intent.putExtra(TokenIdamanActivity.CODE,code)
+        intent.putExtra(TokenIdamanActivity.CODE_VERIFIER,codeVerifier)
+        startActivity(intent)
     }
 
 }

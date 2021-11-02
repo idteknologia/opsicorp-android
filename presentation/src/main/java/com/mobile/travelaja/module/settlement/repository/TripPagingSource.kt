@@ -13,4 +13,5 @@ class TripPagingSource(private val api : ServiceApi, private val query : Mutable
         query["OrderBy"] = "Code"
         return api.getTripList(query)
     }
+
 }

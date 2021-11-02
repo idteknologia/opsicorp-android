@@ -1200,6 +1200,11 @@ Please add your trip item for Approval."
     <string name="save_settlement_failed">Save failed : </string>
     <string name="mode_transport_not_support">Sorry, mode transport is not available</string>
     <string name="alert_mode_transportation_empty">Mode Transportation is Empty</string>
+    <string name="ask_to_revise">Ask To Revise</string>
+    <string name="waiting_for_verification">Waiting For Verification</string>
+    <string name="waiting_for_payment">Waiting For Payment</string>
+    <string name="complain">Complain</string>
+    <string name="data_is_empty">Data is empty</string>
     <string name="your_pic_email">your-pic-email@gmail.com</string>
     <string name="not_authorized">You are not authorized to view the <br>requested page. We Apologize for the</br> inconvenience.</string>
     <string name="change_trip">Change Trip</string>

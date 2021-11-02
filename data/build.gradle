@@ -5,12 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 30
+    compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion rootProject.compileSdkVersion
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {

@@ -19,7 +19,7 @@ import opsigo.com.domainlayer.model.trip.Trip
 import com.mobile.travelaja.module.settlement.view.CreateSettlementFragment.Companion.KEY_REQUEST_TRIP_LIST
 
 class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListener,
-    TripsListAdapter.TripsListener {
+    TripsListAdapter.TripsListener,SearchView.OnCloseListener {
     private lateinit var adapter: TripsListAdapter
     private lateinit var viewModel: SettlementViewModel
     private val args: TripsListFragmentArgs by navArgs()
@@ -40,8 +40,7 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
 
     override fun baseListAdapter(): BaseListAdapter<Trip> {
         val owner = if (viewType == TripsListAdapter.TYPE_DRAFT) requireActivity() else this
-        viewModel = ViewModelProvider(
-            owner,
+        viewModel = ViewModelProvider(owner,
             DefaultViewModelFactory(false, requireContext())
         ).get(SettlementViewModel::class.java)
         adapter = TripsListAdapter(this, args.idTrip, args.viewType)
@@ -81,6 +80,11 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
         viewModel.getTripCodes(viewType)
         setHintSearch(getString(R.string.txt_enter_trip_code))
         setSearchListener(this)
+        setSearchCloseListener {
+            val list = viewModel.tripCodes.value?: listOf()
+            adapter.list = list.toMutableList()
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onRefresh() {
@@ -120,7 +124,8 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
     }
 
     private fun search(query: String) {
-        val list = adapter.list.filter { it.Code.contains(query, false) }
+        val list = viewModel.tripCodes.value?.filter { it.Code.contains(query,true) } ?: listOf()
+//        val list = adapter.list.filter { it.Code.contains(query, true) }
         adapter.list = list.toMutableList()
         adapter.notifyDataSetChanged()
     }
@@ -155,6 +160,13 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
         const val KEY_TRIP_CODE = "KEY_TRIP_CODE"
         const val KEY_TRIP_ID = "KEY_TRIP_ID"
         const val KEY_CREATE_REIMBURSEMENT = "KEY_CREATE_REIMBURSEMENT"
+    }
+
+    override fun onClose(): Boolean {
+        val list = viewModel.tripCodes.value?: listOf()
+        adapter.list = list.toMutableList()
+        adapter.notifyDataSetChanged()
+       return true
     }
 
 }
