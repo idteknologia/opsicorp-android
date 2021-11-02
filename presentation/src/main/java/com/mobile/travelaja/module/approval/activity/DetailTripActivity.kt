@@ -370,6 +370,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         if (mData.isNotEmpty()) {
             rv_attachment.visibility = View.VISIBLE
             dataAttachment.clear()
+            mData.first().isDetailTrip = true
             dataAttachment.addAll(mData)
             adapter.setData(dataAttachment)
             title_attachment.visibility = View.VISIBLE
@@ -872,7 +873,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         btnDetail.text      = "Back"
         btnRemove.text      = "Help and guide"
         btnDownload.text    = "Download itinerary"
-        btnDownloadCoverLetter.text  = "Download CoverLetter"
+        btnDownloadCoverLetter.text  = "Download SKPD Letter"
 
         val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
 

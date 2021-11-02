@@ -1175,7 +1175,7 @@ Please add your trip item for Approval."
     <string name="airport_non_airport_trip_expense">Airport or NON-Airport</string>
     <string name="refund_ticket">Refund Ticket</string>
     <string name="reschedule_ticket">Reschedule</string>
-    <string name="refund">Refund<font color="#2b9a8e">IDR</font></string>
+    <string name="refund">Refund</string>
     <string name="refund_amount_ticket">Refund Amount <font color="#2b9a8e">IDR</font></string>
     <string name="refund_amount_ticket_usd">Refund Amount <font color="#2b9a8e">USD</font></string>
     <string name="expand_detail">Expand Detail</string>

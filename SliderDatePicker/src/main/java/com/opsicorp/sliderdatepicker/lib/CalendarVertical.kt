@@ -125,11 +125,11 @@ class CalendarVertical : LinearLayout,
                 } else {
                     val dateSelected =
                             SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
-                    if (startSelectDate == dateSelected) {
-                        startSelectDate = ""
-                        endSelectDate = ""
-                        adapter.notifyDataSetChanged()
-                    } else {
+//                    if (startSelectDate == dateSelected) {
+//                        /*startSelectDate = ""
+//                        endSelectDate = ""*/
+//                        adapter.notifyDataSetChanged()
+//                    } else {
                         if (Constant.TYPE_SELECTED == Constant.SINGGLE_SELECTED) {
                             startSelectDate = SimpleDateFormat(Constant.formatDate).format(
                                     data[positionParent].data[position].date
@@ -184,7 +184,7 @@ class CalendarVertical : LinearLayout,
                             }
                         }
 
-                    }
+//                    }
                 }
             }
         }
