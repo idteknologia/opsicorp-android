@@ -1105,7 +1105,7 @@ Please add your trip item for Approval."
     <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
     <string name="ticket_refund">Ticket Refund</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
-    <string name="notes_optional">Notes for your Manager</string>
+    <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules">I hereby declare that the data provided is true \nand I am willing to be held accountable \naccording to the right company rules."</string>
