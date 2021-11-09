@@ -68,6 +68,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var m_endate = ""
     var isWbs = false
     var isPartner = false
+    var isRoundTrip = false
     var idPurphose = ""
     var idActivity = ""
     var nonCbt = false
@@ -362,7 +363,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 dataOrderCreatTrip.tripPartnerName = et_partner.text.toString()
             }
             dataOrderCreatTrip.startDate = m_startdate//tv_from.text.toString()
-            dataOrderCreatTrip.endDate = m_endate//et_end_date.text.toString()
+
             dataOrderCreatTrip.notes = et_notes.text.toString()
             dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
 
@@ -385,6 +386,13 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 dataOrderCreatTrip.tripCodeOld = dataChangeTrip.tripCodeOld
                 dataOrderCreatTrip.tripIdOld = dataChangeTrip.tripIdOld
                 dataOrderCreatTrip.isChangeTrip = dataChangeTrip.isChangeTrip
+            }
+            if (m_startdate == m_endate){
+                isRoundTrip = true
+                dataOrderCreatTrip.endDate = m_startdate
+            } else {
+                isRoundTrip = false
+                dataOrderCreatTrip.endDate = m_endate
             }
             bundle.putString("data_order", Serializer.serialize(dataOrderCreatTrip, DataBisnisTripModel::class.java))
             bundle.putString("data_change_trip", Serializer.serialize(dataChangeTrip, ChangeTripModel::class.java))

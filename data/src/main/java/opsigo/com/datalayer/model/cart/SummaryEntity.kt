@@ -2372,6 +2372,9 @@ data class TripParticipantsItem(
     @field:SerializedName("CostCenterName")
     val costCenterName: String? = null,
 
+    @field:SerializedName("CostCenterDefaultName")
+    val costCenterDefaultName: String? = null,
+
     @field:SerializedName("CostCodeAlias")
     val costCodeAlias: String? = null,
 
@@ -2740,6 +2743,24 @@ data class TripParticipantsItem(
 
     @field:SerializedName("IsAnyPNRWithNotCompleted")
     val isAnyPNRWithNotCompleted: Boolean = false,
+
+    @field:SerializedName("EstFlight")
+    var estFlight: Double = 0.0,
+
+    @field:SerializedName("EstHotel")
+    var estHotel: Double = 0.0,
+
+    @field:SerializedName("EstTransportation")
+    var estTransportation: Double = 0.0,
+
+    @field:SerializedName("EstAllowance")
+    var estAllowance: Double = 0.0,
+
+    @field:SerializedName("EstAllowanceEvent")
+    var estAllowanceEvent: Double = 0.0,
+
+    @field:SerializedName("EstLaundry")
+    var estLaundry: Double = 0.0,
 
     @field:SerializedName("EstTotal")
     var estTotal: Double = 0.0,

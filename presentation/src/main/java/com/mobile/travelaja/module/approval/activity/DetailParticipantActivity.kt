@@ -41,15 +41,12 @@ class DetailParticipantActivity : BaseActivity()
     var jobTitle = ""
     var status = ""
     var nameParticipant = ""
-    var costCenter = ""
-    var budget = ""
     var destination = ""
     var getActionApprove = false
 
     var idTripCode    = ""
     var tripSummary   = SummaryModel()
     var estCost = ""
-    var tripCost      = EstimatedCostTravelRequestModel()
     var idParticipant = ""
     var employId      = ""
     lateinit var dataAccomodation: TripParticipantsItemModel
@@ -65,15 +62,10 @@ class DetailParticipantActivity : BaseActivity()
         str = bundle?.getString(Constants.Summary).toString()
         estCost = bundle?.getString(Constants.EstCost).toString()
         status = bundle?.getString(Constants.STATUS_MEMBER).toString()
-        jobTitle = Globals.getProfile(this).approval.reqPosName
-        nameParticipant = Globals.getProfile(this).approval.reqName
-        costCenter          = Globals.getProfile(this).costCenter
-        budget          = Globals.getProfile(this).approval.reqEmail
         idParticipant = bundle?.getString(Constants.ID_PARTICIPANT).toString()
         employId      = bundle?.getString(Constants.EMPLOY_ID).toString()
         destination = bundle?.getString(Constants.DetailDestination).toString()
         tripSummary = Serializer.deserialize(str,SummaryModel::class.java)
-        tripCost = Serializer.deserialize(estCost,EstimatedCostTravelRequestModel::class.java)
         idTripCode = tripSummary.tripCode
         updateView()
 
@@ -322,22 +314,23 @@ class DetailParticipantActivity : BaseActivity()
             tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
         }
 
-        tv_jobtitle.text = jobTitle
-        tv_name.text     = nameParticipant
-        tv_cost_center.text   = costCenter
-        tv_budget_name.text   = budget
+        tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName
+        tv_name.text     = "${tripSummary.contact.firstName} ${tripSummary.contact.lastName}"
+        tv_cost_center.text   = "${tripSummary.tripParticipantItem.first().costCenterCode} - ${tripSummary.tripParticipantItem.first().costCenterName}"
+        tv_budget_name.text   = tripSummary.tripParticipantItem.first().email
         tv_cost_center_price.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
-        tv_est_flight.text = "IDR ${Globals.formatAmount(tripCost.estFlight)}"
-        tv_est_hotel.text = "IDR ${Globals.formatAmount(tripCost.estHotel)}"
-        tv_est_transportation.text = "IDR ${Globals.formatAmount(tripCost.estTransportation)}"
-        tv_est_allowance.text = "IDR ${Globals.formatAmount(tripCost.estAllowance)}"
-        tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripCost.estAllowanceEvent)}"
-        tv_est_laundry.text = "IDR ${Globals.formatAmount(tripCost.estLaundry)}"
+        tv_est_flight.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estFlight.toString())}"
+        tv_est_hotel.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estHotel.toString())}"
+        tv_est_transportation.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTransportation.toString())}"
+        tv_est_allowance.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowance.toString())}"
+        tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceEvent.toString())}"
+        tv_est_laundry.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estLaundry.toString())}"
 
     }
 
     override fun btnBack() {
-        backListen()
+        /*backListen()*/
+        onBackPressed()
     }
 
     override fun logoCenter() {

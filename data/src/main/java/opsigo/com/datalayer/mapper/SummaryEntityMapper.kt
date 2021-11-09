@@ -59,7 +59,17 @@ class SummaryEntityMapper() {
 
         from.tripParticipants?.forEachIndexed { index, tripParticipantsItem ->
             val tripParticipant = ParticipantPertamina()
-            tripParticipant.estTotal = tripParticipantsItem?.estTotal!!.toInt()
+            tripParticipant.estFlight = tripParticipantsItem?.estFlight!!.toInt()
+            tripParticipant.estHotel = tripParticipantsItem.estHotel.toInt()
+            tripParticipant.estTransportation = tripParticipantsItem.estTransportation.toInt()
+            tripParticipant.estAllowance = tripParticipantsItem.estAllowance.toInt()
+            tripParticipant.estAllowanceEvent = tripParticipantsItem.estAllowanceEvent.toInt()
+            tripParticipant.estLaundry = tripParticipantsItem.estLaundry.toInt()
+            tripParticipant.estTotal = tripParticipantsItem.estTotal.toInt()
+            tripParticipant.email = tripParticipantsItem.email.toString()
+            tripParticipant.positionName = tripParticipantsItem.positionName.toString()
+            tripParticipant.costCenterCode = tripParticipantsItem.costCenterCode.toString()
+            tripParticipant.costCenterName = tripParticipantsItem.costCenterDefaultName.toString()
             summary.tripParticipantItem.add(tripParticipant)
         }
 

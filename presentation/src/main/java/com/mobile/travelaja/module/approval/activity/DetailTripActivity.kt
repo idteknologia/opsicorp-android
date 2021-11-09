@@ -86,7 +86,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     var employIdUser = ""
     var tripId = ""
     var tripSummary = SummaryModel()
-    var tripCost = EstimatedCostTravelRequestModel()
     val dataItems = ArrayList<SummaryModelItems>()
     var isUpdateSummary = false
 
@@ -161,7 +160,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
-                postEstimateCost()
                 hideLoadingOpsicorp()
                 initRecyclerViewApproval()
 
@@ -173,20 +171,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             }
         })
 
-    }
-
-    private fun postEstimateCost() {
-        GetDataTravelRequest(getBaseUrl()).getEstimatedCost(Globals.getToken(), dataPurpose(), object : CallbackEstimatedCostTravelRequest {
-            override fun successLoad(data: EstimatedCostTravelRequestModel) {
-                tripCost = data
-
-            }
-
-            override fun failedLoad(message: String) {
-
-            }
-
-        })
     }
 
     private fun dataPurpose(): HashMap<Any, Any> {
@@ -303,7 +287,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                                 bundle.putString(Constants.EMPLOY_ID, dataParticipant[position].employId)
                                 bundle.putString(Constants.STATUS_MEMBER, dataParticipant[position].status)
                                 bundle.putString(Constants.DetailDestination, tv_destination.text.toString())
-                                bundle.putString(Constants.EstCost, Serializer.serialize(tripCost, EstimatedCostTravelRequestModel::class.java))
                                 val status = dataParticipant[position].status
                                 gotoActivityResultWithBundle(DetailParticipantActivity::class.java, bundle, Constants.DETAIL_PERTICIPANT_INTENT)
 

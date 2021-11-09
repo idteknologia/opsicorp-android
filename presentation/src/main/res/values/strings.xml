@@ -965,8 +965,8 @@ Please add your trip item for Approval."
     <string name="sorry_for_your_inconvinience">Sorry for your inconvinience</string>
     <string name="this_feature_is_under_construction">This feature is under construction</string>
     <string name="weather">Weather</string>
-    <string name="created_date_with_symbol">Created Date :</string>
-    <string name="description_with_symbol">Description :</string>
+    <string name="created_date_with_symbol">Created Date : </string>
+    <string name="description_with_symbol">Description : </string>
     <string name="passenger_information">Passenger Information</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="transportation">Transportation</string>
