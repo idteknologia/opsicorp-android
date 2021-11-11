@@ -1,5 +1,6 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
+import android.annotation.SuppressLint
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
@@ -22,7 +23,6 @@ import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import java.util.HashMap
 
@@ -106,15 +106,15 @@ class DetailHotelActivity : BaseActivity(),
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebview() {
         val url = "<object width=\"360\" height=\"178\" style=\"border: 1px solid #cccccc;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
-        setLog(url)
-        webview.loadData(url, "text/html", null)
         webview.setWebViewClient(WebViewClient())
         webview.clearCache(true)
         webview.clearHistory()
-        webview.getSettings().setJavaScriptEnabled(true)
-        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true)
+        webview.getSettings().javaScriptEnabled = true
+        webview.getSettings().javaScriptCanOpenWindowsAutomatically = true
+        webview.loadDataWithBaseURL(null,url,"text/html", "utf-8", null)
     }
 
     private fun getData() {
