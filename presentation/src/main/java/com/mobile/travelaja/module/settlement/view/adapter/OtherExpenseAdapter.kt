@@ -1,5 +1,7 @@
 package com.mobile.travelaja.module.settlement.view.adapter
 
+import android.text.InputFilter
+import android.text.Spanned
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.ObservableBoolean
@@ -13,9 +15,11 @@ import com.mobile.travelaja.module.settlement.view.ItemClickListener
 import com.mobile.travelaja.module.settlement.viewmodel.OtherExpenseViewModel
 import opsigo.com.domainlayer.model.settlement.OtherExpense
 
-class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
-                          val recyclerView: RecyclerView,
-                          var listener: ItemClickListener) :
+class OtherExpenseAdapter(
+    val viewModel: OtherExpenseViewModel,
+    val recyclerView: RecyclerView,
+    var listener: ItemClickListener
+) :
     BaseListAdapter<OtherExpense>() {
 
     init {
@@ -54,10 +58,11 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
             binding.position = position
             binding.isRemove = isRemove
             binding.indexEmpty = indexEmpty
-            binding.isUsd = data.Currency.contains("usd",true)
+            binding.isUsd = data.Currency.contains("usd", true)
             binding.setVariable(BR.otherExpense, data)
             binding.listener = listener
             binding.executePendingBindings()
+            binding.etAmount.filters = arrayOf(ZeroLeadingFilter())
             binding.etAmount.addTextChangedListener {
                 val value = it.toString()
                 if (binding.etAmount.isFocusable) {
@@ -88,4 +93,32 @@ class OtherExpenseAdapter(val viewModel: OtherExpenseViewModel,
             }
         }
     }
+}
+
+
+class ZeroLeadingFilter : InputFilter {
+    override fun filter(
+        source: CharSequence?,
+        start: Int,
+        end: Int,
+        dest: Spanned?,
+        dstart: Int,
+        dend: Int
+    ): CharSequence {
+        try {
+            val replacement = source?.subSequence(start, end)
+            val charsStart = dest?.substring(0, dstart)
+            val charsEnd = dest?.substring(dend, dest.length)
+            val value = charsStart + replacement + charsEnd
+            val isLeadingZero = value.isNotEmpty() && value.matches(Regex("^(?!0\\d)\\d+(?:\\.\\d{1,10})?\$"))
+            if (!isLeadingZero){
+                return ""
+            }
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            return ""
+        }
+        return source!!
+    }
+
 }

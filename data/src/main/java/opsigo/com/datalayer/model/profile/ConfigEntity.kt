@@ -33,6 +33,9 @@ data class ConfigEntity(
 	@field:SerializedName("MobileTextLogo")
 	var mobileTextLogo: String = "",
 
+	@field:SerializedName("TextFlashScreen")
+	var textFlashScreen: String = "",
+
 	@field:SerializedName("DefaultTravelAgent")
 	var defaultTravelAgent: String = "",
 

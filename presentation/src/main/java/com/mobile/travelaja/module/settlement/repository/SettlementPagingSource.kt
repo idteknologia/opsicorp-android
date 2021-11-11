@@ -1,5 +1,6 @@
 package com.mobile.travelaja.module.settlement.repository
 
+import androidx.paging.PagingState
 import com.mobile.travelaja.base.paging.PageKeyedPagingSource
 import opsigo.com.datalayer.network.ServiceApi
 import opsigo.com.domainlayer.model.ResultList

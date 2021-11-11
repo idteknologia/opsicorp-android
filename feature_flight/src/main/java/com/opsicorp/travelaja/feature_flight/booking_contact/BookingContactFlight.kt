@@ -57,6 +57,7 @@ class BookingContactFlight : BaseActivity(),
     var currentPosition = 0
     val dataFligt = ArrayList<ResultListFlightModel>()
     val adapterPrice by lazy { TotalPriceAdapter(this) }
+    var isInputKtp = false
 
     override fun OnMain() {
         dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
@@ -310,6 +311,7 @@ class BookingContactFlight : BaseActivity(),
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_SIM
                             resultListFlightModel.passenger[currentPosition].sim = Serializer.deserialize(dataString,SimModel::class.java)
                         }
+                        isInputKtp = true
                     }catch (e:Exception){
                         e.printStackTrace()
                     }
@@ -324,6 +326,7 @@ class BookingContactFlight : BaseActivity(),
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_PASSPORT
                             resultListFlightModel.passenger[currentPosition].pasport = Serializer.deserialize(dataString,PassportModel::class.java)
                         }
+                        isInputKtp = true
                     }catch (e:Exception){}
                 }
                 adapter.notifyDataSetChanged()
@@ -336,6 +339,7 @@ class BookingContactFlight : BaseActivity(),
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_KTP
                             resultListFlightModel.passenger[currentPosition].idcard = Serializer.deserialize(dataString,IdCartModel::class.java)
                         }
+                        isInputKtp = true
                     }catch (e:Exception){}
                 }
                 adapter.notifyDataSetChanged()
@@ -360,16 +364,24 @@ class BookingContactFlight : BaseActivity(),
     }
 
     override fun onClicked() {
-        if (bookingContactIsEmpty()){
+        if (bookingContactIsEmpty()||!isInputKtp){
             showAllert("Sorry",getString(R.string.booking_contact_not_empty))
         }
         else {
             if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
-                if (phoneContactIsEmpty()){
-                    showAllert("Sorry",getString(R.string.phone_contact_not_empty))
-                }
-                else {
-                    getReservased()
+                when {
+                    phoneContactIsEmpty() -> {
+                        showAllert("Sorry",getString(R.string.phone_contact_not_empty))
+                    }
+                    bookingContactIsEmpty() -> {
+                        showAllert("Sorry",getString(R.string.booking_contact_not_empty))
+                    }
+                    !isInputKtp -> {
+                        showAllert("Sorry",getString(R.string.booking_contact_not_empty))
+                    }
+                    else -> {
+                        getReservased()
+                    }
                 }
             }
             else {
@@ -438,7 +450,6 @@ class BookingContactFlight : BaseActivity(),
         }
         return isEmpty
     }
-
 
     private fun goToNewCart(idTrip: String) {
         val bundle = Bundle()

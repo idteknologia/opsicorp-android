@@ -965,8 +965,8 @@ Please add your trip item for Approval."
     <string name="sorry_for_your_inconvinience">Sorry for your inconvinience</string>
     <string name="this_feature_is_under_construction">This feature is under construction</string>
     <string name="weather">Weather</string>
-    <string name="created_date_with_symbol">Created Date :</string>
-    <string name="description_with_symbol">Description :</string>
+    <string name="created_date_with_symbol">Created Date : </string>
+    <string name="description_with_symbol">Description : </string>
     <string name="passenger_information">Passenger Information</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="transportation">Transportation</string>
@@ -1105,7 +1105,7 @@ Please add your trip item for Approval."
     <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
     <string name="ticket_refund">Ticket Refund</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
-    <string name="notes_optional">Notes for your Manager</string>
+    <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
     <string name="disclaimer">Disclaimer</string>
     <string name="i_hereby_declare_that_the_data_provided_is_true_and_i_am_willing_to_be_held_accountable_according_to_the_right_company_rules">I hereby declare that the data provided is true \nand I am willing to be held accountable \naccording to the right company rules."</string>
@@ -1200,6 +1200,11 @@ Please add your trip item for Approval."
     <string name="save_settlement_failed">Save failed : </string>
     <string name="mode_transport_not_support">Sorry, mode transport is not available</string>
     <string name="alert_mode_transportation_empty">Mode Transportation is Empty</string>
+    <string name="ask_to_revise">Ask To Revise</string>
+    <string name="waiting_for_verification">Waiting For Verification</string>
+    <string name="waiting_for_payment">Waiting For Payment</string>
+    <string name="complain">Complain</string>
+    <string name="data_is_empty">Data is empty</string>
     <string name="your_pic_email">your-pic-email@gmail.com</string>
     <string name="not_authorized">You are not authorized to view the <br>requested page. We Apologize for the</br> inconvenience.</string>
     <string name="change_trip">Change Trip</string>

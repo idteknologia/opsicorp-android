@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.SearchView
@@ -55,7 +56,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding = BaseListFragmentBinding.inflate(inflater, container, false)
         binding.isSearch = isSearchVisible()
         binding.setVariable(BR.isLoading, isLoading)
-        binding.setVariable(BR.textBottomValue,textBottomValue)
+        binding.setVariable(BR.textBottomValue, textBottomValue)
         return binding.root
     }
 
@@ -95,19 +96,19 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
         binding.tvSubtitle.setText(subtitle)
     }
 
-    fun setButtonName(@StringRes name : Int){
+    fun setButtonName(@StringRes name: Int) {
         binding.includeBottom.buttonBottom.setText(name)
     }
 
-    fun showingTotal(@StringRes title : Int ?,@StringRes currency : Int?){
+    fun showingTotal(@StringRes title: Int?, @StringRes currency: Int?) {
         binding.includeBottom.tvTitleTotal.isVisible = title != null
         binding.includeBottom.tvTotalValue.isVisible = title != null
         binding.includeBottom.tvTypePrice.isVisible = currency != null
-        if (title != null){
+        if (title != null) {
             binding.includeBottom.tvTitleTotal.setText(title)
         }
 
-        if (currency != null){
+        if (currency != null) {
             binding.includeBottom.tvTypePrice.setText(currency)
         }
     }
@@ -118,6 +119,21 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     fun setSearchListener(listener: SearchView.OnQueryTextListener) {
         binding.includeSearch.searchView.setOnQueryTextListener(listener)
+    }
+
+    fun setSearchCloseListener(onClose : () -> Unit) {
+        try {
+            val closeButton =
+                binding.includeSearch.searchView.findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn)
+            closeButton.setOnClickListener {
+                binding.includeSearch.searchView.setQuery("",false)
+                binding.includeSearch.searchView.clearFocus()
+                onClose.invoke()
+            }
+        }catch (ex : Exception){
+            ex.printStackTrace()
+        }
+
     }
 
     fun showError(t: Throwable, tryAgain: (View) -> Unit) {
@@ -194,7 +210,7 @@ abstract class BaseListFragment<T : Any> : Fragment(), SwipeRefreshLayout.OnRefr
 
     }
 
-    fun setEnableButtonBottom(enabled : Boolean){
+    fun setEnableButtonBottom(enabled: Boolean) {
         binding.includeBottom.buttonBottom.isEnabled = enabled
     }
 

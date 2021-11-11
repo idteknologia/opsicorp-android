@@ -267,18 +267,18 @@
 
                         <TextView
                             android:id="@+id/tv_jobtitle"
+                            style="@style/RobotoMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="16dp"
                             android:layout_marginLeft="23dp"
                             android:layout_marginTop="16dp"
-                            android:textColor="@color/white"
                             android:background="@drawable/rounded_approval_green"
-                            android:textSize="10sp"
-                            style="@style/RobotoMedium"
-                            android:text="Marketing"
                             android:gravity="center"
-                            android:paddingRight="17sp"
                             android:paddingLeft="25sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="16dp"/>
+                            android:paddingRight="17sp"
+                            android:text="Marketing"
+                            android:textColor="@color/white"
+                            android:textSize="10sp" />
 
                         <RelativeLayout
                             android:id="@+id/line_img_approvar"
@@ -314,16 +314,16 @@
 
                         <TextView
                             android:id="@+id/tv_budget_name"
-                            android:layout_below="@id/tv_name"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginLeft="40dp"
+                            style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            style="@style/RobotoRegular"
+                            android:layout_below="@id/tv_name"
+                            android:layout_marginLeft="40dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="10dp"
+                            android:text="B1000089 - Budget Cabang 4"
                             android:textColor="#91929e"
-                            android:text="B1000089 - Budget Cabang 4" />
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -625,6 +625,43 @@
 
                     <TextView
                         android:id="@+id/tv_est_laundry"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        android:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="Est Total"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_total"
                         style="@style/RobotoMedium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

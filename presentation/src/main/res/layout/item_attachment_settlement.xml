@@ -53,7 +53,7 @@
             android:scaleType="center"
             android:background="?attr/selectableItemBackground"
             android:contentDescription="@{`ivDelete`+position}"
-            android:visibility="@{loading == -1 || error == position ? View.VISIBLE : View.GONE}"
+            android:visibility="gone"
             android:src="@drawable/ic_close_red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1:1"

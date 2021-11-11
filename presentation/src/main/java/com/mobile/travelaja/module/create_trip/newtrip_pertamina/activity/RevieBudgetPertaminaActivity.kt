@@ -143,7 +143,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             dataRoutes.transportation = routesItinerary.Transportation
             val date = routesItinerary.DepartureDateView
             dataRoutes.departureDateView = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
-            dataRoutes.departureDate = DateConverter().getDate(date, "dd MMM yyyy", "dd-MM-yyyy")
+            dataRoutes.departureDate = DateConverter().getDate(date, "dd MMM yyyy", "yyyy-MM-dd")
             dataRoutes.origin = routesItinerary.Origin
             dataRoutes.destination = routesItinerary.Destination
             mDataRoutes.add(dataRoutes)
@@ -282,7 +282,12 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             tv_trip_route.text = "${dataTrip.routes[0].Origin} - ${dataTrip.routes[0].Destination} - ${dataTrip.routes[1].Destination} - ${dataTrip.routes[2].Destination} - ${dataTrip.routes[3].Destination} - ${dataTrip.routes[4].Destination}"
         }
         tv_start_date.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
-        tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+        if (dataTrip.isRoundTrip){
+            tv_date_end.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+        } else {
+            tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+        }
+
 
         if (dataCashAdvance.isAllowed.equals(true)) {
             llCashAdvanceToggle.visible()

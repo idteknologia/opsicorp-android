@@ -37,6 +37,7 @@ class DataBisnisTripModel {
     var isInternational = false
     var isWbs = false
     var isTripPartner = false
+    var isRoundTrip = false
 
     var tripCodeOld = ""
     var tripIdOld = ""

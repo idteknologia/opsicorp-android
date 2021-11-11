@@ -15,25 +15,24 @@ android {
             keyPassword 'opsicorp'
         }
     }
-    compileSdkVersion 30
+    compileSdkVersion rootProject.compileSdkVersion
+
     defaultConfig {
         applicationId "com.opsigo.travelaja"
         minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion 30
+        targetSdkVersion rootProject.compileSdkVersion
         versionCode 14
         versionName "1.0.10"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         signingConfig signingConfigs.releases
-
         manifestPlaceholders = [
                 'appAuthRedirectScheme': 'com.mobile.travelaja'
         ]
     }
     buildTypes {
         release {
-            minifyEnabled
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -61,9 +60,7 @@ android {
             versionName "v20"
         }
     }
-
-
-        packagingOptions {
+    packagingOptions {
         exclude 'META-INF/rxjava.properties'
         exclude 'AndroidManifest.xml'
         exclude 'lib/arm64-v8a/libcardioDecider.so'
@@ -92,7 +89,6 @@ android {
         exclude 'META-INF/AL2.0'
         exclude 'META-INF/LGPL2.1'
     }
-
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -108,6 +104,7 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+        useIR = true
     }
     testOptions.unitTests {
         includeAndroidResources = true
@@ -120,7 +117,12 @@ android {
         enabled = true
     }
     buildFeatures {
-        viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+        kotlinCompilerVersion '1.5.21'
     }
 }
 
@@ -131,7 +133,6 @@ dependencies {
     def rootDependencies = rootProject.ext.rootDependencies
     def testDependencies = rootProject.ext.presentationTestDependencies
     def dataDependencies  = rootProject.ext.dataDependencies
-
 
     implementation "androidx.constraintlayout:constraintlayout:$constrainLayoutVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
@@ -146,17 +147,13 @@ dependencies {
     testImplementation testDependencies.assertj
     testImplementation testDependencies.mockito
     testImplementation testDependencies.robolectric
-    testImplementation 'androidx.test:core:1.0.0'
+    testImplementation 'androidx.test:core:1.4.0'
     testImplementation 'org.json:json:20140107'
 
-
-    //noinspection GradleCompatible
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test:rules:1.1.1'
-    androidTestImplementation testDependencies.testRule
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.0'
-//    androidTestImplementation 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
-    debugImplementation 'androidx.test.ext:junit:1.1.1'
+//    //noinspection GradleCompatible
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.4.0'
     implementation 'androidx.annotation:annotation:1.0.0'
 
     implementation rootDependencies.gson
@@ -186,7 +183,7 @@ dependencies {
 
     implementation project(':data')
     implementation project(':domain')
-//    implementation project(':calendarlib')
+//  implementation project(':calendarlib')
     implementation project(':rangeseekbar-library')
     implementation project(':SliderDatePicker')
 
@@ -199,10 +196,9 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:16.0.0'
     api 'com.google.android.play:core:1.10.0'
 
-    //showcase
+//    showcase
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'
 
-    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewModel_version"
@@ -226,9 +222,38 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.3.1"
 
 
-    implementation 'androidx.fragment:fragment-ktx:1.3.6'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+    debugImplementation ("androidx.fragment:fragment-testing:$fragment_version"){
+        exclude group: 'androidx.test', module: 'core'
+    }
     implementation 'com.google.android.play:core-ktx:1.8.1'
 
+    implementation "androidx.compose.ui:ui:$compose_version"
+    // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
+    implementation "androidx.compose.foundation:foundation:$compose_version"
+    // Material Design
+    implementation "androidx.compose.material:material:$compose_version"
+    // Material design icons
+//    implementation "androidx.compose.material:material-icons-core:$compose_version"
+//    implementation "androidx.compose.material:material-icons-extended:$compose_version"
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.3.1'
+    // Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07'
+    // Integration with observables
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+//    implementation "androidx.compose.runtime:runtime-rxjava2:$compose_version"
+    // UI Tests
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    // Tooling support (Previews, etc.)
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-beta02"
+    implementation "androidx.paging:paging-compose:1.0.0-alpha12"
+    implementation 'com.google.accompanist:accompanist-swiperefresh:0.17.0'
+    androidTestImplementation "org.hamcrest:hamcrest:2.2"
     implementation "androidx.tonyodev.fetch2:xfetch2:3.1.6"
 
 }
