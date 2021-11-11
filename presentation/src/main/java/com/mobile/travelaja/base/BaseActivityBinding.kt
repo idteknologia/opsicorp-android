@@ -52,8 +52,8 @@ abstract class BaseActivityBinding<VB : ViewBinding> : AppCompatActivity() {
     abstract fun onMain()
 
     protected fun setLog(message: String) {
+        Log.e("Test", message)
         if(BuildConfig.DEBUG){
-            Log.e("Test", message)
         }
     }
 

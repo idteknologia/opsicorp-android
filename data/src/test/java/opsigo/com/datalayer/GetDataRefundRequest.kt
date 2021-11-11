@@ -30,14 +30,14 @@ class GetDataRefundRequest:KoinTest{
 
         GetDataApproval(url).refund(token,data,object : CallbackString {
             override fun successLoad(data: String) {
-                println("success")
-                print(data)
+//                println("success")
+//                print(data)
                 latch.await()
             }
 
             override fun failedLoad(message: String) {
-                println(message)
-                println("failed")
+//                println(message)
+//                println("failed")
                 latch.await()
             }
         })
@@ -85,7 +85,7 @@ class GetDataRefundRequest:KoinTest{
         val data = RescheduleHotelRequest()
         data.tripCode           = "TP202109210008"
         data.participant        = participantRequest()
-        data.rescheduleHotel    = rescheduleHotelRequest()
+//        data.rescheduleHotel    = rescheduleHotelRequest()
         data.attachment         = attatchmentRequest()
         return classToHasMap(data,RescheduleFlightRequest::class.java)
     }
@@ -105,14 +105,14 @@ class GetDataRefundRequest:KoinTest{
         val latch = CountDownLatch(1)
         GetDataApproval(url).refund(token,refundRequest(),object : CallbackString {
             override fun successLoad(data: String) {
-                println("success")
-                print(data)
+//                println("success")
+//                print(data)
                 latch.await()
             }
 
             override fun failedLoad(message: String) {
-                println(message)
-                println("failed")
+//                println(message)
+//                println("failed")
                 latch.await()
             }
         })

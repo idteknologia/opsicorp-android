@@ -194,15 +194,18 @@ class EticketMapper {
         val data = ArrayList<DetailFlightMyBookingModel>()
         flights?.forEach {
             val flight = it?.tripFlights?.find { it?.pnrCode==idItem }
-            val mData = DetailFlightMyBookingModel()
-            mData.status          = flight?.prgText.toString()
-            mData.originCity      = flight?.originView.toString()
-            mData.destinationCity = flight?.destinationView.toString()
-            mData.pnrCode         = flight?.pnrCode.toString()
-            mData.Segment         = mapperSegment(flight)
-            mData.idFlight        = flight?.id.toString()
-            mData.passanger       = mapperPassengeFlight(flight)
-            data.add(mData)
+            if (flight!=null){
+                val mData = DetailFlightMyBookingModel()
+                mData.status          = flight.prgText.toString()
+                mData.originCity      = flight.originView.toString()
+                mData.destinationCity = flight.destinationView.toString()
+                mData.pnrCode         = flight.pnrCode.toString()
+                mData.Segment         = mapperSegment(flight)
+                mData.idFlight        = flight.id.toString()
+                mData.passanger       = mapperPassengeFlight(flight)
+                data.add(mData)
+            }
+
         }
         return data
     }

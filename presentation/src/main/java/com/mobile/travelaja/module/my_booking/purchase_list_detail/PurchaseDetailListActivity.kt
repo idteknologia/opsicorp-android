@@ -103,6 +103,10 @@ class PurchaseDetailListActivity : BaseActivityBinding<DetailPurchaseListActivit
     }
 
     private fun initPageFlightDetail() {
+        setLog(" ${dataPurchaseDetail.dataFlight.size}-------------------------- ${positionSelectedItem}")
+        dataPurchaseDetail.dataFlight.forEach {
+            setLog(it.pnrCode.toString())
+        }
         viewBinding.flightHeader.lineFlightHeader.visibility = View.VISIBLE
         viewBinding.flightHeader.pnrCodeFlight.text          = dataPurchaseDetail.dataFlight[positionSelectedItem].pnrCode.toString()
         viewBinding.flightHeader.icCopyCode.setOnClickListener { Globals.copyText(dataPurchaseDetail.dataFlight[positionSelectedItem].pnrCode.toString(),this) }
