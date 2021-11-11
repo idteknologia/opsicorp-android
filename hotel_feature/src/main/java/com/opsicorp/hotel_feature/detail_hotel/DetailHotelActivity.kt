@@ -22,6 +22,7 @@ import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import java.util.HashMap
 
