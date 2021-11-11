@@ -27,7 +27,7 @@ class ConfigEntityDataMapper{
         data.mobileBackgroundImage    = configEntity.mobileBackgroundImage
         data.mobileBackgroundColor    = configEntity.mobileBackgroundColor
         data.mobileLogo               = configEntity.mobileLogo
-        data.mobileTextLogo           = configEntity.mobileTextLogo
+        data.mobileTextLogo           = configEntity.textFlashScreen
         data.mobileTextColorLogo      = configEntity.mobileTextColorLogo
         data.isPersonalTrip           = configEntity.isPersonalTrip
         return data

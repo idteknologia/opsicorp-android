@@ -314,17 +314,24 @@ class DetailParticipantActivity : BaseActivity()
             tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
         }
 
+        if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            tv_cost_center_price.gone()
+        } else {
+            tv_cost_center_price.visible()
+        }
+
         tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName
         tv_name.text     = "${tripSummary.contact.firstName} ${tripSummary.contact.lastName}"
         tv_cost_center.text   = "${tripSummary.tripParticipantItem.first().costCenterCode} - ${tripSummary.tripParticipantItem.first().costCenterName}"
         tv_budget_name.text   = tripSummary.tripParticipantItem.first().email
-        tv_cost_center_price.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
+        tv_cost_center_price.text = "IDR ${Globals.formatAmount(tripSummary.totalAllowance)}"
         tv_est_flight.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estFlight.toString())}"
         tv_est_hotel.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estHotel.toString())}"
         tv_est_transportation.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTransportation.toString())}"
         tv_est_allowance.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowance.toString())}"
         tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceEvent.toString())}"
         tv_est_laundry.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estLaundry.toString())}"
+        tv_est_total.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
 
     }
 
