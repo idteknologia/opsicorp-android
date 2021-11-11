@@ -150,23 +150,26 @@ class EticketMapper {
         val data = ArrayList<ItemPurchaseTrainModel>()
         trains?.forEach {
             val train = it?.tripTrains?.find { it?.pnrCode==idItem }
-            val mData = ItemPurchaseTrainModel()
-            mData.status                 = it?.status.toString()
-            mData.pnrCode                = train?.pnrCode.toString()
-            mData.nameTrain              = train?.trainName.toString()
-            mData.trainCode              = train?.ticketNumber.toString()
-            mData.className              = ""
-            mData.dateArrival            = ""
-            mData.dateDeparture          = ""
-            mData.originCity             = train?.originView.toString()
-            mData.originStation          = ""
-            mData.durationTime           = ""
-            mData.destinationCity        = train?.destinationView.toString()
-            mData.destinationStation     = ""
-            mData.passager               = mapperPassengeTrain(train?.passengers)
-            mData.isRefund               = false
-            mData.isReschedule           = false
-            data.add(mData)
+            if (train!=null){
+                val mData = ItemPurchaseTrainModel()
+                mData.status                 = it?.status.toString()
+                mData.pnrCode                = train?.pnrCode.toString()
+                mData.nameTrain              = train?.trainName.toString()
+                mData.trainCode              = train?.ticketNumber.toString()
+                mData.className              = ""
+                mData.dateArrival            = ""
+                mData.dateDeparture          = ""
+                mData.originCity             = train?.originView.toString()
+                mData.originStation          = ""
+                mData.durationTime           = ""
+                mData.destinationCity        = train?.destinationView.toString()
+                mData.destinationStation     = ""
+                mData.passager               = mapperPassengeTrain(train?.passengers)
+                mData.isRefund               = false
+                mData.isReschedule           = false
+                data.add(mData)
+            }
+
         }
         return data
     }
