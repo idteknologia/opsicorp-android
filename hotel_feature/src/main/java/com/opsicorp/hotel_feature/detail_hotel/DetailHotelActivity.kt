@@ -340,10 +340,10 @@ class DetailHotelActivity : BaseActivity(),
     override fun onClick(p0: View?) {
         when(p0){
             line_web -> {
-                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
+                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude,data.nameHotel)
             }
             btn_view_map -> {
-                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
+                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude,data.nameHotel)
             }
         }
     }
