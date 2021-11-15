@@ -315,9 +315,9 @@ class DetailParticipantActivity : BaseActivity()
         }
 
         if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
-            tv_cost_center_price.gone()
+            tvAllowanceLine.gone()
         } else {
-            tv_cost_center_price.visible()
+            tvAllowanceLine.visible()
         }
 
         tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName

@@ -183,7 +183,7 @@ class BookingContactFlight : BaseActivity(),
                 totalPrice =  totalPrice+it.price
             }
             val totalPricing = totalPrice * dataOrder.totalPassengerInteger
-            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataListFlight.dataFlight.size} pax"
+            tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataListFlight.dataFlight.size} item(s)"
             tv_price_total.text         = "${Globals.formatAmount((totalPricing+totalPriceBaggage().toDouble()))} IDR"
             tv_price.text               = "${Globals.formatAmount((totalPricing+totalPriceBaggage().toDouble()))} IDR"
         }

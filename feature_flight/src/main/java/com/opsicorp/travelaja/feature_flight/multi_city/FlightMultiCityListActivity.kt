@@ -116,6 +116,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton("Book")
         tv_price.setText("0 IDR")
+
         line_shadow.gone()
     }
 
@@ -483,7 +484,7 @@ class FlightMultiCityListActivity : BaseActivity(),
             totalPrice =  totalPrice+it.flightResult.price
         }
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
-        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax"
+        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} item(s)"
         tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
         tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
     }
