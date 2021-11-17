@@ -1,28 +1,28 @@
 package com.mobile.travelaja.module.signin.select_nationality.activity
 
-import android.app.Activity
-import android.app.TaskStackBuilder
-import android.content.Intent
-import androidx.appcompat.widget.Toolbar
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.MenuItem
-import android.view.View
-import com.mobile.travelaja.locale.ApplyLanguageActivity
-import com.mobile.travelaja.base.BaseActivity
-import com.mobile.travelaja.R
-import com.mobile.travelaja.base.InitApplications
-import com.mobile.travelaja.locale.AppLocaleChangeReceiver
-import com.mobile.travelaja.module.signin.select_nationality.presenter.SelectedNationalityPresenter
-import com.mobile.travelaja.module.signin.select_nationality.view.SelectNationalityView
-import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.gone
-import com.mobile.travelaja.utility.visible
-import kotlinx.android.synthetic.main.select_nationality_view.*
-import kotlinx.android.synthetic.main.toolbar_white.*
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
 import java.util.*
+import android.view.View
+import org.koin.core.inject
+import android.app.Activity
+import android.text.Editable
+import android.view.MenuItem
+import android.content.Intent
+import com.mobile.travelaja.R
+import android.text.TextWatcher
+import android.app.TaskStackBuilder
+import androidx.appcompat.widget.Toolbar
+import com.mobile.travelaja.utility.gone
+import org.koin.core.parameter.parametersOf
+import com.mobile.travelaja.utility.visible
+import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.base.InitApplications
+import kotlinx.android.synthetic.main.toolbar_white.*
+import com.mobile.travelaja.locale.ApplyLanguageActivity
+import com.mobile.travelaja.locale.AppLocaleChangeReceiver
+import kotlinx.android.synthetic.main.select_nationality_view.*
+import com.mobile.travelaja.module.signin.select_nationality.view.SelectNationalityView
+import com.mobile.travelaja.module.signin.select_nationality.presenter.SelectedNationalityPresenter
 
 class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLocaleChangeReceiver.AppLocaleChangeListener  {
 

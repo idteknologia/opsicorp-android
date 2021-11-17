@@ -32,6 +32,9 @@ import android.view.View
 import android.util.Log
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
+import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.OnclickButtonListener, MenuBottomOpsicorp.OnclickButtonListener{
     override fun getLayout(): Int { return R.layout.accomodation_activity }
@@ -96,6 +99,16 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
             initButtonBottom()
         }
 
+        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            val dataTripPlan = Serializer.deserialize(
+                Constants.DATA_SUCCESS_CREATE_TRIP,
+                SuccessCreateTripPlaneModel::class.java
+            )
+            if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.UDARA) }.isEmpty()){
+                btn_bottom_accomodation.setButtonSelectedPosition(1)
+            }
+        }
+
     }
 
     fun initToolbar() {
@@ -125,7 +138,12 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     override fun three() {
         //getFlightFragment()
-        getTrainFragment()
+        if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
+            showDialogNotAuthorized(false)
+            btn_bottom_accomodation.changeImageBtn(0)
+        } else {
+            getTrainFragment()
+        }
     }
 
     override fun four() {

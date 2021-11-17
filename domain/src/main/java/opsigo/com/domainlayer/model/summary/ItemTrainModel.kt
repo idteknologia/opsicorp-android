@@ -1,53 +1,56 @@
 package opsigo.com.domainlayer.model.summary
 
-class ItemTrainModel{
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
-    var isComply        = false
-    var referenceCode   = ""
-    var tripItemID      = ""
-    var tripID     = ""
-    var progressTrain   = ""
-    var idTrain         = ""
-    var typeView        = "" //one way
+@Parcelize
+class ItemTrainModel(
+    var isComply        :Boolean = false,
+    var referenceCode   :String = "",
+    var tripItemID      :String = "",
+    var tripID          :String = "",
+    var progressTrain   :String = "",
+    var idTrain         :String = "",
+    var typeView        :String = "", //one way
 
-    var titleTrain      = ""
-    var imageTrain      = ""
-    var carrierNumber   = ""
-    var fareBasisCode   = ""
+    var titleTrain      :String = "",
+    var imageTrain      :String = "",
+    var carrierNumber   :String = "",
+    var fareBasisCode   :String = "",
 
-    var seatNumber      = ""
-    var seatName        = ""
-    var seatText        = ""
-    var classCode       = ""
+    var seatNumber      :String = "",
+    var seatName        :String = "",
+    var seatText        :String = "",
+    var classCode       :String = "",
 
-    var status          = ""
-    var pnrCode         = ""
-    var pnrID           = ""
-    var classTrain      = ""
+    var status          :String = "",
+    var pnrCode         :String = "",
+    var pnrID           :String = "",
+    var classTrain      :String = "",
 
-    var oriDest         = ""
+    var oriDest         :String = "",
 
     //depart
-    var origin          = ""
-    var originName      = ""
-    var stationDeparture = ""
-    var dateDeparture   = ""
-    var timeDeparture   = ""
+    var origin           :String = "",
+    var originName       :String = "",
+    var stationDeparture :String = "",
+    var dateDeparture    :String = "",
+    var timeDeparture    :String = "",
 
     //arrive
-    var destination     = ""
-    var destinationName = ""
-    var stationArrival  = ""
-    var dateArrival     = ""
-    var timeArrival     = ""
+    var destination     :String = "",
+    var destinationName :String = "",
+    var stationArrival  :String = "",
+    var dateArrival     :String = "",
+    var timeArrival     :String = "",
 
     //var date            = ""
 
-    var price           = ""
-    var transit         = ""
-    var employId        = ""
+    var price           :Double = 0.0,
+    var transit         :String = "",
+    var employId        :String = "",
 
-    var isBackTrain     = false
-    var typeTrip        = 0
+    var isBackTrain     :Boolean = false,
+    var typeTrip        :Int = 0
 
-}
+    ):Parcelable

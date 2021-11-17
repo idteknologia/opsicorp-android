@@ -22,9 +22,9 @@
 
         <RelativeLayout
             android:id="@+id/line_back"
-            android:layout_centerVertical="true"
             android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:layout_centerVertical="true">
 
         </RelativeLayout>
 
@@ -84,6 +84,45 @@
         </LinearLayout>
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/line_title_train"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:singleLine="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                style="@style/RobotoRegular"
+                android:id="@+id/tv_departure_train"
+                android:text="Jakarta" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="12dp"
+                android:src="@drawable/panah_putih"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_arrival_train"
+                android:singleLine="true"
+                style="@style/RobotoRegular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:text="Jakarta" />
+        </LinearLayout>
+
+        <LinearLayout
             android:visibility="invisible"
             android:id="@+id/line_text_double"
             android:layout_centerInParent="true"
@@ -122,8 +161,7 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:visibility="gone">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_gravity="center"

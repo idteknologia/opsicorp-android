@@ -680,7 +680,7 @@ Please add your trip item for Approval."
     <string name="transit">TRANSIT</string>
     <string name="price_pax">PRICE/PAX</string>
     <string name="booking_contact_not_empty" translatable="false">Please complete input data passenger</string>
-    <string name="phone_contact_not_empty" tools:ignore="ExtraTranslation">Please complete input data passenger</string>
+    <string name="phone_contact_not_empty" tools:ignore="ExtraTranslation">Please input passenger phone</string>
     <string name="string_requaired_input">Please add, this field is required</string>
     <string name="text_kg">kg</string>
     <string name="text_trip_template">CGK-KNO</string>

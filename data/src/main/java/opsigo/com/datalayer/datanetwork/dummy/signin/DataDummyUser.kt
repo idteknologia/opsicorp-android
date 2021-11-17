@@ -9,7 +9,7 @@ class DataDummyUser {
 
         val data = ProfileModel()
 
-        data.name            = "Dwi wahyudi"
+        data.fullName            = "Dwi wahyudi"
         data.nameAgent       = "Golden Rama"
         data.position        = "Aprover"
         data.address         = "jl tanah abang 2 no 54 jakarta pusat"
@@ -28,7 +28,7 @@ class DataDummyUser {
     fun addDataUserLogin2(): ProfileModel {
 
         val data = ProfileModel()
-        data.name            = "vodi"
+        data.fullName            = "vodi"
         data.nameAgent       = "Opsigo"
         data.position        = "karyawan"
         data.address         = "jl tanah abang 3 no 04 jakarta pusat"

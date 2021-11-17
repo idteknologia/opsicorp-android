@@ -4,669 +4,671 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:id="@+id/test_layout"
     android:layout_height="match_parent">
-<!--
-    <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-        android:layout_width="match_parent"
-        android:id="@+id/toolbar"
-        android:layout_height="wrap_content">
-    </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:id="@+id/nested_view"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <LinearLayout
-            android:background="@android:color/white"
+    <!--
+        <com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
             android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            android:layout_height="wrap_content">
+        </com.opsigo.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:id="@+id/nested_view"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                style="@style/RobotoBold"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/tintTextView"
-                android:text="@string/text_booking_details"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default"
-                android:textSize="14sp"
-                android:textColor="#91929e"
-                style="@style/RobotoRegular"
-                android:layout_marginTop="4dp"
-                android:text="@string/text_booking_desc" />
-
-
+            android:fillViewport="true">
             <LinearLayout
+                android:background="@android:color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_marginTop="28dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#24253d"
                     style="@style/RobotoBold"
-                    android:text="@string/text_booking_contact"/>
+                    android:layout_marginTop="25dp"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/tintTextView"
+                    android:text="@string/text_booking_details"/>
 
-                <LinearLayout
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="1.5dp"
-                    android:layout_marginStart="10dp"
-                    android:background="#e0e0e1"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="23dp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginStart="40dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:textSize="14sp"
                     android:textColor="#91929e"
-                    android:text="@string/text_contacts_name" />
+                    style="@style/RobotoRegular"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/text_booking_desc" />
 
-                <TextView
-                    android:id="@+id/tv_name_contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#24253d"
-                    android:text="@string/passengers"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/transparent"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#b2bbc6"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#5488c1"
-                    android:lineSpacingExtra="6sp"
-                    android:text="@string/text_contact_desc"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginStart="40dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#91929e"
-                    android:text="@string/text_contact_number" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="28dp"
                     android:orientation="horizontal">
-                    <LinearLayout
-                        android:layout_marginTop="8dp"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:textSize="16sp"
+                        android:textColor="#24253d"
+                        style="@style/RobotoBold"
+                        android:text="@string/text_booking_contact"/>
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="1.5dp"
+                        android:layout_marginStart="10dp"
+                        android:background="#e0e0e1"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="23dp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#91929e"
+                        android:text="@string/text_contacts_name" />
+
+                    <TextView
+                        android:id="@+id/tv_name_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="#24253d"
+                        android:text="@string/passengers"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/transparent"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#b2bbc6"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#5488c1"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/text_contact_desc"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#91929e"
+                        android:text="@string/text_contact_number" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                         <LinearLayout
-                            android:layout_gravity="center"
+                            android:layout_marginTop="8dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:visibility="gone"
-                                android:layout_marginLeft="9dp"
-                                android:layout_marginRight="9dp"
+                            android:orientation="vertical">
+                            <LinearLayout
                                 android:layout_gravity="center"
-                                android:layout_width="22dp"
-                                android:layout_height="15dp"
-                                android:background="@color/green_price"/>
-
-                            <TextView
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:visibility="gone"
+                                    android:layout_marginLeft="9dp"
+                                    android:layout_marginRight="9dp"
+                                    android:layout_gravity="center"
+                                    android:layout_width="22dp"
+                                    android:layout_height="15dp"
+                                    android:background="@color/green_price"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="16sp"
+                                    android:textColor="#24253d"
+                                    android:text="@string/text_phone_code"
+                                    android:background="@color/transparent"/>
+
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="80dp"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:background="#b2bbc6"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="10dp">
+                            <TextView
+                                android:id="@+id/tv_number_contact"
+                                android:layout_marginStart="9dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="@string/text_phone_code"
+                                tools:text="8389311124"
                                 android:background="@color/transparent"/>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:background="#b2bbc6"/>
+
                         </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"/>
+
 
                     </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#5488c1"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/text_contact_number_desc"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_marginTop="8dp"
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="40dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#91929e"
+                        android:text="@string/email" />
+
+                    <TextView
+                        android:id="@+id/tv_email_contact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginStart="10dp">
-                        <TextView
-                            android:id="@+id/tv_number_contact"
-                            android:layout_marginStart="9dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="#24253d"
-                            tools:text="8389311124"
-                            android:background="@color/transparent"/>
+                        android:textSize="16sp"
+                        android:textColor="#24253d"
+                        tools:text="Vody@gmail.com"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/transparent"/>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#b2bbc6"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="#5488c1"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/text_email_example"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="32dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f5f5f5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text="@string/text_passenger_information"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="@dimen/margin_default"
+                        style="@style/RobotoBold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="@dimen/margin_default">
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="8dp"
-                            android:background="#b2bbc6"/>
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#5488c1"
-                    android:lineSpacingExtra="6sp"
-                    android:text="@string/text_contact_number_desc"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginStart="40dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#91929e"
-                    android:text="@string/email" />
-
-                <TextView
-                    android:id="@+id/tv_email_contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#24253d"
-                    tools:text="Vody@gmail.com"
-                    android:layout_marginTop="8dp"
-                    android:background="@color/transparent"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="#b2bbc6"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="#5488c1"
-                    android:lineSpacingExtra="6sp"
-                    android:text="@string/text_email_example"
-                    android:layout_marginTop="2dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="32dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f5f5f5"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#24253d"
-                    android:text="@string/text_passenger_information"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="@dimen/margin_default"
-                    style="@style/RobotoBold"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="@dimen/margin_default">
-                    <LinearLayout
-                        android:layout_marginTop="6dp"
-                        android:layout_width="7dp"
-                        android:layout_height="7dp"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/rounded_cycle_info_flight"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#91929e"
-                        android:lineSpacingExtra="6sp"
-                        android:text="@string/string_information_passsanger_booking_contact"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="@dimen/margin_default">
-                    <LinearLayout
-                        android:layout_marginTop="6dp"
-                        android:layout_width="7dp"
-                        android:layout_height="7dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/rounded_cycle_info_flight"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#91929e"
-                        android:lineSpacingExtra="6sp"
-                        android:layout_marginBottom="15dp"
-                        android:text="@string/string_information_passsanger_booking_contact2"/>
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:nestedScrollingEnabled="false"
-                android:id="@+id/rv_booking_information"
-                android:layout_marginTop="36dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </androidx.recyclerview.widget.RecyclerView>
-
-
-
-            <androidx.cardview.widget.CardView
-                android:visibility="visible"
-                android:onClick="seatMapListener"
-                android:background="@android:color/white"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_default"
-                android:layout_marginTop="42dp"
-                app:cardCornerRadius="4dp"
-                app:cardElevation="3dp"
-                android:id="@+id/line_select_seat_map"
-                android:layout_marginEnd="-20dp">
-
-                <RelativeLayout
-                    android:onClick="seatMapListener"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:onClick="seatMapListener"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_width="22dp"
-                        android:layout_height="28dp"
-                        android:id="@+id/ic_image_seat"
-                        android:src="@drawable/ic_booking_contact_seat">
-                    </ImageView>
-
-                    <LinearLayout
-                        android:onClick="seatMapListener"
-                        android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/ic_image_seat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                            android:layout_marginTop="6dp"
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/rounded_cycle_info_flight"/>
 
                         <TextView
-                            android:onClick="seatMapListener"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#24253d"
-                            android:text="@string/text_select_seat" />
-
-                        <TextView
-                            android:onClick="seatMapListener"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12sp"
-                            android:textColor="#009688"
-                            android:text="@string/text_seat_class"
-                            android:layout_marginTop="2dp"/>
+                            android:textColor="#91929e"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/string_information_passsanger_booking_contact"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="@dimen/margin_default">
+                        <LinearLayout
+                            android:layout_marginTop="6dp"
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/rounded_cycle_info_flight"/>
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12sp"
+                            android:textColor="#91929e"
+                            android:lineSpacingExtra="6sp"
+                            android:layout_marginBottom="15dp"
+                            android:text="@string/string_information_passsanger_booking_contact2"/>
                     </LinearLayout>
 
-                    <ImageView
-                        android:onClick="seatMapListener"
-                        android:layout_marginEnd="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_chevron_next_orange"/>
+                </LinearLayout>
 
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_marginTop="55dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:nestedScrollingEnabled="false"
+                    android:id="@+id/rv_booking_information"
+                    android:layout_marginTop="36dp"
                     android:layout_width="match_parent"
-                    android:layout_height="5dp"
-                    android:background="@drawable/shadow_top"/>
+                    android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
 
-                <LinearLayout
+
+
+                <androidx.cardview.widget.CardView
+                    android:visibility="visible"
+                    android:onClick="seatMapListener"
                     android:background="@android:color/white"
-                    android:id="@+id/header_prize"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/margin_default"
+                    android:layout_marginTop="42dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="3dp"
+                    android:id="@+id/line_select_seat_map"
+                    android:layout_marginEnd="-20dp">
+
+                    <RelativeLayout
+                        android:onClick="seatMapListener"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:onClick="seatMapListener"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_width="22dp"
+                            android:layout_height="28dp"
+                            android:id="@+id/ic_image_seat"
+                            android:src="@drawable/ic_booking_contact_seat">
+                        </ImageView>
+
+                        <LinearLayout
+                            android:onClick="seatMapListener"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/ic_image_seat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:onClick="seatMapListener"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#24253d"
+                                android:text="@string/text_select_seat" />
+
+                            <TextView
+                                android:onClick="seatMapListener"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="12sp"
+                                android:textColor="#009688"
+                                android:text="@string/text_seat_class"
+                                android:layout_marginTop="2dp"/>
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:onClick="seatMapListener"
+                            android:layout_marginEnd="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_chevron_next_orange"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_marginTop="55dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:paddingStart="@dimen/margin_default"
-                        android:paddingBottom="14dp"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content">
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:background="@drawable/shadow_top"/>
+
+                    <LinearLayout
+                        android:background="@android:color/white"
+                        android:id="@+id/header_prize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:paddingStart="@dimen/margin_default"
+                            android:paddingBottom="14dp"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content">
+
+                            <RelativeLayout
+                                android:layout_marginTop="15dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:id="@+id/ic_image"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/ic_chevron_up_green"
+                                        android:layout_width="12dp"
+                                        android:layout_height="12dp" />
+                                    <TextView
+                                        android:id="@+id/tv_title_prize"
+                                        style="@style/RobotoRegular"
+                                        android:layout_marginStart="6dp"
+                                        android:text="@string/total_price_for_1_pax"
+                                        android:textSize="12sp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                            </RelativeLayout>
+
+
+
+                            <TextView
+                                android:id="@+id/tv_price"
+                                android:gravity="start"
+                                android:text="@string/hargaTotal"
+                                android:textSize="20sp"
+                                style="@style/RobotoMedium"
+                                android:textColor="#00776a"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/tv_including"
+                                android:textSize="12sp"
+                                android:textColor="#939396"
+                                style="@style/RobotoRegular"
+                                android:text="@string/text_not_including_of_all_fares_amp_vat"
+                                android:layout_marginTop="4dp"
+                                android:layout_width="wrap_content"
+                                android:gravity="start"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+                            <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                                android:layout_width="match_parent"
+                                android:layout_gravity="center"
+                                android:id="@+id/btn_next"
+                                app:text="Continue"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
+                        android:background="@android:color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:ael_duration="200"
+                        app:ael_expanded="true"
+                        android:id="@+id/body_prize"
+                        app:ael_interpolator="accelerateDecelerate"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:background="#e0e0e1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1.5dp">
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="15dp"
+                            android:id="@+id/rv_detail_prize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </androidx.recyclerview.widget.RecyclerView>
 
                         <RelativeLayout
-                            android:layout_marginTop="15dp"
+                            android:id="@+id/rlBaggagePrice"
+                            android:visibility="visible"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/ic_image"
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/ic_chevron_up_green"
-                                    android:layout_width="12dp"
-                                    android:layout_height="12dp" />
+                                android:orientation="vertical">
                                 <TextView
-                                    android:id="@+id/tv_title_prize"
+                                    android:id="@+id/tv_booking_baggage"
                                     style="@style/RobotoRegular"
-                                    android:layout_marginStart="6dp"
-                                    android:text="@string/total_price_for_1_pax"
-                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#b324253d"
+                                    android:text="Baggage Charge"/>
+
                             </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_total_price_baggage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#d9000000"
+                                android:gravity="end"
+                                android:text="@string/hargaTotal"
+                                android:layout_alignParentEnd="true"/>
                         </RelativeLayout>
 
-
-
-                        <TextView
-                            android:id="@+id/tv_price"
-                            android:gravity="start"
-                            android:text="@string/hargaTotal"
-                            android:textSize="20sp"
-                            style="@style/RobotoMedium"
-                            android:textColor="#00776a"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:id="@+id/tv_including"
-                            android:textSize="12sp"
-                            android:textColor="#939396"
-                            style="@style/RobotoRegular"
-                            android:text="@string/text_not_including_of_all_fares_amp_vat"
-                            android:layout_marginTop="4dp"
-                            android:layout_width="wrap_content"
-                            android:gravity="start"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent">
-                        <com.opsigo.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+                        <RelativeLayout
+                            android:id="@+id/rlSsrPrice"
+                            android:visibility="gone"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="20dp"
                             android:layout_width="match_parent"
-                            android:layout_gravity="center"
-                            android:id="@+id/btn_next"
-                            app:text="Continue"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/tv_booking_ssr"
+                                    style="@style/RobotoRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#b324253d"
+                                    android:text="Special Service Request"/>
+                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/tv_total_price_ssr"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#d9000000"
+                                android:gravity="end"
+                                android:text="@string/hargaTotal"
+                                android:layout_alignParentEnd="true"/>
+                        </RelativeLayout>
 
-                    </LinearLayout>
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/RobotoRegular"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#b324253d"
+                                    android:text="Services Fee"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/colorPrimary"
+                                    android:text="Free"
+                                    style="@style/RobotoRegular"/>
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvServiceFee"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#d9000000"
+                                android:gravity="end"
+                                android:text="IDR 0"
+                                android:layout_alignParentEnd="true"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:visibility="gone"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="25dp"
+                            android:layout_marginStart="30dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <TextView
+                                    style="@style/RobotoRegular"
+                                    android:id="@+id/tvVatPrice"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#b324253d"
+                                    android:text="VAT"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#d9000000"
+                                android:gravity="end"
+                                android:text="IDR 0"
+                                android:layout_alignParentEnd="true"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:background="#f5f5f5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:paddingTop="13dp"
+                            android:paddingBottom="13dp">
+                            <TextView
+                                android:layout_width ="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize  ="14sp"
+                                android:textColor ="#00776a"
+                                android:text      ="Amount to pay"/>
+
+                            <TextView
+                                android:textStyle="bold"
+                                style="@style/RobotoBold"
+                                android:id="@+id/tv_price_total"
+                                android:layout_alignParentEnd="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="16sp"
+                                android:textColor="#d9000000"
+                                android:text="@string/hargaTotal"/>
+
+                        </RelativeLayout>
+                    </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
+
                 </LinearLayout>
-
-
-                <com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout
-                    android:background="@android:color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:ael_duration="200"
-                    app:ael_expanded="true"
-                    android:id="@+id/body_prize"
-                    app:ael_interpolator="accelerateDecelerate"
-                    android:orientation="vertical">
-                    <LinearLayout
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:background="#e0e0e1"
-                        android:layout_width="match_parent"
-                        android:layout_height="1.5dp">
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="15dp"
-                        android:id="@+id/rv_detail_prize"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                    </androidx.recyclerview.widget.RecyclerView>
-
-                    <RelativeLayout
-                        android:id="@+id/rlBaggagePrice"
-                        android:visibility="visible"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tv_booking_baggage"
-                                style="@style/RobotoRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="#b324253d"
-                                android:text="Baggage Charge"/>
-
-                        </LinearLayout>
-                        <TextView
-                            android:id="@+id/tv_total_price_baggage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#d9000000"
-                            android:gravity="end"
-                            android:text="@string/hargaTotal"
-                            android:layout_alignParentEnd="true"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/rlSsrPrice"
-                        android:visibility="gone"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/tv_booking_ssr"
-                                style="@style/RobotoRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="#b324253d"
-                                android:text="Special Service Request"/>
-                        </LinearLayout>
-                        <TextView
-                            android:id="@+id/tv_total_price_ssr"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#d9000000"
-                            android:gravity="end"
-                            android:text="@string/hargaTotal"
-                            android:layout_alignParentEnd="true"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                style="@style/RobotoRegular"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="#b324253d"
-                                android:text="Services Fee"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="@color/colorPrimary"
-                                android:text="Free"
-                                style="@style/RobotoRegular"/>
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvServiceFee"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#d9000000"
-                            android:gravity="end"
-                            android:text="IDR 0"
-                            android:layout_alignParentEnd="true"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:visibility="gone"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="25dp"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                style="@style/RobotoRegular"
-                                android:id="@+id/tvVatPrice"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="14sp"
-                                android:textColor="#b324253d"
-                                android:text="VAT"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="#d9000000"
-                            android:gravity="end"
-                            android:text="IDR 0"
-                            android:layout_alignParentEnd="true"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:background="#f5f5f5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="13dp"
-                        android:paddingBottom="13dp">
-                        <TextView
-                            android:layout_width ="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize  ="14sp"
-                            android:textColor ="#00776a"
-                            android:text      ="Amount to pay"/>
-
-                        <TextView
-                            android:textStyle="bold"
-                            style="@style/RobotoBold"
-                            android:id="@+id/tv_price_total"
-                            android:layout_alignParentEnd="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:textColor="#d9000000"
-                            android:text="@string/hargaTotal"/>
-
-                    </RelativeLayout>
-                </com.opsigo.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
-
             </LinearLayout>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>-->
+        </androidx.core.widget.NestedScrollView>-->
 </LinearLayout>

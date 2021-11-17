@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import kotlinx.android.synthetic.main.attach_adapter.view.*
 
@@ -33,25 +35,32 @@ class AttachmentAdapter (val context: Context, private var items: ArrayList<Uplo
 
         holder.itemView.tx_name_document.text = data.pathLocalImage
 
+
         if (data.statusUploaded=="load"){
-            holder.itemView.image_delet.visibility = View.GONE
-            holder.itemView.progressBar.visibility = View.VISIBLE
-            holder.itemView.tv_failed.visibility   = View.GONE
+            holder.itemView.image_delet.gone()
+            holder.itemView.progressBar.visible()
+            holder.itemView.tv_failed.gone()
         }
-        else if(data.statusUploaded=="success"){
-            holder.itemView.image_delet.visibility = View.VISIBLE
-            holder.itemView.progressBar.visibility = View.GONE
-            holder.itemView.tv_failed.visibility   = View.GONE
-        }
+
         else if(data.statusUploaded=="fromserver"){
-            holder.itemView.image_delet.visibility = View.GONE
-            holder.itemView.progressBar.visibility = View.GONE
-            holder.itemView.tv_failed.visibility   = View.GONE
+            holder.itemView.image_delet.gone()
+            holder.itemView.progressBar.gone()
+            holder.itemView.tv_failed.gone()
+        }
+        else if (data.statusUploaded=="success" && data.isDetailTrip ){
+            holder.itemView.image_delet.gone()
+            holder.itemView.progressBar.gone()
+            holder.itemView.tv_failed.gone()
+        }
+        else if (data.statusUploaded == "failed"){
+            holder.itemView.image_delet.visible()
+            holder.itemView.progressBar.gone()
+            holder.itemView.tv_failed.visible()
         }
         else {
-            holder.itemView.image_delet.visibility = View.VISIBLE
-            holder.itemView.progressBar.visibility = View.GONE
-            holder.itemView.tv_failed.visibility   = View.VISIBLE
+            holder.itemView.image_delet.visible()
+            holder.itemView.progressBar.gone()
+            holder.itemView.tv_failed.gone()
 //            holder.itemView.tx_name_document.text  = data.statusUploaded
         }
 

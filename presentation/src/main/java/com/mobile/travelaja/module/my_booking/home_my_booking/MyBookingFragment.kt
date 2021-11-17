@@ -104,8 +104,10 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
             }
 
             override fun failed(message: String) {
-                loading_view.visibility = View.GONE
-                Globals.showAlert(getString(R.string.sorry),message,requireContext())
+                try {
+                    loading_view.visibility = View.GONE
+                    Globals.showAlert(getString(R.string.sorry),message,requireContext())
+                }catch (e:Exception){}
             }
         })
     }

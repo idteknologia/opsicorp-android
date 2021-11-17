@@ -2,11 +2,12 @@ package opsigo.com.domainlayer.model.signin
 
 
 class ProfileModel {
-    var name      = ""
+    var fullName  = ""
     var firstName = ""
     var lastName  = ""
     var nameAgent = ""
     var position  = ""
+    var titleName = ""
     var address   = ""
     var email     = ""
     var employId  = ""
@@ -19,7 +20,7 @@ class ProfileModel {
     var title               = ""
     var homePhone           = ""
     var isApproval          = false
-    var costCenter = ""
+    var costCenter          = ""
     var costCenterDefaultText = ""
 
 
@@ -38,6 +39,4 @@ class ProfileModel {
     var sim          = ""
 
     var approval = ApprovalModel()
-
-
 }

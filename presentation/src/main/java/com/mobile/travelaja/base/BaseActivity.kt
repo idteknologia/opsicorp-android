@@ -19,10 +19,12 @@ import android.view.View
 import android.widget.TextView
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
+import com.mobile.travelaja.databinding.DialogNotAuthorizedBinding
 import com.mobile.travelaja.locale.AppLocale
 import com.mobile.travelaja.locale.AppLocaleChangeReceiver
 import com.mobile.travelaja.locale.LocaleManager
 import com.mobile.travelaja.locale.LocalePrefrences
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
@@ -33,6 +35,7 @@ import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackIdDevice
+import opsigo.com.domainlayer.model.ConfigModel
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import org.koin.core.KoinComponent
 import java.lang.Exception
@@ -45,6 +48,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
     val dialogError = DialogErrorConection()
+    val dialogNotAuthorized = NotAuthorizedDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +74,10 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
             window.statusBarColor = resources.getColor(R.color.colorPrimary)
         }
+    }
+
+    fun showDialogNotAuthorized(disable: Boolean){
+        dialogNotAuthorized.showDialogLoading(this,disable)
     }
 
     fun showDialogContruction(disable: Boolean) {
@@ -129,8 +137,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     }
 
     fun setLog(message: String) {
+        Log.e("Test", message)
         if (BuildConfig.DEBUG) {
-            Log.e("Test", message)
         }
     }
 
@@ -437,5 +445,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
+    fun getConfigCompany(): ConfigModel {
+        return Serializer.deserialize(Globals.getDataPreferenceString(this, "config"), ConfigModel::class.java)
+    }
 
 }

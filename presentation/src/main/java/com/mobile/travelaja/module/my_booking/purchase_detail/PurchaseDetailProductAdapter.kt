@@ -5,13 +5,11 @@ import android.view.ViewGroup
 import com.mobile.travelaja.R
 import android.content.Context
 import android.view.LayoutInflater
-import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
-import kotlinx.android.synthetic.main.item_product_detail_purchase.view.*
-import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import opsigo.com.domainlayer.model.my_booking.ItemFlightModel
+import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.my_booking.ItemHotelPurchase
 import opsigo.com.domainlayer.model.my_booking.ItemPurchaseTrainModel
+import kotlinx.android.synthetic.main.item_product_detail_purchase.view.*
 
 class PurchaseDetailProductAdapter (var context: Context, private var items: ArrayList<Any>): androidx.recyclerview.widget.RecyclerView.Adapter<PurchaseDetailProductAdapter.ViewHolder>() {
 
@@ -22,7 +20,7 @@ class PurchaseDetailProductAdapter (var context: Context, private var items: Arr
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent?.context)
+        val itemView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_product_detail_purchase, parent, false)
 
         return ViewHolder(itemView)

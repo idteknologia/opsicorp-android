@@ -1,14 +1,14 @@
 package com.mobile.travelaja.module.my_booking.adapter
 
-import android.content.Context
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mobile.travelaja.R
-import com.mobile.travelaja.module.my_booking.model.PurchaseDetailTripFlightAndTrainModel
+import android.content.Context
+import android.view.LayoutInflater
+import com.squareup.picasso.Picasso
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.items_purchase_detail_flight_and_train.view.*
-import kotlinx.android.synthetic.main.items_purchase_detail_flight_and_train_time.view.*
+import opsigo.com.domainlayer.model.my_booking.PurchaseDetailTripFlightAndTrainModel
 import kotlinx.android.synthetic.main.items_purchase_detail_flight_and_train_time_left.view.*
 
 class PurchaseDetailTripFlightAdapter (context: Context, private var items: ArrayList<PurchaseDetailTripFlightAndTrainModel>): androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
@@ -53,27 +53,34 @@ class PurchaseDetailTripFlightAdapter (context: Context, private var items: Arra
     inner class BodyAdapter internal constructor(itemView: View) : ViewHolder(itemView) {
 
         fun bind(data: PurchaseDetailTripFlightAndTrainModel, position: Int) {
-            itemView.tv_airport_name.text            = data.nameAirportDepature
-            itemView.tv_seat_number.text             = data.numberSeat
+//            itemView.tv_airport_name.text            = data.nameAirportDepature
+            itemView.tv_flight_number.text             = data.numberSeat
             itemView.tv_calss.text                   = data.classFlight
-            itemView.tv_type_accomodation.text       = data.typeFlight
+            itemView.tv_code_flight.text       = data.codeFlight
             itemView.tv_time_departure.text          = data.timeDeparture
             itemView.tv_date_departure.text          = data.dateDepartute
-            itemView.tv_name_city_departure.text     = data.nameAirportDepature
-            itemView.tv_name_station_departure.text  = data.addressAirportDeparture
-            itemView.tv_bloc_station_departure.text  = data.terminalDeparture
-            itemView.line_total_duration.text        = data.totalHour
+//            itemView.tv_name_city_departure.text     = data.nameAirportDepature
+            itemView.tv_name_station_departure.text  = data.origin
+//            itemView.tv_bloc_station_departure.text  = data.terminalDeparture
+            itemView.line_total_duration.text        = data.totalHourDuration
             itemView.tv_time_arrival.text            = data.timeArrival
             itemView.tv_date_arrival.text            = data.dateArrival
-            itemView.tv_name_city_arrival.text       = data.nameStasiunArrival
-            itemView.tv_name_station_arrival.text    = data.addressStationArrival
+//            itemView.tv_name_city_arrival.text       = data.nameStasiunArrival
+            itemView.tv_name_station_arrival.text    = data.destinantion
             itemView.tv_bloc_station_arrival.text    = ""
+
+            if (data.imageFlight.isNotEmpty()){
+                Picasso.get()
+                    .load(data.imageFlight)
+                    .fit()
+                    .centerCrop()
+                    .into(itemView.ic_image_airline)
+            }
         }
 
     }
 
     inner class HeaderLeft internal constructor(itemView: View) : ViewHolder(itemView) {
-
 
         fun bind(data: PurchaseDetailTripFlightAndTrainModel, position: Int) {
 
@@ -86,17 +93,14 @@ class PurchaseDetailTripFlightAdapter (context: Context, private var items: Arra
 
     inner class HeaderCenter internal constructor(itemView: View) : ViewHolder(itemView) {
 
-
         fun bind(data: PurchaseDetailTripFlightAndTrainModel, position: Int) {
-
             itemView.tv_layover.text = data.layover
             itemView.tv_name_airport_layover.text = data.nameAirportLayover
-
         }
 
     }
 
-    fun setData(data: java.util.ArrayList<PurchaseDetailTripFlightAndTrainModel>) {
+    fun setData(data: ArrayList<PurchaseDetailTripFlightAndTrainModel>) {
         items = data
         notifyDataSetChanged()
     }

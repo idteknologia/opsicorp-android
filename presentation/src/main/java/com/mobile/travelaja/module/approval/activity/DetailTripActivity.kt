@@ -3,17 +3,22 @@ package com.mobile.travelaja.module.approval.activity
 import android.R.attr.label
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.DownloadManager
 import android.app.NotificationManager
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.accomodation.view_accomodation.activity.AccomodationActivity
@@ -22,11 +27,13 @@ import com.mobile.travelaja.module.approval.summary.ParticipantAdapter
 import com.mobile.travelaja.module.approval.summary.ParticipantModel
 import com.mobile.travelaja.module.approval.summary.SummaryAdapter
 import com.mobile.travelaja.module.create_trip.newtrip.adapter.AttachmentAdapter
+import com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.CreateTripPertaminaActivity
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverAdapter
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.adapter.ApproverCustomAdapter
 import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.item_custom.barcode.popup.QRPopUp
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
 import com.mobile.travelaja.module.payment.PaymentActivity
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
@@ -34,30 +41,37 @@ import kotlinx.android.synthetic.main.detail_trip_activity_view.*
 import opsigo.com.datalayer.datanetwork.GetDataApproval
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
+import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.ApprovalAllRequest
 import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.datalayer.request_model.create_trip_plane.*
-import opsigo.com.domainlayer.callback.CallbackApprovAll
-import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
-import opsigo.com.domainlayer.callback.CallbackSummary
+import opsigo.com.domainlayer.callback.*
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.accomodation.flight.TravelRequestApprovalModel
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import opsigo.com.domainlayer.model.summary.SummaryModel
 import opsigo.com.domainlayer.model.summary.SummaryModelItems
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 import opsigo.com.domainlayer.model.summary.TripParticipantsItemModel
+import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.airbnb.lottie.network.NetworkFetcher.fetch
+import com.tonyodev.fetch2.*
+
+import com.tonyodev.fetch2.Fetch.Impl.getInstance
+import java.io.File
+import java.io.FileWriter
 
 
 class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp.OnclickButtonListener,
@@ -72,7 +86,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     var employIdUser = ""
     var tripId = ""
     var tripSummary = SummaryModel()
-    var tripCost = EstimatedCostTravelRequestModel()
     val dataItems = ArrayList<SummaryModelItems>()
     var isUpdateSummary = false
 
@@ -85,7 +98,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     val adapterItemOrder by lazy { SummaryAdapter(this) }
     var dataAttachment = ArrayList<UploadModel>()
     val adapter by inject<AttachmentAdapter> { parametersOf(dataAttachment) }
-
 
     override fun OnMain() {
 
@@ -148,7 +160,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun successLoad(summaryModel: SummaryModel) {
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
-                /*postEstimateCost()*/
                 hideLoadingOpsicorp()
                 initRecyclerViewApproval()
 
@@ -160,20 +171,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             }
         })
 
-    }
-
-    private fun postEstimateCost() {
-        GetDataTravelRequest(getBaseUrl()).getEstimatedCost(Globals.getToken(), dataPurpose(), object : CallbackEstimatedCostTravelRequest {
-            override fun successLoad(data: EstimatedCostTravelRequestModel) {
-                tripCost = data
-
-            }
-
-            override fun failedLoad(message: String) {
-
-            }
-
-        })
     }
 
     private fun dataPurpose(): HashMap<Any, Any> {
@@ -222,7 +219,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
         adapterApproval.setData(dataApproval)
 
-        if (dataApproval.isEmpty()){
+        if (dataApproval.isEmpty()) {
             tv_list_approval.gone()
             rv_approval.gone()
         } else {
@@ -233,13 +230,13 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     fun initRecyclerViewApprover() {
         tv_list_approval.visibility = View.VISIBLE
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_approval.layoutManager = layoutManager
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApprover
 
-        if (!tripSummary.isDomestic == true){
+        if (!tripSummary.isDomestic == true) {
             dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
                 it.isDomestic
             })
@@ -257,7 +254,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
         adapterApprover.setData(dataApprover)
 
-        if (dataApprover.isEmpty()){
+        if (dataApprover.isEmpty()) {
             tv_list_approval.gone()
             rv_approval.gone()
         } else {
@@ -267,8 +264,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     private fun initRecyclerViewParticipant() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_participant.layoutManager = layoutManager
         rv_participant.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_participant.adapter = adapterParticpant
@@ -277,7 +274,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun onClick(views: Int, position: Int) {
                 when (views) {
                     -1 -> {
-                        if (intent.getBooleanExtra(Constants.KEY_IS_APPROVAL,false)) {
+                        if (intent.getBooleanExtra(Constants.KEY_IS_APPROVAL, false)) {
                             if (dataParticipant[position].employId != getProfile().employId) {
                                 val bundle = Bundle()
                                 bundle.putString(Constants.KEY_INTENT_TRIPID, tripId)
@@ -289,7 +286,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                                 bundle.putString(Constants.BUDGET, dataParticipant[position].budgetCode + " - " + dataParticipant[position].budgetName)
                                 bundle.putString(Constants.EMPLOY_ID, dataParticipant[position].employId)
                                 bundle.putString(Constants.STATUS_MEMBER, dataParticipant[position].status)
-                                bundle.putString(Constants.DetailDestination, tv_destination.text.toString() )
+                                bundle.putString(Constants.DetailDestination, tv_destination.text.toString())
                                 val status = dataParticipant[position].status
                                 gotoActivityResultWithBundle(DetailParticipantActivity::class.java, bundle, Constants.DETAIL_PERTICIPANT_INTENT)
 
@@ -356,6 +353,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         if (mData.isNotEmpty()) {
             rv_attachment.visibility = View.VISIBLE
             dataAttachment.clear()
+            mData.first().isDetailTrip = true
             dataAttachment.addAll(mData)
             adapter.setData(dataAttachment)
             title_attachment.visibility = View.VISIBLE
@@ -410,7 +408,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     model.idParticipant = tripParticipantsItemModel.id
                     model.status = tripSummary.statusView
                     model.isApproval = false
-                    model.jobtitle = Globals.getProfile(this).approval.reqPosName
+                    model.jobtitle = tripParticipantsItemModel.positionName
                     model.email = Globals.getProfile(this).approval.reqEmail
                     model.costCenterCode = tripParticipantsItemModel.costCenterCode
                     model.costCenterName = tripParticipantsItemModel.costCenterName
@@ -421,7 +419,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     model.imgUrl = ""
 
                     tv_budget.text = model.budgetCode + " - " + model.budgetName
-                    if (model.costCenterName.isNotEmpty()){
+                    if (model.costCenterName.isNotEmpty()) {
                         tv_cost_center.text = model.costCenterCode + " - " + model.costCenterName
                     } else {
                         tv_cost_center.text = Globals.getProfile(this).costCenter + " - " + Globals.getProfile(this).costCenterDefaultText
@@ -507,7 +505,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
-        if(tripSummary.routes.isNotEmpty()){
+        if (tripSummary.routes.isNotEmpty()) {
             if (tripSummary.routes.size == 1) {
                 tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination}"
             } else if (tripSummary.routes.size == 2) {
@@ -517,7 +515,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             } else if (tripSummary.routes.size == 4) {
                 tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination} - ${tripSummary.routes[3].destination}"
             } else if (tripSummary.routes.size == 5) {
-                tv_destination.text= "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination} - ${tripSummary.routes[3].destination} - ${tripSummary.routes[4].destination}"
+                tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination} - ${tripSummary.routes[1].destination} - ${tripSummary.routes[2].destination} - ${tripSummary.routes[3].destination} - ${tripSummary.routes[4].destination}"
             } else {
                 tv_destination.text = tripSummary.routes.last().destination
             }
@@ -529,14 +527,17 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
         tv_notes.text = tripSummary.remark
 
-        val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
+        val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT, false)
 
         if (tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Completely Rejected") {
             line_add_trip_item.gone()
+            line_btn_change.gone()
         } else if (!debug) {
             line_add_trip_item.gone()
+            line_btn_change.gone()
         } else {
             line_add_trip_item.visible()
+            line_btn_change.visible()
         }
 
         try {
@@ -599,15 +600,14 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         title_trip_total.visibility = View.VISIBLE
 
         dataItems.clear()
-        if(!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!!&&intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!){
+        if (!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!! && intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!) {
             dataAccomodation = tripSummary.tripParticipantModels.first()
-        }
-        else {
+        } else {
             dataAccomodation = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first()
         }
 
         val totalAccomdation = dataAccomodation.itemFlightModel.size + dataAccomodation.itemTrainModel.size + dataAccomodation.itemHotelModel.size
-        title_trip_total.text = "${getString(R.string.your_trip_items_detail )} (${totalAccomdation})"
+        title_trip_total.text = "${getString(R.string.your_trip_items_detail)} (${totalAccomdation})"
 
         var number = 1
 
@@ -708,8 +708,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     private fun initRecyclerViewItem() {
 
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_item_order.layoutManager = layoutManager
         rv_item_order.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_item_order.adapter = adapterItemOrder
@@ -737,9 +737,51 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     Constants.OPTION_HOTEL_REJECT -> {
                         approveOrRejectItemRequest("0", "1")
                     }
+                    Constants.DETAIL_TICKET_FLIGHT ->{
+                        gotoEticket(position,0)
+                    }
+                    Constants.DETAIL_TICKET_HOTEL -> {
+                        gotoEticket(position,1)
+                    }
                 }
             }
         })
+    }
+
+    private fun gotoEticket(position: Int,typeItem:Int) {
+
+        var status = ""
+        var idItem = ""
+        when(typeItem){
+            0 -> {
+                idItem = dataItems[position].dataItemFlight.pnrCode
+                status = dataItems[position].dataItemFlight.status
+            }
+            1 -> {
+                idItem = dataItems[position].dataItemHotel.hotelId
+                status = dataItems[position].dataItemHotel.status
+            }
+            2 -> {
+                idItem = dataItems[position].dataItemTrain.pnrCode
+                status = dataItems[position].dataItemTrain.status
+            }
+        }
+        if (status.toLowerCase()=="ticketed"){
+            showLoadingOpsicorp(true)
+            GetDataGeneral(getBaseUrl()).getDataEticket(getToken(), tripId,idItem,typeItem, object : CallbackEticket {
+                override fun successLoad(summaryModel: DetailMyBookingModel) {
+                    hideLoadingOpsicorp()
+                    val bundle = Bundle()
+                    bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,0)
+                    bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,summaryModel)
+                    gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
+                }
+
+                override fun failedLoad(message: String) {
+                    hideLoadingOpsicorp()
+                }
+            })
+        }
     }
 
     fun approveOrRejectItemRequest(action: String, type: String) {
@@ -761,7 +803,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     private fun updateSummary() {
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
-               tripSummary = summaryModel
+                tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
                 hideDialog()
             }
@@ -779,9 +821,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         data.tripType = type
         data.employeeId = getProfile().employId
         data.tripId = tripSummary.tripId
-        if(!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!!&&intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!){
+        if (!intent.extras?.getBoolean(Constants.KEY_IS_PARTICIPANT)!! && intent.extras?.getBoolean(Constants.KEY_IS_APPROVAL)!!) {
             data.tripParticipantId = tripSummary.tripParticipantModels.first().id
-        }else{
+        } else {
             data.tripParticipantId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().id
         }
         return Globals.classToHashMap(data, ApproverPerItemRequest::class.java)
@@ -805,9 +847,30 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         val layout = layoutInflater.inflate(R.layout.menu_popup_list_my_booking, null)
         val btnDetail = layout.findViewById(R.id.tv_view_detail) as TextView
         val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
+        val lineDownload = layout.findViewById(R.id.line_download) as LinearLayout
+        val btnDownload = layout.findViewById(R.id.tv_download_itenary) as TextView
+        val lineDownloadCoverLetter = layout.findViewById(R.id.line_download_cover_latter) as LinearLayout
+        val btnDownloadCoverLetter = layout.findViewById(R.id.tv_download_cover_latter) as TextView
 
-        btnDetail.text = "Back"
-        btnRemove.text = "Help and guide"
+
+        btnDetail.text      = "Back"
+        btnRemove.text      = "Help and guide"
+        btnDownload.text    = "Download itinerary"
+        btnDownloadCoverLetter.text  = "Download SKPD Letter"
+
+        val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
+
+        if (isParticipant&&tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary!="null") {
+            lineDownload.visibility = View.VISIBLE
+            btnDownload.visibility  = View.VISIBLE
+        }
+
+        if (isParticipant&&tripSummary.coverLatter!="null") {
+            lineDownloadCoverLetter.visibility = View.VISIBLE
+            btnDownloadCoverLetter.visibility  = View.VISIBLE
+        }
+
+        val dialog = Globals.showPopup(toolbar.getImageCart(), layout)
 
         btnDetail.setOnClickListener {
             if (isUpdateSummary) {
@@ -821,12 +884,79 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
 
         btnRemove.setOnClickListener {
-
+            dialog.dismiss()
         }
 
-        Globals.showPopup(toolbar.getImageCart(), layout)
+        btnDownload.setOnClickListener {
+//            val url = "https://opsicorp.blob.core.windows.net/opsicorpdtmqa-trip-itinerary/Official_Letter%20TP202109090001.pdf"
+//            val url2 = "https://kkn.unnes.ac.id/lapkkn/11402_3324122015_Desa%20Tratemulyo_20141223_110650.pdf"
+            dialog.dismiss()
+            val idItinerary = tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary.toString()
+            getUrlFile(idItinerary)
+        }
+
+        btnDownloadCoverLetter.setOnClickListener {
+            dialog.dismiss()
+            getUrlFile(tripSummary.coverLatter)
+        }
     }
 
+    private fun getUrlFile(idFile:String) {
+        showDialog("Please Wait")
+        GetDataTripPlane(getBaseUrl()).getUrlFile(getToken(),idFile,object : CallbackGetUrlFile {
+            override fun success(url:String) {
+                hideDialog()
+                dowloadByLib(url)
+//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                startActivity(browserIntent)
+//                dowloadFile(url)
+            }
+
+            override fun failed(string: String) {
+                setToast(string)
+            }
+        })
+    }
+
+    lateinit var fetch: Fetch
+
+    private fun dowloadByLib(url: String) {
+        try {
+            val fetchConfiguration: FetchConfiguration = FetchConfiguration.Builder(this)
+                .setDownloadConcurrentLimit(3)
+                .build()
+
+            fetch = getInstance(fetchConfiguration)
+
+            val dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+
+            val request = Request(url,dir.absolutePath+"/Travelaja/Itin${System.currentTimeMillis()}.${url.split(".").last()}")
+            request.priority = Priority.HIGH
+            request.networkType = NetworkType.ALL
+
+            fetch.enqueue(request, { updatedRequest ->
+                setToast("Download Completed : ${updatedRequest.file}")
+            }) { error ->
+                setToast(error.throwable?.message.toString())
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
+
+    private fun dowloadFile(url: String) {
+        Globals.downloadFile(url,this,object :Globals.CallbackDownload{
+            override fun succeessDownload(parse: Uri, downloadMimeType: String) {
+                hideDialog()
+                Globals.openDownloadedAttachment(this@DetailTripActivity,parse,downloadMimeType)
+            }
+
+            override fun failedDownload() {
+                hideDialog()
+                setToast("Failed access file url")
+            }
+        })
+    }
 
     override fun onClick(view: View?) {
         when (view) {
@@ -844,8 +974,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         gotoAddItem()
     }
 
+    fun changeTripListener(view: View) {
+        gotoChangeTrip()
+    }
+
     fun showApproveAllDialog(view: View) {
-        if (getBaseUrl()==Constants.pertaminaUrl) {
+        if (getConfigCompany().codeCompany == Constants.CodeCompany.PertaminaDTM) {
             approveOrRejectItemRequest("1", "1")
             /*saveToDraft()*/
         } else {
@@ -1006,8 +1140,27 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         return Globals.classToHashMap(mData, ApprovePerPaxRequest::class.java)
     }
 
+    fun gotoChangeTrip() {
+        showLoadingOpsicorp(true)
+        GetDataTravelRequest(getBaseUrl()).changeTrip(getToken(), tripSummary.tripId, object : CallbackChangeTrip{
+            override fun successLoad(data: ChangeTripModel) {
+                hideLoadingOpsicorp()
+                Constants.DATA_CHANGE_TRIP = Serializer.serialize(data)
+                setLog("Test Change Trip", Serializer.serialize(Constants.DATA_CHANGE_TRIP))
+                val intent = Intent(applicationContext,CreateTripPertaminaActivity::class.java)
+                intent.putExtra(Constants.CHANGE_TRIP, true)
+                startActivity(intent)
+            }
+
+            override fun failedLoad(message: String) {
+                showAllert(getString(R.string.sorry), message)
+            }
+
+        })
+    }
+
     fun gotoAddItem() {
-        if (intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)) {
+        if (intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT, false)) {
             val model = SuccessCreateTripPlaneModel()
             model.purpose = tripSummary.purpose
             model.idTripPlane = tripSummary.tripId
@@ -1019,7 +1172,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.trnNumber = tripSummary.trnNumber
             model.isTripPartner = tripSummary.isTripPartner
             model.tripPartnerName = tripSummary.parterName
-            if(tripSummary.routes.isNotEmpty()){
+            if (tripSummary.routes.isNotEmpty()) {
                 model.originId = tripSummary.origin
                 model.originName = tripSummary.routes.first().origin
                 model.destinationName = tripSummary.routes.first().destination
@@ -1030,12 +1183,11 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 model.destinationName = tripSummary.destinationName
                 model.destinationId = tripSummary.destination
             }
+            model.route = mappingRoutes(tripSummary.routes)
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
-            model.route   = mappingRoutes(tripSummary.routes)
             model.attachment.addAll(addAttacthment())
-            /*model.buggetId = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().budgetId*/
-            if (tripSummary.budgetId.isNullOrEmpty()){
+            if (tripSummary.budgetId.isNullOrEmpty()) {
                 model.buggetId = getProfile().costCenter
             } else {
                 model.buggetId = tripSummary.budgetId
@@ -1043,12 +1195,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.costCenter = tripSummary.tripParticipantModels.filter { it.employId == getProfile().employId }.first().costId
 
             model.businessTripType = tripSummary.businessTripType
-            model.remark      = tripSummary.remark.toString()
-            model.wbsNo       = tripSummary.wbsNo
-            model.isDomestik  = tripSummary.isDomestic
+            model.remark = tripSummary.remark.toString()
+            model.wbsNo = tripSummary.wbsNo
+            model.isDomestik = tripSummary.isDomestic
             model.isBookAfterApprove = tripSummary.isBookAfterApprove
             model.isPrivateTrip = tripSummary.isPrivateTrip
-            model.golper      = tripSummary.golper
+            model.golper = tripSummary.golper
 
             Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
 
@@ -1068,8 +1220,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tripSummary.attactment.forEach {
             val model = TripAttachmentItemModel()
             model.description = it.nameImage
-            model.url         = it.url
-            model.id          = it.id
+            model.url = it.url
+            model.id = it.id
             setLog(" Test attachment => ${Serializer.serialize(model)}")
             data.add(model)
         }
@@ -1081,8 +1233,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         routes.forEach {
             val mData = RouteMultiCityModel()
             mData.destinationName = it.destination
-            mData.originName    = it. origin
+            mData.originName = it.origin
             mData.dateDeparture = it.departureDate
+            mData.transportationType = it.transportation
             data.add(mData)
         }
         return data

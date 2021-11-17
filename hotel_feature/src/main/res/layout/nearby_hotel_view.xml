@@ -48,61 +48,61 @@
 -->
     <LinearLayout
         android:id="@+id/layToolbar"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorPrimary"
         android:gravity="center"
-        android:layout_height="59dp">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/lay_search"
-            android:layout_below="@id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="37dp"
+            android:layout_below="@id/tv_title"
+            android:layout_gravity="center"
             android:layout_marginLeft="@dimen/margin_default"
             android:layout_marginRight="0dp"
             android:layout_weight="1"
-            android:orientation="horizontal"
+            android:background="@drawable/rounded_button_et_search"
             android:gravity="center"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_button_et_search">
+            android:orientation="horizontal">
 
             <ImageView
-                android:focusable="true"
                 android:id="@+id/img_search"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_search_orange"
                 android:layout_width="20dp"
-                android:layout_height="20dp"/>
+                android:layout_height="20dp"
+                android:layout_marginLeft="10dp"
+                android:focusable="true"
+                android:src="@drawable/ic_search_orange" />
 
             <EditText
-                android:layout_marginLeft="14dp"
                 android:id="@+id/et_filter"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:drawablePadding="5dp"
                 android:hint="Enter office name"
                 android:imeOptions="actionSearch"
                 android:inputType="textNoSuggestions"
-                android:textColorHint="#b2bbc6"
                 android:paddingLeft="6dp"
                 android:paddingTop="0dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="0dp"
+                android:textColorHint="#b2bbc6"
                 android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/imgCloseDest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:src="@drawable/ic_close_dark_gray"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:src="@drawable/ic_close_dark_gray" />
 
         </LinearLayout>
 
@@ -111,20 +111,19 @@
             android:id="@+id/tv_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#ffffff"
-            android:text="CLOSE"
             android:paddingLeft="15dp"
             android:paddingRight="20dp"
-            />
+            android:text="CLOSE"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_below="@id/layToolbar"
         android:id="@+id/rv_nearby"
-        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/layToolbar"
+        android:layout_marginTop="0dp" />
 
     <RelativeLayout
         android:background="@android:color/white"

@@ -179,11 +179,10 @@ class GetDataTestCreateTriplane:KoinTest{
         return maps
     }
 
-
-    fun pathImageToMultipart(nameParameter:String,realPathImage:String): MultipartBody.Part? {
-        val file = File(realPathImage)
-        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), realPathImage)
-        return MultipartBody.Part.createFormData(nameParameter, file.getName(), requestFile)
-    }
+//    fun pathImageToMultipart(nameParameter:String,realPathImage:String): MultipartBody.Part {
+//        val file = File(realPathImage)
+//        val requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), realPathImage)
+//        return MultipartBody.Part.createFormData(nameParameter, file.getName(), requestFile)
+//    }
 
 }

@@ -101,9 +101,14 @@ object MyURL {
     const val ISSUED_ALL            = "api/TripPlan/IssuedAll"
     const val CHECK_AVAIBILITY_DATE = "api/TripPlan/ValidationTravelRequest"
     const val CHECK_CASH_ADVANCE    = "api/TripPlan/CheckAllowedRequestCashAdvance"
+    const val CHANGE_TRIP           = "api/TripPlan/ChangeTrip"
 
     //personal trip
     const val GET_LIST_MY_BOOKING = "api/PersonalTrip/PurchaseList"
     const val DETAIL_MY_BOOKING   = "api/PersonalTrip/PurchaseDetail"
 
+    const val GET_URL_FILE        = "api/TripPlan/DownloadFile"
+    const val API_REFUND          = "api/TripPlan/Refund"
+    const val API_RESCHEDULE      = "api/TripPlan/Reschedule"
+    const val ATTACHMENT_RESCHEDULE = "api/UploadNewAttachment"
 }

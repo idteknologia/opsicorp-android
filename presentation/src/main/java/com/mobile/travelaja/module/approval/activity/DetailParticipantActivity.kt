@@ -23,6 +23,7 @@ import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
+import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import java.util.HashMap
 
 class DetailParticipantActivity : BaseActivity()
@@ -40,13 +41,12 @@ class DetailParticipantActivity : BaseActivity()
     var jobTitle = ""
     var status = ""
     var nameParticipant = ""
-    var costCenter = ""
-    var budget = ""
     var destination = ""
     var getActionApprove = false
 
     var idTripCode    = ""
     var tripSummary   = SummaryModel()
+    var estCost = ""
     var idParticipant = ""
     var employId      = ""
     lateinit var dataAccomodation: TripParticipantsItemModel
@@ -60,11 +60,8 @@ class DetailParticipantActivity : BaseActivity()
         val bundle = intent.getBundleExtra("data")
         id  = bundle?.getString(Constants.KEY_INTENT_TRIPID).toString()
         str = bundle?.getString(Constants.Summary).toString()
+        estCost = bundle?.getString(Constants.EstCost).toString()
         status = bundle?.getString(Constants.STATUS_MEMBER).toString()
-        jobTitle = Globals.getProfile(this).approval.reqPosName
-        nameParticipant = Globals.getProfile(this).approval.reqName
-        costCenter          = Globals.getProfile(this).costCenter
-        budget          = Globals.getProfile(this).approval.reqEmail
         idParticipant = bundle?.getString(Constants.ID_PARTICIPANT).toString()
         employId      = bundle?.getString(Constants.EMPLOY_ID).toString()
         destination = bundle?.getString(Constants.DetailDestination).toString()
@@ -317,15 +314,30 @@ class DetailParticipantActivity : BaseActivity()
             tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
         }
 
-        tv_jobtitle.text = jobTitle
-        tv_name.text     = nameParticipant
-        tv_cost_center.text   = costCenter
-        tv_budget_name.text   = budget
+        if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            tvAllowanceLine.gone()
+        } else {
+            tvAllowanceLine.visible()
+        }
+
+        tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName
+        tv_name.text     = "${tripSummary.contact.firstName} ${tripSummary.contact.lastName}"
+        tv_cost_center.text   = "${tripSummary.tripParticipantItem.first().costCenterCode} - ${tripSummary.tripParticipantItem.first().costCenterName}"
+        tv_budget_name.text   = tripSummary.tripParticipantItem.first().email
+        tv_cost_center_price.text = "IDR ${Globals.formatAmount(tripSummary.totalAllowance)}"
+        tv_est_flight.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estFlight.toString())}"
+        tv_est_hotel.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estHotel.toString())}"
+        tv_est_transportation.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTransportation.toString())}"
+        tv_est_allowance.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowance.toString())}"
+        tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceEvent.toString())}"
+        tv_est_laundry.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estLaundry.toString())}"
+        tv_est_total.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
 
     }
 
     override fun btnBack() {
-        backListen()
+        /*backListen()*/
+        onBackPressed()
     }
 
     override fun logoCenter() {

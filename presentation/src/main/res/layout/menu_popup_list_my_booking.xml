@@ -28,6 +28,58 @@
 
 
         <LinearLayout
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:id="@+id/line_download"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp">
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_download_itenary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            style="@style/RobotoRegular"
+            android:text="@string/remove_item">
+        </TextView>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:id="@+id/line_download_cover_latter"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp">
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_download_cover_latter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            style="@style/RobotoRegular"
+            android:text="@string/remove_item">
+        </TextView>
+
+        <LinearLayout
             android:orientation="vertical"
             android:id="@+id/line_center"
             android:layout_width="match_parent"
@@ -50,6 +102,5 @@
             style="@style/RobotoRegular"
             android:text="@string/remove_item">
         </TextView>
-
     </LinearLayout>
 </LinearLayout>

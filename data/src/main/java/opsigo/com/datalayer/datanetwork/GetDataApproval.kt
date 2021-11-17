@@ -7,6 +7,7 @@ import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.callback.CallbackTotalApproval
 import opsigo.com.domainlayer.usecase.ApprovalRepository
 import okhttp3.ResponseBody
+import opsigo.com.domainlayer.callback.CallbackString
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -118,11 +119,43 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                     }
 
                     override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                        try {
+                            if (response.isSuccessful){
+                                val responseString = response.body()?.string()
+                                val json = JSONObject(responseString)
+                                if (json.getBoolean("isSuccess")){
+                                    callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                                }
+                                else{
+                                    callback.failedLoad(json.getString("errorMessage"))
+                                }
+                            }
+                            else {
+                                val json = JSONObject(response.errorBody()?.string())
+                                val message = json.optString("error_description")
+                                callback.failedLoad(message)
+                            }
+                        }catch (e:Exception){
+                            e.printStackTrace()
+                        }
+                    }
+                })
+    }
+
+    override fun refund(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
+        apiOpsicorp.getRefund(token,data)
+            .enqueue(object :Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    callback.failedLoad(t.message!!)
+                }
+
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    try {
                         if (response.isSuccessful){
                             val responseString = response.body()?.string()
                             val json = JSONObject(responseString)
                             if (json.getBoolean("isSuccess")){
-                                callback.successLoad(ApprovalAllMapper().mapping(responseString!!))
+                                callback.successLoad("success")
                             }
                             else{
                                 callback.failedLoad(json.getString("errorMessage"))
@@ -133,8 +166,38 @@ class GetDataApproval(baseUrl:String) : BaseGetData(), ApprovalRepository {
                             val message = json.optString("error_description")
                             callback.failedLoad(message)
                         }
+                    }catch (e:Exception){
+                        e.printStackTrace()
                     }
-                })
+                }
+            })
+    }
+
+    override fun reschedule(token: String, data: HashMap<Any, Any>, callback: CallbackString) {
+        apiOpsicorp.getReschedule(token,data)
+            .enqueue(object :Callback<ResponseBody>{
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    callback.failedLoad(t.message!!)
+                }
+
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        val json = JSONObject(responseString)
+                        if (json.getBoolean("isSuccess")){
+                            callback.successLoad("success")
+                        }
+                        else{
+                            callback.failedLoad(json.getString("errorMessage"))
+                        }
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failedLoad(message)
+                    }
+                }
+            })
     }
 
     /*

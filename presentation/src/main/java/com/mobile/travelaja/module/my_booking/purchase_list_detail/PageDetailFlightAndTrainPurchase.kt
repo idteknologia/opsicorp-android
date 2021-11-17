@@ -1,26 +1,25 @@
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
+import android.view.View
+import com.mobile.travelaja.R
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
 import android.widget.LinearLayout
-import com.mobile.travelaja.R
-import com.mobile.travelaja.module.my_booking.adapter.ImportanPreProductInfoAdapter
-import com.mobile.travelaja.module.my_booking.adapter.PassangerPurchaseAdapter
-import com.mobile.travelaja.module.my_booking.model.DetailFlightPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.DetailTrainPurchaseModel
-import com.mobile.travelaja.module.my_booking.model.ImportanPreProductInfoModel
-import com.mobile.travelaja.module.my_booking.model.PassangerPurchaseModel
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.page_detail_flight_and_train.view.*
+import opsigo.com.domainlayer.model.my_booking.DetailFlightMyBookingModel
+import opsigo.com.domainlayer.model.my_booking.ImportanPreProductInfoModel
+import com.mobile.travelaja.module.my_booking.adapter.PassangerPurchaseAdapter
+import com.mobile.travelaja.module.my_booking.adapter.ImportanPreProductInfoAdapter
+import opsigo.com.domainlayer.model.my_booking.ItemPurchaseTrainModel
 
 class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
 
     lateinit var onclick : OnclickButtonListener
-    val data by lazy { ArrayList<ImportanPreProductInfoModel>() }
-    val dataPassager by lazy { ArrayList<PassangerPurchaseModel>() }
+    val dataImportant by lazy { ArrayList<ImportanPreProductInfoModel>() }
+    val dataPassager by lazy { ArrayList<Any>() }
     val adapterPassager by lazy { PassangerPurchaseAdapter(context,dataPassager) }
-    val adapterFlightInfo by lazy { ImportanPreProductInfoAdapter(context,data) }
-
+    val adapterFlightInfo by lazy { ImportanPreProductInfoAdapter(context,dataImportant) }
 
     fun callbackOnclickButton(onclickButtonListener: OnclickButtonListener){
         onclick = onclickButtonListener
@@ -35,7 +34,6 @@ class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
 
         init()
     }
-
 
     private fun init() {
         setOrientation(VERTICAL)
@@ -65,7 +63,6 @@ class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
     override fun onClick(v: View?) {
 
     }
-    
 
     fun hidenLayout() {
         visibility = View.GONE
@@ -75,23 +72,29 @@ class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
         visibility = View.VISIBLE
     }
 
-    fun setDataFlight(data: DetailFlightPurchaseModel) {
-        tv_total_pricing.text = data.totalPrize
-        this.data.clear()
+    fun setDataFlight(data: DetailFlightMyBookingModel,totalPrice:Double) {
+        tv_total_pricing.text = "IDR ${Globals.formatAmount(totalPrice)}"
+        this.dataImportant.clear()
         this.dataPassager.clear()
-        this.data.addAll(data.importan)
+        addImportant()
         this.dataPassager.addAll(data.passanger)
         adapterPassager.setData(this.dataPassager)
-        adapterFlightInfo.setData(this.data)
+        adapterFlightInfo.setData(this.dataImportant)
     }
 
-    fun setDataTrain(data: DetailTrainPurchaseModel) {
-        tv_tittle_prize.text = data.totalPrize
-        this.data.clear()
+    private fun addImportant(){
+        dataImportant.add(ImportanPreProductInfoModel("Passenger need to show this e-ticket and passenger identity when check-in.",R.drawable.ic_info_pre_flight))
+        dataImportant.add(ImportanPreProductInfoModel("Please arrive at the airport for check-in 90 minutes prior departure.",R.drawable.ic_stop_watch))
+        dataImportant.add(ImportanPreProductInfoModel("The time listed above is the local airport time.",R.drawable.ic_expiry_time))
+    }
+
+    fun setDataTrain(data: ItemPurchaseTrainModel,totalPrice: Double) {
+        tv_total_pricing.text = "IDR ${Globals.formatAmount(totalPrice)}"
+        this.dataImportant.clear()
         this.dataPassager.clear()
-        this.data.addAll(data.importan)
-        this.dataPassager.addAll(data.passanger)
+        addImportant()
+        this.dataPassager.addAll(data.passager)
         adapterPassager.setData(dataPassager)
-        adapterFlightInfo.setData(this.data)
+        adapterFlightInfo.setData(this.dataImportant)
     }
 }

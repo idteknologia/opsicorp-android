@@ -1,26 +1,26 @@
 package com.mobile.travelaja.module.my_booking.purchase_detail
 
+import android.app.TimePickerDialog
 import android.os.Build
+import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.View
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
-import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.base.BaseActivityBinding
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.datalayer.datanetwork.GetDataMyBooking
-import opsigo.com.domainlayer.model.summary.ItemTrainModel
-import opsigo.com.domainlayer.model.my_booking.ItemFlightModel
 import opsigo.com.domainlayer.callback.CallbackDetailMyBooking
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import com.mobile.travelaja.databinding.PurchaseActivityBinding
-import opsigo.com.domainlayer.model.my_booking.ItemHotelPurchase
 import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.my_booking.adapter.PriceDetailMyBookingAdapter
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
+import opsigo.com.datalayer.mapper.Serializer
 
 class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         OnclickListenerRecyclerView,
@@ -29,6 +29,11 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     override fun bindLayout(): PurchaseActivityBinding {
         return PurchaseActivityBinding.inflate(layoutInflater)
     }
+
+    lateinit var dataDetailPurchase : DetailMyBookingModel
+    val data by lazy { ArrayList<Any>() }
+    val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
+    val priceAdapter by lazy { PriceDetailMyBookingAdapter(this) }
 
     override fun onMain() {
         initToolbar()
@@ -46,14 +51,9 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         }
         val first = "To better assist you, please give your  "
         val next  = "<font color='#009688'>booking ID</font>"
-        val last  = "when you contact to our Customer service, Thank you. "
+        val last  = " when you contact to our Customer service, Thank you. "
         viewBinding.tvInfoTravel.text = Html.fromHtml(first + next+last)
     }
-
-
-    val data by lazy { ArrayList<Any>() }
-    val adapterItem by lazy { PurchaseDetailProductAdapter(this,data) }
-    val priceAdapter = PriceDetailMyBookingAdapter(this)
 
 
     private fun initToolbar() {
@@ -90,13 +90,12 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
             adapter = adapterItem
         }
 
-        viewBinding.rvPrice.apply {
-            val lm = LinearLayoutManager(this@PurchaseDetailActivity)
-            lm.orientation = LinearLayoutManager.VERTICAL
-            layoutManager = lm
-            itemAnimator  = DefaultItemAnimator()
-            adapter       = priceAdapter
-        }
+        val layoutManegePolicy = LinearLayoutManager(this)
+        layoutManegePolicy.orientation = LinearLayoutManager.VERTICAL
+        viewBinding.rvPrice.layoutManager = layoutManegePolicy
+        viewBinding.rvPrice.itemAnimator  = DefaultItemAnimator()
+        viewBinding.rvPrice.adapter       = priceAdapter
+
         adapterItem.setOnclickListener(this)
 
         getData()
@@ -108,19 +107,20 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         GetDataMyBooking(getBaseUrl()).getDetailMyBooking(getToken(),intent?.getStringExtra(Constants.DATA_SELECT_PURCHASE).toString(),object : CallbackDetailMyBooking{
             override fun success(data: DetailMyBookingModel) {
                 hideLoadingOpsicorp()
-                when(data.itemType){
-                    Constants.TripType.Airline -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemFlightModel>)
-                    }
-                    Constants.TripType.KAI -> {
-                        this@PurchaseDetailActivity.data.addAll(data.dataItem as List<ItemTrainModel>)
-                    }
-                    Constants.TripType.Hotel -> {
-                        this@PurchaseDetailActivity.data.add(data.dataItem as ItemHotelPurchase)
-                    }
-                }
-                adapterItem.setData(this@PurchaseDetailActivity.data)
                 setDataView(data)
+                dataDetailPurchase = data
+                 when(data.itemType){
+                     Constants.TripType.Airline -> {
+                         this@PurchaseDetailActivity.data.addAll(dataDetailPurchase.dataFlight)
+                     }
+                     Constants.TripType.KAI -> {
+                         this@PurchaseDetailActivity.data.addAll(dataDetailPurchase.dataTrain)
+                     }
+                     Constants.TripType.Hotel -> {
+                         this@PurchaseDetailActivity.data.add(dataDetailPurchase.dataHotel)
+                     }
+                 }
+                 adapterItem.setData(this@PurchaseDetailActivity.data)
             }
 
             override fun failed(message: String) {
@@ -131,17 +131,18 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     }
 
     private fun setDataView(data: DetailMyBookingModel) {
-        setLog("---------->")
-        setLog(Serializer.serialize(data))
         viewBinding.tvPurchaseDate.text = data.purchasedDate
         viewBinding.tvTypePayment.text = data.paymentMethod
-        viewBinding.tvTotalPrice.text = Globals.formatAmount(data.totalPaid)
+        viewBinding.tvTotalPrice.text = "IDR ${Globals.formatAmount(data.totalPaid)}"
         priceAdapter.setData(data.priceDetails)
 
     }
 
     override fun onClick(views: Int, position: Int) {
-        gotoActivity(PurchaseDetailListActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt(Constants.KEY_POSITION_SELECTED_ITEM,position)
+        bundle.putParcelable(Constants.KEY_DATA_PARCELABLE,dataDetailPurchase)
+        gotoActivityWithBundle(PurchaseDetailListActivity::class.java,bundle)
     }
 
     override fun btnBack() {
@@ -155,6 +156,5 @@ class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
     override fun btnCard() {
 
     }
-
 
 }

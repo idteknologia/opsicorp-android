@@ -62,6 +62,7 @@
 
     <string name="departure_date">Departure Date</string>
     <string name="return_date">Return Date</string>
+    <string name="departure_time">Departure Time</string>
     <string name="reset_your_password">Reset Your Password</string>
 
 
@@ -964,8 +965,8 @@ Please add your trip item for Approval."
     <string name="sorry_for_your_inconvinience">Sorry for your inconvinience</string>
     <string name="this_feature_is_under_construction">This feature is under construction</string>
     <string name="weather">Weather</string>
-    <string name="created_date_with_symbol">Created Date :</string>
-    <string name="description_with_symbol">Description :</string>
+    <string name="created_date_with_symbol">Created Date : </string>
+    <string name="description_with_symbol">Description : </string>
     <string name="passenger_information">Passenger Information</string>
     <string name="mobile_number">Mobile Number</string>
     <string name="transportation">Transportation</string>
@@ -1173,6 +1174,8 @@ Please add your trip item for Approval."
     <string name="trip_expense">Trip Expense</string>
     <string name="airport_non_airport_trip_expense">Airport or NON-Airport</string>
     <string name="refund_ticket">Refund Ticket</string>
+    <string name="reschedule_ticket">Reschedule</string>
+    <string name="refund">Refund</string>
     <string name="refund_amount_ticket">Refund Amount <font color="#2b9a8e">IDR</font></string>
     <string name="refund_amount_ticket_usd">Refund Amount <font color="#2b9a8e">USD</font></string>
     <string name="expand_detail">Expand Detail</string>
@@ -1188,6 +1191,9 @@ Please add your trip item for Approval."
     <string name="alert_not_include_other_expense">Are you sure save Reimbursement not include with Other Expense</string>
     <string name="not_text"></string>
     <string name="trip_history">Trip History</string>
+
+    <string name="not_available_flight">This trip not available flight</string>
+    <string name="purchase_hotel_detail">E-ticket Itinerary</string>
     <string name="open_setting">Setting Application</string>
     <string name="alert_application_need_permission_storage_and_camera">Application need permission Storage &amp; Camera access</string>
     <string name="currency">Currency</string>
@@ -1199,5 +1205,11 @@ Please add your trip item for Approval."
     <string name="waiting_for_payment">Waiting For Payment</string>
     <string name="complain">Complain</string>
     <string name="data_is_empty">Data is empty</string>
+    <string name="your_pic_email">your-pic-email@gmail.com</string>
+    <string name="not_authorized">You are not authorized to view the <br>requested page. We Apologize for the</br> inconvenience.</string>
+    <string name="change_trip">Change Trip</string>
+    <string name="title_ticket_hotel">Voucher Code</string>
+    <string name="massage_success_refund">This Refund request has been sent to Travel Agent. You will be contact later.</string>
+    <string name="massage_success_reschedule">This reschedule request has been sent to Travel Agent. You will be contact later.</string>
 </resources>
 

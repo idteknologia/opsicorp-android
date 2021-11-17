@@ -19,6 +19,7 @@
     </TextView>
 
     <TextView
+        android:id="@+id/tv_hotel_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/string_page_detail_hotel"
@@ -138,6 +139,9 @@
         android:background="#b2bbc6"></LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/transparent"
         android:id="@+id/rv_room_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -155,6 +159,8 @@
         android:paddingBottom="11dp">
 
         <androidx.cardview.widget.CardView
+            android:visibility="gone"
+            android:id="@+id/line_hotel_message"
             app:cardElevation="3dp"
             android:layout_margin="4dp"
             app:cardCornerRadius="4dp"
@@ -279,7 +285,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/rv_cancel_policy">
+            android:id="@+id/rv_cancel_policy"
+            android:layout_marginBottom="10dp">
         </androidx.recyclerview.widget.RecyclerView>
 
     </com.mobile.travelaja.module.item_custom.expandview.ExpandableLinearLayout>
@@ -297,6 +304,7 @@
         android:paddingBottom="11dp">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/line_remark"
             app:cardElevation="3dp"
             app:cardCornerRadius="4dp"
             android:layout_margin="4dp"
@@ -349,7 +357,7 @@
                     android:id="@+id/expand_remark"
                     app:ael_duration="200"
                     app:ael_expanded="true"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="15dp"
                     app:ael_interpolator="accelerateDecelerate">
 
@@ -441,6 +449,7 @@
             android:layout_marginTop="12dp"/>
 
         <TextView
+            android:id="@+id/tv_price_hotel"
             android:layout_below="@+id/tv_tittle_prize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

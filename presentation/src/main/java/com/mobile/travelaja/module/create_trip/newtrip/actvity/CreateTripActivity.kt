@@ -161,26 +161,6 @@ class CreateTripActivity : BaseActivity(),
         else {
             showDialogCamera()
         }
-        /*if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED
-                    && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED
-                    && checkSelfPermission(Manifest.permission.CAMERA)!== PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(
-                        arrayOf(
-                                Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.CAMERA
-                        ),
-                        READ_REQUEST_CODE
-                )
-            }
-            else {
-                showDialogCamera()
-            }
-        }
-        else {
-            showDialogCamera()
-        }*/
     }
 
     protected fun checkPermission(): Boolean {
@@ -245,8 +225,8 @@ class CreateTripActivity : BaseActivity(),
         m_endate            = mEndDate
     }
 
-    override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
-    }
+//    override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
+//    }
 
     override fun startDate(displayStartDate: String, startDate: String) {
         tv_from.setText(displayStartDate)

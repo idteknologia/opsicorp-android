@@ -10,4 +10,5 @@ class UploadModel {
     var pathOriginalLocalImage = ""
     var statusUploaded = ""
     var nameImage = ""
+    var isDetailTrip = false
 }

@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class DetailMyBookingEntity(
 
 	@field:SerializedName("data")
-	val data: Data? = null,
+	val data: Data = Data(),
 
 	@field:SerializedName("errorMessage")
 	val errorMessage: String? = null,
@@ -17,10 +17,10 @@ data class DetailMyBookingEntity(
 data class Data(
 
 	@field:SerializedName("PriceDetails")
-	val priceDetails: List<Any?>? = null,
+	val priceDetails: ArrayList<PriceMyBookingEntity> = ArrayList(),
 
 	@field:SerializedName("Trains")
-	val trains: List<Any> = ArrayList(),
+	val trains: ArrayList<TrainItemMyBookingEntity> = ArrayList(),
 
 	@field:SerializedName("PaymentStatusText")
 	val paymentStatusText: String? = null,
@@ -38,7 +38,7 @@ data class Data(
 	val code: String? = null,
 
 	@field:SerializedName("Flights")
-	val flights: List<Any>? = null,
+	val flights: ArrayList<FlightItemMyBookingEntity>? = null,
 
 	@field:SerializedName("PurchasedDate")
 	val purchasedDate: String? = null,
@@ -78,4 +78,16 @@ data class BookingContact(
 
 	@field:SerializedName("MobilePhone")
 	val mobilePhone: String? = null
+)
+
+data class PriceMyBookingEntity(
+
+	@field:SerializedName("Amount")
+	val amount: Double = 0.0,
+
+	@field:SerializedName("Title")
+	val title: String? = null,
+
+	@field:SerializedName("Index")
+	val index: Int? = null
 )

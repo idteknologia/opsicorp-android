@@ -112,12 +112,11 @@ class FlightMultiCityListActivity : BaseActivity(),
         toolbar.hidenBtnCart()
         toolbar.setTitleBar("Multi City")
         toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.singgleTitleGravity(toolbar.START)
-        }
+        toolbar.singgleTitleGravity(toolbar.START)
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton("Book")
         tv_price.setText("0 IDR")
+
         line_shadow.gone()
     }
 
@@ -277,7 +276,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         val model           = IdCartModel()
         model.id            = getProfile().employId
         model.title         = getProfile().title
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.idCart        = getProfile().idNumber
         model.mobilePhone   = getProfile().mobilePhone
         model.email         = getProfile().email
@@ -291,7 +290,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         model.id          = getProfile().employId
         model.idSim       = getProfile().sim
         model.title       = getProfile().title
-        model.name        = getProfile().name
+        model.name        = getProfile().fullName
         model.email       = getProfile().email
         model.birthDate   = getProfile().birthDate
         model.mobilePhone = getProfile().mobilePhone
@@ -301,7 +300,7 @@ class FlightMultiCityListActivity : BaseActivity(),
     private fun getPassportDataBooker(): PassportModel {
         val model = PassportModel()
         model.passporNumber = getProfile().passport
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.id            = getProfile().employId
         model.title         = getProfile().title
         model.birtDate      = getProfile().birthDate
@@ -485,8 +484,9 @@ class FlightMultiCityListActivity : BaseActivity(),
             totalPrice =  totalPrice+it.flightResult.price
         }
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
-        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax"
+        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} item(s)"
         tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
+        tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
     }
 
     private fun showOrHideDetailPrice() {

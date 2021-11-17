@@ -33,6 +33,9 @@ data class ConfigEntity(
 	@field:SerializedName("MobileTextLogo")
 	var mobileTextLogo: String = "",
 
+	@field:SerializedName("TextFlashScreen")
+	var textFlashScreen: String = "",
+
 	@field:SerializedName("DefaultTravelAgent")
 	var defaultTravelAgent: String = "",
 
@@ -41,6 +44,10 @@ data class ConfigEntity(
 
 	@field:SerializedName("ShowBusinessTrip")
 	var showBusinessTrip: Boolean = false,
+
+
+	@field:SerializedName("Client")
+    var client: Int = 0,
 
 	@field:SerializedName("DefaultOrigin")
 	var defaultOrigin: String = "",

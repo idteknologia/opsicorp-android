@@ -22,11 +22,12 @@ class ConfigEntityDataMapper{
         data.isShowCreateTripOnMobile   = configEntity.isShowCreateTripOnMobile
         data.showFamilyTime             = configEntity.showFamilyTime
         data.showBusinessTrip           = configEntity.showBusinessTrip
+        data.codeCompany                = configEntity.client
 
         data.mobileBackgroundImage    = configEntity.mobileBackgroundImage
         data.mobileBackgroundColor    = configEntity.mobileBackgroundColor
         data.mobileLogo               = configEntity.mobileLogo
-        data.mobileTextLogo           = configEntity.mobileTextLogo
+        data.mobileTextLogo           = configEntity.textFlashScreen
         data.mobileTextColorLogo      = configEntity.mobileTextColorLogo
         data.isPersonalTrip           = configEntity.isPersonalTrip
         return data

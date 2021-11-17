@@ -73,9 +73,9 @@ class TypeTransportationDialog : DialogFragment() {
 //            dismiss()
 //        }
 //
-//        binding.tvClose.setOnClickListener {
-//            dismiss()
-//        }
+        binding.tvClose.setOnClickListener {
+            dismiss()
+        }
 
 //        binding.radioNonAir.setOnClickListener {
 //            if (it is RadioButton) {

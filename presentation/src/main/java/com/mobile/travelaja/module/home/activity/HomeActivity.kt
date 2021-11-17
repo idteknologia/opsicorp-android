@@ -65,6 +65,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             four()
         }
 
+
         Log.e(" TAG log ",Globals.getProfile(this).companyCode)
     }
 

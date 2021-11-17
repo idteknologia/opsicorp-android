@@ -36,10 +36,15 @@ class SuccessView : BaseActivity() {
             if (idTrip.isNotEmpty()){
                 Constants.FROM_SUCCESS_CHECKOUT = true
                 val intent = Intent(this, DetailTripActivity::class.java)
-                intent.putExtra(Constants.KEY_FROM, Constants.FROM_SUCCESS_CREATE)
+                intent.putExtra(Constants.KEY_FROM, Constants.FROM_DRAFT)
                 intent.putExtra(Constants.KEY_INTENT_TRIPID, idTrip)
                 intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, tripCode)
+                intent.putExtra(Constants.KEY_IS_APPROVAL,false)
+                intent.putExtra(Constants.KEY_IS_PARTICIPANT,true)
                 startActivityForResult(intent,Constants.OPEN_DETAIL_TRIP_PLANE)
+//                intent.putExtra(Constants.KEY_FROM, Constants.FROM_SUCCESS_CREATE)
+//                intent.putExtra(Constants.KEY_INTENT_TRIPID, idTrip)
+//                intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, tripCode)
             }
             else {
                 gotoActivity(HomeActivity::class.java)

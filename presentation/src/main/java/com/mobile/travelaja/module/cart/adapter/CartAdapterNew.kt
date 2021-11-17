@@ -548,11 +548,11 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }
 
             itemView.tv_status_hotel_cart.text       = data.status
-            if (data.pnrCode.isNotEmpty()||data.pnrCode=="null"){
-                itemView.tv_pnr_hotel_cart.text      = data.pnrCode
+            if (data.pnrCode.isEmpty()||data.pnrCode=="null"){
+                itemView.tv_pnr_hotel_cart.text      = "-"
             }
             else {
-                itemView.tv_pnr_hotel_cart.text      = "-"
+                itemView.tv_pnr_hotel_cart.text      = data.pnrCode
             }
             itemView.tv_type_hotel_cart.text         = data.typeHotel
             itemView.tv_description_hotel_cart.text  = data.descreption

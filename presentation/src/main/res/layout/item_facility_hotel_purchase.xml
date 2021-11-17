@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/ic_facility"
+            android:layout_width="25dp"
+            android:layout_height="20dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_name_facility"
+            android:layout_gravity="center"
+            android:layout_marginLeft="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            style="@style/TextLato_Normal"
+            android:textSize="12sp"
+            android:textColor="#24253d"
+            tools:text="Breakfast"/>
+    </LinearLayout>
+</LinearLayout>

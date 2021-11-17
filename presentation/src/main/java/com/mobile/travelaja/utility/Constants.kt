@@ -41,6 +41,7 @@ object Constants {
     var DATA_SSR            = ArrayList<SsrModel>()
     val DATA_SEAT                = "data_seat"
     val KEY_DATA_CODE_AIRPORT    = "key_data_airport"
+    val KEY_DATA_PARCELABLE      = "key_data_parcelable"
     val TYPE_PASSANGGER_ADULT    = "1"
     val TYPE_PASSANGGER_CHILD    = "2"
     val TYPE_PASSANGGER_INFANT   = "3"
@@ -59,6 +60,7 @@ object Constants {
     var DATA_ROOM_HOTEL          = ""
     var DATA_LIST_TRAIN          = ""
     var DATA_CREATE_TRIP         = ""
+    var DATA_CHANGE_TRIP         = ""
     var DATA_CASH_ADVANCE        = ""
     var LIST_DETAIL_PASSANGER    = ""
     val FROM_CART                = "from_cart"
@@ -71,6 +73,7 @@ object Constants {
     var TRIP_TYPE                = ""
     var EXPIRED_TIME             = ""
     val FROM_PAYMENT             = "fromPayment"
+    val CHANGE_TRIP              = "changeTrip"
     val PROGRESS_TRAIN_CALLBACK  = 9099
     val PROGRESS_FLIGHT_CALLBACK = 9100
     val PROGRESS_FLIGHT_SAVED    = 9101
@@ -110,6 +113,7 @@ object Constants {
     val KEY_POSITION_SELECT_SEAT = "keySelectSeat"
     val KEY_POSITION_CART_FLIGHT = "keyCartFlight"
     val KEY_POSITION_SELECT_PASSENGER = "keySelectPassenger"
+    val KEY_POSITION_SELECTED_ITEM = "positionSelectedItem"
     val SELECT_NEARBY_COUNTRY    = 9071
     val SELECT_NEARBY_AIRPORT    = 9070
     val REQUEST_CODE_NEARBY      = 9069
@@ -178,6 +182,12 @@ object Constants {
     val OPTION_HOTEL_REJECT      = 76
     var isBisnisTrip             = true
     var isAllreadyFilterFlight   = false
+
+    val DETAIL_TICKET_FLIGHT = 77
+    val DETAIL_TICKET_HOTEL = 78
+
+    var UDARA     = 1
+    var NON_UDARA = 2
 
     //hotel
     val ONCLICK_INFO_CANCELATION_HOTEL = 8001
@@ -282,6 +292,7 @@ object Constants {
     var Reserve                  = "Reserve"
     var TripSummary              = "TripSummary"
     var Summary                  = "Summary"
+    var EstCost                  = "EstCost"
     var Number                   = "Number"
     var ID_PARTICIPANT           = "iDParticipant"
     var EMPLOY_ID                = "employId"
@@ -326,6 +337,22 @@ object Constants {
     val IS_ALLREADY_FLITER_FLIGHT  = "isAllreadyFilter"
     val FILTER_FLIGHT_TRANSIT      = "filter_transit"
     val DATA_SELECT_PURCHASE       = "dataPuchase"
+
+
+    object CodeCompany {
+        var  Standard        = 1
+        var  Carrefour       = 2
+        var  Newcrest        = 3
+        var  Connectures     = 4
+        var  Avrist          = 5
+        var  Ericson         = 6
+        var  BPM             = 7
+        var  Pertamina       = 8
+        var  Pegadaian       = 9
+        var  BRI             = 10
+        var  PertaminaDTM    = 11
+        var  TravelAjaBasic  = 12
+    }
 
     object SendTo {
         val Participant = 0

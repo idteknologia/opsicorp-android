@@ -135,7 +135,7 @@ class MenuBottomOpsicorp : LinearLayout, View.OnClickListener {
         }
     }
 
-    private fun changeImageBtn( position:Int) {
+    fun changeImageBtn( position:Int) {
 
         buttonImageView.forEachIndexed { index, imageView ->
             if (index==position){

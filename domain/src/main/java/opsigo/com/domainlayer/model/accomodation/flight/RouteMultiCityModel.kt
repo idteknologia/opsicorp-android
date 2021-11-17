@@ -6,5 +6,6 @@ class RouteMultiCityModel {
     var idOrigin        = ""
     var destinationName = ""
     var idDestination   = ""
+    var transportationType = 0
     var flightResult    = ResultListFlightModel()
 }

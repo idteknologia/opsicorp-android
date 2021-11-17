@@ -1,5 +1,6 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
+import android.annotation.SuppressLint
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
@@ -105,15 +106,15 @@ class DetailHotelActivity : BaseActivity(),
 
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebview() {
         val url = "<object width=\"360\" height=\"178\" style=\"border: 1px solid #cccccc;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
-        setLog(url)
-        webview.loadData(url, "text/html", null)
         webview.setWebViewClient(WebViewClient())
         webview.clearCache(true)
         webview.clearHistory()
-        webview.getSettings().setJavaScriptEnabled(true)
-        webview.getSettings().setJavaScriptCanOpenWindowsAutomatically(true)
+        webview.getSettings().javaScriptEnabled = true
+        webview.getSettings().javaScriptCanOpenWindowsAutomatically = true
+        webview.loadDataWithBaseURL(null,url,"text/html", "utf-8", null)
     }
 
     private fun getData() {
@@ -339,10 +340,10 @@ class DetailHotelActivity : BaseActivity(),
     override fun onClick(p0: View?) {
         when(p0){
             line_web -> {
-                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
+                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude,data.nameHotel)
             }
             btn_view_map -> {
-                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude)
+                Globals.openGoogleMap(this@DetailHotelActivity,latitude ,longitude,data.nameHotel)
             }
         }
     }

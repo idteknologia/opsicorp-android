@@ -3,22 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_marginRight="10dp"
+    android:layout_marginRight="50dp"
     android:background="@drawable/rounded_button_white_r5"
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/btn_reimbursement"
+        android:visibility="gone"
+        android:id="@+id/btn_reschedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#24253d"
-        android:text="@string/txt_reimburstment"
+        android:text="@string/reschedule_ticket"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="13dp"/>
 
     <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:id="@+id/line_reschedule"
         android:layout_width="132dp"
         android:layout_marginRight="7dp"
         android:layout_height="1dp"
@@ -26,7 +30,7 @@
         android:background="#d3d3d8"/>
 
     <TextView
-        android:id="@+id/btn_back_to_purchase_list"
+        android:id="@+id/btn_reimbursement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"
@@ -34,7 +38,28 @@
         android:layout_marginTop="11dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="13dp"
-        android:text="@string/back_to_purchase_list" />
+        android:text="@string/refund_ticket" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/line_refund"
+        android:layout_width="132dp"
+        android:layout_marginRight="7dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="7dp"
+        android:background="#d3d3d8"/>
+
+    <TextView
+        android:id="@+id/btn_back_to_purchase"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginLeft="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#24253d"
+        android:text="@string/back_to_purchase_list"
+        />
 
     <LinearLayout
         android:layout_width="132dp"
@@ -52,6 +77,5 @@
         android:layout_height="wrap_content"
         android:textSize="12sp"
         android:textColor="#24253d"
-        android:text="@string/back_to_homepage"
-        />
+        android:text="@string/back_to_homepage"/>
 </LinearLayout>

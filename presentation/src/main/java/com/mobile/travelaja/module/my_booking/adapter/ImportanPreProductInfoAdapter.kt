@@ -4,8 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
-import com.mobile.travelaja.module.my_booking.model.ImportanPreProductInfoModel
+import opsigo.com.domainlayer.model.my_booking.ImportanPreProductInfoModel
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_product_info_purchase.view.*
 
@@ -31,14 +32,12 @@ class ImportanPreProductInfoAdapter (var context: Context, private var items: Ar
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = items.get(position)
-//        holder.itemView.ic_info
+        holder.itemView.ic_info.setImageDrawable(ContextCompat.getDrawable(context,data.icon))
         holder.itemView.tv_message_info.text = data.description
 
-
         holder.itemView.setOnClickListener {
-            onclick.onClick(-1,position)
+//            onclick.onClick(-1,position)
         }
-
 
     }
 

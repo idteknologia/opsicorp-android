@@ -90,10 +90,29 @@ class ToolbarOpsicorp : LinearLayout, View.OnClickListener {
         line_btn_add_more_item.setOnClickListener(this)
     }
 
-    fun showtitlePurchase(){
+    fun showtitlePurchaseFlight(departure:String,arrival:String,departureStation:String,arrivalStation:String){
         line_text_double.visibility = View.GONE
         logo_center.visibility = View.GONE
         line_title_purchase.visibility = View.VISIBLE
+        line_title_train.visibility = View.GONE
+
+
+    }
+
+    fun showtitlePurchaseTrain(departure:String,arrival:String,){
+        line_title_train.visibility = View.VISIBLE
+        line_text_double.visibility = View.GONE
+        logo_center.visibility = View.GONE
+        line_title_purchase.visibility = View.GONE
+
+        tv_departure_train.text = departure
+        tv_arrival_train.text = arrival
+    }
+
+    fun showtitlePurchaseHotel(){
+        line_text_double.visibility = View.INVISIBLE
+        logo_center.visibility = View.VISIBLE
+        logo_center.text = context.getString(R.string.purchase_hotel_detail)
     }
 
     fun setTitlePurchase(departureAirport: String

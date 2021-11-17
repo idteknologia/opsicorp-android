@@ -29,7 +29,6 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.booking.*
 import com.opsicorp.hotel_feature.adapter.OnclickRecyclerBookingContact
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import opsigo.com.datalayer.request_model.accomodation.flight.reservation.ContactFlightRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
 class BookingContactHotelActivity : BaseActivity(),
@@ -89,7 +88,7 @@ class BookingContactHotelActivity : BaseActivity(),
             val bundle = Bundle()
             bundle.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
             if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
-            else bundle.putString(KEY_NAME_GUEST,getProfile().name)
+            else bundle.putString(KEY_NAME_GUEST,getProfile().fullName)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,OTHER_TYPE_REQUEST)
         }else {
             cb5.isChecked = false
@@ -102,7 +101,7 @@ class BookingContactHotelActivity : BaseActivity(),
             val bundle =  Bundle()
             bundle.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
             if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
-            else bundle.putString(KEY_NAME_GUEST,getProfile().name)
+            else bundle.putString(KEY_NAME_GUEST,getProfile().fullName)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,BED_TYPE_REQUEST)
         }else {
             cb2.isChecked = false
@@ -215,7 +214,7 @@ class BookingContactHotelActivity : BaseActivity(),
         setGuestName()
 
         val dataProfile = getProfile()
-        et_name_contact.setText(dataProfile.name)
+        et_name_contact.setText(dataProfile.fullName)
         et_number_contact.setText(dataProfile.phone)
         tv_email_contact.text       = dataProfile.email
     }

@@ -110,7 +110,6 @@ interface UrlEndpoind {
                           ,@Part file: MultipartBody.Part?): Call<ResponseBody>
 
 
-
     @GET(MyURL.SELECT_BUDGET)
     fun posDataSelectBudget(@Header("Authorization")token:String,
                             @Query("EmployeeId")EmployeeId:String,
@@ -387,5 +386,25 @@ interface UrlEndpoind {
     fun getDetailMyBooking(@Header("Authorization") token:String,
                          @Query("id")isoCountry:String):Call<ResponseBody>
 
+    @GET(MyURL.CHANGE_TRIP)
+    fun changeTrip(@Header("Authorization")token:String,
+                          @Query("tripId")tripId:String): Call<ResponseBody>
+    @GET(MyURL.GET_URL_FILE)
+    fun getUrlFile(@Header("Authorization") token:String,
+                           @Query("id")id:String):Call<ResponseBody>
+
+
+    @POST(MyURL.API_REFUND)
+    fun getRefund(@Header("Authorization") token: String,
+                         @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
+    @POST(MyURL.API_RESCHEDULE)
+    fun getReschedule(@Header("Authorization") token: String,
+                         @Body body: HashMap<Any, Any>) : Call<ResponseBody>
+
+    @Multipart
+    @POST(MyURL.ATTACHMENT_RESCHEDULE)
+    fun posDataAttachmentReschedule(@Header("Authorization")token:String
+                                    ,@Part file: MultipartBody.Part?): Call<ResponseBody>
 
 }

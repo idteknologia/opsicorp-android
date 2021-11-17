@@ -39,7 +39,7 @@ class DetailApprovalActivityOld: BaseActivity(){
         dataTrain.timeDeparture    = "06:40 "
         dataTrain.dateDeparture             = "Sun, 27 Mar 2018"
         dataTrain.pnrCode              = "AW5CRP"
-        dataTrain.price            = "IDR 110.000"
+        dataTrain.price            = 110.000
 
         mData.typeCard = "TRAIN"
         mData.dataItemTrain = dataTrain

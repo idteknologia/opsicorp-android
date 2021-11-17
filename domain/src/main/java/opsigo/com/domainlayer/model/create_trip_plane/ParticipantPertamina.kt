@@ -5,7 +5,10 @@ import com.google.gson.annotations.SerializedName
 class ParticipantPertamina {
     var useCostCenterOther: Boolean = false
     var employeeId: String = ""
+    var email: String = ""
+    var positionName : String = ""
     var costCenterCode: String = ""
+    var costCenterName :String = ""
     var useCashAdvance: Boolean = false
     var cashAdvance: Int = 0
     var estFlight: Int = 0

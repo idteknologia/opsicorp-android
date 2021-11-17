@@ -102,7 +102,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         val dataProfile             = getProfile()
         tv_number_contact.text      = formatNumberListener(dataProfile.homePhone)
         tv_email_contact.text       = dataProfile.email
-        tv_name_contact.text        = dataProfile.name
+        tv_name_contact.text        = dataProfile.fullName
     }
 
     private fun formatNumberListener(string: String): String {
@@ -118,7 +118,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         val model           = IdCartModel()
         model.id            = getProfile().employId
         model.title         = getProfile().title
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.idCart        = getProfile().idNumber
         model.mobilePhone   = getProfile().mobilePhone
         model.email         = getProfile().email
@@ -132,7 +132,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         model.id          = getProfile().employId
         model.idSim       = getProfile().sim
         model.title       = getProfile().title
-        model.name        = getProfile().name
+        model.name        = getProfile().fullName
         model.email       = getProfile().email
         model.birthDate   = getProfile().birthDate
         model.mobilePhone = getProfile().mobilePhone
@@ -143,7 +143,7 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         val model = PassportModel()
         model.passporNumber = getProfile().passport
         model.id            = getProfile().employId
-        model.fullname      = getProfile().name
+        model.fullname      = getProfile().fullName
         model.title         = getProfile().title
         model.birtDate      = getProfile().birthDate
         model.nasionality   = getProfile().nationality

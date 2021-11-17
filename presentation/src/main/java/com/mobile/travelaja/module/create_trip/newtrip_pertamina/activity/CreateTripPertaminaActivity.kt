@@ -39,11 +39,14 @@ import opsigo.com.datalayer.request_model.create_trip_plane.CashAdvanceRequest
 import opsigo.com.datalayer.request_model.travel_request.CheckAvaibilityDateRequest
 import opsigo.com.domainlayer.callback.CallbackCashAdvance
 import opsigo.com.domainlayer.callback.CallbackString
+import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import opsigo.com.domainlayer.model.travel_request.CashAdvanceModel
+import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import java.io.File
+import java.util.ArrayList
 import java.util.HashMap
 
 
@@ -57,6 +60,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
     val presenter by inject<CreateTripPresenter> { parametersOf(this) }
     var dialogCamera = DialogCamera()
+    var dataChangeTrip = ChangeTripModel()
     var SELECT_CODE_PURPOSE = 98
     var SELECT_CODE_ACTIVITY = 78
     var READ_REQUEST_CODE = 67
@@ -64,6 +68,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var m_endate = ""
     var isWbs = false
     var isPartner = false
+    var isRoundTrip = false
     var idPurphose = ""
     var idActivity = ""
     var nonCbt = false
@@ -84,14 +89,75 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         presenter.initRecyclerViewAttachment(rv_attachment)
 
         changeButtonNextGrayColor()
+        if (intent.getBooleanExtra(Constants.CHANGE_TRIP, false)) {
+            getDataForChangeTrip()
+        }
     }
 
-    private fun setTextDocs(){
+    private fun setTextDocs() {
         val textDocs = getString(R.string.txt_document_description)
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-            viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs,Html.FROM_HTML_MODE_COMPACT)
-        }else {
+            viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs, Html.FROM_HTML_MODE_COMPACT)
+        } else {
             viewBinding.tvDescDoc1.text = Html.fromHtml(textDocs)
+        }
+    }
+
+    private fun getDataForChangeTrip() {
+        dataChangeTrip = Serializer.deserialize(Constants.DATA_CHANGE_TRIP, ChangeTripModel::class.java)
+
+        btn_switch2.isChecked = dataChangeTrip.isNonCbt.equals(true)
+        nonCbt = !btn_switch2.isChecked
+
+        btn_switch.isChecked = dataChangeTrip.isDomestic.equals(false)
+        isDomestic = !btn_switch.isChecked
+        typeTrip = btn_switch.isChecked
+
+        if (dataChangeTrip.purpose.equals("Perjalanan Dinas Investasi (WBS)")) {
+            isWbs = true
+            layEvent.visible()
+        } else {
+            isWbs = false
+            layEvent.gone()
+        }
+
+        if (dataChangeTrip.purpose.equals("Pelatihan Purna Karya")) {
+            isPartner = true
+            line_partner.visible()
+            btn_switch3.isChecked = dataChangeTrip.isTripPartner.equals(true)
+        } else {
+            isPartner = false
+            line_partner.gone()
+            layPartnerName.gone()
+        }
+
+
+        et_purpose.text = dataChangeTrip.purpose
+        et_activity_type.text = dataChangeTrip.businessTripType
+        tv_from.text = DateConverter().getDate(dataChangeTrip.routes.first().departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
+        et_end_date.text = DateConverter().getDate(dataChangeTrip.routes.last().departureDateView, "dd-MM-yyyy", "dd MMM yyyy")
+
+        m_startdate = dataChangeTrip.startDate
+        m_endate = dataChangeTrip.returnDate
+        et_notes.setText(dataChangeTrip.remark)
+
+        purposeIsEmpty = false
+        activityIsEmpty = false
+        notesIsEmpty = false
+
+        checkEmptyField()
+
+        setDataAttachment(dataChangeTrip.attactment)
+    }
+
+    private fun setDataAttachment(mData: ArrayList<UploadModel>) {
+        if (mData.isNotEmpty()) {
+            rv_attachment.visible()
+            presenter.dataAttachment.clear()
+            presenter.dataAttachment.addAll(mData)
+            presenter.adapter.setData(presenter.dataAttachment)
+        } else {
+            rv_attachment.gone()
         }
     }
 
@@ -109,12 +175,12 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 var countText: Int
                 countText = s.toString().length
                 tv_notes_count.text = "${countText}/100"
-                if (s.toString().isEmpty()){
+                if (s.toString().isEmpty()) {
                     notesIsEmpty = true
                     checkEmptyField()
-                }else {
+                } else {
                     notesIsEmpty = false
-                    checkEmptyField()  
+                    checkEmptyField()
                 }
 
             }
@@ -214,8 +280,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     private fun showDialogCamera() {
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object : DialogCameraCallback {
-            override fun data(imagePath: String,file:File,type : String?) {
-                presenter.addDataAttactment(imagePath,file)
+            override fun data(imagePath: String, file: File, type: String?) {
+                presenter.addDataAttactment(imagePath, file)
             }
         })
     }
@@ -240,12 +306,12 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         btn_next.isClickable = true
     }
 
-    override fun setDataAutomatically2(tvFrom: String, etEnd: String, mStartDate: String, mEndDate: String) {
-        tv_from.text = tvFrom
-        et_end_date.text = etEnd
-        m_startdate = mStartDate
-        m_endate = mEndDate
-    }
+//    override fun setDataAutomatically2(tvFrom: String, etEnd: String, mStartDate: String, mEndDate: String) {
+//        tv_from.text = tvFrom
+//        et_end_date.text = etEnd
+//        m_startdate = mStartDate
+//        m_endate = mEndDate
+//    }
 
     override fun onClicked() {
         presenter.createTripNow()
@@ -297,7 +363,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 dataOrderCreatTrip.tripPartnerName = et_partner.text.toString()
             }
             dataOrderCreatTrip.startDate = m_startdate//tv_from.text.toString()
-            dataOrderCreatTrip.endDate = m_endate//et_end_date.text.toString()
+
             dataOrderCreatTrip.notes = et_notes.text.toString()
             dataOrderCreatTrip.image.addAll(presenter.dataDokumentUploaded())
 
@@ -306,15 +372,30 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             dataOrderCreatTrip.isCbt = nonCbt
             dataOrderCreatTrip.isInternational = typeTrip
-            if (typeTrip.equals(true)){
+            if (typeTrip.equals(true)) {
                 dataOrderCreatTrip.statusCreateTrip = "International Route"
             } else {
                 dataOrderCreatTrip.statusCreateTrip = "Domestic Route"
             }
 
-
             val bundle = Bundle()
+            if (dataChangeTrip.isChangeTrip.equals(true)) {
+                dataChangeTrip.startDate = m_startdate
+                dataChangeTrip.returnDate = m_endate
+                dataOrderCreatTrip.trnNumber = dataChangeTrip.trnNumber
+                dataOrderCreatTrip.tripCodeOld = dataChangeTrip.tripCodeOld
+                dataOrderCreatTrip.tripIdOld = dataChangeTrip.tripIdOld
+                dataOrderCreatTrip.isChangeTrip = dataChangeTrip.isChangeTrip
+            }
+            if (m_startdate == m_endate){
+                isRoundTrip = true
+                dataOrderCreatTrip.endDate = m_startdate
+            } else {
+                isRoundTrip = false
+                dataOrderCreatTrip.endDate = m_endate
+            }
             bundle.putString("data_order", Serializer.serialize(dataOrderCreatTrip, DataBisnisTripModel::class.java))
+            bundle.putString("data_change_trip", Serializer.serialize(dataChangeTrip, ChangeTripModel::class.java))
 
             if (et_purpose.text == resources.getString(R.string.select_your_purpose)) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.select_your_purpose), this)
@@ -322,8 +403,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.attach_your_document), this)
             } else if (attactmentIsEmpty()) {
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.waiting_upload_file), this)
-            }
-            else {
+            } else {
                 checkAvailableDate(bundle)
             }
         }
@@ -393,15 +473,15 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         }
     }
 
-    private fun checkAvailableDate(bundle:Bundle) {
-        GetDataTravelRequest(getBaseUrl()).checkDateAvaibility(getToken(),dataDate(),object : CallbackString {
+    private fun checkAvailableDate(bundle: Bundle) {
+        GetDataTravelRequest(getBaseUrl()).checkDateAvaibility(getToken(), dataDate(), object : CallbackString {
             override fun successLoad(data: String) {
-                if (!data.contains("true")){
-                    showAllert(getString(R.string.sorry),data)
-                }else {
-                    bundle.putString(SelectTripRoutePertaminaActivity.START_DATE,m_startdate)
-                    bundle.putString(SelectTripRoutePertaminaActivity.END_DATE,m_endate)
-                    bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,typeTrip)
+                if (!data.contains("true")) {
+                    showAllert(getString(R.string.sorry), data)
+                } else {
+                    bundle.putString(SelectTripRoutePertaminaActivity.START_DATE, m_startdate)
+                    bundle.putString(SelectTripRoutePertaminaActivity.END_DATE, m_endate)
+                    bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL, typeTrip)
                     checkCashAdvance(bundle)
                 }
             }
@@ -413,10 +493,10 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     private fun checkCashAdvance(bundle: Bundle) {
-        GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(),dataRequest(),object : CallbackCashAdvance{
+        GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(), dataRequest(), object : CallbackCashAdvance {
             override fun successLoad(data: CashAdvanceModel) {
                 Constants.DATA_CASH_ADVANCE = Serializer.serialize(data)
-                setLog("Test Cash",Serializer.serialize(Constants.DATA_CASH_ADVANCE))
+                setLog("Test Cash", Serializer.serialize(Constants.DATA_CASH_ADVANCE))
                 gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
             }
 
@@ -431,15 +511,16 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         val data = CashAdvanceRequest()
         data.isDomestic = isDomestic
         data.activityType = et_activity_type.text.toString()
-        data.startDate = m_startdate
-        data.endDate = m_endate
+        data.startDate = tv_from.text.toString()
+        data.endDate = et_end_date.text.toString()
         return Globals.classToHashMap(data, CashAdvanceRequest::class.java)
     }
 
     private fun dataDate(): HashMap<Any, Any> {
         val data = CheckAvaibilityDateRequest()
-        data.endDate = m_endate//"2021-07-05"
-        data.startDate = m_startdate //"2021-06-30"
+        data.endDate = et_end_date.text.toString()//"2021-07-05"
+        data.startDate = tv_from.text.toString() //"2021-06-30"
+        data.tripCodeOld = dataChangeTrip.tripCodeOld
         return Globals.classToHashMap(data, CheckAvaibilityDateRequest::class.java)
     }
 

@@ -1,24 +1,47 @@
 package opsigo.com.domainlayer.model.my_booking
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class ItemPurchaseTrainModel(
-	val origin: String? = null,
-	val status: String? = null,
-	val destination: String? = null,
-	val trainNumber: String? = null,
-	val trainName: String? = null,
-	val destinationCity: String? = null,
-	val num: Int? = null,
-	val originCity: String? = null,
-	val duration: String? = null,
-	val classCategory: String? = null,
-	val pnrCode: String? = null,
-	val classCode: String? = null,
-	val passengers: List<PassengersItem?>? = null,
-	val originStation: String? = null,
-	val arrivalDate: String? = null,
-	val destinationStation: String? = null,
-	val departureDate: String? = null
-)
+	var status : String  = "",
+	var pnrCode: String? = null,
+	var nameTrain : String = "",
+	var trainCode  : String = "",
+	var className  : String = "",
+	var dateArrival : String = "",
+	var dateDeparture : String = "",
+	var originCity: String? = null,
+	var originStation : String = "",
+	var durationTime : String = "",
+	var destinationCity: String? = null,
+	var destinationStation :String = "",
+	var passager : ArrayList<PassengersTrainModel> = ArrayList(),
+	var isRefund : Boolean = false,
+	var isReschedule : Boolean = false
+):Parcelable
+
+@Parcelize
+data class PassengersTrainModel(
+	var typeAge  : String? = null,
+	var firstName: String? = null,
+	var lastName : String? = null,
+	var idNumber: String? = null,
+	var title: String? = null,
+	var index: Int? = null,
+	var seatNumber: String? = null,
+	var seatName : String = "",
+	var idType: String? = null,
+	var birthDate: String? = null
+): Parcelable{
+	fun fullName():String {
+		return "${firstName} ${lastName}"
+	}
+	fun getSeatView():String{
+		return "${seatName}/${seatNumber}"
+	}
+}
 
 
 

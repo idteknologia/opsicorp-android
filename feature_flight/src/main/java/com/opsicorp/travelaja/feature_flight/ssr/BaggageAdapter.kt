@@ -48,7 +48,7 @@ class BaggageAdapter(context: Context): RecyclerView.Adapter<BaggageAdapter.View
             holder.itemView.tv_title_trip.text     = context.getString(R.string.text_arrival_flight )
         }
         holder.itemView.tv_city_code.text      = "${data.origin} - ${data.destination}"
-        holder.itemView.tv_name_passanger.text = "${dataProfile.title}.${dataProfile.name}"
+        holder.itemView.tv_name_passanger.text = "${dataProfile.title}.${dataProfile.fullName}"
         Picasso.get()
                 .load(data.imgAirline)
                 .fit()

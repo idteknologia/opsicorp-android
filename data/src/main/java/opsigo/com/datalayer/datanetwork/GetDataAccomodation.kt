@@ -78,17 +78,16 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.isSuccessful){
-                    val responseString = response.body()?.string()
-                    callback.success(AccomodationResultFlightMapper().mapping(responseString!!))
-                }
-                else {
-                    val json = JSONObject(response.errorBody()?.string())
-                    val message = json.optString("error_description")
-                    callback.failed(message)
-                }
                 try {
-
+                    if (response.isSuccessful){
+                        val responseString = response.body()?.string()
+                        callback.success(AccomodationResultFlightMapper().mapping(responseString!!))
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failed(message)
+                    }
                 }catch (e:Exception){
                     callback.failed(messageFailed)
                 }

@@ -15,7 +15,6 @@ class ListParticipantsDataMapper {
         from.let {
 
             val tpModelList = it?.map { data ->
-
                 val dataFlightModel = ArrayList<ItemFlightModel>()
                 val dataTrainModel  = ArrayList<ItemTrainModel>()
                 val dataHotelModel  = ArrayList<ItemHotelModel>()
@@ -131,7 +130,7 @@ class ListParticipantsDataMapper {
 
                                     dataTrain.pnrCode          = if (tripTrainsItem.pnrCode==null) "" else tripTrainsItem.pnrCode //"AW5CRP"
                                     dataTrain.pnrID            = if (tripTrainsItem.pnrId==null) "" else tripTrainsItem.pnrId
-                                    dataTrain.price            = tripTrainsItem.amount.toString()
+                                    dataTrain.price            = tripTrainsItem.amount
                                     dataTrain.idTrain          = if (tripTrainsItem.id==null) "" else tripTrainsItem.id
                                     dataTrain.tripID           = if (mData.id==null) "" else mData.id
                                     dataTrain.tripItemID       = tripTrainsItem.tripItemId ?: ""
@@ -197,11 +196,13 @@ class ListParticipantsDataMapper {
                         data?.statusView.toString(),
                         data?.fullName.toString(),
                         data?.jobTitle.toString(),
+                        data?.positionName.toString(),
                         data?.employeeId.toString(),
                         ListApprovalDataMapper().mapFrom(data?.tripParticipantCustomApprovals),
                         dataFlightModel,
                         dataTrainModel,
-                        dataHotelModel)
+                        dataHotelModel,
+                        data?.itineraryUrl.toString())
             }
             if (!tpModelList.isNullOrEmpty()){
                 return tpModelList

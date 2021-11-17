@@ -94,11 +94,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    tools:checked="true"
+                    android:clickable="false"
                     android:checked="@{viewModel.isInternational()}"
                     android:onCheckedChanged="@{(switch, checked) -> viewModel.checkedInternational(checked)}"
                     android:thumb="@drawable/rounded_switch2"
                     android:track="@drawable/track_switch_on"
+                    tools:checked="true"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
             </RelativeLayout>
 

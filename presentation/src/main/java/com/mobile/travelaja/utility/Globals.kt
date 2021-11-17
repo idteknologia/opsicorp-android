@@ -3,8 +3,8 @@ package com.mobile.travelaja.utility
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
+import android.app.DownloadManager
+import android.content.*
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
@@ -24,6 +24,7 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.webkit.URLUtil
 import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.core.widget.NestedScrollView
@@ -34,6 +35,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.mobile.travelaja.base.InitApplications
+import kotlinx.android.synthetic.main.layout_filter_result_hotel.view.*
 import me.echodev.resizer.Resizer
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -49,6 +51,7 @@ import java.util.concurrent.TimeUnit
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 import kotlin.collections.ArrayList
+
 
 /**
  * Created by khoiron on 11/06/18.
@@ -564,10 +567,11 @@ object Globals {
         return bmpUri
     }
 
-    fun openGoogleMap(context: Context, latitude: Double, longitude: Double){
-        val uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude)
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-        context.startActivity(intent)
+    fun openGoogleMap(context: Context, latitude: Double, longitude: Double,query: String){
+        val gmmIntentUri = Uri.parse("geo:${latitude},${longitude}?q=${query}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        context.startActivity(mapIntent)
     }
 
     fun detectKeyboard(activity: Activity) {
@@ -1067,4 +1071,164 @@ object Globals {
         }
     }
 
+    interface CallbackDownload{
+        fun succeessDownload(parse: Uri, downloadMimeType: String)
+        fun failedDownload()
+    }
+
+    fun downloadFile(string:String,context: Context,callback:CallbackDownload) {
+        var reference: Long = 0
+        val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val uri: Uri = Uri.parse(string)
+
+        val attachmentDownloadCompleteReceive: BroadcastReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+
+                val extras = intent?.getExtras()
+                val q = DownloadManager.Query()
+                val downloaded_id = extras?.getLong(DownloadManager.EXTRA_DOWNLOAD_ID);
+
+                if (reference == downloaded_id) { // so it is my file that has been completed
+                    q.setFilterById(downloaded_id);
+                    val manager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                    val c = manager.query(q);
+                    if (c.moveToFirst()) {
+                        val status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                        val downloadLocalUri = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
+                        val downloadMimeType = c.getString(c.getColumnIndex(DownloadManager.COLUMN_MEDIA_TYPE));
+
+                        if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                            callback.succeessDownload(Uri.parse(downloadLocalUri),downloadMimeType)
+                        }
+                        else {
+                            callback.failedDownload()
+                        }
+                    }
+                    c.close();
+                }
+            }
+        }
+
+        context.registerReceiver(attachmentDownloadCompleteReceive,
+            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        )
+
+        val request: DownloadManager.Request = DownloadManager.Request(uri)
+        val fileName: String = URLUtil.guessFileName(string, null, null)
+        request.setTitle(fileName)
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,fileName);
+        reference = manager.enqueue(request)
+    }
+
+    fun openDownloadedAttachment(
+        activity: Activity,
+        attachmentUri: Uri,
+        attachmentMimeType: String
+    ) {
+        var attachmentUri: Uri? = attachmentUri
+        if (attachmentUri != null) {
+            // Get Content Uri.
+            if (ContentResolver.SCHEME_FILE.equals(attachmentUri.scheme)) {
+                // FileUri - Convert it to contentUri.
+                val file = File(attachmentUri.path)
+                attachmentUri = FileProvider.getUriForFile(activity, "${activity.getPackageName()}.fileprovider", file)
+            }
+            val openAttachmentIntent = Intent(Intent.ACTION_VIEW)
+            openAttachmentIntent.setDataAndType(attachmentUri, attachmentMimeType)
+            Log.e("TAG type ",attachmentMimeType)
+            openAttachmentIntent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+            try {
+                activity.startActivity(openAttachmentIntent)
+            } catch (e: ActivityNotFoundException) {
+                activity.startActivity(Intent(DownloadManager.ACTION_VIEW_DOWNLOADS))
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun viewRatingStarHotel(images:ArrayList<ImageView>,data:String) {
+        when(data){
+            "0.0" -> {
+                images.forEach {
+                    it.visibility = View.GONE
+                }
+//                itemView.star_1.visibility = View.GONE
+//                itemView.star_2.visibility = View.GONE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "1.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.GONE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "2.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0||index==1){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.GONE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "3.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index==0||index==1||index==2){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.GONE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "4.0" ->{
+                images.forEachIndexed { index, imageView ->
+                    if (index!=4){
+                        imageView.visibility = View.VISIBLE
+                    }
+                    else {
+                        imageView.visibility = View.GONE
+                    }
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.VISIBLE
+//                itemView.star_5.visibility = View.GONE
+            }
+            "5.0" ->{
+                images.forEach {
+                    it.visibility = View.VISIBLE
+                }
+//                itemView.star_1.visibility = View.VISIBLE
+//                itemView.star_2.visibility = View.VISIBLE
+//                itemView.star_3.visibility = View.VISIBLE
+//                itemView.star_4.visibility = View.VISIBLE
+//                itemView.star_5.visibility = View.VISIBLE
+            }
+        }
+    }
 }

@@ -238,7 +238,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     private fun dataCabinClass(): List<Int?> {
         val dataCabin = ArrayList<Int>()
         dataCabin.add(dataOrder.classFlightCode.toInt())
-        return dataCabin
+        return ArrayList()
     }
 
     private fun dataRoutesRequest(): List<RoutesItem?> {
@@ -379,12 +379,14 @@ class ResultSearchFlightActivity : BaseActivity(),
     override fun onResume() {
         if (Globals.ALL_READY_SELECT_DEPARTING){
             setLog("-----------------")
+            showTotalData()
             if (!isAllreadyFilterFlight){
                 setDataArrival()
             }
         }
         super.onResume()
         setToolbar()
+
     }
 
     private fun setToolbar(mDate : String = "") {

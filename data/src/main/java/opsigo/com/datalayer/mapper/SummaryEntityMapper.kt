@@ -39,10 +39,12 @@ class SummaryEntityMapper() {
         summary.isBookAfterApprove = from.isBookAfterApprove
         summary.isApproval          = from.isApproval
         summary.isPrivateTrip       = from.isPrivateTrip
+        summary.isChangeTrip        = from.isChangeTrip
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
         summary.isTripPartner = from.isWithPartner
         summary.parterName = from.partnerName.toString()
+        summary.coverLatter = from.coverLetterUrl.toString()
 
 
         from.tripAttachments?.forEachIndexed { index, tripAttachmentsItem ->
@@ -57,14 +59,24 @@ class SummaryEntityMapper() {
 
         from.tripParticipants?.forEachIndexed { index, tripParticipantsItem ->
             val tripParticipant = ParticipantPertamina()
-            tripParticipant.estTotal = tripParticipantsItem?.estTotal!!.toInt()
+            tripParticipant.estFlight = tripParticipantsItem?.estFlight!!.toInt()
+            tripParticipant.estHotel = tripParticipantsItem.estHotel.toInt()
+            tripParticipant.estTransportation = tripParticipantsItem.estTransportation.toInt()
+            tripParticipant.estAllowance = tripParticipantsItem.estAllowance.toInt()
+            tripParticipant.estAllowanceEvent = tripParticipantsItem.estAllowanceEvent.toInt()
+            tripParticipant.estLaundry = tripParticipantsItem.estLaundry.toInt()
+            tripParticipant.estTotal = tripParticipantsItem.estTotal.toInt()
+            tripParticipant.email = tripParticipantsItem.email.toString()
+            tripParticipant.positionName = tripParticipantsItem.positionName.toString()
+            tripParticipant.costCenterCode = tripParticipantsItem.costCenterCode.toString()
+            tripParticipant.costCenterName = tripParticipantsItem.costCenterDefaultName.toString()
             summary.tripParticipantItem.add(tripParticipant)
         }
 
         from.routes.forEachIndexed { index, routesItem ->
             val routesItinerary = RoutesItemPertamina()
             if (routesItem != null) {
-                routesItinerary.transportation = routesItem.transportation.toInt()
+                routesItinerary.transportation = routesItem.transportation
                 routesItinerary.origin = routesItem.origin.toString()
                 routesItinerary.destination = routesItem.destination.toString()
                 routesItinerary.departureDate = routesItem.departureDate.toString()
