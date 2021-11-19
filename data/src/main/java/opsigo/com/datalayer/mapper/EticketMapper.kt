@@ -1,10 +1,10 @@
 package opsigo.com.datalayer.mapper
 
-import android.util.Log
-import opsigo.com.datalayer.model.cart.*
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import opsigo.com.domainlayer.model.my_booking.*
+import opsigo.com.datalayer.model.cart.*
 import java.text.SimpleDateFormat
+import android.util.Log
 import java.util.*
 
 class EticketMapper {
@@ -150,23 +150,26 @@ class EticketMapper {
         val data = ArrayList<ItemPurchaseTrainModel>()
         trains?.forEach {
             val train = it?.tripTrains?.find { it?.pnrCode==idItem }
-            val mData = ItemPurchaseTrainModel()
-            mData.status                 = it?.status.toString()
-            mData.pnrCode                = train?.pnrCode.toString()
-            mData.nameTrain              = train?.trainName.toString()
-            mData.trainCode              = train?.ticketNumber.toString()
-            mData.className              = ""
-            mData.dateArrival            = ""
-            mData.dateDeparture          = ""
-            mData.originCity             = train?.originView.toString()
-            mData.originStation          = ""
-            mData.durationTime           = ""
-            mData.destinationCity        = train?.destinationView.toString()
-            mData.destinationStation     = ""
-            mData.passager               = mapperPassengeTrain(train?.passengers)
-            mData.isRefund               = false
-            mData.isReschedule           = false
-            data.add(mData)
+            if (train!=null){
+                val mData = ItemPurchaseTrainModel()
+                mData.status                 = it?.status.toString()
+                mData.pnrCode                = train?.pnrCode.toString()
+                mData.nameTrain              = train?.trainName.toString()
+                mData.trainCode              = train?.ticketNumber.toString()
+                mData.className              = ""
+                mData.dateArrival            = ""
+                mData.dateDeparture          = ""
+                mData.originCity             = train?.originView.toString()
+                mData.originStation          = ""
+                mData.durationTime           = ""
+                mData.destinationCity        = train?.destinationView.toString()
+                mData.destinationStation     = ""
+                mData.passager               = mapperPassengeTrain(train?.passengers)
+                mData.isRefund               = false
+                mData.isReschedule           = false
+                data.add(mData)
+            }
+
         }
         return data
     }
@@ -194,15 +197,18 @@ class EticketMapper {
         val data = ArrayList<DetailFlightMyBookingModel>()
         flights?.forEach {
             val flight = it?.tripFlights?.find { it?.pnrCode==idItem }
-            val mData = DetailFlightMyBookingModel()
-            mData.status          = flight?.prgText.toString()
-            mData.originCity      = flight?.originView.toString()
-            mData.destinationCity = flight?.destinationView.toString()
-            mData.pnrCode         = flight?.pnrCode.toString()
-            mData.Segment         = mapperSegment(flight)
-            mData.idFlight        = flight?.id.toString()
-            mData.passanger       = mapperPassengeFlight(flight)
-            data.add(mData)
+            if (flight!=null){
+                val mData = DetailFlightMyBookingModel()
+                mData.status          = flight.prgText.toString()
+                mData.originCity      = flight.originView.toString()
+                mData.destinationCity = flight.destinationView.toString()
+                mData.pnrCode         = flight.pnrCode.toString()
+                mData.Segment         = mapperSegment(flight)
+                mData.idFlight        = flight.id.toString()
+                mData.passanger       = mapperPassengeFlight(flight)
+                data.add(mData)
+            }
+
         }
         return data
     }

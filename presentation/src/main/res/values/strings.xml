@@ -1209,5 +1209,7 @@ Please add your trip item for Approval."
     <string name="not_authorized">You are not authorized to view the <br>requested page. We Apologize for the</br> inconvenience.</string>
     <string name="change_trip">Change Trip</string>
     <string name="title_ticket_hotel">Voucher Code</string>
+    <string name="massage_success_refund">This Refund request has been sent to Travel Agent. You will be contact later.</string>
+    <string name="massage_success_reschedule">This reschedule request has been sent to Travel Agent. You will be contact later.</string>
 </resources>
 

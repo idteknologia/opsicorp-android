@@ -137,8 +137,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     }
 
     fun setLog(message: String) {
+        Log.e("Test", message)
         if (BuildConfig.DEBUG) {
-            Log.e("Test", message)
         }
     }
 

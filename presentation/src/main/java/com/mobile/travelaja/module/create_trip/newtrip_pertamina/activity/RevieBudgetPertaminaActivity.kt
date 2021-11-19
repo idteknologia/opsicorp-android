@@ -380,7 +380,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.businessTripType = dataTrip.nameActivity
         dataRequest.startDate = dataTrip.startDate
         dataRequest.returnDate = dataTrip.endDate
-        dataRequest.type = Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
+        dataRequest.type = 2 //Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
         dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         dataRequest.isDomestic = !dataTrip.isInternational
         dataRequest.remark = dataTrip.notes
@@ -391,6 +391,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.trnNumber = dataTrip.trnNumber
         dataRequest.tripCodeOld = dataTrip.tripCodeOld
         dataRequest.tripIdOld = dataTrip.tripIdOld
+        dataRequest.nonCbt = dataTrip.isCbt
 
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()

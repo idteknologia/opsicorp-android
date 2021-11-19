@@ -379,12 +379,14 @@ class ResultSearchFlightActivity : BaseActivity(),
     override fun onResume() {
         if (Globals.ALL_READY_SELECT_DEPARTING){
             setLog("-----------------")
+            showTotalData()
             if (!isAllreadyFilterFlight){
                 setDataArrival()
             }
         }
         super.onResume()
         setToolbar()
+
     }
 
     private fun setToolbar(mDate : String = "") {

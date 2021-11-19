@@ -567,10 +567,11 @@ object Globals {
         return bmpUri
     }
 
-    fun openGoogleMap(context: Context, latitude: Double, longitude: Double){
-        val uri = String.format(Locale.ENGLISH, "geo:%f,%f", latitude, longitude)
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
-        context.startActivity(intent)
+    fun openGoogleMap(context: Context, latitude: Double, longitude: Double,query: String){
+        val gmmIntentUri = Uri.parse("geo:${latitude},${longitude}?q=${query}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        context.startActivity(mapIntent)
     }
 
     fun detectKeyboard(activity: Activity) {

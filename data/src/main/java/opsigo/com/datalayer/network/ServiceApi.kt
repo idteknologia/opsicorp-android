@@ -85,6 +85,7 @@ interface ServiceApi {
                         builder.header("Authorization", token)
                     }
                     builder.header("Content-Type", "application/json")
+                    builder.header("Client","TravelManagementSystem")
 
                     return@Interceptor chain.proceed(builder.build())
                 })

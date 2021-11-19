@@ -2,6 +2,7 @@ package opsigo.com.datalayer.di
 
 import dagger.Module
 import dagger.Provides
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -59,15 +60,25 @@ class NetworkModule(private val mBaseUrl: String) {
             }
         }
 
-        val okHttpClient = OkHttpClient.Builder()
-                .readTimeout(7, TimeUnit.MINUTES)
-                .hostnameVerifier(hostnameVerifier)
-                .connectTimeout(7, TimeUnit.MINUTES)
-                .addInterceptor(interceptor)
-                .build()
+        val okHttpClient = OkHttpClient.Builder().apply {
+            addInterceptor(Interceptor{chain ->
+                val builder = chain.request().newBuilder()
+                builder.header("Client","TravelManagementSystem")
+                return@Interceptor chain.proceed(builder.build())
+            })
+            readTimeout(7,TimeUnit.MINUTES)
+            hostnameVerifier(hostnameVerifier)
+            connectTimeout(7,TimeUnit.MINUTES)
+            addInterceptor(interceptor)
+        }
+//                .readTimeout(7, TimeUnit.MINUTES)
+//                .hostnameVerifier(hostnameVerifier)
+//                .connectTimeout(7, TimeUnit.MINUTES)
+//                .addInterceptor(interceptor)
 
 
-        return okHttpClient
+
+        return okHttpClient.build()
     }
 
 }

@@ -189,7 +189,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun openMapListener() {
-        Globals.openGoogleMap(context,latitude.toDouble(),longitude.toDouble())
+        Globals.openGoogleMap(context,latitude.toDouble(),longitude.toDouble(),"")
     }
 
 
