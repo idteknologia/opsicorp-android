@@ -484,7 +484,7 @@ class FlightMultiCityListActivity : BaseActivity(),
             totalPrice =  totalPrice+it.flightResult.price
         }
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
-        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} item(s)"
+        tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax and ${dataFLigt.dataFlight.size} item(s)"
         tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
         tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
     }
