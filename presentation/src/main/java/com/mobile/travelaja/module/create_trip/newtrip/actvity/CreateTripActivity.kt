@@ -1,26 +1,27 @@
 package com.mobile.travelaja.module.create_trip.newtrip.actvity
 
+import java.io.File
 import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.app.Activity
 import org.koin.core.inject
-import android.content.Intent
-import com.mobile.travelaja.R
-import org.koin.core.KoinComponent
-import android.content.pm.PackageManager
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Toast
+import android.text.Editable
+import com.mobile.travelaja.R
+import android.content.Intent
+import android.text.TextWatcher
+import org.koin.core.KoinComponent
 import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
-import com.opsicorp.sliderdatepicker.utils.Constant
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
 import org.koin.core.parameter.parametersOf
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.DateConverter
+import com.opsicorp.sliderdatepicker.utils.Constant
 import kotlinx.android.synthetic.main.activity_create_tripplan.*
 import com.mobile.travelaja.module.item_custom.dialog_camera.DialogCamera
 import com.mobile.travelaja.module.create_trip.newtrip.view.CreateTripView
@@ -33,7 +34,6 @@ import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsic
 import com.mobile.travelaja.module.create_trip.newtrip.presenter.CreateTripPresenter
 import com.mobile.travelaja.module.create_trip.newtrip_pertamina.dialog.DialogPurpose
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
-import java.io.File
 
 class CreateTripActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,

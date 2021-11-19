@@ -35,6 +35,10 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
     private fun initCalendar() {
         calendar_view.callbackCalendarListener(this)
 
+        if (intent.getBooleanExtra("beforday",false)){
+            calendar_view.selectBeforeDay()
+        }
+
         if (intent.getStringExtra("startDate")!=null){
             calendar_view.setStartDateSelected(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("startDate")))
         }

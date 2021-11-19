@@ -1,18 +1,21 @@
 package com.opsicorp.sliderdatepicker.lib
 
 import java.util.*
+import android.util.Log
 import android.view.View
+import java.lang.Exception
 import android.widget.Toast
 import android.content.Context
 import android.util.AttributeSet
 import java.text.SimpleDateFormat
 import android.widget.LinearLayout
 import kotlin.collections.ArrayList
+import android.annotation.SuppressLint
 import com.opsicorp.sliderdatepicker.R
 import com.opsicorp.sliderdatepicker.utils.Constant
+import com.opsicorp.sliderdatepicker.model.HolidayModel
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.util.Log
 import com.opsicorp.sliderdatepicker.utils.DataCalendar
 import com.opsicorp.sliderdatepicker.model.CalendarModel
 import com.opsicorp.sliderdatepicker.utils.CallbackCalendar
@@ -22,9 +25,8 @@ import com.opsicorp.sliderdatepicker.utils.StickHeaderItemDecoration
 import com.opsicorp.sliderdatepicker.adapter.CalendarVerticalAdapter
 import kotlinx.android.synthetic.main.calendar_vertical_view.view.*
 import com.opsicorp.sliderdatepicker.adapter.OnclickListenerRecyclerViewParent
-import com.opsicorp.sliderdatepicker.model.HolidayModel
-import java.lang.Exception
 
+@SuppressLint("SimpleDateFormat")
 class CalendarVertical : LinearLayout,
     View.OnClickListener,
     OnclickListenerRecyclerViewParent {
@@ -47,6 +49,7 @@ class CalendarVertical : LinearLayout,
 
         setDafaultData()
         initRecyclerView()
+        addDataCalendar()
     }
 
     private fun setDafaultData() {
@@ -60,22 +63,27 @@ class CalendarVertical : LinearLayout,
 
 
     private fun initRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_calendar.layoutManager = layoutManager
-        rv_calendar.setItemAnimator(androidx.recyclerview.widget.DefaultItemAnimator())
+        rv_calendar.setItemAnimator(DefaultItemAnimator())
         rv_calendar.setHasFixedSize(true)
         rv_calendar.addItemDecoration(StickHeaderItemDecoration(adapter));
         rv_calendar.setAdapter(adapter)
 
+        adapter.callbackRecyclerView(this)
+    }
 
+    private fun addDataCalendar() {
+        data.clear()
         DataCalendar().getDataDates().forEach {
             data.add(addDataHeader(it.date,it.dateStr))
             data.add(it)
         }
-
+        if (Constant.selectBeforeDay){
+            rv_calendar.scrollToPosition(7)
+        }
         adapter.setData(data)
-        adapter.callbackRecyclerView(this)
     }
 
     private fun addDataHeader(date: Date, dateStr: String): CalendarModel {
@@ -102,29 +110,17 @@ class CalendarVertical : LinearLayout,
             Constant.ONCLICK_DATE -> {
                 val mCalendar = Calendar.getInstance()
                 if (startSelectDate.isEmpty()) {
-                    if (!data[positionParent].data[position].date.before(mCalendar.time) || (SimpleDateFormat(
-                                    Constant.formatDate
-                            ).format(mCalendar.time) == data[positionParent].data[position].fullDay)
-                    ) {
-                        startSelectDate =
-                                SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
-                        adapter.notifyDataSetChanged()
-
-                        if (Constant.formatDateOutput.isNotEmpty()) {
-                            callback.startDate(
-                                    convertFormatDate(
-                                            startSelectDate,
-                                            Constant.formatDate,
-                                            Constant.formatDateOutput
-                                    )
-                            )
-                        } else {
-                            callback.startDate(startSelectDate)
+                    if (!Constant.selectBeforeDay){
+                        if (!data[positionParent].data[position].date.before(mCalendar.time) || (SimpleDateFormat(Constant.formatDate).format(mCalendar.time) == data[positionParent].data[position].fullDay)) {
+                            selectStartDate(viewParent,positionParent,view,position)
                         }
                     }
+                    else {
+                        selectStartDate(viewParent,positionParent,view,position)
+                    }
+
                 } else {
-                    val dateSelected =
-                            SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
+                    val dateSelected = SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
 //                    if (startSelectDate == dateSelected) {
 //                        /*startSelectDate = ""
 //                        endSelectDate = ""*/
@@ -148,9 +144,7 @@ class CalendarVertical : LinearLayout,
                             }
                         } else {
                             if (data[positionParent].data[position].date.before(
-                                            SimpleDateFormat(
-                                                    Constant.formatDate
-                                            ).parse(startSelectDate)
+                                            SimpleDateFormat(Constant.formatDate).parse(startSelectDate)
                                     )
                             ) {
                                 Toast.makeText(
@@ -189,6 +183,28 @@ class CalendarVertical : LinearLayout,
             }
         }
 
+    }
+
+    private fun selectStartDate(viewParent: Int, positionParent: Int, view: Int, position: Int) {
+        startSelectDate = SimpleDateFormat(Constant.formatDate).format(data[positionParent].data[position].date)
+        adapter.notifyDataSetChanged()
+
+        if (Constant.formatDateOutput.isNotEmpty()) {
+            callback.startDate(
+                convertFormatDate(
+                    startSelectDate,
+                    Constant.formatDate,
+                    Constant.formatDateOutput
+                )
+            )
+        } else {
+            callback.startDate(startSelectDate)
+        }
+    }
+
+    fun selectBeforeDay(){
+        Constant.selectBeforeDay = true
+        addDataCalendar()
     }
 
     fun setMinDate(minDate:Date){
