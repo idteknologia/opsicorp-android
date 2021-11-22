@@ -136,15 +136,16 @@
         android:background="@android:color/white"
         android:paddingLeft="@dimen/margin_default"
         android:paddingRight="@dimen/margin_default">
+
         <TextView
             android:id="@+id/tv_tittle_prize"
+            style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Prize"
+            android:layout_marginTop="12dp"
+            android:text="Total Price"
             android:textColor="#939396"
-            style="@style/RobotoRegular"
-            android:textSize="14dp"
-            android:layout_marginTop="12dp"/>
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tv_total_pricing"
