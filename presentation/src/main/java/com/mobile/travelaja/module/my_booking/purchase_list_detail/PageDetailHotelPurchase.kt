@@ -51,7 +51,6 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         addView(binding.root)
         setOrientation(VERTICAL)
 
-        initWebview()
         initExpandView()
         initRecyclerView()
         addData()
@@ -99,7 +98,6 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         else{
             binding.lineHotelMessage.visibility = View.VISIBLE
         }
-        Log.e("TAG --->>> ",dataRemark.size.toString())
         if (dataRemark.isEmpty()){
             binding.lineRemark.visibility = View.GONE
         }
@@ -133,10 +131,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegePolicy = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegePolicy.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegePolicy = LinearLayoutManager(context)
+        layoutManegePolicy.orientation = LinearLayoutManager.VERTICAL
         binding.rvCancelPolicy.layoutManager = layoutManegePolicy
-        binding.rvCancelPolicy.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvCancelPolicy.itemAnimator  = DefaultItemAnimator()
         binding.rvCancelPolicy.adapter       = adapterPolicy
 
         adapterPolicy.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -145,10 +143,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegeRemark = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegeRemark.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegeRemark = LinearLayoutManager(context)
+        layoutManegeRemark.orientation  = LinearLayoutManager.VERTICAL
         binding.rvRemark.layoutManager = layoutManegeRemark
-        binding.rvRemark.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRemark.itemAnimator  = DefaultItemAnimator()
         binding.rvRemark.adapter       = adapterRemark
 
         adapterRemark.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -157,10 +155,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegeGuest = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegeGuest.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegeGuest = LinearLayoutManager(context)
+        layoutManegeGuest.orientation  = LinearLayoutManager.VERTICAL
         binding.rvRoomPassanger.layoutManager = layoutManegeGuest
-        binding.rvRoomPassanger.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRoomPassanger.itemAnimator  = DefaultItemAnimator()
         binding.rvRoomPassanger.adapter       = adapterGuest
 
         adapterGuest.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -230,6 +228,9 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         adapterPolicy.setData(data.dataHotel.cancellationPolicy)
         adapterRemark.setData(data.dataHotel.dataRemark)
         adapterGuest.setData(dataGuest)
+        latitude = data.dataHotel.latitude.toString()
+        longitude= data.dataHotel.longitude.toString()
+        initWebview()
         checkEmptyData()
     }
 
