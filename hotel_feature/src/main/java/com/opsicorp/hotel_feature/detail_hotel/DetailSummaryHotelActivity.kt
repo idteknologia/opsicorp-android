@@ -45,9 +45,9 @@ class DetailSummaryHotelActivity : BaseActivity() {
         tv_description_hotel_cart.text  = dataHotel.descreption
         tv_prize_hotel_cart.text        = Globals.formatAmount(dataHotel.price)
 
-        tv_total_price_item.text        = Globals.formatAmount(dataHotel.price)
+        tv_total_price_item.text        = "0"
         tv_total_amount.text            = Globals.formatAmount(dataHotel.price)
-        tv_total_price_service_fee.text = Globals.formatAmount(dataHotel.price)
+        tv_total_price_service_fee.text = "0"
         tv_total_price_vat.text         = Globals.formatAmount(dataHotel.price)
         startViewListener(dataHotel.starRating.toDouble().toInt())
         setImageHotel(dataHotel.image)

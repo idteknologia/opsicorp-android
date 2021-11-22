@@ -54,8 +54,7 @@ class EticketMapper {
             }
             1 -> {
                 val data = summaryEntity.tripHotels?.find { it?.hotel?.id==idItem }?.hotel
-                totalPay = data?.payments?.find { it?.code.toString().toUpperCase().equals("TOTAL_PAID")}?.amount!!
-
+                totalPay = data?.payments?.find { it.code.toString().toUpperCase().equals("TOTAL_PAID")}?.amount!!
             }
             2 -> {
                 summaryEntity.trains?.forEach {
@@ -135,9 +134,9 @@ class EticketMapper {
     }
 
     private fun mappingFacility(hotelDetail: HotelDetail?): ArrayList<FacilityHotelModel> {
-        Log.e("TAG",Serializer.serialize(hotelDetail!!))
+
         val vacility = ArrayList<FacilityHotelModel>()
-        hotelDetail.facilities?.forEach {
+        hotelDetail?.facilities?.forEach {
             val mData = FacilityHotelModel()
             mData.code = it?.code.toString()
             mData.name = it?.description.toString()

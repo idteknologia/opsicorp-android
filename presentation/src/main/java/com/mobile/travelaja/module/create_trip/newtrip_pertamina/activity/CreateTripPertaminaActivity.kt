@@ -241,7 +241,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     fun getDateWithCalendar(view: View) {
         Globals.ONE_TRIP = false
         if (nonCbt){
-            NewCalendarViewOpsicorp().showCalendarView(this, Constant.DOUBLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarView(this, Constant.DOUBLE_SELECTED,true)
         } else {
             NewCalendarViewOpsicorp().showCalendarView(this, Constant.DOUBLE_SELECTED)
         }
