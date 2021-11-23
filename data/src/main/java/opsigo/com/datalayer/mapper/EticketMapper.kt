@@ -85,7 +85,7 @@ class EticketMapper {
         hotel.timeCheckOut     = data?.checkout.toString()
         hotel.nameBooker       = data?.contact?.fullName.toString()
         hotel.latitude         = data?.hotelDetail?.latitude.toString()
-        hotel.longitude        = data?.hotelDetail?.latitude.toString()
+        hotel.longitude        = data?.hotelDetail?.longitude.toString()
         hotel.classRoom        = data?.roomCategory.toString()
         hotel.roomsTotal       = data?.rooms
         hotel.facility         = mappingFacility(data?.hotelDetail)
