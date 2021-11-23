@@ -82,7 +82,10 @@ class CalendarVertical : LinearLayout,
         }
         if (Constant.selectBeforeDay){
             rv_calendar.scrollToPosition(7)
+        } else {
+            rv_calendar.scrollToPosition(0)
         }
+
         adapter.setData(data)
     }
 
@@ -204,6 +207,11 @@ class CalendarVertical : LinearLayout,
 
     fun selectBeforeDay(){
         Constant.selectBeforeDay = true
+        addDataCalendar()
+    }
+
+    fun selectAfterDay(){
+        Constant.selectBeforeDay = false
         addDataCalendar()
     }
 

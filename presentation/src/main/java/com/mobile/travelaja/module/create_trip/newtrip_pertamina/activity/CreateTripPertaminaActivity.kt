@@ -243,7 +243,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         if (nonCbt){
             NewCalendarViewOpsicorp().showCalendarView(this, Constant.DOUBLE_SELECTED,true)
         } else {
-            NewCalendarViewOpsicorp().showCalendarView(this, Constant.DOUBLE_SELECTED)
+            NewCalendarViewOpsicorp().showCalendarView(this,Constant.DOUBLE_SELECTED,false)
         }
     }
 
@@ -478,10 +478,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     private fun checkAvailableDate(bundle: Bundle) {
-        showLoadingOpsicorp(false)
         GetDataTravelRequest(getBaseUrl()).checkDateAvaibility(getToken(), dataDate(), object : CallbackString {
             override fun successLoad(data: String) {
-                hideLoadingOpsicorp()
                 if (!data.contains("true")) {
                     showAllert(getString(R.string.sorry), data)
                 } else {
@@ -499,10 +497,8 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     private fun checkCashAdvance(bundle: Bundle) {
-        showLoadingOpsicorp(false)
         GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(), dataRequest(), object : CallbackCashAdvance {
             override fun successLoad(data: CashAdvanceModel) {
-                hideLoadingOpsicorp()
                 Constants.DATA_CASH_ADVANCE = Serializer.serialize(data)
                 setLog("Test Cash", Serializer.serialize(Constants.DATA_CASH_ADVANCE))
                 gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)

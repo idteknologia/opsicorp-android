@@ -41,7 +41,7 @@ class NewCalendarViewOpsicorp {
         activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
     }
 
-    fun showCalendarView(activity: Activity,typeSelected: Int,selectBeforeDay: Boolean){
+    fun showCalendarView(activity: Activity, typeSelected: Int, selectBeforeDay: Boolean){
         val intent  = Intent(activity,NewCalendarViewActivity::class.java)
         intent.putExtra("beforday",selectBeforeDay)
         intent.putExtra("typeSelected",typeSelected)

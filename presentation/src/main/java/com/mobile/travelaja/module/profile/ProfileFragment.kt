@@ -137,7 +137,7 @@ class ProfileFragment : BaseFragment(),
         }
 
         tv_name.text      = dataProfile.fullName //StringUtils().setUppercaseFirstLetter(dataProfile.firstName) + " " + StringUtils().setUppercaseFirstLetter(dataProfile.lastName)
-        tv_position.text  = if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM) dataProfile.titleName else dataProfile.position
+        tv_position.text  = if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM) dataProfile.approval.reqPosName else dataProfile.position
         tv_address.text   = dataProfile.address
         tv_email.text     = dataProfile.email
 
