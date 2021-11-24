@@ -37,6 +37,8 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
 
         if (intent.getBooleanExtra("beforday",false)){
             calendar_view.selectBeforeDay()
+        } else {
+            calendar_view.selectAfterDay()
         }
 
         if (intent.getStringExtra("startDate")!=null){

@@ -35,7 +35,6 @@ import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.ic_back
 import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.rv_attachment
 import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.tv_from
 import kotlinx.android.synthetic.main.activity_new_createtrip_travelaja.tv_notes_count
-import kotlinx.android.synthetic.main.activity_new_createtripplan.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
