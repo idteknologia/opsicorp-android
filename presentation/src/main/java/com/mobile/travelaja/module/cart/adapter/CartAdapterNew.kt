@@ -116,15 +116,32 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 TYPE_TRAIN  -> {
                     itemView.line_image_accomodation.background = context.resources.getDrawable(R.drawable.rounded_cart_header_train)
                     itemView.ic_image_accomodation.setImageDrawable(context.resources.getDrawable(R.drawable.ic_train_cart))
-
+                    if (items.filter { it.typeCard == TYPE_TRAIN}.filter { it.dataCardTrain.status.lowercase() != "ticketed" }.isNullOrEmpty()){
+                        itemView.btnOption.visibility = View.GONE
+                    }
+                    else {
+                        itemView.btnOption.visibility = View.VISIBLE
+                    }
                 }
                 TYPE_FLIGHT -> {
                     itemView.line_image_accomodation.background = context.resources.getDrawable(R.drawable.rounded_cart_header_flight)
                     itemView.ic_image_accomodation.setImageDrawable(context.resources.getDrawable(R.drawable.ic_flight_cart))
+                    if (items.filter { it.typeCard == TYPE_FLIGHT}.filter { it.dataCardFlight.status.lowercase() != "ticketed" }.isNullOrEmpty()){
+                        itemView.btnOption.visibility = View.GONE
+                    }
+                    else {
+                        itemView.btnOption.visibility = View.VISIBLE
+                    }
                 }
                 else        -> {
                     itemView.line_image_accomodation.background = context.resources.getDrawable(R.drawable.rounded_cart_header_train)
                     itemView.ic_image_accomodation.setImageDrawable(context.resources.getDrawable(R.drawable.ic_hotel_cart))
+                    if (items.filter { it.typeCard == TYPE_HOTEL}.filter { it.dataCardHotel.status.lowercase() != "ticketed" }.isNullOrEmpty()){
+                        itemView.btnOption.visibility = View.GONE
+                    }
+                    else {
+                        itemView.btnOption.visibility = View.VISIBLE
+                    }
                 }
             }
 
