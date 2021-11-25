@@ -409,6 +409,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                 Globals.showAlert(getString(R.string.txt_please), getString(R.string.waiting_upload_file), this)
             } else {
                 checkAvailableDate(bundle)
+                showLoadingOpsicorp(true)
             }
         }
     }
@@ -482,10 +483,12 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             override fun successLoad(data: String) {
                 if (!data.contains("true")) {
                     showAllert(getString(R.string.sorry), data)
+                    hideLoadingOpsicorp()
                 } else {
                     bundle.putString(SelectTripRoutePertaminaActivity.START_DATE, m_startdate)
                     bundle.putString(SelectTripRoutePertaminaActivity.END_DATE, m_endate)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL, typeTrip)
+                    bundle.putBoolean(SelectTripRoutePertaminaActivity.NON_CBT, nonCbt)
                     checkCashAdvance(bundle)
                 }
             }
@@ -499,6 +502,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     private fun checkCashAdvance(bundle: Bundle) {
         GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(), dataRequest(), object : CallbackCashAdvance {
             override fun successLoad(data: CashAdvanceModel) {
+                hideLoadingOpsicorp()
                 Constants.DATA_CASH_ADVANCE = Serializer.serialize(data)
                 setLog("Test Cash", Serializer.serialize(Constants.DATA_CASH_ADVANCE))
                 gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)

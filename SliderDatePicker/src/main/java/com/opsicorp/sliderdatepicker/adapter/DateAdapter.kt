@@ -57,7 +57,15 @@ class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): and
             }
         }
         else {
-            ChangeColorDate(holder,position,data)
+            if (Constant.maxDate.equals(SimpleDateFormat("dd MM yyyy").parse("20 10 2050"))){
+                ChangeColorDate(holder,position,data)
+            } else {
+                if (data.date.before(Constant.minDate)|| data.date.after(Constant.maxDate)){
+                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
+                } else {
+                    ChangeColorDate(holder,position,data)
+                }
+            }
         }
 
     }

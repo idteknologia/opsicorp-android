@@ -48,6 +48,16 @@ class NewCalendarViewOpsicorp {
         activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
     }
 
+    fun showCalendarBackDateMinMax(activity: Activity,formatDate: String, minDate:String, maxDate: String,typeSelected: Int,selectBeforeDay: Boolean){
+        val intent  = Intent(activity,NewCalendarViewActivity::class.java)
+        intent.putExtra("formatDate",formatDate)
+        intent.putExtra("minDate",minDate)
+        intent.putExtra("maxDate",maxDate)
+        intent.putExtra("beforday",selectBeforeDay)
+        intent.putExtra("typeSelected",typeSelected)
+        activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
+    }
+
     fun resultCalendarView(requestCode: Int, resultCode: Int, data: Intent?,callbackResult :CallbackResult){
         when(requestCode){
             REQUEST_CODE_CALENDAR -> {

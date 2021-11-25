@@ -48,13 +48,18 @@ class NewCalendarViewActivity : BaseActivity(),CallbackCalendar {
             calendar_view.setEndDateSelected(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("endDate")))
         }
 
+        println("-_-")
+
         if (intent.getStringExtra("minDate")!=null){
             calendar_view.setMinDate(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("minDate")))
+            println(intent.getStringExtra("minDate"))
         }
 
         if (intent.getStringExtra("maxDate")!=null){
             calendar_view.setMaxDate(SimpleDateFormat(intent.getStringExtra("formatDate")).parse(intent.getStringExtra("maxDate")))
+            println(intent.getStringExtra("maxDate"))
         }
+
         typeSelected = intent.getIntExtra("typeSelected",Constant.DOUBLE_SELECTED)
         calendar_view.typeSelected(typeSelected)
 

@@ -32,6 +32,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private lateinit var binding: ActivitySelectRoutePertaminaBinding
     private var starDate = ""
     private var endDate = ""
+    private var nonCbt = false
     private var position = -1
     var dataChangeTrip = ChangeTripModel()
 
@@ -46,6 +47,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         binding.viewModel = viewModel
         val bundle = intent.getBundleExtra("data")
         val isInternational = bundle?.getBoolean(IS_INTERNATIONAL) ?: false
+        nonCbt = bundle?.getBoolean(NON_CBT) ?: false
         starDate = bundle?.getString(START_DATE) ?: ""
         endDate = bundle?.getString(END_DATE) ?: ""
         viewModel.checkedInternational(isInternational)
@@ -140,20 +142,36 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
 
     override fun clickItemItinerary(pos: Int, type: Int) {
         position = pos
-        if (type == 0) {
-            NewCalendarViewOpsicorp().showCalendarViewMinMax(
-                this,
-                "yyyy-MM-dd",
-                starDate,
-                endDate,
-                Constant.SINGGLE_SELECTED
-            )
-        } else if (type == 3) {
-            showDialog()
-        } else if (type == 4) {
-            removeItem(pos)
-        } else {
-            selectCity(type)
+        when (type) {
+            0 -> {
+                if (!nonCbt){
+                    NewCalendarViewOpsicorp().showCalendarViewMinMax(
+                        this,
+                        "yyyy-MM-dd",
+                        starDate,
+                        endDate,
+                        Constant.SINGGLE_SELECTED
+                    )
+                } else {
+                    NewCalendarViewOpsicorp().showCalendarBackDateMinMax(
+                        this,
+                        "yyyy-MM-dd",
+                        starDate,
+                        endDate,
+                        Constant.SINGGLE_SELECTED,
+                        true
+                    )
+                }
+            }
+            3 -> {
+                showDialog()
+            }
+            4 -> {
+                removeItem(pos)
+            }
+            else -> {
+                selectCity(type)
+            }
         }
     }
 
@@ -197,6 +215,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
 
     companion object {
         const val IS_INTERNATIONAL = "is_international"
+        const val NON_CBT = "is_noncbt"
         const val START_DATE = "SDATE"
         const val END_DATE = "EDATE"
     }
