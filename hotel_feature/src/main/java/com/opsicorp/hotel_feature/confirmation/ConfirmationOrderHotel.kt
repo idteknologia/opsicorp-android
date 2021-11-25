@@ -305,9 +305,9 @@ class ConfirmationOrderHotel : BaseActivity(),
         }
         line_arrival.visibility   = View.GONE
         tv_title_prize.text       = "Total to be paid"
-        tv_prize_departure.text   = "IDR "+Globals.formatAmount(dataHotel.price)
-        tv_price_total.text       = "IDR "+Globals.formatAmount(dataHotel.price)
-        tv_price.text             = "IDR "+Globals.formatAmount(dataHotel.price)
+        tv_prize_departure.text   = "IDR "+Globals.formatAmount(dataRoom.prize.toDouble().toInt().toString())
+        tv_price_total.text       = "IDR "+Globals.formatAmount(dataRoom.prize.toDouble().toInt().toString())
+        tv_price.text             = "IDR "+Globals.formatAmount(dataRoom.prize.toDouble().toInt().toString())
         tv_including.text         = "Including of all fares & vat"
         tv_station_departure.text = dataHotel.room.first().titleRoom
         tv_item_pax.text          = dataHotel.duration
