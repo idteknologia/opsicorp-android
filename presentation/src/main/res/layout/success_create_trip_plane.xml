@@ -178,16 +178,34 @@
                             android:textColor="#eb0011"
                             android:textSize="10sp" />
 
-                        <TextView
-                            android:id="@+id/tv_purpose"
-                            style="@style/RobotoBold"
-                            android:textColor="#009688"
-                            android:layout_marginTop="65dp"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:gravity="center_horizontal"
-                            tools:text="IBM Workshop " />
+                            android:layout_marginTop="25dp">
+
+                            <TextView
+                                android:id="@+id/tv_purpose"
+                                style="@style/RobotoBold"
+                                android:layout_marginEnd="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="#009688"
+                                android:text="IBM Workshop " />
+
+                            <TextView
+                                android:id="@+id/tv_cbt"
+                                style="@style/RobotoBold"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="14sp"
+                                android:textColor="@color/red_alert"
+                                tools:text="NONCBT " />
+
+                        </RelativeLayout>
 
                         <TextView
                             android:id="@+id/tv_activity_type"
@@ -320,6 +338,8 @@
                         style="@style/RobotoBold"
                         android:layout_below="@+id/image_barcode"
                         android:layout_alignParentRight="true"/>
+
+
 
                 </RelativeLayout>
 

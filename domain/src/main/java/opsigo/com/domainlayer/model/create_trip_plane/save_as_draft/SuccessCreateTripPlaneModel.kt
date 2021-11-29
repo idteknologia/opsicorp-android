@@ -25,7 +25,7 @@ class SuccessCreateTripPlaneModel {
     var tripType     = ""
     var isTripPartner = false
     var tripPartnerName = ""
-
+    var isCbt = false
     var businessTripType = ""
     var wbsNo       = ""
     var statusNumber = 0

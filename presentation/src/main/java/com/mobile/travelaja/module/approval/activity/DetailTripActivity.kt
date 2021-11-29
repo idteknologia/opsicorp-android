@@ -505,6 +505,13 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         id_tv_create_date.text = "${getString(R.string.created_date)} : ${tripSummary.creationDate}"
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
+
+        if (tripSummary.nonCbt){
+            tv_cbt.text = "Non CBT"
+        } else {
+            tv_cbt.text = "CBT"
+        }
+
         if (tripSummary.routes.isNotEmpty()) {
             if (tripSummary.routes.size == 1) {
                 tv_destination.text = "${tripSummary.routes[0].origin} - ${tripSummary.routes[0].destination}"
