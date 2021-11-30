@@ -78,5 +78,5 @@
         android:textColor="#91929e"
         app:layout_constraintTop_toBottomOf="@+id/tvPurposeTrip"
         app:layout_constraintLeft_toLeftOf="@+id/tvDateSchedule"
-        tools:text="Jakarta - Denpasar - Solo - Makassar - Palembang" />
+        tools:text="Jakarta - Denpasar - Solo - Makassar - Palembang - hgfjghfjhfjhgfjgh fjgh fjghf jhgf jhgj ghfjhg fjghfjgh h" />
 </androidx.constraintlayout.widget.ConstraintLayout>
