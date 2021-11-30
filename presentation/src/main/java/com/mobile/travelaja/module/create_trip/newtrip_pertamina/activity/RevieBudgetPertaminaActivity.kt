@@ -359,6 +359,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 data.isTripPartner = dataTrip.isTripPartner
                 data.tripPartnerName = dataTrip.tripPartnerName
                 data.tripType = tripRoute
+                data.isCbt = dataTrip.isCbt
                 Constants.DATA_CREATE_TRIP = Serializer.serialize(data)
                 setLog("Test Save", Serializer.serialize(Constants.DATA_CREATE_TRIP))
                 gotoActivity(SucessCreateTripPlaneActivity::class.java)
@@ -391,6 +392,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.trnNumber = dataTrip.trnNumber
         dataRequest.tripCodeOld = dataTrip.tripCodeOld
         dataRequest.tripIdOld = dataTrip.tripIdOld
+        dataRequest.nonCbt = dataTrip.isCbt
 
         dataRequest.routes = ArrayList()
         val mDataRoutes = ArrayList<RoutesItem>()

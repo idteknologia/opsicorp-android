@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -220,20 +220,38 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/tv_purpose"
-                        style="@style/RobotoBold"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginTop="30dp"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#009688"
-                        android:text="IBM Workshop " />
+                        android:layout_marginTop="30dp">
+
+                        <TextView
+                            android:id="@+id/tv_purpose"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:text="IBM Workshop "
+                            android:textColor="#009688"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_cbt"
+                            style="@style/RobotoBold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:textColor="@color/red_alert"
+                            android:textSize="12sp"
+                            tools:text="NONCBT " />
+
+                    </RelativeLayout>
 
                     <LinearLayout
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
@@ -394,7 +412,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#939396"
-                        android:text="@string/allowance" />
+                        android:text="Est. Cost" />
 
                     <TextView
                         android:id="@+id/tv_mount"

@@ -187,6 +187,9 @@ data class SummaryEntity(
     @field:SerializedName("IsChangeTrip")
     val isChangeTrip: Boolean = false,
 
+    @field:SerializedName("NonCbt")
+    val nonCbt: Boolean = false,
+
     @field:SerializedName("PaymentTypeView")
     val paymentTypeView: String? = null,
 

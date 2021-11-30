@@ -22,6 +22,7 @@ object Constant {
     var TYPE_SELECTED  = DOUBLE_SELECTED
     var startSelectDate    = ""
     var endSelectDate      = ""
+    var selectBeforeDay    = false
 
 
 

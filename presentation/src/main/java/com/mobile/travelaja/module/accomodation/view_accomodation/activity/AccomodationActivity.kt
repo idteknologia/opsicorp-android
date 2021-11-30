@@ -148,7 +148,9 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     override fun four() {
 //        setContruction()
-        getTourFragment()
+        /*getTourFragment()*/
+        showDialogNotAuthorized(false)
+        btn_bottom_accomodation.changeImageBtn(0)
     }
 
     override fun five() {

@@ -6,7 +6,7 @@ import android.content.Intent
 class NewCalendarViewOpsicorp {
     var REQUEST_CODE_CALENDAR = 76
 
-    fun showCalendarView(activity: Activity, formatDate:String, startDate: String,endDate:String,minDate:String,maxDate:String,typeSelected:Int){
+    fun showCalendarView(activity: Activity, formatDate:String, startDate: String,endDate:String,minDate:String,maxDate:String,typeSelected:Int,selectBeforeDay:Boolean){
         val intent  = Intent(activity,NewCalendarViewActivity::class.java)
         intent.putExtra("formatDate",formatDate)
         intent.putExtra("startDate",startDate)
@@ -37,6 +37,23 @@ class NewCalendarViewOpsicorp {
 
     fun showCalendarView(activity: Activity,typeSelected: Int){
         val intent  = Intent(activity,NewCalendarViewActivity::class.java)
+        intent.putExtra("typeSelected",typeSelected)
+        activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
+    }
+
+    fun showCalendarView(activity: Activity, typeSelected: Int, selectBeforeDay: Boolean){
+        val intent  = Intent(activity,NewCalendarViewActivity::class.java)
+        intent.putExtra("beforday",selectBeforeDay)
+        intent.putExtra("typeSelected",typeSelected)
+        activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
+    }
+
+    fun showCalendarBackDateMinMax(activity: Activity,formatDate: String, minDate:String, maxDate: String,typeSelected: Int,selectBeforeDay: Boolean){
+        val intent  = Intent(activity,NewCalendarViewActivity::class.java)
+        intent.putExtra("formatDate",formatDate)
+        intent.putExtra("minDate",minDate)
+        intent.putExtra("maxDate",maxDate)
+        intent.putExtra("beforday",selectBeforeDay)
         intent.putExtra("typeSelected",typeSelected)
         activity.startActivityForResult(intent,REQUEST_CODE_CALENDAR)
     }

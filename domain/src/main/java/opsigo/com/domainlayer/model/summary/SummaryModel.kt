@@ -48,6 +48,7 @@ data class SummaryModel(
         var wbsNo : String = "",
         var golper : Int = 0,
         var isChangeTrip :Boolean = false,
+        var nonCbt : Boolean = false,
 
         var paymentStatus: String = "",
         var paymentStatusView : String = "",

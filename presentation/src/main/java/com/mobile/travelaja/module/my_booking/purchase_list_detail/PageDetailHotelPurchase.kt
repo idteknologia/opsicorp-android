@@ -1,6 +1,7 @@
 
 package com.mobile.travelaja.module.my_booking.purchase_list_detail
 
+import android.annotation.SuppressLint
 import android.view.View
 import com.mobile.travelaja.R
 import android.content.Context
@@ -28,6 +29,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     private var binding: PageDetailHotelBinding
 
     lateinit var onclick : OnclickButtonListener
+    var nameHotel = ""
     var latitude = "-6.175906"
     var longitude = "106.8121863"
     var data = DetailMyBookingModel()
@@ -51,7 +53,6 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         addView(binding.root)
         setOrientation(VERTICAL)
 
-        initWebview()
         initExpandView()
         initRecyclerView()
         addData()
@@ -99,7 +100,6 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         else{
             binding.lineHotelMessage.visibility = View.VISIBLE
         }
-        Log.e("TAG --->>> ",dataRemark.size.toString())
         if (dataRemark.isEmpty()){
             binding.lineRemark.visibility = View.GONE
         }
@@ -133,10 +133,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegePolicy = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegePolicy.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegePolicy = LinearLayoutManager(context)
+        layoutManegePolicy.orientation = LinearLayoutManager.VERTICAL
         binding.rvCancelPolicy.layoutManager = layoutManegePolicy
-        binding.rvCancelPolicy.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvCancelPolicy.itemAnimator  = DefaultItemAnimator()
         binding.rvCancelPolicy.adapter       = adapterPolicy
 
         adapterPolicy.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -145,10 +145,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegeRemark = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegeRemark.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegeRemark = LinearLayoutManager(context)
+        layoutManegeRemark.orientation  = LinearLayoutManager.VERTICAL
         binding.rvRemark.layoutManager = layoutManegeRemark
-        binding.rvRemark.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRemark.itemAnimator  = DefaultItemAnimator()
         binding.rvRemark.adapter       = adapterRemark
 
         adapterRemark.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -157,10 +157,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
             }
         })
 
-        val layoutManegeGuest = androidx.recyclerview.widget.LinearLayoutManager(context)
-        layoutManegeGuest.orientation  = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManegeGuest = LinearLayoutManager(context)
+        layoutManegeGuest.orientation  = LinearLayoutManager.VERTICAL
         binding.rvRoomPassanger.layoutManager = layoutManegeGuest
-        binding.rvRoomPassanger.itemAnimator  = androidx.recyclerview.widget.DefaultItemAnimator()
+        binding.rvRoomPassanger.itemAnimator  = DefaultItemAnimator()
         binding.rvRoomPassanger.adapter       = adapterGuest
 
         adapterGuest.setOnclickListener(object :OnclickListenerRecyclerView{
@@ -168,17 +168,17 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
 
             }
         })
-
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebview() {
-        val url = "<object width=\"100%\" height=\"170\" style=\"border: none;margin:0 auto; padding:0; overflow-x:hidden;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
-        binding.webview.loadData(url, "text/html", null)
+        val url = "<object width=\"360\" height=\"170\" style=\"border: 1px solid #cccccc;\" data=\"https://www.google.com/maps?q=${latitude},${longitude}&output=embed\" ></object>"
         binding.webview.setWebViewClient(WebViewClient())
         binding.webview.clearCache(true)
         binding.webview.clearHistory()
-        binding.webview.getSettings().setJavaScriptEnabled(true)
-        binding.webview.settings.setJavaScriptCanOpenWindowsAutomatically(true)
+        binding.webview.getSettings().javaScriptEnabled = true
+        binding.webview.getSettings().javaScriptCanOpenWindowsAutomatically = true
+        binding.webview.loadDataWithBaseURL(null,url,"text/html", "utf-8", null)
 
         binding.mapLine.setOnClickListener {
             openMapListener()
@@ -189,7 +189,7 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
     }
 
     private fun openMapListener() {
-        Globals.openGoogleMap(context,latitude.toDouble(),longitude.toDouble(),"")
+        Globals.openGoogleMap(context,latitude.toDouble(),longitude.toDouble(),nameHotel)
     }
 
 
@@ -230,6 +230,10 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
         adapterPolicy.setData(data.dataHotel.cancellationPolicy)
         adapterRemark.setData(data.dataHotel.dataRemark)
         adapterGuest.setData(dataGuest)
+        latitude  = data.dataHotel.latitude.toString()
+        longitude = data.dataHotel.longitude.toString()
+        nameHotel = data.dataHotel.hotelName.toString()
+        initWebview()
         checkEmptyData()
     }
 

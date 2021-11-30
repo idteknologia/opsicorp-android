@@ -45,6 +45,9 @@ data class SaveAsDraftRequestPertamina (
         @field:SerializedName("WithPartner")
         var  withPartner: Boolean = false,
 
+        @field:SerializedName("NonCbt")
+        var nonCbt: Boolean = false,
+
         @field:SerializedName("PartnerName ")
         var  partnerName: String = "",
 

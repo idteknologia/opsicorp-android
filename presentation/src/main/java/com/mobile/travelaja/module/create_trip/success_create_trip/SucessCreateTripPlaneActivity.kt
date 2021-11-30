@@ -76,6 +76,11 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         if (Globals.getProfile(this).approval.travelRequestApproval.isEmpty()){
             tv_list_approval.text = "List Approver (0)"
         }
+        if (data.isCbt){
+            tv_cbt.text = "NON CBT"
+        } else {
+            tv_cbt.text = "CBT"
+        }
 
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)

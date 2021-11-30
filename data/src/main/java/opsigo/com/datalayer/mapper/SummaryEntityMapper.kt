@@ -40,6 +40,7 @@ class SummaryEntityMapper() {
         summary.isApproval          = from.isApproval
         summary.isPrivateTrip       = from.isPrivateTrip
         summary.isChangeTrip        = from.isChangeTrip
+        summary.nonCbt        = from.nonCbt
         summary.paymentStatus     = from.paymentStatus.toString()
         summary.paymentStatusView = from.paymentStatusView.toString()
         summary.isTripPartner = from.isWithPartner

@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat
 import android.view.LayoutInflater
 import kotlin.collections.ArrayList
 import com.opsicorp.sliderdatepicker.R
-import androidx.recyclerview.widget.RecyclerView
 import com.opsicorp.sliderdatepicker.utils.Constant
 import androidx.core.content.res.ResourcesCompat
 import com.opsicorp.sliderdatepicker.model.DayDataModel
@@ -46,56 +45,73 @@ class DateAdapter (var context: Context,var items: ArrayList<DayDataModel>): and
             }
         }
 
-        if (data.date.before(Constant.minDate)&&(SimpleDateFormat(Constant.formatDate).format(Constant.minDate)!=data.fullDay)){
-            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
-        }
-        else if (data.date.after(Constant.maxDate)){
-            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
-        }
-        else{
-            if (data.typeDay==Constant.DAY_NEXT_MONTH||data.typeDay==Constant.DAY_PREVIOUS_MONTH){
+        if (!Constant.selectBeforeDay){
+            if (data.date.before(Constant.minDate)&&(SimpleDateFormat(Constant.formatDate).format(Constant.minDate)!=data.fullDay)){
                 holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
             }
-            else if(data.typeDay==Constant.DAY_SUNDAY||data.typeDay==Constant.DAY_HOLIDAY){
-                holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHoliday))
+            else if (data.date.after(Constant.maxDate)){
+                holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
             }
-            else {
-                if (Constant.startSelectDate.isNotEmpty()){
-                    if (data.fullDay==Constant.startSelectDate){
-                        holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
+            else{
+                ChangeColorDate(holder,position,data)
+            }
+        }
+        else {
+            if (Constant.maxDate.equals(SimpleDateFormat("dd MM yyyy").parse("20 10 2050"))){
+                ChangeColorDate(holder,position,data)
+            } else {
+                if (data.date.before(Constant.minDate)|| data.date.after(Constant.maxDate)){
+                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
+                } else {
+                    ChangeColorDate(holder,position,data)
+                }
+            }
+        }
+
+    }
+
+    private fun ChangeColorDate(holder: ViewHolder, position: Int, data: DayDataModel) {
+        if (data.typeDay==Constant.DAY_NEXT_MONTH||data.typeDay==Constant.DAY_PREVIOUS_MONTH){
+            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextNonActived))
+        }
+        else if(data.typeDay==Constant.DAY_SUNDAY||data.typeDay==Constant.DAY_HOLIDAY){
+            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHoliday))
+        }
+        else {
+            if (Constant.startSelectDate.isNotEmpty()){
+                if (data.fullDay==Constant.startSelectDate){
+                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
+                }
+                else {
+                    if (Constant.TYPE_SELECTED==Constant.SINGGLE_SELECTED){
+                        holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
                     }
-                    else {
-                        if (Constant.TYPE_SELECTED==Constant.SINGGLE_SELECTED){
-                            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
-                        }
-                        else{
-                            if (Constant.endSelectDate.isNotEmpty()){
-                                if (data.date.after(SimpleDateFormat(Constant.formatDate).parse(Constant.startSelectDate))&&data.date.before(SimpleDateFormat("dd-MM-yyyy").parse(Constant.endSelectDate))){
-                                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
-                                }
-                                else if(data.fullDay==Constant.endSelectDate){
-                                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
-                                }
-                                else {
-                                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
-                                }
+                    else{
+                        if (Constant.endSelectDate.isNotEmpty()){
+                            if (data.date.after(SimpleDateFormat(Constant.formatDate).parse(Constant.startSelectDate))&&data.date.before(SimpleDateFormat("dd-MM-yyyy").parse(Constant.endSelectDate))){
+                                holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
+                            }
+                            else if(data.fullDay==Constant.endSelectDate){
+                                holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorPrimary))
                             }
                             else {
                                 holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
                             }
                         }
+                        else {
+                            holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
+                        }
                     }
                 }
-                else {
-                    holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
-                }
             }
-
-            holder.itemView.setOnClickListener {
-                onclick.callbackRecyclerView(-1,position)
+            else {
+                holder.itemView.tv_item_date.setTextColor(context.resources.getColor(R.color.colorTextHeaderTitle))
             }
         }
 
+        holder.itemView.setOnClickListener {
+            onclick.callbackRecyclerView(-1,position)
+        }
     }
 
     class ViewHolder(row: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(row) {
