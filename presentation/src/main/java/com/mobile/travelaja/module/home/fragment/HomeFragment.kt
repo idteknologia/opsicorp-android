@@ -120,7 +120,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         itemView.tvDate.text = trip.getDateNumber()
         itemView.tvMonth.text = trip.getMonth()
         itemView.tvPurposeTrip.text = trip.Purpose
-        itemView.tvDestination.text = trip.DestinationName
+        itemView.tvDestination.text = trip.nameCities()
         if (trip.isToday()) {
             itemView.tvDateSchedule.text = "Today"
             itemView.tvDateSchedule.setTextColor(Color.parseColor("#d0021b"))

@@ -29,10 +29,10 @@ data class DetailSettlementResult(
 class DetailSettlement : BaseObservable(){
     @SerializedName("Id")
     var Id : String = ""
-    @SerializedName("Code")
-    var Code : String = ""
-    @SerializedName("IsCashAdvance")
-    var IsCashAdvance  : Boolean = false
+//    @SerializedName("Code")
+//    var Code : String = ""
+//    @SerializedName("IsCashAdvance")
+//    var IsCashAdvance  : Boolean = false
     @SerializedName("BankTransfer")
     var BankTransfer : String = ""
     @SerializedName("BankAccount")
@@ -47,8 +47,8 @@ class DetailSettlement : BaseObservable(){
     @SerializedName("TripCode")
     @get:Bindable
     var TripCode : String = ""
-    @SerializedName("TripNumber")
-    var TripNumber : String = ""
+//    @SerializedName("TripNumber")
+//    var TripNumber : String = ""
     @SerializedName("StartDate")
     var StartDate : String = ""
     @SerializedName("EndDate")
@@ -59,14 +59,14 @@ class DetailSettlement : BaseObservable(){
     var CompanyName : String = ""
     @SerializedName("Golper")
     var Golper : Int = 0
-    @SerializedName("GolperTitle")
-    var GolperTitle: String = ""
-    @SerializedName("StartDateView")
-    var StartDateView : String = ""
-    @SerializedName("EndDateView")
-    var EndDateView : String = ""
-    @SerializedName("TripDateView")
-    var TripDateView : String = ""
+//    @SerializedName("GolperTitle")
+//    var GolperTitle: String = ""
+//    @SerializedName("StartDateView")
+//    var StartDateView : String = ""
+//    @SerializedName("EndDateView")
+//    var EndDateView : String = ""
+//    @SerializedName("TripDateView")
+//    var TripDateView : String = ""
     @SerializedName("DurationDay")
     var DurationDay : String = ""
     @SerializedName("Purpose")
@@ -75,20 +75,20 @@ class DetailSettlement : BaseObservable(){
     var RouteType : String = ""
     @SerializedName("TripType")
     var TripType : String = ""
-    @SerializedName("CostCenter")
-    var CostCenter : String = ""
-    @SerializedName("IsDomestic")
-    var IsDomestic : Boolean = false
-    @SerializedName("IsCBT")
-    var IsCBT: Boolean = false
-    @SerializedName("WbsNo")
-    var WbsNo : String =  ""
-    @SerializedName("LaundryPcs")
-    var LaundryPcs : Any? = null
+//    @SerializedName("CostCenter")
+//    var CostCenter : String = ""
+//    @SerializedName("IsDomestic")
+//    var IsDomestic : Boolean = false
+//    @SerializedName("IsCBT")
+//    var IsCBT: Boolean = false
+//    @SerializedName("WbsNo")
+//    var WbsNo : String =  ""
+//    @SerializedName("LaundryPcs")
+//    var LaundryPcs : Any? = null
     @SerializedName("AmountLaundry")
     var AmountLaundry : Number = 0
-    @SerializedName("AmountLaundrySubmit")
-    var AmountLaundrySubmit: Number = 0
+//    @SerializedName("AmountLaundrySubmit")
+//    var AmountLaundrySubmit: Number = 0
     @SerializedName("CurrLaundry")
     var CurrLaundry : String = ""
     @SerializedName("AmountAllowance")
@@ -136,10 +136,10 @@ class DetailSettlement : BaseObservable(){
             field = value
             notifyPropertyChanged(BR.totalSpecificAreaExpense)
         }
-    @SerializedName("AllowanceResidential")
-    var AllowanceResidential :Number =  0
-    @SerializedName("AllowanceResidentialSubmit")
-    var AllowanceResidentialSubmit :Number =  0
+//    @SerializedName("AllowanceResidential")
+//    var AllowanceResidential :Number =  0
+//    @SerializedName("AllowanceResidentialSubmit")
+//    var AllowanceResidentialSubmit :Number =  0
     @SerializedName("TransportExpenses")
     var TransportExpenses = mutableListOf<TransportExpenses>()
     @SerializedName("OtherTransportExpenses")
@@ -160,8 +160,8 @@ class DetailSettlement : BaseObservable(){
             field = value
             notifyPropertyChanged(BR.ticketRefunds)
         }
-    @SerializedName("TripDuration")
-    var TripDuration : Number = 0
+//    @SerializedName("TripDuration")
+//    var TripDuration : Number = 0
     @get:Bindable
     @SerializedName("TotalTransportExpense")
     var TotalTransportExpense : Number = 0
@@ -228,36 +228,36 @@ class DetailSettlement : BaseObservable(){
     var CreatedDate  : String =  ""
     @SerializedName("CreatedDateView")
     var CreatedDateView  : String =  ""
-    @SerializedName("CreatedDateString")
-    var CreatedDateString  : String =  ""
-    @SerializedName("ModifiedDate")
-    var ModifiedDate  : String =  ""
-    @SerializedName("ModifiedDateView")
-    var ModifiedDateView  : String =  ""
-    @SerializedName("SubmittedDate")
-    var SubmittedDate  : String =  ""
-    @SerializedName("SubmittedDateView")
-    var SubmittedDateView  : String =  ""
-    @SerializedName("SubmittedDateString")
-    var SubmittedDateString  : String =  ""
+//    @SerializedName("CreatedDateString")
+//    var CreatedDateString  : String =  ""
+//    @SerializedName("ModifiedDate")
+//    var ModifiedDate  : String =  ""
+//    @SerializedName("ModifiedDateView")
+//    var ModifiedDateView  : String =  ""
+//    @SerializedName("SubmittedDate")
+//    var SubmittedDate  : String =  ""
+//    @SerializedName("SubmittedDateView")
+//    var SubmittedDateView  : String =  ""
+//    @SerializedName("SubmittedDateString")
+//    var SubmittedDateString  : String =  ""
     @SerializedName("CreatedBy")
     var CreatedBy  : String =  ""
-    @SerializedName("IsNeedSuperiorApprover")
-    var IsNeedSuperiorApprover  : Boolean =  false
+//    @SerializedName("IsNeedSuperiorApprover")
+//    var IsNeedSuperiorApprover  : Boolean =  false
     @SerializedName("EmployeeNik")
     var EmployeeNik  : String =  ""
     @SerializedName("EmployeeName")
     var EmployeeName  : String =  ""
-    @SerializedName("PositionId")
-    var PositionId  : String =  ""
+//    @SerializedName("PositionId")
+//    var PositionId  : String =  ""
     @SerializedName("PositionName")
     var PositionName  : String =  ""
-    @SerializedName("JobTitleId")
-    var JobTitleId  : String =  ""
-    @SerializedName("JobTitleName")
-    var JobTitleName  : String =  ""
-    @SerializedName("Email")
-    var Email  : String =  ""
+//    @SerializedName("JobTitleId")
+//    var JobTitleId  : String =  ""
+//    @SerializedName("JobTitleName")
+//    var JobTitleName  : String =  ""
+//    @SerializedName("Email")
+//    var Email  : String =  ""
     @SerializedName("Status")
     var Status  : Number =  0
     @SerializedName("StatusView")
