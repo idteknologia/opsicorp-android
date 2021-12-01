@@ -1,14 +1,10 @@
 package opsigo.com.datalayer.datanetwork
 
-import android.util.Log
 import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.google.gson.reflect.TypeToken
 import opsigo.com.data.network.UrlEndpoind
 import opsigo.com.datalayer.mapper.*
 import okhttp3.ResponseBody
 import opsigo.com.datalayer.model.accomodation.hotel.city.CityHotelEntity
-import opsigo.com.datalayer.model.accomodation.hotel.confirmation.ConfirmationHotelEntity
 import opsigo.com.datalayer.model.accomodation.hotel.country.CountryHotelEntity
 import opsigo.com.datalayer.model.accomodation.hotel.detail.HotelDetailEntity
 import opsigo.com.datalayer.model.accomodation.hotel.room.RoomHotelEntity
@@ -16,7 +12,7 @@ import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.SearchHotelEnt
 import opsigo.com.datalayer.model.accomodation.flight.ProgressFlightEnitity
 import opsigo.com.datalayer.model.accomodation.flight.reservation.ReservationFlightEntity
 import opsigo.com.datalayer.model.accomodation.flight.validation.ValidationFlightEntity
-import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.CountryByRouteEntity
+import opsigo.com.datalayer.model.accomodation.hotel.confirmation.ConfirmationHotelEntity
 import opsigo.com.datalayer.model.accomodation.hotel.search_hotel.CountryByRouteEntityItem
 import opsigo.com.datalayer.model.accomodation.reasoncode.ResponseReasonCodeEntity
 import opsigo.com.datalayer.model.accomodation.train.ProgressTrainEnitity
@@ -777,16 +773,17 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code()==200){
+                    val responseString = response.body()?.string()
+                    callback.success(ConfirmationHotelMapper().mapping(Serializer.deserialize(responseString!!,ConfirmationHotelEntity::class.java)))
+                }
+                else {
+                    val json = JSONObject(response.errorBody()?.string())
+                    val message = json.optString("error_description")
+                    callback.failed(message)
+                }
                 try {
-                    if (response.code()==200){
-                        val responseString = response.body()?.string()
-                        callback.success(ConfirmationHotelMapper().mapping(Serializer.deserialize(responseString!!,ConfirmationHotelEntity::class.java)))
-                    }
-                    else {
-                        val json = JSONObject(response.errorBody()?.string())
-                        val message = json.optString("error_description")
-                        callback.failed(message)
-                    }
+
                 }catch (e:Exception){
                     callback.failed(e.message!!)
                 }

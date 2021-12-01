@@ -1,38 +1,57 @@
 package opsigo.com.datalayer.model.accomodation.hotel.confirmation
 
-import javax.annotation.Generated
 import com.google.gson.annotations.SerializedName
 
-@Generated("com.robohorse.robopojogenerator")
 data class ConfirmationHotelEntity(
 
-	@field:SerializedName("ErrorRoomKeys")
-	val errorRoomKeys: String = "",
-
-	@field:SerializedName("Warning")
-	val warning: String = "",
-
 	@field:SerializedName("Message")
-	val message: String = "",
-
-	@field:SerializedName("ConfimStatus")
-	val confimStatus: String = "",
-
-	@field:SerializedName("LogUrl")
-	val logUrl: String = "",
-
-	@field:SerializedName("ResponseId")
-	val responseId: String = "",
+	val message: Any? = null,
 
 	@field:SerializedName("IsError")
-	val isError: Boolean = false,
+	val isError: Boolean? = null,
 
 	@field:SerializedName("CorrelationId")
-	val correlationId: String = "",
-
-	@field:SerializedName("ErrorCode")
-	val errorCode: String = "",
+	val correlationId: Any? = null,
 
 	@field:SerializedName("Confirmation")
-	val confirmation: DataConfirmationHotel = DataConfirmationHotel()
+	val confirmation: Confirmation = Confirmation()
+)
+
+data class Confirmation(
+
+	@field:SerializedName("IsFullCharge")
+	val isFullCharge: Boolean = false,
+
+	@field:SerializedName("ConfirmationId")
+	val confirmationId: String? = null,
+
+	@field:SerializedName("Address")
+	val address: String? = null,
+
+	@field:SerializedName("CancelPolicySummaries")
+	val cancelPolicySummaries: List<String> = ArrayList(),
+
+	@field:SerializedName("RoomSelector")
+	val roomSelector: Any? = null,
+
+	@field:SerializedName("TotalPrice")
+	val totalPrice: Double? = null,
+
+	@field:SerializedName("IsGuaranteedBooking")
+	val isGuaranteedBooking: Boolean = false,
+
+	@field:SerializedName("Available")
+	val available: Boolean = false,
+
+	@field:SerializedName("CityName")
+	val cityName: String? = null,
+
+	@field:SerializedName("HotelName")
+	val hotelName: String? = null,
+
+	@field:SerializedName("AmountPerNight")
+	val amountPerNight: Double? = null,
+
+	@field:SerializedName("CityKey")
+	val cityKey: String? = null
 )

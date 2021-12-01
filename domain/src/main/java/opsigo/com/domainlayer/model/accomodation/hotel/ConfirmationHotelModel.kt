@@ -8,6 +8,7 @@ class ConfirmationHotelModel {
     var isFullCharge   = false
     var correlationId  = ""
     var area           = ""
+    var totalPrice     = ""
     var available      = false
     var cancellPolicyHotel = ArrayList<String>()
 }
