@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import com.mobile.travelaja.R
 import android.os.Handler
 import android.view.View
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import com.squareup.picasso.Picasso
 
 class SuccessView : BaseActivity() {
@@ -31,6 +34,12 @@ class SuccessView : BaseActivity() {
 
         idTrip   = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
         tripCode = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.TRIP_CODE,"").toString()
+
+        if (Globals.getBaseUrl(this) == "https://dtmqa.opsinfra.net/"){
+            tv_message.gone()
+        } else {
+            tv_message.visible()
+        }
 
         Handler().postDelayed({
             if (idTrip.isNotEmpty()){

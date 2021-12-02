@@ -106,10 +106,10 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     private fun getDataForChangeTrip() {
         dataChangeTrip = Serializer.deserialize(Constants.DATA_CHANGE_TRIP, ChangeTripModel::class.java)
 
-        btn_switch2.isChecked = dataChangeTrip.isNonCbt.equals(true)
-        nonCbt = !btn_switch2.isChecked
+        btn_switch2.isChecked = dataChangeTrip.isNonCbt == true
+        nonCbt = btn_switch2.isChecked
 
-        btn_switch.isChecked = dataChangeTrip.isDomestic.equals(false)
+        btn_switch.isChecked = dataChangeTrip.isDomestic == false
         isDomestic = !btn_switch.isChecked
         typeTrip = btn_switch.isChecked
 

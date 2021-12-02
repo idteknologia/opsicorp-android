@@ -77,7 +77,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
             tv_list_approval.text = "List Approver (0)"
         }
         if (data.isCbt){
-            tv_cbt.text = "NON CBT"
+            tv_cbt.text = "Non CBT"
         } else {
             tv_cbt.text = "CBT"
         }

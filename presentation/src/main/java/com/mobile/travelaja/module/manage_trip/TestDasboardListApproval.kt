@@ -316,7 +316,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onCompleted() {
         positionPage = 1
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.status.equals("Completely Approved") || it.status.equals("Completely Rejected") })
+        dataFilter.addAll(data.filter { it.status.equals("Completely Approved") || it.status.equals("Completely Rejected") || it.status.equals("Trip Completed") })
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
