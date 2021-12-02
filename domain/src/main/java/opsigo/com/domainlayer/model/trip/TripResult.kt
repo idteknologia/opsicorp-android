@@ -46,6 +46,15 @@ data class Trip(
         return cities
     }
 
+    fun tripDestination() : String{
+        var dest = setOf<String>()
+        Routes.forEach {
+            dest = dest.plus(it.Origin)
+            dest = dest.plus(it.Destination)
+        }
+       return dest.joinToString("-")
+    }
+
     fun getDateNumber(): String {
         return convertDate("dd", StartDate)
     }
