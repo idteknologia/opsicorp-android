@@ -44,8 +44,8 @@ android {
         travelAja{
             dimension 'default'
             applicationId "com.opsicorp.travelaja"
-            versionCode 2
-            versionName "2"
+            versionCode 3
+            versionName "3"
         }
         opsicorp{
             dimension 'default'
@@ -56,8 +56,8 @@ android {
         opsicorp_dev{
             dimension 'default'
             applicationId "com.opsigo.opsicorp"
-            versionCode 20
-            versionName "v20"
+            versionCode 21
+            versionName "v21"
         }
     }
     packagingOptions {
