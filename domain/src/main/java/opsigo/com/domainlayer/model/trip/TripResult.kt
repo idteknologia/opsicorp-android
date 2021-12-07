@@ -35,7 +35,9 @@ data class Trip(
     @SerializedName("StatusView")
     val StatusView : String,
     @SerializedName("Routes")
-    val Routes: MutableList<Route> = mutableListOf()
+    val Routes: MutableList<Route> = mutableListOf(),
+    @SerializedName("IsCreatedSettlement")
+    val IsCreatedSettlement : Boolean = false
 ) {
 
     fun nameCities(): String {

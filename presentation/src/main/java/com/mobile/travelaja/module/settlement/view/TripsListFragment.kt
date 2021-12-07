@@ -136,7 +136,8 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
             setFragmentResult(
                 KEY_REQUEST_TRIP_LIST, bundleOf(
                     KEY_TRIP_CODE to data.Code,
-                    KEY_TRIP_ID to data.Id
+                    KEY_TRIP_ID to data.Id,
+                    KEY_TRIP_DRAFT to data.IsCreatedSettlement
                 )
             )
             findNavController().navigateUp()
@@ -159,6 +160,7 @@ class TripsListFragment : BaseListFragment<Trip>(), SearchView.OnQueryTextListen
     companion object {
         const val KEY_TRIP_CODE = "KEY_TRIP_CODE"
         const val KEY_TRIP_ID = "KEY_TRIP_ID"
+        const val KEY_TRIP_DRAFT = "KEY_TRIP_DRAFT"
         const val KEY_CREATE_REIMBURSEMENT = "KEY_CREATE_REIMBURSEMENT"
     }
 
