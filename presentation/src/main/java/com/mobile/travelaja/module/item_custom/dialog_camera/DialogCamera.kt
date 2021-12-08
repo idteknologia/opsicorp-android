@@ -59,7 +59,8 @@ class DialogCamera : BaseDialogFragment() {
     private fun setInitClickListener() {
         line_upload_file.setOnClickListener {
             if (img_upload_file.isVisible) {
-                getImageFromGalery()
+//                getImageFromGalery()
+                openFile()
 //                openDirectory()
             } else {
                 if (imgFile != null && pictureImagePath.isNotEmpty()){
@@ -119,9 +120,7 @@ class DialogCamera : BaseDialogFragment() {
                             } else {
                             }*/
 
-                            if (pictureImagePath.contains("pdf") || pictureImagePath.contains("doc") || pictureImagePath.contains(
-                                    "xls"
-                                ) || pictureImagePath.contains("xlsx")
+                            if (pictureImagePath.contains("pdf") || pictureImagePath.contains("doc") || pictureImagePath.contains("xls") || pictureImagePath.contains("xlsx")
                             ) {
                                 callbackDialog.data(pictureImagePath, File(pictureImagePath),type)
                                 dismiss()
@@ -170,11 +169,17 @@ class DialogCamera : BaseDialogFragment() {
         } // */* setType("image/*")
         startActivityForResult(pictureActionIntent, GALLERY_PICTURE)
 
+
+    }
+
+    private fun openFile(){
         //Todo getting pdf
+        val mimeTypes = arrayOf("application/pdf","application/doc","application/xlsx","application/doc")
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.setType("application/pdf")
+        intent.type ="*/*"
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes)
         intent.addCategory(Intent.CATEGORY_OPENABLE)
-//        startActivityForResult(intent,GALLERY_PICTURE)
+        startActivityForResult(intent,GALLERY_PICTURE)
     }
 
 //    fun openDirectory() {

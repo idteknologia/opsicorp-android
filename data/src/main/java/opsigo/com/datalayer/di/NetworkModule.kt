@@ -5,6 +5,7 @@ import dagger.Provides
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import opsigo.com.datalayer.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -63,7 +64,7 @@ class NetworkModule(private val mBaseUrl: String) {
         val okHttpClient = OkHttpClient.Builder().apply {
             addInterceptor(Interceptor{chain ->
                 val builder = chain.request().newBuilder()
-                builder.header("Client","TravelManagementSystem")
+                builder.header("Client",BuildConfig.CLIENT_HEADER)
                 return@Interceptor chain.proceed(builder.build())
             })
             readTimeout(7,TimeUnit.MINUTES)
