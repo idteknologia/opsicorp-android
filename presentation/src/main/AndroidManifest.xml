@@ -237,7 +237,7 @@
             android:name=".base.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="module.signin.login.activity.TokenIdamanActivity"
+            android:name=".TokenIdamanActivity"
             android:screenOrientation="portrait"/>
 
         <service android:name=".module.notif.CorpFirebaseMessagingService"

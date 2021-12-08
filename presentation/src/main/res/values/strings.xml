@@ -889,8 +889,8 @@ Please add your trip item for Approval."
     <!--config SSO Pertamina-->
     <string name="pertamina" translatable="false">pertamina</string>
     <string name="base_api_pertamina" translatable="false">https://digitravel.pertamina.com/</string>
-    <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
-    <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
+    <string name="client_id_sso_pertamina" translatable="false">ec7c604d-3e7b-4aab-aa63-8977ce5840b8</string>
+    <string name="endpoint_issuer_pertamina" translatable="false">https://login.idaman.pertamina.com</string>
     <!--config SSO Pertamina-->
     <string name="selected_participant">Selected Participant</string>
     <string name="click_list_to_see_your_trip_detail">Click list to see your trip detail</string>
