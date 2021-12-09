@@ -8,11 +8,17 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     signingConfigs {
-        releases {
+        opsicorpSign {
             storeFile file('\\opsicorpKey.jks')
             storePassword 'opsicorp'
             keyAlias = 'opsicorpKey'
             keyPassword 'opsicorp'
+        }
+        travelAjaSign {
+            storeFile file("travelAjaKey.jks")
+            storePassword "TravelAja"
+            keyAlias = "travelAjaKey"
+            keyPassword "TravelAja"
         }
     }
     compileSdkVersion rootProject.compileSdkVersion
@@ -26,7 +32,6 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        signingConfig signingConfigs.releases
         manifestPlaceholders = [
                 'appAuthRedirectScheme': 'com.mobile.travelaja'
         ]
@@ -41,11 +46,14 @@ android {
 
     flavorDimensions 'default'
     productFlavors {
+        def opsicorpSigningVariable = signingConfigs.opsicorpSign
+        def travelAjaSigningVariable = signingConfigs.travelAjaSign
         travelAja{
             dimension 'default'
             applicationId "com.opsicorp.travelaja"
             versionCode 4
             versionName "v4"
+            signingConfig travelAjaSigningVariable
         }
         opsicorp{
             dimension 'default'
@@ -58,6 +66,7 @@ android {
             applicationId "com.opsigo.opsicorp"
             versionCode 22
             versionName "v22"
+            signingConfig opsicorpSigningVariable
         }
     }
     packagingOptions {
