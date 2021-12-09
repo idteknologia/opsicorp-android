@@ -28,6 +28,9 @@ class RefundsAdapter : BaseListAdapter<Ticket>() {
     inner class RefundViewHolder(val binding : ItemDraftRefundTicketSettlementBinding) : RecyclerView.ViewHolder(binding.root){
         fun onBind(data : Ticket){
             binding.data = data
+            val label = if (data.Currency.contains("idr",true)) R.string.refund_amount_ticket else R.string.refund_amount_ticket_usd
+            binding.tvLabelRefundAmount.setText(label)
+            binding.executePendingBindings()
         }
     }
 

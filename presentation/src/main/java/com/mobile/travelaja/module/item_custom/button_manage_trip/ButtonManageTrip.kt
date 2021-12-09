@@ -36,8 +36,8 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.button_right_left_rounded, this)
-
-        if (getBaseUrl(context) == "https://dtmqa.opsinfra.net/") {
+        val urlPertamina = context.getString(R.string.base_api_pertamina)
+        if (getBaseUrl(context) == urlPertamina) {
             ll_master_button.gone()
         } else {
             ll_master_button.visible()

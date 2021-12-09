@@ -47,7 +47,9 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setTypeTravelRequest() {
-        if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
+        val urlPertamina = getString(R.string.base_api_pertamina)
+
+        if (Globals.getBaseUrl(applicationContext) == urlPertamina) {
             button_pertamina.visible()
             button_except_pertamina.gone()
             setDataPertamina()

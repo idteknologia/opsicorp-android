@@ -141,7 +141,8 @@ class FlightFragmentNew : BaseFragment(),
             lay_air_class.visible()
             lay_air_pref.visible()
         }*/
-        if ((Globals.getBaseUrl(requireContext()) == "https://dtmqa.opsinfra.net/")){
+        val urlPertamina = getString(R.string.base_api_pertamina)
+        if ((Globals.getBaseUrl(requireContext()) == urlPertamina)){
             cardExtras.gone()
         } else {
             cardExtras.visible()

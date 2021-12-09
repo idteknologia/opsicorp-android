@@ -138,7 +138,7 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     override fun three() {
         //getFlightFragment()
-        if (Globals.getBaseUrl(applicationContext) == "https://dtmqa.opsinfra.net/") {
+        if (Globals.isPertamina(this)) {
             showDialogNotAuthorized(false)
             btn_bottom_accomodation.changeImageBtn(0)
         } else {

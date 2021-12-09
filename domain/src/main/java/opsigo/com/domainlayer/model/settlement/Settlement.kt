@@ -238,7 +238,12 @@ class Ticket : Parcelable, BaseObservable() {
         }
 
     @SerializedName("Currency")
+    @get:Bindable
     var Currency: String = ""
+    set(value) {
+        field = value
+        notifyPropertyChanged(BR.currency)
+    }
 }
 
 @Parcelize
