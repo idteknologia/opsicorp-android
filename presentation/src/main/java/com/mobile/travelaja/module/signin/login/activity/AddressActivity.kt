@@ -2,11 +2,9 @@ package com.mobile.travelaja.module.signin.login.activity
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.signin.login.OpenIdLogin
@@ -19,7 +17,7 @@ import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import kotlinx.android.synthetic.main.address_activity_view.*
 import kotlinx.android.synthetic.main.login_activity_view_travel_aja.*
-import module.signin.login.activity.TokenIdamanActivity
+//import module.signin.login.activity.TokenIdamanActivity
 import net.openid.appauth.*
 import opsigo.com.datalayer.datanetwork.GetDataLogin
 import opsigo.com.datalayer.mapper.Serializer
@@ -207,12 +205,12 @@ class AddressActivity : BaseActivity(), LoginView {
         gotoActivity(SplashActivity::class.java)
     }
 
-    //Todo navigate token idaman for Kang Ezhar
-    private fun navigateTokenIdaman(code : String , codeVerifier : String){
-        val intent = Intent(this,TokenIdamanActivity::class.java)
-        intent.putExtra(TokenIdamanActivity.CODE,code)
-        intent.putExtra(TokenIdamanActivity.CODE_VERIFIER,codeVerifier)
-        startActivity(intent)
-    }
+//    //Todo navigate token idaman for Kang Ezhar
+//    private fun navigateTokenIdaman(code : String , codeVerifier : String){
+//        val intent = Intent(this,TokenIdamanActivity::class.java)
+//        intent.putExtra(TokenIdamanActivity.CODE,code)
+//        intent.putExtra(TokenIdamanActivity.CODE_VERIFIER,codeVerifier)
+//        startActivity(intent)
+//    }
 
 }
