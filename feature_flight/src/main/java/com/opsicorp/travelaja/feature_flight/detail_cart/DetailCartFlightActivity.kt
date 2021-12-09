@@ -1,5 +1,6 @@
 package com.opsicorp.travelaja.feature_flight.detail_cart
 
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
@@ -99,6 +100,7 @@ class DetailCartFlightActivity : BaseActivity() {
         adapter.setData(dataOrder.dataCardFlight.flightSegmentItem)
         adapter2.setData(dataOrder.dataCardFlight.priceItem)
 
+        total_pax.text = "${this.getString(R.string.text_adult_times)} ${dataOrder.dataCardFlight.flightSegmentItem.first().totalPassenger}"
         name_flight.text = dataFlight.titleFlight
         tv_total_amount.text        = "IDR ${Globals.formatAmount(dataFlight.price.split(".")[0])}"
     }

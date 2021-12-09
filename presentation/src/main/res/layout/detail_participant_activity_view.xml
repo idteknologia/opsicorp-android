@@ -121,7 +121,7 @@
                                     android:textSize="12sp"
                                     android:fontFamily="sans-serif"
                                     android:textStyle="normal"
-                                    android:textColor="#009688"
+                                    android:textColor="#91929e"
                                     android:text="Yogyakarta"
                                     />
 
@@ -259,9 +259,9 @@
 
                     <RelativeLayout
                         android:id="@+id/layoutParticipant"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginBottom="1dp"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -289,13 +289,13 @@
                             android:layout_height="38dp">
 
                             <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
-                                android:layout_width="42dp"
                                 android:id="@+id/img_participant"
+                                android:layout_width="42dp"
                                 android:layout_height="42dp"
                                 android:src="@drawable/ic_profile"
+                                app:civ_border_color="#ffffff"
                                 app:civ_border_width="2dp"
-                                app:civ_circle_background_color="@android:color/black"
-                                app:civ_border_color="#ffffff"/>
+                                app:civ_circle_background_color="@android:color/black" />
 
                         </RelativeLayout>
 

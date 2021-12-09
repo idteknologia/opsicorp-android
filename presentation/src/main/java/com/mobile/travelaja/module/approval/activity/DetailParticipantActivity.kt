@@ -291,7 +291,7 @@ class DetailParticipantActivity : BaseActivity()
         tv_days_left.text       = ""//tripSummary.timeLimitRemaining
 
         tv_purpose.text         = tripSummary.purpose
-        tv_destination.text     = StringUtils().setUppercaseFirstLetter(destination)
+        tv_destination.text     = destination
 
         dateConverter = DateConverter()
         var string = tripSummary.startDate
