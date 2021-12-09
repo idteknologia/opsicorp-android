@@ -350,6 +350,8 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         showLoadingOpsicorp(true)
         picCostCenter = et_pic.text.toString()
         dataTrip.picCostCenter = picCostCenter
+        costCenterName = title_cost_name.text.toString()
+        dataTrip.costCenter = costCenterName
         GetDataTravelRequest(getBaseUrl()).submitTravelRequest(Globals.getToken(), dataRequest(), object : CallbackSaveAsDraft {
             override fun successLoad(data: SuccessCreateTripPlaneModel) {
                 hideLoadingOpsicorp()
@@ -425,7 +427,11 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         mDataParticipants.useCashAdvance = isCashAdvance
         mDataParticipants.cashAdvance = cashAdvanceValue
         mDataParticipants.cashAdvanceTransfer = etBank.text.toString()
-        mDataParticipants.costCenterCode = dataTrip.participant[0].costCenterCode
+        if (costCenterOther){
+            mDataParticipants.costCenterCode = costCenterName
+        } else {
+            mDataParticipants.costCenterCode = dataTrip.participant[0].costCenterCode
+        }
         mDataParticipants.estFlight = dataTrip.participant[0].estFlight
         mDataParticipants.estTransportation = dataTrip.participant[0].estTransportation
         mDataParticipants.estTotal = dataTrip.participant[0].estTotal
@@ -472,6 +478,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 tvCostCenterTitle.text = "Cost Center"
                 costCenterName = getProfile().costCenter
                 title_cost_name.setText(costCenterName)
+                picCostCenter = ""
                 costCenterOther = false
                 tvCostNameReset.gone()
                 tvCostNameAdd.visible()
