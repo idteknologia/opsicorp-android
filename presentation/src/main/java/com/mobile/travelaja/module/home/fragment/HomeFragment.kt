@@ -262,8 +262,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     private fun businessTrip() {
         val dataConfig = getConfig()
         if (dataConfig.isShowCreateTripOnMobile) {
-            val urlPertamina = getString(R.string.base_api_pertamina)
-            if (Globals.getBaseUrl(requireContext()) == urlPertamina){
+            if (Globals.isPertamina(requireContext())){
                 if (Globals.getProfile(requireContext()).approval.travelRequestApproval.isEmpty()){
                     showContactHr()
                 } else {

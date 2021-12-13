@@ -592,9 +592,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-            val urlPertamina = getString(R.string.base_api_pertamina)
-
-            if (Globals.getBaseUrl(applicationContext) == urlPertamina) {
+            if (Globals.isPertamina(this)) {
                 issuedAll()
             }
             else {
