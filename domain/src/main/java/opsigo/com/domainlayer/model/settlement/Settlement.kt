@@ -201,7 +201,9 @@ data class SubmitResult(
     @SerializedName("isApproverSet")
     var isApproverSet: Boolean,
     @SerializedName("errorMessage")
-    var errorMessage: Any
+    var errorMessage: Any,
+    @SerializedName("Id")
+    var idDraft : String? = null
 )
 
 

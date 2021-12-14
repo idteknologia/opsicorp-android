@@ -756,7 +756,7 @@ Please add your trip item for Approval."
     <string name="select_your_travel_purpose">Select your travel purpose</string>
     <string name="select_trip_activity_type">Select trip activity type</string>
     <string name="non_cbt">NON-CBT</string>
-    <string name="personal_trip_with_reimbursment">Personal trip with Reimbursment</string>
+    <string name="personal_trip_with_reimbursment">Personal trip with Reimbursement</string>
     <string name="please_entry_wbs_element">Please Entry WBS Element</string>
     <string name="wbs_no">WBS No*</string>
     <string name="traveling_with_partner">Traveling With Partner?</string>
@@ -983,7 +983,7 @@ Please add your trip item for Approval."
     <string name="we_apos_re_having_difficulty_connecting_to_the_server_check_your_connection_or_try_again_later">We\'re having difficulty connecting to the server. Check your connection or try again later.</string>
     <string name="please_contact_your_administrator">Please contact your administrator</string>
     <string name="number_of_passengers">Number of Passengers</string>
-    <string name="create_reimburstment">Create Reimburstment</string>
+    <string name="create_reimburstment">Create Reimbursement</string>
     <string name="bank_transfer">Bank Transfer</string>
     <string name="select_bank">Select Bank</string>
     <string name="select_trip_code">Select Trip Code</string>

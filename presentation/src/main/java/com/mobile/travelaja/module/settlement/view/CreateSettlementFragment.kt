@@ -113,10 +113,10 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         }
 
         viewModel.successSubmit.observe(viewLifecycleOwner) {
-            it.getContentIfNotHandled()?.let { isSuccess ->
-                if (isSuccess) {
+            it.getContentIfNotHandled()?.let { submit ->
+                if (submit.isSuccess && !submit.idDraft.isNullOrEmpty()) {
                     viewModel.buttonNextEnabled.set(false)
-                    navigateDetailDraft()
+                    navigateDetailDraft(submit.idDraft!!)
                 }
             }
         }
@@ -274,7 +274,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
             R.id.buttonSubmit -> {
                 val idTrip = viewModel.tempTripId
-                if (isDraftTrip){
+                if (isDraftTrip) {
                     showDraftDialog()
                     return
                 }
@@ -422,16 +422,14 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
         }
     }
 
-    private fun navigateDetailDraft() {
-        val idTrip = viewModel.getDetailSubmit()?.Id
-        idTrip?.let {
-            val action =
-                CreateSettlementFragmentDirections.actionCreateSettlementToSettlementDetailDraftFragment(
-                    it, true
-                )
-            findNavController().navigate(action)
-            viewModel.isDraftLabelVisible.set(true)
-        }
+    private fun navigateDetailDraft(idDraft: String) {
+        val action =
+            CreateSettlementFragmentDirections.actionCreateSettlementToSettlementDetailDraftFragment(
+                idDraft, true
+            )
+        findNavController().navigate(action)
+        viewModel.isDraftLabelVisible.set(true)
+
     }
 
     private fun navigateToSummary() {
