@@ -141,8 +141,7 @@ class FlightFragmentNew : BaseFragment(),
             lay_air_class.visible()
             lay_air_pref.visible()
         }*/
-        val urlPertamina = getString(R.string.base_api_pertamina)
-        if ((Globals.getBaseUrl(requireContext()) == urlPertamina)){
+        if (Globals.isPertamina(requireContext())){
             cardExtras.gone()
         } else {
             cardExtras.visible()

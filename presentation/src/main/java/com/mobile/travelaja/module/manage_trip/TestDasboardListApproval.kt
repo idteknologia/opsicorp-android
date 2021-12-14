@@ -172,8 +172,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
-                val urlPertamina = context.getString(R.string.base_api_pertamina)
-                if (getBaseUrl(context) == urlPertamina) {
+                if (Globals.isPertamina(context)) {
                     onCompleted()
                     top_button.completedButtonSelected()
                 } else {

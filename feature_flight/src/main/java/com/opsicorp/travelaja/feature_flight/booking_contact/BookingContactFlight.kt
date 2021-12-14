@@ -573,7 +573,7 @@ class BookingContactFlight : BaseActivity(),
 
         val contact = ContactFlightRequest()
         contact.email = getProfile().email
-        contact.homePhone = getProfile().homePhone
+        contact.homePhone = "${etKodeArea.text.toString().replace("+","")}${et_number_contact.text}"
         contact.firstName = names.first()
         contact.title = getProfile().title
         contact.lastName = lastName
