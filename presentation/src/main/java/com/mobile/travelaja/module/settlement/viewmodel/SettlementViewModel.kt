@@ -48,8 +48,8 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
-    private val _successSubmit = MutableLiveData<Event<Boolean>>()
-    val successSubmit: LiveData<Event<Boolean>> = _successSubmit
+    private val _successSubmit = MutableLiveData<Event<SubmitResult>>()
+    val successSubmit: LiveData<Event<SubmitResult>> = _successSubmit
 
     var submitSettlement = MutableLiveData(DetailSettlement())
     var tickets = listOf<Ticket>()
@@ -288,8 +288,8 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     private fun compareSubmitResult(result: Result<SubmitResult>,errorDesc: String) {
         if (result is Result.Success) {
             val submit = result.data
-            _successSubmit.value = Event(submit.isSuccess)
-            if (!submit.isSuccess) {
+            _successSubmit.value = Event(submit)
+            if (!submit.isSuccess && submit.idDraft.isNullOrEmpty()) {
                 val error = submit.errorMessage
                 var strError = errorDesc
                 if (error is String)
