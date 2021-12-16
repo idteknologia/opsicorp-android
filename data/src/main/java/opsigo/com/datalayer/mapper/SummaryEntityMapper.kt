@@ -26,6 +26,7 @@ class SummaryEntityMapper() {
         summary.returnDate      = from.returnDate.toString()
         summary.totalExpenditure = from.totalExpenditure.toString()
         summary.totalAllowance  = from.totalAllowance.toString()
+        summary.totalPayment    = from.totalPayment.toString()
         summary.remark          = from.remark.toString()
         summary.status          = from.status.toString()
         summary.statusView      = from.statusView.toString()

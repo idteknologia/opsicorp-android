@@ -9,6 +9,7 @@ class ItemCardFlightModel{
     var imageFlight = ""
     var status      = ""
     var pnrCode     = ""
+    var bookingDate = ""
 
     var flightNumber    = ""
     var subClass        = ""

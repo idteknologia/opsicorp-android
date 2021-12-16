@@ -8,6 +8,7 @@ class ItemFlightModel{
 
     var originDestination = ""
     var nextDestination = ""
+    var bookingDate = ""
 
     var num = 0
     var seq = 0

@@ -37,6 +37,7 @@ class ListParticipantsDataMapper {
 
 
                             dataFlight.price            = if (tripFlightsItem.amount==null) "0" else tripFlightsItem.amount.toString()
+                            dataFlight.bookingDate      = tripFlightsItem.bookingDate.toString()
 
 
                             tripFlightsItem.payments?.forEachIndexed { index, paymentsItem ->
@@ -171,7 +172,7 @@ class ListParticipantsDataMapper {
                                 dataHotel.typeHotel   = tripHotelsItem?.roomType.toString()
                                 dataHotel.pnrCode     = tripHotelsItem?.bookingCode.toString()
                                 dataHotel.pnrId       = tripHotelsItem?.pnrId.toString()
-                                dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address +" ,"+ tripHotelsItem.city.toString()
+                                dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address
 
                                 dataHotelModel.add(dataHotel)
                             }
