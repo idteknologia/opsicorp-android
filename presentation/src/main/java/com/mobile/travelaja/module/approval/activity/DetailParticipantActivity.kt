@@ -168,11 +168,6 @@ class DetailParticipantActivity : BaseActivity()
         val totalAccomdation = data.filter { it.typeCard != "HEADER" }.size
         tv_trip_items_detail.text = "${getString(R.string.your_trip_items_detail)} (${totalAccomdation})"
 
-/*        nested_view.smoothScrollTo(0,0)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            tv_total_amount.focusable = View.FOCUSABLE
-        }*/
-
         checkNotComply()
     }
 
@@ -229,8 +224,6 @@ class DetailParticipantActivity : BaseActivity()
                     setAdapterButtonOption(tripParticipant.dataApproval.filter { it.employId == getProfile().employId }.first())
                 }
                 else{
-//                    setLog(positionApproval.toString()+" "+tripParticipant.dataApproval[(positionApproval)].isCompletelyReviewed)
-//                    setLog((positionApproval-1).toString()+" "+tripParticipant.dataApproval[(positionApproval-1)].isCompletelyReviewed)
                     setButtonRejectOrApprove(tripParticipant.dataApproval[(positionApproval-1)].isCompletelyReviewed)
                 }
             }
@@ -443,14 +436,6 @@ class DetailParticipantActivity : BaseActivity()
                 hideDialog()
                 getActionApprove = true
                 updateViewItem(action,type)
-               /* if (type=="3"){
-                    val intent = Intent()
-                    setResult(Activity.RESULT_OK,intent)
-                    finish()
-                }
-                else {
-                    updateViewItem(action,type)
-                }*/
             }
 
             override fun failedLoad(message: String) {
@@ -515,7 +500,6 @@ class DetailParticipantActivity : BaseActivity()
         data.employeeId = getProfile().employId
         data.tripId     = tripSummary.tripId
         data.tripParticipantId = idParticipant
-        setLog("-----> "+action+" "+type+" "+data.tripId)
         return Globals.classToHashMap(data,ApproverPerItemRequest::class.java)
     }
 }

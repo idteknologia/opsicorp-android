@@ -1,33 +1,36 @@
 package com.mobile.travelaja.module.item_custom.dasboard_approval
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
-import com.google.android.material.snackbar.Snackbar
-import androidx.recyclerview.widget.ItemTouchHelper
-import android.util.AttributeSet
 import android.view.View
-import android.widget.LinearLayout
+import java.util.HashMap
+import android.app.Activity
+import org.koin.core.inject
+import android.content.Intent
 import com.mobile.travelaja.R
+import android.content.Context
+import android.graphics.Color
+import android.util.AttributeSet
+import org.koin.core.KoinComponent
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.DefaultItemAnimator
+import com.mobile.travelaja.utility.*
+import org.koin.core.parameter.parametersOf
+import com.mobile.travelaja.utility.Globals.setLog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.mobile.travelaja.utility.Globals.getToken
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.datalayer.datanetwork.GetDataApproval
+import opsigo.com.domainlayer.callback.CallbackApprovAll
+import opsigo.com.domainlayer.callback.CallbackListTripplan
+import opsigo.com.datalayer.request_model.ApprovalAllRequest
+import opsigo.com.datalayer.request_model.ApproverPerItemRequest
+import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
+import kotlinx.android.synthetic.main.list_layout_approval.view.*
 import com.mobile.travelaja.module.approval.adapter.ApprovalAdapter
 import com.mobile.travelaja.module.approval.activity.DetailTripActivity
 import com.mobile.travelaja.module.item_custom.button_top_approval.ButtonTopApproval
-import com.mobile.travelaja.utility.*
-import com.mobile.travelaja.utility.Globals.getToken
-import com.mobile.travelaja.utility.Globals.setLog
-import opsigo.com.datalayer.datanetwork.GetDataApproval
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.request_model.ApprovalAllRequest
-import opsigo.com.domainlayer.callback.CallbackApprovAll
-import opsigo.com.domainlayer.callback.CallbackListTripplan
-import opsigo.com.domainlayer.model.aprover.ApprovalModelAdapter
-import kotlinx.android.synthetic.main.list_layout_approval.view.*
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import org.koin.core.parameter.parametersOf
-import java.util.HashMap
 
-class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTouchHelperListener,
+class DasboardListApproval: LinearLayout,
         OnclickListenerRecyclerView,KoinComponent,
         ButtonTopApproval.OnclickButtonApproval, View.OnClickListener {
 
@@ -138,14 +141,11 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
     }
 
     private fun setInitRecyclerView() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context!!)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(context!!)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_waiting_approval.layoutManager = layoutManager
-        rv_waiting_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_waiting_approval.itemAnimator = DefaultItemAnimator()
         rv_waiting_approval.adapter = adapter
-
-        val itemTouchHelperCallback = RecyclerItemTouchHelper(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT, this)
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rv_waiting_approval)
 
         adapter.setOnclickListener(this)
 
@@ -156,31 +156,25 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
             }
         })
 
-        rv_waiting_approval.addOnScrollListener(scrollListener);
+        rv_waiting_approval.addOnScrollListener(scrollListener)
+
+        object : SwipeHelper(context, rv_waiting_approval) {
+            override fun instantiateUnderlayButton(
+                viewHolder: RecyclerView.ViewHolder?,
+                underlayButtons: ArrayList<UnderlayButton>
+            ) {
+                underlayButtons.add(SwipeHelper.UnderlayButton("REJECT",0,
+                    Color.parseColor("#eb0011"),object :SwipeHelper.UnderlayButtonClickListener{
+                        override fun onClick(pos: Int) {
+                            removeAt(pos)
+                        }
+                    }))
+            }
+        }
 
     }
 
     fun getData(tripDateFrom:String,tripDateTo:String,key: String) {
-        /*empty_view.show()
-        Handler().postDelayed({
-            try {
-                empty_view.hide()
-                data.clear()
-//                data.addAll(DataDummyApproval().addData())
-                GetDataGeneral().getListTripplan(getToken(), "10", "1", "code","1", object : CallbackListTripplan{
-                    override fun successLoad(approvalModel: ArrayList<CartModelAdapter>) {
-                        data.addAll(approvalModel)
-                    }
-                    override fun failedLoad(message: String) {
-                    }
-                } )
-                adapter.setData(data)
-                setTitleButton()
-            }catch (e: Exception){
-                e.printStackTrace()
-            }
-        }, 1000)*/
-
         loading_view.show()
         data.clear()
         GetDataGeneral(baseUrl).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
@@ -236,7 +230,6 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
 
             override fun failedLoad(message: String) {
                 loading_view.hide()
-//                callback.failedLoad()
                 error_view.show()
                 Globals.showAlert("Sorry",message,context)
                 setTitleButton()
@@ -278,7 +271,6 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
                         isParticipant = data[position].isParticipant
                     }
 
-                    setLog("00000000 --- 0000000 "+isApproval+" "+isParticipant)
 
                     intent.putExtra(Constants.KEY_FROM, Constants.FROM_LIST_DASBOARD)
                     intent.putExtra(Constants.KEY_INTENT_TRIPID, idTripPlane)
@@ -289,7 +281,9 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
                 }
             }
             -109 ->{
-                checkPositionPageSelected(position)
+                if (data[position].isApproval){
+                    checkPositionPageSelected(position)
+                }
             }
         }
     }
@@ -393,35 +387,17 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
     }
 
 
-    override fun onSwiped(viewHolder: androidx.recyclerview.widget.RecyclerView.ViewHolder, direction: Int, position: Int) {
-        if (viewHolder is ApprovalAdapter.ViewHolder) {
-
-            val name = data.get(viewHolder.adapterPosition).title
-
-            val deletedItem = data.get(viewHolder.adapterPosition)
-            val deletedIndex = viewHolder.adapterPosition
-
-            removeAt(viewHolder.adapterPosition)
-
-            val snackbar = Snackbar.make(this, name + " rejected from list waiting approval!", Snackbar.LENGTH_LONG)
-            snackbar.setAction("UNDO", View.OnClickListener {
-                restoreItem(deletedItem, deletedIndex)
-            })
-            snackbar.setActionTextColor(resources.getColor(R.color.colorRedUndo))
-            snackbar.show()
-        }
-    }
-
     private fun restoreItem(deletedItem: ApprovalModelAdapter, deletedIndex: Int) {
         data.add(deletedIndex,deletedItem)
         adapter.setData(data)
         setTitleButton()
     }
 
-    private fun removeAt(adapterPosition: Int) {
-        rejectOrApproveSelected(data[adapterPosition],"0")
-        data.removeAt(adapterPosition)
+    private fun removeAt(position: Int) {
+        rejectOrApproveSelected(data[position],"0")
+        data.removeAt(position)
         adapter.setData(data)
+        onWaiting()
         setTitleButton()
     }
 
@@ -480,17 +456,11 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
         data.forEachIndexed { index, approvalModelAdapter ->
             if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
                 dataUploaded.add(index)
-//                approvalModelAdapter.status = "Partially Rejected"
             }
-//            approvalModelAdapter.selected = false
         }
         totalRequested = 0
         approveAll(data,"0")
         callback.showDialog()
-
-        /*   adapter.setData(data)
-           setTitleButton()*/
-
     }
 
     fun approveBySelected(data: ArrayList<ApprovalModelAdapter>) {
@@ -505,69 +475,93 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
         approveAll(data,"1")
         callback.showDialog()
 
-        /* adapter.setData(data)
-         setTitleButton()*/
     }
 
-    /*private fun checkRequest(){
-        Globals.delay(1500,object :Globals.DelayCallback{
-            override fun done() {
-                if (requestCompleted==requestTotal){
-                    adapter.setData(data)
-                    setTitleButton()
-                }
-                else{
-                    checkRequest()
-                }
-            }
-        })
-    }*/
 
     fun approveAll(mData: ArrayList<ApprovalModelAdapter>,action: String){
         totalUploaded = dataUploaded.size
-        setLog("TAG ---> "+mData[dataUploaded[totalRequested]].tripCode)
-        setLog("total upload "+totalUploaded)
-        setLog("total request "+totalRequested)
-        GetDataApproval(baseUrl).approveAll(getToken(),dataBodyApproved(mData[dataUploaded[totalRequested]],action),object :CallbackApprovAll{
-            override fun successLoad(data: String) {
-                totalRequested++
-                if (totalUploaded==totalRequested){
+//        setLog("TAG ---> "+mData[dataUploaded[totalRequested]].tripCode)
+//        setLog("total upload "+totalUploaded)
+//        setLog("total request "+totalRequested)
+        if (Globals.getConfigCompany(context).codeCompany==11){
+            GetDataApproval(baseUrl).approveItem(getToken(),dataBodyApproved(mData[dataUploaded[totalRequested]],action),object :CallbackApprovAll{
+                override fun successLoad(data: String) {
+                    totalRequested++
+                    if (totalUploaded==totalRequested){
 
-                    if (action=="0"){
-                        mData.forEachIndexed { index, approvalModelAdapter ->
-                            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
-                                dataUploaded.add(index)
-                                approvalModelAdapter.status = "Partially Rejected"
-                            }
-                            approvalModelAdapter.selected = false
+                        if (action=="0"){
+                            allreadyRejected(mData,action)
                         }
+                        else{
+                            allreadyApprove(mData,action)
+                        }
+
+                        callback.hidenDialog()
+                        adapter.setData(mData)
+                        setTitleButton()
+                        cleareDataUpload()
+
                     }
                     else{
-                        mData.forEachIndexed { index, approvalModelAdapter ->
-                            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
-                                dataUploaded.add(index)
-                                approvalModelAdapter.status = "Approved"
-                            }
-                            approvalModelAdapter.selected = false
-                        }
+                        approveAll(mData,action)
                     }
-
-                    callback.hidenDialog()
-                    adapter.setData(mData)
-                    setTitleButton()
-                    cleareDataUpload()
                 }
-                else{
+
+                override fun failedLoad(message: String) {
                     approveAll(mData,action)
                 }
-            }
+            })
+        }
+        else {
+            GetDataApproval(baseUrl).approveAll(getToken(),dataBodyApproved(mData[dataUploaded[totalRequested]],action),object :CallbackApprovAll{
+                override fun successLoad(data: String) {
+                    totalRequested++
+                    if (totalUploaded==totalRequested){
 
-            override fun failedLoad(message: String) {
-                callback.hidenDialog()
-                callback.failedLoad(message,mData[dataUploaded[totalRequested]].tripCode)
-                cleareDataUpload()
+                        if (action=="0"){
+                            allreadyRejected(mData,action)
+                        }
+                        else{
+                            allreadyApprove(mData,action)
+                        }
+                        callback.hidenDialog()
+                        adapter.setData(mData)
+                        setTitleButton()
+                        cleareDataUpload()
+                    }
+                    else{
+                        approveAll(mData,action)
+                    }
+                }
+
+                override fun failedLoad(message: String) {
+                    callback.hidenDialog()
+                    callback.failedLoad(message,mData[dataUploaded[totalRequested]].tripCode)
+                    cleareDataUpload()
+                }
+            })
+        }
+
+    }
+
+    private fun allreadyApprove(mData: ArrayList<ApprovalModelAdapter>, action: String) {
+        mData.forEachIndexed { index, approvalModelAdapter ->
+            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
+                dataUploaded.add(index)
+                approvalModelAdapter.status = "Approved"
             }
-        })
+            approvalModelAdapter.selected = false
+        }
+    }
+
+    private fun allreadyRejected(mData: ArrayList<ApprovalModelAdapter>, action: String) {
+        mData.forEachIndexed { index, approvalModelAdapter ->
+            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
+                dataUploaded.add(index)
+                approvalModelAdapter.status = "Partially Rejected"
+            }
+            approvalModelAdapter.selected = false
+        }
     }
 
     private fun cleareDataUpload() {
@@ -577,15 +571,38 @@ class DasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerItemTo
     }
 
     fun rejectOrApproveSelected(mData :ApprovalModelAdapter,action: String){
-        GetDataApproval(baseUrl).approveAll(getToken(),dataBodyApproved(mData,action),object :CallbackApprovAll{
-            override fun successLoad(data: String) {
-                setLog(data)
-            }
+        if (Globals.getConfigCompany(context).codeCompany==11){
+            GetDataApproval(baseUrl).approveItem(getToken(),dataRejected(action,mData),object :CallbackApprovAll{
+                override fun successLoad(data: String) {
 
-            override fun failedLoad(message: String) {
+                }
 
-            }
-        })
+                override fun failedLoad(message: String) {
+
+                }
+            })
+        }
+        else {
+            GetDataApproval(baseUrl).approveAll(getToken(),dataBodyApproved(mData,action),object :CallbackApprovAll{
+                override fun successLoad(data: String) {
+
+                }
+
+                override fun failedLoad(message: String) {
+
+                }
+            })
+        }
+    }
+
+    private fun dataRejected(action: String, approval: ApprovalModelAdapter): HashMap<Any, Any> {
+        val data = ApproverPerItemRequest()
+        data.approvalAction  = action
+        data.tripType   = "0"
+        data.employeeId = Globals.getProfile(context).employId
+        data.tripId     = approval.id
+        data.tripParticipantId = approval.participant.first().id
+        return Globals.classToHashMap(data, ApproverPerItemRequest::class.java)
     }
 
     private fun dataBodyApproved(data: ApprovalModelAdapter,action:String): HashMap<Any, Any> {

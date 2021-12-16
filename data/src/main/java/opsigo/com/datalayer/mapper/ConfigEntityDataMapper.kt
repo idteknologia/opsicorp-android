@@ -23,6 +23,7 @@ class ConfigEntityDataMapper{
         data.showFamilyTime             = configEntity.showFamilyTime
         data.showBusinessTrip           = configEntity.showBusinessTrip
         data.codeCompany                = configEntity.client
+        data.hsShowHotelNotComply       = configEntity.hsShowHotelNotComply
 
         data.mobileBackgroundImage    = configEntity.mobileBackgroundImage
         data.mobileBackgroundColor    = configEntity.mobileBackgroundColor

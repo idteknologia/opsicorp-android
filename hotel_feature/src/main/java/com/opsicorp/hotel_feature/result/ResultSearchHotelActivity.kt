@@ -348,17 +348,22 @@ class ResultSearchHotelActivity : BaseActivity(),
         setLog(Serializer.serialize(dataSearch()))
         GetDataAccomodation(getBaseUrl()).getSearchHotel(getToken(),dataSearch(),object : CallbackSearchHotel {
             override fun success(mData: ArrayList<AccomodationResultModel>,areas:ArrayList<String>,maximalPage:Int) {
-                maxPage = maximalPage
-                loadingSearch = false
-                data.clear()
-                dataArea.clear()
-                data.addAll(mData)
-                dataArea.addAll(areas)
-                adapter.setDataList(data,this@ResultSearchHotelActivity)
                 if (mData.isNotEmpty()){
                     correlationId = mData[0].listHotelModel.correlationId
                 }
-                checkEmptyData(data)
+                if (getConfigCompany().hsShowHotelNotComply){
+                    maxPage = maximalPage
+                    loadingSearch = false
+                    data.clear()
+                    dataArea.clear()
+                    data.addAll(mData)
+                    dataArea.addAll(areas)
+                    adapter.setDataList(data,this@ResultSearchHotelActivity)
+                    checkEmptyData(data)
+                }
+                else {
+                    getSearchPageHotel(scrolPage)
+                }
             }
 
             override fun failed(errorMessage: String) {
@@ -425,17 +430,11 @@ class ResultSearchHotelActivity : BaseActivity(),
                 sortHighetRating()
             }
             2 -> {
-                sortHSSESertified()
-            }
-            3 -> {
                 sortHighestPrice()
             }
         }
     }
 
-    private fun sortHSSESertified() {
-
-    }
 
     private fun sortHighetRating() {
         if(filterActif){
@@ -446,6 +445,7 @@ class ResultSearchHotelActivity : BaseActivity(),
             data.sortBy { it.listHotelModel.starRating.toDouble() }
             data.reverse()
         }
+        adapter.notifyDataSetChanged()
     }
 
     private fun sortHighestPrice() {
@@ -479,9 +479,16 @@ class ResultSearchHotelActivity : BaseActivity(),
         GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(page),object :CallbackSearchHotel{
             override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>,maxPage:Int) {
                 loadingSearch = false
+
                 if (page==1){
                     /*this if for filter area dll*/
                     dataFilter.clear()
+                    if (!getConfigCompany().hsShowHotelNotComply){
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                            data.removeIf { it.typeLayout==8 }
+                            dataFilter.removeIf { it.typeLayout==8 }
+                        }
+                    }
                 }
                 else {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -495,6 +502,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                 }
                 data.addAll(mData)
                 dataFilter.addAll(mData)
+                addDateAreaListener(areas)
                 adapter.notifyDataSetChanged()
                 checkEmptyData(mData)
             }
@@ -504,6 +512,13 @@ class ResultSearchHotelActivity : BaseActivity(),
                 checkEmptyData(ArrayList())
             }
         })
+    }
+
+    private fun addDateAreaListener(areas: ArrayList<String>) {
+        dataArea.addAll(areas)
+        val set: Set<String> = HashSet(dataArea)
+        dataArea.clear()
+        dataArea.addAll(set)
     }
 
     private fun dataFilterPage(page: Int): HashMap<Any, Any> {
@@ -521,6 +536,8 @@ class ResultSearchHotelActivity : BaseActivity(),
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.origin      = dataTrip.originId
         data.destination = dataTrip.destinationId
+        data.destinationName = dataTrip.destinationName
+        data.destinationCountry = idCountry
         return Globals.classToHashMap(data,PageHotelRequest::class.java)
     }
 
