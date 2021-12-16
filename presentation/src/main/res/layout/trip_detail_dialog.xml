@@ -130,6 +130,7 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="15dp"
           style="@style/TextLato_Normal"
+          android:visibility="gone"
           android:text="@{`Created`+data.CreatedDateView}"
           app:layout_constraintEnd_toEndOf="@+id/tvLabelTripCode"
           app:layout_constraintStart_toStartOf="@+id/tvTripCode"
