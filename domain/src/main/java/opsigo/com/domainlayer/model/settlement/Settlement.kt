@@ -297,3 +297,11 @@ data class Attachment(
     var HasScanned: Boolean,
     var type: String?
 )
+
+data class History(
+    val Id : String,
+    val SettlementId : String,
+    val Description : String,
+    val CreatedDate : String,
+    val CreatedDateView : String
+)

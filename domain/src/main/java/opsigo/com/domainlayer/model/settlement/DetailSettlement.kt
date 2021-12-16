@@ -29,8 +29,8 @@ data class DetailSettlementResult(
 class DetailSettlement : BaseObservable(){
     @SerializedName("Id")
     var Id : String = ""
-//    @SerializedName("Code")
-//    var Code : String = ""
+    @SerializedName("Code")
+    var Code : String = ""
 //    @SerializedName("IsCashAdvance")
 //    var IsCashAdvance  : Boolean = false
     @SerializedName("BankTransfer")
@@ -224,8 +224,8 @@ class DetailSettlement : BaseObservable(){
     var TotalToBePaidIdr :Number = 0
     @SerializedName("TotalToBePaidUsd")
     var TotalToBePaidUsd :Number = 0
-    @SerializedName("CreatedDate")
-    var CreatedDate  : String =  ""
+//    @SerializedName("CreatedDate")
+//    var CreatedDate  : String =  ""
     @SerializedName("CreatedDateView")
     var CreatedDateView  : String =  ""
 //    @SerializedName("CreatedDateString")
@@ -274,6 +274,8 @@ class DetailSettlement : BaseObservable(){
     var ShowButtonApprove: Boolean = false
     @SerializedName("IsReviseAll")
     var IsReviseAll : Boolean = false
+    @SerializedName("Histories")
+    var Histories : List<History>? = null
 
     fun cities(): List<String>{
         val cities = mutableSetOf<String>()
@@ -315,6 +317,10 @@ class DetailSettlement : BaseObservable(){
             return TotalSpecificAreaExpenseSubmit
         }
         return 0
+    }
+
+    fun lastDateHistories() : String {
+        return Histories?.lastOrNull()?.CreatedDateView ?: ""
     }
 
 }
