@@ -240,8 +240,14 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
         val totalExpenditure = java.lang.Double.parseDouble(tripSummary.totalExpenditure)
         val totalAllowance = java.lang.Double.parseDouble(tripSummary.totalAllowance)
+        val totalPayment = java.lang.Double.parseDouble(tripSummary.totalPayment)
 
-        tv_total_purchase.text = StringUtils().setCurrency("IDR", (totalExpenditure - totalAllowance), false)
+        if (tripSummary.totalPayment !== "0.0"){
+            tv_total_purchase.text = StringUtils().setCurrency("IDR", (totalExpenditure - totalAllowance), false)
+        } else {
+            tv_total_purchase.text = StringUtils().setCurrency("IDR", totalPayment, false)
+        }
+
         if (tv_total_purchase.text.equals("IDR 0")) {
             tv_total_purchase.gone()
         } else {
@@ -364,6 +370,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 model.dataCardFlight.flightNumber = it.flightNumber
                 model.dataCardFlight.typeFlight = it.type
                 model.dataCardFlight.duration = it.duration
+                model.dataCardFlight.bookingDate = it.bookingDate
 
                 model.dataCardFlight.stationOrigin = it.originName
                 model.dataCardFlight.stationDestination = it.destinationName
@@ -553,12 +560,45 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
 
     fun showValidationButtonSubmit() {
 
-        if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()) {
+        when {
+            itemsTrip.filter { it.progress != "100.00" }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                showWarningWaiting()
+                tv_warning_cart.text = "${getString(R.string.please_wait_we_try_to_connecting)} ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
+            }
+            itemsTrip.filter { it.status == "Expired" }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                hideWarningWaiting()
+            }
+            itemsTrip.filter { it.status == "Ticketed" }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                hideWarningWaiting()
+            }
+            itemsTrip.filter { it.status == "Ticketed" }.isNotEmpty() && itemsTrip.filter { it.status == "Reserved" }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_yellow)
+                hideWarningWaiting()
+            }
+            itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
+                showWarningWaiting()
+                line_warning.setBackgroundColor(resources.getColor(R.color.colorYellowButton))
+            }
+            else -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_yellow)
+                hideWarningWaiting()
+            }
+        }
+
+        /*if (itemsTrip.filter { it.progress != "100.00" }.isNotEmpty()) {
             btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
             showWarningWaiting()
             tv_warning_cart.text = "${getString(R.string.please_wait_we_try_to_connecting)} ${itemsTrip.filter { it.progress != "100.00" }.first().name} server"
         } else {
             if (itemsTrip.filter { it.status == "Expired" }.isNotEmpty()) {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                hideWarningWaiting()
+            } else if (itemsTrip.filter { it.status == "Ticketed" }.isNotEmpty()) {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 hideWarningWaiting()
             } else {
@@ -574,7 +614,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 }
             }
 
-        }
+        }*/
     }
 
     fun showWarningWaiting(){

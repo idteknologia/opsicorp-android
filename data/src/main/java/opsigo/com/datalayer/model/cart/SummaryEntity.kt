@@ -25,6 +25,9 @@ data class SummaryEntity(
     @field:SerializedName("TotalExpenditureAirline")
     val totalExpenditureAirline: Double = 0.0,
 
+    @field:SerializedName("TotalPayment")
+    val totalPayment: Double = 0.0,
+
     @field:SerializedName("TripMembers")
     val tripMembers: List<Any?>? = null,
 
