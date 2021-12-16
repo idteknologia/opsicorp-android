@@ -34,8 +34,7 @@ class SuccessView : BaseActivity() {
 
         idTrip   = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.ID_TRIP_PLANE,"").toString()
         tripCode = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getString(Constants.TRIP_CODE,"").toString()
-
-        if (Globals.getBaseUrl(this) == "https://dtmqa.opsinfra.net/"){
+        if (Globals.isPertamina(this)){
             tv_message.gone()
         } else {
             tv_message.visible()

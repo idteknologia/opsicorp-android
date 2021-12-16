@@ -10,6 +10,8 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.compileSdkVersion
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        buildConfigField("String", "CLIENT_HEADER", '"TravelManagementSystem"')
+
     }
     buildTypes {
         release {

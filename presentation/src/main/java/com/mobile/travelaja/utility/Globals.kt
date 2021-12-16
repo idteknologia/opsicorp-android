@@ -779,6 +779,12 @@ object Globals {
         setDataPreferenceString(context, Constants.BASE_URL, url)
     }
 
+    fun isPertamina(context: Context) : Boolean {
+        val urlPertamina = context.getString(R.string.base_api_pertamina)
+        return getBaseUrl(context) == urlPertamina
+    }
+
+
     fun getVersionCode(): String {
         return BuildConfig.VERSION_CODE.toString()
     }

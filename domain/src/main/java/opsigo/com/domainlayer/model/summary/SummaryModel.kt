@@ -34,6 +34,7 @@ data class SummaryModel(
         var businessTripType: String = "",
         var totalExpenditure: String = "",
         var totalAllowance :String = "",
+        var totalPayment : String = "",
 
         var creationDateView : String = "",
 

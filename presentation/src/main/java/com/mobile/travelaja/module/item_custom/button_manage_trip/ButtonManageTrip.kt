@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Globals.getBaseUrl
 import com.mobile.travelaja.utility.gone
 import com.mobile.travelaja.utility.visible
@@ -36,8 +37,7 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.button_right_left_rounded, this)
-
-        if (getBaseUrl(context) == "https://dtmqa.opsinfra.net/") {
+        if (Globals.isPertamina(context)) {
             ll_master_button.gone()
         } else {
             ll_master_button.visible()

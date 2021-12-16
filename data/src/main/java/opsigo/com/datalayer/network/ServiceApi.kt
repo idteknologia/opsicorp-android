@@ -5,6 +5,7 @@ import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
+import opsigo.com.datalayer.BuildConfig
 import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
 import opsigo.com.datalayer.model.result.City
 import opsigo.com.datalayer.model.signin.LoginEntity
@@ -85,7 +86,7 @@ interface ServiceApi {
                         builder.header("Authorization", token)
                     }
                     builder.header("Content-Type", "application/json")
-                    builder.header("Client","TravelManagementSystem")
+                    builder.header("Client",BuildConfig.CLIENT_HEADER)
 
                     return@Interceptor chain.proceed(builder.build())
                 })

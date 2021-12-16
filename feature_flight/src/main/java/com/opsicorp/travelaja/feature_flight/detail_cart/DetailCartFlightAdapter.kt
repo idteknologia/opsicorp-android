@@ -71,7 +71,7 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_depart.text = data.cityCodeArrival
         holder.itemView.tv_station_destination.text = data.airportArrival
         holder.itemView.tv_total_passager.text = "${context.getString(R.string.text_adult_times)} ${data.totalPassenger}"
-        holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble() / data.totalPassenger.toDouble(), false)
+        holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble(), false)
 
     }
 

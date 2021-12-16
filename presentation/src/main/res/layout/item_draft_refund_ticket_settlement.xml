@@ -30,7 +30,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_default"
-                android:text="@{data.currency == `IDR` ? @string/refund_amount_ticket : @string/refund_amount_ticket_usd}"
                 android:textColor="#b2bbc6"
                 android:textSize="12sp"
                 tools:text="@string/refund_amount_ticket"

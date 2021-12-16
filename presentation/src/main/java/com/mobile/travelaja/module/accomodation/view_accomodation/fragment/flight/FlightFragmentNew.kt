@@ -141,7 +141,7 @@ class FlightFragmentNew : BaseFragment(),
             lay_air_class.visible()
             lay_air_pref.visible()
         }*/
-        if ((Globals.getBaseUrl(requireContext()) == "https://dtmqa.opsinfra.net/")){
+        if (Globals.isPertamina(requireContext())){
             cardExtras.gone()
         } else {
             cardExtras.visible()

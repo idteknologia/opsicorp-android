@@ -36,6 +36,7 @@ import com.mobile.travelaja.module.settlement.view.IntercityTransportFragment.Co
 import com.mobile.travelaja.module.settlement.view.TripsListFragment.Companion.KEY_TRIP_CODE
 import com.mobile.travelaja.module.settlement.view.TripsListFragment.Companion.KEY_TRIP_ID
 import com.mobile.travelaja.module.settlement.view.TripsListFragment.Companion.KEY_CREATE_REIMBURSEMENT
+import com.mobile.travelaja.module.settlement.view.TripsListFragment.Companion.KEY_TRIP_DRAFT
 import com.mobile.travelaja.module.settlement.view.adapter.AttachmentAdapter
 import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.Companion.TYPE_SELECTED
 import com.mobile.travelaja.module.settlement.view.adapter.TripsListAdapter.Companion.TYPE_DRAFT
@@ -50,6 +51,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
     private lateinit var adapter: AttachmentAdapter
     private lateinit var bottomSheet: BottomSheetBehavior<ConstraintLayout>
     private var filePermissionGranted = false
+    private var isDraftTrip = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -185,6 +187,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 } else {
                     val codeTrip = b.getString(KEY_TRIP_CODE)
                     val idTrip = b.getString(KEY_TRIP_ID)
+                    isDraftTrip = b.getBoolean(KEY_TRIP_DRAFT)
                     viewModel.submitSettlement.value = DetailSettlement()
                     viewModel.getDetailSubmit()?.TripCode = codeTrip ?: ""
                     viewModel.tempTripId = idTrip ?: ""
@@ -271,6 +274,10 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             }
             R.id.buttonSubmit -> {
                 val idTrip = viewModel.tempTripId
+                if (isDraftTrip){
+                    showDraftDialog()
+                    return
+                }
                 if (idTrip.isNotEmpty()) {
                     viewModel.getDetailTrip()
                 }

@@ -10,6 +10,7 @@ import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.module.cart.model.CartModel
+import com.mobile.travelaja.utility.DateConverter
 import kotlinx.android.synthetic.main.activity_detail_summary_hotel.*
 
 class DetailSummaryHotelActivity : BaseActivity() {
@@ -39,7 +40,7 @@ class DetailSummaryHotelActivity : BaseActivity() {
 
         tv_status_hotel_cart.text       = dataHotel.status
         tv_pnr_hotel_cart.text          = dataHotel.pnrCode
-        tv_date_booking_hotel_cart.text = dataHotel.dateBooking
+        tv_date_booking_hotel_cart.text = DateConverter().setDateFormat3(dataHotel.dateBooking)
         tv_name_hotel_cart.text         = dataHotel.nameHotel
         tv_type_hotel_cart.text         = dataHotel.typeHotel
         tv_description_hotel_cart.text  = dataHotel.descreption
