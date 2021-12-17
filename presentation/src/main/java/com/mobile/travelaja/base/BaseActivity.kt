@@ -1,45 +1,44 @@
 package com.mobile.travelaja.base
 
-import android.annotation.SuppressLint
+import java.util.*
 import android.app.*
-import android.content.Context
+import android.util.Log
+import android.os.Build
+import android.os.Bundle
+import android.view.View
+import android.os.Handler
+import java.lang.Exception
+import android.view.Window
+import android.widget.Toast
+import com.mobile.travelaja.R
 import android.content.Intent
 import android.graphics.Color
-import android.net.ConnectivityManager
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
-import android.view.Window
-import android.view.WindowManager
-import android.widget.Toast
-import android.os.Build
-import android.os.Handler
-import com.google.android.material.snackbar.Snackbar
-import android.view.View
+import android.content.Context
 import android.widget.TextView
+import android.view.WindowManager
+import org.koin.core.KoinComponent
+import android.annotation.SuppressLint
+import android.net.ConnectivityManager
 import com.mobile.travelaja.BuildConfig
-import com.mobile.travelaja.R
-import com.mobile.travelaja.databinding.DialogNotAuthorizedBinding
+import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.locale.AppLocale
-import com.mobile.travelaja.locale.AppLocaleChangeReceiver
+import com.mobile.travelaja.utility.Constants
+import opsigo.com.datalayer.mapper.Serializer
+import androidx.appcompat.app.AppCompatActivity
+import opsigo.com.domainlayer.model.ConfigModel
 import com.mobile.travelaja.locale.LocaleManager
+import com.google.android.material.snackbar.Snackbar
 import com.mobile.travelaja.locale.LocalePrefrences
-import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
-import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
-import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
+import com.mobile.travelaja.utility.CallbackSnackBar
+import opsigo.com.datalayer.datanetwork.GetDataGeneral
+import opsigo.com.domainlayer.callback.CallbackIdDevice
+import opsigo.com.domainlayer.model.signin.ProfileModel
+import com.mobile.travelaja.locale.AppLocaleChangeReceiver
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.module.signin.login.activity.LoginActivity
-import com.mobile.travelaja.utility.CallbackSnackBar
-import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.Globals
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.mapper.Serializer
-import opsigo.com.domainlayer.callback.CallbackIdDevice
-import opsigo.com.domainlayer.model.ConfigModel
-import opsigo.com.domainlayer.model.signin.ProfileModel
-import org.koin.core.KoinComponent
-import java.lang.Exception
-import java.util.*
+import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
+import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 
 abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChangeReceiver.AppLocaleChangeListener {
 
@@ -137,8 +136,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     }
 
     fun setLog(message: String) {
-        Log.e("Test", message)
         if (BuildConfig.DEBUG) {
+            Log.e("Test", message)
         }
     }
 
