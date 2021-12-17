@@ -51,7 +51,6 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         }catch (e:Exception){
             e.printStackTrace()
         }
-//        setLog(Globals.getWitdhAndHeightLayout(this).first.toString()+" "+Globals.getWitdhAndHeightLayout(this).second)
 
         if (Globals.readJsonFromFile(this,Constants.FILE_NAME_DATA_HOLIDAY).isEmpty()){
             getDataHoliday()
@@ -65,8 +64,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             four()
         }
 
-
-        Log.e(" TAG log ",Globals.getProfile(this).companyCode)
+        setLog("-------------||--> ${getConfigCompany().hsShowHotelNotComply}")
     }
 
     private fun getDataCountryHotel() {

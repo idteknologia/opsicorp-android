@@ -299,7 +299,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     }
 
     fun initRecyclerViewAttachment() {
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
         rv_attachment.layoutManager = layoutManager
         rv_attachment.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_attachment.adapter = adapter

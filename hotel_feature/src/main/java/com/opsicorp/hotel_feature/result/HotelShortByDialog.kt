@@ -72,7 +72,6 @@ class HotelShortByDialog(var context: Context) {
     fun addData() {
         data.add("Lowest Price")
         data.add("Highest Rating")
-        data.add("HSSE Certified")
         data.add("Highest Price")
 
         adapterShortBy.setData(data)
