@@ -128,7 +128,7 @@ class KtpCardFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp
             model.idCart      = et_no_id.text.toString()
             model.email       = et_email.text.toString()
             model.fullname    = et_fullname.text.toString()
-            model.mobilePhone = "62${et_no_hp.text}"
+            model.mobilePhone = "${et_no_hp.text}"
             model.title       = titlePassenger
             val birthdate     = "${tv_year_birtdate.text}-${month}-${tv_day_birtdate.text}"
             model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
