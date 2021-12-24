@@ -575,6 +575,10 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 hideWarningWaiting()
             }
+            itemsTrip.isNullOrEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                hideWarningWaiting()
+            }
             itemsTrip.filter { it.status.toLowerCase().contains("saved") }.isNotEmpty() -> {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 tv_warning_cart.text = getString(R.string.warning_status_booking_saved)
