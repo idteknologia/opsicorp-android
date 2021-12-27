@@ -35,5 +35,16 @@ data class PageHotelRequest(
 	var maxPrice: String? = null,
 
 	@field:SerializedName("MinPrice")
-	var minPrice: String? = null
+	var minPrice: String? = null,
+
+	@field:SerializedName("DestinationName")
+	var destinationName: String? = null,
+
+	@field:SerializedName("DestinationCountry")
+	var destinationCountry: String? = null
+
+
+
+
+
 )

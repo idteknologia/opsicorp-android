@@ -776,6 +776,8 @@ Please add your trip item for Approval."
     <string name="text_0_kg">0 Kg</string>
     <string name="text_oneway">Oneway</string>
     <string name="text_roundtrip">Roundtrip</string>
+    <string name="booking_confirmation">Check again your booking form before \n continue, make sure all form filled correctly.</string>
+    <string name="back">Back</string>
 
 
 </resources>

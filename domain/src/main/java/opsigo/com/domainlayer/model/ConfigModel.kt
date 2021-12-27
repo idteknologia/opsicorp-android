@@ -21,5 +21,6 @@ class ConfigModel {
     var mobileLogo               = ""
     var mobileTextLogo           = ""
     var mobileTextColorLogo      = ""
+    var hsShowHotelNotComply     = false
     var isPersonalTrip = false
 }

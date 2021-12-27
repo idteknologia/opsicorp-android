@@ -100,6 +100,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
+        android:id="@+id/relatedItemButton"
         android:paddingRight="30dp"
         android:paddingLeft="16dp"
         android:layout_width="match_parent"
@@ -161,19 +162,17 @@
         </TextView>
 
 
-
         <TextView
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:id="@+id/btn_send_receip"
+            style="@style/RobotoBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="12dp"
             android:text="@string/send_receipt"
             android:textColor="@color/colorPrimary"
-            style="@style/RobotoBold"
-            android:textSize="14dp"
-            android:layout_marginTop="12dp">
-        </TextView>
+            android:textSize="14dp"></TextView>
 
     </RelativeLayout>
 
