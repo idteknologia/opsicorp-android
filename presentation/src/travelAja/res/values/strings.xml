@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name" translatable="false">Opsicorp-TA</string>
     <string name="opsicorp_url">Travel Corporate URL</string>
-    <string name="init_activity" translatable="false">com.opsicorp.travelaja.LoginActivity</string>
+    <string name="init_activity" translatable="false">com.opsicorp.travelaja.PertaminaIdamanActivity</string>
     <string name="login_activity_filter" translatable="false">com.opsicorp.travelaja.AddressActivity</string>
 
 </resources>
