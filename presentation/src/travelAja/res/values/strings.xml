@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Opsicorp-TA</string>
+    <string name="app_name" translatable="false">Digitravel Pertamina</string>
     <string name="opsicorp_url">Travel Corporate URL</string>
     <string name="init_activity" translatable="false">com.opsicorp.travelaja.PertaminaIdamanActivity</string>
     <string name="login_activity_filter" translatable="false">com.opsicorp.travelaja.AddressActivity</string>
-
+    <string name="login_with_idaman" translatable="false">Login with IdAMan</string>
 </resources>

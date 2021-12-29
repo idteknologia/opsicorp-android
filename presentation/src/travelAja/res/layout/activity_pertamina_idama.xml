@@ -7,13 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".PertaminaIdamanActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_digitravel_pertamina"
+        app:layout_constraintBottom_toTopOf="@+id/buttonIdaman"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/buttonIdaman"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/login_with_idaman"
+        android:textAllCaps="false"
+        android:textColor="#026B9E"
+        app:strokeWidth="1dp"
+        app:strokeColor="#026B9E"
+        android:layout_marginBottom="24dp"
+        android:drawableLeft="@drawable/blue_pertamina_icon"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Goto Idaman"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
