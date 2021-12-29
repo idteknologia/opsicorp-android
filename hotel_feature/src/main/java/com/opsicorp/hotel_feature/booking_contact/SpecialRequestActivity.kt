@@ -1,20 +1,22 @@
 package com.opsicorp.hotel_feature.booking_contact
 
-import android.content.Intent
 import android.os.Build
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
+import android.text.Editable
+import android.content.Intent
+import android.text.TextWatcher
 import com.opsicorp.hotel_feature.R
-import com.mobile.travelaja.base.BaseActivity
-import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import kotlinx.android.synthetic.main.activity_special_request.*
-import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
-import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
-import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
+import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_special_request.*
+import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
+import kotlinx.android.synthetic.main.activity_special_request.toolbar
+import kotlinx.android.synthetic.main.activity_special_request.et_notes
+import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
+import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
+import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 
 class SpecialRequestActivity : BaseActivity(),
         ToolbarOpsicorp.OnclickButtonListener,
@@ -56,12 +58,17 @@ class SpecialRequestActivity : BaseActivity(),
                 else {
                     unActiveButtonSubmit()
                 }
+
+                val countText: Int
+                countText = p0.toString().length
+                tv_max_notes.text = "${countText}/100"
             }
 
             override fun afterTextChanged(p0: Editable?) {
 
             }
         })
+
 
         line_rb_1.setOnClickListener { kingSizeBed() }
         rb_1.setOnClickListener { kingSizeBed() }

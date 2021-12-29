@@ -17,10 +17,10 @@
             android:id="@+id/tv_name_hotel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The Trans Luxury Bandung"
+            tools:text="The Trans Luxury Bandung"
             android:textColor="#24253d"
-            android:textSize="16dp"
-            style="@style/RobotoMedium"></TextView>
+            android:textSize="16sp"
+            style="@style/RobotoMedium"/>
 
         <LinearLayout
             android:layout_marginTop="8dp"
@@ -40,50 +40,51 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Hotels"
+                    android:text="@string/hotels"
                     android:textColor="#2b9a8e"
-                    android:textSize="8dp"></TextView>
+                    android:textSize="8sp"
+                    tools:ignore="SmallSp" />
 
             </RelativeLayout>
 
 
             <LinearLayout
-                android:layout_marginLeft="7dp"
+                android:layout_marginStart="7dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/ic_start1"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="13dp"
                     android:layout_height="13dp" />
                 <ImageView
                     android:visibility="invisible"
                     android:id="@+id/ic_start2"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="13dp"
                     android:layout_height="13dp" />
                 <ImageView
                     android:visibility="invisible"
                     android:id="@+id/ic_start3"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="13dp"
                     android:layout_height="13dp" />
                 <ImageView
                     android:visibility="invisible"
                     android:id="@+id/ic_start4"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="13dp"
                     android:layout_height="13dp" />
                 <ImageView
                     android:visibility="invisible"
                     android:id="@+id/ic_start5"
-                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
                     android:src="@mipmap/ic_star"
                     android:layout_width="13dp"
                     android:layout_height="13dp" />
@@ -99,8 +100,7 @@
             <ImageView
                 android:layout_width="10dp"
                 android:layout_height="15dp"
-                android:src="@drawable/ic_place_gray">
-            </ImageView>
+                android:src="@drawable/ic_place_gray"/>
 
 
             <TextView
@@ -108,12 +108,10 @@
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="Cibangkong, Bandung"
+                android:layout_marginStart="5dp"
+                tools:text="Cibangkong, Bandung"
                 android:textColor="#91929e"
-                android:textSize="12dp">
-
-            </TextView>
+                android:textSize="12sp"/>
         </LinearLayout>
 
 
@@ -144,14 +142,14 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_width="35dp"
                 android:layout_height="39dp">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/combined">
-                </ImageView>
+                    android:src="@drawable/combined"/>
 
                 <TextView
                     android:id="@+id/tv_rating"
@@ -159,11 +157,10 @@
                     android:textColor="@android:color/white"
                     android:layout_centerHorizontal="true"
                     style="@style/RobotoMedium"
-                    android:text="4.5"
-                    android:textSize="16dp"
+                    tools:text="4.5"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                </TextView>
+                    android:layout_height="wrap_content"/>
             </RelativeLayout>
 
             <LinearLayout
@@ -173,22 +170,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reviews"
+                    android:text="@string/reviews"
                     android:textColor="#24253d"
-                    android:textSize="16dp"
-                    style="@style/RobotoMedium">
-                </TextView>
+                    android:textSize="16sp"
+                    style="@style/RobotoMedium"/>
 
                 <TextView
                     android:id="@+id/totalRiviews"
                     android:layout_marginTop="1dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="from 0 reviews"
+                    tools:text="from 0 reviews"
                     android:textColor="#939396"
-                    android:textSize="12dp"
-                    style="@style/RobotoRegular">
-                </TextView>
+                    android:textSize="12sp"
+                    style="@style/RobotoRegular"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -217,12 +212,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginLeft="@dimen/margin_default"
-            android:textSize="16dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:textSize="16sp"
             style="@style/RobotoMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Common Facilities"
+            android:text="@string/common_facilities"
             android:textColor="#24253D">
         </TextView>
 
@@ -258,25 +253,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/location"
                 android:textColor="#24253d"
-                android:textSize="16dp"
-                style="@style/RobotoMedium"></TextView>
+                android:textSize="16sp"
+                style="@style/RobotoMedium"/>
 
             <TextView
                 android:id="@+id/btn_view_map"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/margin_default"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="View Larger Map"
-                android:textSize="12dp"
+                android:text="@string/view_larger_map"
+                android:textSize="12sp"
                 style="@style/RobotoMedium"
-                android:textColor="#2b9a8e">
-            </TextView>
+                android:textColor="#2b9a8e"/>
         </RelativeLayout>
 
 
@@ -312,9 +306,9 @@
             android:text="@string/dummy_address_detail_hotel"
             android:layout_marginLeft="62dp"
             android:gravity="center"
-            android:textSize="12dp"
+            android:textSize="12sp"
             style="@style/RobotoRegular"
-            android:layout_marginRight="62dp"></TextView>
+            android:layout_marginRight="62dp"/>
 
     </LinearLayout>
 </RelativeLayout>

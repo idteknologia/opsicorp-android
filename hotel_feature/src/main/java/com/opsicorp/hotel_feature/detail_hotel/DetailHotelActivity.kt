@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import java.util.HashMap
 
@@ -89,7 +90,7 @@ class DetailHotelActivity : BaseActivity(),
                                 dataReview[position].time, //"Tue, 29 AUG 2020"
                                 dataReview[position].name,
                                 dataReview[position].massage,
-                                data.rating)
+                                dataReview[position].rating.toString())
                         showDialogFragment(dialog)
                     }
                 }
@@ -176,6 +177,7 @@ class DetailHotelActivity : BaseActivity(),
                 this.cancelLimit   = selectRoomModel.cancelLimit
                 this.isGuaranteedBooking = selectRoomModel.isGuaranteedBooking
                 this.isFullCharge  = selectRoomModel.isFullCharge
+                this.summary       = selectRoomModel.summary
             }
         }
     }
@@ -195,6 +197,8 @@ class DetailHotelActivity : BaseActivity(),
         if (dataReview.isNotEmpty()){
             line_riview.visibility = View.VISIBLE
             reviewAdapter.setData(dataReview)
+            tv_rating.text     =  averageRatingRiview(dataReview)
+
         }
         else {
             line_riview.visibility = View.GONE
@@ -212,7 +216,6 @@ class DetailHotelActivity : BaseActivity(),
         tv_type_hotel.text = data.typeHotel
         tv_city.text       = data.city
         totalRiviews.text  = "from ${data.reviews.size} reviews"
-        tv_rating.text     = data.rating
         tv_address_hotel.text = data.addressHotel
 
 
@@ -248,6 +251,12 @@ class DetailHotelActivity : BaseActivity(),
             showGalery()
         }
         hideLoadingLayout()
+    }
+
+    private fun averageRatingRiview(dataReview: ArrayList<RiviewHotelModel>): String {
+        var average = 0
+        dataReview.forEach { average += it.rating }
+        return "${average.toDouble()/dataReview.size}"
     }
 
     private fun mappingImageFacility(faciltyHotel: ArrayList<FacilityHotelModel>): ArrayList<FacilityHotelModel> {

@@ -767,17 +767,17 @@
 
                     <TextView
                         android:id="@+id/tv_notes_count"
-                        android:layout_below="@+id/layNotes"
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoRegular"
-                        android:textStyle="normal"
-                        android:textSize="14sp"
+                        android:layout_below="@+id/layNotes"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
                         android:gravity="end"
                         android:text="@string/_0_100"
-                        android:layout_marginTop="10dp"
                         android:textColor="#b2bbc6"
-                        android:layout_alignParentEnd="true" />
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
 
                     <!--<LinearLayout
                         android:layout_below="@+id/layNotes"

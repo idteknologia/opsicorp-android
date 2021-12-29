@@ -18,4 +18,5 @@ class SelectRoomModel (
     var isBreakfast         :Boolean = false,
     var isGuaranteedBooking :Boolean = false,
     var isFullCharge        :Boolean = false,
+    var summary: List<String> = ArrayList()
 ):Parcelable

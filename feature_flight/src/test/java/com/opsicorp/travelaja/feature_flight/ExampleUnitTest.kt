@@ -1,7 +1,9 @@
 package com.opsicorp.travelaja.feature_flight
 
-import com.mobile.travelaja.utility.DateConverter
 import org.junit.Test
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,8 +13,17 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        print(DateConverter().getDate("2020-04-04","yyyy-MM-dd","yyyy-MM-dd"))
-//        println(DateConverter().getNextDay("yyyy-MM-dd","yyyy-MM-dd","2021-05-09",3))
-//        assertEquals(4, 2 + 2)
+        var data = ArrayList<String>()
+        var startDate = "2021-12-10"
+        var endDate   = "2021-12-20"
+        var formatDate = "yyyy-MM-dd"
+
+        val sdf = SimpleDateFormat(formatDate)
+        val c = Calendar.getInstance()
+        c.time = sdf.parse(startDate)
+        while (!c.time.after(sdf.parse(endDate))){
+            data.add(sdf.format(c.time))
+            c.add(Calendar.DATE,1)
+        }
     }
 }

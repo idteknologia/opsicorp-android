@@ -43,6 +43,8 @@ class DasboardListApproval: LinearLayout,
     var positionPage = 0
     lateinit var callback : CallbackDassboardListApproval
     var baseUrl = ""
+    var firstDate = ""
+    var endDate   = ""
 
     fun setInitCallback(callback:CallbackDassboardListApproval){
         this.callback = callback
@@ -71,6 +73,8 @@ class DasboardListApproval: LinearLayout,
     }
 
     fun show(tripDateFrom: String,tripDateTo: String,position: Int,key:String){
+        firstDate = tripDateFrom
+        endDate   = tripDateTo
         resetData()
         empty_view.hide()
         error_view.hide()
@@ -174,11 +178,16 @@ class DasboardListApproval: LinearLayout,
 
     }
 
-    fun getData(tripDateFrom:String,tripDateTo:String,key: String) {
-        loading_view.show()
+    fun getData(tripDateFrom:String,tripDateTo:String,key: String,reloadData:Boolean=false) {
+        if (!reloadData){
+            loading_view.show()
+        }
         data.clear()
         GetDataGeneral(baseUrl).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
+                if (reloadData){
+                    callback.hidenDialog()
+                }
                 loading_view.hide()
                 if (approvalModel.isEmpty()) {
                     empty_view.show()
@@ -490,17 +499,15 @@ class DasboardListApproval: LinearLayout,
                     if (totalUploaded==totalRequested){
 
                         if (action=="0"){
-                            allreadyRejected(mData,action)
+                            positionPage = 3
                         }
                         else{
-                            allreadyApprove(mData,action)
+                            positionPage = 2
                         }
-
-                        callback.hidenDialog()
-                        adapter.setData(mData)
+                        this@DasboardListApproval.data.clear()
+                        getData(firstDate,endDate,"",true)
                         setTitleButton()
                         cleareDataUpload()
-
                     }
                     else{
                         approveAll(mData,action)
@@ -519,13 +526,14 @@ class DasboardListApproval: LinearLayout,
                     if (totalUploaded==totalRequested){
 
                         if (action=="0"){
-                            allreadyRejected(mData,action)
+                            positionPage = 3
                         }
                         else{
-                            allreadyApprove(mData,action)
+                            positionPage = 2
                         }
-                        callback.hidenDialog()
-                        adapter.setData(mData)
+
+                        this@DasboardListApproval.data.clear()
+                        getData(firstDate,endDate,"",true)
                         setTitleButton()
                         cleareDataUpload()
                     }
@@ -544,25 +552,6 @@ class DasboardListApproval: LinearLayout,
 
     }
 
-    private fun allreadyApprove(mData: ArrayList<ApprovalModelAdapter>, action: String) {
-        mData.forEachIndexed { index, approvalModelAdapter ->
-            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
-                dataUploaded.add(index)
-                approvalModelAdapter.status = "Approved"
-            }
-            approvalModelAdapter.selected = false
-        }
-    }
-
-    private fun allreadyRejected(mData: ArrayList<ApprovalModelAdapter>, action: String) {
-        mData.forEachIndexed { index, approvalModelAdapter ->
-            if (approvalModelAdapter.selected&&approvalModelAdapter.status == "Waiting"){
-                dataUploaded.add(index)
-                approvalModelAdapter.status = "Partially Rejected"
-            }
-            approvalModelAdapter.selected = false
-        }
-    }
 
     private fun cleareDataUpload() {
         dataUploaded.clear()

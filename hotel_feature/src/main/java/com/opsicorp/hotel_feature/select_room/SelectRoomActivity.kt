@@ -10,6 +10,8 @@ import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.select_room_activity.*
 import com.opsicorp.hotel_feature.confirmation.ConfirmationOrderHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
@@ -44,7 +46,6 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         data.clear()
         data.addAll(dataHotel.room)
         adapter.setData(data)
-//        data.addAll(DataDummyAccomodation().addDataDummyRoom())
     }
 
     fun guarantedListener(view: View){
@@ -52,16 +53,6 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         changeImageButton(0)
         data.sortBy { it.isGuaranteedBooking }
         adapter.notifyDataSetChanged()
-        /*if (guaranteed){
-            guaranteed = false
-            tv_guaranteed.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
-            btn_guaranted.background = resources.getDrawable(R.drawable.rounded_button_filter)
-        }
-        else{
-            guaranteed = true
-            tv_guaranteed.setTextColor(resources.getColor(R.color.white))
-            btn_guaranted.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
-        }*/
     }
 
     fun freeMealListener(view: View){
@@ -69,16 +60,6 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         changeImageButton(1)
         data.sortBy { it.isBreakfast }
         adapter.notifyDataSetChanged()
-        /*if (freeMeal){
-            freeMeal = false
-            tv_fee_meal.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
-            btn_free_meal.background = resources.getDrawable(R.drawable.rounded_button_filter)
-        }
-        else{
-            freeMeal = true
-            tv_fee_meal.setTextColor(resources.getColor(R.color.white))
-            btn_free_meal.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
-        }*/
     }
 
     fun freeCancelationListener(view: View){
@@ -86,16 +67,6 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         changeImageButton(2)
         data.sortBy { it.isFullCharge }
         adapter.notifyDataSetChanged()
-        /*if (cancelation){
-            cancelation = false
-            tv_free_cancelation.setTextColor(resources.getColor(R.color.color_text_btn_guaranteed_select_room))
-            btn_free_cancelation.background = resources.getDrawable(R.drawable.rounded_button_filter)
-        }
-        else{
-            cancelation = true
-            tv_free_cancelation.setTextColor(resources.getColor(R.color.white))
-            btn_free_cancelation.background = resources.getDrawable(R.drawable.rounded_button_filter_selected)
-        }*/
     }
 
     private fun changeImageButton(position: Int) {
@@ -120,10 +91,10 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
         toolbar.setDoubleTitle(dataHotel.nameHotel,"${dataHotel.addressHotel}")
     }
     private fun initRecyclerView() {
-        val layoutManagerReview = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManagerReview.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManagerReview = LinearLayoutManager(this)
+        layoutManagerReview.orientation = LinearLayoutManager.VERTICAL
         rv_list_room.layoutManager = layoutManagerReview
-        rv_list_room.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
+        rv_list_room.itemAnimator = DefaultItemAnimator()
         rv_list_room.adapter = adapter
 
         adapter.setOnclickListener(this)
@@ -158,7 +129,7 @@ class SelectRoomActivity : BaseActivity(),OnclickListenerRecyclerView,
             }
             Constants.ONCLICK_INFO_CANCELATION_HOTEL -> {
                 val dialog = DialogCancelationPolicy(
-                        data[position].cancelLimit)
+                        data[position].summary)
                 showDialogFragment(dialog)
             }
         }

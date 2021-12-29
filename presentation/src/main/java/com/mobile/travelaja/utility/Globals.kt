@@ -1159,11 +1159,6 @@ object Globals {
                 images.forEach {
                     it.visibility = View.GONE
                 }
-//                itemView.star_1.visibility = View.GONE
-//                itemView.star_2.visibility = View.GONE
-//                itemView.star_3.visibility = View.GONE
-//                itemView.star_4.visibility = View.GONE
-//                itemView.star_5.visibility = View.GONE
             }
             "1.0" ->{
                 images.forEachIndexed { index, imageView ->
@@ -1174,11 +1169,6 @@ object Globals {
                         imageView.visibility = View.GONE
                     }
                 }
-//                itemView.star_1.visibility = View.VISIBLE
-//                itemView.star_2.visibility = View.GONE
-//                itemView.star_3.visibility = View.GONE
-//                itemView.star_4.visibility = View.GONE
-//                itemView.star_5.visibility = View.GONE
             }
             "2.0" ->{
                 images.forEachIndexed { index, imageView ->
@@ -1189,11 +1179,6 @@ object Globals {
                         imageView.visibility = View.GONE
                     }
                 }
-//                itemView.star_1.visibility = View.VISIBLE
-//                itemView.star_2.visibility = View.VISIBLE
-//                itemView.star_3.visibility = View.GONE
-//                itemView.star_4.visibility = View.GONE
-//                itemView.star_5.visibility = View.GONE
             }
             "3.0" ->{
                 images.forEachIndexed { index, imageView ->
@@ -1204,11 +1189,6 @@ object Globals {
                         imageView.visibility = View.GONE
                     }
                 }
-//                itemView.star_1.visibility = View.VISIBLE
-//                itemView.star_2.visibility = View.VISIBLE
-//                itemView.star_3.visibility = View.VISIBLE
-//                itemView.star_4.visibility = View.GONE
-//                itemView.star_5.visibility = View.GONE
             }
             "4.0" ->{
                 images.forEachIndexed { index, imageView ->
@@ -1219,21 +1199,11 @@ object Globals {
                         imageView.visibility = View.GONE
                     }
                 }
-//                itemView.star_1.visibility = View.VISIBLE
-//                itemView.star_2.visibility = View.VISIBLE
-//                itemView.star_3.visibility = View.VISIBLE
-//                itemView.star_4.visibility = View.VISIBLE
-//                itemView.star_5.visibility = View.GONE
             }
             "5.0" ->{
                 images.forEach {
                     it.visibility = View.VISIBLE
                 }
-//                itemView.star_1.visibility = View.VISIBLE
-//                itemView.star_2.visibility = View.VISIBLE
-//                itemView.star_3.visibility = View.VISIBLE
-//                itemView.star_4.visibility = View.VISIBLE
-//                itemView.star_5.visibility = View.VISIBLE
             }
         }
     }

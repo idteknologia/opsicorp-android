@@ -8,11 +8,11 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.validation.Validati
 import opsigo.com.datalayer.request_model.accomodation.hotel.confirmation.ConfirmHotelRequest
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ConfirmationHotelModel
+import com.opsicorp.hotel_feature.booking_contact.BookingContactHotelActivity
 import opsigo.com.domainlayer.model.accomodation.hotel.ResultListHotelModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.domainlayer.model.accomodation.hotel.ValidationHotelModel
 import opsigo.com.domainlayer.model.accomodation.hotel.SelectRoomModel
-import com.opsicorp.hotel_feature.booking_contact.BookingContactHotelActivity
 import com.opsicorp.hotel_feature.select_room.DialogCancelationPolicy
 import kotlinx.android.synthetic.main.detail_prize_bottom_hotel.*
 import kotlinx.android.synthetic.main.confirmation_order_hotel.*
@@ -25,11 +25,14 @@ import com.mobile.travelaja.module.cart.model.CartModel
 import com.mobile.travelaja.utility.DateConverter
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.base.BaseActivity
+import com.mobile.travelaja.utility.Globals
 import com.squareup.picasso.Picasso
 import com.opsicorp.hotel_feature.R
 import android.view.View
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.opsicorp.hotel_feature.adapter.SummaryCancelAdapter
 import java.util.HashMap
 
 class ConfirmationOrderHotel : BaseActivity(),
@@ -47,6 +50,7 @@ class ConfirmationOrderHotel : BaseActivity(),
     lateinit var dataConfirmation: ConfirmationHotelModel
     lateinit var dataTrip: SuccessCreateTripPlaneModel
     lateinit var dataOrderDetail : ItemCardHotelModel
+
     override fun OnMain() {
         initDataOrder()
         initToolbar()
@@ -54,7 +58,7 @@ class ConfirmationOrderHotel : BaseActivity(),
         btn_next.setTextButton("Book")
         btn_info_cancelation.setOnClickListener {
             val dialog = DialogCancelationPolicy(
-                    "2020-02-18")
+                    dataRoom.summary)
             showDialogFragment(dialog)
         }
         setDataConfirmationOrder()
@@ -75,9 +79,6 @@ class ConfirmationOrderHotel : BaseActivity(),
 
     private fun setDataDetail() {
         dataOrderDetail = Serializer.deserialize(intent.getStringExtra(Constants.DATA_DETAIL_HOTEL), CartModel::class.java).dataCardHotel
-
-//        Constants.CheckInDate  = dataTrip.startDate
-//        Constants.CheckOutDate = dataTrip.endDate
 
         dataHotel                = getDataDetailHotel()
         dataValidation           = getDataValidationHotel()
@@ -132,7 +133,6 @@ class ConfirmationOrderHotel : BaseActivity(),
     }
 
     private fun getValidationHotel() {
-//        setLog(Serializer.serialize(dataValidationHotel()))
         GetDataAccomodation(getBaseUrl()).getValidationHotel(getToken(),dataValidationHotel(),object :CallbackValidationHotel{
             override fun success(data: ValidationHotelModel) {
                 dataValidation = data
@@ -154,14 +154,16 @@ class ConfirmationOrderHotel : BaseActivity(),
         tv_description_hotel_cart.text  = dataHotel.addressHotel
         tv_detail_facility.text         = "24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
         tv_double_bed.text              = dataValidation.typeBed
-        try {
-            tv_cancelation_policy2.text     = "Charge 100% - Start from ${DateConverter().getDate(dataTrip.startDate.split(" ")[0],"yyyy-mm-dd","dd MMM yyyy")}"//22 May 2020
-            tv_cancelation_policy1.text     = "No charge for cancellation before ${DateConverter().getDate(dataTrip.endDate.split(" ")[0],"yyyy-mm-dd","dd MMM yyyy")}"
-        }catch (e:Exception){
-            tv_cancelation_policy2.text     = dataTrip.endDate
-            tv_cancelation_policy1.text     = dataTrip.startDate
-            e.printStackTrace()
-        }
+
+        val adapter = SummaryCancelAdapter(dataRoom.summary)
+        val layoutManagerReview = LinearLayoutManager(this)
+        layoutManagerReview.orientation = LinearLayoutManager.VERTICAL
+        rv_cancel_policy.layoutManager = layoutManagerReview
+        rv_cancel_policy.itemAnimator = DefaultItemAnimator()
+        rv_cancel_policy.adapter = adapter
+
+        adapter.setData(dataRoom.summary)
+
         tv_prize_hotel_cart.text        = "IDR ${Globals.formatAmount(dataRoom.prize.toDouble().toInt().toString())}"
 
         if(dataValidation.notcomply){
@@ -187,6 +189,8 @@ class ConfirmationOrderHotel : BaseActivity(),
                 .into(tv_image_hotel_cart)
 
         initPrize()
+
+        Globals.viewRatingStarHotel(arrayListOf(ic_start_1,ic_start_2,ic_start_3,ic_start_4,ic_start_5),dataHotel.starRating.toDouble().toString())
     }
 
     private fun dataValidationHotel(): HashMap<Any, Any> {
