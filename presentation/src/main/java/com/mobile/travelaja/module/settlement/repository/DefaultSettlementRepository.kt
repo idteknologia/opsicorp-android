@@ -60,7 +60,7 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
             if (result.trip != null) {
                 result.listTicket.forEach {
                     it.PnrCode = it.TicketNumber
-                    result.trip?.TicketRefunds?.add(it)
+//                    result.trip?.TicketRefunds?.add(it)
                 }
                 Result.Success(result)
             } else {
