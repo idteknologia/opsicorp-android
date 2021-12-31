@@ -23,7 +23,6 @@ import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
 import opsigo.com.datalayer.request_model.ApproverPerItemRequest
 import opsigo.com.domainlayer.callback.CallbackApprovAll
 import opsigo.com.domainlayer.model.aprover.ParticipantModelDomain
-import opsigo.com.domainlayer.model.travel_request.EstimatedCostTravelRequestModel
 import java.util.HashMap
 
 class DetailParticipantActivity : BaseActivity()
@@ -286,6 +285,13 @@ class DetailParticipantActivity : BaseActivity()
         tv_purpose.text         = tripSummary.purpose
         tv_destination.text     = destination
 
+        if (tripSummary.isTripPartner){
+            tvEstFlightTitle.setText(R.string.est_flight_with_partner)
+        } else {
+            tvEstFlightTitle.setText(R.string.est_flight)
+        }
+
+
         dateConverter = DateConverter()
         var string = tripSummary.startDate
         string = string.substring(0, 10)
@@ -293,11 +299,9 @@ class DetailParticipantActivity : BaseActivity()
         tv_start_date.text = startdate
 
         var string2 = tripSummary.returnDate
-        string2 = string2?.substring(0, 10)
-        if (string2 != null) {
-            val returndate = dateConverter.setDateFormatDayEEEddMMM(string2)
-            tv_end_date.text = returndate
-        }
+        string2 = string2.substring(0, 10)
+        val returndate = dateConverter.setDateFormatDayEEEddMMM(string2)
+        tv_end_date.text = returndate
 
         //view participant
         tv_status.text = status
