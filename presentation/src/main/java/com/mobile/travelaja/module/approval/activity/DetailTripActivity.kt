@@ -18,6 +18,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.compose.ui.text.toLowerCase
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.R
@@ -208,8 +209,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     fun initRecyclerViewApproval() {
         tv_list_approval.visibility = View.VISIBLE
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
-        layoutManager.orientation = androidx.recyclerview.widget.LinearLayoutManager.VERTICAL
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
         rv_approval.layoutManager = layoutManager
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApproval
@@ -859,14 +860,20 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         val btnRemove = layout.findViewById(R.id.tv_remove_list_data) as TextView
         val lineDownload = layout.findViewById(R.id.line_download) as LinearLayout
         val btnDownload = layout.findViewById(R.id.tv_download_itenary) as TextView
+        val lineCanceltrip = layout.findViewById(R.id.line_cancel_trip) as LinearLayout
+        val btnCancelTrip = layout.findViewById(R.id.tv_cancel_trip) as TextView
         val lineDownloadCoverLetter = layout.findViewById(R.id.line_download_cover_latter) as LinearLayout
         val btnDownloadCoverLetter = layout.findViewById(R.id.tv_download_cover_latter) as TextView
-
 
         btnDetail.text      = "Back"
         btnRemove.text      = "Help and guide"
         btnDownload.text    = "Download itinerary"
         btnDownloadCoverLetter.text  = "Download SKPD Letter"
+
+        if (tripSummary.status=="4"&&dataItems.isEmpty()){
+            lineCanceltrip.visibility = View.VISIBLE
+            btnCancelTrip.visibility  = View.VISIBLE
+        }
 
         val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
 
@@ -898,8 +905,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
 
         btnDownload.setOnClickListener {
-//            val url = "https://opsicorp.blob.core.windows.net/opsicorpdtmqa-trip-itinerary/Official_Letter%20TP202109090001.pdf"
-//            val url2 = "https://kkn.unnes.ac.id/lapkkn/11402_3324122015_Desa%20Tratemulyo_20141223_110650.pdf"
             dialog.dismiss()
             val idItinerary = tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary.toString()
             getUrlFile(idItinerary)
@@ -909,6 +914,30 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             dialog.dismiss()
             getUrlFile(tripSummary.coverLatter)
         }
+
+        btnCancelTrip.setOnClickListener {
+            cancelTripListener()
+            dialog.dismiss()
+        }
+    }
+
+    private fun cancelTripListener() {
+        showDialog("")
+        GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), tripSummary.tripId, object : CallbackCancelTripplan {
+            override fun successLoad(boolean: Boolean) {
+                hideDialog()
+                if (!boolean) {
+                    Globals.showAlert(getString(R.string.sorry), "something wrong!", this@DetailTripActivity)
+                }
+                else {
+                    getSummary()
+                }
+            }
+            override fun failedLoad(message: String) {
+                hideDialog()
+                Globals.showAlert(getString(R.string.sorry), message, this@DetailTripActivity)
+            }
+        })
     }
 
     private fun getUrlFile(idFile:String) {
@@ -917,9 +946,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             override fun success(url:String) {
                 hideDialog()
                 dowloadByLib(url)
-//                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-//                startActivity(browserIntent)
-//                dowloadFile(url)
             }
 
             override fun failed(string: String) {

@@ -90,13 +90,11 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     }
 
     fun setLoadingView(){
-        line_checkbox.visibility       = View.GONE
         rv_list_bisnis_trip.visibility = View.GONE
         loading_view.show()
     }
 
     fun hideLoadingView(){
-        line_checkbox.visibility       = View.VISIBLE
         rv_list_bisnis_trip.visibility = View.VISIBLE
         loading_view.hide()
     }
@@ -157,13 +155,6 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
         GetDataTripPlane(getBaseUrl(context)).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
             override fun successLoad(isSuccess:Boolean) {
-
-                if (isSuccess) {
-                    Log.d("xdeletedx","deleted : " + isSuccess)
-
-                } else {
-                    Globals.showAlert(context.getString(R.string.sorry),"something wrong!",context)
-                }
 
             }
 

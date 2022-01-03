@@ -1211,5 +1211,6 @@ Please add your trip item for Approval."
     <string name="title_ticket_hotel">Voucher Code</string>
     <string name="massage_success_refund">This Refund request has been sent to Travel Agent. You will be contact later.</string>
     <string name="massage_success_reschedule">This reschedule request has been sent to Travel Agent. You will be contact later.</string>
+    <string name="cancel_trip">Cancel Trip</string>
 </resources>
 

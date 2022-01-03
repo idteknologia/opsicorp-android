@@ -9,7 +9,6 @@ import opsigo.com.domainlayer.model.accomodation.flight.ProgressFlightModel
 import opsigo.com.domainlayer.model.accomodation.train.ProgressTrainModel
 import kotlinx.android.synthetic.main.item_detail_header_list_card.view.*
 import kotlinx.android.synthetic.main.item_hotel_summary_card_new.view.*
-import com.mobile.travelaja.utility.Globals.getDateNowNewFormat
 import opsigo.com.domainlayer.callback.CallbackArrayListString
 import opsigo.com.domainlayer.callback.CallbackProgressFlight
 import opsigo.com.domainlayer.callback.CallbackProgressTrain

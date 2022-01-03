@@ -7,7 +7,6 @@ import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
 import androidx.transition.Fade
 import kotlin.collections.HashMap
 import java.text.SimpleDateFormat
@@ -77,9 +76,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     lateinit var dataCodeAirline: AirlineCodeCompanyModel
     var dataFilter     = ArrayList<AccomodationResultModel>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
-    val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
     val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
-    val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
 
 
     override fun OnMain() {
@@ -559,10 +556,6 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onSort() {
         if (data.isNotEmpty()){
-            /*if(Globals.typeAccomodation=="Flight"){
-                val bottomSheet = BottomSheetSort(current_sort)
-                bottomSheet.show(supportFragmentManager, "FlightSort")
-            }*/
             FlightShortByDialog(this).create(current_sort, this)
         }
     }
@@ -579,12 +572,12 @@ class ResultSearchFlightActivity : BaseActivity(),
                 }else{
                     dataOrder.dateDeparture = departureDate
                 }
-
+                Constants.ALREADY_SEARCH_FLIGHT = false
                 getAirlineByCompany()
                 setToolbar(DateConverter().getDate(departureDate,"yyyy-MM-dd","EEE, dd MMM yyyy"))
             }
         },dataOrder.dateDeparture,dataOrder.dateArrival,"yyyy-MM-dd")
-        Log.e("TAG =========> ","${dataOrder.dateArrival} ${dataOrder.dateDeparture}")
+
     }
 
     override fun btnBack() {

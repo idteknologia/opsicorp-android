@@ -77,6 +77,7 @@ class SpecialRequestActivity : BaseActivity(),
         line_rb_3.setOnClickListener { twinSizeBed() }
         rb_3.setOnClickListener { twinSizeBed() }
         btn_submit.callbackOnclickButton(this)
+        btn_submit.setTextButton("Apply")
     }
 
     private fun unActiveButtonSubmit() {

@@ -102,5 +102,31 @@
             style="@style/RobotoRegular"
             android:text="@string/remove_item">
         </TextView>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:orientation="vertical"
+            android:id="@+id/line_cancel_trip"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/white"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp">
+        </LinearLayout>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_cancel_trip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            style="@style/RobotoRegular"
+            android:text="@string/cancel_trip">
+        </TextView>
     </LinearLayout>
 </LinearLayout>
