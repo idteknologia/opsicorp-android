@@ -11,6 +11,8 @@ import opsigo.com.domainlayer.model.my_booking.DetailFlightMyBookingModel
 import opsigo.com.domainlayer.model.my_booking.ImportanPreProductInfoModel
 import com.mobile.travelaja.module.my_booking.adapter.PassangerPurchaseAdapter
 import com.mobile.travelaja.module.my_booking.adapter.ImportanPreProductInfoAdapter
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import opsigo.com.domainlayer.model.my_booking.ItemPurchaseTrainModel
 
 class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
@@ -38,6 +40,13 @@ class PageDetailFlightAndTrainPurchase : LinearLayout, View.OnClickListener {
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.page_detail_flight_and_train, this)
+        if (Globals.isPertamina(context)){
+            relatedItemButton.gone()
+            btn_send_receip.gone()
+        } else {
+            relatedItemButton.visible()
+            btn_send_receip.visible()
+        }
         initRecyclerView()
     }
 

@@ -115,19 +115,19 @@
         </TextView>
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/btn_see_detail"
-            android:layout_below="@+id/tv_age"
+            style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/see_detail"
-            style="@style/RobotoRegular"
-            android:textColor="#f8b945"
-            android:textSize="10dp"
+            android:layout_below="@+id/tv_age"
             android:layout_alignParentRight="true"
             android:layout_marginTop="7dp"
             android:paddingLeft="7dp"
-            android:paddingRight="7dp">
-        </TextView>
+            android:paddingRight="7dp"
+            android:text="@string/see_detail"
+            android:textColor="#f8b945"
+            android:textSize="10dp"></TextView>
 
 
 

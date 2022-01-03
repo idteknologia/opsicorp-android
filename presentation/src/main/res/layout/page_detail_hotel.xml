@@ -462,6 +462,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:id="@+id/btn_send_receip"

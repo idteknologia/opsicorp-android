@@ -1212,5 +1212,7 @@ Please add your trip item for Approval."
     <string name="massage_success_refund">This Refund request has been sent to Travel Agent. You will be contact later.</string>
     <string name="massage_success_reschedule">This reschedule request has been sent to Travel Agent. You will be contact later.</string>
     <string name="cancel_trip">Cancel Trip</string>
+    <string name="est_flight_with_partner" translatable="false">Est Flight (with partner)</string>
+    <string name="est_flight" translatable="false">Est Flight</string>
 </resources>
 
