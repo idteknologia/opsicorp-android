@@ -8,29 +8,58 @@
     tools:context=".PertaminaIdamanActivity">
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/photo_homepage"
+        app:layout_constraintDimensionRatio="16:11"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_digitravel_pertamina"
-        app:layout_constraintBottom_toTopOf="@+id/buttonIdaman"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:src="@drawable/group"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintEnd_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/tvTitleDigitravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextLato_Bold"
+        android:textSize="18sp"
+        android:text="@string/app_name"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="@dimen/margin_default"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextLato_Normal"
+        android:textSize="16sp"
+        android:textColor="#656677"
+        android:text="@string/description_digitravel"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_default"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleDigitravel" />
 
     <Button
         android:id="@+id/buttonIdaman"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_with_idaman"
+        android:text="@string/continue_"
+        style="@style/ButtonStyle"
+        android:layout_margin="24dp"
         android:textAllCaps="false"
-        android:textColor="#026B9E"
-        app:strokeWidth="1dp"
-        app:strokeColor="#026B9E"
-        android:layout_marginBottom="24dp"
-        android:drawableLeft="@drawable/blue_pertamina_icon"
-        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
