@@ -222,13 +222,13 @@ class PageDetailHotelPurchase @JvmOverloads constructor(context: Context, attrs:
 
     private fun showDataHotel() {
 //        dataPolicy.addAll(DummyDataPurchaseFlight.addDataCancelPolicy())
-//        dataRemark.addAll(DummyDataPurchaseFlight.addDataRemark())
+        dataRemark.addAll(data.dataHotel.dataRemark)
         binding.tvHotelAddress.text = data.dataHotel.address
         binding.tvPriceHotel.text   = "IDR ${Globals.formatAmount(data.totalPaid)}"
         dataGuest.addAll(data.dataHotel.guests)
         dataRoomFacility.addAll(mappingImageFacility(data.dataHotel.facility))
         adapterPolicy.setData(data.dataHotel.cancellationPolicy)
-        adapterRemark.setData(data.dataHotel.dataRemark)
+        adapterRemark.setData(dataRemark)
         adapterGuest.setData(dataGuest)
         latitude  = data.dataHotel.latitude.toString()
         longitude = data.dataHotel.longitude.toString()

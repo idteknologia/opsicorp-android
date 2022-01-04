@@ -2,11 +2,11 @@ package com.opsicorp.travelaja.feature_flight.result
 
 import java.util.*
 import android.view.View
+import android.os.Bundle
 import org.koin.core.inject
 import java.text.DateFormat
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import androidx.transition.Fade
 import kotlin.collections.HashMap
 import java.text.SimpleDateFormat
@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.callback.CallbackAirlinePreference
 import opsigo.com.domainlayer.callback.CallbackResultSearchFlight
+import com.mobile.travelaja.utility.Constants.isAllreadyFilterFlight
 import com.mobile.travelaja.module.item_custom.calendar.CalendarDialog
 import com.opsicorp.travelaja.feature_flight.dialog.FlightShortByDialog
 import com.opsicorp.travelaja.feature_flight.filter.FilterFlightActivity
@@ -31,22 +32,21 @@ import com.mobile.travelaja.module.item_custom.menu_sort.BottomSheetSort
 import opsigo.com.domainlayer.model.accomodation.AccomodationResultModel
 import com.mobile.travelaja.module.item_custom.btn_filter.FilterOpsicorp
 import kotlinx.android.synthetic.main.detail_search_filter_activity_new.*
+import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.calendar.CalendarViewOpsicorp
+import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataDummyAccomodation
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.mobile.travelaja.module.accomodation.adapter.ResultAccomodationAdapter
-import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import com.mobile.travelaja.utility.Constants.isAllreadyFilterFlight
-import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.ListScheduleItem
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
 import opsigo.com.domainlayer.model.accomodation.flight.airline_code.AirlineCodeCompanyModel
-import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
-import opsigo.com.domainlayer.model.accomodation.flight.FilterFlightModel
-import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.RoutesItem
+import opsigo.com.datalayer.request_model.accomodation.flight.search.ValidationRouteAvailable
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
+import com.mobile.travelaja.module.accomodation.dialog.accomodation_preferance.AccomodationPreferanceModel
+import opsigo.com.datalayer.request_model.accomodation.flight.search.airline_pref.AirlinePrefByCompanyRequest
 
 class ResultSearchFlightActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult, KoinComponent,
@@ -76,9 +76,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     lateinit var dataCodeAirline: AirlineCodeCompanyModel
     var dataFilter     = ArrayList<AccomodationResultModel>()
     var dataPrefarance = ArrayList<AccomodationPreferanceModel>()
-    val dFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
     val adapter by inject<ResultAccomodationAdapter> { parametersOf() }
-    val tFormarter: DateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm")
 
 
     override fun OnMain() {
@@ -378,7 +376,6 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onResume() {
         if (Globals.ALL_READY_SELECT_DEPARTING){
-            setLog("-----------------")
             showTotalData()
             if (!isAllreadyFilterFlight){
                 setDataArrival()
@@ -559,10 +556,6 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     override fun onSort() {
         if (data.isNotEmpty()){
-            /*if(Globals.typeAccomodation=="Flight"){
-                val bottomSheet = BottomSheetSort(current_sort)
-                bottomSheet.show(supportFragmentManager, "FlightSort")
-            }*/
             FlightShortByDialog(this).create(current_sort, this)
         }
     }
@@ -579,11 +572,12 @@ class ResultSearchFlightActivity : BaseActivity(),
                 }else{
                     dataOrder.dateDeparture = departureDate
                 }
-
+                Constants.ALREADY_SEARCH_FLIGHT = false
                 getAirlineByCompany()
                 setToolbar(DateConverter().getDate(departureDate,"yyyy-MM-dd","EEE, dd MMM yyyy"))
             }
-        })
+        },dataOrder.dateDeparture,dataOrder.dateArrival,"yyyy-MM-dd")
+
     }
 
     override fun btnBack() {

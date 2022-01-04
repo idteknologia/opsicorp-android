@@ -116,6 +116,9 @@ class EticketMapper {
                     data.add(it)
                 }
             }
+            else {
+                data.add(remarkHotel)
+            }
         }
         return data
     }

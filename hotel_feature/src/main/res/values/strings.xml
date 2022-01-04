@@ -622,7 +622,6 @@ Please add your trip item for Approval."
         <item> Most Liked </item>
     </string-array>
 
-
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -685,5 +684,18 @@ Please add your trip item for Approval."
     <string name="title_popular_aiport">Popular Airports</string>
     <string name="title_popular_city">Popular Cities</string>
     <string name="title_guest">Guest\'s full name</string>
+    <string name="see_all_photos">See all Photos</string>
+    <string name="cancelation_policy">Cancelation Policy</string>
+    <string name="dot">•</string>
+    <string name="reviews">Reviews</string>
+    <string name="common_facilities">Common Facilities</string>
+    <string name="view_larger_map">View Larger Map</string>
+    <string name="check_in">Check In</string>
+    <string name="check_out">Check Out</string>
+    <string name="room_night">Room / Night</string>
+    <string name="select_reason_code">Select Reason Code</string>
+    <string name="choose_the_information_for_not_comply_price_policy">Choose the information for not comply price policy</string>
+    <string name="bed_type_request">Bed type request</string>
+    <string name="guest_name">Guest Name</string>
 
 </resources>

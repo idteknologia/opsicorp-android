@@ -13,6 +13,8 @@ import android.graphics.Color
 import com.mobile.travelaja.R
 import android.view.Gravity
 import android.view.View
+import com.mobile.travelaja.utility.DateConverter
+import java.text.SimpleDateFormat
 import java.util.*
 
 class CalendarDialog(var context: Context) {
@@ -24,13 +26,20 @@ class CalendarDialog(var context: Context) {
     val adapterShortBy by lazy { CalendarDialogAdapter(context,data) }
     lateinit var callbackDialog : CallbackDialog
     lateinit var lineOutSideCalendar :LinearLayout
+    var startDate = ""
+    var endDate   = ""
+    var formatDate = ""
 
-    fun create(callbackDialog: CallbackDialog){
+    fun create(callbackDialog: CallbackDialog,startDate:String = "",endDate:String="",formatDate: String= ""){
         val adb = AlertDialog.Builder(context)
         this.callbackDialog = callbackDialog
         views = LayoutInflater.from(context).inflate(R.layout.calendar_dialog,null)
         recyclerView = views.findViewById(R.id.recycler_shor_by)
         lineOutSideCalendar = views.findViewById(R.id.line_outside_dialog)
+
+        this.startDate = startDate
+        this.endDate   = endDate
+        this.formatDate = formatDate
 
         initRecyclerView()
         lineOutSideCalendar.setOnClickListener {
@@ -74,13 +83,21 @@ class CalendarDialog(var context: Context) {
     }
 
     fun addData() {
-        for (i in 0 until 70){
-            val c: Calendar = Calendar.getInstance()
-            c.add(Calendar.DATE, i)
-            data.add(c.time)
+        if (startDate.isNotEmpty()){
+            try {
+                data.addAll(DateConverter().getDatesBeetwenTwoDate(startDate,endDate,formatDate))
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+        else {
+            for (i in 0 until 70){
+                val c: Calendar = Calendar.getInstance()
+                c.add(Calendar.DATE, i)
+                data.add(c.time)
+            }
         }
         adapterShortBy.setData(data)
-
     }
 
 }

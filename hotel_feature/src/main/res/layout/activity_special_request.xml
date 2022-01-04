@@ -22,14 +22,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <TextView
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="#009688"
                 android:id="@+id/title_bed_type"
-                android:text="Bed type request"
+                android:text="@string/bed_type_request"
                 android:layout_marginBottom="18dp"
                 style="@style/RobotoBold"/>
 
@@ -37,12 +37,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/RobotoRegular"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:textColor="#b2bbc6"
-                android:text="Guest Name"
-                />
+                android:text="@string/guest_name"/>
 
             <TextView
                 android:id="@+id/name_guest"
@@ -50,11 +49,11 @@
                 android:layout_height="wrap_content"
                 style="@style/RobotoBold"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="#24253d"
-                android:text="Mr. Vody Andrian" />
+                tools:text="Mr. Vody Andrian" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,7 +70,7 @@
                 android:orientation="vertical">
                 <LinearLayout
                     android:id="@+id/line_rb_1"
-                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_default"
                     android:layout_marginTop="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,7 +80,7 @@
                         android:buttonTint="@color/checkbox"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp">
+                        android:layout_marginEnd="8dp">
                     </RadioButton>
 
                     <LinearLayout
@@ -240,6 +239,7 @@
                 </EditText>
 
                 <TextView
+                    android:id="@+id/tv_max_notes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/RobotoRegular"

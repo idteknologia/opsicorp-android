@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.mapper
 
+import android.util.Log
 import opsigo.com.datalayer.model.myboking.*
 import opsigo.com.datalayer.model.myboking.PassengersItem
 import opsigo.com.domainlayer.model.my_booking.*
@@ -189,12 +190,15 @@ class DetailMyBookingMapper {
     }
 
     private fun mappingRemarkHotel(remarkHotel: String): ArrayList<String> {
-        val data = java.util.ArrayList<String>()
+        val data = ArrayList<String>()
         if (remarkHotel!="null"&&remarkHotel.isNotEmpty()){
             if (remarkHotel.contains(",")){
                 remarkHotel.split(",").forEach {
                     data.add(it)
                 }
+            }
+            else {
+                data.add(remarkHotel)
             }
         }
         return data

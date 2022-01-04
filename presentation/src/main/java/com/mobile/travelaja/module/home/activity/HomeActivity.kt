@@ -1,6 +1,5 @@
 package com.mobile.travelaja.module.home.activity
 
-import android.util.Log
 import android.view.View
 import com.mobile.travelaja.R
 import android.content.Intent
@@ -63,8 +62,6 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         if (intent.getBooleanExtra(Constants.FROM_PAYMENT,false)){
             four()
         }
-
-        setLog("-------------||--> ${getConfigCompany().hsShowHotelNotComply}")
     }
 
     private fun getDataCountryHotel() {

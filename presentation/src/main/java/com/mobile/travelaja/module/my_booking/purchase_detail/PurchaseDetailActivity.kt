@@ -1,10 +1,8 @@
 package com.mobile.travelaja.module.my_booking.purchase_detail
 
-import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.util.Log
 import android.view.View
 import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
@@ -20,7 +18,6 @@ import opsigo.com.domainlayer.model.my_booking.DetailMyBookingModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.my_booking.adapter.PriceDetailMyBookingAdapter
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.PurchaseDetailListActivity
-import opsigo.com.datalayer.mapper.Serializer
 
 class PurchaseDetailActivity : BaseActivityBinding<PurchaseActivityBinding>(),
         OnclickListenerRecyclerView,

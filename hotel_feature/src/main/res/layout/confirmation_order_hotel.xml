@@ -23,23 +23,22 @@
                     android:src="@drawable/ic_back"
                     android:layout_width="@dimen/size_image_back"
                     android:layout_height="@dimen/size_image_back"
-                    android:scaleType="center">
-                </ImageView>
+                    android:scaleType="center"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="35dp">
+                    android:layout_marginEnd="35dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="#24253d"
                         android:gravity="end"
-                        android:text="Hotel Summary"
+                        android:text="@string/hotel_summary"
                         style="@style/RobotoBold"/>
 
                     <TextView
@@ -51,8 +50,9 @@
                         android:gravity="end"
                         android:id="@+id/tv_total_night"
                         style="@style/RobotoRegular"
-                        android:text="2 Night (s)"
-                        android:layout_marginTop="2dp"/>
+                        tools:text="2 Night (s)"
+                        android:layout_marginTop="2dp"
+                        tools:ignore="RtlHardcoded" />
                 </LinearLayout>
             </RelativeLayout>
 
@@ -89,7 +89,7 @@
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Check In"
+                                android:text="@string/check_in"
                                 android:textColor="#2b9a8e"
                                 android:textSize="12sp" />
 
@@ -99,24 +99,22 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:text="Sun 27 Apr 2019"
+                                tools:text="Sun 27 Apr 2019"
                                 android:textColor="#24253d"
-                                android:textSize="12dp" />
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <LinearLayout
-                                android:layout_marginRight="20dp"
-                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="20dp"
                                 android:layout_width="1dp"
                                 android:layout_height="54dp"
-                                android:background="#f5f5f5"></LinearLayout>
-
+                                android:background="#f5f5f5"/>
 
                             <LinearLayout
                                 android:layout_gravity="center"
@@ -129,7 +127,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="end"
-                                    android:text="Check Out"
+                                    android:text="@string/check_out"
                                     android:textColor="#2b9a8e"
                                     android:textSize="12sp" />
 
@@ -140,9 +138,9 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:layout_gravity="end"
-                                    android:text="Sun 27 Apr 2019"
+                                    tools:text="Sun 27 Apr 2019"
                                     android:textColor="#24253d"
-                                    android:textSize="12dp" />
+                                    android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
                     </RelativeLayout>
@@ -154,15 +152,13 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="11dp"
                         android:scaleType="center"
-                        android:src="@drawable/background_slider">
-
-                    </ImageView>
+                        android:src="@drawable/background_slider"/>
 
                     <TextView
                         android:id="@+id/tv_name_hotel_cart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pondok Gajah Homestay"
+                        tools:text="Pondok Gajah Homestay"
                         android:textColor="#24253d"
                         android:textSize="14sp" />
 
@@ -183,39 +179,45 @@
                             android:paddingTop="5dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Apartments"
+                            tools:text="Apartments"
                             android:textColor="#2b9a8e"
-                            android:textSize="9sp" />
+                            android:textSize="9sp"
+                            tools:ignore="SmallSp" />
 
                         <LinearLayout
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginStart="5dp"
                             android:layout_gravity="center"
                             android:orientation="horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
                             <ImageView
-                                android:layout_marginLeft="4dp"
+                                android:id="@+id/ic_start_1"
+                                android:layout_marginStart="4dp"
                                 android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp" />
                             <ImageView
-                                android:layout_marginLeft="4dp"
+                                android:id="@+id/ic_start_2"
+                                android:layout_marginStart="4dp"
                                 android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp" />
                             <ImageView
-                                android:layout_marginLeft="4dp"
+                                android:id="@+id/ic_start_3"
+                                android:layout_marginStart="4dp"
                                 android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp" />
                             <ImageView
-                                android:layout_marginLeft="4dp"
+                                android:id="@+id/ic_start_4"
+                                android:layout_marginStart="4dp"
                                 android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp" />
                             <ImageView
-                                android:layout_marginLeft="4dp"
+                                android:id="@+id/ic_start_5"
+                                android:layout_marginStart="4dp"
                                 android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
                                 android:layout_height="14dp" />
@@ -227,9 +229,9 @@
                         android:id="@+id/tv_description_hotel_cart"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="54dp"
+                        android:layout_marginEnd="54dp"
                         android:lineSpacingExtra="6sp"
-                        android:text="Jalan Ringroad Selatan, Tamantirto, Kasihan, Kasihan, Yogyakarta, Yogyakarta Province, Indonesia, 55133"
+                        tools:text="Jalan Ringroad Selatan, Tamantirto, Kasihan, Kasihan, Yogyakarta, Yogyakarta Province, Indonesia, 55133"
                         android:textColor="#91929e"
                         android:textSize="12sp" />
 
@@ -258,9 +260,10 @@
                             android:paddingTop="5dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="5dp"
-                            android:text="Include Breakfast"
+                            tools:text="Include Breakfast"
                             android:textColor="#2b9a8e"
-                            android:textSize="9sp" />
+                            android:textSize="9sp"
+                            tools:ignore="SmallSp" />
 
                     </RelativeLayout>
 
@@ -271,8 +274,7 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/ic_hotel_round_grey">
-                        </ImageView>
+                            android:src="@drawable/ic_hotel_round_grey"/>
 
                         <LinearLayout
                             android:layout_marginLeft="10dp"
@@ -285,9 +287,9 @@
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp"
                                 android:lineSpacingExtra="4sp"
-                                android:text="24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
+                                tools:text="24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
                                 android:textColor="#24253d"
                                 android:textSize="12sp" />
 
@@ -297,7 +299,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="7dp"
-                                android:text="Twin bed or Double bed"
+                                tools:text="Twin bed or Double bed"
                                 android:textColor="#5499e4"
                                 android:textSize="12sp" />
 
@@ -312,11 +314,10 @@
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
-                            android:src="@drawable/ic_warning_trianggel_orange">
-                        </ImageView>
+                            android:src="@drawable/ic_warning_trianggel_orange"/>
 
                         <LinearLayout
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -326,55 +327,40 @@
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp"
                                 android:lineSpacingExtra="4sp"
-                                android:text="Cancelation Policy"
+                                android:text="@string/cancelation_policy"
                                 android:textColor="#24253d"
                                 android:textSize="12sp" />
 
-                            <LinearLayout
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rv_cancel_policy"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="10dp">
-                                <LinearLayout
-                                    android:layout_marginRight="5dp"
-                                    android:layout_gravity="center"
-                                    android:layout_width="5dp"
-                                    android:layout_height="5dp"
-                                    android:background="@drawable/rounded_orange"></LinearLayout>
+                                android:layout_marginTop="10dp"/>
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="horizontal"-->
+<!--                                android:layout_marginTop="10dp">-->
+<!--                                <LinearLayout-->
+<!--                                    android:layout_marginEnd="5dp"-->
+<!--                                    android:layout_gravity="center"-->
+<!--                                    android:layout_width="5dp"-->
+<!--                                    android:layout_height="5dp"-->
+<!--                                    android:background="@drawable/rounded_orange"/>-->
 
-                                <TextView
-                                    android:id="@+id/tv_cancelation_policy1"
-                                    style="@style/RobotoRegular"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="No charge for cancellation before 22 May 2020"
-                                    android:textColor="#939396"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
+<!--                                <TextView-->
+<!--                                    android:id="@+id/tv_cancelation_policy1"-->
+<!--                                    style="@style/RobotoRegular"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="No charge for cancellation before 22 May 2020"-->
+<!--                                    android:textColor="#939396"-->
+<!--                                    android:textSize="10sp"-->
+<!--                                    tools:ignore="SmallSp" />-->
+<!--                            </LinearLayout>-->
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="7dp">
-                                <LinearLayout
-                                    android:layout_marginRight="5dp"
-                                    android:layout_gravity="center"
-                                    android:layout_width="5dp"
-                                    android:layout_height="5dp"
-                                    android:background="@drawable/rounded_orange"></LinearLayout>
-
-                                <TextView
-                                    android:id="@+id/tv_cancelation_policy2"
-                                    style="@style/RobotoRegular"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Charge 100% - Start from 22 May 2020"
-                                    android:textColor="#939396"
-                                    android:textSize="10sp" />
-                            </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
 
@@ -383,7 +369,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#91929e"
-                        android:layout_marginTop="12dp"></LinearLayout>
+                        android:layout_marginTop="12dp"/>
 
                     <RelativeLayout
                         android:layout_marginTop="15dp"
@@ -400,7 +386,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="12sp"
                                 android:textColor="#939396"
-                                android:text="Room / Night"
+                                android:text="@string/room_night"
                                 style="@style/RobotoRegular"/>
 
                             <TextView
@@ -410,7 +396,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
-                                android:text="IDR 100.695.800"
+                                tools:text="IDR 100.695.800"
                                 android:textColor="#24253d"
                                 android:textSize="14sp" />
 
@@ -419,37 +405,37 @@
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Not Comply"
+                                android:text="@string/not_comply"
                                 android:textColor="#d0021b"
                                 android:textSize="10sp"
-                                android:visibility="visible" />
+                                android:visibility="visible"
+                                tools:ignore="SmallSp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <LinearLayout
-                                android:layout_marginRight="20dp"
-                                android:layout_centerVertical="true"
+                                android:layout_marginEnd="20dp"
                                 android:layout_width="1dp"
                                 android:layout_height="54dp"
-                                android:background="#f5f5f5"></LinearLayout>
-
+                                android:background="#f5f5f5"/>
 
                             <TextView
-                                android:layout_marginRight="10dp"
-                                android:layout_marginLeft="31dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginStart="31dp"
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="10sp"
                                 android:textColor="@color/tintTextView"
                                 android:gravity="end"
-                                android:text="Detail"
-                                style="@style/RobotoBold"/>
+                                android:text="@string/detail"
+                                style="@style/RobotoBold"
+                                tools:ignore="SmallSp" />
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
@@ -465,7 +451,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
@@ -477,11 +463,10 @@
                         android:src="@drawable/ic_reason_code"
                         android:id="@+id/ic_reason_code"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="13dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginEnd="13dp"
+                        android:layout_marginStart="15dp"
                         android:layout_width="30dp"
-                        android:layout_height="30dp">
-                    </ImageView>
+                        android:layout_height="30dp"/>
 
                     <LinearLayout
                         android:layout_toEndOf="@+id/ic_reason_code"
@@ -489,21 +474,21 @@
                         android:layout_marginTop="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_toRightOf="@+id/ic_reason_code">
+                        android:orientation="vertical">
                         <TextView
                             android:id="@+id/tv_reason_code"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="14sp"
                             android:textColor="#d0021b"
-                            android:text="Select Reason Code"/>
+                            android:text="@string/select_reason_code"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="10sp"
                             android:textColor="#91929e"
-                            android:text="Choose the information for not comply price policy" />
+                            android:text="@string/choose_the_information_for_not_comply_price_policy"
+                            tools:ignore="SmallSp" />
                     </LinearLayout>
 
                     <ImageView
@@ -511,10 +496,8 @@
                         android:layout_height="20dp"
                         android:src="@drawable/ic_chevron_next_orange"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:layout_alignParentRight="true">
-
-                    </ImageView>
+                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentEnd="true"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -529,6 +512,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="gone"
-        layout="@layout/detail_prize_bottom_hotel"></include>
+        layout="@layout/detail_prize_bottom_hotel"/>
 
 </RelativeLayout>

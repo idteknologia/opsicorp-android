@@ -15,6 +15,7 @@ class RoomMapperHotel {
             model.cancelLimit       = roomsItem.cancelLimit
             model.isGuaranteedBooking = roomsItem.isGuaranteedBooking
             model.isFullCharge      = roomsItem.isFullCharge
+            model.summary           = roomsItem.summaries
             mData.add(model)
         }
         return mData

@@ -4,6 +4,7 @@ import java.util.*
 import java.lang.Exception
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import kotlin.collections.ArrayList
 
 
 class DateConverter {
@@ -319,5 +320,17 @@ class DateConverter {
         }catch (e:Exception){
             return Date()
         }
+    }
+
+    fun getDatesBeetwenTwoDate(startDate:String,endDate:String,formatDate :String):ArrayList<Date>{
+        val data = ArrayList<Date>()
+        val sdf = SimpleDateFormat(formatDate)
+        val c = Calendar.getInstance()
+        c.time = sdf.parse(startDate)
+        while (!c.time.after(sdf.parse(endDate))){
+            data.add(c.time)
+            c.add(Calendar.DATE,1)
+        }
+        return data
     }
 }

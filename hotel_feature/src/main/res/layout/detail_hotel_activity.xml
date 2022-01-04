@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -20,8 +19,7 @@
                 android:background="@color/colorBrightGray"
                 android:id="@+id/img_hotel"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </ImageView>
+                android:layout_height="match_parent"/>
 
             <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
                 android:layout_width="match_parent"
@@ -32,8 +30,8 @@
             <LinearLayout
                 android:layout_marginBottom="20dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginRight="19dp"
-                android:layout_alignParentRight="true"
+                android:layout_marginEnd="19dp"
+                android:layout_alignParentEnd="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
@@ -46,9 +44,9 @@
                     style="@style/RobotoRegular"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textColor="@android:color/white"
-                    android:text="See all Photos">
+                    android:text="@string/see_all_photos">
                 </TextView>
             </LinearLayout>
 
@@ -66,12 +64,11 @@
 
         <include
             android:id="@+id/line_detail_loading"
+            layout="@layout/detail_hotel_layout_loading"
             android:layout_width="match_parent"
-            android:visibility="visible"
             android:layout_height="wrap_content"
             android:layout_below="@+id/header"
-            layout="@layout/detail_hotel_layout_loading">
-        </include>
+            android:visibility="visible"/>
 
         <com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
             android:layout_below="@+id/line_detail"
