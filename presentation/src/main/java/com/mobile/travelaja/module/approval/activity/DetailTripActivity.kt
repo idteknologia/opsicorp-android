@@ -980,19 +980,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
     }
 
-    private fun dowloadFile(url: String) {
-        Globals.downloadFile(url,this,object :Globals.CallbackDownload{
-            override fun succeessDownload(parse: Uri, downloadMimeType: String) {
-                hideDialog()
-                Globals.openDownloadedAttachment(this@DetailTripActivity,parse,downloadMimeType)
-            }
-
-            override fun failedDownload() {
-                hideDialog()
-                setToast("Failed access file url")
-            }
-        })
-    }
 
     override fun onClick(view: View?) {
         when (view) {
