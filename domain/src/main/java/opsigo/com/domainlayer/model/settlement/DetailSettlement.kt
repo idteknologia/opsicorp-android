@@ -155,7 +155,7 @@ class DetailSettlement : BaseObservable(){
         }
     @get:Bindable
     @SerializedName("TicketRefunds")
-    var TicketRefunds = mutableListOf<Ticket>()
+    var TicketRefunds : List<Ticket> = listOf()
         set(value) {
             field = value
             notifyPropertyChanged(BR.ticketRefunds)
@@ -276,6 +276,7 @@ class DetailSettlement : BaseObservable(){
     var IsReviseAll : Boolean = false
     @SerializedName("Histories")
     var Histories : List<History>? = null
+    var checkedRefund : Boolean = false
 
     fun cities(): List<String>{
         val cities = mutableSetOf<String>()

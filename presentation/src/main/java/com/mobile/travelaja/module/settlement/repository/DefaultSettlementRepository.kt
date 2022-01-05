@@ -136,7 +136,11 @@ class DefaultSettlementRepository(private val api: ServiceApi) : SettlementRepos
 
     override suspend fun submitSettlement(submit: DetailSettlement,path : String): Result<SubmitResult> =
         try {
-            val result = api.submitSettlement(path,submit)
+            val body = submit
+            if (path == "Save" && !submit.checkedRefund){
+              body.TicketRefunds = emptyList()
+            }
+            val result = api.submitSettlement(path,body)
             Result.Success(result)
         } catch (t: Throwable) {
             Result.Error(t)
