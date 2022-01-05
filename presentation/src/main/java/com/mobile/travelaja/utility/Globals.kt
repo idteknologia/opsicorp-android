@@ -1002,7 +1002,7 @@ object Globals {
 
     fun startViewListener(rating:Int,image:ArrayList<ImageView>){
         image.forEachIndexed { index, imageView ->
-            if (index<=rating-1){
+            if (index+1<=rating){
                 imageView.visibility = View.VISIBLE
             }
             else {
@@ -1080,51 +1080,6 @@ object Globals {
     interface CallbackDownload{
         fun succeessDownload(parse: Uri, downloadMimeType: String)
         fun failedDownload()
-    }
-
-    fun downloadFile(string:String,context: Context,callback:CallbackDownload) {
-        var reference: Long = 0
-        val manager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-        val uri: Uri = Uri.parse(string)
-
-        val attachmentDownloadCompleteReceive: BroadcastReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-
-                val extras = intent?.getExtras()
-                val q = DownloadManager.Query()
-                val downloaded_id = extras?.getLong(DownloadManager.EXTRA_DOWNLOAD_ID);
-
-                if (reference == downloaded_id) { // so it is my file that has been completed
-                    q.setFilterById(downloaded_id);
-                    val manager = context?.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-                    val c = manager.query(q);
-                    if (c.moveToFirst()) {
-                        val status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
-                        val downloadLocalUri = c.getString(c.getColumnIndex(DownloadManager.COLUMN_LOCAL_URI));
-                        val downloadMimeType = c.getString(c.getColumnIndex(DownloadManager.COLUMN_MEDIA_TYPE));
-
-                        if (status == DownloadManager.STATUS_SUCCESSFUL) {
-                            callback.succeessDownload(Uri.parse(downloadLocalUri),downloadMimeType)
-                        }
-                        else {
-                            callback.failedDownload()
-                        }
-                    }
-                    c.close();
-                }
-            }
-        }
-
-        context.registerReceiver(attachmentDownloadCompleteReceive,
-            IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        )
-
-        val request: DownloadManager.Request = DownloadManager.Request(uri)
-        val fileName: String = URLUtil.guessFileName(string, null, null)
-        request.setTitle(fileName)
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-//        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,fileName);
-        reference = manager.enqueue(request)
     }
 
     fun openDownloadedAttachment(

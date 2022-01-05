@@ -20,7 +20,7 @@ class CartListAdapter (var context:Context,private var items: ArrayList<CartMode
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(parent?.context)
+        val itemView = LayoutInflater.from(parent?.context)
                 .inflate(R.layout.item_cart_bisnis_trip, parent, false)
 
         return ViewHolder(itemView)

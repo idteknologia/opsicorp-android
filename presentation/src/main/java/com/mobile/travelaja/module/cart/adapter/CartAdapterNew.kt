@@ -576,6 +576,8 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             itemView.tv_name_hotel_cart.text         = data.nameHotel
             itemView.tv_prize_hotel_cart.text        = "IDR ${Globals.formatAmount(data.price.split(".")[0])}"
 
+            Globals.startViewListener(data.starRating.toInt(), arrayListOf(itemView.star_1,itemView.star_2,itemView.star_3,itemView.star_4,itemView.star_5))
+
             if (data.image.isNotEmpty()){
                 Picasso.get()
                         .load(data.image)
