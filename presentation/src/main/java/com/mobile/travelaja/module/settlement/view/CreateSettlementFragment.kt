@@ -242,7 +242,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
             R.id.switchRefund -> {
                 if (v is SwitchMaterial) {
                     if (v.isChecked) {
-                        viewModel.enableRefunds(true)
+                        viewModel.checkedTicketRefunds(true)
                     } else {
                         showWarning(
                             R.string.warning,
@@ -504,7 +504,8 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                     d.dismiss()
                 }
                 WARNING_NOT_INCLUDE_TICKET_REFUND -> {
-                    viewModel.enableRefunds(false)
+//                    viewModel.getDetailSubmit()?.TicketRefunds?.clear()
+                    viewModel.checkedTicketRefunds(false)
                 }
                 WARNING_NOT_INCLUDE_TRANSPORT_EXPENSE -> {
                     viewModel.clearTransportExpense()

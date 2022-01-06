@@ -54,9 +54,9 @@ class DetailSettlement : BaseObservable(){
     @SerializedName("EndDate")
     var EndDate : String = ""
     @SerializedName("CompanyCode")
-    var CompanyCode : String = ""
+    var CompanyCode : String? = ""
     @SerializedName("CompanyName")
-    var CompanyName : String = ""
+    var CompanyName : String ?= ""
     @SerializedName("Golper")
     var Golper : Int = 0
 //    @SerializedName("GolperTitle")
@@ -68,7 +68,7 @@ class DetailSettlement : BaseObservable(){
 //    @SerializedName("TripDateView")
 //    var TripDateView : String = ""
     @SerializedName("DurationDay")
-    var DurationDay : String = ""
+    var DurationDay : String ?= ""
     @SerializedName("Purpose")
     var Purpose : String = ""
     @SerializedName("RouteType")
@@ -90,13 +90,13 @@ class DetailSettlement : BaseObservable(){
 //    @SerializedName("AmountLaundrySubmit")
 //    var AmountLaundrySubmit: Number = 0
     @SerializedName("CurrLaundry")
-    var CurrLaundry : String = ""
+    var CurrLaundry : String ?= ""
     @SerializedName("AmountAllowance")
-    var AmountAllowance : Number =  0
+    var AmountAllowance : Number ?=  0
     @SerializedName("AmountAllowanceSubmit")
-    var AmountAllowanceSubmit : Number = 0
+    var AmountAllowanceSubmit : Number ?= 0
     @SerializedName("CurrAllowance")
-    var CurrAllowance : String =  ""
+    var CurrAllowance : String ?=  ""
     @get:Bindable
     @SerializedName("SpecificAreaTariff")
     var SpecificAreaTariff :Number =  0
@@ -126,7 +126,7 @@ class DetailSettlement : BaseObservable(){
             notifyPropertyChanged(BR.isStaySpecArea)
         }
     @SerializedName("CurrSpecificArea")
-    var CurrSpecificArea : String = ""
+    var CurrSpecificArea : String ?= ""
     @SerializedName("TotalSpecificAreaExpenseSubmit")
     var TotalSpecificAreaExpenseSubmit : Number = 0
     @get:Bindable
@@ -171,7 +171,7 @@ class DetailSettlement : BaseObservable(){
     }
     @get:Bindable
     @SerializedName("TotalTransportExpenseUsd")
-    var TotalTransportExpenseUsd : Number = 0
+    var TotalTransportExpenseUsd : Number ?= 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.totalTransportExpenseUsd)
@@ -185,7 +185,7 @@ class DetailSettlement : BaseObservable(){
         }
     @get:Bindable
     @SerializedName("TotalOtherTransportExpenseUsd")
-    var TotalOtherTransportExpenseUsd : Number = 0
+    var TotalOtherTransportExpenseUsd : Number ?= 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.totalOtherTransportExpenseUsd)
@@ -205,25 +205,25 @@ class DetailSettlement : BaseObservable(){
             notifyPropertyChanged(BR.totalOtherExpenseUsd)
         }
     @SerializedName("TotalRefundTicket")
-    var TotalRefundTicket :Number = 0
+    var TotalRefundTicket :Number ?= 0
     @SerializedName("TotalRefundTicketUsd")
-    var TotalRefundTicketUsd :Number = 0
+    var TotalRefundTicketUsd :Number ?= 0
     @SerializedName("TotalCashAdvance")
-    var TotalCashAdvance :Number = 0
+    var TotalCashAdvance :Number ?= 0
     @SerializedName("CashAdvanceCurr")
-    var CashAdvanceCurr :Number = 0
+    var CashAdvanceCurr :Number ?= 0
     @SerializedName("TotalExpenseSubmit")
     var TotalExpenseSubmit :Number = 0
     @SerializedName("TotalExpenseSubmitUsd")
     var TotalExpenseSubmitUsd :Number = 0
     @SerializedName("TotalExpenseVerification")
-    var TotalExpenseVerification :Number = 0
+    var TotalExpenseVerification :Number ?= 0
     @SerializedName("TotalExpenseVerificationUsd")
-    var TotalExpenseVerificationUsd :Number = 0
+    var TotalExpenseVerificationUsd :Number ?= 0
     @SerializedName("TotalToBePaidIdr")
-    var TotalToBePaidIdr :Number = 0
+    var TotalToBePaidIdr :Number ?= 0
     @SerializedName("TotalToBePaidUsd")
-    var TotalToBePaidUsd :Number = 0
+    var TotalToBePaidUsd :Number ?= 0
 //    @SerializedName("CreatedDate")
 //    var CreatedDate  : String =  ""
     @SerializedName("CreatedDateView")
@@ -241,11 +241,11 @@ class DetailSettlement : BaseObservable(){
 //    @SerializedName("SubmittedDateString")
 //    var SubmittedDateString  : String =  ""
     @SerializedName("CreatedBy")
-    var CreatedBy  : String =  ""
+    var CreatedBy  : String ?=  ""
 //    @SerializedName("IsNeedSuperiorApprover")
 //    var IsNeedSuperiorApprover  : Boolean =  false
     @SerializedName("EmployeeNik")
-    var EmployeeNik  : String =  ""
+    var EmployeeNik  : String ?=  ""
     @SerializedName("EmployeeName")
     var EmployeeName  : String =  ""
 //    @SerializedName("PositionId")
@@ -259,21 +259,21 @@ class DetailSettlement : BaseObservable(){
 //    @SerializedName("Email")
 //    var Email  : String =  ""
     @SerializedName("Status")
-    var Status  : Number =  0
+    var Status  : Number ?=  0
     @SerializedName("StatusView")
-    var StatusView  : String =  ""
+    var StatusView  : String ?=  ""
     @SerializedName("Comment")
-    var Comment :String =  ""
+    var Comment :String? =  ""
     @SerializedName("TripItemTypes")
     var TripItemTypes : List<TripItemTypes> = listOf()
     @SerializedName("PartnerName")
-    var PartnerName : String = ""
+    var PartnerName : String ?= ""
     @SerializedName("Routes")
-    val Routes: MutableList<Route> = mutableListOf()
+    var Routes: MutableList<Route> = mutableListOf()
     @SerializedName("ShowButtonApprove")
     var ShowButtonApprove: Boolean = false
     @SerializedName("IsReviseAll")
-    var IsReviseAll : Boolean = false
+    var IsReviseAll : Boolean ?= false
     @SerializedName("Histories")
     var Histories : List<History>? = null
     var checkedRefund : Boolean = false
