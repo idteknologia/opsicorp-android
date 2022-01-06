@@ -496,7 +496,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
-                            android:checked="@{viewModel.submitSettlement.ticketRefunds.size() > 0}"
+                            android:checked="@{viewModel.isEnableRefundTicket()}"
                             android:onClick="@{clickListener}"
                             android:text="@string/ticket_refund"
                             android:enabled="@{!viewModel.loading}"

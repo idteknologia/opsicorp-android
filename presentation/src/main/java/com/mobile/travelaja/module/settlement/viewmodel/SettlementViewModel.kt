@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import com.google.gson.annotations.SerializedName
+import com.mobile.travelaja.module.settlement.CloneDetail
 import com.mobile.travelaja.module.settlement.repository.SettlementRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
@@ -17,12 +19,14 @@ import opsigo.com.datalayer.model.create_trip_plane.trip_plan.UploadFileEntity
 import opsigo.com.datalayer.model.result.Result
 import opsigo.com.domainlayer.model.Event
 import opsigo.com.domainlayer.model.settlement.*
+import opsigo.com.domainlayer.model.trip.Route
 import opsigo.com.domainlayer.model.trip.Trip
 
 class SettlementViewModel(private val repository: SettlementRepository) : ViewModel() {
     val buttonNextEnabled = ObservableBoolean(false)
     val selectedCode = ObservableField<String>()
 
+    val isEnableRefundTicket = ObservableBoolean(false)
     val isEnabledDetailTransport = ObservableBoolean(false)
     val isEnabledOtherExpense = ObservableBoolean(false)
     val isEnabledDetailIntercity = ObservableBoolean(false)
@@ -65,7 +69,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
 
     var modeTransports = mutableListOf<ModeTransport>()
     private val _successFetchModeTransport = MutableLiveData<Event<Boolean>>()
-    val successFetchModeTransport : LiveData<Event<Boolean>> = _successFetchModeTransport
+    val successFetchModeTransport: LiveData<Event<Boolean>> = _successFetchModeTransport
 
     var typeExpense = arrayOf<ExpenseType>()
     var jobCalculateTransport: Job? = null
@@ -191,7 +195,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         return newResult
     }
 
-    fun getModeTransport(){
+    fun getModeTransport() {
         _loading.value = true
         viewModelScope.launch {
             val result = repository.getModeTransport()
@@ -273,19 +277,28 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         loadingPostDay.value = false
     }
 
+    fun checkedTicketRefunds(checked: Boolean) {
+        isEnableRefundTicket.set(checked)
+    }
+
     //Todo submit
-    fun submit(path: String,errorDesc : String) {
+    fun submit(path: String, errorDesc: String) {
         if (getDetailSubmit() == null) {
             return
         }
+        val detail = CloneDetail.cloneDetail(getDetailSubmit()!!)
+        if (!isEnableRefundTicket.get()){
+            detail.TicketRefunds = emptyList()
+        }
         _loading.value = true
         viewModelScope.launch {
-            val result = repository.submitSettlement(getDetailSubmit()!!, path)
-            compareSubmitResult(result,errorDesc)
+            val result = repository.submitSettlement(detail, path)
+            compareSubmitResult(result, errorDesc)
         }
     }
 
-    private fun compareSubmitResult(result: Result<SubmitResult>,errorDesc: String) {
+
+    private fun compareSubmitResult(result: Result<SubmitResult>, errorDesc: String) {
         if (result is Result.Success) {
             val submit = result.data
             _successSubmit.value = Event(submit)
@@ -294,9 +307,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
                 var strError = errorDesc
                 if (error is String)
                     strError = error
-                if (error is List<*>){
+                if (error is List<*>) {
                     error.forEach {
-                        if (it is String){
+                        if (it is String) {
                             strError += it
                         }
                     }
@@ -358,9 +371,9 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         isLoadingFile.set(-1)
     }
 
-    fun addListRefunds() {
-        getDetailSubmit()?.TicketRefunds?.addAll(tickets)
-    }
+//    fun addListRefunds() {
+//        getDetailSubmit()?.TicketRefunds?.addAll(tickets)
+//    }
 
     fun addComment(char: CharSequence) {
         submitSettlement.value?.Comment = char.toString()
@@ -437,6 +450,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
 
     fun changeEditDraft(detail: DetailSettlement) {
         completingDetail(detail, true)
+        isEnableRefundTicket.set(detail.TicketRefunds.isNotEmpty())
         isEnabledDetailTransport.set(detail.TransportExpenses.isNotEmpty())
         isEnabledOtherExpense.set(detail.OtherExpense.isNotEmpty())
         isEnabledDetailIntercity.set(detail.OtherTransportExpenses.isNotEmpty())

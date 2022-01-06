@@ -45,7 +45,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="@dimen/margin_default"
                 android:textSize="16sp"
-                android:text="@{Utils.formatCurrency(data.price)}"
+                android:text="@{Utils.formatCurrency(data.amount)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabelRefundAmount"
                 tools:text="1.500.000" />
