@@ -1393,6 +1393,9 @@ data class TripHotelsItems(
     @field:SerializedName("IsRefund")
     val isRefund: Boolean = false,
 
+    @field:SerializedName("IsRefunded")
+    val isRefunded: Boolean = false,
+
     @field:SerializedName("DiscountAmount")
     val discountAmount: Int? = null,
 
@@ -3136,6 +3139,9 @@ data class TripFlightsItem(
 
     @field:SerializedName("OpsigoStatus")
     val opsigoStatus: Any? = null,
+
+    @field:SerializedName("IsRefunded")
+    val isRefunded: Boolean = false,
 
     @field:SerializedName("PaymentStatus")
     val paymentStatus: Any? = null,

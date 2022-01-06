@@ -130,7 +130,7 @@ class KtpCardFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp
             model.fullname    = et_fullname.text.toString()
             model.mobilePhone = "${et_no_hp.text}"
             model.title       = titlePassenger
-            val birthdate     = "${tv_year_birtdate.text}-${month}-${tv_day_birtdate.text}"
+            val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
             model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
             val intent = Intent()
             intent.putExtra(Constants.RESULT_EDIT_KTP,Serializer.serialize(model))

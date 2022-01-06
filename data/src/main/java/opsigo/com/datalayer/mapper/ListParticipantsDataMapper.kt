@@ -74,13 +74,16 @@ class ListParticipantsDataMapper {
                                 dataFlight.timeArrival      = segmentsItem.arriveTime.toString()
 
                                 dataFlight.isComply         = segmentsItem.isComply
+                                dataFlight.isRefund         = segmentsItem.isRefund
+                                dataFlight.isReschedule     = segmentsItem.isReschedule
+
                                 dataFlight.duration         = segmentsItem.duration.toString()
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentsItem, tripFlightsItem.pnrCode.toString(),
                                         tripFlightsItem.status.toString(), tripFlightsItem.amount.toString(),
                                         tripFlightsItem.passengers?.size.toString(), tripFlightsItem.airlineView.toString(), ))
                             }
-
+                            dataFlight.isRefunded       = tripFlightsItem.isRefunded
                             dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
 
 
@@ -172,6 +175,9 @@ class ListParticipantsDataMapper {
                                 dataHotel.typeHotel   = tripHotelsItem?.roomType.toString()
                                 dataHotel.pnrCode     = tripHotelsItem?.bookingCode.toString()
                                 dataHotel.pnrId       = tripHotelsItem?.pnrId.toString()
+                                dataHotel.isRefund    = tripHotelsItem?.isRefund == true
+                                dataHotel.isRefunded  = tripHotelsItem?.isRefunded == true
+                                dataHotel.isReschedule = tripHotelsItem?.isReschedule == true
                                 dataHotel.description = if (tripHotelsItem?.address==null) "${tripHotelsItem?.cityName}" else tripHotelsItem.address
 
                                 dataHotelModel.add(dataHotel)

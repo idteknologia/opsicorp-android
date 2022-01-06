@@ -12,10 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 import com.mobile.travelaja.R
-import com.mobile.travelaja.utility.Constants
-import com.mobile.travelaja.utility.DateConverter
-import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.*
 import com.squareup.picasso.Picasso
 import opsigo.com.domainlayer.model.summary.ItemFlightModel
 import opsigo.com.domainlayer.model.summary.ItemHotelModel
@@ -180,6 +177,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var img_flight      :ImageView= itemView.findViewById(R.id.img_flight)
         var btnOptionFlight :ImageView= itemView.findViewById(R.id.btn_option_flight)
         var btnDetailTicket :ImageView= itemView.findViewById(R.id.img_chevron)
+        var tvRefund        :TextView = itemView.findViewById(R.id.tv_refund)
 
 
         fun bind(data: ItemFlightModel, position: Int) {
@@ -202,6 +200,21 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             time_departure.text      = data.timeDeparture
             time_arrival.text        = data.timeArrival
             tv_price.text            = "IDR "+Globals.formatAmount(data.price.split(".")[0])
+
+            when{
+                data.isRefunded ->{
+                    tvRefund.setText(R.string.refunded)
+                }
+                data.isRefund -> {
+                    tvRefund.setText(R.string.refund)
+                }
+                data.isReschedule ->{
+                    tvRefund.setText(R.string.reschedule_ticket)
+                }
+                else -> {
+                    tvRefund.gone()
+                }
+            }
 
             if(data.imageFlight.isNotEmpty()){
                 Picasso.get()
@@ -246,6 +259,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var star3                 :ImageView = itemView.findViewById(R.id.str3)
         var star4                 :ImageView = itemView.findViewById(R.id.str4)
         var star5                 :ImageView = itemView.findViewById(R.id.str5)
+        var tv_refund             :TextView = itemView.findViewById(R.id.tv_status_refund)
 
         fun bind(data: ItemHotelModel, position: Int) {
             tv_status_hotel.text        = data.status
@@ -280,6 +294,21 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                         .fit()
                         .centerCrop()
                         .into(img_hotel)
+            }
+
+            when{
+                data.isRefunded ->{
+                    tv_refund.setText(R.string.refunded)
+                }
+                data.isRefund -> {
+                    tv_refund.setText(R.string.refund)
+                }
+                data.isReschedule ->{
+                    tv_refund.setText(R.string.reschedule_ticket)
+                }
+                else -> {
+                    tv_refund.gone()
+                }
             }
 
             btnOptionHotel.setOnClickListener {

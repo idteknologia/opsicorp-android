@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linLayout"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_marginBottom="5dp"
@@ -53,6 +54,16 @@
                             android:fontFamily="sans-serif"
                             android:text="@string/txt_reserved"
                             android:textColor="#079687"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_status_refund"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            tools:text="Refunded"
+                            android:textColor="@color/red_alert"
                             android:textSize="12sp"
                             android:textStyle="bold" />
 
