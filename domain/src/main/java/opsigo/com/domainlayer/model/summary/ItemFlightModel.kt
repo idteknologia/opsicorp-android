@@ -50,5 +50,8 @@ class ItemFlightModel{
     var flightSegmentItem : ArrayList<FlightSegmentItem> = ArrayList()
 
     var isComply = false
+    var isRefund = false
+    var isRefunded = false
+    var isReschedule = false
 
 }

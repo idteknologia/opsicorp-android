@@ -122,7 +122,7 @@ class SimFormContactActivity : BaseActivity(),View.OnClickListener, ToolbarOpsic
             model.name        = et_name_driver_license.text.toString()
             model.email       = et_email.text.toString()
             model.mobilePhone = et_mobile_phone.text.toString()
-            val birthdate     = "${tv_year_birtdate.text}-${month}-${tv_month_birtdate.text}"
+            val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_month_birtdate.text}"
             model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
 
             val intent = Intent()

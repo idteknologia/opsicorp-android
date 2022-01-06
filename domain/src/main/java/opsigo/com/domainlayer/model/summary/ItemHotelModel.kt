@@ -20,5 +20,8 @@ class ItemHotelModel{
     var checkIn     = ""
     var checkOut    = ""
     var reasonCode  = ""
+    var isRefund = false
+    var isRefunded = false
+    var isReschedule = false
 
 }

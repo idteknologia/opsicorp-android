@@ -160,7 +160,7 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
             pasport.title         = title
             pasport.fullname      = tv_fullname_pasport.text.toString()
             pasport.expiredDate   = "${tv_year_expired.text}-${tv_month_birtdate.text}-${tv_day_expired.text}"
-            val birthdate         = "${tv_year_birtdate.text}-${month}-${tv_day_birtdate.text}"
+            val birthdate         = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
             pasport.birtDate      = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
             val intent = Intent()
             intent?.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
