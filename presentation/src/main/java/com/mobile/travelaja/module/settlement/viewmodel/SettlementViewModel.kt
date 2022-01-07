@@ -99,6 +99,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
             val data = result.data
             tempTripId = ""
             completingDetail(data.trip, false)
+            isEnableRefundTicket.set(data.trip?.TicketRefunds?.isNotEmpty() ?: false)
             tickets = data.listTicket
         } else {
             val e = result as Result.Error
@@ -131,7 +132,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
             detail.TotalOtherExpenseUsd = totOtherUsd
             var laundry = 0.0
             if (detail.AmountLaundry != null) {
-                laundry = detail.AmountLaundry.toDouble()
+                laundry = detail.AmountLaundry!!.toDouble()
             }
             detail.TotalExpenseSubmit =
                 totOtherIdr + totTransportExpense + totOtherTransportExpense + laundry + detail.getTotalSpecificArea()
@@ -250,7 +251,7 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
     fun calculateOvernight(countDay: Int) {
         val price = submitSettlement.value!!.SpecificAreaTariff
         submitSettlement.value?.SpecificAreaDays = countDay
-        val totalPrice = price.toDouble() * countDay
+        val totalPrice = price?.toDouble() ?: 0.0 * countDay
         submitSettlement.value?.TotalSpecificAreaExpense = totalPrice
     }
 

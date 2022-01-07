@@ -39,7 +39,7 @@ import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import java.lang.Exception
 
-class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
+class SplashActivity : AppCompatActivity(), KoinComponent, SplashView {
 
     val presenter by inject<SplashPresenter> { parametersOf(this) }
 
@@ -55,19 +55,23 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
-    val target = object :Target{
+    val target = object : Target {
         override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
 
         }
 
         override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
             Picasso.get()
-                    .load(config.mobileLogo)
-                    .into(this)
+                .load(config.mobileLogo)
+                .into(this)
         }
 
         override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-            Globals.setDataPreferenceString(this@SplashActivity,Constants.IMAGE_LOGO_SPLASH,Globals.BitMapToString(bitmap!!))
+            Globals.setDataPreferenceString(
+                this@SplashActivity,
+                Constants.IMAGE_LOGO_SPLASH,
+                Globals.BitMapToString(bitmap!!)
+            )
             logo.setImageBitmap(bitmap)
             getData()
         }
@@ -76,7 +80,10 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        );
 
         setContentView(R.layout.activity_splash)
 
@@ -91,50 +98,60 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
 
         config = Globals.getConfigCompany(this)
         val background = config.mobileBackgroundImage
-        if (background.isNotEmpty()){
-            if (cacheImageBackgroundSplash()){
-                parent_layout_splash.setImageBitmap(Globals.StringToBitMap(Globals.getDataPreferenceString(this,Constants.IMAGE_BACKGROUND_SPLASH)))
+        if (background.isNotEmpty()) {
+            if (cacheImageBackgroundSplash()) {
+                parent_layout_splash.setImageBitmap(
+                    Globals.StringToBitMap(
+                        Globals.getDataPreferenceString(
+                            this,
+                            Constants.IMAGE_BACKGROUND_SPLASH
+                        )
+                    )
+                )
                 inVisibleLogo()
                 getData()
-            }
-            else {
-                val target = object :Target{
+            } else {
+                val target = object : Target {
                     override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-                        Log.e("TAG","load -----")
+                        Log.e("TAG", "load -----")
                     }
 
                     override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                        Log.e("TAG","failed -----")
+                        Log.e("TAG", "failed -----")
                     }
 
                     override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
-                        Globals.setDataPreferenceString(this@SplashActivity,Constants.IMAGE_BACKGROUND_SPLASH,Globals.BitMapToString(bitmap!!))
+                        Globals.setDataPreferenceString(
+                            this@SplashActivity,
+                            Constants.IMAGE_BACKGROUND_SPLASH,
+                            Globals.BitMapToString(bitmap!!)
+                        )
                         parent_layout_splash.setImageBitmap(bitmap)
                         inVisibleLogo()
                         getData()
                     }
                 }
                 Picasso.get()
-                        .load(background)
-                        .into(target)
+                    .load(background)
+                    .into(target)
             }
 
-        }
-        else{
+        } else {
             visibleLogo()
         }
 
     }
 
-    fun getData(){
+    fun getData() {
         presenter.getData(getToken(), getModelPhone(), getUsername())
     }
 
     private fun cacheImageBackgroundSplash(): Boolean {
-        return Globals.getDataPreferenceString(this,Constants.IMAGE_BACKGROUND_SPLASH).isNotEmpty()
+        return Globals.getDataPreferenceString(this, Constants.IMAGE_BACKGROUND_SPLASH).isNotEmpty()
     }
+
     private fun cacheImageLogoSplash(): Boolean {
-        return Globals.getDataPreferenceString(this,Constants.IMAGE_LOGO_SPLASH).isNotEmpty()
+        return Globals.getDataPreferenceString(this, Constants.IMAGE_LOGO_SPLASH).isNotEmpty()
     }
 
     private fun visibleLogo() {
@@ -142,36 +159,47 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         title_splash.visibility = View.VISIBLE
         footer_splash_screen.visibility = View.VISIBLE
 
-        if (cacheImageLogoSplash()){
-            logo.setImageBitmap(Globals.StringToBitMap(Globals.getDataPreferenceString(this,Constants.IMAGE_LOGO_SPLASH)))
+        if (cacheImageLogoSplash()) {
+            logo.setImageBitmap(
+                Globals.StringToBitMap(
+                    Globals.getDataPreferenceString(
+                        this,
+                        Constants.IMAGE_LOGO_SPLASH
+                    )
+                )
+            )
             getData()
-        }
-        else{
-            if (config.mobileLogo.isNotEmpty()){
+        } else {
+            if (config.mobileLogo.isNotEmpty()) {
                 Picasso.get()
-                        .load(config.mobileLogo)
-                        .into(target)
+                    .load(config.mobileLogo)
+                    .into(target)
             } else {
                 Picasso.get()
-                        .load(config.imageUrl)
-                        .into(target)
+                    .load(config.imageUrl)
+                    .into(target)
             }
 
         }
-        if (config.mobileTextLogo.isNullOrEmpty()){
+        if (config.mobileTextLogo.isNullOrEmpty()) {
             title_splash.text = "Corporate Travel Management"
         } else {
             title_splash.text = config.mobileTextLogo
         }
 
-        if (config.mobileBackgroundColor.isNullOrEmpty()){
+        if (config.mobileBackgroundColor.isNullOrEmpty()) {
             parent_layout.setBackgroundColor(Color.WHITE)
         } else {
             parent_layout.setBackgroundColor(Color.parseColor(config.mobileBackgroundColor))
         }
 
-        if (config.mobileTextColorLogo.isNullOrEmpty()){
-            title_splash.setTextColor(ContextCompat.getColor(applicationContext, R.color.green_price))
+        if (config.mobileTextColorLogo.isNullOrEmpty()) {
+            title_splash.setTextColor(
+                ContextCompat.getColor(
+                    applicationContext,
+                    R.color.green_price
+                )
+            )
 
         } else {
             title_splash.setTextColor(Color.parseColor(config.mobileTextColorLogo))
@@ -185,16 +213,16 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         footer_splash_screen.visibility = View.INVISIBLE
     }
 
-    fun getToken():String{
-        return Globals.getDataPreferenceString(this,"token")
+    fun getToken(): String {
+        return Globals.getDataPreferenceString(this, "token")
     }
 
-    fun getModelPhone():String{
+    fun getModelPhone(): String {
         return Build.MANUFACTURER + " " + Build.MODEL
     }
 
-    fun getUsername():String{
-        return Globals.getDataPreferenceString(this,"username")
+    fun getUsername(): String {
+        return Globals.getDataPreferenceString(this, "username")
     }
 
     override fun loadingData() {
@@ -214,16 +242,15 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
 //    }
 
 
-    fun showLoadingOpsicorp(disable:Boolean){
-        loading.showDialogLoading(this,disable)
+    fun showLoadingOpsicorp(disable: Boolean) {
+        loading.showDialogLoading(this, disable)
     }
 
-    override fun successLoadData(){
-        if (timeSplashDelay){
+    override fun successLoadData() {
+        if (timeSplashDelay) {
             gotoActivity(CompletedDataProfileActivity::class.java)
             finish()
-        }
-        else {
+        } else {
             Handler().postDelayed({
                 successLoadData()
             }, 1000)
@@ -232,23 +259,23 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
     }
 
 
-    override fun failedGetData(loadData:String) {
-        showSnackbar(parent_layout,object : CallbackSnackBar{
+    override fun failedGetData(loadData: String) {
+        showSnackbar(parent_layout, object : CallbackSnackBar {
             override fun onclikRetry() {
-                when(loadData){
-                    "profile"->{
+                when (loadData) {
+                    "profile" -> {
                         presenter.getDataProfile(getToken())
                     }
-                    "purphose"->{
+                    "purphose" -> {
                         presenter.getDataPurphose(getToken())
                     }
-                    "budget"->{
+                    "budget" -> {
                         presenter.getDataBudget(getToken())
                     }
-                    "city"->{
+                    "city" -> {
                         presenter.getDataCity(getToken())
                     }
-                    "activity"->{
+                    "activity" -> {
                         presenter.getDataActivity(getToken())
                     }
 
@@ -263,8 +290,16 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
                         presenter.getDataStation(getToken())
                     }
                     "setDeviceId" -> {
-                        Log.d("xsetdevice","01")
-                        presenter.setDeviceId(getToken(), getModelPhone(),Globals.getDataPreferenceString(this@SplashActivity,Constants.FCM_TOKEN), getUsername())
+                        Log.d("xsetdevice", "01")
+                        presenter.setDeviceId(
+                            getToken(),
+                            getModelPhone(),
+                            Globals.getDataPreferenceString(
+                                this@SplashActivity,
+                                Constants.FCM_TOKEN
+                            ),
+                            getUsername()
+                        )
                     }
                 }
 
@@ -272,30 +307,34 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         })
     }
 
-    fun gotoActivity(clas : Class<*>?){
-        startActivity(Intent(this,clas))
+    fun gotoActivity(clas: Class<*>?) {
+        startActivity(Intent(this, clas))
     }
 
-    fun gotoActivityResult(clas : Class<*>?,code:Int){
-        startActivityForResult(Intent(this,clas),code)
+    fun gotoActivityResult(clas: Class<*>?, code: Int) {
+        startActivityForResult(Intent(this, clas), code)
     }
 
-    fun hideLoadingOpsicorp(){
+    fun hideLoadingOpsicorp() {
         try {
             loading.dismiss()
-        }catch (e: Exception){
+        } catch (e: Exception) {
 
         }
     }
 
-    fun showSnackbar(viewParent: View, calback: CallbackSnackBar){
+    fun showSnackbar(viewParent: View, calback: CallbackSnackBar) {
         val snackbar = Snackbar
-                .make(viewParent, getString(R.string.no_internet_connection), Snackbar.LENGTH_INDEFINITE)
-                .setAction(getString(R.string.retry), object : View.OnClickListener{
-                    override fun onClick(v: View?) {
-                        calback.onclikRetry()
-                    }
-                })
+            .make(
+                viewParent,
+                getString(R.string.no_internet_connection),
+                Snackbar.LENGTH_INDEFINITE
+            )
+            .setAction(getString(R.string.retry), object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    calback.onclikRetry()
+                }
+            })
 
         snackbar.setActionTextColor(Color.RED)
         val sbView = snackbar.getView()
@@ -313,20 +352,26 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         var url = "https://play.google.com/store/apps/details?id=" + getPackageName()
         val uri = Uri.parse(url)
         val goToMarket = Intent(Intent.ACTION_VIEW, uri)
-        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or
-                Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
-                Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+        goToMarket.addFlags(
+            Intent.FLAG_ACTIVITY_NO_HISTORY or
+                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT or
+                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        )
         try {
             startActivity(goToMarket)
         } catch (e: ActivityNotFoundException) {
             url = "market://details?id=" + getPackageName();
-            startActivity(Intent(Intent.ACTION_VIEW,
-                    Uri.parse(url)))
+            startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(url)
+                )
+            )
         }
     }
 
-    fun showLoadingOpsicowrp(disable:Boolean){
-        loading.showDialogLoading(this,disable)
+    fun showLoadingOpsicowrp(disable: Boolean) {
+        loading.showDialogLoading(this, disable)
     }
 
     override fun showDialogUpdate(message: String, string: String) {
@@ -348,21 +393,21 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         alertDialog.setCancelable(false)
         alertDialog.show()
         val btnClose = dialog.findViewById(R.id.layClose) as LinearLayout
-        btnClose.setOnClickListener(object : View.OnClickListener{
+        btnClose.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 alertDialog.cancel()
                 updateApp()
             }
         })
 
-        tvYes.setOnClickListener(object : View.OnClickListener{
+        tvYes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 alertDialog.cancel()
                 updateApp()
             }
         })
 
-        tvNo.setOnClickListener(object : View.OnClickListener{
+        tvNo.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 alertDialog.cancel()
                 cancelApp()
@@ -374,13 +419,13 @@ class SplashActivity :AppCompatActivity(),KoinComponent , SplashView{
         logoutListener()
     }
 
-    fun logoutListener(){
-        Globals.setDataPreferenceBolean(this,"login",false)
-        Globals.setDataPreferenceBolean(this,"first",false)
+    fun logoutListener() {
+        Globals.setDataPreferenceBolean(this, "login", false)
+        Globals.setDataPreferenceBolean(this, "first", false)
 
-        Globals.setDataPreferenceString(this,"login_user","")
-        Globals.setDataPreferenceString(this,"token","")
-        Globals.setDataPreferenceString(this,"username", "")
+        Globals.setDataPreferenceString(this, "login_user", "")
+        Globals.setDataPreferenceString(this, "token", "")
+        Globals.setDataPreferenceString(this, "username", "")
 
         gotoActivity(LoginActivity::class.java)
         finish()

@@ -171,7 +171,4 @@ class ProfileFragment : BaseFragment(),
             }
         }
     }
-
-
-
 }
