@@ -30,29 +30,29 @@ class DetailSettlement : BaseObservable(){
     @SerializedName("Id")
     var Id : String = ""
     @SerializedName("Code")
-    var Code : String = ""
+    var Code : String ?= ""
 //    @SerializedName("IsCashAdvance")
 //    var IsCashAdvance  : Boolean = false
     @SerializedName("BankTransfer")
-    var BankTransfer : String = ""
+    var BankTransfer : String ?= ""
     @SerializedName("BankAccount")
-    var BankAccount : String = ""
+    var BankAccount : String ?= ""
     @get:Bindable
     @SerializedName("TripId")
-    var TripId :String =  ""
+    var TripId :String ?=  ""
     set(value) {
         field = value
         notifyPropertyChanged(BR.tripId)
     }
     @SerializedName("TripCode")
     @get:Bindable
-    var TripCode : String = ""
+    var TripCode : String ?= ""
 //    @SerializedName("TripNumber")
 //    var TripNumber : String = ""
     @SerializedName("StartDate")
-    var StartDate : String = ""
+    var StartDate : String ?= ""
     @SerializedName("EndDate")
-    var EndDate : String = ""
+    var EndDate : String ?= ""
     @SerializedName("CompanyCode")
     var CompanyCode : String? = ""
     @SerializedName("CompanyName")
@@ -70,11 +70,11 @@ class DetailSettlement : BaseObservable(){
     @SerializedName("DurationDay")
     var DurationDay : String ?= ""
     @SerializedName("Purpose")
-    var Purpose : String = ""
+    var Purpose : String ?= ""
     @SerializedName("RouteType")
-    var RouteType : String = ""
+    var RouteType : String ?= ""
     @SerializedName("TripType")
-    var TripType : String = ""
+    var TripType : String ?= ""
 //    @SerializedName("CostCenter")
 //    var CostCenter : String = ""
 //    @SerializedName("IsDomestic")
@@ -86,7 +86,7 @@ class DetailSettlement : BaseObservable(){
 //    @SerializedName("LaundryPcs")
 //    var LaundryPcs : Any? = null
     @SerializedName("AmountLaundry")
-    var AmountLaundry : Number = 0
+    var AmountLaundry : Number ?= 0
 //    @SerializedName("AmountLaundrySubmit")
 //    var AmountLaundrySubmit: Number = 0
     @SerializedName("CurrLaundry")
@@ -99,28 +99,28 @@ class DetailSettlement : BaseObservable(){
     var CurrAllowance : String ?=  ""
     @get:Bindable
     @SerializedName("SpecificAreaTariff")
-    var SpecificAreaTariff :Number =  0
+    var SpecificAreaTariff :Number ?=  0
     set(value) {
         field = value
         notifyPropertyChanged(BR.specificAreaTariff)
     }
     @get:Bindable
     @SerializedName("SpecificAreaDays")
-    var SpecificAreaDays : Int = 0
+    var SpecificAreaDays : Int ?= 0
     set(value) {
         field = value
         notifyPropertyChanged(BR.specificAreaDays)
     }
     @get:Bindable
     @SerializedName("UseSpecificArea")
-    var UseSpecificArea : Boolean = false
+    var UseSpecificArea : Boolean ?= false
     set(value) {
         field = value
         notifyPropertyChanged(BR.useSpecificArea)
     }
     @get:Bindable
     @SerializedName("IsStaySpecArea")
-    var IsStaySpecArea : Boolean = false
+    var IsStaySpecArea : Boolean ?= false
         set(value) {
             field = value
             notifyPropertyChanged(BR.isStaySpecArea)
@@ -128,10 +128,10 @@ class DetailSettlement : BaseObservable(){
     @SerializedName("CurrSpecificArea")
     var CurrSpecificArea : String ?= ""
     @SerializedName("TotalSpecificAreaExpenseSubmit")
-    var TotalSpecificAreaExpenseSubmit : Number = 0
+    var TotalSpecificAreaExpenseSubmit : Number ?= 0
     @get:Bindable
     @SerializedName("TotalSpecificAreaExpense")
-    var TotalSpecificAreaExpense : Number = 0
+    var TotalSpecificAreaExpense : Number ?= 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.totalSpecificAreaExpense)
@@ -312,9 +312,9 @@ class DetailSettlement : BaseObservable(){
 
     fun getTotalSpecificArea() : Number{
         if(TotalSpecificAreaExpense != null){
-            return TotalSpecificAreaExpense
+            return TotalSpecificAreaExpense ?: 0
         }else if (TotalSpecificAreaExpenseSubmit != null){
-            return TotalSpecificAreaExpenseSubmit
+            return TotalSpecificAreaExpenseSubmit ?: 0
         }
         return 0
     }

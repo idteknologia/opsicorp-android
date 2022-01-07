@@ -64,7 +64,7 @@ class DraftSettlementViewModel(private val repository: SettlementRepository) : V
             detail.TotalOtherExpenseUsd = totOtherUsd
             var laundry = 0.0
             if (detail.AmountLaundry != null) {
-                laundry = detail.AmountLaundry.toDouble()
+                laundry = detail.AmountLaundry!!.toDouble()
             }
             detail.TotalExpenseSubmit =
                 totOtherIdr + totTransportExpense + totOtherTransportExpense + laundry + detail.getTotalSpecificArea()
