@@ -206,6 +206,10 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
         startActivity(Intent(this, clas))
     }
 
+    fun gotoActivity(intent: Intent){
+        startActivity(intent)
+    }
+
     fun gotoActivityResult(clas: Class<*>?, code: Int) {
         startActivityForResult(Intent(this, clas), code)
     }
@@ -434,7 +438,8 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
         Globals.setDataPreferenceString(this, "login_user", "")
         Globals.setDataPreferenceString(this, "token", "")
         Globals.setDataPreferenceString(this, "username", "")
-        gotoActivity(LoginActivity::class.java)
+        val intent = Intent(getString(R.string.init_activity))
+        gotoActivity(intent)
         finish()
     }
 

@@ -37,7 +37,6 @@ import com.mobile.travelaja.module.signin.login.presenter.LoginPresenter
 import com.mobile.travelaja.module.signin.register.RegisterWithEmailActivity
 import com.mobile.travelaja.utility.Constants
 
-
 class LoginActivity : BaseActivity(),
     LoginView, View.OnClickListener {
 

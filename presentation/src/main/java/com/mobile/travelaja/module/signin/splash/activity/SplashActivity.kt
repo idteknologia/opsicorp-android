@@ -311,6 +311,10 @@ class SplashActivity : AppCompatActivity(), KoinComponent, SplashView {
         startActivity(Intent(this, clas))
     }
 
+    fun gotoActivity(intent: Intent){
+        startActivity(intent)
+    }
+
     fun gotoActivityResult(clas: Class<*>?, code: Int) {
         startActivityForResult(Intent(this, clas), code)
     }
@@ -427,7 +431,8 @@ class SplashActivity : AppCompatActivity(), KoinComponent, SplashView {
         Globals.setDataPreferenceString(this, "token", "")
         Globals.setDataPreferenceString(this, "username", "")
 
-        gotoActivity(LoginActivity::class.java)
+        val intent = Intent(getString(R.string.init_activity))
+        gotoActivity(intent)
         finish()
     }
 
