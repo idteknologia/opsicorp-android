@@ -10,6 +10,8 @@ import androidx.multidex.MultiDex
 import com.mobile.travelaja.di.component.*
 import com.mobile.travelaja.locale.LocaleManager
 import com.mobile.travelaja.locale.LocalePrefrences
+import com.mobile.travelaja.utility.Globals
+import opsigo.com.datalayer.network.MyURL
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.util.*
@@ -18,7 +20,7 @@ class InitApplications:Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        setGlobal()
         MultiDex.install(this)
 
         startKoin {
@@ -42,6 +44,11 @@ class InitApplications:Application() {
         val filter = IntentFilter(Intent.ACTION_LOCALE_CHANGED)
         registerReceiver(osLocaleChangeReceiver, filter)
 
+    }
+
+    private fun setGlobal() {
+        if (Globals.getBaseUrl(this).isEmpty() || Globals.getBaseUrl(this).isBlank())
+            Globals.setBaseUrl(this, MyURL.URL_TRAVELAJA)
     }
 
     companion object {
