@@ -1,9 +1,19 @@
 package com.mobile.travelaja.module.home.activity
 
+import android.app.Activity
 import android.view.View
 import com.mobile.travelaja.R
 import android.content.Intent
+import android.util.Log
 import androidx.core.os.bundleOf
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.play.core.appupdate.AppUpdateManager
+import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.google.android.play.core.install.InstallStateUpdatedListener
+import com.google.android.play.core.install.model.ActivityResult
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.InstallStatus
+import com.google.android.play.core.install.model.UpdateAvailability
 import opsigo.com.domainlayer.callback.*
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.base.BaseActivity
@@ -20,6 +30,8 @@ import com.mobile.travelaja.module.approval.fragment.ApprovalFragment
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
 import com.mobile.travelaja.module.my_booking.home_my_booking.MyBookingFragment
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 
 class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 
@@ -35,12 +47,17 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
     var manageTripFragment  = TestManageTripFragment()
     var myBookingFragment   = MyBookingFragment()
     var REQUEST_CODE_CALENDAR = 76
+    var UPDATE_APP_REQUEST_CODE = 1020
 
     private var isSelectApprovedAll = false
+    private var appUpdateManager: AppUpdateManager? = null
 
     var positionPage = 0
 
     override fun OnMain() {
+        appUpdateManager = AppUpdateManagerFactory.create(this)
+        checkUpdate()
+
         initMenuBottom(menu_bottom)
         menu_bottom.callbackAccomodationMenuBottom(this)
         initPageCallback()
@@ -62,6 +79,74 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         if (intent.getBooleanExtra(Constants.FROM_PAYMENT,false)){
             four()
         }
+    }
+
+    private fun checkUpdate(){
+        val task = appUpdateManager?.appUpdateInfo
+
+        task?.addOnSuccessListener { appUpdateInfo ->
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE &&
+                    appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)){
+
+                setLog("Update Available")
+                appUpdateManager!!.registerListener(listener)
+                appUpdateManager?.startUpdateFlowForResult(
+                    appUpdateInfo,AppUpdateType.FLEXIBLE,this,UPDATE_APP_REQUEST_CODE
+                )
+            } else {
+                setLog("No Update Available")
+            }
+        }
+        task?.addOnFailureListener {
+            setLog(it.message.toString())
+        }
+    }
+
+    private fun appUpdateInProgress(){
+        appUpdateManager?.appUpdateInfo?.addOnSuccessListener { appUpdateInfo ->
+            /*if (appUpdateInfo.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS){
+                setLog("App update in progress")
+                appUpdateManager?.startUpdateFlowForResult(
+                    appUpdateInfo,AppUpdateType.FLEXIBLE,this,UPDATE_APP_REQUEST_CODE
+                )
+            }*/
+            if (appUpdateInfo.installStatus() == InstallStatus.DOWNLOADED) {
+                showSnackBarForCompleteUpdate()
+            }
+        }
+    }
+
+    private val listener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
+        if (installState.installStatus() == InstallStatus.DOWNLOADING) {
+            val bytesDownloaded = installState.bytesDownloaded()
+            val totalBytesToDownload = installState.totalBytesToDownload()
+            llProgress.visible()
+            progressBar.visible()
+            setLog(bytesDownloaded.toString())
+            setLog(totalBytesToDownload.toString())
+        } else if (installState.installStatus() == InstallStatus.DOWNLOADED) {
+            llProgress.gone()
+            progressBar.gone()
+            showSnackBarForCompleteUpdate()
+        }
+    }
+
+    private fun showSnackBarForCompleteUpdate() {
+        appUpdateManager?.unregisterListener(listener)
+        Snackbar.make(
+            findViewById(R.id.rootView),
+            "An update has just been downloaded.",
+            Snackbar.LENGTH_INDEFINITE
+        ).apply {
+            setAction("RESTART") { appUpdateManager?.completeUpdate() }
+            setActionTextColor(resources.getColor(R.color.white))
+            show()
+        }.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        appUpdateInProgress()
     }
 
     private fun getDataCountryHotel() {
@@ -229,6 +314,20 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             }
             Constants.OPEN_DETAIL_TRIP_PLANE -> {
                 approvalFragment.onActivityResult(requestCode,resultCode,data)
+            }
+            UPDATE_APP_REQUEST_CODE -> {
+                when(resultCode){
+                    Activity.RESULT_OK -> {
+                        setLog("Update Success")
+                    }
+                    Activity.RESULT_CANCELED -> {
+                        setLog("Update canceled")
+                    }
+                    ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
+                        setLog("Error while updating the app")
+                        checkUpdate()
+                    }
+                }
             }
         }
     }
