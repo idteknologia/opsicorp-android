@@ -7,6 +7,7 @@ import android.view.View
 import java.lang.Exception
 import android.app.Activity
 import android.content.Intent
+import com.mobile.travelaja.BuildConfig
 import com.mobile.travelaja.R
 import com.squareup.picasso.Picasso
 import com.mobile.travelaja.locale.AppLocale
@@ -106,7 +107,7 @@ class ProfileFragment : BaseFragment(),
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         val sign_out: String = getString(R.string.sign_out)
 
-        tv_version.text = "Ver 1.0.11 debug"
+        tv_version.text = BuildConfig.VERSION_NAME
 
         btn_logout.setTextButton(sign_out)
         btn_logout.changeTextColorButton(R.color.textButtonColor)

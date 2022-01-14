@@ -141,5 +141,6 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
 
     override fun gotoSplashScreen() {
         gotoActivity(SplashActivity::class.java)
+        finish()
     }
 }
