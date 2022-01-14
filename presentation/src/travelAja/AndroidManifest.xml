@@ -7,18 +7,18 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="${applicationId}.PertaminaIdamanActivity" />
+<!--                <action android:name="${applicationId}.PertaminaIdamanActivity" />-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.mobile.travelaja.PertaminaIdamanActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="${applicationId}.PertaminaIdamanActivity" />-->
+            <intent-filter>
+                <action android:name="${applicationId}.PertaminaIdamanActivity" />
 
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
