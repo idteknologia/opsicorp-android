@@ -162,6 +162,7 @@ class AddressActivity : BaseActivity(), LoginView {
                 } else {
                     Globals.setBaseUrl(this@AddressActivity, baseUrl)
                     gotoActivity(LoginPremiumActivity::class.java)
+                    finish()
                 }
             }
         })
@@ -203,6 +204,7 @@ class AddressActivity : BaseActivity(), LoginView {
 
     override fun gotoSplashScreen() {
         gotoActivity(SplashActivity::class.java)
+        finish()
     }
 
 //    //Todo navigate token idaman for Kang Ezhar
