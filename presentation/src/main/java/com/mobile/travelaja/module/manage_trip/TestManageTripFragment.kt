@@ -47,11 +47,11 @@ class TestManageTripFragment : BaseFragment()
         dasboardPage = false
         //tv_title_two.text = "Click list to see your trip detail"
         line_dasboard.gone()
-        Constants.tripDateFrom = tripDateFrom
-        Constants.tripDateTo   = tripDateTo
+        Constants.tripDateFrom = ""
+        Constants.tripDateTo   = ""
         Constants.poition      = position
         Constants.key          = key
-        line_list_approval.show(tripDateFrom,tripDateTo,position,key)
+        line_list_approval.show("","",position,key)
     }
 
 
