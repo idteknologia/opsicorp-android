@@ -183,7 +183,7 @@ class DasboardListApproval: LinearLayout,
             loading_view.show()
         }
         data.clear()
-        GetDataGeneral(baseUrl).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
+        GetDataGeneral(baseUrl).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo,key, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 if (reloadData){
                     callback.hidenDialog()
@@ -339,6 +339,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onWaiting() {
@@ -348,6 +354,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onApproval() {
@@ -357,6 +369,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onRejected() {
@@ -366,6 +384,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onPartiallyApproved() {
@@ -375,6 +399,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onPartiallyRejected() {
@@ -384,6 +414,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
     override fun onExpired() {
@@ -393,6 +429,12 @@ class DasboardListApproval: LinearLayout,
         dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
+
+        if(dataFilter.size == 0){
+            empty_view.show()
+        } else {
+            empty_view.hide()
+        }
     }
 
 

@@ -95,7 +95,7 @@ class ApprovalFragment : BaseFragment()
         tv_search_approval.setOnKeyListener { _, keyCode, keyEvent ->
             if (keyCode ==  KeyEvent.KEYCODE_DPAD_CENTER
                     || keyCode ==  KeyEvent.KEYCODE_ENTER) {
-                showListApprofal(line_dasboard.dateFrom,line_dasboard.dateTo,0,key)
+                showListApprofal("","",0,key)
 //                showListApprofal()
 
                 return@setOnKeyListener true

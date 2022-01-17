@@ -85,7 +85,8 @@ interface UrlEndpoind {
                         @Query("OrderBy")   OrderBy: String,
                         @Query("Direction") Direction: String,
                         @Query("CreatedDateFrom")dateFrom:String,
-                        @Query("CreatedDateTo")TripDateTo:String)
+                        @Query("CreatedDateTo")TripDateTo:String,
+                        @Query("Keyword")Keyword:String)
             : Call<ResponseBody>
 
 

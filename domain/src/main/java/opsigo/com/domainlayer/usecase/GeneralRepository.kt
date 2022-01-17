@@ -11,7 +11,7 @@ interface GeneralRepository {
     fun setProfile(token: String, mobilePhone: String, nationality: String, callbackSetProfile: CallbackSetProfile)
     fun removeDeviceId(token: String, userName: String, deviceId: String, modelPhone: String, callbackSetDeviceId: CallbackSetDeviceId)
     fun getDataSummary(token: String, id: String, callbackSummary: CallbackSummary)
-    fun getListTripplan(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String, callback: CallbackListTripplan)
+    fun getListTripplan(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String,keyword: String, callback: CallbackListTripplan)
     fun getListCart(token: String, size: String, index: String, orderBy: String, direction: String, callback: CallbackListCart)
     fun getCheckVersion(token: String,version:String,type:String,callbackString: CallbackCheckVersion)
     fun getHolidayApi(year:String,idCountry:String,callbackHoliday:CallbackHoliday)

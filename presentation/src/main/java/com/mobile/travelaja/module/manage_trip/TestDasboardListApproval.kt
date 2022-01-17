@@ -169,7 +169,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     fun getData(tripDateFrom:String,tripDateTo:String,key: String) {
         loading_view.show()
         data.clear()
-        GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo, object : CallbackListTripplan{
+        GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo,key, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
                 if (Globals.isPertamina(context)) {
