@@ -241,6 +241,7 @@
             android:screenOrientation="portrait"/>
 
         <service android:name=".module.notif.CorpFirebaseMessagingService"
+            android:enabled="true"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

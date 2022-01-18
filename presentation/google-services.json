@@ -1,136 +1,47 @@
 {
   "project_info": {
-    "project_number": "370202765925",
-    "firebase_url": "https://opsicorp-173ac.firebaseio.com",
-    "project_id": "opsicorp-173ac",
-    "storage_bucket": "opsicorp-173ac.appspot.com"
+    "project_number": "772022917842",
+    "project_id": "opsicorp-pertamina-dev",
+    "storage_bucket": "opsicorp-pertamina-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370202765925:android:1e45d7598a6abd770ef48c",
-        "android_client_info": {
-          "package_name": "com.opsigo.travelaja"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "370202765925-lucp63jthasvjivopvg88qg4daf7paa4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.opsigo.travelaja",
-            "certificate_hash": "5822c7189358da908b82b51dc157628acb9aefcf"
-          }
-        },
-        {
-          "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAiCZgb_IbId9BQTSzVcvdNX198SRQ7leQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:370202765925:android:c0430adbc929b6720ef48c",
-        "android_client_info": {
-          "package_name": "com.opsigo.travelaja"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAiCZgb_IbId9BQTSzVcvdNX198SRQ7leQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:370202765925:android:c0430adbc929b6720ef48c",
+        "mobilesdk_app_id": "1:772022917842:android:9052db8a2df9f5e6f36b0b",
         "android_client_info": {
           "package_name": "com.opsicorp.travelaja"
         }
       },
       "oauth_client": [
         {
-          "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
+          "client_id": "772022917842-h50qkae67s0qja6gn5ha5uk1mm0nd128.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsicorp.travelaja",
+            "certificate_hash": "0e434abfff6f69a6af1f11a3a005d7eaba1226f1"
+          }
+        },
+        {
+          "client_id": "772022917842-6mkptjdrus6gve1nhh5e9rtiv3lt19j9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAiCZgb_IbId9BQTSzVcvdNX198SRQ7leQ"
+          "current_key": "AIzaSyAdbLgdQD1UX2nKZskWSa0jfwO-Utp6XTE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:370202765925:android:c0430adbc929b6720ef48c",
-        "android_client_info": {
-          "package_name": "com.opsigo.opsicorp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAiCZgb_IbId9BQTSzVcvdNX198SRQ7leQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "370202765925-8fca1v36nr2riqmsqtjveis1d0igri50.apps.googleusercontent.com",
+              "client_id": "772022917842-6mkptjdrus6gve1nhh5e9rtiv3lt19j9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
         }
       }
     }
-
   ],
   "configuration_version": "1"
 }
