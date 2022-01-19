@@ -11,4 +11,5 @@ class UploadModel {
     var statusUploaded = ""
     var nameImage = ""
     var isDetailTrip = false
+    var type : String? = null
 }

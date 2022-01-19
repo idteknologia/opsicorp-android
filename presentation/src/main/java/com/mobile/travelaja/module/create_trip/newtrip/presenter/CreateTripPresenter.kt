@@ -134,16 +134,17 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         })
     }
 
-    fun addDataAttactment(imagePath: String,file:File) {
+    fun addDataAttactment(imagePath: String,file:File,type : String?) {
         val splitName = imagePath.split("/")
         val mData = UploadModel()
         mData.pathOriginalLocalImage = imagePath
         mData.pathLocalImage = splitName.get(splitName.size-1)
         mData.statusUploaded = "load"
         mData.file           = file
+        mData.type           = type
         dataAttachment.add(mData)
         adapter.setData(dataAttachment)
-        uploadImage(dataAttachment.size-1)
+        uploadImage(dataAttachment.lastIndex)
     }
 
     fun createTripNow() {
@@ -155,7 +156,11 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
     }
 
     fun uploadImage(position: Int){
-        GetDataTripPlane(baseUrl).uploadFile(Globals.getToken(),Globals.getImageFile(context,dataAttachment[position].pathOriginalLocalImage,"file",dataAttachment[position].file!!),object : CallbackUploadFile {
+        val uri = dataAttachment[position].pathOriginalLocalImage
+        val type = dataAttachment[position].type ?: "image/jpeg"
+        val part = Utils.createMultipart(type,uri)
+
+        GetDataTripPlane(baseUrl).uploadFile(Globals.getToken(),part,object : CallbackUploadFile {
             override fun successLoad(data: UploadModel) {
                 dataAttachment[position].url = data.url
                 dataAttachment[position].nameImage = data.nameImage

@@ -237,7 +237,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         showDialogFragment(dialogCamera)
         dialogCamera.setCallbak(object : DialogCameraCallback {
             override fun data(imagePath: String,file:File,type : String?) {
-                presenter.addDataAttactment(imagePath,file)
+                presenter.addDataAttactment(imagePath,file,type)
             }
         })
     }

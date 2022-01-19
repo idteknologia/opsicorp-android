@@ -11,7 +11,11 @@ import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.mobile.travelaja.R
 import com.squareup.picasso.Picasso
 import net.openid.appauth.AuthorizationException
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.HttpException
+import java.io.File
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.text.DecimalFormat
@@ -155,5 +159,15 @@ object Utils {
         }catch (e : WriterException){
             e.printStackTrace()
         }
+    }
+
+
+    fun createMultipart(type : String?, uri : String) : MultipartBody.Part{
+        val typeFile = type ?: "image/jpeg"
+        val file = File(uri)
+        val fileName = file.name
+        val requestFile = file.asRequestBody(typeFile.toMediaType())
+        val multipart = MultipartBody.Part.createFormData("file",fileName,requestFile)
+        return multipart
     }
 }
