@@ -80,6 +80,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     var wbsIsEmpty = true
     var partnerIsEmpty = true
     var notesIsEmpty = true
+    var offDutty = false
 
     override fun onMain() {
         initOnClick()
@@ -113,7 +114,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         isDomestic = !btn_switch.isChecked
         typeTrip = btn_switch.isChecked
 
-        if (dataChangeTrip.purpose.equals("Perjalanan Dinas Investasi (WBS)")) {
+        if (dataChangeTrip.purpose == "Perjalanan Dinas Investasi (WBS)") {
             isWbs = true
             layEvent.visible()
         } else {
@@ -121,14 +122,26 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             layEvent.gone()
         }
 
-        if (dataChangeTrip.purpose.equals("Pelatihan Purna Karya")) {
+        if (dataChangeTrip.purpose == "Pelatihan Purna Karya") {
             isPartner = true
             line_partner.visible()
-            btn_switch3.isChecked = dataChangeTrip.isTripPartner.equals(true)
+            btn_switch3.isChecked = dataChangeTrip.isTripPartner == true
         } else {
             isPartner = false
             line_partner.gone()
             layPartnerName.gone()
+        }
+
+        if (dataChangeTrip.purpose == "Off Duty Kasim") {
+            nonCbt = true
+            btn_switch2.isEnabled = false
+            btn_switch.isEnabled = false
+            offDutty = true
+        } else {
+            nonCbt = false
+            btn_switch2.isEnabled = true
+            btn_switch.isEnabled = true
+            offDutty = false
         }
 
 
@@ -172,8 +185,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                var countText: Int
-                countText = s.toString().length
+                val countText: Int = s.toString().length
                 tv_notes_count.text = "${countText}/100"
                 if (s.toString().isEmpty()) {
                     notesIsEmpty = true
@@ -218,6 +230,17 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                         isPartner = false
                         line_partner.gone()
                         layPartnerName.gone()
+                    }
+                    if (data?.getStringExtra("nameCountry").equals("Off Duty Kasim")) {
+                        nonCbt = true
+                        btn_switch2.isEnabled = false
+                        btn_switch.isEnabled = false
+                        offDutty = true
+                    } else {
+                        nonCbt = false
+                        btn_switch2.isEnabled = true
+                        btn_switch.isEnabled = true
+                        offDutty = false
                     }
 
                     purposeIsEmpty = false
@@ -327,7 +350,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     override fun failedLoadDataView() {
-
+        hideLoadingOpsicorp()
     }
 
     override fun successLoadDataView() {
@@ -354,15 +377,15 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
     }
 
     private fun gotoSelectRoutes() {
-        if (btn_next.isClickable.equals(true)) {
+        if (btn_next.isClickable) {
             val dataOrderCreatTrip = DataBisnisTripModel()
             dataOrderCreatTrip.namePusrpose = et_purpose.text.toString()
             dataOrderCreatTrip.nameActivity = et_activity_type.text.toString()
-            if (isWbs.equals(true)) {
+            if (isWbs) {
                 dataOrderCreatTrip.isWbs = isWbs
                 dataOrderCreatTrip.wbsNumber = et_event.text.toString()
             }
-            if (isPartner.equals(true)) {
+            if (isPartner) {
                 dataOrderCreatTrip.isTripPartner = isPartner
                 dataOrderCreatTrip.tripPartnerName = et_partner.text.toString()
             }
@@ -376,14 +399,14 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
             dataOrderCreatTrip.isCbt = nonCbt
             dataOrderCreatTrip.isInternational = typeTrip
-            if (typeTrip.equals(true)) {
+            if (typeTrip) {
                 dataOrderCreatTrip.statusCreateTrip = "International Route"
             } else {
                 dataOrderCreatTrip.statusCreateTrip = "Domestic Route"
             }
 
             val bundle = Bundle()
-            if (dataChangeTrip.isChangeTrip.equals(true)) {
+            if (dataChangeTrip.isChangeTrip) {
                 dataChangeTrip.startDate = m_startdate
                 dataChangeTrip.returnDate = m_endate
                 dataOrderCreatTrip.trnNumber = dataChangeTrip.trnNumber
@@ -489,6 +512,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                     bundle.putString(SelectTripRoutePertaminaActivity.END_DATE, m_endate)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL, typeTrip)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.NON_CBT, nonCbt)
+                    bundle.putBoolean(SelectTripRoutePertaminaActivity.OFF_DUTTY, offDutty)
                     checkCashAdvance(bundle)
                 }
             }

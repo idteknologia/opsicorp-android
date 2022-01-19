@@ -35,6 +35,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private var nonCbt = false
     private var position = -1
     var dataChangeTrip = ChangeTripModel()
+    var offDutty = false
 
     // format 15-07-2021
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         val bundle = intent.getBundleExtra("data")
         val isInternational = bundle?.getBoolean(IS_INTERNATIONAL) ?: false
         nonCbt = bundle?.getBoolean(NON_CBT) ?: false
+        offDutty = bundle?.getBoolean(OFF_DUTTY) ?: false
         starDate = bundle?.getString(START_DATE) ?: ""
         endDate = bundle?.getString(END_DATE) ?: ""
         viewModel.checkedInternational(isInternational)
@@ -163,6 +165,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
                     )
                 }
             }
+            1 -> {
+                if (offDutty){
+                    selectCityOffDutty(type)
+                } else {
+                    selectCity(type)
+                }
+            }
             3 -> {
                 showDialog()
             }
@@ -173,6 +182,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
                 selectCity(type)
             }
         }
+    }
+
+    private fun selectCityOffDutty(type: Int) {
+        val intent = Intent(this, CityActivity::class.java)
+        intent.putExtra(IS_INTERNATIONAL, viewModel.isInternational.get())
+        intent.putExtra(OFF_DUTTY, offDutty)
+        startActivityForResult(intent, type)
     }
 
     private fun selectCity(type: Int) {
@@ -218,6 +234,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         const val NON_CBT = "is_noncbt"
         const val START_DATE = "SDATE"
         const val END_DATE = "EDATE"
+        const val OFF_DUTTY = "is_offdutty"
     }
 
 
