@@ -35,7 +35,6 @@ import opsigo.com.domainlayer.callback.CallbackIdDevice
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import com.mobile.travelaja.locale.AppLocaleChangeReceiver
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
-import com.mobile.travelaja.module.signin.login.activity.LoginActivity
 import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog

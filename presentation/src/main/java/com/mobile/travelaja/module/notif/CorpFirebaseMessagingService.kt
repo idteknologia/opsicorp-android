@@ -1,5 +1,4 @@
 package com.mobile.travelaja.module.notif
-//package com.android4dev.pushnotification.notifications
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -18,7 +17,6 @@ import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.RemoteViews
-//import com.android4dev.pushnotification.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.mobile.travelaja.R
@@ -41,7 +39,6 @@ import opsigo.com.domainlayer.model.summary.SummaryModel
 
 import org.json.JSONObject
 
-
 class CorpFirebaseMessagingService : FirebaseMessagingService() {
 
     private val TAG = "MyFirebaseToken"
@@ -52,172 +49,152 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
     var SUMM = SummaryModel()
     internal var SEND_TO = 0
 
-    override fun onNewToken(token: String?) {
-        super.onNewToken(token)
+    override fun onNewToken(token: String) {
+        Log.d(TAG, "Refreshed token: $token")
+
         if (token != null) {
             Log.i(TAG, token)
         }
     }
 
-//    override fun onTokenRefresh() {
-//        // Mengambil token perangkat
-//        val token = FirebaseInstanceId.getInstance().token
-//        Log.d(TAG, "Token perangkat ini: ${token}")
-//
-//        // Jika ingin mengirim push notifcation ke satu atau sekelompok perangkat,
-//        // simpan token ke server di sini.
-//    }
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
 
-    override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        super.onMessageReceived(remoteMessage)
+        Log.d(TAG, "From: ${remoteMessage.from}")
 
-        Constants.isApproval = false
-        Constants.isParticipant = false
+        // Check if message contains a data payload.
+        if (remoteMessage.data.isNotEmpty()) {
+            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
 
-        remoteMessage?.let { message ->
-            Log.i(TAG, message.data.get("message")!!)
 
-            //var broadcaster = LocalBroadcastManager.getInstance(getBaseContext());
-            Log.d(TAG, "Dikirim dari: ${remoteMessage.from}")
+            Constants.isApproval = false
+            Constants.isParticipant = false
 
-            //Log.i(TAG, message.data.get("additionalData"))
+            remoteMessage.let { message ->
+                Log.i(TAG, message.data.get("message")!!)
 
-            val strnotifType = message.data.get("notifType")
-            val notifType = strnotifType?.toInt()
+                Log.d(TAG, "Dikirim dari: ${remoteMessage.from}")
 
-            //if(notifType == )
+                val strnotifType = message.data.get("notifType")
+                val notifType = strnotifType?.toInt()
 
-//ActivityManager mActivityManager =(ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+                val notif_id = SystemClock.uptimeMillis().toInt()
+                var intent = Intent()
 
-//if(Build.VERSION.SDK_INT > 20){
-//String mPackageName = mActivityManager.getRunningAppProcesses().get(0).processName;
-//}
-//else{
-//  String mpackageName = mActivityManager.getRunningTasks(1).get(0).topActivity.getPackageName();
-//}
+                Log.d("myfir01","here " + message.data.toString())
+                Log.d("myfir01","" + message.data.get("additionalData"))
 
-  //           ActivityManager am = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
-//ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+                if(notifType == Constants.NotifType.SubmitTripPan) {
 
-//            val activityManager = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-//            val cn = activityManager.getRunningTasks(1).get(0).topActivity
-//            //val cn2 = activityManager.getrun(1).get(0).topActivity
+                    val additionalData = message.data.get("additionalData")
+                    val data = JSONObject(additionalData)
 
-            //ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+                    if (additionalData != null) {
+                        Log.i(TAG, additionalData)
+                    }
 
-            val notif_id = SystemClock.uptimeMillis().toInt()
-            var intent = Intent()
+                    SEND_TO = data.optInt("SendTo", -1)
 
-            Log.d("myfir01","here " + message.data.toString())
-            Log.d("myfir01","" + message.data.get("additionalData"))
+                    val tpId = data.optString("TripPlanId", null)
+                    val tripCode = data.optString("TripCode", null)
+                    val purpose = data.optString("Purpose", null)
+                    val startDate = data.optString("StartDate", null)
+                    val endDate = data.optString("EndDate", null)
+                    val tp_status = data.optString("Status", null)
 
-            if(notifType == Constants.NotifType.SubmitTripPan) {
+                    Log.d("myfir02", "here " + data)
+                    if (SEND_TO == Constants.SendTo.Approvers) {
 
-                val additionalData = message.data.get("additionalData")
-                val data = JSONObject(additionalData)
-
-                if (additionalData != null) {
-                    Log.i(TAG, additionalData)
-                }
-
-                SEND_TO = data.optInt("SendTo", -1)
-
-                val tpId = data.optString("TripPlanId", null)
-                val tripCode = data.optString("TripCode", null)
-                val purpose = data.optString("Purpose", null)
-                val startDate = data.optString("StartDate", null)
-                val endDate = data.optString("EndDate", null)
-                val tp_status = data.optString("Status", null)
-
-                Log.d("myfir02", "here " + data)
-                if (SEND_TO == Constants.SendTo.Approvers) {
-
-                    Log.d("myfir03", "here ")
-                    displayNotification(InitApplications.appContext, notif_id,
+                        Log.d("myfir03", "here ")
+                        displayNotification(InitApplications.appContext, notif_id,
                             tpId, tripCode, purpose, startDate, endDate)
 
+                    }
+
+                }else if(notifType == Constants.NotifType.PaymentCompleted){
+
+                    val additionalData = message.data.get("additionalData")
+                    val data = JSONObject(additionalData)
+
+                    if (additionalData != null) {
+                        Log.i(TAG, additionalData)
+                    }
+
+                    SEND_TO = data.optInt("SendTo", -1)
+
+                    val tpId = data.optString("TripPlanId", null)
+                    val tripCode = data.optString("TripCode", null)
+                    val purpose = data.optString("Purpose", null)
+
+                    if (SEND_TO == Constants.SendTo.Approvers) {
+
+                        Log.d("myfir03", "here ")
+                        /*displayNotification(InitApplications.appContext, notif_id,
+                                purpose)*/
+
+                    }
+
+                }else if(notifType == Constants.NotifType.ProgressPnr){
+                    val progressdata = message.data.get("progress")
+                    val prog = JSONObject(progressdata)
+                    val vprogress   = prog.optString("Progress", null)
+                    val vtext       = prog.optString("Text", null)
+                    val vjobtype    = prog.optString("JobType", null)
+                    val vPnrId      = prog.optString("PnrId", null)
+                    val vParticipantId = prog.optString("ParticipantId", null)
+                    val PnrCode     = prog.optString("PnrCode", null)
+
+                    Log.d("udpatex1",": udate " + vprogress + " - " + vtext + " - " )
+
+                    intent.putExtra("notif_id",notif_id)
+                    intent.putExtra("vProgress",vprogress)
+                    intent.putExtra("vText",vtext)
+                    intent.putExtra("vPnrId",vPnrId)
+                    intent.putExtra("vParticipantId",vParticipantId)
+                    intent.putExtra("PnrCode",PnrCode)
+                    //                intent.setAction(Constants.ACT_DETAIL_PART)
+                    intent.setAction(Constants.ACT_CART)
+
+                }else if(notifType == Constants.NotifType.FinishFollowUpPerPax){
+
+                    val additionalData = message.data.get("additionalData")
+                    if (additionalData != null) {
+                        Log.i(TAG, additionalData)
+                    }
+                    val data = JSONObject(additionalData)
+
+                    val TripPlanId = data.optString("TripPlanId", null)
+                    val TripCode = data.optString("TripCode", null)
+                    val tp_status = data.optString("Status", null)
+                    Log.d("udpatex",": udate " + tp_status + " - " + notif_id)
+
+                    intent.putExtra(Constants.KEY_INTENT_TRIPID, TripPlanId)
+                    intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, TripCode)
+                    intent.putExtra("notif_id",notif_id)
+                    intent.putExtra("tp_status",tp_status)
+                    intent.setAction(Constants.ACT_DETAIL_TP)
                 }
+                sendBroadcast(intent)
 
-            }else if(notifType == Constants.NotifType.PaymentCompleted){
 
-                val additionalData = message.data.get("additionalData")
-                val data = JSONObject(additionalData)
 
-                if (additionalData != null) {
-                    Log.i(TAG, additionalData)
-                }
+                /*
+                            if (SEND_TO == Constants.SendTo.Participant) {
+                                //sendNotification(InitApplications.appContext, SystemClock.uptimeMillis().toInt(), tpId, "Tripplan is being reviewed by approver")
+                            } else if (SEND_TO == Constants.SendTo.Bookers) {
+                                //sendNotification(InitApplications.appContext, SystemClock.uptimeMillis().toInt(), tpId, "Tripplan has been sent to each of the approver")
+                            } else if (SEND_TO == Constants.SendTo.Approvers) {
+                                //RequestSummary(tpId)
+                                //loadSummaryRet(Globals.getToken(), tpId, InitApplications.appContext)
 
-                SEND_TO = data.optInt("SendTo", -1)
+                                //displayNotification(InitApplications.appContext, notif_id, tpId, tripCode, purpose, startDate, endDate )
+                            }*/
 
-                val tpId = data.optString("TripPlanId", null)
-                val tripCode = data.optString("TripCode", null)
-                val purpose = data.optString("Purpose", null)
 
-                if (SEND_TO == Constants.SendTo.Approvers) {
-
-                    Log.d("myfir03", "here ")
-                    /*displayNotification(InitApplications.appContext, notif_id,
-                    purpose)*/
-
-                }
-
-            }else if(notifType == Constants.NotifType.ProgressPnr){
-                val progressdata = message.data.get("progress")
-                val prog = JSONObject(progressdata)
-                val vprogress   = prog.optString("Progress", null)
-                val vtext       = prog.optString("Text", null)
-                val vjobtype    = prog.optString("JobType", null)
-                val vPnrId      = prog.optString("PnrId", null)
-                val vParticipantId = prog.optString("ParticipantId", null)
-                val PnrCode     = prog.optString("PnrCode", null)
-
-                Log.d("udpatex1",": udate " + vprogress + " - " + vtext + " - " )
-
-                intent.putExtra("notif_id",notif_id)
-                intent.putExtra("vProgress",vprogress)
-                intent.putExtra("vText",vtext)
-                intent.putExtra("vPnrId",vPnrId)
-                intent.putExtra("vParticipantId",vParticipantId)
-                intent.putExtra("PnrCode",PnrCode)
-//                intent.setAction(Constants.ACT_DETAIL_PART)
-                intent.setAction(Constants.ACT_CART)
-
-            }else if(notifType == Constants.NotifType.FinishFollowUpPerPax){
-
-                val additionalData = message.data.get("additionalData")
-                if (additionalData != null) {
-                    Log.i(TAG, additionalData)
-                }
-                val data = JSONObject(additionalData)
-
-                val TripPlanId = data.optString("TripPlanId", null)
-                val TripCode = data.optString("TripCode", null)
-                val tp_status = data.optString("Status", null)
-                Log.d("udpatex",": udate " + tp_status + " - " + notif_id)
-
-                intent.putExtra(Constants.KEY_INTENT_TRIPID, TripPlanId)
-                intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, TripCode)
-                intent.putExtra("notif_id",notif_id)
-                intent.putExtra("tp_status",tp_status)
-                intent.setAction(Constants.ACT_DETAIL_TP)
             }
-            sendBroadcast(intent)
+        }
 
-
-
-//
-//            if (SEND_TO == Constants.SendTo.Participant) {
-//                //sendNotification(InitApplications.appContext, SystemClock.uptimeMillis().toInt(), tpId, "Tripplan is being reviewed by approver")
-//            } else if (SEND_TO == Constants.SendTo.Bookers) {
-//                //sendNotification(InitApplications.appContext, SystemClock.uptimeMillis().toInt(), tpId, "Tripplan has been sent to each of the approver")
-//            } else if (SEND_TO == Constants.SendTo.Approvers) {
-//                //RequestSummary(tpId)
-//                //loadSummaryRet(Globals.getToken(), tpId, InitApplications.appContext)
-//
-//                //displayNotification(InitApplications.appContext, notif_id, tpId, tripCode, purpose, startDate, endDate )
-//            }
-
-
+        remoteMessage.notification?.let {
+            Log.d(TAG, "Message Notification Body: ${it.body}")
         }
 
     }
@@ -230,15 +207,15 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
 
         var isMoreItem = false
         val approvePendingIntent = PendingIntent.getBroadcast(
-                context,
-                REQUEST_CODE_APPROVE + NOTIFICATION_ID_INT,
-                Intent(context, NotificationReceiver::class.java)
-                        .putExtra(KEY_INTENT_APPROVE_REJECT, Constants.ApprovalAction.Approve)
-                        .putExtra(KEY_INTENT_TRIPID, tripID)
+            context,
+            REQUEST_CODE_APPROVE + NOTIFICATION_ID_INT,
+            Intent(context, NotificationReceiver::class.java)
+                .putExtra(KEY_INTENT_APPROVE_REJECT, Constants.ApprovalAction.Approve)
+                .putExtra(KEY_INTENT_TRIPID, tripID)
 //                        .putExtra(KEY_INTENT_TRIP_PARTIC, tripParticipantID)
 //                        .putExtra(KEY_TRIP_ITEM_TYPE, tripType)
-                        .putExtra(KEY_INTENT_NOTIF_ID_INT, NOTIFICATION_ID_INT),
-                PendingIntent.FLAG_UPDATE_CURRENT
+                .putExtra(KEY_INTENT_NOTIF_ID_INT, NOTIFICATION_ID_INT),
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         Constants.FROM_SUCCESS_CHECKOUT = false
@@ -286,21 +263,15 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
         notif_short.setTextViewText(R.id.tv_date_from, startDate)
         notif_short.setTextViewText(R.id.tv_date_to, endDate)
 
-//        notif_expanded.setTextViewText(R.id.tvDestination, destination)
-
-        //laterx
-//        notif_expanded.setTextViewText(R.id.tvName, participantName)
         notif_expanded.setTextViewText(R.id.tvPurpose, purpose)
-        //notif_expanded.setTextViewText(R.id.tvDestination, des)
         notif_expanded.setTextViewText(R.id.tv_date_from, startDate)
         notif_expanded.setTextViewText(R.id.tv_date_to, endDate)
         notif_expanded.setViewVisibility(R.id.tvDotMore, GONE)
-        //notif_expanded.setViewVisibility(R.emplaoyId.tvDestination, GONE);
 
         val bitmap: Bitmap? = null
         builder.setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                .setCustomContentView(notif_short)
-                .setCustomBigContentView(notif_expanded)
+            .setCustomContentView(notif_short)
+            .setCustomBigContentView(notif_expanded)
 
 
         val notificationManagerCompat = NotificationManagerCompat.from(context)
@@ -331,10 +302,10 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             val mNotificationManager =
-                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             val importance = NotificationManager.IMPORTANCE_HIGH
             val mChannel =
-                    NotificationChannel(CHANNNEL_ID_X + NOTIF_ID, CHANNEL_NAME_X + NOTIF_ID, importance)
+                NotificationChannel(CHANNNEL_ID_X + NOTIF_ID, CHANNEL_NAME_X + NOTIF_ID, importance)
             mChannel.description = CHANNEL_DESC
             mChannel.enableLights(true)
             mChannel.lightColor = Color.RED
@@ -352,16 +323,16 @@ class CorpFirebaseMessagingService : FirebaseMessagingService() {
         val intent = Intent(this, YesActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0, intent,
-                PendingIntent.FLAG_ONE_SHOT)
+            PendingIntent.FLAG_ONE_SHOT)
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(title)
-                .setContentText(body)
-                .setAutoCancel(true)
-                .setSound(soundUri)
-                .setContentIntent(pendingIntent)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setAutoCancel(true)
+            .setSound(soundUri)
+            .setContentIntent(pendingIntent)
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(0, notificationBuilder.build())

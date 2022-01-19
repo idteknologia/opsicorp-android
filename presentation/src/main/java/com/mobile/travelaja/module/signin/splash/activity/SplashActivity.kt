@@ -24,7 +24,6 @@ import com.cunoraz.gifview.library.GifView
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.module.signin.detail_profile.activity.CompletedDataProfileActivity
-import com.mobile.travelaja.module.signin.login.activity.LoginActivity
 import com.mobile.travelaja.module.signin.splash.presenter.SplashPresenter
 import com.mobile.travelaja.module.signin.splash.view.SplashView
 import com.mobile.travelaja.utility.CallbackSnackBar
