@@ -145,8 +145,10 @@ dependencies {
 
     implementation "androidx.constraintlayout:constraintlayout:$constrainLayoutVersion"
     implementation "androidx.multidex:multidex:$multidexVersion"
-    implementation "com.google.firebase:firebase-core:$firebaseCoreVersion"
-    implementation "com.google.firebase:firebase-messaging:$firebaseMessagingVersion"
+    /*implementation "com.google.firebase:firebase-core:$firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-messaging:$firebaseMessagingVersion"*/
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.0'
     implementation "androidx.work:work-runtime:$workRuntimeVersion"
 
     androidTestImplementation testDependencies.espresso

@@ -1,8 +1,11 @@
 package com.mobile.travelaja.module.signin.splash.presenter
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.provider.Settings.Global.getString
 import android.util.Log
-import com.google.firebase.iid.FirebaseInstanceId
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.mobile.travelaja.R
 import com.mobile.travelaja.module.create_trip.newtrip.actvity.DataTemporary
 import com.mobile.travelaja.module.signin.splash.view.SplashView
@@ -47,22 +50,38 @@ class SplashPresenter {
         thisModelPhone  = modelPhone
         thisUsername    = username
 
-            Thread(Runnable {
-                try {
-                    val fcmToken = FirebaseInstanceId.getInstance().getToken(context.getString(R.string.SENDER_ID), "FCM")
-                    Log.i("MyFirebaseTokenY ok", fcmToken)
-                    //Log.i("MyFirebaseTokenXX", FirebaseInstanceId.getInstance().id)
-                    Globals.setDataPreferenceString(context, Constants.FCM_TOKEN, fcmToken)
-                    val fcm = Globals.getDataPreferenceString(context, Constants.FCM_TOKEN)
-                    thisFCMToken = fcm
-                    Log.d("proxx 5 abc_dx11",": " + thisFCMToken)
-//                    getCheckVersion(token)
-                    getDataProfile(token)
-                } catch (e: IOException) {
-                    Log.i("MyFirebaseTokenY no", "something wrong")
-                    e.printStackTrace()
-                }
-            }).start()
+        Thread(Runnable {
+            try {
+//                    val fcmToken = FirebaseInstanceId.getInstance().getToken(context.getString(R.string.SENDER_ID), "FCM")
+                FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                    if (!task.isSuccessful) {
+                        Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                        return@OnCompleteListener
+                    }
+
+                    // Get new FCM registration token
+                    val _token = task.result
+                    if (_token != null) {
+                        thisFCMToken = _token
+                    }
+                    if (_token != null) {
+                        Globals.setDataPreferenceString(context, Constants.FCM_TOKEN, _token)
+                    }
+                    if (_token != null) {
+                        setLog("MyFirebaseTokenY ok", _token)
+                    }
+                    println("------------------llllll")
+                    println(_token)
+                })
+
+                val fcm = Globals.getDataPreferenceString(context, Constants.FCM_TOKEN)
+                thisFCMToken = fcm
+                getDataProfile(token)
+            } catch (e: IOException) {
+                Log.i("MyFirebaseTokenY no", "something wrong")
+                e.printStackTrace()
+            }
+        }).start()
 
     }
 
