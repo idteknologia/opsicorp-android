@@ -29,13 +29,16 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
     }
 
     fun setDataAutomatically() {
-        if (DataTemporary.dataPurphose.isEmpty()){
-            getDataPurphose()
-        }
-        else if(DataTemporary.dataSelectBudget.isEmpty()){
-            getDataBudget()
-        } else if (DataTemporary.dataActivity.isEmpty()){
-            getDataActivity()
+        when {
+            DataTemporary.dataPurphose.isEmpty() -> {
+                getDataPurphose()
+            }
+            DataTemporary.dataSelectBudget.isEmpty() -> {
+                getDataBudget()
+            }
+            DataTemporary.dataActivity.isEmpty() -> {
+                getDataActivity()
+            }
         }
         getDataCity()
     }
@@ -94,7 +97,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
             }
 
             override fun failedLoad(message: String) {
-
+                view.failedLoadDataView()
             }
 
         })
@@ -108,6 +111,7 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
             }
 
             override fun failed(message: String) {
+                view.failedLoadDataView()
             }
 
         })

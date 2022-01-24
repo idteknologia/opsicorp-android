@@ -39,10 +39,6 @@ import com.mobile.travelaja.module.payment.PaymentActivity
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Constants.TYPE_ACCOMODATION
 import kotlinx.android.synthetic.main.detail_trip_activity_view.*
-import opsigo.com.datalayer.datanetwork.GetDataApproval
-import opsigo.com.datalayer.datanetwork.GetDataGeneral
-import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
-import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.ApprovalAllRequest
 import opsigo.com.datalayer.request_model.ApprovePerPaxRequest
@@ -71,6 +67,9 @@ import com.airbnb.lottie.network.NetworkFetcher.fetch
 import com.tonyodev.fetch2.*
 
 import com.tonyodev.fetch2.Fetch.Impl.getInstance
+import opsigo.com.datalayer.datanetwork.*
+import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
+import opsigo.com.domainlayer.model.signin.CountryModel
 import java.io.File
 import java.io.FileWriter
 
@@ -142,7 +141,23 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             getSummary()
         }
 
+        getDataCity(getToken())
+
     }
+
+    fun getDataCity(token: String) {
+        GetDataTripPlane(getBaseUrl()).getDataCity(token,object : CallbackListCityTrip {
+            override fun failedLoad(message: String) {
+
+            }
+
+            override fun successLoad(data: ArrayList<SelectNationalModel>) {
+                Constants.DATA_CITY = data
+
+            }
+        })
+    }
+
 
     private fun copyToClip() {
         val clipboard: ClipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager

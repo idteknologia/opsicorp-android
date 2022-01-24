@@ -543,6 +543,9 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             DETAIL_PERSONAL_TRIP -> {
                 gotoActivity(HomeActivity::class.java)
             }
+            else -> {
+                onBackPressed()
+            }
         }
     }
 

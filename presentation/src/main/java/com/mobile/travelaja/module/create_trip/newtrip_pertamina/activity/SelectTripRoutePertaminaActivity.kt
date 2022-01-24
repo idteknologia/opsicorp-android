@@ -23,6 +23,7 @@ import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 
@@ -35,11 +36,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private var nonCbt = false
     private var position = -1
     var dataChangeTrip = ChangeTripModel()
+    var dataOrder = DataBisnisTripModel()
     var offDutty = false
 
     // format 15-07-2021
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dataOrder = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_order"), DataBisnisTripModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_route_pertamina)
         viewModel = ViewModelProvider(
             this,
@@ -110,7 +113,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
 
     //Todo sending itineraries
     private fun validation() {
-        if (viewModel.isCompleteItems()) {
+        if (viewModel.isCompleteItems(dataOrder.tripRange)) {
             val list = viewModel.itineraries
             val bundle = intent.getBundleExtra("data")
             val intent = Intent(this, RevieBudgetPertaminaActivity::class.java)

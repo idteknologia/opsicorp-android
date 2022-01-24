@@ -32,6 +32,7 @@ class DataBisnisTripModel {
     var dateCreated = ""
     var picCostCenter = ""
     var trnNumber = ""
+    var tripRange = 0
     var cashAdvance = CashAdvanceModel()
     var isCbt = false
     var isInternational = false

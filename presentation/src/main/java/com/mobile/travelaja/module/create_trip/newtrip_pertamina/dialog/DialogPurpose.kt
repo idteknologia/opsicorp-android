@@ -41,26 +41,28 @@ class DialogPurpose : BaseActivity(),DialogPurposeView  {
 
     private fun getData() {
         if(intent?.getBundleExtra("data")!=null){
-            if("country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-            }
-            else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataCity()
-            }
-            else if("purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataPurpose()
-            }
-            else if("activity".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataActivity()
+            when {
+                "country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                }
+                "city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataCity()
+                }
+                "purpose".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataPurpose()
+                }
+                "activity".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataActivity()
 
-            }
-            else if("budget".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataSelectBudged()
-            }
-            else if("cost_center".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataCostCenter()
-            }
-            else if("reason_code".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
-                presenter.getDataReasonCode()
+                }
+                "budget".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataSelectBudged()
+                }
+                "cost_center".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataCostCenter()
+                }
+                "reason_code".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT)) -> {
+                    presenter.getDataReasonCode()
+                }
             }
             tv_title.text = intent?.getBundleExtra("data")?.getString("titleHeader")
 

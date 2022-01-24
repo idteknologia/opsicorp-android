@@ -1104,6 +1104,9 @@ Please add your trip item for Approval."
     <string name="other_expense">Other Expense</string>
     <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
     <string name="ticket_refund">Ticket Refund</string>
+    <string name="ticketed">Ticketed</string>
+    <string name="canceled">Canceled</string>
+    <string name="expired">Expired</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
     <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
