@@ -27,11 +27,21 @@ class CityActivity : AppCompatActivity() {
         viewModel  = ViewModelProvider(this, DefaultViewModelFactory(false,this)).get(ItineraryViewModel::class.java)
         setRecycler()
         val isInternational = intent.getBooleanExtra(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL,false)
+        val offDutty = intent.getBooleanExtra(SelectTripRoutePertaminaActivity.OFF_DUTTY,false)
         viewModel.fetchCities(isInternational)
-        viewModel.cities.observe(this){
-            adapter.list = it
-            adapter.notifyDataSetChanged()
+
+        if (offDutty){
+            viewModel.cities.observe(this){ city ->
+                adapter.list = city.filter { it.cityName == "Sorong" }
+                adapter.notifyDataSetChanged()
+            }
+        } else {
+            viewModel.cities.observe(this){
+                adapter.list = it
+                adapter.notifyDataSetChanged()
+            }
         }
+
         viewModel.error.observe(this){
             Utils.handleErrorMessage(this,it){ errorString ->
                 Snackbar.make(binding.root,errorString, Snackbar.LENGTH_INDEFINITE).setAction(getString(R.string.txt_try_again)){

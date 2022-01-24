@@ -25,6 +25,7 @@ import com.mobile.travelaja.locale.AppLocale
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import opsigo.com.domainlayer.model.ConfigModel
 import com.mobile.travelaja.locale.LocaleManager
 import com.google.android.material.snackbar.Snackbar
@@ -34,6 +35,7 @@ import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.domainlayer.callback.CallbackIdDevice
 import opsigo.com.domainlayer.model.signin.ProfileModel
 import com.mobile.travelaja.locale.AppLocaleChangeReceiver
+import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactAdminDialog
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
 import com.mobile.travelaja.module.item_custom.loading.DialogErrorConection
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
@@ -45,6 +47,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
     protected var statusInternet: Boolean = false
     val loading = LoadingDialog()
     val dialogContruction = UnderContructionDialog()
+    val dialogContactAdmin = ContactAdminDialog()
     val dialogError = DialogErrorConection()
     val dialogNotAuthorized = NotAuthorizedDialog()
 
@@ -450,6 +453,10 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
 
     fun getConfigCompany(): ConfigModel {
         return Serializer.deserialize(Globals.getDataPreferenceString(this, "config"), ConfigModel::class.java)
+    }
+
+    fun showDialogContactAdmin(disable: Boolean){
+        dialogContactAdmin.showDialogLoading(this,disable)
     }
 
 }

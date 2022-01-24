@@ -23,6 +23,7 @@ import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
+import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.travel_request.ChangeTripModel
 
@@ -35,10 +36,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private var nonCbt = false
     private var position = -1
     var dataChangeTrip = ChangeTripModel()
+    var dataOrder = DataBisnisTripModel()
+    var offDutty = false
 
     // format 15-07-2021
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        dataOrder = Serializer.deserialize(intent?.getBundleExtra("data")?.getString("data_order"), DataBisnisTripModel::class.java)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_select_route_pertamina)
         viewModel = ViewModelProvider(
             this,
@@ -48,6 +52,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         val bundle = intent.getBundleExtra("data")
         val isInternational = bundle?.getBoolean(IS_INTERNATIONAL) ?: false
         nonCbt = bundle?.getBoolean(NON_CBT) ?: false
+        offDutty = bundle?.getBoolean(OFF_DUTTY) ?: false
         starDate = bundle?.getString(START_DATE) ?: ""
         endDate = bundle?.getString(END_DATE) ?: ""
         viewModel.checkedInternational(isInternational)
@@ -108,7 +113,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
 
     //Todo sending itineraries
     private fun validation() {
-        if (viewModel.isCompleteItems()) {
+        if (viewModel.isCompleteItems(dataOrder.tripRange)) {
             val list = viewModel.itineraries
             val bundle = intent.getBundleExtra("data")
             val intent = Intent(this, RevieBudgetPertaminaActivity::class.java)
@@ -163,6 +168,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
                     )
                 }
             }
+            1 -> {
+                if (offDutty){
+                    selectCityOffDutty(type)
+                } else {
+                    selectCity(type)
+                }
+            }
             3 -> {
                 showDialog()
             }
@@ -173,6 +185,13 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
                 selectCity(type)
             }
         }
+    }
+
+    private fun selectCityOffDutty(type: Int) {
+        val intent = Intent(this, CityActivity::class.java)
+        intent.putExtra(IS_INTERNATIONAL, viewModel.isInternational.get())
+        intent.putExtra(OFF_DUTTY, offDutty)
+        startActivityForResult(intent, type)
     }
 
     private fun selectCity(type: Int) {
@@ -218,6 +237,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         const val NON_CBT = "is_noncbt"
         const val START_DATE = "SDATE"
         const val END_DATE = "EDATE"
+        const val OFF_DUTTY = "is_offdutty"
     }
 
 

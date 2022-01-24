@@ -47,7 +47,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/margin_default"
-                        android:layout_marginRight="@dimen/margin_default"
                         android:focusable="true"
                         android:text="@string/create_trip_plan"
                         android:textColor="#91929e"
@@ -103,10 +102,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
                             android:thumb="@drawable/rounded_switch2"
                             android:track="@drawable/track_switch_on"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -138,7 +135,6 @@
                                 android:layout_width="@dimen/icon_edittext"
                                 android:layout_height="@dimen/icon_edittext"
                                 android:layout_marginEnd="10dp"
-                                android:layout_marginRight="10dp"
                                 android:src="@drawable/ic_globe_green" />
 
                             <TextView
@@ -157,10 +153,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="20dp"
-                            android:layout_marginRight="20dp"
                             android:thumb="@drawable/rounded_switch2"
                             android:track="@drawable/track_switch_on"
                             tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -192,7 +186,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="30dp"
-                            android:layout_marginRight="30dp"
                             android:gravity="center"
                             android:onClick="selectTravelPurpose"
                             android:paddingTop="8dp"
@@ -220,10 +213,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginRight="5dp"
                         android:onClick="selectTravelPurpose"
                         android:src="@drawable/ic_chevron_down" />
 
@@ -233,8 +224,8 @@
                     android:id="@+id/line_partner"
                     android:layout_width="match_parent"
                     android:layout_height="67dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="35dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="35dp"
                     android:visibility="gone">
 
                     <LinearLayout
@@ -259,10 +250,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="20dp"
-                        android:layout_marginRight="20dp"
                         android:thumb="@drawable/rounded_switch2"
                         android:track="@drawable/track_switch_on"
                         tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -305,7 +294,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/lay_partner_name"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext">
+
+                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -354,7 +345,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/lay_event"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext">
+
+                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -383,7 +376,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="30dp"
-                            android:layout_marginRight="30dp"
                             android:gravity="center"
                             android:onClick="selectActivityType"
                             android:paddingTop="8dp"
@@ -402,16 +394,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_below="@+id/layActivityType"
-                        android:background="@color/colorLineEdittext"></LinearLayout>
+                        android:background="@color/colorLineEdittext">
+
+                    </LinearLayout>
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginRight="5dp"
                         android:onClick="selectActivityType"
                         android:src="@drawable/ic_chevron_down" />
 
@@ -431,7 +423,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/mp_xs"
-                        android:layout_marginLeft="@dimen/mp_xs"
                         android:layout_marginTop="@dimen/mp_xs"
                         android:layout_weight="0.5"
                         android:gravity="center"
@@ -441,7 +432,7 @@
                             android:layout_width="@dimen/icon_edittext"
                             android:layout_height="@dimen/icon_edittext"
                             android:layout_marginTop="7dp"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_date_check_in" />
 
 
@@ -497,7 +488,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/mp_xs"
-                        android:layout_marginLeft="@dimen/mp_xs"
                         android:layout_marginTop="@dimen/mp_xs"
                         android:layout_weight="0.5"
                         android:gravity="center"
@@ -508,7 +498,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7sp"
                             android:layout_marginEnd="8dp"
-                            android:layout_marginRight="8dp"
                             android:src="@drawable/ic_date_check_out" />
 
                         <RelativeLayout
@@ -610,7 +599,6 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/layNotes"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
                         android:layout_marginTop="10dp"
                         android:gravity="end"
                         android:text="@string/_0_100"
@@ -685,7 +673,6 @@
                     android:layout_width="162dp"
                     android:layout_height="33dp"
                     android:layout_marginStart="@dimen/margin_default"
-                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/rounded_attachment"
                     android:gravity="center"

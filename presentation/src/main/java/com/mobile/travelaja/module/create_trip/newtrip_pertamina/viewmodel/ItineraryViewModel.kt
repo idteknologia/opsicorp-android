@@ -14,9 +14,17 @@ class ItineraryViewModel(private val repository: CityRepository) : ViewModel() {
     var itineraries = mutableListOf(Itinerary())
 
 
-    fun isCompleteItems() : Boolean{
+    fun isCompleteItems(dateRange : Int) : Boolean{
         itineraries.forEach {
-            if (!it.isComplete()){
+            if (it.Transportation == 2 ){
+                if (dateRange > 1 && it.isEmptyField()){
+                    return false
+                }
+                if (dateRange == 1 && !it.isComplete() ){
+                    return false
+                }
+            }
+            if (it.Transportation == 1 && !it.isComplete()){
                 return false
             }
         }

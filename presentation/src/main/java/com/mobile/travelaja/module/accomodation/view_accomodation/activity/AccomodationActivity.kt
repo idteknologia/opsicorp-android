@@ -25,6 +25,7 @@ import android.view.WindowManager
 import android.widget.FrameLayout
 import android.util.TypedValue
 import android.content.Intent
+import android.os.Bundle
 import com.mobile.travelaja.R
 import org.koin.core.inject
 import java.lang.Exception
@@ -33,6 +34,7 @@ import android.util.Log
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.flight.FlightFragmentNew
 import com.mobile.travelaja.module.accomodation.view_accomodation.fragment.hotel.HotelFragment
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.NotAuthorizedDialog
+import kotlinx.android.synthetic.main.toolbar_view.view.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
@@ -113,6 +115,24 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
 
     fun initToolbar() {
         toolbar.callbackOnclickToolbar(this)
+        toolbar.btn_card.setOnClickListener {
+            gotoCart()
+        }
+    }
+
+    private fun gotoCart() {
+        val dataConfig = getConfigCompany()
+        if (dataConfig.isShowCreateTripOnMobile) {
+            val bundle = Bundle()
+            bundle.putString(Constants.FROM_CART,Constants.FROM_HOME)
+            gotoActivityWithBundle(NewCartActivity::class.java,bundle)
+        } else {
+            showContactAdmin()
+        }
+    }
+
+    private fun showContactAdmin() {
+        showDialogContactAdmin(false)
     }
 
     fun initButtonBottom() {

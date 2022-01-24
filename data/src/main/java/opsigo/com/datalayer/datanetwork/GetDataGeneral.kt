@@ -227,8 +227,8 @@ class GetDataGeneral(baseUrl:String) : BaseGetData(), GeneralRepository {
         })
     }
 
-    override fun getListTripplan(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String, callback: CallbackListTripplan) {
-        apiOpsicorp.getListTripplan(token,size,index,orderBy,direction,tripDateFrom,tripDateTo).enqueue(object :Callback<ResponseBody>{
+    override fun getListTripplan(token: String, size: String, index: String, orderBy: String, direction: String, tripDateFrom: String, tripDateTo: String,keyword:String, callback: CallbackListTripplan) {
+        apiOpsicorp.getListTripplan(token,size,index,orderBy,direction,tripDateFrom,tripDateTo,keyword).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message.toString())
             }

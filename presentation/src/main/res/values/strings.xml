@@ -765,7 +765,7 @@ Please add your trip item for Approval."
     <string name="txt_domestic_route">Domestic Route</string>
     <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
     <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
-    <string name="information_docs">Please attach your document!<br/><b>e.g.</b>invitation letter, official letter, PJS Document<br/>Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/><b>Maximum file size : 1 MB</b></string>
+    <string name="information_docs">Please attach your document!<br/><b>e.g.</b>invitation letter, official letter, PJS Document<br/>Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/><b>Maximum file size : 2 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>
@@ -1104,6 +1104,9 @@ Please add your trip item for Approval."
     <string name="other_expense">Other Expense</string>
     <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
     <string name="ticket_refund">Ticket Refund</string>
+    <string name="ticketed">Ticketed</string>
+    <string name="canceled">Canceled</string>
+    <string name="expired">Expired</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
     <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
