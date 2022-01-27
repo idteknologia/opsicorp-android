@@ -16,9 +16,7 @@ import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Utils
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
-import net.openid.appauth.AuthorizationException
-import net.openid.appauth.AuthorizationResponse
-import net.openid.appauth.AuthorizationService
+import net.openid.appauth.*
 import opsigo.com.datalayer.datanetwork.GetDataLogin
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackConfig
@@ -29,6 +27,7 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
     private lateinit var authService: AuthorizationService
     private lateinit var viewModel: UserViewModel
     private lateinit var button : Button
+    private lateinit var authState : AuthState
 
     override fun getLayout(): Int = R.layout.activity_pertamina_idama
 
@@ -86,6 +85,29 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
             if (data != null) {
                 val resp = AuthorizationResponse.fromIntent(data)
                 val ex = AuthorizationException.fromIntent(data)
+
+//                authService.performTokenRequest(
+//                    resp?.createTokenExchangeRequest()!!
+//                ) { response, ex ->
+//                    if (response != null) {
+//                        println(response)
+//                    }
+//                }
+
+                authState = AuthState(resp,ex)
+                authState.performActionWithFreshTokens(authService,object : AuthState.AuthStateAction{
+                    override fun execute(
+                        accessToken: String?,
+                        idToken: String?,
+                        ex: AuthorizationException?
+                    ) {
+                        if (ex != null){
+                            println("id Token Idaman Error : ${ex.errorDescription}")
+                            return
+                        }
+                        println("id Token Idaman : $idToken")
+                    }
+                })
                 if (ex != null) {
                     Utils.handleErrorMessage(this, ex) {
                         if (it.isNotEmpty()) {
@@ -95,6 +117,10 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
                 } else {
                     val uriString = data.data?.toString()?.replace("#code", "?code")
                     val code = Uri.parse(uriString).getQueryParameter("code")
+                    val idToken = Uri.parse(uriString).getQueryParameter("id_token")
+                    print("OkHttp: token $idToken")
+                    if (idToken != null)
+                    OpenIdLogin.setTokenIdOpenId(idToken,this)
                     val codeVerifier = resp?.request?.codeVerifier
                     if (code != null && codeVerifier != null) {
                         val body = mutableMapOf<String, Any>(

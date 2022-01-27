@@ -246,6 +246,7 @@ abstract class BaseFragment: Fragment()  {
                 .setMessage(getString(R.string.confirm_logout))
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.yes_logout)) { dialog, id ->
+
                     removeDeviceId()
                 }
                 .setNegativeButton(getString(R.string.no_logout), null)
