@@ -23,6 +23,7 @@ import opsigo.com.domainlayer.model.trip.Route
 import opsigo.com.domainlayer.model.trip.Trip
 
 class SettlementViewModel(private val repository: SettlementRepository) : ViewModel() {
+
     val buttonNextEnabled = ObservableBoolean(false)
     val selectedCode = ObservableField<String>()
 
@@ -294,16 +295,25 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         _loading.value = true
         viewModelScope.launch {
             val result = repository.submitSettlement(detail, path)
-            compareSubmitResult(result, errorDesc)
+            compareSubmitResult(result, errorDesc,path)
         }
     }
 
 
-    private fun compareSubmitResult(result: Result<SubmitResult>, errorDesc: String) {
+    private fun compareSubmitResult(result: Result<SubmitResult>, errorDesc: String,path: String) {
         if (result is Result.Success) {
             val submit = result.data
             _successSubmit.value = Event(submit)
-            if (!submit.isSuccess && submit.idDraft.isNullOrEmpty()) {
+            var isError = !submit.isSuccess
+            if (path == PATH_SAVE){
+                /*
+                 id draft for get detail settlemet draft because is new id
+                 if saving from settlement, because if idraft null or empty
+                 can't get data draft
+                 */
+                isError = !submit.isSuccess || submit.idDraft.isNullOrEmpty()
+            }
+            if (isError) {
                 val error = submit.errorMessage
                 var strError = errorDesc
                 if (error is String)
@@ -469,6 +479,8 @@ class SettlementViewModel(private val repository: SettlementRepository) : ViewMo
         const val NON_FLIGHT = 2
         const val IDR = "IDR"
         const val USD = "USD"
+        const val PATH_SAVE = "Save"
+
     }
 
 }

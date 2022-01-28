@@ -333,7 +333,7 @@ class CreateSettlementFragment : Fragment(), View.OnClickListener, DialogCameraC
                 navigateTripCode(TYPE_DRAFT)
             }
             R.id.buttonNext -> {
-                viewModel.submit("Save", getString(R.string.save_settlement_failed))
+                viewModel.submit(SettlementViewModel.PATH_SAVE, getString(R.string.save_settlement_failed))
             }
             else -> navigateTripCode(TYPE_SELECTED)
         }
