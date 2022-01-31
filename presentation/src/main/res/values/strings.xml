@@ -7,7 +7,7 @@
 
     <string name="map" translatable="false">AIzaSyB1KjdguRy_PjJH9EHrf9I1WUc0-EPVJ_c</string>
 
-    <string name="SENDER_ID">370202765925</string>
+    <string name="SENDER_ID">772022917842</string>
     <string name="notifications_admin_channel_name">Shirohige</string>
     <string name="notifications_admin_channel_description">Shiro Firebase PushNotification</string>
 
@@ -765,7 +765,7 @@ Please add your trip item for Approval."
     <string name="txt_domestic_route">Domestic Route</string>
     <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
     <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
-    <string name="information_docs">Please attach your document!<br/><b>e.g.</b>invitation letter, official letter, PJS Document<br/>Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/><b>Maximum file size : 1 MB</b></string>
+    <string name="information_docs">Please attach your document!<br/><b>e.g.</b>invitation letter, official letter, PJS Document<br/>Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/><b>Maximum file size : 2 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>
@@ -1104,6 +1104,9 @@ Please add your trip item for Approval."
     <string name="other_expense">Other Expense</string>
     <string name="airport_tax_fiskal_insurance_laundry_etc">Airport tax, Fiskal, Insurance, Laundry etc.</string>
     <string name="ticket_refund">Ticket Refund</string>
+    <string name="ticketed">Ticketed</string>
+    <string name="canceled">Canceled</string>
+    <string name="expired">Expired</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
     <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
@@ -1176,6 +1179,7 @@ Please add your trip item for Approval."
     <string name="refund_ticket">Refund Ticket</string>
     <string name="reschedule_ticket">Reschedule</string>
     <string name="refund">Refund</string>
+    <string name="refunded">Refunded</string>
     <string name="refund_amount_ticket">Refund Amount <font color="#2b9a8e">IDR</font></string>
     <string name="refund_amount_ticket_usd">Refund Amount <font color="#2b9a8e">USD</font></string>
     <string name="expand_detail">Expand Detail</string>
@@ -1211,5 +1215,9 @@ Please add your trip item for Approval."
     <string name="title_ticket_hotel">Voucher Code</string>
     <string name="massage_success_refund">This Refund request has been sent to Travel Agent. You will be contact later.</string>
     <string name="massage_success_reschedule">This reschedule request has been sent to Travel Agent. You will be contact later.</string>
+    <string name="cancel_trip">Cancel Trip</string>
+    <string name="est_flight_with_partner" translatable="false">Est Flight (with partner)</string>
+    <string name="est_flight" translatable="false">Est Flight</string>
+    <string name="daily_allowance">Daily Allowance</string>
 </resources>
 
