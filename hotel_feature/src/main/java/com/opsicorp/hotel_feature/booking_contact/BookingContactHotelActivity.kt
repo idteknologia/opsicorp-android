@@ -1,7 +1,7 @@
 package com.opsicorp.hotel_feature.booking_contact
 
+import android.annotation.SuppressLint
 import java.util.*
-import android.os.Build
 import android.view.View
 import android.os.Bundle
 import java.lang.Exception
@@ -10,10 +10,11 @@ import android.content.Intent
 import kotlin.collections.List
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Constants
 import opsigo.com.datalayer.mapper.Serializer
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -31,6 +32,7 @@ import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
+@SuppressLint("SetTextI18n")
 class BookingContactHotelActivity : BaseActivity(),
         OnclickRecyclerBookingContact,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -87,7 +89,7 @@ class BookingContactHotelActivity : BaseActivity(),
         if (cb5.isChecked==false){
             val bundle = Bundle()
             bundle.putInt(KEY_REQUEST,OTHER_TYPE_REQUEST)
-            if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
+            if (dataContacts[0].firstName.isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName)
             else bundle.putString(KEY_NAME_GUEST,getProfile().fullName)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,OTHER_TYPE_REQUEST)
         }else {
@@ -100,7 +102,7 @@ class BookingContactHotelActivity : BaseActivity(),
         if (cb2.isChecked==false){
             val bundle =  Bundle()
             bundle.putInt(KEY_REQUEST,BED_TYPE_REQUEST)
-            if (dataContacts[0].firstName.toString().isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName.toString())
+            if (dataContacts[0].firstName.isNotEmpty()) bundle.putString(KEY_NAME_GUEST,dataContacts[0].firstName)
             else bundle.putString(KEY_NAME_GUEST,getProfile().fullName)
             gotoActivityResultWithBundle(SpecialRequestActivity::class.java,bundle,BED_TYPE_REQUEST)
         }else {
@@ -167,10 +169,8 @@ class BookingContactHotelActivity : BaseActivity(),
     private fun initToolbar() {
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.doubleTitleGravity(toolbar.START)
-        }
-        toolbar.setDoubleTitle(dataHotel.nameHotel,"${dataRoom.titleRoom}")
+        toolbar.doubleTitleGravity(toolbar.START)
+        toolbar.setDoubleTitle(dataHotel.nameHotel, dataRoom.titleRoom)
         btn_next.setTextButton("Continue")
     }
 
@@ -260,7 +260,7 @@ class BookingContactHotelActivity : BaseActivity(),
     }
 
     private fun expandPrize() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_down_green))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_chevron_down_green))
         tv_including.visibility = View.GONE
         body_prize.expand()
         Globals.delay(210,object :Globals.DelayCallback{
@@ -271,7 +271,7 @@ class BookingContactHotelActivity : BaseActivity(),
     }
 
     private fun collapsePrize() {
-        ic_image.setImageDrawable(resources.getDrawable(R.drawable.ic_chevron_up_green))
+        ic_image.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_chevron_up_green))
         tv_including.visibility = View.VISIBLE
         body_prize.collapse()
     }
@@ -350,9 +350,9 @@ class BookingContactHotelActivity : BaseActivity(),
                     gotoActivityWithBundle(NewCartActivity::class.java,bundle)
                 }
 
-                override fun failed(message: String) {
+                override fun failed(string: String) {
                     hideLoadingOpsicorp()
-                    showAllert("Sorry",message)
+                    showAllert("Sorry",string)
                 }
             })
         }
