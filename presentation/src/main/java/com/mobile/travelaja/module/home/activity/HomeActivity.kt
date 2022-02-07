@@ -30,8 +30,12 @@ import com.mobile.travelaja.module.approval.fragment.ApprovalFragment
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import com.mobile.travelaja.module.item_custom.menu_bottom.MenuBottomOpsicorp
 import com.mobile.travelaja.module.my_booking.home_my_booking.MyBookingFragment
+import com.mobile.travelaja.module.signin.login.OpenIdLogin
 import com.mobile.travelaja.utility.gone
 import com.mobile.travelaja.utility.visible
+import net.openid.appauth.AuthorizationException
+import net.openid.appauth.EndSessionRequest
+import net.openid.appauth.EndSessionResponse
 
 class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , View.OnClickListener{
 
@@ -80,6 +84,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
             four()
         }
     }
+
 
     private fun checkUpdate(){
         val task = appUpdateManager?.appUpdateInfo
@@ -329,6 +334,18 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
                     }
                 }
             }
+            OpenIdLogin.REQ_CODE_OPEN_ID -> {
+                if (data != null){
+                    val resp = EndSessionResponse.fromIntent(data)
+                    val ex = AuthorizationException.fromIntent(data)
+                    if (ex != null){
+
+                    }else {
+                        profileFragment.logout()
+                    }
+                }
+
+            }
         }
     }
 
@@ -337,6 +354,8 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         one()
         menu_bottom.setButtonSelectedPosition(0)
     }
+
+
 
     override fun onClick(v: View?) {
         if (v?.id == R.id.contentButtonSchedule){
