@@ -165,6 +165,31 @@
                     tools:text="2.500.000 IDR" />
 
                 <TextView
+                    android:id="@+id/tvLabelDaily"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="10dp"
+                    style="@style/TextLato_Normal"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvLaundryTotal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelLaundry"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/daily_allowance"
+                    app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />
+
+                <TextView
+                    android:id="@+id/tvDailyTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLabelDaily"
+                    style="@style/TextLato_Normal"
+                    app:formatTextIdr="@{viewModel.submitSettlement.amountAllowance}"
+                    android:textColor="@color/colorTextHint"
+                    tools:text="2.500.000 IDR" />
+
+                <TextView
                     android:id="@+id/tvLabelTransportExpense"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -173,7 +198,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintEnd_toStartOf="@+id/tvTransportExpenseTotal"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvLaundryTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvLabelDaily"
                     android:layout_marginEnd="16dp"
                     android:text="@string/airport_non_airport_trip_expense"
                     app:drawableStartCompat="@drawable/ic_drawable_start_dot_trip_9dp" />

@@ -227,6 +227,8 @@ object Globals {
         return sharedPref.getString(name, "")!!
     }
 
+
+
     fun getDataPreferenceFloat(context: Context, key: String): Float {
         val sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
         return sharedPref.getFloat(key, 0f)

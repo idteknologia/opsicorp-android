@@ -22,7 +22,9 @@ import opsigo.com.datalayer.model.general.CountryEntity
 import kotlinx.android.synthetic.main.profile_fragment.*
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.signin.detail_profile.activity.DataProfileActivity
+import com.mobile.travelaja.module.signin.login.OpenIdLogin
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import net.openid.appauth.AuthorizationService
 
 class ProfileFragment : BaseFragment(),
         ButtonDefaultOpsicorp.OnclickButtonListener,View.OnClickListener {

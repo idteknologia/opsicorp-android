@@ -24,11 +24,13 @@ import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactAdmin
 import com.mobile.travelaja.module.item_custom.dialog_contact_admin.ContactHRDialog
 import com.mobile.travelaja.module.item_custom.dialog_under_contruction.UnderContructionDialog
 import com.mobile.travelaja.module.item_custom.loading.LoadingDialog
+import com.mobile.travelaja.module.signin.login.OpenIdLogin
 import com.mobile.travelaja.module.signin.login.activity.LoginActivity
 import com.mobile.travelaja.module.signin.splash.activity.SplashActivity
 import com.mobile.travelaja.utility.CallbackSnackBar
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
+import net.openid.appauth.AuthorizationService
 import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackSetDeviceId
@@ -246,6 +248,7 @@ abstract class BaseFragment: Fragment()  {
                 .setMessage(getString(R.string.confirm_logout))
                 .setCancelable(false)
                 .setPositiveButton(getString(R.string.yes_logout)) { dialog, id ->
+
                     removeDeviceId()
                 }
                 .setNegativeButton(getString(R.string.no_logout), null)
@@ -261,6 +264,9 @@ abstract class BaseFragment: Fragment()  {
             override fun successLoad(isSuccess: Boolean) {
                 logoutListener()
                 hideDialog()
+                if (Globals.isPertamina(requireContext())){
+                    logoutOpenId()
+                }
             }
 
             override fun failedLoad(message: String) {
@@ -270,6 +276,13 @@ abstract class BaseFragment: Fragment()  {
             }
         })
 
+    }
+
+    private fun logoutOpenId(){
+        val authService = AuthorizationService(requireActivity())
+        OpenIdLogin.loginWithSSO(requireActivity(),"",getString(R.string.endpoint_issuer_pertamina),authService,false){
+
+        }
     }
 
     fun showDialogContruction(disable: Boolean){

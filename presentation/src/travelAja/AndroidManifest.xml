@@ -18,8 +18,13 @@
                 <action android:name="${applicationId}.PertaminaIdamanActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+
             </intent-filter>
+
         </activity>
+        <activity
+            android:name="com.mobile.travelaja.EndSessionActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -1218,5 +1218,6 @@ Please add your trip item for Approval."
     <string name="cancel_trip">Cancel Trip</string>
     <string name="est_flight_with_partner" translatable="false">Est Flight (with partner)</string>
     <string name="est_flight" translatable="false">Est Flight</string>
+    <string name="daily_allowance">Daily Allowance</string>
 </resources>
 

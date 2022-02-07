@@ -1,5 +1,6 @@
 package com.opsicorp.hotel_feature.result
 
+import android.annotation.SuppressLint
 import java.util.*
 import android.os.Build
 import android.os.Bundle
@@ -40,6 +41,7 @@ import opsigo.com.datalayer.request_model.accomodation.hotel.search.PageHotelReq
 import opsigo.com.datalayer.request_model.accomodation.hotel.search.SearcHotelRequest
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 
+@SuppressLint("SetTextI18n")
 class ResultSearchHotelActivity : BaseActivity(),
         CalendarViewOpsicorp.CallbackResult,KoinComponent,
         FilterOpsicorp.OnclickFilterListener,
@@ -147,9 +149,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         val departing = if (depart.contains(" ")) DateConverter().getDate(depart.split(" ")[0],"yyyy-MM-dd","dd MMM yyyy") else DateConverter().getDate(depart,"yyyy-MM-dd","EEE, yyyy MMM dd")
         toolbar.callbackOnclickToolbar(this)
         toolbar.hidenBtnCart()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            toolbar.doubleTitleGravity(toolbar.START)
-        }
+        toolbar.doubleTitleGravity(toolbar.START)
         when(typeDestination){
             Constants.SELECT_NEARBY_CITY -> {
                 toolbar.setDoubleTitle(nameCity,"${departing} - ${duration.split(" ")[0].toInt()} Night(s)")
@@ -331,6 +331,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                     dataFilter[position].listHotelModel.totalGuest = totalGuest
                     Constants.DATA_HOTEL                           = Serializer.serialize(dataFilter.get(position).listHotelModel, ResultListHotelModel::class.java)
                 }else {
+                    data[position].listHotelModel.idCity           = idCity
                     data[position].listHotelModel.idCountry        = idCountry
                     data[position].listHotelModel.checkIn          = checkIn.split(" ")[0]
                     data[position].listHotelModel.duration         = duration
@@ -347,12 +348,12 @@ class ResultSearchHotelActivity : BaseActivity(),
         addDataLoading(false)
         setLog(Serializer.serialize(dataSearch()))
         GetDataAccomodation(getBaseUrl()).getSearchHotel(getToken(),dataSearch(),object : CallbackSearchHotel {
-            override fun success(mData: ArrayList<AccomodationResultModel>,areas:ArrayList<String>,maximalPage:Int) {
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas:ArrayList<String>, maxpage:Int) {
                 if (mData.isNotEmpty()){
                     correlationId = mData[0].listHotelModel.correlationId
                 }
                 if (getConfigCompany().hsShowHotelNotComply){
-                    maxPage = maximalPage
+                    maxPage = maxpage
                     loadingSearch = false
                     data.clear()
                     dataArea.clear()
@@ -477,7 +478,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         }
         addDataLoading(true)
         GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(page),object :CallbackSearchHotel{
-            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>,maxPage:Int) {
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>, maxpage:Int) {
                 loadingSearch = false
 
                 if (page==1){
