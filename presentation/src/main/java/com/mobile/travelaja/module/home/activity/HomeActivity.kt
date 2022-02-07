@@ -85,6 +85,7 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
         }
     }
 
+
     private fun checkUpdate(){
         val task = appUpdateManager?.appUpdateInfo
 

@@ -29,6 +29,7 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
     private lateinit var button : Button
     private lateinit var authState : AuthState
 
+
     override fun getLayout(): Int = R.layout.activity_pertamina_idama
 
     override fun OnMain() {
@@ -95,6 +96,7 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
 //                }
 
                 authState = AuthState(resp,ex)
+                OpenIdLogin.writeAuthState(this,authState)
                 authState.performActionWithFreshTokens(authService,object : AuthState.AuthStateAction{
                     override fun execute(
                         accessToken: String?,

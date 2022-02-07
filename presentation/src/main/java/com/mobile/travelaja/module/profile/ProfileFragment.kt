@@ -147,8 +147,7 @@ class ProfileFragment : BaseFragment(),
     }
 
     override fun onClicked() {
-//        logout()
-        logoutOpenId()
+        logout()
     }
 
 
