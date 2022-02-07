@@ -153,11 +153,13 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
         if (dataChangeTrip.purpose == "Off Duty Kasim") {
             nonCbt = true
+            btn_switch2.isChecked = true
             btn_switch2.isEnabled = false
             btn_switch.isEnabled = false
             offDutty = true
         } else {
             nonCbt = false
+            btn_switch2.isChecked = false
             btn_switch2.isEnabled = true
             btn_switch.isEnabled = true
             offDutty = false
@@ -252,11 +254,13 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                     }
                     if (data?.getStringExtra("nameCountry").equals("Off Duty Kasim")) {
                         nonCbt = true
+                        btn_switch2.isChecked = true
                         btn_switch2.isEnabled = false
                         btn_switch.isEnabled = false
                         offDutty = true
                     } else {
                         nonCbt = false
+                        btn_switch2.isChecked = false
                         btn_switch2.isEnabled = true
                         btn_switch.isEnabled = true
                         offDutty = false
