@@ -280,7 +280,7 @@ abstract class BaseFragment: Fragment()  {
 
     private fun logoutOpenId(){
         val authService = AuthorizationService(requireActivity())
-        OpenIdLogin.loginWithSSO(requireActivity(),"","https://login.dev.idaman.pertamina.com",authService,false){
+        OpenIdLogin.loginWithSSO(requireActivity(),"",getString(R.string.endpoint_issuer_pertamina),authService,false){
 
         }
     }

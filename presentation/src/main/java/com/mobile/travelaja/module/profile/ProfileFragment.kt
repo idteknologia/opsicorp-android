@@ -150,14 +150,6 @@ class ProfileFragment : BaseFragment(),
         logout()
     }
 
-
-    private fun logoutOpenId(){
-        val authService = AuthorizationService(requireActivity())
-        OpenIdLogin.loginWithSSO(requireActivity(),"","https://login.dev.idaman.pertamina.com",authService,false){
-
-        }
-    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
