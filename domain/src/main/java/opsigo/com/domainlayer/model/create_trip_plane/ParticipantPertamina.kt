@@ -15,6 +15,10 @@ class ParticipantPertamina {
     var estTransportation: Int = 0
     var estTotal: Int = 0
     var estAllowance: Int = 0
+    var estAllowanceDaily: Int = 0
+    var estAllowanceMeal: Int = 0
+    var estAllowanceTransport: Int = 0
+    var estMiscellaneous: Int = 0
     var estLaundry: Int = 0
     var estAllowanceEvent: Int = 0
     var estHotel: Int = 0

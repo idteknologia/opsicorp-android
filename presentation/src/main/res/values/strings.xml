@@ -124,6 +124,10 @@
     <string name="participant">Participant</string>
     <string name="participant_status">Participant Status</string>
     <string name="allowance">Allowance</string>
+    <string name="allowance_daily">Allowance Daily</string>
+    <string name="allowance_transport">Allowance Transport</string>
+    <string name="allowance_meal">Allowance Meal</string>
+    <string name="miscellaneous">Miscellaneous</string>
     <string name="trip_plan_status">Trip Plan Status</string>
     <string name="trip_plan">Trip Plan</string>
     <string name="approval">Approval</string>

@@ -7,6 +7,10 @@ class EstimatedCostMapper {
     fun mapping(response:EstimatedCostEntity):EstimatedCostTravelRequestModel{
         val data = EstimatedCostTravelRequestModel()
         data.estAllowance = response.estAllowance
+        data.estAllowanceDaily = response.estAllowanceDaily
+        data.estAllowanceMeal = response.estAllowanceMeal
+        data.estAllowanceTransport = response.estAllowanceTransport
+        data.estMiscellaneous = response.estAllowanceMiscellaneous
         data.estAllowanceEvent = response.estAllowanceEvent
         data.estFlight    = response.estFlight
         data.estHotel     = response.estHotel

@@ -221,6 +221,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rlAllowance"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
@@ -249,10 +250,110 @@
                     android:textColor="#d9000000"
                     android:gravity="end"
                     android:text="IDR 0"
-                    android:layout_alignParentRight="true"/>
+                    android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rlAllowanceDaily"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_allowance_cost_daily"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="@string/allowance_daily"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_allowance_price_daily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlAllowanceMeal"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_allowance_cost_meal"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="@string/allowance_meal"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_allowance_price_meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlAllowanceTransport"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_allowance_cost_transport"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="@string/allowance_transport"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_allowance_price_transport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rlAllowanceEvent"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
@@ -282,6 +383,39 @@
                     android:gravity="end"
                     android:text="IDR 0"
                     android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlEstMisc"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/tv_est_misc"
+                        style="@style/RobotoRegular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#b324253d"
+                        android:text="@string/miscellaneous"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_est_misc_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="#d9000000"
+                    android:gravity="end"
+                    android:text="IDR 0"
+                    android:layout_alignParentEnd="true"/>
             </RelativeLayout>
 
             <RelativeLayout

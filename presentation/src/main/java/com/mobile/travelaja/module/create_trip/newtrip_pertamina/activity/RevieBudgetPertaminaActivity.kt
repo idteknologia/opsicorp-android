@@ -92,6 +92,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.estTransportation = dataCost.estTransportation.toInt()
                 participanItem.estTotal = dataCost.total.toInt()
                 participanItem.estAllowance = dataCost.estAllowance.toInt()
+                participanItem.estAllowanceDaily = data.estAllowanceDaily.toInt()
+                participanItem.estAllowanceMeal = data.estAllowanceMeal.toInt()
+                participanItem.estAllowanceTransport = data.estAllowanceTransport.toInt()
+                participanItem.estMiscellaneous = data.estMiscellaneous.toInt()
                 participanItem.estAllowanceEvent = dataCost.estAllowanceEvent.toInt()
                 participanItem.estLaundry = dataCost.estLaundry.toInt()
                 participanItem.estHotel = dataCost.estHotel.toInt()
@@ -110,8 +114,49 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         tv_price.text = StringUtils().setCurrency("IDR", data.total, false)
         tv_price_flight.text = StringUtils().setCurrency("IDR", data.estFlight, false)
         tv_price_hotel.text = StringUtils().setCurrency("IDR", data.estHotel, false)
-        tv_allowance_price.text = StringUtils().setCurrency("IDR", data.estAllowance, false)
-        tv_allowance_event_price.text = StringUtils().setCurrency("IDR", data.estAllowanceEvent, false)
+
+        if (data.estAllowance.equals(0.0)){
+            rlAllowance.gone()
+        } else {
+            rlAllowance.visible()
+            tv_allowance_price.text = StringUtils().setCurrency("IDR", data.estAllowance, false)
+        }
+
+        if (data.estAllowanceDaily.equals(0.0)){
+            rlAllowanceDaily.gone()
+        } else {
+            rlAllowanceDaily.visible()
+            tv_allowance_price_daily.text = StringUtils().setCurrency("IDR", data.estAllowanceDaily, false)
+        }
+
+        if (data.estAllowanceMeal.equals(0.0)){
+            rlAllowanceMeal.gone()
+        } else {
+            rlAllowanceMeal.visible()
+            tv_allowance_price_meal.text = StringUtils().setCurrency("IDR", data.estAllowanceMeal, false)
+        }
+
+        if (data.estAllowanceTransport.equals(0.0)){
+            rlAllowanceTransport.gone()
+        } else {
+            rlAllowanceTransport.visible()
+            tv_allowance_price_transport.text = StringUtils().setCurrency("IDR", data.estAllowanceTransport, false)
+        }
+
+        if (data.estMiscellaneous.equals(0.0)){
+            rlEstMisc.gone()
+        } else {
+            rlEstMisc.visible()
+            tv_est_misc_price.text = StringUtils().setCurrency("IDR", data.estAllowanceMeal, false)
+        }
+
+        if (data.estAllowanceEvent.equals(0.0)){
+            rlAllowanceEvent.gone()
+        } else {
+            rlAllowanceEvent.visible()
+            tv_allowance_event_price.text = StringUtils().setCurrency("IDR", data.estAllowanceEvent, false)
+        }
+
         tv_transportation_price.text = StringUtils().setCurrency("IDR", data.estTransportation, false)
         tv_laundry_price.text = StringUtils().setCurrency("IDR", data.estLaundry, false)
 
@@ -436,6 +481,10 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         mDataParticipants.estTransportation = dataTrip.participant[0].estTransportation
         mDataParticipants.estTotal = dataTrip.participant[0].estTotal
         mDataParticipants.estAllowance = dataTrip.participant[0].estAllowance
+        mDataParticipants.estAllowanceDaily = dataTrip.participant[0].estAllowanceDaily
+        mDataParticipants.estAllowanceMeal = dataTrip.participant[0].estAllowanceMeal
+        mDataParticipants.estAllowanceTransport = dataTrip.participant[0].estAllowanceTransport
+        mDataParticipants.estMisc = dataTrip.participant[0].estMiscellaneous
         mDataParticipants.estAllowanceEvent = dataTrip.participant[0].estAllowanceEvent
         mDataParticipants.estLaundry = dataTrip.participant[0].estLaundry
         mDataParticipants.estHotel = dataTrip.participant[0].estHotel

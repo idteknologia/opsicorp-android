@@ -37,6 +37,18 @@ data class TripParticipantsPertaminaItem(
         @field:SerializedName("EstAllowance")
         var estAllowance: Int = 0,
 
+        @field:SerializedName("EstAllowanceDaily")
+        var estAllowanceDaily: Int = 0,
+
+        @field:SerializedName("EstAllowanceMeal")
+        var estAllowanceMeal: Int = 0,
+
+        @field:SerializedName("EstAllowanceTransport")
+        var estAllowanceTransport: Int = 0,
+
+        @field:SerializedName("EstMiscellaneous")
+        var estMisc: Int = 0,
+
         @field:SerializedName("EstLaundry")
         var estLaundry: Int = 0,
 

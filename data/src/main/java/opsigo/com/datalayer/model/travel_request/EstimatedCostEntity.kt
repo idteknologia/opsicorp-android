@@ -22,6 +22,18 @@ data class EstimatedCostEntity(
 	@field:SerializedName("EstAllowance")
 	val estAllowance: Double = 0.0,
 
+	@field:SerializedName("EstAllowanceDaily")
+	val estAllowanceDaily: Double = 0.0,
+
+	@field:SerializedName("EstAllowanceMeal")
+	val estAllowanceMeal: Double = 0.0,
+
+	@field:SerializedName("EstAllowanceTransport")
+	val estAllowanceTransport: Double = 0.0,
+
+	@field:SerializedName("EstMiscellaneous")
+	val estAllowanceMiscellaneous: Double = 0.0,
+
 	@field:SerializedName("EstAllowanceEvent")
 	val estAllowanceEvent: Double = 0.0
 )
