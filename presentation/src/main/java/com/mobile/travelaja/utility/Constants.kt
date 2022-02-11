@@ -185,6 +185,7 @@ object Constants {
 
     val DETAIL_TICKET_FLIGHT = 77
     val DETAIL_TICKET_HOTEL = 78
+    val DETAIL_TICKET_TRAIN = 79
 
     var UDARA     = 1
     var NON_UDARA = 2

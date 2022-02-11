@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:elevation="3dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:id="@+id/ivStatusTrip"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_refund"/>
+
+            <TextView
+                style="@style/TextLato_Bold"
+                android:id="@+id/tv_refund"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#2b9a8e"
+                tools:text="Refunded "
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:id="@+id/btn_option_flight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_setting_dot_tree_gray">
+            </ImageView>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        style="@style/RobotoRegular"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/pnr_code"
+                        android:textSize="12sp"
+                        android:textColor="#B2BBC6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        style="@style/RobotoMedium"
+                        android:id="@+id/tv_pnr_code"
+                        android:layout_marginStart="0dp"
+                        android:textColor="#FF121300"
+                        android:textSize="12sp"
+                        tools:text="XSRUPD"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+                    <TextView
+                        android:id="@+id/tv_destination"
+                        style="@style/TextLato_Bold"
+                        android:layout_marginStart="10dp"
+                        tools:text="GMR - BDG"
+                        android:textColor="#24253d"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_train"
+                android:adjustViewBounds="true"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/train_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+
+        </LinearLayout>
+
+
+        <ProgressBar
+            android:id="@+id/pBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:minHeight="50dp"
+            android:minWidth="200dp"
+            android:max="100"
+            android:indeterminate="false"
+            android:progress="0" />
+
+        <!--
+        <LinearLayout
+            android:emplaoyId="@+emplaoyId/layInfoPNR"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </LinearLayout>
+        -->
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:paddingStart="0dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                style="@style/TextLato_Bold"
+                                android:layout_marginEnd="5dp"
+                                android:id="@+id/time_departure"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#24253d"
+                                tools:text="06:40"
+                                />
+
+                            <ImageView
+                                android:id="@+id/ivTrain"
+                                android:layout_width="12dp"
+                                android:layout_height="13dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_arrow_right_black"/>
+
+                            <TextView
+                                style="@style/TextLato_Bold"
+                                android:id="@+id/time_arrival"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:textColor="#24253d"
+                                tools:text="09:35" />
+
+                            <TextView
+                                android:id="@+id/tv_train"
+                                style="@style/TextLato_Normal"
+                                android:gravity="end"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                tools:text="Gajayana"
+                                android:textColor="#24253d" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp">
+
+                            <TextView
+                                android:id="@+id/tv_date_arrival"
+                                style="@style/TextLato_Bold"
+                                android:gravity="start"
+                                android:textColor="#6d7278"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                tools:text="Sun, 27 Nov 2019 "
+                                android:layout_gravity="end" />
+
+                            <TextView
+                                style="@style/TextLato_Bold"
+                                android:id="@+id/tv_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#6d7278"
+                                android:textSize="12sp"
+                                android:letterSpacing="0.08"
+                                android:gravity="end"
+                                tools:text="SJ-0412" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/layArrow"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/TextLato_Normal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#b2bbc6"
+                android:text="@string/details_information"
+                />
+
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:id="@+id/img_chevron"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="12sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/TextLato_Bold"
+                android:layout_marginStart="10dp"
+                android:textColor="#939396"
+                android:text="@string/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/TextLato_Bold"
+                    android:id="@+id/tv_price"
+                    android:textColor="#2b9a8e"
+                    tools:text="IDR 400.000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="visible"
+                    android:textSize="12sp"
+                    android:text="@string/per_pax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

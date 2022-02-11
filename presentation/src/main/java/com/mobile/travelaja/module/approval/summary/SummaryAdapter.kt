@@ -49,13 +49,13 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     .inflate(R.layout.item_header_list_summary, parent, false))
 
             VIEW_TYPE_TRAIN -> TrainHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_train_summary, parent, false))
+                    .inflate(R.layout.item_train_summary_new, parent, false))
 
             VIEW_TYPE_FLIGT -> FlightHolder(LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_flight_summary_new, parent, false))
 
             else            -> HotelHolder(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_hotel_summary, parent, false))
+                    .inflate(R.layout.item_hotel_summary_new, parent, false))
         }
 
     }
@@ -138,6 +138,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_price        :TextView = itemView.findViewById(R.id.tv_price)
         var img_train       :ImageView= itemView.findViewById(R.id.img_train)
         var btnOption       :ImageView= itemView.findViewById(R.id.btn_option_train)
+        var btnDetailTicket :ImageView= itemView.findViewById(R.id.img_chevron)
 
         fun bind(data: ItemTrainModel, position: Int) {
             tv_train.text            = data.titleTrain
@@ -146,9 +147,21 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             tv_status.text           = data.status
             tv_number_sheet.text     = data.carrierNumber
             tv_date_arrival.text     = DateConverter().getDate(data.dateDeparture,"yyyy-mm-dd","EEE, dd MMMM yyyy")
-            time_departure.text      = data.timeDeparture+" "
+            time_departure.text      = data.timeDeparture
             time_arrival.text        = data.timeArrival
             tv_price.text            = "IDR "+Globals.formatAmount(data.price)
+
+            if(data.imageTrain.isNotEmpty()){
+                Picasso.get()
+                    .load(data.imageTrain)
+                    .fit()
+                    .centerCrop()
+                    .into(img_train)
+            }
+
+            btnDetailTicket.setOnClickListener {
+                onclick.onClick(Constants.DETAIL_TICKET_TRAIN ,position)
+            }
 
 
             btnOption.setOnClickListener {
@@ -284,18 +297,17 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_address_hotel      :TextView = itemView.findViewById(R.id.tv_address_hotel)
         var tv_date_booking_hotel :TextView = itemView.findViewById(R.id.tv_date_booking_hotel)
         var tv_price_hotel        :TextView = itemView.findViewById(R.id.tv_price_hotel)
-        var line_spacing          :LinearLayout = itemView.findViewById(R.id.line_spacing)
+        /*var line_spacing          :LinearLayout = itemView.findViewById(R.id.line_spacing)*/
         var btnOptionHotel        :ImageView = itemView.findViewById(R.id.btn_option_hotel)
-        var btnTicketViewHotel    :LinearLayout = itemView.findViewById(R.id.layTicketViewHotel)
+        var btnTicketViewHotel    :LinearLayout = itemView.findViewById(R.id.layArrow)
         var star1                 :ImageView = itemView.findViewById(R.id.str1)
         var star2                 :ImageView = itemView.findViewById(R.id.str2)
         var star3                 :ImageView = itemView.findViewById(R.id.str3)
         var star4                 :ImageView = itemView.findViewById(R.id.str4)
         var star5                 :ImageView = itemView.findViewById(R.id.str5)
-        var tv_refund             :TextView = itemView.findViewById(R.id.tv_status_refund)
+        var icStatusTrip          :ImageView = itemView.findViewById(R.id.ivStatusTrip)
 
         fun bind(data: ItemHotelModel, position: Int) {
-            tv_status_hotel.text        = data.status
             tv_name_hotel.text          = data.nameHotel
             tv_address_hotel.text       = data.address
             tv_date_booking_hotel.text  = DateConverter().getDate(data.checkIn,"yyyy-MM-dd","EEE, dd MMMM yyyy")
@@ -317,9 +329,9 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                 }
             }
 
-            if (position==items.size-1){
+            /*if (position==items.size-1){
                 line_spacing.visibility = View.VISIBLE
-            }
+            }*/
 
             if (data.image.isNotEmpty()){
                 Picasso.get()
@@ -331,16 +343,42 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
 
             when{
                 data.isRefunded ->{
-                    tv_refund.setText(R.string.refunded)
+                    tv_status_hotel.setText(R.string.refunded)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_refunded))
                 }
                 data.isRefund -> {
-                    tv_refund.setText(R.string.refund)
+                    tv_status_hotel.setText(R.string.refund)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.red_alert))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_refund))
                 }
                 data.isReschedule ->{
-                    tv_refund.setText(R.string.reschedule_ticket)
+                    tv_status_hotel.setText(R.string.reschedule_ticket)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reschedule))
                 }
-                else -> {
-                    tv_refund.gone()
+                data.status == "Ticketed" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.ticketed)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+                }
+                data.status == "Reserved" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.txt_reserved)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+                    icStatusTrip.gone()
+                }
+                data.status == "Canceled" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.canceled)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.red_alert))
+
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_canceled))
+                }
+                data.status == "Expired" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.expired)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.red_alert))
+
+                    icStatusTrip.gone()
                 }
             }
 

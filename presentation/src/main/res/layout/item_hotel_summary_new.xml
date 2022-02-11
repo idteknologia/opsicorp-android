@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="@dimen/margin_default"
+        android:layout_marginLeft="@dimen/margin_default"
+        android:elevation="3dp"
+        android:background="@drawable/card_background"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_marginStart="10dp"
+                android:id="@+id/ivStatusTrip"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_refund"/>
+
+            <TextView
+                style="@style/TextLato_Bold"
+                android:id="@+id/tv_status_hotel"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="#2b9a8e"
+                tools:text="Refunded "
+                android:textAllCaps="true"
+                android:textSize="12sp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:id="@+id/btn_option_hotel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_setting_dot_tree_gray">
+            </ImageView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_hotel"
+                android:layout_width="86dp"
+                android:layout_height="111dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="false"
+                android:src="@drawable/grand_aston_3" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_name_hotel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            tools:text="Grand Aston Yogyakarta"
+                            android:textColor="#24253d"
+                            android:textSize="14sp"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/str1"
+                        android:layout_marginStart="4dp"
+                        android:src="@mipmap/ic_star"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp" />
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/str2"
+                        android:layout_marginLeft="4dp"
+                        android:src="@mipmap/ic_star"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp" />
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/str3"
+                        android:layout_marginLeft="4dp"
+                        android:src="@mipmap/ic_star"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp" />
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/str4"
+                        android:layout_marginLeft="4dp"
+                        android:src="@mipmap/ic_star"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp" />
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/str5"
+                        android:layout_marginLeft="4dp"
+                        android:src="@mipmap/ic_star"
+                        android:layout_width="14dp"
+                        android:layout_height="14dp" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_address_hotel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4sp"
+                    tools:text="Jl. Urip Sumoharjo No 37\nSleman - Yogyakarta"
+                    android:textColor="#8024253d"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="9dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_date_booking_hotel"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:singleLine="true"
+                        android:fontFamily="sans-serif"
+                        android:textStyle="normal"
+                        android:textColor="#24253d"
+                        tools:text="Sun, 27 Mar 2018" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:id="@+id/layArrow"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/TextLato_Normal"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#b2bbc6"
+                android:text="@string/details_information"
+                />
+
+            <ImageView
+                android:layout_marginEnd="10dp"
+                android:id="@+id/img_chevron"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_width="12sp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/gray_center_border"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="1dp">
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/TextLato_Bold"
+                android:layout_marginStart="10dp"
+                android:textColor="#939396"
+                android:text="@string/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+                <TextView
+                    style="@style/TextLato_Bold"
+                    android:id="@+id/tv_price_hotel"
+                    android:textColor="#2b9a8e"
+                    tools:text="IDR 400.000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:visibility="visible"
+                    android:textSize="12sp"
+                    android:text="@string/per_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
