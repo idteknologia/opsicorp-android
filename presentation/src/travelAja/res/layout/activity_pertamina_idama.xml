@@ -60,6 +60,18 @@
         style="@style/ButtonStyle"
         android:layout_margin="24dp"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/buttonLogout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        style="@style/ButtonStyle"
+        android:layout_margin="24dp"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

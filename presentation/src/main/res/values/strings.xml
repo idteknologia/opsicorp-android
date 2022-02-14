@@ -1223,5 +1223,7 @@ Please add your trip item for Approval."
     <string name="est_flight_with_partner" translatable="false">Est Flight (with partner)</string>
     <string name="est_flight" translatable="false">Est Flight</string>
     <string name="daily_allowance">Daily Allowance</string>
+    <string name="pertamina_endpoint_authorize">https://login.dev.idaman.pertamina.com/connect/authorize</string>
+    <string name="pertamina_endpoint_token_endpoint">https://login.dev.idaman.pertamina.com/connect/token</string>
 </resources>
 

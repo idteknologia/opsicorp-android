@@ -1,5 +1,7 @@
 <resources>
-    <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>
+<!--    <string name="client_id_sso_pertamina" translatable="false">f8fe8b0c-736c-4015-8362-c06ba0e783a7</string>-->
+    <string name="client_id_sso_pertamina" translatable="false">86838843-581f-4cf9-b35c-5738ef769d83</string>
+
     <string name="endpoint_issuer_pertamina" translatable="false">https://login.dev.idaman.pertamina.com</string>
     <string name="endpoint_logout_pertamina" translatable="false">https://login.dev.idaman.pertamina.com/Account/Logout</string>
     <string name="base_api_pertamina" translatable="false">https://dtmqa.opsinfra.net/</string>

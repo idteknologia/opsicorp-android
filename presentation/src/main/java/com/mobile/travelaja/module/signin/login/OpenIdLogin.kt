@@ -39,7 +39,27 @@ object OpenIdLogin {
         isLogin : Boolean =true,
         callback: () -> Any
     ) {
-        AuthorizationServiceConfiguration.fetchFromIssuer(
+
+
+        val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+
+        val serviceConfig = AuthorizationServiceConfiguration(
+            Uri.parse("https://login.dev.idaman.pertamina.com/connect/authorize"), // authorization endpoint
+            Uri.parse("https://login.dev.idaman.pertamina.com/connect/token") // token endpoint
+        )
+        val builder = AuthorizationRequest.Builder(
+            serviceConfig,
+            clientId,
+            ResponseTypeValues.CODE,
+            redirectUri
+        )
+        builder.setScopes("openid","profile","email")
+        if (isLogin){
+            val authRequest = builder.build()
+            val intent = authService.getAuthorizationRequestIntent(authRequest)
+            context.startActivityForResult(intent, REQ_CODE_OPEN_ID)
+        }else {
+                    AuthorizationServiceConfiguration.fetchFromIssuer(
             Uri.parse(endpointIssuer)
         ) { sc, ex ->
             if (ex != null) {
@@ -58,13 +78,18 @@ object OpenIdLogin {
             }
             callback.invoke()
         }
+        }
+
+
     }
 
     private fun endSessionOpenId( context: Activity,
                                   config: AuthorizationServiceConfiguration,
                                   authService: AuthorizationService){
+
+        val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+
         val idToken = getTokenIdOpenId(context)
-        val redirectUri = Uri.parse("https://login.dev.idaman.pertamina.com/Account/Logout")
         val endSessionRequest = EndSessionRequest.Builder(config)
             .setIdTokenHint(idToken)
             .setPostLogoutRedirectUri(redirectUri)

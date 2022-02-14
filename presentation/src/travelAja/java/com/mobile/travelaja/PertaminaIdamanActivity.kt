@@ -59,13 +59,22 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
                 hideDialog()
         }
         button = findViewById(R.id.buttonIdaman)
+        val buttonLogout = findViewById<Button>(R.id.buttonLogout)
         button.setOnClickListener {
             gotoIdaman()
         }
+
+        buttonLogout.setOnClickListener {
+            OpenIdLogin.loginWithSSO(this,getString(R.string.client_id_sso_pertamina),getString(R.string.endpoint_issuer_pertamina),authService,false){
+
+            }
+        }
+
+
     }
 
     private fun gotoIdaman(){
-        showDialog(getString(R.string.waiting))
+//        showDialog(getString(R.string.waiting))
         OpenIdLogin.loginWithSSO(
             this,
             getString(R.string.client_id_sso_pertamina),
@@ -119,11 +128,29 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
                 } else {
                     val uriString = data.data?.toString()?.replace("#code", "?code")
                     val code = Uri.parse(uriString).getQueryParameter("code")
-                    val idToken = Uri.parse(uriString).getQueryParameter("id_token")
-                    print("OkHttp: token $idToken")
-                    if (idToken != null)
-                    OpenIdLogin.setTokenIdOpenId(idToken,this)
+                    var idToken = Uri.parse(uriString).getQueryParameter("id_token")
+
+                    val mAuthService = AuthorizationService(this)
                     val codeVerifier = resp?.request?.codeVerifier
+
+                    mAuthService?.performTokenRequest(
+                        resp!!.createTokenExchangeRequest()
+                    ) { res, ex ->
+                        if (res != null) {
+                            idToken = res.idToken
+                            val accessToken = res.accessToken
+                            println("access token $accessToken")
+                            print("OkHttp: token $idToken")
+
+                            if (idToken != null)
+                                OpenIdLogin.setTokenIdOpenId(idToken!!,this)
+                        } else {
+                            // authorization failed, check ex for more details
+                        }
+                    }
+
+                    print("OkHttp: token $idToken")
+
                     if (code != null && codeVerifier != null) {
                         val body = mutableMapOf<String, Any>(
                             "code" to code,
@@ -131,8 +158,7 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
                             "grant_type" to "password"
                         )
 //                        navigateTokenIdaman(code,codeVerifier)
-                        viewModel.onLogin("${getString(R.string.base_api_pertamina)}token",body)
-
+//                        viewModel.onLogin("${getString(R.string.base_api_pertamina)}token",body)
                     }
                 }
             }

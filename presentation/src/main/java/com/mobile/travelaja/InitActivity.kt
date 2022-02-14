@@ -9,6 +9,7 @@ import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.network.MyURL
 
 class InitActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setGlobal()
