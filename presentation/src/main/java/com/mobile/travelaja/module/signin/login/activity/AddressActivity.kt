@@ -103,7 +103,7 @@ class AddressActivity : BaseActivity(), LoginView {
                     val code = Uri.parse(uriString).getQueryParameter("code")
                     val codeVerifier = resp?.request?.codeVerifier
                     if (code != null && codeVerifier != null) {
-                        val body = mutableMapOf<String, Any>(
+                        val body = mutableMapOf<String, Any?>(
                             "code" to code,
                             "codeVerifier" to codeVerifier,
                             "grant_type" to "password"

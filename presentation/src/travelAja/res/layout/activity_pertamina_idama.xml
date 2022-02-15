@@ -69,6 +69,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:visibility="gone"
         style="@style/ButtonStyle"
         android:layout_margin="24dp"
         android:textAllCaps="false"

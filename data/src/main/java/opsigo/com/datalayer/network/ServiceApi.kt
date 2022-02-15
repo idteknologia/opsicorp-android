@@ -25,7 +25,7 @@ interface ServiceApi {
 
     @FormUrlEncoded
     @POST
-    suspend fun onLogin(@Url url: String, @FieldMap body: MutableMap<String, Any>): LoginEntity
+    suspend fun onLogin(@Url url: String, @FieldMap body: MutableMap<String, Any?>): LoginEntity
 
     @GET("Settlement/ManageTrip/Gets")
     suspend fun getSettlement(@QueryMap map: MutableMap<String, Any>): ResultList<Settlement>

@@ -23,11 +23,11 @@ import opsigo.com.domainlayer.callback.CallbackConfig
 import opsigo.com.domainlayer.model.ConfigModel
 import opsigo.com.domainlayer.model.signin.DataLoginModel
 
-class PertaminaIdamanActivity : BaseActivity(),LoginView {
+class PertaminaIdamanActivity : BaseActivity(), LoginView {
     private lateinit var authService: AuthorizationService
     private lateinit var viewModel: UserViewModel
-    private lateinit var button : Button
-    private lateinit var authState : AuthState
+    private lateinit var button: Button
+    private lateinit var authState: AuthState
 
 
     override fun getLayout(): Int = R.layout.activity_pertamina_idama
@@ -61,19 +61,33 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
         button = findViewById(R.id.buttonIdaman)
         val buttonLogout = findViewById<Button>(R.id.buttonLogout)
         button.setOnClickListener {
-            gotoIdaman()
+            loginWithSSO()
         }
 
         buttonLogout.setOnClickListener {
-            OpenIdLogin.loginWithSSO(this,getString(R.string.client_id_sso_pertamina),getString(R.string.endpoint_issuer_pertamina),authService,false){
+            OpenIdLogin.loginWithSSO(
+                this,
+                getString(R.string.client_id_sso_pertamina),
+                getString(R.string.endpoint_issuer_pertamina),
+                authService,
+                false
+            ) {
 
             }
         }
-
-
     }
 
-    private fun gotoIdaman(){
+    private fun loginWithSSO() {
+        showDialog(getString(R.string.waiting))
+        OpenIdLogin.tokenSessionOpenId(
+            this,
+            getString(R.string.client_id_sso_pertamina),
+            getString(R.string.endpoint_issuer_pertamina),
+            authService
+        )
+    }
+
+    private fun gotoIdaman() {
 //        showDialog(getString(R.string.waiting))
         OpenIdLogin.loginWithSSO(
             this,
@@ -104,21 +118,22 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
 //                    }
 //                }
 
-                authState = AuthState(resp,ex)
-                OpenIdLogin.writeAuthState(this,authState)
-                authState.performActionWithFreshTokens(authService,object : AuthState.AuthStateAction{
-                    override fun execute(
-                        accessToken: String?,
-                        idToken: String?,
-                        ex: AuthorizationException?
-                    ) {
-                        if (ex != null){
-                            println("id Token Idaman Error : ${ex.errorDescription}")
-                            return
-                        }
-                        println("id Token Idaman : $idToken")
-                    }
-                })
+                authState = AuthState(resp, ex)
+                OpenIdLogin.writeAuthState(this, authState)
+//                authState.performActionWithFreshTokens(authService,
+//                    object : AuthState.AuthStateAction {
+//                        override fun execute(
+//                            accessToken: String?,
+//                            idToken: String?,
+//                            ex: AuthorizationException?
+//                        ) {
+//                            if (ex != null) {
+//                                println("id Token Idaman Error : ${ex.errorDescription}")
+//                                return
+//                            }
+//                            println("id Token Idaman : $idToken")
+//                        }
+//                    })
                 if (ex != null) {
                     Utils.handleErrorMessage(this, ex) {
                         if (it.isNotEmpty()) {
@@ -133,17 +148,18 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
                     val mAuthService = AuthorizationService(this)
                     val codeVerifier = resp?.request?.codeVerifier
 
-                    mAuthService?.performTokenRequest(
+                    mAuthService.performTokenRequest(
                         resp!!.createTokenExchangeRequest()
                     ) { res, ex ->
                         if (res != null) {
                             idToken = res.idToken
                             val accessToken = res.accessToken
-                            println("access token $accessToken")
-                            print("OkHttp: token $idToken")
-
                             if (idToken != null)
-                                OpenIdLogin.setTokenIdOpenId(idToken!!,this)
+                                OpenIdLogin.setTokenIdOpenId(idToken!!, this)
+                            val body = mutableMapOf<String,Any?>()
+                            body.put("accessToken",accessToken)
+                            body.put("grant_type" ,"password")
+                            viewModel.onLogin("${getString(R.string.base_api_pertamina)}token",body)
                         } else {
                             // authorization failed, check ex for more details
                         }
@@ -164,6 +180,7 @@ class PertaminaIdamanActivity : BaseActivity(),LoginView {
             }
         }
     }
+
     private fun saveDataLogin(data: DataLoginModel) {
         Globals.setDataPreferenceString(
             this,
