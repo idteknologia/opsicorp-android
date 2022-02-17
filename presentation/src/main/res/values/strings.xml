@@ -1225,5 +1225,15 @@ Please add your trip item for Approval."
     <string name="daily_allowance">Daily Allowance</string>
     <string name="pertamina_endpoint_authorize">https://login.dev.idaman.pertamina.com/connect/authorize</string>
     <string name="pertamina_endpoint_token_endpoint">https://login.dev.idaman.pertamina.com/connect/token</string>
+    <string name="est_miscellaneous">Est Miscellaneous</string>
+    <string name="est_allowance_transport">Est Allowance Transport</string>
+    <string name="est_allowance_meal">Est Allowance Meal</string>
+    <string name="est_total">Est Total</string>
+    <string name="est_laundry">Est Laundry</string>
+    <string name="est_allowance_event">Est Allowance Event</string>
+    <string name="est_allowance_daily">Est Allowance Daily</string>
+    <string name="est_allowance">Est Allowance</string>
+    <string name="est_trasportation">Est Trasportation</string>
+    <string name="est_hotel">Est Hotel</string>
 </resources>
 

@@ -15,8 +15,10 @@ import com.mobile.travelaja.utility.Globals.getBaseUrl
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.page_cart_bisnis_trip.view.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
+import opsigo.com.datalayer.request_model.create_trip_plane.CancelTripPlan
 import opsigo.com.domainlayer.callback.CallbackCancelTripplan
 import opsigo.com.domainlayer.model.cart.CartModelAdapter
+import java.util.HashMap
 
 class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRecyclerView{
 
@@ -153,7 +155,7 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
     private fun removeTrip(id:String){
 
-        GetDataTripPlane(getBaseUrl(context)).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
+        GetDataTripPlane(getBaseUrl(context)).cancelTripplan(Globals.getToken(), getDataTripId(id), object : CallbackCancelTripplan {
             override fun successLoad(isSuccess:Boolean) {
 
             }
@@ -163,6 +165,12 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
             }
         } )
 
+    }
+
+    private fun getDataTripId(id: String): HashMap<String, Any> {
+        val model = CancelTripPlan()
+        model.id = id
+        return Globals.classToHasMap(model, CancelTripPlan::class.java)
     }
 
     private fun unSelectAllListener() {

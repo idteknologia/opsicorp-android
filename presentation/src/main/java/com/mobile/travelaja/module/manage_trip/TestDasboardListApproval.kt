@@ -156,11 +156,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         adapter.setOnclickListener(this)
 
         val scrollListener = RecyclerViewLoadMoreScrollListener(layoutManager)
-        scrollListener.setOnLoadMoreListener(object : OnLoadMoreListener {
-            override fun onLoadMore() {
-
-            }
-        })
+        scrollListener.setOnLoadMoreListener { }
 
         rv_waiting_approval.addOnScrollListener(scrollListener);
 
@@ -305,8 +301,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onDraft() {
         positionPage = 0
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.status.equals("Draft") })
-        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
+        dataFilter.addAll(data.filter { it.status == "Draft" })
+        dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }
 //        dataFilter.sortBy { it.start_date }
 //        dataFilter.reverse()
         adapter.setData(dataFilter)
@@ -316,8 +312,8 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onCompleted() {
         positionPage = 1
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.status.equals("Completely Approved") || it.status.equals("Completely Rejected") || it.status.equals("Trip Completed") })
-        dataFilter.forEachIndexed { index, approvalModelAdapter -> approvalModelAdapter.selected = false }
+        dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Completely Rejected" || it.status == "Trip Completed" || it.status == "Canceled" })
+        dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)
     }
@@ -353,7 +349,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         totalUploaded  = 0
     }
 
-    fun rejectOrApproveSelected(mData :ApprovalModelAdapter,action: String){
+    private fun rejectOrApproveSelected(mData :ApprovalModelAdapter, action: String){
         GetDataApproval(getBaseUrl(context)).approveAll(getToken(),dataBodyApproved(mData,action),object :CallbackApprovAll{
             override fun successLoad(data: String) {
                 setLog(data)
@@ -390,7 +386,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     }
 
     fun searchData(key:String){
-        if(key.length>0){
+        if(key.isNotEmpty()){
             dataSearch.clear()
             dataSearch.addAll(data.filter { it.tripCode.toLowerCase().contains(key.toLowerCase()) || it.title.toLowerCase().contains(key.toLowerCase()) })
             adapter.setData(dataSearch)

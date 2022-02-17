@@ -177,7 +177,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         page_list_bisnis_trip.setDataOrder(mData)
     }
 
-    private fun removeTrip(id: String) {
+    /*private fun removeTrip(id: String) {
         GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), id, object : CallbackCancelTripplan {
             override fun successLoad(boolean: Boolean) {
 
@@ -192,7 +192,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
             }
         })
 
-    }
+    }*/
 
     override fun onClick(p0: View?) {
         when (p0) {
