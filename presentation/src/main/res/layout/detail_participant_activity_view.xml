@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="#f6f8f8"
     android:layout_width="match_parent"
@@ -25,7 +26,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 android:layout_marginTop="25dp"
                 style="@style/RobotoRegular"
                 android:layout_width="wrap_content"
@@ -37,14 +38,14 @@
             <TextView
                 android:id="@+id/tv_total_amount"
                 android:layout_marginTop="6dp"
-                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginStart="@dimen/margin_default"
                 style="@style/RobotoBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="#009688"
                 android:gravity="end"
-                android:text="IDR 3.095.800" />
+                tools:text="IDR 3.095.800" />
 
 
             <FrameLayout
@@ -82,7 +83,7 @@
                         android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:paddingLeft="19dp"
+                            android:paddingStart="19dp"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -97,7 +98,7 @@
                                 android:textSize="14sp"
                                 android:textColor="#24253d"
                                 android:textAlignment="textStart"
-                                android:text="IBM Workshop "
+                                tools:text="IBM Workshop "
                                 />
 
                             <LinearLayout
@@ -115,14 +116,14 @@
                                 <TextView
                                     android:id="@+id/tv_destination"
                                     style="@style/RobotoRegular"
-                                    android:layout_marginLeft="6dp"
+                                    android:layout_marginStart="6dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:fontFamily="sans-serif"
                                     android:textStyle="normal"
                                     android:textColor="#91929e"
-                                    android:text="Yogyakarta"
+                                    tools:text="Yogyakarta"
                                     />
 
                             </LinearLayout>
@@ -142,18 +143,18 @@
                                 <TextView
                                     android:id="@+id/tv_start_date"
                                     style="@style/RobotoMedium"
-                                    android:layout_marginLeft="6dp"
+                                    android:layout_marginStart="6dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:fontFamily="sans-serif"
                                     android:textStyle="bold"
                                     android:textColor="#24253d"
-                                    android:text="Thu, 31 MAR"
+                                    tools:text="Thu, 31 MAR"
                                     />
 
                                 <ImageView
-                                    android:layout_marginLeft="15dp"
+                                    android:layout_marginStart="15dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/ic_date_return"
                                     android:layout_width="15dp"
@@ -162,14 +163,14 @@
                                 <TextView
                                     android:id="@+id/tv_end_date"
                                     style="@style/RobotoMedium"
-                                    android:layout_marginLeft="5dp"
+                                    android:layout_marginStart="5dp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
                                     android:fontFamily="sans-serif"
                                     android:textStyle="bold"
                                     android:textColor="#24253d"
-                                    android:text="Sun, 27 MAR"
+                                    tools:text="Sun, 27 MAR"
                                     />
 
                             </LinearLayout>
@@ -201,7 +202,7 @@
                                     android:textColor="#24253d"
                                     android:lineSpacingExtra="1sp"
                                     android:gravity="center_horizontal"
-                                    android:text="8 Feb 2019 09:46" />
+                                    tools:text="8 Feb 2019 09:46" />
 
                             </LinearLayout>
 
@@ -214,8 +215,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_width="62dp"
                             android:layout_height="62dp"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="22dp"/>
+                            android:layout_marginEnd="22dp"/>
 
                     </LinearLayout>
 
@@ -233,8 +233,8 @@
                             android:background="@drawable/rounded_approval_orange"
                             android:textSize="10sp"
                             style="@style/RobotoMedium"
-                            android:text="Waiting"
-                            android:layout_marginRight="10dp"
+                            tools:text="Waiting"
+                            android:layout_marginEnd="10dp"
                             android:gravity="center"
                             android:paddingRight="10sp"
                             android:paddingLeft="10sp"
@@ -270,21 +270,21 @@
                             style="@style/RobotoMedium"
                             android:layout_width="wrap_content"
                             android:layout_height="16dp"
-                            android:layout_marginLeft="23dp"
+                            android:layout_marginStart="23dp"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/rounded_approval_green"
                             android:gravity="center"
-                            android:paddingLeft="25sp"
-                            android:paddingRight="17sp"
-                            android:text="Marketing"
+                            android:paddingStart="25sp"
+                            android:paddingEnd="17sp"
+                            tools:text="Marketing"
                             android:textColor="@color/white"
-                            android:textSize="10sp" />
+                            android:textSize="12sp" />
 
                         <RelativeLayout
                             android:id="@+id/line_img_approvar"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="19dp"
-                            android:layout_alignParentLeft="true"
+                            android:layout_marginEnd="19dp"
+                            android:layout_alignParentStart="true"
                             android:layout_width="wrap_content"
                             android:layout_height="38dp">
 
@@ -302,12 +302,12 @@
                         <TextView
                             android:id="@+id/tv_name"
                             android:layout_below="@+id/tv_jobtitle"
-                            android:layout_marginLeft="40dp"
+                            android:layout_marginStart="40dp"
                             android:layout_marginTop="5dp"
                             android:textColor="#24253d"
                             android:textSize="18sp"
                             style="@style/RobotoMedium"
-                            android:text="Icha Septriasa"
+                            tools:text="Icha Septriasa"
                             android:gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
@@ -318,10 +318,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/tv_name"
-                            android:layout_marginLeft="40dp"
+                            android:layout_marginStart="40dp"
                             android:layout_marginTop="4dp"
                             android:layout_marginBottom="10dp"
-                            android:text="B1000089 - Budget Cabang 4"
+                            tools:text="B1000089 - Budget Cabang 4"
                             android:textColor="#91929e"
                             android:textSize="12sp" />
 
@@ -371,7 +371,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#24253d"
-                        android:text="C1356426 - Mang Hiji Cost"
+                        tools:text="C1356426 - Mang Hiji Cost"
                         />
 
                 </LinearLayout>
@@ -410,7 +410,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -429,7 +429,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Flight"
+                        android:text="@string/est_flight"
                         />
 
                     <TextView
@@ -447,7 +447,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -466,7 +466,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Hotel"
+                        android:text="@string/est_hotel"
                         />
 
                     <TextView
@@ -484,7 +484,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -503,7 +503,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Trasportation"
+                        android:text="@string/est_trasportation"
                         />
 
                     <TextView
@@ -521,12 +521,13 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llAllowance"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
@@ -540,7 +541,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Allowance"
+                        android:text="@string/est_allowance"
                         />
 
                     <TextView
@@ -558,12 +559,13 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llAllowanceDaily"
                     android:layout_marginTop="10dp"
                     android:layout_marginLeft="@dimen/margin_default"
                     android:layout_marginRight="@dimen/margin_default"
@@ -577,7 +579,121 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Allowance Event"
+                        android:text="@string/est_allowance_daily"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_allowance_daily"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        tools:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAllowanceMeal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="@string/est_allowance_meal"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_allowance_meal"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        tools:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAllowanceTransport"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="@string/est_allowance_transport"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_allowance_transport"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        tools:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAllowanceEvent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="@string/est_allowance_event"
                         />
 
                     <TextView
@@ -595,7 +711,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -614,7 +730,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Laundry"
+                        android:text="@string/est_laundry"
                         />
 
                     <TextView
@@ -632,7 +748,45 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEstMisc"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#939396"
+                        style="@style/RobotoMedium"
+                        android:text="@string/est_miscellaneous"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#24253d"
+                        android:text=": "
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_est_misc"
+                        style="@style/RobotoMedium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#079687"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -651,7 +805,7 @@
                         android:textSize="14sp"
                         android:textColor="#939396"
                         style="@style/RobotoMedium"
-                        android:text="Est Total"
+                        android:text="@string/est_total"
                         />
 
                     <TextView
@@ -669,7 +823,7 @@
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#079687"
-                        android:text="IDR 2.123.000"
+                        tools:text="IDR 2.123.000"
                         />
 
                 </LinearLayout>
@@ -727,7 +881,7 @@
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_weight="1"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content">
 
                         <TextView

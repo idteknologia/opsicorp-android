@@ -287,8 +287,8 @@ class GetDataTripPlane(baseUrl:String) : BaseGetData(), CreateTripPlaneRepositor
         })
     }
 
-    override fun cancelTripplan(token: String, id: String, callback: CallbackCancelTripplan) {
-       apiOpsicorp.postCancelTrip(token,id).enqueue(object :Callback<ResponseBody>{
+    override fun cancelTripplan(token: String, data: HashMap<String, Any>, callback: CallbackCancelTripplan) {
+       apiOpsicorp.postCancelTrip(token,data).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callback.failedLoad(t.message!!)
             }

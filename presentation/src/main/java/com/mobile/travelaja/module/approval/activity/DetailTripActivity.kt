@@ -496,6 +496,10 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             tv_status.background = resources.getDrawable(R.drawable.rounded_approval_red)
             tv_expired.visibility = View.GONE
             line_button_approve_reject.visibility = View.GONE
+        } else if (tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.Canceled) {
+            tv_status.background = resources.getDrawable(R.drawable.rounded_approval_orange)
+            tv_expired.visibility = View.GONE
+            line_button_approve_reject.visibility = View.GONE
         } else if (tripSummary.status.toInt() ?: -1 == Constants.StatusTrip.TripCompleted) {
             tv_status.background = resources.getDrawable(R.drawable.rounded_approval_green)
             tv_expired.visibility = View.GONE
@@ -938,7 +942,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     private fun cancelTripListener() {
         showDialog("")
-        GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), tripSummary.tripId, object : CallbackCancelTripplan {
+        GetDataTripPlane(getBaseUrl()).cancelTripplan(Globals.getToken(), getDataTripId(), object : CallbackCancelTripplan {
             override fun successLoad(boolean: Boolean) {
                 hideDialog()
                 if (!boolean) {
@@ -953,6 +957,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 Globals.showAlert(getString(R.string.sorry), message, this@DetailTripActivity)
             }
         })
+    }
+
+    private fun getDataTripId(): HashMap<String, Any> {
+        val model = CancelTripPlan()
+        model.id = tripSummary.tripId
+        return Globals.classToHasMap(model, CancelTripPlan::class.java)
     }
 
     private fun getUrlFile(idFile:String) {

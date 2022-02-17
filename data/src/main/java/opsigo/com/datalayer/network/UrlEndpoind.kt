@@ -138,7 +138,7 @@ interface UrlEndpoind {
                                 @Body body: HashMap<String,Any>): Call<ResponseBody>
 
     @POST(MyURL.CANCEL_TRIP_PLAN)
-    fun postCancelTrip(@Header("Authorization")token:String, @Path("Id")id:String): Call<ResponseBody>
+    fun postCancelTrip(@Header("Authorization")token:String, @Body body: HashMap<String,Any>): Call<ResponseBody>
 
     @GET(MyURL.GET_PAYMENT_LINK)
     fun getPaymentLink(@Header("Authorization")token: String,

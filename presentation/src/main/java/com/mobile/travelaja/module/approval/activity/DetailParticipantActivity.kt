@@ -325,8 +325,49 @@ class DetailParticipantActivity : BaseActivity()
         tv_est_flight.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estFlight.toString())}"
         tv_est_hotel.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estHotel.toString())}"
         tv_est_transportation.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTransportation.toString())}"
-        tv_est_allowance.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowance.toString())}"
-        tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceEvent.toString())}"
+
+        if (tripSummary.tripParticipantItem.first().estAllowance == 0){
+            llAllowance.gone()
+        } else {
+            llAllowance.visible()
+            tv_est_allowance.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowance.toString())}"
+        }
+
+        if (tripSummary.tripParticipantItem.first().estAllowanceDaily == 0){
+            llAllowanceDaily.gone()
+        } else {
+            llAllowanceDaily.visible()
+            tv_est_allowance_daily.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceDaily.toString())}"
+        }
+
+        if (tripSummary.tripParticipantItem.first().estAllowanceMeal == 0){
+            llAllowanceMeal.gone()
+        } else {
+            llAllowanceMeal.visible()
+            tv_est_allowance_meal.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceMeal.toString())}"
+        }
+
+        if (tripSummary.tripParticipantItem.first().estAllowanceTransport == 0){
+            llAllowanceTransport.gone()
+        } else {
+            llAllowanceTransport.visible()
+            tv_est_allowance_transport.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceTransport.toString())}"
+        }
+
+        if (tripSummary.tripParticipantItem.first().estAllowanceEvent == 0){
+            llAllowanceEvent.gone()
+        } else {
+            llAllowanceEvent.visible()
+            tv_est_allowance_event.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estAllowanceEvent.toString())}"
+        }
+
+        if (tripSummary.tripParticipantItem.first().estMiscellaneous == 0){
+            llEstMisc.gone()
+        } else {
+            llEstMisc.visible()
+            tv_est_misc.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estMiscellaneous.toString())}"
+        }
+
         tv_est_laundry.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estLaundry.toString())}"
         tv_est_total.text = "IDR ${Globals.formatAmount(tripSummary.tripParticipantItem.first().estTotal.toString())}"
 

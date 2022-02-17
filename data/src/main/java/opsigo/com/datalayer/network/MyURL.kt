@@ -28,7 +28,7 @@ object MyURL {
     const val SAVE_DRAFT       = "api/TripPlan/SaveAsDraft"
     const val CREATE_TRIP_PLAN = "api/TripPlan/Submit"
     const val CITY             = "api/Lookup/Cities"
-    const val CANCEL_TRIP_PLAN = "api/TripPlan/CancelTrip/{Id}"
+    const val CANCEL_TRIP_PLAN = "api/TripPlan/CancelTrip"
     const val REMARKS          = "api/TripPlan/Remarks"
     const val CHECK_EXIST_TRIP_PERSONAL = "api/TripPlan/GetPersonalTripProgress"
     const val SAVE_DRAFT_PERSONAL  = "api/TripPlan/SaveAsDraftPersonal"

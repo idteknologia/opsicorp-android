@@ -13,7 +13,7 @@ interface CreateTripPlaneRepository {
     fun saveAsDraftTripPlantPersonal(token: String, data:HashMap<String,Any>, callback:CallbackSaveAsDraft)
     fun submitTripPlant(token: String, data:HashMap<String,Any>, callback:CallbackSubmitTripPlant)
     fun getDataCity(token:String,callback: CallbackListCityTrip)
-    fun cancelTripplan(token: String,id:String,callback:CallbackCancelTripplan)
+    fun cancelTripplan(token: String,data: HashMap<String, Any>,callback:CallbackCancelTripplan)
     fun checkExistTripPersonal(token:String,callback: CallbackString)
     fun getUrlFile(token: String,idItinerary: String, callbacGetUrlFile: CallbackGetUrlFile)
     fun uploadFileReschedule(token: String, data: MultipartBody.Part?, callback: CallbackUploadFile)
