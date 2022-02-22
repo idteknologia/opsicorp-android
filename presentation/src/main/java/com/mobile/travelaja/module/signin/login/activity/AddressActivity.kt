@@ -129,20 +129,20 @@ class AddressActivity : BaseActivity(), LoginView {
                 }
             }
             if (url.isNotEmpty()) {
-                if (url.equals(getString(R.string.pertamina),false)) {
-                    showDialog(getString(R.string.waiting))
-                    OpenIdLogin.loginWithSSO(
-                        this,
-                        getString(R.string.client_id_sso_pertamina),
-                        getString(R.string.endpoint_issuer_pertamina),
-                        authService
-                    ) {
-                        hideDialog()
-                    }
-                } else {
+//                if (url.equals(getString(R.string.pertamina),false)) {
+//                    showDialog(getString(R.string.waiting))
+//                    OpenIdLogin.loginWithSSO(
+//                        this,
+//                        getString(R.string.client_id_sso_pertamina),
+//                        getString(R.string.endpoint_issuer_pertamina),
+//                        authService
+//                    ) {
+//                        hideDialog()
+//                    }
+//                } else {
                     showDialog("")
                     onLogin("sck", "gshc", baseUrl)
-                }
+//                }
             } else {
                 showAllert(getString(R.string.txt_please), getString(R.string.insert_domain_name_your_corporate))
             }
