@@ -193,7 +193,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     }
 
     private fun setTypeAccount() {
-        if (Globals.getBaseUrl(requireContext()) == MyURL.URL_TRAVELAJA) {
+        if (!Globals.isPertamina(requireContext())) {
             tvAccountType.text = getString(R.string.txt_travelaja_basic)
             tvAccountType.setTextColor(Color.parseColor("#da2128"))
             tvReimbursement.isEnabled = false

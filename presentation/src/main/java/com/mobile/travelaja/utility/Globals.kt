@@ -783,7 +783,7 @@ object Globals {
 
     fun isPertamina(context: Context) : Boolean {
         val urlPertamina = context.getString(R.string.base_api_pertamina)
-        return getBaseUrl(context) == urlPertamina
+        return context.packageName == "com.opsicorp.travelaja"
     }
 
 

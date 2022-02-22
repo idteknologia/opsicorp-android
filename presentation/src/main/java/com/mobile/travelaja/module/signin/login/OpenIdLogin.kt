@@ -5,8 +5,6 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
-import com.mobile.travelaja.EndSessionActivity
-import com.mobile.travelaja.PertaminaIdamanActivity
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Utils
 import net.openid.appauth.*
