@@ -8,10 +8,7 @@ import android.content.Intent
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.mobile.travelaja.base.BaseActivity
-import com.mobile.travelaja.utility.gone
-import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
-import com.mobile.travelaja.utility.Constants
 import com.opsicorp.travelaja.feature_flight.R
 import opsigo.com.domainlayer.callback.CallbackGetSsr
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,9 +21,7 @@ import opsigo.com.datalayer.datanetwork.GetDataAccomodation
 import opsigo.com.domainlayer.model.booking_contact.SimModel
 import opsigo.com.domainlayer.callback.CallbackValidationFlight
 import opsigo.com.domainlayer.model.booking_contact.IdCartModel
-import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import opsigo.com.domainlayer.model.accomodation.flight.SsrModel
-import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import kotlinx.android.synthetic.main.multi_city_list_activity.*
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SsrRequest
@@ -36,6 +31,8 @@ import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import com.opsicorp.travelaja.feature_flight.result.ResultSearchFlightActivity
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.OrderAccomodationModel
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.utility.*
+import kotlinx.android.synthetic.main.detail_price_bottom_new.*
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
 import opsigo.com.datalayer.request_model.accomodation.flight.ssr.SegmentListItemRequest
 import opsigo.com.datalayer.request_model.accomodation.flight.fare_rules.FareRulesRequest
@@ -115,8 +112,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         toolbar.singgleTitleGravity(toolbar.START)
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton("Book")
-        tv_price.setText("0 IDR")
-
+        tv_price.gone()
         line_shadow.gone()
     }
 
@@ -481,12 +477,12 @@ class FlightMultiCityListActivity : BaseActivity(),
 
         var totalPrice = 0.0
         dataOrder.routes.forEach {
-            totalPrice =  totalPrice+it.flightResult.price
+            totalPrice += it.flightResult.price
         }
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
         tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax and ${dataFLigt.dataFlight.size} item(s)"
-        tv_price.text = "${Globals.formatAmount(totalPricing)} IDR"
-        tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
+        tv_price.text               = "IDR ${Globals.formatAmount(totalPricing)}"
+        tv_price_total.text         = "IDR ${Globals.formatAmount(totalPricing)}"
     }
 
     private fun showOrHideDetailPrice() {

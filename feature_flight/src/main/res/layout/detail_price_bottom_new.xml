@@ -69,7 +69,7 @@
                 <TextView
                     android:id="@+id/tv_price"
                     android:gravity="start"
-                    android:text="@string/hargaTotal"
+                    android:text="IDR 0"
                     android:textSize="20sp"
                     style="@style/RobotoMedium"
                     android:textColor="#00776a"

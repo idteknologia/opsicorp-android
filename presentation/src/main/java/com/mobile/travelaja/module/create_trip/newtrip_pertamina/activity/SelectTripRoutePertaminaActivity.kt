@@ -56,6 +56,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
         starDate = bundle?.getString(START_DATE) ?: ""
         endDate = bundle?.getString(END_DATE) ?: ""
         viewModel.checkedInternational(isInternational)
+
         setRecycler()
         binding.btnNext.setOnClickListener {
             validation()
@@ -142,6 +143,9 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
 
     private fun setRecycler() {
         binding.rvItinerary.adapter = ItineraryAdapter(viewModel)
+        viewModel.setStartDate(DateConverter().getDate(dataOrder.startDate,"yyyy-MM-dd","dd MMM yyyy"),0)
+        viewModel.setOriginFrom("Jakarta",0)
+        viewModel.setDestination("Makasar",0)
     }
 
 

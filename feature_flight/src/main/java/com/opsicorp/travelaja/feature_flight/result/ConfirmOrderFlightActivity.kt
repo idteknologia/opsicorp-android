@@ -318,8 +318,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             }
             var totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax and ${dataFligt.size} item{s}"
-            tv_price.text               = "${Globals.formatAmount(totalPricing)} IDR"
-            tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
+            tv_price.text               = "IDR ${Globals.formatAmount(totalPricing)}"
+            tv_price_total.text         = "IDR ${Globals.formatAmount(totalPricing)}"
 
         }else {
             val dataListFlight = Serializer.deserialize(Globals.DATA_LIST_FLIGHT, DataListOrderAccomodation::class.java)
@@ -336,8 +336,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
             }
             var totalPricing = totalPrice * dataOrder.totalPassengerInteger
             tv_title_prize.text         = "${getString(R.string.total_price_for)} ${dataFligt.size} pax"
-            tv_price.text               = "${Globals.formatAmount(totalPricing)} IDR"
-            tv_price_total.text         = "${Globals.formatAmount(totalPricing)} IDR"
+            tv_price.text               = "IDR ${Globals.formatAmount(totalPricing)}"
+            tv_price_total.text         = "IDR ${Globals.formatAmount(totalPricing)}"
             /*tv_prize_departure.text   = StringUtils().setCurrency("IDR", dataListFlight.dataFlight[0].price * (dataOrder.adult + dataOrder.child + dataOrder.infant) , false)
             tvPassengerTotal1.text    = "${dataOrder.totalPassengerString} /Pax"
             tv_station_departure.text = "${dataListFlight.dataFlight[0].origin} - ${dataListFlight.dataFlight[0].destination}"

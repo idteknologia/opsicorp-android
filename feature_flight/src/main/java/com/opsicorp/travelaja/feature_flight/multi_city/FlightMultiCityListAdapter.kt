@@ -52,7 +52,7 @@ class FlightMultiCityListAdapter(val context: Context): RecyclerView.Adapter<Fli
             holder.itemView.img_airline2.visibility         = View.VISIBLE
             setImage(holder.itemView.img_airline2,data.imgAirline)
             holder.itemView.tv_flight_code2.text            = "${data.origin} - ${data.destination}"//"CGK - KNO"
-            holder.itemView.tv_price.text                   = "Sub Total - ${Globals.formatAmount(data.price)} IDR/pax"
+            holder.itemView.tv_price.text                   = "Sub Total - IDR ${Globals.formatAmount(data.price)} /pax"
         }
         else {
             holder.itemView.tvSelectFlight2.text            = "Select"
