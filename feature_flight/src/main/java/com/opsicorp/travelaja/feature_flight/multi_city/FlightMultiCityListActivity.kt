@@ -474,6 +474,7 @@ class FlightMultiCityListActivity : BaseActivity(),
             dataFligt.add(it.flightResult)
         }
         adapterPrice.setData(dataFligt)
+        rl_total_price.visible()
 
         var totalPrice = 0.0
         dataOrder.routes.forEach {
@@ -481,7 +482,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         }
         val totalPricing = totalPrice * dataOrder.totalPassengerInteger
         tv_title_prize.text = "${getString(R.string.total_price_for)} ${dataOrder.totalPassengerInteger} pax and ${dataFLigt.dataFlight.size} item(s)"
-        tv_price.text               = "IDR ${Globals.formatAmount(totalPricing)}"
+        tv_total_price.text = "IDR ${Globals.formatAmount(totalPricing)}"
         tv_price_total.text         = "IDR ${Globals.formatAmount(totalPricing)}"
     }
 

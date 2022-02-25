@@ -918,6 +918,9 @@ Please add your trip item for Approval."
     <string name="select_your_bank_transfer">Select your Bank Transfer</string>
     <string name="fill_your_cash_amount">Fill your Cash Advance Amount</string>
     <string name="limit_cash_advance">Your cash advance are beyond limit</string>
+    <string name="ktp_id_limit">Number ID only max 16 number</string>
+    <string name="passport_id_limit">Passport Id only max 9 number or alphabet</string>
+    <string name="sim_id_limit">Driving License number only max 12 number</string>
     <string name="name_must_not_empty">Fill your Contacts Name</string>
     <string name="waiting_upload_file">Waiting upload file</string>
     <string name="attach_your_document">Attach your document</string>
@@ -1057,7 +1060,7 @@ Please add your trip item for Approval."
     <string name="important">Important :</string>
     <string name="passport_valid_for_at_least_6_months_from">Passport valid for at least 6 months from</string>
     <string name="departure_date_is_required_for_international_travel_or_transit_abroad">departure date is required for international travel or transit abroad.</string>
-    <string name="passport_contain_9_digit_of_number">Passport contain 9 digit of number</string>
+    <string name="passport_contain_9_digit_of_number">Passport contain 9 digit of number or alphabet</string>
     <string name="expiry_date">Expiry Date</string>
     <string name="mobile_phone">Mobile Phone</string>
     <string name="purchase_successful">Purchase Successful</string>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
@@ -393,13 +394,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
                             <EditText
-                                android:inputType="number"
                                 android:id="@+id/et_passpor_number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
-                                android:text="327889076"
+                                android:maxLength="9"
+                                tools:text="327889076"
                                 android:background="@color/transparent"/>
 
                             <LinearLayout

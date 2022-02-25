@@ -578,7 +578,7 @@ class FlightFragmentNew : BaseFragment(),
         typeTrip = "multi_city"
         cardFlightOneTrip.gone()
         rvFlightMultiCity.visible()
-        if (getProfile().companyCode!="000002"){
+        if (!Globals.isPertamina(requireContext())){
             btAddOtherFlight.visible()
         }
         else {

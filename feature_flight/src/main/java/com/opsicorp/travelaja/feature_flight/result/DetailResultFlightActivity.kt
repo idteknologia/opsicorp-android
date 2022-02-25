@@ -101,7 +101,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun getValidationFlight() {
         setLog(Serializer.serialize(dataRequest()))
         showLoadingOpsicorp(true)
-        if (getProfile().companyCode=="000002"){
+        if (Globals.isPertamina(this)){
             isNotComply = true
             getFareRules()
             getSsr()

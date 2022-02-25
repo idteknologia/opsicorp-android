@@ -66,6 +66,27 @@
                     </LinearLayout>
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:id="@+id/rl_total_price"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/tv_total_price"
+                            tools:text="IDR 0"
+                            android:textSize="20sp"
+                            style="@style/RobotoMedium"
+                            android:textColor="#00776a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </RelativeLayout>
+
                 <TextView
                     android:id="@+id/tv_price"
                     android:gravity="start"

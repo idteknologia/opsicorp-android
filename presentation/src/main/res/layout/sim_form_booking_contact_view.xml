@@ -218,6 +218,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
                                 android:textColor="#24253d"
+                                android:maxLength="12"
                                 android:text=""
                                 android:background="@color/transparent"/>
 

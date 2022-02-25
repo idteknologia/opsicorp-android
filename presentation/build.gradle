@@ -51,8 +51,8 @@ android {
         travelAja{
             dimension 'default'
             applicationId "com.opsicorp.travelaja"
-            versionCode 5
-            versionName "v5"
+            versionCode 6
+            versionName "v6"
             signingConfig travelAjaSigningVariable
         }
         opsicorp{

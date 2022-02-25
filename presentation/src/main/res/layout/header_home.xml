@@ -14,6 +14,7 @@
         android:background="#f4f4f4"/>
 
     <TextView
+        android:visibility="invisible"
         android:id="@+id/tvAccountType"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
@@ -206,6 +207,7 @@
                 android:text="@string/txt_reimburstment"
                 android:textSize="14sp"
                 android:textStyle="bold"
+                android:textColor="@color/colorReimbursement"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view"

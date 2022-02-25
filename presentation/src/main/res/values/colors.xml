@@ -160,5 +160,6 @@
 
     <color name="colorBackground">#1FE71844</color>
     <color name="chipStatus">#b2bbc6</color>
+    <color name="colorReimbursement">#EEEEEE</color>
 
 </resources>

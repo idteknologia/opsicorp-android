@@ -197,7 +197,6 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
             tvAccountType.text = getString(R.string.txt_travelaja_basic)
             tvAccountType.setTextColor(Color.parseColor("#da2128"))
             tvReimbursement.isEnabled = false
-            tvReimbursement.setTextColor(Color.parseColor("#EFEFEF"))
         } else {
             tvAccountType.text = getString(R.string.txt_premium_account)
             tvAccountType.setTextColor(Color.parseColor("#009688"))

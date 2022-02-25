@@ -310,8 +310,9 @@ class BookingContactFlight : BaseActivity(),
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_SIM
                             resultListFlightModel.passenger[currentPosition].sim = Serializer.deserialize(dataString,SimModel::class.java)
+                            isInputKtp = !resultListFlightModel.passenger[currentPosition].sim.idSim.isNullOrEmpty()
                         }
-                        isInputKtp = true
+
                     }catch (e:Exception){
                         e.printStackTrace()
                     }
@@ -325,8 +326,8 @@ class BookingContactFlight : BaseActivity(),
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_PASSPORT
                             resultListFlightModel.passenger[currentPosition].pasport = Serializer.deserialize(dataString,PassportModel::class.java)
+                            isInputKtp = !resultListFlightModel.passenger[currentPosition].pasport.passporNumber.isNullOrEmpty()
                         }
-                        isInputKtp = true
                     }catch (e:Exception){}
                 }
                 adapter.notifyDataSetChanged()
@@ -338,8 +339,8 @@ class BookingContactFlight : BaseActivity(),
                         dataListFlight.dataFlight.mapIndexed { index, resultListFlightModel ->
                             resultListFlightModel.passenger[currentPosition].checktype = Constants.TYPE_KTP
                             resultListFlightModel.passenger[currentPosition].idcard = Serializer.deserialize(dataString,IdCartModel::class.java)
+                            isInputKtp = !resultListFlightModel.passenger[currentPosition].idcard.idCart.isNullOrEmpty()
                         }
-                        isInputKtp = true
                     }catch (e:Exception){}
                 }
                 adapter.notifyDataSetChanged()

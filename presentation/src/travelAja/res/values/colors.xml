@@ -156,6 +156,7 @@
     <color name="chipTextColorEnable">@color/buttonRemoveTextColor</color>
     <color name="chipBackgroundEnable">#1924253d</color>
     <color name="chipStrokeEnabled">@color/buttonRemoveTextColor</color>
+    <color name="colorReimbursement">#00776a</color>
 
 
 </resources>

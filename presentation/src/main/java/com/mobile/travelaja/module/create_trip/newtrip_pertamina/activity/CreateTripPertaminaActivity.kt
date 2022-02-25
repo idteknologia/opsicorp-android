@@ -260,7 +260,6 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
                         offDutty = true
                     } else {
                         nonCbt = false
-                        btn_switch2.isChecked = false
                         btn_switch2.isEnabled = true
                         btn_switch.isEnabled = true
                         offDutty = false
