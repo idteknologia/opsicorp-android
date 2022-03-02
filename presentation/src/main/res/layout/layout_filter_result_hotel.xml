@@ -170,6 +170,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="11dp"
                         android:fontFamily="@font/lato_regular"
@@ -184,7 +185,7 @@
                         android:textStyle="normal"
                         android:textSize="9sp"
                         android:textColor="#009688"
-                        android:text="Starts from"/>
+                        android:text="from"/>
 
                     <TextView
                         android:id="@+id/tv_not_comply_hotel"
@@ -214,16 +215,15 @@
                     </TextView>
 
                     <TextView
-                        android:layout_marginTop="2.9dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_toRightOf="@+id/tv_prize"
+                        style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="2.9dp"
+                        android:layout_toEndOf="@+id/tv_prize"
+                        android:text="@string/per_night"
                         android:textColor="#b2bbc6"
-                        android:textSize="10dp"
-                        style="@style/RobotoBold"
-                        android:text="IDR">
-                    </TextView>
+                        android:textSize="10sp"/>
 
                     <ImageView
                         android:layout_alignParentRight="true"

@@ -41,8 +41,10 @@ data class PageHotelRequest(
 	var destinationName: String? = null,
 
 	@field:SerializedName("DestinationCountry")
-	var destinationCountry: String? = null
+	var destinationCountry: String? = null,
 
+	@field:SerializedName("IsShowPolicy")
+	var isShowPolicy: Boolean = false
 
 
 

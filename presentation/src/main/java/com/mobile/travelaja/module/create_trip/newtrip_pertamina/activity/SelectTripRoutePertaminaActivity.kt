@@ -144,7 +144,7 @@ class SelectTripRoutePertaminaActivity : AppCompatActivity(), ItineraryListener,
     private fun setRecycler() {
         binding.rvItinerary.adapter = ItineraryAdapter(viewModel)
         viewModel.setOriginFrom("Jakarta",0)
-        viewModel.setDestination("Makasar",0)
+        viewModel.setDestination("Makassar",0)
     }
 
 

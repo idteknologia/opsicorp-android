@@ -536,9 +536,10 @@ class ResultSearchHotelActivity : BaseActivity(),
         data.correlationId = correlationId
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.origin      = dataTrip.originId
-        data.destination = dataTrip.destinationId
+        data.destination = dataTrip.destinationName
         data.destinationName = dataTrip.destinationName
         data.destinationCountry = idCountry
+        data.isShowPolicy = !dataTrip.isPrivateTrip
         return Globals.classToHashMap(data,PageHotelRequest::class.java)
     }
 

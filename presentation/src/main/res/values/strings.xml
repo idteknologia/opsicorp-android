@@ -1239,5 +1239,6 @@ Please add your trip item for Approval."
     <string name="est_trasportation">Est Trasportation</string>
     <string name="est_hotel">Est Hotel</string>
     <string name="idr">IDR</string>
+    <string name="per_night">/night</string>
 </resources>
 

@@ -766,6 +766,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="20dp"
@@ -803,6 +804,7 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:visibility="gone"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="25dp"
                         android:layout_marginLeft="30dp"

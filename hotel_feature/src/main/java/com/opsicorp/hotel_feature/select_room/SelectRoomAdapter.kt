@@ -34,7 +34,7 @@ class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): androidx.recycl
 
         holder.itemView.tv_title_room.text          = data.titleRoom
         holder.itemView.tv_policy_description.text  = data.policyDescription
-        holder.itemView.tv_prize_room.text          = "${Globals.formatAmount(data.prize.toDouble().toInt().toString())}"
+        holder.itemView.tv_prize_room.text          = "IDR ${Globals.formatAmount(data.prize.toDouble().toInt().toString())}"
         holder.itemView.tv_policy_description.text  = "This Reservation is non-refundable"
 
         holder.itemView.btn_information.setOnClickListener {

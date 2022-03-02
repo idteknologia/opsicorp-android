@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -149,19 +149,10 @@
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="900.000.000"
-                                android:textColor="@color/blue_dark"
-                                android:textSize="16dp"></TextView>
-
-                            <TextView
-                                android:id="@+id/tv_code_currency"
-                                style="@style/RobotoBold"
-                                android:layout_marginLeft="5dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="IDR"
+                                tools:text="900.000.000"
                                 android:textColor="@color/green_cyan_info"
-                                android:textSize="10dp"></TextView>
+                                android:textSize="16sp"/>
+
                         </LinearLayout>
 
                     </LinearLayout>

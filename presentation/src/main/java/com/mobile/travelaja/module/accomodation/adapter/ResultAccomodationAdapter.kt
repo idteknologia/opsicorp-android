@@ -233,7 +233,7 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
             itemView.tv_city.text               = data.listHotelModel.city
             itemView.tv_not_comply_hotel.visibility = View.GONE
             itemView.tv_available.text          = "${data.listHotelModel.totalAvailable} ${context.getString(R.string.room_s_available)} "
-            itemView.tv_prize.text              = "${Globals.formatAmount(data.listHotelModel.price)}"
+            itemView.tv_prize.text              = "IDR ${Globals.formatAmount(data.listHotelModel.price)}"
 
             setLog(data.listHotelModel.nameHotel)
             setLog(data.listHotelModel.starRating)

@@ -167,7 +167,7 @@ class ListParticipantsDataMapper {
                                 dataHotel.dateBooking = tripHotelsItem?.bookedDate.toString()
                                 dataHotel.ticketedDate = tripHotelsItem?.ticketedDate.toString()
                                 dataHotel.starRating  = tripHotelsItem?.rating.toString()
-                                dataHotel.price       = tripHotelsItem?.amount.toString()
+                                dataHotel.price       = tripHotelsItem?.payments?.first()?.amount.toString()
                                 dataHotel.reasonCode  = it.reasonCode.toString()
                                 dataHotel.employId    = data.employeeId.toString()
                                 dataHotel.tripItemId  = tripHotelsItem?.tripItemId.toString()
