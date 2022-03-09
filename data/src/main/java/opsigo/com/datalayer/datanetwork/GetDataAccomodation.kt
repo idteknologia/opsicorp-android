@@ -750,6 +750,7 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failedLoad(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
@@ -761,6 +762,9 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                         callback.failedLoad(message)
                     }
                 }catch (e:Exception){
+
+                    e.printStackTrace()
+                    println("---------->>>")
                     callback.failedLoad(e.message!!)
                 }
             }
@@ -773,17 +777,17 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 callback.failed(t.message!!)
             }
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.code()==200){
-                    val responseString = response.body()?.string()
-                    callback.success(ConfirmationHotelMapper().mapping(Serializer.deserialize(responseString!!,ConfirmationHotelEntity::class.java)))
-                }
-                else {
-                    val json = JSONObject(response.errorBody()?.string())
-                    val message = json.optString("error_description")
-                    callback.failed(message)
-                }
-                try {
 
+                try {
+                    if (response.code()==200){
+                        val responseString = response.body()?.string()
+                        callback.success(ConfirmationHotelMapper().mapping(Serializer.deserialize(responseString!!,ConfirmationHotelEntity::class.java)))
+                    }
+                    else {
+                        val json = JSONObject(response.errorBody()?.string())
+                        val message = json.optString("error_description")
+                        callback.failed(message)
+                    }
                 }catch (e:Exception){
                     callback.failed(e.message!!)
                 }

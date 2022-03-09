@@ -1,6 +1,5 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
-import android.annotation.SuppressLint
 import opsigo.com.datalayer.request_model.accomodation.hotel.detail.DetailHotelRequest
 import opsigo.com.datalayer.request_model.accomodation.hotel.room.RoomHotelRequest
 import com.opsicorp.hotel_feature.description_hotel.DescriptionAndFacilityHotel
@@ -15,15 +14,15 @@ import kotlinx.android.synthetic.main.detail_hotel_layout.*
 import opsigo.com.domainlayer.callback.CallbackDetailHotel
 import opsigo.com.domainlayer.model.accomodation.hotel.*
 import opsigo.com.domainlayer.callback.CallbackRoomHotel
+import com.mobile.travelaja.base.BaseActivity
 import opsigo.com.datalayer.mapper.Serializer
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.Globals
-import com.mobile.travelaja.base.BaseActivity
+import android.annotation.SuppressLint
 import com.squareup.picasso.Picasso
 import android.webkit.WebViewClient
 import com.opsicorp.hotel_feature.R
 import android.content.Intent
-import android.util.Log
 import android.view.View
 import java.util.HashMap
 
@@ -168,16 +167,23 @@ class DetailHotelActivity : BaseActivity(),
     }
 
     private fun mappingDataRoom(mData: ArrayList<SelectRoomModel>) {
+        data.room.forEach {
+            println("ooooy1 "+it.roomKey)
+        }
         mData.forEach {
-            val selectRoomModel = it
-            val room = data.room.filter { it.roomKey == selectRoomModel.roomKey }.first()
-            data.room[data.room.indexOf(room)].apply {
-                this.roomCodeHash  = selectRoomModel.roomCodeHash
-                this.breakfastType = selectRoomModel.breakfastType
-                this.cancelLimit   = selectRoomModel.cancelLimit
-                this.isGuaranteedBooking = selectRoomModel.isGuaranteedBooking
-                this.isFullCharge  = selectRoomModel.isFullCharge
-                this.summary       = selectRoomModel.summary
+            println("ooooy2 "+it.roomKey)
+        }
+        mData.forEachIndexed { index, selectRoomModel ->
+            if (!data.room.filter { it.roomKey == selectRoomModel.roomKey }.isNullOrEmpty()){
+                val room = data.room.filter { it.roomKey == selectRoomModel.roomKey }.first()
+                data.room[data.room.indexOf(room)].apply {
+                    this.roomCodeHash  = selectRoomModel.roomCodeHash
+                    this.breakfastType = selectRoomModel.breakfastType
+                    this.cancelLimit   = selectRoomModel.cancelLimit
+                    this.isGuaranteedBooking = selectRoomModel.isGuaranteedBooking
+                    this.isFullCharge  = selectRoomModel.isFullCharge
+                    this.summary       = selectRoomModel.summary
+                }
             }
         }
     }

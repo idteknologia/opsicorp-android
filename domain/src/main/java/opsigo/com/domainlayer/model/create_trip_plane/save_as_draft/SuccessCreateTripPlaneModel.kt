@@ -32,6 +32,7 @@ class SuccessCreateTripPlaneModel {
     var isDomestik  = false
     var isBookAfterApprove = false
     var isPrivateTrip = false
+    var isPersonalTrip = false
     var golper      = 0
 
     var route        = ArrayList<RouteMultiCityModel>()

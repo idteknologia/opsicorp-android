@@ -1,5 +1,6 @@
 package com.opsicorp.hotel_feature.detail_hotel
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.ImageView
 import kotlin.collections.ArrayList
@@ -32,6 +33,7 @@ class DetailSummaryHotelActivity : BaseActivity() {
         setLog(intent.getStringExtra(Constants.DATA_DETAIL_HOTEL))*/
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setDataView() {
         val dataHotel =  data.dataCardHotel
         val totalDate                   = Globals.calculationDate(dataHotel.checkIn.split(" ")[0],dataHotel.checkOut.split(" ")[0],"yyyy-MM-dd").toString()
@@ -44,12 +46,12 @@ class DetailSummaryHotelActivity : BaseActivity() {
         tv_name_hotel_cart.text         = dataHotel.nameHotel
         tv_type_hotel_cart.text         = dataHotel.typeHotel
         tv_description_hotel_cart.text  = dataHotel.descreption
-        tv_prize_hotel_cart.text        = "IDR ${Globals.formatAmount(dataHotel.price)}"
+        tv_prize_hotel_cart.text        = "IDR ${Globals.formatAmount(dataHotel.price.toDouble())}"
 
         tv_total_price_item.text        = "IDR 0"
-        tv_total_amount.text            = "IDR ${Globals.formatAmount(dataHotel.price)}"
+        tv_total_amount.text            = "IDR ${Globals.formatAmount(dataHotel.price.toDouble())}"
         tv_total_price_service_fee.text = "IDR 0"
-        tv_total_price_vat.text         = "IDR ${Globals.formatAmount(dataHotel.price)}"
+        tv_total_price_vat.text         = "IDR ${Globals.formatAmount(dataHotel.price.toDouble())}"
         startViewListener(dataHotel.starRating.toDouble().toInt())
         setImageHotel(dataHotel.image)
 

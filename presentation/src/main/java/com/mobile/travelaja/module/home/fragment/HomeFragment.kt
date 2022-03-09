@@ -362,6 +362,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
                 hideLoadingOpsicorp()
                 Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data)
                 val bundle = Bundle()
+                data.isPersonalTrip = true
                 bundle.putInt(Constants.TYPE_ACCOMODATION, type)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             }

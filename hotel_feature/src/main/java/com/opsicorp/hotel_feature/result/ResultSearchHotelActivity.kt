@@ -99,7 +99,7 @@ class ResultSearchHotelActivity : BaseActivity(),
                 try {
                     if (p0.toString().length>0){
                         dataFilter.clear()
-                        dataFilter.addAll(data.filter { it.listHotelModel.nameHotel.toLowerCase().contains(p0.toString().toLowerCase()) })
+                        dataFilter.addAll(data.filter { it.listHotelModel.nameHotel.lowercase().contains(p0.toString().lowercase()) })
                         adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
                     }
                     else {
@@ -152,13 +152,13 @@ class ResultSearchHotelActivity : BaseActivity(),
         toolbar.doubleTitleGravity(toolbar.START)
         when(typeDestination){
             Constants.SELECT_NEARBY_CITY -> {
-                toolbar.setDoubleTitle(nameCity,"${departing} - ${duration.split(" ")[0].toInt()} Night(s)")
+                toolbar.setDoubleTitle(nameCity,"$departing - ${duration.split(" ")[0].toInt()} Night(s)")
             }
             Constants.SELECT_NEARBY_AIRPORT -> {
-                toolbar.setDoubleTitle(nameAirport,"${departing} - ${duration.split(" ")[0].toInt()} Night(s)")
+                toolbar.setDoubleTitle(nameAirport,"$departing - ${duration.split(" ")[0].toInt()} Night(s)")
             }
             Constants.SELECT_NEARBY_OFFICE -> {
-                toolbar.setDoubleTitle(nameOffice,"${departing} - ${duration.split(" ")[0].toInt()} Night(s)")
+                toolbar.setDoubleTitle(nameOffice,"$departing - ${duration.split(" ")[0].toInt()} Night(s)")
             }
         }
     }
@@ -536,10 +536,10 @@ class ResultSearchHotelActivity : BaseActivity(),
         data.correlationId = correlationId
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.origin      = dataTrip.originId
-        data.destination = dataTrip.destinationName
+        data.destination = dataTrip.destinationId
         data.destinationName = dataTrip.destinationName
         data.destinationCountry = idCountry
-        data.isShowPolicy = !dataTrip.isPrivateTrip
+        data.isShowPolicy = !dataTrip.isPersonalTrip
         return Globals.classToHashMap(data,PageHotelRequest::class.java)
     }
 
