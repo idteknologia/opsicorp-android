@@ -7,6 +7,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.mobile.travelaja.R
+import com.mobile.travelaja.utility.Globals
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import kotlinx.android.synthetic.main.layout_filter_search_flight.view.*
 
 class FilterOpsicorp : LinearLayout, View.OnClickListener {
@@ -42,6 +45,12 @@ class FilterOpsicorp : LinearLayout, View.OnClickListener {
         ic_short.setOnClickListener(this)
         ic_filter.setOnClickListener(this)
         ic_change_date.setOnClickListener(this)
+
+        if (Globals.isPertamina(context)){
+            rlChangeDate.gone()
+        } else {
+            rlChangeDate.visible()
+        }
 
         images.clear()
         images.add(ic_filter)

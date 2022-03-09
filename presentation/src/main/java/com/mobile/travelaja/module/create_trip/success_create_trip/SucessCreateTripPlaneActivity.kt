@@ -82,8 +82,8 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
             tv_cbt.text = "CBT"
         }
 
-        tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
-        tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
+        tv_start_date.text = DateConverter().getDate(data.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+        tv_end_date.text = DateConverter().getDate(data.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         initRecyclerViewApproval()
 
         Globals.delay(1500, object : Globals.DelayCallback {
@@ -159,8 +159,8 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         }
 
 
-        tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(data.startDate)
-        tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(data.endDate)
+        tv_start_date.text = DateConverter().getDate(data.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
+        tv_end_date.text = DateConverter().getDate(data.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         initRecyclerViewApproval()
         setLog(Constants.DATA_SUCCESS_CREATE_TRIP)
 

@@ -564,6 +564,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             line_btn_change.gone()
         }  else if (tripSummary.statusView == "Completely Approved" && tripSummary.nonCbt) {
             line_add_trip_item.gone()
+        } else if (!Globals.isPertamina(this)){
+            line_btn_change.gone()
         }
         else {
             line_add_trip_item.visible()

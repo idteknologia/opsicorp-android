@@ -45,7 +45,8 @@
 
         <include
             android:id="@+id/thirdContent"
-            layout="@layout/home_third_content" />
+            layout="@layout/home_third_content"
+            android:visibility="gone"/>
 
         <include
             android:id="@+id/fourthContent"
