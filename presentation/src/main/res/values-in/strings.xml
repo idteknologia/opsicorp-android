@@ -679,5 +679,7 @@ Please add your trip item for Approval."
     <string name="trip_history">Trip History</string>
     <string name="your_pic_email">your-pic-email@gmail.com</string>
     <string name="change_trip">Change Trip</string>
+    <string name="get_ready_for_the_business_trip">Get Ready For \n The Business Trip! </string>
+    <string name="your_schedule">Your Schedule</string>
     <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>

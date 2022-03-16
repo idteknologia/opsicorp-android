@@ -23,6 +23,8 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.activity.Create
 import com.mobile.travelaja.module.create_trip.newtrip_travelaja.CreateTripTravelAjaActivity
 import com.mobile.travelaja.module.home.presenter.HomeViewModel
 import com.mobile.travelaja.module.settlement.SettlementActivity
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import com.mobile.travelaja.viewmodel.DefaultViewModelFactory
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.header_home.*
@@ -77,13 +79,18 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         viewModel.getTrip()
         viewModel.trip.observe(viewLifecycleOwner) {
             setScheduleTripContent(it)
+            if (it.data.isNotEmpty()){
+                tripContent.visible()
+            } else {
+                tripContent.gone()
+            }
         }
 
         viewModel.isError.observe(viewLifecycleOwner) { isError ->
-            contentButtonSchedule.isVisible = isError
+            /*contentButtonSchedule.isVisible = isError*/
             contentItemSchedule.isVisible = !isError
         }
-        contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)
+        /*contentButtonSchedule.setOnClickListener((context) as View.OnClickListener)*/
         tvReimbursement.setOnClickListener {
             openReimbursement()
         }
@@ -100,7 +107,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         tvViewAll.isVisible = list.size > 2
         itemSchedule2.isVisible = list.size > 1
         contentItemSchedule.isVisible = list.isNotEmpty()
-        contentButtonSchedule.isVisible = list.isEmpty()
+        /*contentButtonSchedule.isVisible = list.isEmpty()*/
         tvViewAll.setOnClickListener((context) as View.OnClickListener)
         list.forEach {
             i++
@@ -181,7 +188,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
 
     private fun initHeader() {
         val dataProfile = getProfile()
-        tv_greeting.text = "Hi, ${formatName(dataProfile).substring(0, 1).toUpperCase()}${formatName(dataProfile).substring(1, formatName(dataProfile).length).toLowerCase()}"
+        tv_greeting.text = "Hello, ${formatName(dataProfile).substring(0, 1).toUpperCase()}${formatName(dataProfile).substring(1, formatName(dataProfile).length).toLowerCase()}"
         if (dataProfile.imageUrl.isNotEmpty())
             Picasso.get().load(dataProfile.imageUrl)
                     .into(img_profile)

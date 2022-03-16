@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:visibility="gone"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/margin_default">
 
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="#e3effd"
         android:paddingBottom="15dp"
-        tools:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -56,37 +57,53 @@
             app:layout_constraintLeft_toRightOf="@+id/ivIcon"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSchedule" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/contentItemSchedule"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="17dp"
         android:orientation="vertical"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/contentButtonSchedule">
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="#2a2a2a"
-            android:text="Your Upcoming Trip"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:textStyle="normal"
-            android:textSize="12sp"
-            android:textColor="#2a2a2a"
-            android:layout_marginTop="4dp"
-            android:text="All business trip list has been approved"
-            android:layout_marginBottom="20dp"
-            />
+            android:layout_marginBottom="17dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#000000"
+                android:text="@string/your_schedule"
+                />
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/tvViewAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/see_all"
+                android:textColor="#00776a"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <include
             android:id="@+id/itemSchedule1"
@@ -96,22 +113,10 @@
             android:id="@+id/itemSchedule2"
             layout="@layout/home_item_upcomming"
             android:layout_marginTop="10dp"
-            android:layout_height="79dp"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"/>
 
-        <TextView
-            android:id="@+id/tvViewAll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_regular"
-            android:textStyle="bold"
-            android:visibility="invisible"
-            android:textSize="14sp"
-            android:textColor="#00776a"
-            android:gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:text="View All Schedule"
-            />
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

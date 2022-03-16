@@ -131,7 +131,7 @@
         <item name="android:textColor">@color/colorBlueTitle</item>
     </style>
     <style name="TextLato_Bold">
-        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:fontFamily">@font/lato_bold</item>
         <item name="android:textColor">@color/colorBlueTitle</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
@@ -140,6 +140,11 @@
         <item name="android:fontFamily">@font/lato_regular</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textSize">14sp</item>
+    </style>
+    <style name="TextLato_Italic">
+        <item name="android:fontFamily">@font/lato_regular</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textSize">24sp</item>
     </style>
     <style name="SubtitleTextStyle" parent="TextDarkFontLato">
         <item name="android:textSize">16sp</item>

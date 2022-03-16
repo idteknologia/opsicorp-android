@@ -49,8 +49,10 @@
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv_1"
+                    style="@style/TextLato_Normal"
                     android:textSize="10sp"
                     android:text="@string/home"
+                    android:textColor="@color/colorTextHint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -70,8 +72,10 @@
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv_2"
+                    style="@style/TextLato_Normal"
                     android:textSize="10sp"
                     android:text="@string/search"
+                    android:textColor="#cccccc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -91,13 +95,16 @@
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv_3"
+                    style="@style/TextLato_Normal"
                     android:textSize="10sp"
                     android:text="@string/approval"
+                    android:textColor="#cccccc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/line_4"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -114,6 +121,7 @@
                     android:id="@+id/tv_4"
                     android:textSize="10sp"
                     android:text="@string/manage_trip"
+                    android:textColor="#cccccc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -133,8 +141,10 @@
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv_5"
+                    style="@style/TextLato_Normal"
                     android:textSize="10sp"
                     android:text="@string/profile"
+                    android:textColor="#cccccc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>

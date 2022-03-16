@@ -119,6 +119,7 @@
     <color name="colorGrayRoundWhite">#f5f5f5</color>
     <color name="colorGrayTextButtonFlight">#cc939396</color>
     <color name="colorTextHint">#24253d</color>
+    <color name="colorDisable">#cccccc</color>
 
     <color name="colorRedApproval">#bf171f</color>
     <color name="colorOrangeApproval">#ffbe47</color>
@@ -148,9 +149,9 @@
     <color name="textColorButtonOutline">#E30E17</color>
     <color name="headerList">#DA2128</color>
     <color name="toolbarOutline">#ffffff</color>
-    <color name="bgIconPlaneHome">#EFEFEF</color>
-    <color name="bgIconHotelHome">#EFEFEF</color>
-    <color name="bgIconTrainHome">#EFEFEF</color>
+    <color name="bgIconPlaneHome">#5499e4</color>
+    <color name="bgIconHotelHome">#2f6db0</color>
+    <color name="bgIconTrainHome">#38b7dc</color>
     <color name="textIconHome">#000000</color>
     <color name="buttonRemoveTextColor">#24253d</color>
     <color name="chipTextColorEnable">@color/buttonRemoveTextColor</color>

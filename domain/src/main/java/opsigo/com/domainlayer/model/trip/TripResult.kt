@@ -62,11 +62,11 @@ data class Trip(
     }
 
     fun getMonth(): String {
-        return convertDate("MMM", StartDate)
+        return convertDate(StartDate, "MMM", Locale.getDefault())
     }
 
     fun getDay(): String {
-        return convertDate("EEEE", StartDate)
+        return convertDate(StartDate, "EEEE", Locale.getDefault())
     }
 
     fun getDirectionDate(): String {

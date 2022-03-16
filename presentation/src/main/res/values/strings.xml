@@ -722,7 +722,7 @@ Please add your trip item for Approval."
     <string name="txt_sign_in">Sign In</string>
     <string name="txt_travelaja_basic">Travelaja Basic</string>
     <string name="txt_premium_account">Premium Account</string>
-    <string name="txt_enjoy_the_new_exprience">Enjoy the new experince Personal Trip with Corporate policy benefits!</string>
+    <string name="txt_enjoy_the_new_exprience">Enjoy the new experince Personal Trip with \n Corporate policy benefits!</string>
     <string name="txt_flight">Flight</string>
     <string name="txt_train">Train</string>
     <string name="txt_hotel">Hotel</string>
@@ -1240,5 +1240,7 @@ Please add your trip item for Approval."
     <string name="est_hotel">Est Hotel</string>
     <string name="idr">IDR</string>
     <string name="per_night">/night</string>
+    <string name="get_ready_for_the_business_trip">Get Ready For\nThe Business Trip! </string>
+    <string name="your_schedule">Next Schedule</string>
 </resources>
 
