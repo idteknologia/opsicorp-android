@@ -21,6 +21,8 @@ import com.mobile.travelaja.locale.LocalePrefrences
 import opsigo.com.datalayer.model.general.CountryEntity
 import kotlinx.android.synthetic.main.profile_fragment.*
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+import com.mobile.travelaja.module.my_booking.home_my_booking.MyBookingActivity
+import com.mobile.travelaja.module.my_booking.home_my_booking.MyBookingFragment
 import com.mobile.travelaja.module.signin.detail_profile.activity.DataProfileActivity
 import com.mobile.travelaja.module.signin.login.OpenIdLogin
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
@@ -52,6 +54,9 @@ class ProfileFragment : BaseFragment(),
             }
             lay_settings -> {
                 selectSettingsListener()
+            }
+            rlMyBooking -> {
+                gotoActivity(MyBookingActivity::class.java)
             }
         }
     }
@@ -121,6 +126,7 @@ class ProfileFragment : BaseFragment(),
         tv_join_trip.setOnClickListener(this)
         lay_personal.setOnClickListener(this)
         lay_settings.setOnClickListener(this)
+        rlMyBooking.setOnClickListener(this)
 
         setProfileData()
 
@@ -129,15 +135,14 @@ class ProfileFragment : BaseFragment(),
     private fun setProfileData() {
 
         val dataProfile = getProfile()
-        if (dataProfile.imageUrl.isNotEmpty()) {
+        /*if (dataProfile.imageUrl.isNotEmpty()) {
             Picasso.get()
                     .load(dataProfile.imageUrl)
                     .fit()
                     .centerCrop()
                     .into(img_profile)
 
-            img_dummy.visibility = View.GONE
-        }
+        }*/
 
         tv_name.text      = dataProfile.fullName //StringUtils().setUppercaseFirstLetter(dataProfile.firstName) + " " + StringUtils().setUppercaseFirstLetter(dataProfile.lastName)
         tv_position.text  = if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM) dataProfile.approval.reqPosName else dataProfile.position

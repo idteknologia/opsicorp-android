@@ -27,13 +27,11 @@ import com.mobile.travelaja.module.item_custom.calendar.NewCalendarViewOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.module.my_booking.purchase_list_detail.FilterPurchaseDialog
 
-class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
-    ToolbarOpsicorp.OnclickButtonListener,ButtonDefaultOpsicorp.OnclickButtonListener,
+class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,ButtonDefaultOpsicorp.OnclickButtonListener,
     NewCalendarViewOpsicorp.CallbackResult{
 
     override fun getLayout(): Int { return R.layout.my_booking_layout }
 
-    lateinit var callback : CallbackPressed
     val data = ArrayList<MyBookingModel>()
     val adapter by lazy { MyBookingAdapter(requireContext(), data) }
     var dateFrom = ""
@@ -42,7 +40,7 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     val dataFilterType by lazy { ArrayList<FilterPurchaseModel>() }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
-        initToolbar()
+
         initRecyclerView()
         getData(firstDateQuery().first, firstDateQuery().second, "${Constants.TripType.Airline},${Constants.TripType.Hotel},${Constants.TripType.KAI}")
         addDataFilter()
@@ -69,13 +67,6 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
                     getData(dateFrom,dateTo,typeItem)
                 }
             })
-    }
-
-    private fun initToolbar() {
-        toolbar.setTitleBar(getString(R.string.purchase_list))
-        toolbar.showBtnFilter()
-        toolbar.callbackOnclickToolbar(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { toolbar.singgleTitleGravity(toolbar.START) }
     }
 
     private fun initRecyclerView() {
@@ -145,30 +136,6 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
         }
     }
 
-    override fun btnBack() {
-        callback.back()
-    }
-
-    override fun logoCenter() {
-
-    }
-
-    override fun btnCard() {
-        showFilter()
-    }
-
-    fun callback(mCallbackPressed: CallbackPressed){
-        callback = mCallbackPressed
-    }
-
-    interface CallbackPressed{
-        fun back()
-    }
-
-    override fun onClicked() {
-
-    }
-
     fun firstDateQuery():Pair<String,String>{
         val referenceDate = Date()
         val c: Calendar = Calendar.getInstance()
@@ -220,6 +187,10 @@ class MyBookingFragment : BaseFragment(),OnclickListenerRecyclerView ,
     }
 
     override fun canceledCalendar() {
+
+    }
+
+    override fun onClicked() {
 
     }
 }

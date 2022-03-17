@@ -2,6 +2,7 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:fillViewport="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -10,47 +11,55 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/margin_default"
-        android:layout_marginRight="@dimen/margin_default">
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:background="@drawable/profile_background">
 
         <TextView
-            style="@style/RobotoRegular"
-            android:textSize="20dp"
-            android:text="@string/profile"
-            android:textColor="#00776a"
-            android:layout_marginTop="39dp"
+            style="@style/TextLato_Bold"
+            android:textSize="14sp"
+            android:text="@string/txt_premium_account"
+            android:textColor="#24253d"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp">
-                <com.mobile.travelaja.module.item_custom.circle_image.CircleImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:civ_border_color="#f5f5f5"
-                    android:src="#f5f5f5"
-                    android:id="@+id/img_profile"
-                    app:civ_circle_background_color="#f5f5f5"/>
+                <RelativeLayout
+                    android:id="@+id/ivProfile"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="21dp"
+                    android:scaleType="fitCenter"
+                    android:background="@drawable/ic_oval_home"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
 
-                <ImageView
-                    android:id="@+id/img_dummy"
-                    android:padding="20dp"
-                    android:src="@drawable/ic_profile"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/img_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:background="@drawable/profile_icon"
+                        android:scaleType="centerCrop" />
+                </RelativeLayout>
+
 
 
             <LinearLayout
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -58,19 +67,20 @@
                 <TextView
                     android:id="@+id/tv_name"
                     android:textColor="#24253d"
-                    style="@style/RobotoRegular"
-                    android:textSize="17dp"
-                    android:text="Dwi Wahyudi"
+                    android:layout_marginTop="10dp"
+                    style="@style/TextLato_Bold"
+                    android:textSize="16sp"
+                    tools:text="Dwi Wahyudi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/tv_position"
-                    android:text="000588 - Manager"
+                    tools:text="000588 - Manager"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/RobotoRegular"
+                    style="@style/TextLato_Normal"
                     android:textColor="#9924253d"/>
 
                 <RelativeLayout
@@ -100,6 +110,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,14 +125,14 @@
 
                     <TextView
                         android:id="@+id/tv_email"
-                        android:textColor="#8024253d"
                         style="@style/RobotoRegular"
-                        android:textSize="12sp"
-                        android:layout_marginLeft="7dp"
-                        android:layout_toRightOf="@+id/ic_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="dwi.wahyudi@opsigo.com"/>
+                        android:layout_marginLeft="7dp"
+                        android:layout_toRightOf="@+id/ic_address"
+                        android:text="dwi.wahyudi@opsigo.com"
+                        android:textColor="#8024253d"
+                        android:textSize="12sp" />
 
 
                 </RelativeLayout>
@@ -129,34 +140,56 @@
 
         </LinearLayout>
 
+    </LinearLayout>
+
         <RelativeLayout
-            android:layout_marginTop="20dp"
+            android:id="@+id/rlMyBooking"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="24dp"
             android:layout_width="match_parent"
             android:layout_height="54dp">
+
+            <ImageView
+                android:id="@+id/ivManageBooking"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_manage_booking"/>
             <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                android:id="@+id/tvMyBooking"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@+id/ivManageBooking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/total_tripplan"
-                android:textSize="17sp"
+                android:text="@string/my_booking"
+                android:textSize="16sp"
                 android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                style="@style/TextLato_Bold" />
+
+            <TextView
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@+id/ivManageBooking"
+                android:layout_below="@+id/tvMyBooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your personal trip booking"
+                android:textSize="12sp"
+                android:textColor="#8024253d"
+                style="@style/TextLato_Normal" />
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:src="@drawable/ic_chevron_next"/>
 
             <LinearLayout
-                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#e0e0e1"/>
+                android:layout_alignParentBottom="true"
+                android:background="#e0e0e1" />
         </RelativeLayout>
 
         <RelativeLayout

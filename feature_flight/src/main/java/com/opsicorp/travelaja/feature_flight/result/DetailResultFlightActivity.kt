@@ -308,7 +308,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
     private fun getDataSegment(): List<SegmentsItemRequest?>? {
         val data = ArrayList<SegmentsItemRequest>()
         val mData = SegmentsItemRequest()
-        mData.origin = ""
+        mData.origin = dataFlight.origin
         mData.destination           = dataFlight.destination
         mData.arriveDate            = dataFlight.arriveDate
         mData.airlineImageUrl       = dataFlight.imgAirline

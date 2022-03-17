@@ -42,13 +42,17 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".module.my_booking.home_my_booking.MyBookingActivity"
+            android:exported="false" />
+        <activity
             android:name=".InitActivity"
             android:exported="true"
             tools:node="merge">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".module.signin.login.activity.AddressActivity"
@@ -56,6 +60,7 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="${applicationId}.AddressActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -64,6 +69,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="${applicationId}.LoginActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
@@ -73,54 +79,63 @@
             tools:node="replace">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="${applicationId}" />
             </intent-filter>
-
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="https" />
                 <data android:host="dtmqa.opsinfra.net" />
                 <data android:path="/Account/Login" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="https" />
                 <data android:host="login.dev.idaman.pertamina.com" />
                 <data android:path="/Account/Logout" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="https" />
                 <data android:host="login.dev.idaman.pertamina.com" />
                 <data android:path="/signout-callback" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="https" />
                 <data android:host="adfs.pertamina.com" />
                 <data android:path="/adfs/ls/?" />
             </intent-filter>
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="https" />
                 <data android:host="dtmqa.opsinfra.net" />
                 <data android:path="/ssoc/signout-callback-oidc" />
             </intent-filter>
-
         </activity>
-
         <activity android:name=".module.my_booking.eticket.TicketBookingActivity" />
         <activity
             android:name=".module.settlement.SettlementActivity"

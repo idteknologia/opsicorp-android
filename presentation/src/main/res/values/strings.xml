@@ -769,7 +769,7 @@ Please add your trip item for Approval."
     <string name="txt_domestic_route">Domestic Route</string>
     <string name="txt_warning_itinerary_emptyt_field">Mohon pastikan Anda sudah mengisi field diatas</string>
     <string name="txt_itinerary_warning_city_all_same">Kota asal dan tujuan tidak boleh sama</string>
-    <string name="information_docs">Please attach your document!<br/><b>e.g.</b>invitation letter, official letter, PJS Document<br/>Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/><b>Maximum file size : 2 MB</b></string>
+    <string name="information_docs">Please attach your document!<br /><b>e.g.</b>invitation letter, official letter, PJS Document<br />Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br /><b>Maximum file size : 2 MB</b></string>
     <string name="txt_document_description"><![CDATA[Please attach your document! <br /> <b>e.g.</b> invitation letter or official letter <br />  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b>]]></string>
     <string name="txt_try_again">Try Again</string>
     <string name="txt_reimburstment">Reimbursement</string>

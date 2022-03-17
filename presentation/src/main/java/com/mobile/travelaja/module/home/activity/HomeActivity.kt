@@ -182,11 +182,11 @@ class HomeActivity : BaseActivity(),MenuBottomOpsicorp.OnclickButtonListener , V
 
     private fun initPageCallback() {
 
-        myBookingFragment.callback(object : MyBookingFragment.CallbackPressed{
+        /*myBookingFragment.callback(object : MyBookingFragment.CallbackPressed{
             override fun back() {
                 one()
             }
-        })
+        })*/
     }
 
     private fun checkUserLogin() {

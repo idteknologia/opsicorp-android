@@ -118,28 +118,28 @@ class MenuBottomOpsicorp : LinearLayout, View.OnClickListener {
             changeImageBtn(0)
             onclick.one()
             tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
-            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
+            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
         }
         else if(v==img_2||v==tv_2||v==line_2){
             changeImageBtn(1)
             onclick.two()
             tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
-            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
+            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
         }
         else if (v==img_3||v==tv_3||v==line_3){
             changeImageBtn(2)
             onclick.three()
             tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
-            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
+            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
         }
         else if(v==img_4||v==tv_4||v==line_4){
             changeImageBtn(3)
@@ -150,10 +150,10 @@ class MenuBottomOpsicorp : LinearLayout, View.OnClickListener {
             changeImageBtn(4)
             onclick.five()
             tv_5.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
-            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
-            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisable))
+            tv_1.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_2.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_3.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
+            tv_4.setTextColor(ContextCompat.getColor(context,R.color.colorDisabled))
         }
     }
 
