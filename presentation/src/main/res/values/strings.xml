@@ -182,7 +182,7 @@
     <string name="my_transaction">My Transaction</string>
     <string name="personal_information">Personal Information</string>
     <string name="location">Location</string>
-    <string name="faq_help">FAQ &amp; Help</string>
+    <string name="faq_help">FAQ</string>
 
     <string name="business_trip">Business</string>
     <string name="personal_trip">Personal Trip</string>
@@ -1242,5 +1242,9 @@ Please add your trip item for Approval."
     <string name="per_night">/night</string>
     <string name="get_ready_for_the_business_trip">Get Ready For\nThe Business Trip! </string>
     <string name="your_schedule">Next Schedule</string>
+    <string name="preferences">Preferences</string>
+    <string name="help_settings"><![CDATA[Help & Settings]]></string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="opsicorp_2020">© OPSICORP 2020</string>
 </resources>
 

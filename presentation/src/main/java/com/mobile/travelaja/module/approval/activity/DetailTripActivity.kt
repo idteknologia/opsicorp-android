@@ -556,7 +556,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
         val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT, false)
 
-        if (tripSummary.statusView == "Completely Rejected" || tripSummary.statusView == "Trip Completed") {
+        if (tripSummary.statusView == "Completely Rejected" || tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Canceled") {
             line_add_trip_item.gone()
             line_btn_change.gone()
         } else if (!debug) {

@@ -74,5 +74,9 @@ data class ConfigEntity(
     var isPersonalTrip: Boolean = false,
 
 	@field:SerializedName("HsShowHotelNotComply")
-	var hsShowHotelNotComply: Boolean = false
+	var hsShowHotelNotComply: Boolean = false,
+
+	@field:SerializedName("ShowCostcenter")
+	var showCostCenter: Boolean = false
+
 )

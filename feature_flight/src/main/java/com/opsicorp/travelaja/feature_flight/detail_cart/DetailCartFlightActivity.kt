@@ -102,7 +102,12 @@ class DetailCartFlightActivity : BaseActivity() {
 
         total_pax.text = "${this.getString(R.string.text_adult_times)} ${dataOrder.dataCardFlight.flightSegmentItem.first().totalPassenger}"
         name_flight.text = dataFlight.titleFlight
-        tv_total_amount.text        = "IDR ${Globals.formatAmount(dataFlight.price.split(".")[0])}"
+        if (dataOrder.dataCardFlight.typeFlight==0){
+            tv_total_amount.text        = "IDR ${Globals.formatAmount(dataFlight.price.split(".")[0])}"
+        } else {
+            tv_total_amount.text        = StringUtils().setCurrency("IDR",dataFlight.price.toDouble()/2, false)
+        }
+
     }
 
 

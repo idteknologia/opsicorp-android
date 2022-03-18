@@ -38,22 +38,20 @@ class ProfileFragment : BaseFragment(),
 
     override fun onClick(view: View?) {
         when(view){
-            tv_join_trip -> {
-                showDialogContruction(false)
-//                joinToTrip()
-            }
-            ic_join_trip -> {
-                showDialogContruction(false)
-//                joinToTrip()
-            }
             lay_language -> {
                 selectLanguangeListener()
             }
             lay_personal -> {
                 gotoActivity(DataProfileActivity::class.java)
             }
-            lay_settings -> {
-                selectSettingsListener()
+            lay_faq -> {
+
+            }
+            lay_privacy -> {
+
+            }
+            lay_terms -> {
+                
             }
             rlMyBooking -> {
                 gotoActivity(MyBookingActivity::class.java)
@@ -112,20 +110,20 @@ class ProfileFragment : BaseFragment(),
     }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
-        val sign_out: String = getString(R.string.sign_out)
+        val signOut: String = getString(R.string.sign_out)
+        btn_logout.changeTextColorButton(R.color.gray_total)
+        btn_logout.changeBackgroundDrawable(R.drawable.rounded_button_dark_select_budget)
 
         tv_version.text = BuildConfig.VERSION_NAME
 
-        btn_logout.setTextButton(sign_out)
-        btn_logout.changeTextColorButton(R.color.textButtonColor)
-        btn_logout.changeBackground(R.color.buttonColor)
+        btn_logout.setTextButton(signOut)
         btn_logout.callbackOnclickButton(this)
 
         lay_language.setOnClickListener(this)
-        ic_join_trip.setOnClickListener(this)
-        tv_join_trip.setOnClickListener(this)
         lay_personal.setOnClickListener(this)
-        lay_settings.setOnClickListener(this)
+        lay_faq.setOnClickListener(this)
+        lay_privacy.setOnClickListener(this)
+        lay_terms.setOnClickListener(this)
         rlMyBooking.setOnClickListener(this)
 
         setProfileData()

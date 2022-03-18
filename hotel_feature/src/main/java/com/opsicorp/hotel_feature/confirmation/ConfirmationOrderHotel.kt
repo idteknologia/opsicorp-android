@@ -152,7 +152,11 @@ class ConfirmationOrderHotel : BaseActivity(),
         tv_name_hotel_cart.text         = dataHotel.nameHotel
         tv_type_hotel_cart.text         = dataHotel.typeHotel
         tv_description_hotel_cart.text  = dataHotel.addressHotel
-        tv_detail_facility.text         = "24sqm Kingsize or Twin Bed 2m10 Bath Shower Free Wifi Minibar in Room Nespresso Art Nouveau Military Rate Id Must Be Shown on Arrival Incl Vat Wifi 24pm"
+        /*if (dataHotel.descriptioHotel.isEmpty()){
+            tv_detail_facility.text         = "No specification for this room"
+        } else {
+            tv_detail_facility.text         = dataHotel.descriptioHotel
+        }*/
         tv_double_bed.text              = dataValidation.typeBed
 
         val adapter = SummaryCancelAdapter(dataRoom.summary)
@@ -256,7 +260,7 @@ class ConfirmationOrderHotel : BaseActivity(),
     private fun initToolbar() {
         dataTrip = Serializer.deserialize(Constants.DATA_SUCCESS_CREATE_TRIP, SuccessCreateTripPlaneModel::class.java)
         ic_back.setOnClickListener(this)
-        tv_total_night.text = "${dataHotel.duration} Night (s)"
+        tv_total_night.text = dataHotel.duration
     }
 
     override fun onClicked() {

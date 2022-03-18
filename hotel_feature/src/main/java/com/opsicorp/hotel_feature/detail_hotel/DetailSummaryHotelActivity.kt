@@ -41,7 +41,11 @@ class DetailSummaryHotelActivity : BaseActivity() {
         total_night_room.text           = "Nights x$totalDate"
 
         tv_status_hotel_cart.text       = dataHotel.status
-        tv_pnr_hotel_cart.text          = dataHotel.pnrCode
+        if (dataHotel.pnrCode == "null"){
+            tv_pnr_hotel_cart.text          = "-"
+        } else {
+            tv_pnr_hotel_cart.text          = dataHotel.pnrCode
+        }
         tv_date_booking_hotel_cart.text = DateConverter().setDateFormat3(dataHotel.dateBooking)
         tv_name_hotel_cart.text         = dataHotel.nameHotel
         tv_type_hotel_cart.text         = dataHotel.typeHotel

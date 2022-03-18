@@ -274,7 +274,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
                 } else {
                     gotoActivity(CreateTripPertaminaActivity::class.java)
                 }
-            } else if (Globals.getBaseUrl(requireContext()) == "https://basicqa.opsicorp.com/") {
+            } else if (Globals.getBaseUrl(requireContext()) == "https://basicqa.opsicorp.com/" || !dataConfig.showCostCenter) {
                 gotoActivity(CreateTripTravelAjaActivity::class.java)
             } else {
                 gotoActivity(CreateTripActivity::class.java)

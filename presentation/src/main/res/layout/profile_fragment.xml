@@ -224,24 +224,37 @@
                 android:background="#e0e0e1"/>
         </RelativeLayout>
 
-        <RelativeLayout
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            style="@style/TextLato_Bold"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:text="@string/preferences"/>
+
+        <RelativeLayout
+            android:id="@+id/lay_personal"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
             <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/travel_expense_detail"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:text="@string/personal_information"
+                android:textColor="#b324253d"
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:src="@drawable/ic_chevron_next"/>
@@ -256,38 +269,39 @@
         <RelativeLayout
             android:id="@+id/lay_language"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
             <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:layout_toEndOf="@+id/img_airline"
                 android:text="@string/language"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:textColor="#b324253d"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_language"
-                android:layout_marginRight="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="7dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="7dp"
                 android:layout_toEndOf="@+id/img_airline"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/used_language"
                 android:textSize="12sp"
-                android:textColor="#8024253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:textColor="#00776a"
+                style="@style/RobotoRegular" />
 
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:src="@drawable/ic_chevron_next"/>
@@ -299,51 +313,31 @@
                 android:background="#e0e0e1"/>
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/lay_personal"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="54dp">
-            <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/personal_information"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
-
-            <ImageView
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:src="@drawable/ic_chevron_next"/>
-
-            <LinearLayout
-                android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#e0e0e1"/>
-        </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            style="@style/TextLato_Bold"
+            android:textSize="16sp"
+            android:textColor="#24253d"
+            android:text="@string/help_settings"/>
 
         <RelativeLayout
             android:id="@+id/lay_settings"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="54dp">
             <TextView
                 android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings"
                 android:textSize="17sp"
                 android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                style="@style/RobotoRegular" />
 
             <ImageView
                 android:layout_centerVertical="true"
@@ -360,23 +354,25 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/lay_faq"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
             <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
                 android:text="@string/faq_help"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:textColor="#b324253d"
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:src="@drawable/ic_chevron_next"/>
@@ -391,22 +387,23 @@
         <RelativeLayout
             android:id="@+id/lay_privacy"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
             <TextView
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
                 android:text="@string/privacy_policy"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:textColor="#b324253d"
+                android:textSize="14sp" />
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:src="@drawable/ic_chevron_next"/>
@@ -419,20 +416,29 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/lay_terms"
             android:layout_width="match_parent"
-            android:layout_height="54dp">
+            android:layout_height="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+
             <TextView
-                android:id="@+id/tv_version"
-                android:layout_marginLeft="7dp"
-                android:layout_toEndOf="@+id/img_airline"
-                android:layout_centerVertical="true"
+                android:id="@+id/tv_terms"
+                style="@style/TextLato_Normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ver 1.0.5"
-                android:textSize="17sp"
-                android:textColor="#24253d"
-                style="@style/RobotoRegular"
-                android:layout_toRightOf="@+id/img_airline" />
+                android:layout_centerVertical="true"
+                android:layout_marginStart="7dp"
+                android:text="@string/terms_and_conditions"
+                android:textColor="#b324253d"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:src="@drawable/ic_chevron_next"/>
 
             <LinearLayout
                 android:layout_alignParentBottom="true"
@@ -441,10 +447,34 @@
                 android:background="#e0e0e1"/>
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            style="@style/TextLato_Bold"
+            android:textSize="14sp"
+            android:textColor="#24253d"
+            tools:text="version"/>
+
+        <TextView
+            android:id="@+id/tv_opsicorp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            style="@style/TextLato_Normal"
+            android:textSize="14sp"
+            android:textColor="#00776a"
+            android:text="@string/opsicorp_2020"/>
+
 
         <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
             android:layout_width="match_parent"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="54dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:id="@+id/btn_logout"
             app:text="Sign Out"
             android:layout_marginBottom="90dp"

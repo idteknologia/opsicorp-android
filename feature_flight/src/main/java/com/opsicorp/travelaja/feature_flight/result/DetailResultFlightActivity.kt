@@ -316,6 +316,7 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
         mData.airline               = dataFlight.airline
         mData.airlineView           = dataFlight.titleAirline
         mData.num                   = 0
+        mData.arriveTime            = dataFlight.arriveTime
         mData.amount                = dataFlight.price.toInt()
         mData.airlineName           = dataFlight.titleAirline
         mData.classId               = dataFlight.classId

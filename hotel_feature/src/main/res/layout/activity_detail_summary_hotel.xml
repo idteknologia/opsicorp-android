@@ -7,76 +7,79 @@
     android:background="#f6f8f8"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".detail_hotel.DetailSummaryHotelActivity">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <RelativeLayout
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="30dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="30dp">
 
                 <ImageView
                     android:id="@+id/icClose"
-                    android:layout_marginLeft="@dimen/margin_default"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:layout_marginLeft="@dimen/margin_default"
                     android:src="@drawable/ic_close_black">
 
                 </ImageView>
 
                 <LinearLayout
-                    android:gravity="center"
-                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoBold"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:textColor="#24253d"
                         android:gravity="center_horizontal"
-                        android:text="Hotels Detail"/>
+                        android:text="Hotels Detail"
+                        android:textColor="#24253d"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/total_night"
+                        style="@style/RobotoRegular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoRegular"
-                        android:textStyle="normal"
-                        android:textSize="12sp"
-                        android:textColor="#91929e"
+                        android:layout_marginTop="3dp"
                         android:gravity="center_horizontal"
                         android:text="0 Nights"
-                        android:layout_marginTop="3dp"/>
+                        android:textColor="#91929e"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
 
                 </LinearLayout>
 
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginBottom="3dp"
-                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginBottom="3dp"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="3dp">
 
                 <LinearLayout
-                    android:padding="15dp"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:padding="15dp">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -96,41 +99,43 @@
                                 android:text="Reserved"
                                 android:textColor="#2b9a8e"
                                 android:textSize="14sp" />
-                            <TextView
-                                android:layout_marginTop="4dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="9sp"
-                                android:textColor="#91929e"
-                                android:lineSpacingExtra="9sp"
-                                style="@style/RobotoRegular"
-                                android:text="Booking Code (PNR)" />
 
                             <TextView
-                                android:visibility="visible"
-                                android:maxLength="10"
+                                style="@style/RobotoRegular"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:lineSpacingExtra="9sp"
+                                android:text="Booking Code (PNR)"
+                                android:textColor="#91929e"
+                                android:textSize="9sp" />
+
+                            <TextView
                                 android:id="@+id/tv_pnr_hotel_cart"
                                 style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="4dp"
                                 android:gravity="end"
+                                android:maxLength="10"
                                 android:text="AW5CR34RGTP"
                                 android:textColor="#24253d"
-                                android:textSize="12dp" />
+                                android:textSize="12dp"
+                                android:visibility="visible" />
 
                         </LinearLayout>
 
                         <LinearLayout
-                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
                             android:orientation="horizontal">
+
                             <LinearLayout
-                                android:layout_marginRight="20dp"
-                                android:layout_centerVertical="true"
                                 android:layout_width="1dp"
                                 android:layout_height="54dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="20dp"
                                 android:background="#f5f5f5"></LinearLayout>
 
 
@@ -165,10 +170,10 @@
                         android:textSize="14sp" />
 
                     <LinearLayout
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -186,42 +191,46 @@
                             android:textSize="9sp" />
 
                         <LinearLayout
-                            android:layout_marginLeft="5dp"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:orientation="horizontal">
 
                             <ImageView
                                 android:id="@+id/ic_start1"
-                                android:layout_marginLeft="4dp"
-                                android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
-                                android:layout_height="14dp" />
+                                android:layout_height="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:src="@mipmap/ic_star" />
+
                             <ImageView
                                 android:id="@+id/ic_start2"
-                                android:layout_marginLeft="4dp"
-                                android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
-                                android:layout_height="14dp" />
+                                android:layout_height="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:src="@mipmap/ic_star" />
+
                             <ImageView
                                 android:id="@+id/ic_start3"
-                                android:layout_marginLeft="4dp"
-                                android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
-                                android:layout_height="14dp" />
+                                android:layout_height="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:src="@mipmap/ic_star" />
+
                             <ImageView
                                 android:id="@+id/ic_start4"
-                                android:layout_marginLeft="4dp"
-                                android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
-                                android:layout_height="14dp" />
+                                android:layout_height="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:src="@mipmap/ic_star" />
+
                             <ImageView
                                 android:id="@+id/ic_start5"
-                                android:layout_marginLeft="4dp"
-                                android:src="@mipmap/ic_star"
                                 android:layout_width="14dp"
-                                android:layout_height="14dp" />
+                                android:layout_height="14dp"
+                                android:layout_marginLeft="4dp"
+                                android:src="@mipmap/ic_star" />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -239,25 +248,27 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1.5dp"
-                        android:background="#91929e"
-                        android:layout_marginTop="12dp"></LinearLayout>
+                        android:layout_marginTop="12dp"
+                        android:background="#91929e"></LinearLayout>
 
                     <RelativeLayout
-                        android:layout_marginTop="15dp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp">
+
                         <LinearLayout
-                            android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
                             android:orientation="vertical">
+
                             <TextView
+                                style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="12sp"
-                                android:textColor="#00776a"
                                 android:text="Total Price"
-                                style="@style/RobotoBold"/>
+                                android:textColor="#00776a"
+                                android:textSize="12sp" />
 
                             <TextView
                                 android:id="@+id/tv_prize_hotel_cart"
@@ -271,13 +282,13 @@
                                 android:textSize="14sp" />
 
                             <TextView
-                                android:visibility="gone"
+                                style="@style/RobotoBold"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="10sp"
-                                android:textColor="#d0021b"
                                 android:text="Not Comply"
-                                style="@style/RobotoBold"/>
+                                android:textColor="#d0021b"
+                                android:textSize="10sp"
+                                android:visibility="gone" />
                         </LinearLayout>
 
 
@@ -289,82 +300,80 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/line_reason_code"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="@dimen/margin_default"
-                android:layout_marginBottom="150dp"
-                android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginBottom="150dp"
                 app:cardCornerRadius="4dp"
                 app:cardElevation="3dp">
 
                 <LinearLayout
-                    android:paddingTop="18dp"
-                    android:paddingBottom="18dp"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingTop="18dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="18dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/tv_description"
+                            style="@style/RobotoBold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/RobotoBold"
-                            android:textStyle="normal"
-                            android:textSize="10sp"
-                            android:textColor="#eb0011"
                             android:text="Reason Code"
-                            />
+                            android:textColor="#eb0011"
+                            android:textSize="10sp"
+                            android:textStyle="normal" />
+
                         <TextView
                             android:id="@+id/tv_reason_code"
-                            android:layout_marginTop="6dp"
-                            android:layout_width="wrap_content"
+                            style="@style/RobotoBold"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="12sp"
-                            android:textColor="#24253d"
+                            android:layout_marginTop="6dp"
                             android:text="CZ - Fare option not available"
-                            style="@style/RobotoBold"/>
+                            android:textColor="#24253d"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                     <View
-                        android:layout_marginTop="17dp"
                         android:layout_width="match_parent"
                         android:layout_height="5dp"
-                        android:background="@drawable/background_dot_horizontal">
-                    </View>
+                        android:layout_marginTop="17dp"
+                        android:background="@drawable/background_dot_horizontal"></View>
 
                     <TextView
+                        style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoBold"
-                        android:textStyle="bold"
-                        android:textSize="12sp"
-                        android:textColor="#00776a"
+                        android:layout_marginTop="14dp"
                         android:text="Description :"
-                        android:layout_marginTop="14dp"/>
+                        android:textColor="#00776a"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
+                        style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/RobotoBold"
                         android:layout_marginTop="10dp"
-                        android:textStyle="normal"
-                        android:textSize="10sp"
-                        android:textColor="#91929e"
                         android:lineSpacingExtra="6sp"
                         android:text="Where a seat on a lower fare option was not available even though booking request was outside deadlines."
-                        />
+                        android:textColor="#91929e"
+                        android:textSize="10sp"
+                        android:textStyle="normal" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
 
         </LinearLayout>
@@ -387,7 +396,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            android:paddingTop="30dp"
+            android:paddingTop="20dp"
             android:orientation="vertical"
             android:paddingRight="@dimen/margin_default"
             android:paddingLeft="@dimen/margin_default">

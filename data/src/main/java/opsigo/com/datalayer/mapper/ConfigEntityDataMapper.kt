@@ -24,7 +24,7 @@ class ConfigEntityDataMapper{
         data.showBusinessTrip           = configEntity.showBusinessTrip
         data.codeCompany                = configEntity.client
         data.hsShowHotelNotComply       = configEntity.hsShowHotelNotComply
-
+        data.showCostCenter             = configEntity.showCostCenter
         data.mobileBackgroundImage    = configEntity.mobileBackgroundImage
         data.mobileBackgroundColor    = configEntity.mobileBackgroundColor
         data.mobileLogo               = configEntity.mobileLogo

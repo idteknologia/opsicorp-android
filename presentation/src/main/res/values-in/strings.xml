@@ -681,5 +681,8 @@ Please add your trip item for Approval."
     <string name="change_trip">Change Trip</string>
     <string name="get_ready_for_the_business_trip">Get Ready For \n The Business Trip! </string>
     <string name="your_schedule">Your Schedule</string>
+    <string name="preferences">Preferences</string>
+    <string name="help_settings"><![CDATA[Help & Settings]]></string>
+    <string name="opsicorp_2020">© OPSICORP 2020</string>
     <!--    <string name="information_docs">Please attach your document! <br/> <b>e.g.</b> invitation letter or official letter <br/>  Supported file extensions : pdf, doc, docx, xls, xlsx, jpg, jpeg, png.<br/>  <b>Maximum file size : 1 MB</b></string>-->
 </resources>
