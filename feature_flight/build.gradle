@@ -31,6 +31,9 @@ android {
         opsicorp_dev{
             dimension 'default'
         }
+        digitravel{
+            dimension 'default'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

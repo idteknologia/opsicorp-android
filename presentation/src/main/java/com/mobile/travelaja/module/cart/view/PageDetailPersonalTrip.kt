@@ -53,6 +53,9 @@ class PageDetailPersonalTrip : LinearLayout,OnclickListenerRecyclerView{
         if (data.isEmpty()){
             line_empty.visibility = View.VISIBLE
             line_empty_item.visibility = VISIBLE
+            btn_home_page.setOnClickListener {
+
+            }
         }
         else {
             line_empty.visibility = View.GONE

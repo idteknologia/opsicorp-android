@@ -78,6 +78,43 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772022917842:android:9052db8a2df9f5e6f36b0b",
+        "android_client_info": {
+          "package_name": "com.opsicorp.dtm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772022917842-h50qkae67s0qja6gn5ha5uk1mm0nd128.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.opsicorp.dtm",
+            "certificate_hash": "0e434abfff6f69a6af1f11a3a005d7eaba1226f1"
+          }
+        },
+        {
+          "client_id": "772022917842-6mkptjdrus6gve1nhh5e9rtiv3lt19j9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdbLgdQD1UX2nKZskWSa0jfwO-Utp6XTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772022917842-6mkptjdrus6gve1nhh5e9rtiv3lt19j9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

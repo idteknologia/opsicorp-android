@@ -19,8 +19,8 @@
 
     <TextView
         android:id="@+id/tv_title_empty"
-        android:text="Wow"
-        android:textSize="25dp"
+        android:text="Whoops!"
+        android:textSize="25sp"
         style="@style/RobotoBold"
         android:gravity="center"
         android:textColor="#24253d"
@@ -36,17 +36,19 @@
         style="@style/RobotoRegular"
         android:gravity="center"
         android:textColor="#9924253d"
-        android:text="Your cart is still"
+        android:text="Your cart is still empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </TextView>
 
     <com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
+        android:visibility="gone"
         android:layout_marginRight="@dimen/margin_default"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_width="match_parent"
         android:id="@+id/btn_home_page"
         android:layout_marginTop="56dp"
+        android:layout_marginBottom="30dp"
         app:text="Go to Homepage"
         android:layout_height="wrap_content">
     </com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp>

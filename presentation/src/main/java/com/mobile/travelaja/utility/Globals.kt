@@ -783,9 +783,8 @@ object Globals {
 
     fun isPertamina(context: Context) : Boolean {
         val urlPertamina = context.getString(R.string.base_api_pertamina)
-        return context.packageName == "com.opsicorp.travelaja"
+        return context.packageName == "com.opsicorp.travelaja" || context.packageName == "com.opsicorp.dtm"
     }
-
 
     fun getVersionCode(): String {
         return BuildConfig.VERSION_CODE.toString()

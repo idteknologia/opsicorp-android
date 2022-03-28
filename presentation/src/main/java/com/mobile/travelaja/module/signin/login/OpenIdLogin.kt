@@ -1,14 +1,12 @@
 package com.mobile.travelaja.module.signin.login
 
 import android.app.Activity
-import android.app.PendingIntent
-import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import com.mobile.travelaja.R
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Utils
 import net.openid.appauth.*
-import java.util.prefs.Preferences
 
 object OpenIdLogin {
     private const val scopes = "openid email api.auth profile offline_access user.read"
@@ -39,7 +37,8 @@ object OpenIdLogin {
     ) {
 
         if (isLogin){
-            val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+            /*val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")*/
+            val redirectUri = Uri.parse(context.getString(R.string.redirectUriIdaman))
 
             val serviceConfig = AuthorizationServiceConfiguration(
                 Uri.parse("$endpointIssuer/connect/authorize"), // authorization endpoint
@@ -82,7 +81,8 @@ object OpenIdLogin {
                                    clientId: String,
                                    endpointIssuer : String,
                                    authService: AuthorizationService){
-        val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+        /*val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")*/
+        val redirectUri = Uri.parse(context.getString(R.string.redirectUriIdaman))
 
         val serviceConfig = AuthorizationServiceConfiguration(
             Uri.parse("$endpointIssuer/connect/authorize"), // authorization endpoint
@@ -104,7 +104,8 @@ object OpenIdLogin {
                                   config: AuthorizationServiceConfiguration,
                                   authService: AuthorizationService){
 
-        val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+        /*val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")*/
+        val redirectUri = Uri.parse(context.getString(R.string.redirectUriIdaman))
 
         val idToken = getTokenIdOpenId(context)
         val endSessionRequest = EndSessionRequest.Builder(config)
@@ -136,7 +137,8 @@ object OpenIdLogin {
         authService: AuthorizationService,
         clientId: String
     ) {
-        val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")
+        /*val redirectUri = Uri.parse("${context.packageName}:/oauth2callback")*/
+        val redirectUri = Uri.parse(context.getString(R.string.redirectUriIdaman))
         val builder = AuthorizationRequest.Builder(
             config,
             clientId,

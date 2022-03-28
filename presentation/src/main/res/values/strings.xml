@@ -2,6 +2,7 @@
 <resources>
     <string name="init_activity" translatable="false">com.opsigo.travelaja.LoginActivity</string>
     <string name="login_activity_filter" translatable="false">com.opsigo.travelaja.AddressActivity</string>
+    <string name="redirectUriIdaman" translatable="false">com.opsicorp.dtm:/oauth2callback</string>
 
     <string name="app_name">Opsicorp</string>
 

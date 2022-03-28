@@ -68,6 +68,12 @@ android {
             versionName "v22"
             signingConfig opsicorpSigningVariable
         }
+        digitravel{
+            dimension 'default'
+            applicationId "com.opsicorp.dtm"
+            versionCode 1
+            versionName "1.1.1"
+        }
     }
     packagingOptions {
         exclude 'META-INF/rxjava.properties'
