@@ -2,8 +2,8 @@
 <resources>
     <string name="app_name" translatable="false">Digitravel Pertamina</string>
     <string name="opsicorp_url">Travel Corporate URL</string>
-    <string name="init_activity" translatable="false">com.opsicorp.digitravel.PertaminaIdamanActivity</string>
-    <string name="login_activity_filter" translatable="false">com.opsicorp.digitravel.AddressActivity</string>
+    <string name="init_activity" translatable="false">com.opsicorp.dtm.PertaminaIdamanActivity</string>
+    <string name="login_activity_filter" translatable="false">com.opsicorp.dtm.AddressActivity</string>
     <string name="login_with_idaman" translatable="false">Login with IdAMan</string>
     <string name="redirectUriIdaman" translatable="false">com.opsicorp.dtm:/oauth2callback</string>
     <string name="description_digitravel" translatable="false">With Digitravel, Pertamina Group employees can carry out the Travel Request, Travel Planning, Travel Settlement and Approval processes more easily.</string>

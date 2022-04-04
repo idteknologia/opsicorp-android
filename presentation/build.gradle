@@ -20,6 +20,12 @@ android {
             keyAlias = "travelAjaKey"
             keyPassword "TravelAja"
         }
+        digitravelSign {
+            storeFile file("digitravelKey.jks")
+            storePassword "Opsicorp"
+            keyAlias = "keyDigitravel"
+            keyPassword "Opsicorp"
+        }
     }
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -48,6 +54,7 @@ android {
     productFlavors {
         def opsicorpSigningVariable = signingConfigs.opsicorpSign
         def travelAjaSigningVariable = signingConfigs.travelAjaSign
+        def digitravelSigningVariable = signingConfigs.digitravelSign
         travelAja{
             dimension 'default'
             applicationId "com.opsicorp.travelaja"
@@ -73,6 +80,7 @@ android {
             applicationId "com.opsicorp.dtm"
             versionCode 1
             versionName "1.1.1"
+            signingConfig digitravelSigningVariable
         }
     }
     packagingOptions {

@@ -114,7 +114,7 @@ class ProfileFragment : BaseFragment(),
         btn_logout.changeTextColorButton(R.color.gray_total)
         btn_logout.changeBackgroundDrawable(R.drawable.rounded_button_dark_select_budget)
 
-        tv_version.text = BuildConfig.VERSION_NAME
+        tv_version.text = "Version ${BuildConfig.VERSION_NAME}"
 
         btn_logout.setTextButton(signOut)
         btn_logout.callbackOnclickButton(this)
