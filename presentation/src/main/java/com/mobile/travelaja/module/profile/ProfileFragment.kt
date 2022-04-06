@@ -45,13 +45,13 @@ class ProfileFragment : BaseFragment(),
                 gotoActivity(DataProfileActivity::class.java)
             }
             lay_faq -> {
-
+                gotoActivity(FAQActivity::class.java)
             }
             lay_privacy -> {
-
+                gotoActivity(PrivacyPolicyActivity::class.java)
             }
             lay_terms -> {
-                
+                gotoActivity(TermsActivity::class.java)
             }
             rlMyBooking -> {
                 gotoActivity(MyBookingActivity::class.java)

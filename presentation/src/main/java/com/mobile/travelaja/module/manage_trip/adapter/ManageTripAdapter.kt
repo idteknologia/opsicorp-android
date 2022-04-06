@@ -84,17 +84,40 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
             itemView.tv_header_month.text       = DateConverter().setDateFormatMonthYear(data.header)
             itemView.tv_purpose.text            = data.title
             itemView.tv_date.text               = DateConverter().setDateFormat4(data.start_date) + " - " + DateConverter().setDateFormat4(data.end_date)
-            itemView.tv_city.text               = data.destination
+            if (data.routes.isNotEmpty()){
+                when (data.routes.size) {
+                    1 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination}"
+                    }
+                    2 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination}"
+                    }
+                    3 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination}"
+                    }
+                    4 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination}"
+                    }
+                    5 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination} - ${data.routes[4].destination}"
+                    }
+                    else -> {
+                        itemView.tv_city.text = data.routes.last().destination
+                    }
+                }
+            } else {
+                itemView.tv_city.text = data.destination
+            }
             itemView.tv_trip_code.text          = data.tripCode
 
 
             val month = DateConverter().setDateFormatMonthYear(data.header)
 
-            if(month_temp_draft.equals(month)){
+            /*if(month_temp_draft.equals(month)){
                 itemView.tv_header_month.visibility = View.GONE
             }else{
                 itemView.tv_header_month.visibility = View.VISIBLE
-            }
+            }*/
             month_temp_draft = month
 
             itemView.setOnClickListener {
@@ -137,7 +160,7 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
 
     override fun getItemViewType(position: Int): Int {
         return when (items.get(position).status){
-            "Draft" -> VIEW_DRAFT
+            "Draft","Completely Approved" -> VIEW_DRAFT
             else -> VIEW_COMPLETED
         }
     }

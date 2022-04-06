@@ -1115,6 +1115,7 @@ Please add your trip item for Approval."
     <string name="ticketed">Ticketed</string>
     <string name="canceled">Canceled</string>
     <string name="expired">Expired</string>
+    <string name="pending">Pending</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
     <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
@@ -1202,7 +1203,7 @@ Please add your trip item for Approval."
     <string name="alert_not_include_intercity_transport">Are you sure save Reimbursement not include with Intercity transport</string>
     <string name="alert_not_include_other_expense">Are you sure save Reimbursement not include with Other Expense</string>
     <string name="not_text"></string>
-    <string name="trip_history">Trip History</string>
+    <string name="trip_history">History</string>
 
     <string name="not_available_flight">This trip not available flight</string>
     <string name="purchase_hotel_detail">E-ticket Itinerary</string>

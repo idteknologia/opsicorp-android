@@ -158,6 +158,8 @@
     <color name="chipBackgroundEnable">#1924253d</color>
     <color name="chipStrokeEnabled">@color/buttonRemoveTextColor</color>
     <color name="colorReimbursement">#00776a</color>
+    <color name="colorItemManageTrip">#24253d</color>
+    <color name="colorTextItemManageTrip">#f8f8f8</color>
 
 
 </resources>

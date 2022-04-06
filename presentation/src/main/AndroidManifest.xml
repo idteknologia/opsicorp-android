@@ -42,6 +42,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".module.profile.TermsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".module.profile.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".module.profile.FAQActivity"
+            android:exported="false" />
+        <activity
             android:name=".module.my_booking.home_my_booking.MyBookingActivity"
             android:exported="false" />
         <activity

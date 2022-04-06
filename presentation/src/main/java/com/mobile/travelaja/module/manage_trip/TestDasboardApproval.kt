@@ -183,43 +183,6 @@ class TestDasboardApproval: LinearLayout, View.OnClickListener,ButtonTopFilterAp
         fun seeAllList()
     }
 
-    fun dummy():TotalModelApprofal{
-        val data = TotalModelApprofal()
-        data.waitingApprofal   = "207"
-        data.partiallyApproved = "124"
-        data.partiallyRejected = "410"
-        data.approval          = "120"
-        data.rejected          = "50"
-        data.totalListApprofal = "911"
-
-        return data
-    }
-
-    fun dummy1():TotalModelApprofal{
-        val data = TotalModelApprofal()
-        data.waitingApprofal   = "10.007"
-        data.partiallyApproved = "10.924"
-        data.partiallyRejected = "4.010"
-        data.approval          = "1.000"
-        data.rejected          = "590"
-        data.totalListApprofal = "9.911"
-
-        return data
-    }
-
-    fun dummy2():TotalModelApprofal{
-        val data = TotalModelApprofal()
-        data.waitingApprofal   = "2.047"
-        data.partiallyApproved = "1.524"
-        data.partiallyRejected = "2.210"
-        data.approval          = "1.120"
-        data.rejected          = "150"
-        data.totalListApprofal = "8.911"
-
-        return data
-    }
-
-
     class TotalModelApprofal{
         var waitingApprofal     = ""
         var draft               = ""

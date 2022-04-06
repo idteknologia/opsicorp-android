@@ -106,41 +106,14 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
 
     private fun setTitleButton() {
 
-        //btn_approval.setTextAllButton("All (${data.size})")
-        //btn_approval.setTextWaitingButton("Waiting (${data.filter { it.status.equals("Waiting") }.size})")
-
-        top_button.setTextBtnLeft("Draft")
-        top_button.setTextBtnRight("Approved")
-
-        //btn_approval.setTextApproveButton("Approval (${data.filter { it.status.equals("Completely Approved") }.size})")
-        //btn_approval.setTextRejectedButton("Rejected (${data.filter { it.status.equals("Completely Rejected") }.size})")
-        //btn_approval.setTextExpiredButton("Expired (${data.filter { it.status.equals("Expired") }.size})")
-        //btn_approval.setTextParticiallyRejectedButton("Partially Rejected (${data.filter { it.status.equals("Partially Rejected")}.size})")
-        //btn_approval.setTextPartiallApprovedyButton("Partially Approved (${data.filter { it.status.equals("Partially Approved") }.size})")
-
-    /*    if(positionPage==0){
-            setLog("Test ==== >>> "+data.size)
-            setLog("Test ==== >>> "+dataFilter.size)
-            btn_approval.setTextAllButton("All(${data.size})")
-            btn_approval.setTextWaitingButton("Waiting(${data.filter { it.status.equals("Waiting") }.size})")
-            btn_approval.setTextApproveButton("Approval(${data.filter { it.status.equals("Completely Approved") }.size})")
-            btn_approval.setTextRejectedButton("Rejected(${data.filter { it.status.equals("Completely Rejected") }.size})")
-            btn_approval.setTextExpiredButton("Expired(${data.filter { it.status.equals("Expired") }})")
-            btn_approval.setTextParticiallyRejectedButton("Partially Rejected(${data.filter { it.status.equals("Partially Rejected") }})")
-            btn_approval.setTextPartiallApprovedyButton("Partially Approved(${data.filter { it.status.equals("Partially Approved") }})")
+        if (Globals.isPertamina(context)) {
+            top_button.setTextBtnLeft("Approved")
+            top_button.setTextBtnRight("Completed")
+        } else {
+            top_button.setTextBtnLeft("Draft")
+            top_button.setTextBtnRight("Approved")
         }
-        else{
-            setLog("Test ==== >) "+data.size)
-            setLog("Test ==== >) "+dataFilter.size)
-            btn_approval.setTextAllButton("All(${dataFilter.size})")
-            btn_approval.setTextWaitingButton("Waiting(${dataFilter.filter { it.status.equals("Waiting") }.size})")
-            btn_approval.setTextApproveButton("Approval(${dataFilter.filter { it.status.equals("Completely Approved") }.size})")
-            btn_approval.setTextRejectedButton("Rejected(${dataFilter.filter { it.status.equals("Completely Rejected") }.size})")
-            btn_approval.setTextExpiredButton("Expired(${dataFilter.filter { it.status.equals("Expired") }})")
-            btn_approval.setTextParticiallyRejectedButton("Partially Rejected(${dataFilter.filter { it.status.equals("Partially Rejected") }})")
-            btn_approval.setTextPartiallApprovedyButton("Partially Approved(${dataFilter.filter { it.status.equals("Partially Approved") }})")
 
-        }*/
     }
 
     private fun setInitRecyclerView() {
@@ -168,13 +141,15 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         GetDataGeneral(getBaseUrl(context)).getListTripplan(getToken(), "40", "1", "Code","1",tripDateFrom,tripDateTo,key, object : CallbackListTripplan{
             override fun successLoad(approvalModel: ArrayList<ApprovalModelAdapter>) {
                 loading_view.hide()
-                if (Globals.isPertamina(context)) {
+                /*if (Globals.isPertamina(context)) {
                     onCompleted()
                     top_button.completedButtonSelected()
                 } else {
                     onDraft()
                     top_button.draftButtonSelected()
-                }
+                }*/
+                onDraft()
+                top_button.draftButtonSelected()
 
                 if (approvalModel.isEmpty()) {
                     empty_view.show()
@@ -301,7 +276,11 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onDraft() {
         positionPage = 0
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.status == "Draft" })
+        if (Globals.isPertamina(context)){
+            dataFilter.addAll(data.filter { it.status == "Completely Approved" })
+        } else {
+            dataFilter.addAll(data.filter { it.status == "Draft" })
+        }
         dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }
 //        dataFilter.sortBy { it.start_date }
 //        dataFilter.reverse()
@@ -312,7 +291,12 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
     override fun onCompleted() {
         positionPage = 1
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Completely Rejected" || it.status == "Trip Completed" || it.status == "Canceled" })
+        if (Globals.isPertamina(context)){
+            dataFilter.addAll(data.filter { it.status == "Trip Completed" })
+        } else {
+            dataFilter.addAll(data.filter { it.status == "Completely Approved" })
+        }
+        /*dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Completely Rejected" || it.status == "Trip Completed" || it.status == "Canceled" })*/
         dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }
         adapter.setData(dataFilter)
         checkSelection(dataFilter)

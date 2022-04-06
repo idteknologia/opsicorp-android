@@ -17,29 +17,28 @@
             android:id="@+id/llTripHistory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
             android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            android:visibility="gone">
-
+            android:visibility="visible">
+            <ImageView
+                android:id="@+id/ivTripHistory"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_history"/>
             <TextView
                 android:id="@+id/tvTripHistory"
-                style="@style/RobotoMedium"
-                android:layout_marginStart="@dimen/margin_default"
+                style="@style/TextLato_Bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/tintTextView"
+                android:layout_gravity="center"
+                android:textSize="18sp"
+                android:textColor="#b324253d"
                 android:text="@string/trip_history"
                 />
 
-            <ImageView
-                android:id="@+id/ivTripHistory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_history"/>
         </LinearLayout>
 
         <TextView

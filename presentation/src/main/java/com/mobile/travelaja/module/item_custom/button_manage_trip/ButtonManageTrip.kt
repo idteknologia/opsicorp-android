@@ -37,19 +37,20 @@ class ButtonManageTrip : LinearLayout, View.OnClickListener {
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.button_right_left_rounded, this)
-        if (Globals.isPertamina(context)) {
-            ll_master_button.gone()
-        } else {
-            ll_master_button.visible()
-        }
 
         line_button_left.setOnClickListener(this)
         line_button_right.setOnClickListener(this)
         title_btn_left.setOnClickListener(this)
         title_button_right.setOnClickListener(this)
 
-        setTextBtnLeft("Draft")
-        setTextBtnRight("Approved")
+        if (Globals.isPertamina(context)){
+            setTextBtnLeft("Approved")
+            setTextBtnRight("Completed")
+        } else {
+            setTextBtnLeft("Draft")
+            setTextBtnRight("Approved")
+        }
+
 
         lineButtons.clear()
         lineDefault.clear()

@@ -239,6 +239,11 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     tvRefund.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                     icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
                 }
+                data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tvRefund.setText(R.string.pending)
+                    tvRefund.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
+                    icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_canceled))
+                }
                 data.status == "Reserved" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tvRefund.setText(R.string.txt_reserved)
                     tvRefund.setTextColor(ContextCompat.getColor(context,R.color.green_price))
@@ -362,6 +367,11 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     tv_status_hotel.setText(R.string.ticketed)
                     tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                     icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+                }
+                data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.pending)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_canceled))
                 }
                 data.status == "Reserved" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tv_status_hotel.setText(R.string.txt_reserved)

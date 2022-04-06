@@ -22,7 +22,7 @@
             android:layout_marginTop="40dp"
             android:textColor="#24253d"
             android:textSize="30sp"
-            android:text="Oops.."
+            android:text="Whoops!"
             style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -32,7 +32,7 @@
             android:layout_marginTop="12dp"
             android:textColor="#9924253d"
             android:textSize="14sp"
-            android:text="You don’t have any Trip Code"
+            android:text="You don’t have any Trip Code yet."
             style="@style/RobotoRegular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
