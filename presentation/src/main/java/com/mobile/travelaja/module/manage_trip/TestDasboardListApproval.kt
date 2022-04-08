@@ -294,7 +294,7 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         if (Globals.isPertamina(context)){
             dataFilter.addAll(data.filter { it.status == "Trip Completed" })
         } else {
-            dataFilter.addAll(data.filter { it.status == "Completely Approved" })
+            dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Partially Approved"})
         }
         /*dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Completely Rejected" || it.status == "Trip Completed" || it.status == "Canceled" })*/
         dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }

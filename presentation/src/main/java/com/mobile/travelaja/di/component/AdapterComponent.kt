@@ -17,6 +17,7 @@ import com.mobile.travelaja.module.item_custom.slider.SliderImageAdapter
 import com.mobile.travelaja.module.item_custom.slider.SliderImageModel
 import com.mobile.travelaja.module.signin.select.adapter.LookUpAdapter
 import com.mobile.travelaja.module.manage_trip.adapter.ManageTripAdapter
+import com.mobile.travelaja.module.manage_trip.adapter.TripHistoryAdapter
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.UploadModel
 import org.koin.android.ext.koin.androidContext
@@ -36,5 +37,6 @@ class AdapterComponent {
         factory { (data: ArrayList<SliderImageModel>) -> SliderImageAdapter(androidContext(),data) }
 //        factory { (data: ArrayList<CartModelAdapter>) -> ManageTripAdapter(androidContext(),data) }
         factory { (data: ArrayList<ApprovalModelAdapter>) -> ManageTripAdapter(androidContext(),data) }
+        factory { (data: ArrayList<ApprovalModelAdapter>) -> TripHistoryAdapter(androidContext(),data) }
     }
 }

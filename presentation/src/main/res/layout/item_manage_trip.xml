@@ -149,7 +149,7 @@
 
                     <TextView
                         android:id="@+id/tv_purpose"
-                        style="@style/RobotoBold"
+                        style="@style/TextLato_Bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -178,7 +178,7 @@
 
                     <TextView
                         android:id="@+id/tv_city"
-                        style="@style/RobotoRegular"
+                        style="@style/TextLato_Normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"

@@ -5,12 +5,14 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
 //import com.opsigo.opsicorp.module.item_custom.dasboard_approval.DasboardApproval
 
 import com.mobile.travelaja.utility.Constants
 import com.mobile.travelaja.utility.DateConverter
 import com.mobile.travelaja.base.BaseFragment
+import com.mobile.travelaja.utility.Globals
 import kotlinx.android.synthetic.main.manage_trip_fragment.*
 import kotlinx.android.synthetic.main.manage_trip_fragment_test.*
 import kotlinx.android.synthetic.main.manage_trip_fragment_test.line_dasboard
@@ -28,6 +30,11 @@ class TestManageTripFragment : BaseFragment()
         checkPositionAmployer()
         line_list_approval.setInitCallback(this)
         llTripHistory.setOnClickListener(this)
+        if (Globals.isPertamina(requireContext())){
+            ivTripHistory.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_history))
+        } else {
+            ivTripHistory.setImageDrawable(ContextCompat.getDrawable(requireContext(),R.drawable.ic_history_green))
+        }
     }
 
     private fun checkPositionAmployer() {
@@ -58,6 +65,10 @@ class TestManageTripFragment : BaseFragment()
     override fun onClick(v: View?) {
         when (v){
             llTripHistory -> {
+                val bundle = Bundle()
+                bundle.putString(TripHistoryActivity.TRIP_DATE_FROM, Constants.tripDateFrom)
+                bundle.putString(TripHistoryActivity.TRIP_DATE_TO, Constants.tripDateTo )
+                bundle.putString(TripHistoryActivity.KEY, Constants.key )
                 gotoActivity(TripHistoryActivity::class.java)
             }
         }

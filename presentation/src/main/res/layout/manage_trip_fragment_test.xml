@@ -27,7 +27,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_history"/>
+                tools:src="@drawable/ic_history"/>
             <TextView
                 android:id="@+id/tvTripHistory"
                 style="@style/TextLato_Bold"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="18sp"
-                android:textColor="#b324253d"
+                android:textColor="@color/colorTextHistory"
                 android:text="@string/trip_history"
                 />
 

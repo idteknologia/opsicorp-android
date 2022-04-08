@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_marginBottom="0dp"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/tv_header_month"
-        style="@style/RobotoBold"
+        style="@style/TextLato_Bold"
         android:layout_marginLeft="@dimen/margin_default"
         android:layout_marginRight="@dimen/margin_default"
         android:layout_width="match_parent"
@@ -17,12 +18,12 @@
         android:textColor="#212121"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
-        android:text="February 2019"/>
+        tools:text="February 2019"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_marginBottom="5dp"
-        android:layout_height="100dp" >
+        android:layout_height="121dp" >
 
         <RelativeLayout
             android:background="@android:color/white"
@@ -37,138 +38,93 @@
                 android:layout_marginLeft="@dimen/margin_default"
                 android:layout_marginRight="@dimen/margin_default"
                 android:layout_width="match_parent"
-                android:layout_height="100dp">
+                android:layout_height="121dp">
 
                 <RelativeLayout
                     android:id="@+id/layout_green"
                     android:layout_width="match_parent"
-                    android:layout_height="69dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:layout_marginBottom="1dp"
-                    android:background="@drawable/rounded_button_bottom_all_green">
+                    android:background="@color/colorItemManageTrip">
 
                     <TextView
-                        android:id="@+id/tv_purpose"
-                        style="@style/RobotoRegular"
+                        android:id="@+id/tv_date"
+                        style="@style/TextLato_Normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15sp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        android:text="Konferensi/Seminar yang diadakan oleh pihak ketiga"
+                        android:layout_marginBottom="10dp"
                         android:textColor="#fff"
-                        android:textSize="14sp" />
+                        android:textSize="12sp"
+                        tools:text="27 Mar - 31 Mar" />
 
-                    <LinearLayout
-                        android:id="@+id/layCity"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_trip_code"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/tv_purpose"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginBottom="5dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <!--                        <ImageView-->
-                        <!--                            android:src="@drawable/ic_point_gps_2"-->
-                        <!--                            android:id="@+id/img_date"-->
-                        <!--                            android:layout_marginLeft="15dp"-->
-                        <!--                            android:layout_marginRight="0dp"-->
-                        <!--                            android:gravity="center"-->
-                        <!--                            android:layout_width="14dp"-->
-                        <!--                            android:layout_height="14dp"/>-->
-
-                        <ImageView
-                            android:id="@+id/img_date"
-                            android:layout_width="14dp"
-                            android:layout_height="14dp"
-                            android:layout_below="@+id/tv_purpose"
-                            android:layout_marginLeft="15dp"
-                            android:layout_marginTop="0dp"
-                            android:gravity="center"
-                            android:src="@drawable/departure_date"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/tv_date"
-                            style="@style/RobotoRegular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/tv_purpose"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_toRightOf="@+id/img_date"
-                            android:gravity="center"
-                            android:text="27 Mar - 31 Mar"
-                            android:textColor="#fff"
-                            android:textSize="12sp" />
-
-
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_city"-->
-                        <!--                            android:layout_marginLeft="5dp"-->
-                        <!--                            android:textColor="#91929e"-->
-                        <!--                            android:textSize="12sp"-->
-                        <!--                            style="@style/RobotoRegular"-->
-                        <!--                            android:text="Yogyakarta"-->
-                        <!--                            android:gravity="center"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="wrap_content" />-->
-
-                        <!--                        <TextView-->
-                        <!--                            android:id="@+id/tv_status"-->
-                        <!--                            android:visibility="gone"-->
-                        <!--                            style="@style/RobotoRegular"-->
-                        <!--                            android:layout_width="wrap_content"-->
-                        <!--                            android:layout_height="match_parent"-->
-                        <!--                            android:layout_marginLeft="5dp"-->
-                        <!--                            android:gravity="center"-->
-                        <!--                            android:text="xxx"-->
-                        <!--                            android:textColor="#91929e"-->
-                        <!--                            android:textSize="12sp" />-->
-
-                    </LinearLayout>
-
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="15dp"
+                        tools:text="TP2018677647341"
+                        android:textColor="@color/colorTextItemManageTrip"
+                        android:textSize="12sp" />
 
                 </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tv_trip_code"
+                <LinearLayout
+                    android:id="@+id/layBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/layout_green"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#24253d"
-                    android:textSize="12sp"
-                    style="@style/RobotoBold"
-                    android:text="TP2018677647341"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="17dp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:visibility="gone"
-                    android:layout_below="@+id/layout_green"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="4dp"
-                    android:textColor="#24253d"
-                    android:textSize="12sp"
-                    style="@style/RobotoBold"
-                    android:text="status"
-                    android:gravity="center"
-                    android:layout_toRightOf="@id/tv_trip_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    <TextView
+                        android:id="@+id/tv_purpose"
+                        style="@style/TextLato_Bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="#24253d"
+                        android:textSize="12sp"
+                        tools:text="Meeting IBM Workshop" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layBottom"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_city"
+                        style="@style/TextLato_Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:gravity="center"
+                        tools:text="Yogyakarta"
+                        android:textColor="#91929e"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_marginTop="0dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="18dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
                 android:id="@+id/lay_btn_next"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -176,17 +132,17 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:background="@drawable/rounded_green_stroke_35"
+                    android:background="@drawable/rounded_green_stroke_gray_passanger_in_item_detail_purchase"
                     android:orientation="vertical"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp">
+                    android:layout_width="25dp"
+                    android:layout_height="25dp">
 
                     <ImageView
                         android:src="@drawable/ic_chevron_next_orange"
                         android:layout_width="8dp"
-                        android:layout_height="14dp"/>
+                        android:layout_height="10dp"/>
                 </LinearLayout>
 
             </LinearLayout>

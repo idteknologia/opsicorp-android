@@ -44,11 +44,34 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
 
         fun bind(data: ApprovalModelAdapter, position: Int) {
 
-            itemView.tv_status.text         = data.status
             itemView.tv_header_month.text   = DateConverter().setDateFormatMonthYear(data.header)
             itemView.tv_purpose.text        = data.title
             itemView.tv_date.text           = DateConverter().setDateFormat4(data.start_date) + " - " + DateConverter().setDateFormat4(data.end_date)
             itemView.tv_trip_code.text      = data.tripCode
+            if (data.routes.isNotEmpty()){
+                when (data.routes.size) {
+                    1 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination}"
+                    }
+                    2 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination}"
+                    }
+                    3 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +1"
+                    }
+                    4 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +2"
+                    }
+                    5 -> {
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +3"
+                    }
+                    else -> {
+                        itemView.tv_city.text = data.routes.last().destination
+                    }
+                }
+            } else {
+                itemView.tv_city.text = data.destination
+            }
 
             val month = DateConverter().setDateFormatMonthYear(data.header)
 
@@ -93,13 +116,13 @@ class ManageTripAdapter (val context: Context, private var items: ArrayList<Appr
                         itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination}"
                     }
                     3 -> {
-                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination}"
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +1"
                     }
                     4 -> {
-                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination}"
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +2"
                     }
                     5 -> {
-                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} - ${data.routes[2].destination} - ${data.routes[3].destination} - ${data.routes[4].destination}"
+                        itemView.tv_city.text = "${data.routes[0].origin} - ${data.routes[0].destination} - ${data.routes[1].destination} +3"
                     }
                     else -> {
                         itemView.tv_city.text = data.routes.last().destination

@@ -163,5 +163,6 @@
     <color name="colorReimbursement">#EEEEEE</color>
     <color name="colorItemManageTrip">#dddddd</color>
     <color name="colorTextItemManageTrip">#24253d</color>
+    <color name="colorTextHistory">#009688</color>
 
 </resources>
