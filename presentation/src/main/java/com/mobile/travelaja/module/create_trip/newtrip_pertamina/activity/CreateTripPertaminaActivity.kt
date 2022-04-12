@@ -531,16 +531,17 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
 
         GetDataTravelRequest(getBaseUrl()).checkDateAvaibility(getToken(), dataDate(), object : CallbackString {
             override fun successLoad(data: String) {
+                hideLoadingOpsicorp()
                 if (!data.contains("true")) {
                     showAllert(getString(R.string.sorry), data)
-                    hideLoadingOpsicorp()
                 } else {
                     bundle.putString(SelectTripRoutePertaminaActivity.START_DATE, m_startdate)
                     bundle.putString(SelectTripRoutePertaminaActivity.END_DATE, m_endate)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.IS_INTERNATIONAL, typeTrip)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.NON_CBT, nonCbt)
                     bundle.putBoolean(SelectTripRoutePertaminaActivity.OFF_DUTTY, offDutty)
-                    checkCashAdvance(bundle)
+                    gotoActivityWithBundle(SelectTripRoutePertaminaActivity::class.java, bundle)
+                    /*checkCashAdvance(bundle)*/
                 }
             }
 
@@ -550,7 +551,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         })
     }
 
-    private fun checkCashAdvance(bundle: Bundle) {
+    /*private fun checkCashAdvance(bundle: Bundle) {
         GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(), dataRequest(), object : CallbackCashAdvance {
             override fun successLoad(data: CashAdvanceModel) {
                 hideLoadingOpsicorp()
@@ -573,7 +574,7 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         data.startDate = tv_from.text.toString()
         data.endDate = et_end_date.text.toString()
         return Globals.classToHashMap(data, CashAdvanceRequest::class.java)
-    }
+    }*/
 
     private fun dataDate(): HashMap<Any, Any> {
         val data = CheckAvaibilityDateRequest()

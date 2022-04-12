@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class CashAdvanceRequest(
 
+	@field:SerializedName("TotalEstimatedCost")
+	var totalEstimatedCost: Int = 0,
+
 	@field:SerializedName("IsDomestic")
 	var isDomestic: Boolean = false,
 

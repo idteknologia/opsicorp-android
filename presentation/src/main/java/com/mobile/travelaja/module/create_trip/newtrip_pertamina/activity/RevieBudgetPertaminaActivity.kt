@@ -17,7 +17,6 @@ import com.mobile.travelaja.module.create_trip.newtrip_pertamina.viewmodel.Itine
 import com.mobile.travelaja.module.create_trip.success_create_trip.SucessCreateTripPlaneActivity
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
 import com.mobile.travelaja.utility.*
-import kotlinx.android.synthetic.main.activity_new_createtripplan.*
 import kotlinx.android.synthetic.main.activity_review_budget.*
 import kotlinx.android.synthetic.main.activity_review_budget.ic_back
 import kotlinx.android.synthetic.main.detail_price_bottom.*
@@ -26,6 +25,7 @@ import opsigo.com.datalayer.datanetwork.GetDataTravelRequest
 import opsigo.com.datalayer.datanetwork.dummy.bisni_strip.DataBisnisTripModel
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.datalayer.request_model.create_trip_plane.*
+import opsigo.com.domainlayer.callback.CallbackCashAdvance
 import opsigo.com.domainlayer.callback.CallbackEstimatedCostTravelRequest
 import opsigo.com.domainlayer.callback.CallbackSaveAsDraft
 import opsigo.com.domainlayer.model.create_trip_plane.ParticipantPertamina
@@ -100,6 +100,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
                 participanItem.estLaundry = dataCost.estLaundry.toInt()
                 participanItem.estHotel = dataCost.estHotel.toInt()
                 dataTrip.participant.add(participanItem)
+                checkCashAdvance()
 
             }
 
@@ -107,6 +108,41 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             }
 
         })
+    }
+
+    private fun checkCashAdvance() {
+        GetDataTravelRequest(getBaseUrl()).checkCashAdvance(getToken(), dataRequestCash(), object :
+            CallbackCashAdvance {
+            override fun successLoad(data: CashAdvanceModel) {
+                Constants.DATA_CASH_ADVANCE = Serializer.serialize(data)
+                setLog("Test Cash", Serializer.serialize(Constants.DATA_CASH_ADVANCE))
+                dataCashAdvance = Serializer.deserialize(Constants.DATA_CASH_ADVANCE, CashAdvanceModel::class.java)
+                if (dataCashAdvance.isAllowed.equals(true)) {
+                    llCashAdvanceToggle.visible()
+                    tv_currency.text = dataCashAdvance.currency
+                    cashAdvanceValueLimit = dataCashAdvance.maxAmount.toInt()
+                    /*et_min.hint = "Limit ${(Globals.formatAmount(dataCashAdvance.maxAmount))}"*/
+                } else {
+                    llCashAdvanceToggle.gone()
+                }
+
+            }
+
+            override fun failedLoad(message: String) {
+
+            }
+
+        })
+    }
+
+    private fun dataRequestCash(): HashMap<Any, Any> {
+        val data = CashAdvanceRequest()
+        data.totalEstimatedCost = dataCost.total.toInt()
+        data.isDomestic = !dataTrip.isInternational
+        data.activityType = tv_activity.text.toString()
+        data.startDate = tv_start_date.text.toString()
+        data.endDate = tv_date_end.text.toString()
+        return Globals.classToHashMap(data, CashAdvanceRequest::class.java)
     }
 
     private fun iniPrice(data: EstimatedCostTravelRequestModel) {
@@ -304,7 +340,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             }
         }
         setLog("Test Request", Serializer.serialize(dataTrip))
-        dataCashAdvance = Serializer.deserialize(Constants.DATA_CASH_ADVANCE, CashAdvanceModel::class.java)
+
 
         tv_purpose.text = dataTrip.namePusrpose
         tv_activity.text = dataTrip.nameActivity
@@ -331,16 +367,6 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
             tv_date_end.text = DateConverter().getDate(dataTrip.startDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
         } else {
             tv_date_end.text = DateConverter().getDate(dataTrip.endDate, "yyyy-MM-dd", "EEE, dd MMM yyyy")
-        }
-
-
-        if (dataCashAdvance.isAllowed.equals(true)) {
-            llCashAdvanceToggle.visible()
-            tv_currency.text = dataCashAdvance.currency
-            cashAdvanceValueLimit = dataCashAdvance.maxAmount.toInt()
-            /*et_min.hint = "Limit ${(Globals.formatAmount(dataCashAdvance.maxAmount))}"*/
-        } else {
-            llCashAdvanceToggle.gone()
         }
     }
 
