@@ -39,6 +39,7 @@ class SummaryEntityMapper() {
         summary.isDomestic        = from.isDomestic
         summary.isBookAfterApprove = from.isBookAfterApprove
         summary.isApproval          = from.isApproval
+        summary.isPersonalTrip      = from.isPersonalTrip
         summary.isPrivateTrip       = from.isPrivateTrip
         summary.isChangeTrip        = from.isChangeTrip
         summary.nonCbt        = from.nonCbt

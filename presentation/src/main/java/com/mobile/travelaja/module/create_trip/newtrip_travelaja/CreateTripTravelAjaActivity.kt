@@ -81,7 +81,7 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         presenter.setDataAutomatically()
         presenter.initRecyclerViewAttachment(rv_attachment)
         idBudget = "388888e0-2f5d-48da-9f13-9e93599f5ae5"
-        idCost = "000002"
+        idCost = "8452f175-d4cb-4d1e-8dad-56c3195a280f"
 
         changeButtonNextGrayColor()
     }

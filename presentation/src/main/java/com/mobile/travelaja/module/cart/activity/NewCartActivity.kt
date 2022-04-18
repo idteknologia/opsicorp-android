@@ -156,18 +156,19 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         page_list_bisnis_trip.setLoadingView()
         GetDataGeneral(getBaseUrl()).getListCart(Globals.getToken(), "40", "1", "Code", "1", object : CallbackListCart {
             override fun successLoad(approvalModel: ArrayList<CartModelAdapter>) {
+                page_list_bisnis_trip.hideLoadingView()
                 if (approvalModel.isNotEmpty()) {
                     toolbar.hideAddMoreItem()
                     mData.clear()
                     mData.addAll(approvalModel)
                     mData.reversed()
-                    page_list_bisnis_trip.hideLoadingView()
                     setDataListCart()
                 }
             }
 
             override fun failedLoad(message: String) {
                 Globals.showAlert(getString(R.string.sorry), message, this@NewCartActivity)
+                page_list_bisnis_trip.hideLoadingView()
             }
         })
     }
@@ -574,6 +575,11 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 hideWarningWaiting()
             }
 
+            itemsTrip.filter { it.status == "Booking Error" }.isNotEmpty() -> {
+                btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
+                hideWarningWaiting()
+            }
+
             itemsTrip.filter { it.status == "Ticketed" }.isNotEmpty() -> {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 hideWarningWaiting()
@@ -614,7 +620,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 issuedAll()
             }
             else {
-                if (tripSummary.type==Constants.PERSONAL_TRIP) {
+                if (tripSummary.isPersonalTrip) {
                     bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
                     gotoActivityWithBundle(PaymentActivity::class.java, bundle)
                 } else {

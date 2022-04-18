@@ -45,6 +45,14 @@
             android:textSize="14sp" />
     </RelativeLayout>
 
+    <include
+        android:id="@+id/empty_view"
+        android:layout_marginTop="70dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        layout="@layout/empty_cart_view"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="gone"
         android:layout_marginBottom="90dp"
@@ -62,6 +70,7 @@
         <com.mobile.travelaja.module.item_custom.empty_view.LoadingView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             android:id="@+id/loading_view">
 
         </com.mobile.travelaja.module.item_custom.empty_view.LoadingView>

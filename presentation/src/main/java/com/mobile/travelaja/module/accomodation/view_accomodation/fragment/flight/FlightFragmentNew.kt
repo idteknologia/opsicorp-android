@@ -174,6 +174,7 @@ class FlightFragmentNew : BaseFragment(),
 
         val def_origin = Globals.getConfigCompany(InitApplications.appContext).defaultOrigin
         val def_destinationn = Globals.getConfigCompany(InitApplications.appContext).defaultDestination
+        val config = getConfig()
 
         try {
             if (dataTripPlan.route.isNotEmpty()){
@@ -186,8 +187,7 @@ class FlightFragmentNew : BaseFragment(),
                 idDestination = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.route.first().destinationName.toLowerCase()) }?.id.toString()
                 destinationName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.route.first().destinationName.toLowerCase()) }?.name.toString()
                 tv_to.text = "$destinationName (${idDestination})"
-            }
-            else {
+            } else if (config.isPersonalTrip){
                 // setDefaultorigin
                 idOrigin = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_origin.toLowerCase()) }?.id.toString()
                 originName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_origin.toLowerCase()) }?.name.toString()
@@ -197,58 +197,20 @@ class FlightFragmentNew : BaseFragment(),
                 idDestination = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_destinationn.toLowerCase()) }?.id.toString()
                 destinationName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_destinationn.toLowerCase()) }?.name.toString()
                 tv_to.text = "$destinationName (${idDestination})"
+            }
+            else {
+                // setDefaultorigin
+                idOrigin = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.originId.toLowerCase()) }?.id.toString()
+                originName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.originName.toLowerCase()) }?.name.toString()
+                tv_from.text = "$originName (${idOrigin})"
+
+                //setDefaultDestination
+                idDestination = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.destinationId.toLowerCase()) }?.id.toString()
+                destinationName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.destinationName.toLowerCase()) }?.name.toString()
+                tv_to.text = "$destinationName (${idDestination})"
 
             }
         }catch (e:Exception){}
-
-
-        /*for (i in 0 until listdata.length()) {
-            val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
-            val model = SelectNationalModel()
-            model.name = mData.name
-            model.id = mData.id
-
-            if (model.name.toLowerCase().contains(def_origin.toLowerCase())) {
-                idOrigin = model.id
-                originName = model.name
-                tv_from.text = "$originName (${idOrigin})"
-                break
-            }
-        }*/
-
-        /*for (i in 0 until listdata.length()) {
-            val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
-            val model = SelectNationalModel()
-            model.name = mData.name
-            model.id = mData.id
-
-            if (model.name.equals(dataTripPlan.destinationName)) {
-                idDestination = model.id
-                destinationName = model.name
-                tv_to.text = "$destinationName (${idDestination})"
-
-                isFoundDestination = true;
-
-                Log.d("xfligx", "desti trip : " + dataTripPlan.destinationId);
-                break
-            }
-        }*/
-        /*if (!isFoundDestination) {
-
-            for (i in 0 until listdata.length()) {
-                val mData = Serializer.deserialize(listdata[i].toString(), CountryModel::class.java)
-                val model = SelectNationalModel()
-                model.name = mData.name
-                model.id = mData.id
-
-                if (model.id.equals(def_destinationn)) {
-                    idDestination = model.id
-                    destinationName = model.name
-                    tv_to.text = "$destinationName (${idDestination})"
-                    break
-                }
-            }
-        }*/
     }
 
     private fun checkSize() {
@@ -324,6 +286,7 @@ class FlightFragmentNew : BaseFragment(),
 
     private fun setOnClick() {
         top_button.callbackOnclickToolbar(this)
+        top_button.setFLightButton()
         top_button.setTextBtnLeft(getString(R.string.round_trip_or_oneway))
         top_button.setTextBtnRight(getString(R.string.multi_city))
 
@@ -622,7 +585,7 @@ class FlightFragmentNew : BaseFragment(),
         dataOrder.airlinePreference = tv_airline_prreferance.text.toString()
         Globals.DATA_LIST_FLIGHT    = ""
 
-        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+        if (Globals.isPertamina(requireContext())){
             showDialog("Waiting check available route")
             GetDataAccomodation(getBaseUrl()).getPreferedFlight(getToken(),dataRequestAirlinePref(dataOrder),object :
                 CallbackAirlinePreference {
@@ -720,10 +683,10 @@ class FlightFragmentNew : BaseFragment(),
         }
         data.cabinClassList    = dataCabinClass(dataOrder)
         data.travelAgent       = Globals.getConfigCompany(requireContext()).defaultTravelAgent
-        data.adult             = 1
-        data.infant            = 0
+        data.adult             = totalAdult
+        data.infant            = totalInfant
         data.employeeId        = Globals.getProfile(requireContext()).employId
-        data.child             = 0
+        data.child             = totalChild
         return Globals.classToHashMap(data, AirlinePrefByCompanyRequest::class.java)
 
     }

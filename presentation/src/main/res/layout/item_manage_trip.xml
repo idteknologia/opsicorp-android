@@ -99,8 +99,8 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:layout_width="113dp"
-                        android:layout_height="39dp"
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
                         android:layout_alignEnd="@+id/layPurpose"
                         android:background="@drawable/rectangle_item_manage_trip">
 
@@ -109,9 +109,8 @@
                             style="@style/TextLato_Bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
+                            android:layout_marginStart="15dp"
                             android:layout_marginTop="12dp"
-                            android:layout_marginEnd="11dp"
                             android:textColor="#24253d"
                             android:textSize="12sp"
                             tools:text="27 Mar - 31 Mar" />

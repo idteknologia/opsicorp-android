@@ -383,7 +383,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
             }
 
             itemView.tv_date_departure_flight_cart_top.text = DateConverter().setDateFormat3(data.bookingDate)
-            itemView.tv_airline_name.text                  = data.titleFlight
+            itemView.tv_airline_name.text                  = data.flightSegmentItem.first().nameAirline
             itemView.tv_pnr_flight_cart.text               = data.pnrCode + "x-pos " + position
             itemView.tv_progress_flight.text               = "on progress ${data.progressFlight}%"
 

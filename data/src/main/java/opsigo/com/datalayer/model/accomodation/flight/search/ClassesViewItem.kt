@@ -33,6 +33,9 @@ data class ClassesViewItem(
 	@field:SerializedName("Fare")
 	val fare: Double = 0.0,
 
+	@field:SerializedName("TotalFare")
+	val totalFare: Double = 0.0,
+
 	@field:SerializedName("Active")
 	val active: Boolean? = null,
 

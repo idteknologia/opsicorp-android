@@ -365,11 +365,11 @@ class BookingContactFlight : BaseActivity(),
     }
 
     override fun onClicked() {
-        if (bookingContactIsEmpty()||!isInputKtp){
+        if (bookingContactIsEmpty()){
             showAllert("Sorry",getString(R.string.booking_contact_not_empty))
         }
         else {
-            if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+            if (Globals.isPertamina(this)){
                 when {
                     phoneContactIsEmpty() -> {
                         showAllert("Sorry",getString(R.string.phone_contact_not_empty))

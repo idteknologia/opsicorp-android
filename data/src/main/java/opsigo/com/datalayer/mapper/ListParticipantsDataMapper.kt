@@ -81,7 +81,7 @@ class ListParticipantsDataMapper {
 
                                 dataFlight.flightSegmentItem.add(segmentMapperData(segmentsItem, tripFlightsItem.pnrCode.toString(),
                                         tripFlightsItem.status.toString(), tripFlightsItem.amount.toString(),
-                                        tripFlightsItem.passengers?.size.toString(), tripFlightsItem.airlineView.toString(), ))
+                                        tripFlightsItem.passengers?.size.toString()))
                             }
                             dataFlight.isRefunded       = tripFlightsItem.isRefunded
                             dataFlight.progressFLight    = if (tripFlightsItem.jobProgress?.progress==null) "" else tripFlightsItem.jobProgress.progress
@@ -235,11 +235,10 @@ class ListParticipantsDataMapper {
     }
 
     private fun segmentMapperData(segmentFlightEntity: SegmentsItem?, pnrCode: String, status: String,
-             price: String, totalPassenger: String, airlineName: String): FlightSegmentItem {
+             price: String, totalPassenger: String): FlightSegmentItem {
         val mData = FlightSegmentItem()
         Log.d("xixxx","on mapper 1 :" + segmentFlightEntity?.id + " - " + segmentFlightEntity?.airlineName)
 
-        mData.nameAirline = airlineName
         mData.pnrCode    = pnrCode
         mData.status       = status
         mData.airlineNumber = segmentFlightEntity?.flightNumber.toString()
@@ -254,6 +253,7 @@ class ListParticipantsDataMapper {
         mData.cityCodeDeparture = segmentFlightEntity?.origin.toString()
         mData.cityArrival   = segmentFlightEntity?.cityDestination.toString()
         mData.cityCodeArrival = segmentFlightEntity?.destination.toString()
+        mData.nameAirline    = segmentFlightEntity?.airlineName.toString()
         mData.terminal       = ""
         mData.estimatiTime  = segmentFlightEntity?.duration.toString()
         mData.seatFlight    = segmentFlightEntity?.flightNumber.toString()

@@ -2,10 +2,12 @@ package com.mobile.travelaja.module.item_custom.button_top
 
 import android.content.Context
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
 import kotlinx.android.synthetic.main.button_right_left_rounded.view.*
 
@@ -62,6 +64,19 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
         title_button_right.text = text
     }
 
+    fun setFLightButton(){
+        lineDefault.clear()
+        lineSelected.clear()
+        line_button_left.setBackgroundResource(R.drawable.rounded_button_up_flight_default_left)
+        line_button_right.setBackgroundResource(R.drawable.rounded_button_up_flight_selected_right)
+        title_btn_left.setTextColor(ContextCompat.getColor(context,R.color.colorGrayTextButtonFlight))
+        title_button_right.setTextColor(ContextCompat.getColor(context,R.color.white))
+        lineDefault.add(R.drawable.rounded_button_up_flight_default_left)
+        lineDefault.add(R.drawable.rounded_button_up_flight_default_right)
+        lineSelected.add(R.drawable.rounded_button_up_flight_selected_left)
+        lineSelected.add(R.drawable.rounded_button_up_flight_selected_right)
+    }
+
 
     interface OnclickButtonListener{
         fun btnLeft()
@@ -95,14 +110,14 @@ class ButtonTopRoundedOpsicorp : LinearLayout, View.OnClickListener {
                 lineView.background = (resources.getDrawable(lineSelected[position]))
                 textButtons.get(index).setTextColor(resources.getColor(R.color.white))
 
-                val face = Typeface.createFromAsset(context.getAssets(),
-                        "font/Roboto_Black.ttf")
+                val face = Typeface.createFromAsset(context.assets,
+                        "font/Roboto_Regular.ttf")
                 textButtons.get(index).typeface = face
             }
             else{
                 lineView.background = (resources.getDrawable(lineDefault[index]))
-                textButtons.get(index).setTextColor(resources.getColor(R.color.colorPrimary))
-                val face = Typeface.createFromAsset(context.getAssets(),
+                textButtons.get(index).setTextColor(resources.getColor(R.color.colorGrayTextButtonFlight))
+                val face = Typeface.createFromAsset(context.assets,
                         "font/Roboto_Regular.ttf")
                 textButtons.get(index).typeface = face
             }

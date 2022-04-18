@@ -18,6 +18,9 @@ data class AirlinePrefByCompanyRequest(
 	@field:SerializedName("TravelAgent")
 	var travelAgent: String? = null,
 
+	@field:SerializedName("IsShowPolicy")
+	var isShowPolicy : Boolean = false,
+
 	@field:SerializedName("Adult")
 	var adult: Int? = null,
 

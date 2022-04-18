@@ -44,6 +44,7 @@
                     android:lineSpacingExtra="4sp"
                     android:text="@string/congratulation" />
                 <TextView
+                    android:id="@+id/tvCongrats"
                     android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -160,7 +161,7 @@
                             style="@style/RobotoRegular"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="11dp"
+                            android:layout_marginTop="5dp"
                             android:textAlignment="textStart"
                             tools:text="8 Feb 2019 09:46"
                             android:textColor="#939396"

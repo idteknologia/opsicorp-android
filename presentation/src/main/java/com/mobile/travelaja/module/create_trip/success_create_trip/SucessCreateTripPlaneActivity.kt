@@ -144,6 +144,7 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_created_date2.text = "${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
+        tvCongrats.text = "Your trip plan has been created, add your trip item."
         tv_activity_type.gone()
         tv_activity_type_text.gone()
         if (data.destinationName.isNullOrEmpty()) {

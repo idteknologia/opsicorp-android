@@ -338,7 +338,7 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
     private fun chekExistPersonalTrip(type: Int) {
         val profile = getProfile()
         val config = getConfig()
-        if (profile.companyCode == Constants.codeCompanyTravelAja || config.isPersonalTrip || getBaseUrl().contains("basicqa.opsicorp.com")){
+        if (config.isPersonalTrip){
             showLoadingOpsicorp(true)
             GetDataTripPlane(getBaseUrl()).checkExistTripPersonal(getToken(), object : CallbackString {
                 override fun successLoad(data: String) {

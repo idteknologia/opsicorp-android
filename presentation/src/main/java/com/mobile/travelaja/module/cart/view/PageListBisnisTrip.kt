@@ -13,6 +13,8 @@ import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Globals.getBaseUrl
 
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import com.mobile.travelaja.utility.gone
+import com.mobile.travelaja.utility.visible
 import kotlinx.android.synthetic.main.page_cart_bisnis_trip.view.*
 import opsigo.com.datalayer.datanetwork.GetDataTripPlane
 import opsigo.com.datalayer.request_model.create_trip_plane.CancelTripPlan
@@ -45,26 +47,25 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
         init()
     }
 
-    fun visibleView(){
-        visibility = View.VISIBLE
-    }
-
-    fun goneView(){
-        visibility = View.GONE
-    }
-
-    fun invisibleView(){
-        visibility = View.INVISIBLE
-    }
-
     private fun init() {
         setOrientation(VERTICAL)
         View.inflate(context, R.layout.page_cart_bisnis_trip, this)
 
         initSetOnClick()
         initRecyclerView()
+        initCheckEmpty()
 
         btn_delet.visibility = View.GONE
+    }
+
+    private fun initCheckEmpty() {
+        if (data.isEmpty()){
+            empty_view.visible()
+            rv_list_bisnis_trip.gone()
+        } else {
+            empty_view.gone()
+            rv_list_bisnis_trip.visible()
+        }
     }
 
     private fun initSetOnClick() {
@@ -99,6 +100,14 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     fun hideLoadingView(){
         rv_list_bisnis_trip.visibility = View.VISIBLE
         loading_view.hide()
+    }
+
+    fun showEmptyCart(){
+        empty_view.visible()
+    }
+
+    fun hideEmptyCart(){
+        empty_view.gone()
     }
 
     interface Callback{

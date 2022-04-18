@@ -56,7 +56,7 @@ class AccomodationResultFlightMapper {
                 model.durationIncludeTransit        = departureflightItem.durationIncludeTransit.toString()
                 model.durationIncludeTransitView    = departureflightItem.durationIncludeTransitView.toString()
 
-                model.price             = classView.fare
+                model.price             = classView.totalFare
                 model.fareBasisCode     = classView.fareBasisCode.toString()
                 model.fareRuleKeys      = classView.fareRuleKeys.toString()
                 model.flightId          = classView.flightId.toString()
@@ -183,7 +183,7 @@ class AccomodationResultFlightMapper {
                 model.durationIncludeTransit        = returnFlight.durationIncludeTransit.toString()
                 model.durationIncludeTransitView    = returnFlight.durationIncludeTransitView.toString()
 
-                model.price            = classView.fare
+                model.price            = classView.totalFare
                 model.fareBasisCode    = classView.fareBasisCode.toString()
                 model.fareRuleKeys      = classView.fareRuleKeys.toString()
                 model.flightId          = classView.flightId.toString()
@@ -290,7 +290,7 @@ class AccomodationResultFlightMapper {
                     model.durationIncludeTransit        = it.durationIncludeTransit.toString()
                     model.durationIncludeTransitView    = it.durationIncludeTransitView.toString()
 
-                    model.price            = classView.fare
+                    model.price            = classView.totalFare
                     model.fareBasisCode    = classView.fareBasisCode.toString()
                     model.fareRuleKeys      = classView.fareRuleKeys.toString()
                     model.flightId          = classView.flightId.toString()

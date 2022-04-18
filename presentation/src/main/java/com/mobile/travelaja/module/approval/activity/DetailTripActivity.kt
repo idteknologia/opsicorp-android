@@ -526,11 +526,16 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_expired.text = "${tripSummary.expiredRemaining} ${getString(R.string.left_to_expired)}"
         tv_purpose.text = tripSummary.purpose
 
-        if (tripSummary.nonCbt){
-            tv_cbt.text = "Non CBT"
+        if (Globals.isPertamina(this)){
+            if (tripSummary.nonCbt){
+                tv_cbt.text = "Non CBT"
+            } else {
+                tv_cbt.text = "CBT"
+            }
         } else {
-            tv_cbt.text = "CBT"
+            tv_cbt.gone()
         }
+
 
         if (tripSummary.routes.isNotEmpty()) {
             if (tripSummary.routes.size == 1) {
@@ -891,12 +896,12 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         btnDownload.text    = "Download itinerary"
         btnDownloadCoverLetter.text  = "Download SKPD Letter"
 
-        if (tripSummary.status=="4"&&dataItems.isEmpty()){
+        val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
+
+        if (tripSummary.status=="4"&&dataItems.isEmpty()&&!isParticipant){
             lineCanceltrip.visibility = View.VISIBLE
             btnCancelTrip.visibility  = View.VISIBLE
         }
-
-        val isParticipant = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT,false)
 
         if (isParticipant&&tripSummary.tripParticipantModels.find { it.employId==getProfile().employId }?.itinerary!="null") {
             lineDownload.visibility = View.VISIBLE

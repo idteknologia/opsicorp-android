@@ -43,6 +43,7 @@ data class SummaryModel(
         var isDomestic :Boolean = false,
         var isBookAfterApprove :Boolean = false,
         var isApproval :Boolean = false,
+        var isPersonalTrip : Boolean = false,
         var isPrivateTrip :Boolean = false,
         var isTripPartner :Boolean = false,
         var parterName :String = "",

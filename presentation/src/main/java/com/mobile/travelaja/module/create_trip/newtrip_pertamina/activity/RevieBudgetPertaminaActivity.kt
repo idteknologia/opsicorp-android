@@ -454,7 +454,7 @@ class RevieBudgetPertaminaActivity : BaseActivityBinding<ActivityReviewBudgetBin
         dataRequest.businessTripType = dataTrip.nameActivity
         dataRequest.startDate = dataTrip.startDate
         dataRequest.returnDate = dataTrip.endDate
-        dataRequest.type = 2 //Globals.getConfigCompany(this).travelingPurposeFormType.toInt()
+        dataRequest.type = 1
         dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
         dataRequest.isDomestic = !dataTrip.isInternational
         dataRequest.remark = dataTrip.notes

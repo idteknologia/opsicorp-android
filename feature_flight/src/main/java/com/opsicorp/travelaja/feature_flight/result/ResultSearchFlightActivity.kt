@@ -212,6 +212,7 @@ class ResultSearchFlightActivity : BaseActivity(),
         }
         data.cabinClassList    = dataCabinClass()
         data.travelAgent       = Globals.getConfigCompany(this).defaultTravelAgent
+        data.isShowPolicy      = Constants.isBisnisTrip
         data.adult             = 1
         data.infant            = 0
         data.employeeId        = Globals.getProfile(this).employId
