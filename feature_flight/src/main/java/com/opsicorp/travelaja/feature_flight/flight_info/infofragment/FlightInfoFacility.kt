@@ -18,7 +18,7 @@ class FlightInfoFacility : BaseFragment() {
     }
 
     var data = ArrayList<FacilityFlightModel>()
-    val adapter by lazy { FacilityFlightListAdapter(context!!,data) }
+    val adapter by lazy { FacilityFlightListAdapter(requireContext(),data) }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         initRecyclerView()

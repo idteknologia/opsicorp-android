@@ -98,11 +98,11 @@ class ConfirmationFlightAdapter (val context: Context, private var items: ArrayL
             }
         }
 
-        if (data.notcomply){
-            holder.itemView.tv_not_comply.visibility = View.VISIBLE
+        if (data.isComply){
+            holder.itemView.tv_not_comply.visibility = View.GONE
         }
         else{
-            holder.itemView.tv_not_comply.visibility = View.GONE
+            holder.itemView.tv_not_comply.visibility = View.VISIBLE
         }
     }
 

@@ -277,9 +277,17 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         positionPage = 0
         dataFilter.clear()
         if (Globals.isPertamina(context)){
-            dataFilter.addAll(data.filter { it.status == "Completely Approved" })
+            data.filter {
+                it.status == "Completely Approved"
+            }.forEach {
+                dataFilter.add(it)
+            }
         } else {
-            dataFilter.addAll(data.filter { it.status == "Draft" })
+            data.filter {
+                it.status == "Draft"
+            }.forEach {
+                dataFilter.add(it)
+            }
         }
         dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }
 //        dataFilter.sortBy { it.start_date }
@@ -292,9 +300,17 @@ class TestDasboardListApproval: LinearLayout, RecyclerItemTouchHelper.RecyclerIt
         positionPage = 1
         dataFilter.clear()
         if (Globals.isPertamina(context)){
-            dataFilter.addAll(data.filter { it.status == "Trip Completed" })
+            data.filter {
+                it.status == "Trip Completed"
+            }.forEach {
+                dataFilter.add(it)
+            }
         } else {
-            dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Partially Approved"})
+            data.filter {
+                it.status == "Completely Approved" || it.status == "Partialy Approved"
+            }.forEach {
+                dataFilter.add(it)
+            }
         }
         /*dataFilter.addAll(data.filter { it.status == "Completely Approved" || it.status == "Completely Rejected" || it.status == "Trip Completed" || it.status == "Canceled" })*/
         dataFilter.forEachIndexed { _, approvalModelAdapter -> approvalModelAdapter.selected = false }

@@ -43,7 +43,7 @@ class InfoDepartureArrivalAdapter (val context: Context, private var items: Arra
         holder.itemView.tv_name_arrival.text = data.arrivalDisplay
         holder.itemView.tv_date_arrival.text = data.dateArrival
         holder.itemView.tv_airport_arrival.text = data.arrivalAirport
-        holder.itemView.tv_airport_terminal.text = "Terminal: ${data.originTerminal}"
+        holder.itemView.tv_airport_terminal.text = "Terminal: ${data.originTerminal.replace("null","")}"
 
         if (data.imageFlight.isNotEmpty()){
             Picasso.get()

@@ -468,17 +468,16 @@ class BookingContactFlight : BaseActivity(),
     }
 
     private fun getDataFlight(): HashMap<Any, Any> {
-        if(getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+        return if(Globals.isPertamina(this)){
             val model = ReserveFlightMulticityRequest()
             model.dataBooking = getDataBooking()
             model.header = getHeaderMulticity()
-            return Globals.classToHashMap(model, ReserveFlightMulticityRequest::class.java)
-        }
-        else {
+            Globals.classToHashMap(model, ReserveFlightMulticityRequest::class.java)
+        } else {
             val model = ReserveFlightRequest()
             model.dataBooking = getDataBooking()
             model.header = getHeader()
-            return Globals.classToHashMap(model, ReserveFlightRequest::class.java)
+            Globals.classToHashMap(model, ReserveFlightRequest::class.java)
         }
     }
 
@@ -601,7 +600,7 @@ class BookingContactFlight : BaseActivity(),
                     data.email          = bookingContactAdapterModel.sim.email
                     data.mobilePhone    = bookingContactAdapterModel.sim.mobilePhone
                     data.homePhone      = bookingContactAdapterModel.sim.mobilePhone
-                    data.birthDate      = bookingContactAdapterModel.sim.birthDate
+                    data.birthDate      = bookingContactAdapterModel.sim.birthDate.replace("00:00:00","").trim()
                     data.title          = bookingContactAdapterModel.sim.title
                     data.idNumber       = bookingContactAdapterModel.sim.idSim
                     data.identityNumber = bookingContactAdapterModel.sim.idSim
@@ -619,7 +618,7 @@ class BookingContactFlight : BaseActivity(),
                     data.email          = bookingContactAdapterModel.pasport.email
                     data.mobilePhone    = bookingContactAdapterModel.pasport.mobilePhone
                     data.homePhone      = bookingContactAdapterModel.pasport.mobilePhone
-                    data.birthDate      = bookingContactAdapterModel.pasport.birtDate
+                    data.birthDate      = bookingContactAdapterModel.pasport.birtDate.replace("00:00:00","").trim()
                     data.title          = bookingContactAdapterModel.pasport.title
                     data.idNumber       = bookingContactAdapterModel.pasport.passporNumber
                     data.identityNumber = bookingContactAdapterModel.pasport.passporNumber
@@ -637,7 +636,7 @@ class BookingContactFlight : BaseActivity(),
                     data.email          = bookingContactAdapterModel.idcard.email
                     data.mobilePhone    = bookingContactAdapterModel.idcard.mobilePhone
                     data.homePhone      = bookingContactAdapterModel.idcard.mobilePhone
-                    data.birthDate      = bookingContactAdapterModel.idcard.birthDate
+                    data.birthDate      = bookingContactAdapterModel.idcard.birthDate.replace("00:00:00","").trim()
                     data.title          = bookingContactAdapterModel.idcard.title
                     data.idNumber       = bookingContactAdapterModel.idcard.idCart
                     data.identityNumber = bookingContactAdapterModel.idcard.idCart

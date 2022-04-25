@@ -38,6 +38,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     lateinit var dataListFlight: DataListOrderAccomodation
     lateinit var dataOrder: OrderAccomodationModel
     var allreadySelectReasonCode = false
+    var isComply = false
     val dataFligt = ArrayList<ResultListFlightModel>()
     val adapterPrice by lazy { TotalPriceAdapter(this)}
     val adapter by lazy { ConfirmationFlightAdapter(this, data) }
@@ -196,6 +197,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
                 mData.depatureAirportName = resultListFlightModel.originAirport
                 mData.arrivalAirportName = resultListFlightModel.destinationAirport
+                mData.isComply           = resultListFlightModel.isComply
+                isComply                 = resultListFlightModel.isComply
 
 
                 mData.time_arrival  = resultListFlightModel.arriveTime
@@ -242,7 +245,8 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
                 mData.depatureAirportName = resultListFlightModel.originAirport
                 mData.arrivalAirportName = resultListFlightModel.destinationAirport
-
+                mData.isComply           = resultListFlightModel.isComply
+                isComply                 = resultListFlightModel.isComply
 
                 mData.time_arrival  = resultListFlightModel.arriveTime
                 mData.date_arrival  = DateConverter().getDate(resultListFlightModel.arrivalDate,"yyyy-MM-dd","dd MMM")
@@ -254,6 +258,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
                 dataList.add(mData)
             }
         }
+
         adapter.setData(dataList)
         showOrHideNotComply()
 
@@ -261,12 +266,12 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     private fun showOrHideNotComply() {
-        if (data.filter { it.notcomply }.isNotEmpty()){
-            line_reason_code.visibility = View.VISIBLE
-            line_reason_code.setOnClickListener(this)
+        if (isComply){
+            line_reason_code.visibility = View.GONE
         }
         else {
-            line_reason_code.visibility = View.GONE
+            line_reason_code.visibility = View.VISIBLE
+            line_reason_code.setOnClickListener(this)
         }
     }
 
@@ -382,16 +387,17 @@ class ConfirmOrderFlightActivity : BaseActivity(),
     }
 
     override fun onClicked() {
-        if (data.filter { it.notcomply }.isNotEmpty()){
+        if (isComply){
+            gotoActivity(BookingContactFlight::class.java)
+        }
+        else{
             if (allreadySelectReasonCode){
                 gotoActivity(BookingContactFlight::class.java)
             }
             else {
                 showAllert("Sorry","Please Select ReasonCode")
             }
-        }
-        else{
-            gotoActivity(BookingContactFlight::class.java)
+
         }
     }
 
@@ -410,7 +416,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
 
     private fun selectReasonCode() {
         val selectAccomodation = SelectReasonAccomodation(true,R.style.CustomDialog, Constants.DATA_REASON_CODE_FLIGHT)
-        selectAccomodation.show(supportFragment,"dialog")
+        selectAccomodation.show(supportFragmentManager,"dialog")
 
         selectAccomodation.setCallbackListener(object : SelectReasonAccomodation.CallbackSelectPreferance{
             override fun callback(model: ReasonCodeModel) {

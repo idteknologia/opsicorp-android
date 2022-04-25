@@ -36,7 +36,7 @@ class ConfirmationFlightModel {
     var totalPassengerInt = 0
     var totalPrice    = ""
 
-    var notcomply      = false
+    var isComply      = false
     var isMultiCity    = false
 
     var flightSegmentItem : ArrayList<FlightSegmentItem> = ArrayList()

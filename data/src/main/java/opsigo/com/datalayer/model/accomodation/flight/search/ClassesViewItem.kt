@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 data class ClassesViewItem(
 
 	@field:SerializedName("IsComply")
-	val isComply: Boolean? = null,
+	val isComply: Boolean = false,
 
 	@field:SerializedName("PaxFare")
 	val paxFare: Any? = null,
