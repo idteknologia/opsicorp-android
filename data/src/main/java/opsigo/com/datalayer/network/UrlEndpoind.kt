@@ -193,7 +193,7 @@ interface UrlEndpoind {
     fun getDataStationTrain(@Header("Authorization")token:String): Call<ResponseBody>
 
     @GET(MyURL.COUNTRY)
-    fun getDataCountry(): Call<ResponseBody>
+    fun getDataCountry(@Header("Authorization")token:String): Call<ResponseBody>
 //    fun getDataCountry(@Header("Authorization")token:String): Call<ResponseBody>
 
     @GET(MyURL.TOTAL_APROVAL)

@@ -77,7 +77,7 @@ class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
     }
 
     override fun getDataCountry(token: String, callbackCountry: CallbackCountry) {
-        apiOpsicorp.getDataCountry().enqueue(object :Callback<ResponseBody>{
+        apiOpsicorp.getDataCountry(token).enqueue(object :Callback<ResponseBody>{
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callbackCountry.failedLoad(t.message!!)
             }

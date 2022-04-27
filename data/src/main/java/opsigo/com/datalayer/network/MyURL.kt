@@ -70,8 +70,8 @@ object MyURL {
     const val REMARK_HOTEL         = "apiv1/UpdateHotelRemarks"
     const val GET_COUNTRY_BY_ROUTE_PERTAMINA = "apiv1/GetDestinationHotelFromRoutes"
 
-//    const val COUNTRY            = "api/Lookup/Country"
-    const val COUNTRY              = "api/MobileVersion/getcallcountry"
+    const val COUNTRY            = "api/Lookup/Country"
+    /*const val COUNTRY              = "api/MobileVersion/getcallcountry"*/
     const val TOTAL_APROVAL        = "api/TripPlan/GetTripPanStatus"
 
     const val APPROVE_ALL          = "api/TripPlan/ApprovalAll"
