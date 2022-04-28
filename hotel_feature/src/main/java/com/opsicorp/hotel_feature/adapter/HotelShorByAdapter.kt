@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.opsicorp.hotel_feature.R
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
 import kotlinx.android.synthetic.main.item_hotel_short_by_adapter.view.*
@@ -37,11 +38,11 @@ class HotelShorByAdapter (context: Context, private var items: ArrayList<String>
 
         if (checkIn==position){
             holder.itemView.ic_checklist.visibility = View.VISIBLE
-            holder.itemView.tv_short_name.setTextColor(context.resources.getColor(R.color.colorPrimary))
+            holder.itemView.tv_short_name.setTextColor(ContextCompat.getColor(context,R.color.approved))
         }
         else {
             holder.itemView.ic_checklist.visibility = View.GONE
-            holder.itemView.tv_short_name.setTextColor(context.resources.getColor(R.color.blue_info_time))
+            holder.itemView.tv_short_name.setTextColor(ContextCompat.getColor(context,R.color.blue_info_time))
         }
 
         holder.itemView.setOnClickListener {

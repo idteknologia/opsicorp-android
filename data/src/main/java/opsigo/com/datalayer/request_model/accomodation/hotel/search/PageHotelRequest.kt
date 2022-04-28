@@ -32,10 +32,10 @@ data class PageHotelRequest(
 	var correlationId: String? = null,
 
 	@field:SerializedName("MaxPrice")
-	var maxPrice: String? = null,
+	var maxPrice: Int? = null,
 
 	@field:SerializedName("MinPrice")
-	var minPrice: String? = null,
+	var minPrice: Int? = null,
 
 	@field:SerializedName("DestinationName")
 	var destinationName: String? = null,

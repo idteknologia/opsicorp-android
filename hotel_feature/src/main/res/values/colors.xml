@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
+<!--    <color name="colorPrimary">#009688</color>-->
 
     <color name="colorBlueTitle">#24253D</color>
     <color name="colorBlueHotel">#5499e4</color>
     <color name="colorPrimaryDark">#00776a</color>
-<!--    <color name="colorPrimaryDark">#00776A</color>-->
+
 <!--    <color name="colorAccent">#F19C00</color>-->
 <!--    <color name="colorAccentPink">#D81B60</color>-->
 <!--    <color name="colorRedDateCalendar">#99eb0011</color>-->
@@ -57,7 +57,7 @@
 <!--    <color name="selected_tab">#00776a</color>-->
 
 <!--    <color name="waiting_for_approval">#FFB733</color>-->
-<!--    <color name="approved">#009688</color>-->
+    <color name="approved">#009688</color>
 <!--    <color name="partially_rejected">#F96D74</color>-->
 
 <!--    <color name="green_approved">#86CC3A</color>-->

@@ -46,12 +46,6 @@ class FilterOpsicorp : LinearLayout, View.OnClickListener {
         ic_filter.setOnClickListener(this)
         ic_change_date.setOnClickListener(this)
 
-        if (Globals.isPertamina(context)){
-            rlChangeDate.gone()
-        } else {
-            rlChangeDate.visible()
-        }
-
         images.clear()
         images.add(ic_filter)
         images.add(ic_short)
@@ -73,6 +67,14 @@ class FilterOpsicorp : LinearLayout, View.OnClickListener {
 
     fun setTextButtonChangeDate(name:String){
         tv_change_date.text  = name
+    }
+
+    fun goneDateButton(){
+        rlChangeDate.gone()
+    }
+
+    fun showDateButton(){
+        rlChangeDate.visible()
     }
 
     interface OnclickFilterListener{

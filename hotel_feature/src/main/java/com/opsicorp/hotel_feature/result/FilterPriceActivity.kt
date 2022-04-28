@@ -145,15 +145,20 @@ class FilterPriceActivity : BaseActivity(),
     }
 
     override fun onClicked() {
-        parsingDataMinMax()
-        if (minPrice!=0||maxPrice!=0){
-            if (minPrice>=maxPrice){
-                Globals.showAlert("Sorry","Please input larger amount than minimal price",this)
+        try {
+
+            parsingDataMinMax()
+            if (minPrice!=0||maxPrice!=0){
+                if (minPrice>=maxPrice){
+                    Globals.showAlert("Sorry","Please input larger amount than minimal price",this)
+                }else {
+                    setDataIntent()
+                }
             }else {
                 setDataIntent()
             }
-        }else {
-            setDataIntent()
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 
@@ -167,8 +172,8 @@ class FilterPriceActivity : BaseActivity(),
     }
 
     private fun parsingDataMinMax() {
-        minPrice = if (et_min.text.toString().isNotEmpty()) et_min.text.toString().replace(".","").toInt() else 0
-        maxPrice = if (et_max.text.toString().isNotEmpty()) et_max.text.toString().replace(".","").toInt() else 0
+        minPrice = if (et_min.text.toString().isNotEmpty()) et_min.text.toString().replace(",","").replace(".","").toInt() else 0
+        maxPrice = if (et_max.text.toString().isNotEmpty()) et_max.text.toString().replace(",","").replace(",","").toInt() else 0
     }
 
     private fun starSelected(): ArrayList<String> {

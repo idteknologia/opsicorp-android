@@ -101,7 +101,8 @@ class AccomodationActivity : BaseActivity() ,AccomodationView,ToolbarOpsicorp.On
             initButtonBottom()
         }
 
-        if (getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM){
+//        getConfigCompany().codeCompany==Constants.CodeCompany.PertaminaDTM
+        if (Globals.isPertamina(this)){
             val dataTripPlan = Serializer.deserialize(
                 Constants.DATA_SUCCESS_CREATE_TRIP,
                 SuccessCreateTripPlaneModel::class.java

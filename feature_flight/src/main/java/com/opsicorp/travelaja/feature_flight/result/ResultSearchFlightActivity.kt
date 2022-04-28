@@ -85,6 +85,12 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun initItemViews() {
         try {
+            if (Globals.isPertamina(this)){
+                filter.goneDateButton()
+            } else {
+                filter.showDateButton()
+            }
+
             if (Constants.multitrip){
                 positionRoutes = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.positionFlightMulticity,0)!!
             }

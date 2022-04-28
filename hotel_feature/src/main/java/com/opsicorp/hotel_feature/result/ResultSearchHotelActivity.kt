@@ -10,6 +10,7 @@ import android.app.Activity
 import android.text.Editable
 import android.content.Intent
 import android.text.TextWatcher
+import androidx.core.content.ContextCompat
 import androidx.transition.Fade
 import java.text.SimpleDateFormat
 import org.koin.core.KoinComponent
@@ -59,13 +60,14 @@ class ResultSearchHotelActivity : BaseActivity(),
     var dataFilter        = ArrayList<AccomodationResultModel>()
     val dataArea          = ArrayList<String>()
     var star              = ArrayList<String>()
-    var minPrice          = ""
-    var maxPrice          = ""
+    var minPrice          = 0
+    var maxPrice          = 0
     var facilitys         = ArrayList<String>()
     var area              = ""
     var correlationId     = ""
     var maxPage           = 5
     var scrolPage         = 1
+    var totalHotelResult  = 0
 
     lateinit var dataTrip: SuccessCreateTripPlaneModel
 
@@ -114,7 +116,6 @@ class ResultSearchHotelActivity : BaseActivity(),
 
             }
         })
-
         imgCloseDest.setOnClickListener { et_filter.setText("") }
     }
 
@@ -192,7 +193,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     private fun showTotalData() {
         Globals.delay(1000.toLong(),object :Globals.DelayCallback{
             override fun done() {
-                tv_total_data.text = "${data.size} Hotel Found"
+                tv_total_data.text = "${totalHotelResult} Hotel Found"
                 val transition: Transition = Fade()
                 transition.setDuration(700)
                 transition.addTarget(R.id.tv_total_data)
@@ -230,13 +231,17 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     override fun onFilter() {
-        if (data.isNotEmpty()&&!loadingSearch){
-            val minPrice = getPriceMinMax().first
-            val maxPrice = getPriceMinMax().second
-            val bundle = Bundle()
-            bundle.putInt(Constants.MIN_PRICE,minPrice)
-            bundle.putInt(Constants.MAX_PRICE,maxPrice)
-            gotoActivityResultWithBundle(FilterPriceActivity::class.java,bundle,Constants.REQUEST_CODE_HOTEL_FILTER)
+        try {
+            if (!loadingSearch){
+                val minPrice = getPriceMinMax().first
+                val maxPrice = getPriceMinMax().second
+                val bundle = Bundle()
+                bundle.putInt(Constants.MIN_PRICE,minPrice)
+                bundle.putInt(Constants.MAX_PRICE,maxPrice)
+                gotoActivityResultWithBundle(FilterPriceActivity::class.java,bundle,Constants.REQUEST_CODE_HOTEL_FILTER)
+            }
+        }catch (e:Exception){
+            e.printStackTrace()
         }
     }
 
@@ -244,9 +249,14 @@ class ResultSearchHotelActivity : BaseActivity(),
         val sortingData: ArrayList<AccomodationResultModel>
         if (filterActif) sortingData = dataFilter else sortingData = data
         sortingData.sortBy { it.listHotelModel.price.toInt() }
-        val min = sortingData.first().listHotelModel.price.toInt()
-        val max = sortingData.last().listHotelModel.price.toInt()
-        return Pair(min,max)
+        if (sortingData.isNotEmpty()){
+            val min = sortingData.first().listHotelModel.price.toInt()
+            val max = sortingData.last().listHotelModel.price.toInt()
+            return Pair(min,max)
+        }
+        else {
+            return Pair(0,0)
+        }
     }
 
     override fun onSort() {
@@ -285,23 +295,25 @@ class ResultSearchHotelActivity : BaseActivity(),
         when(requestCode){
             Constants.REQUEST_CODE_HOTEL_AREA -> {
                 if (resultCode==Activity.RESULT_OK){
+                    loadingSearch = true
                     filterActif = true
-                    minPrice  = ""
-                    maxPrice  = ""
+                    minPrice  = 0
+                    maxPrice  = 0
                     star      = ArrayList()
                     area      = data?.getStringExtra(Constants.RESULT_AREA_HOTEL).toString()
-                    getSearchPageHotel(1)
+                    getSearchByFilter()
                 }
             }
             Constants.REQUEST_CODE_HOTEL_FILTER -> {
                 if (resultCode==Activity.RESULT_OK){
+                    loadingSearch = true
                     filterActif = true
-                    minPrice  = data?.getIntExtra(Constants.MIN_PRICE,0).toString()
-                    maxPrice  = data?.getIntExtra(Constants.MAX_PRICE,0).toString()
+                    minPrice  = data?.getIntExtra(Constants.MIN_PRICE,0)!!
+                    maxPrice  = data?.getIntExtra(Constants.MAX_PRICE,0)
                     facilitys = data?.getStringArrayListExtra(Constants.RESULT_FACILITY)!!
                     star      = data.getStringArrayListExtra(Constants.RESULT_STAR)!!
                     area      = ""
-                    getSearchPageHotel(1)
+                    getSearchByFilter()
                 }
             }
         }
@@ -348,12 +360,13 @@ class ResultSearchHotelActivity : BaseActivity(),
         addDataLoading(false)
         setLog(Serializer.serialize(dataSearch()))
         GetDataAccomodation(getBaseUrl()).getSearchHotel(getToken(),dataSearch(),object : CallbackSearchHotel {
-            override fun success(mData: ArrayList<AccomodationResultModel>, areas:ArrayList<String>, maxpage:Int) {
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas:ArrayList<String>, maxpage:Int,totalHotel:Int) {
                 if (mData.isNotEmpty()){
+                    maxPage = maxpage
                     correlationId = mData[0].listHotelModel.correlationId
                 }
                 if (getConfigCompany().hsShowHotelNotComply){
-                    maxPage = maxpage
+                    totalHotelResult = totalHotel
                     loadingSearch = false
                     data.clear()
                     dataArea.clear()
@@ -471,6 +484,36 @@ class ResultSearchHotelActivity : BaseActivity(),
         adapter.notifyDataSetChanged()
     }
 
+    fun getSearchByFilter(){
+        dataFilter.clear()
+        adapter.setDataList(dataFilter,this)
+        addDataLoading(true)
+        GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(1),object :CallbackSearchHotel{
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>, maxpage:Int,totalHotel:Int) {
+                loadingSearch = false
+                maxPage = maxpage
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    data.removeIf { it.typeLayout==8 }
+                    dataFilter.removeIf { it.typeLayout==8 }
+                }
+                else {
+                    data.removeAll(DataDummyAccomodation().addDataLoadingHotel())
+                    dataFilter.removeAll(DataDummyAccomodation().addDataLoadingHotel())
+                }
+                totalHotelResult = totalHotel
+                dataFilter.addAll(mData)
+                addDateAreaListener(areas)
+                adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
+                checkEmptyData(mData)
+            }
+
+            override fun failed(errorMessage: String) {
+                adapter.setDataList(ArrayList(),this@ResultSearchHotelActivity)
+                checkEmptyData(ArrayList())
+            }
+        })
+    }
+
     fun getSearchPageHotel(page:Int){
         if (page==2) {
             dataFilter.addAll(data)
@@ -478,29 +521,22 @@ class ResultSearchHotelActivity : BaseActivity(),
         }
         addDataLoading(true)
         GetDataAccomodation(getBaseUrl()).getSearchPageHotel(getToken(),dataFilterPage(page),object :CallbackSearchHotel{
-            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>, maxpage:Int) {
+            override fun success(mData: ArrayList<AccomodationResultModel>, areas: ArrayList<String>, maxpage:Int,totalHotel:Int) {
                 loadingSearch = false
 
-                if (page==1){
+                if (page==1) {
                     /*this if for filter area dll*/
                     dataFilter.clear()
-                    if (!getConfigCompany().hsShowHotelNotComply){
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            data.removeIf { it.typeLayout==8 }
-                            dataFilter.removeIf { it.typeLayout==8 }
-                        }
-                    }
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    data.removeIf { it.typeLayout==8 }
+                    dataFilter.removeIf { it.typeLayout==8 }
                 }
                 else {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        data.removeIf { it.typeLayout==8 }
-                        dataFilter.removeIf { it.typeLayout==8 }
-                    }
-                    else {
-                        data.removeAll(DataDummyAccomodation().addDataLoadingHotel())
-                        dataFilter.removeAll(DataDummyAccomodation().addDataLoadingHotel())
-                    }
+                    data.removeAll(DataDummyAccomodation().addDataLoadingHotel())
+                    dataFilter.removeAll(DataDummyAccomodation().addDataLoadingHotel())
                 }
+                totalHotelResult = totalHotel
                 data.addAll(mData)
                 dataFilter.addAll(mData)
                 addDateAreaListener(areas)
@@ -526,12 +562,10 @@ class ResultSearchHotelActivity : BaseActivity(),
         val data = PageHotelRequest()
         data.page       = page
         data.hotelName  = ""
-        if (page==1){
-            data.star       = if (star.isNotEmpty()) star.first() else ""
-            data.minPrice   = if (minPrice!="0") minPrice else null
-            data.maxPrice   = if (maxPrice!="0") maxPrice else null
-            data.area       = area
-        }
+        data.star       = if (star.isNotEmpty()) star.first() else ""
+        data.minPrice   = if (minPrice==0) null else minPrice
+        data.maxPrice   = if (maxPrice==0) null else maxPrice
+        data.area       = area
         data.orderBy     = ""//price_asc
         data.correlationId = correlationId
         data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent

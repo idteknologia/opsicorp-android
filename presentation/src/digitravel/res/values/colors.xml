@@ -10,6 +10,8 @@
     <color name="ucrop_color_toolbar">#009688</color>
     <color name="ucrop_color_statusbar">#009688</color>
 
+    <color name="colorGrren">#009688</color>
+
     <color name="ucrop_color_widget_active">#009688</color>
     <color name="ucrop_color_active_controls_color">#FFFFFF</color>
     <color name="ucrop_color_widget_rotate_mid_line">#009688</color>

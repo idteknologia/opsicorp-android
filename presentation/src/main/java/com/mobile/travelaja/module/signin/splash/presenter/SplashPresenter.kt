@@ -192,16 +192,17 @@ class SplashPresenter {
     }
 
     fun getDataCountry(token: String) {
-        GetDataLogin(version_url).getDataCountry(token,object :CallbackCountry{
-            override fun successLoad(data: ArrayList<CountryModel>) {
-                Constants.DATA_NATIONAL = data
-                getDataCity(token)
-            }
 
-            override fun failedLoad(message: String) {
-                view.failedGetData("country")
-            }
-        })
+//        GetDataLogin(version_url).getDataCountry(token,object :CallbackCountry{
+//            override fun successLoad(data: ArrayList<CountryModel>) {
+//                Constants.DATA_NATIONAL = data
+                getDataCity(token)
+//            }
+//
+//            override fun failedLoad(message: String) {
+//                view.failedGetData("country")
+//            }
+//        })
     }
 
     fun setDeviceId(token:String, username:String, fcmToken: String, modelPhone: String) {

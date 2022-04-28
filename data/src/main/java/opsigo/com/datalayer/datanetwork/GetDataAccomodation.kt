@@ -672,13 +672,15 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
             try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        var json = JSONObject(responseString)
+                        val json = JSONObject(responseString)
                         var maxPage = 0
+                        var totalHotel = 0
                         if (!json.getBoolean("IsError")){
                             maxPage = json.getInt("MaxPage")
+                            totalHotel = json.getInt("Count")
                         }
                         val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
-                        callback.success(data.first,data.second,maxPage)
+                        callback.success(data.first,data.second,maxPage,totalHotel)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())
@@ -701,13 +703,15 @@ class GetDataAccomodation(baseUrl:String) : BaseGetData(), AccomodationRepositor
                 try {
                     if (response.isSuccessful){
                         val responseString = response.body()?.string()
-                        var json = JSONObject(responseString)
+                        val json = JSONObject(responseString)
                         var maxPage = 0
+                        var totalHotel   = 0
                         if (!json.getBoolean("IsError")){
                             maxPage = json.getInt("MaxPage")
+                            totalHotel = json.getInt("Count")
                         }
                         val data = SearchHotelMapper().mapping(Serializer.deserialize(responseString!!,SearchHotelEntity::class.java))
-                        callback.success(data.first,data.second,maxPage)
+                        callback.success(data.first,data.second,maxPage,totalHotel)
                     }
                     else {
                         val json = JSONObject(response.errorBody()?.string())

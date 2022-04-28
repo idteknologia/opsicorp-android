@@ -55,7 +55,7 @@ class SelectRoomAdapter (var items: ArrayList<SelectRoomModel>): androidx.recycl
         }
 
         if (data.isGuaranteedBooking){
-            holder.itemView.tv_type_refund.text          = "Guaranted"
+            holder.itemView.tv_type_refund.text          = "Reequest Booking"
         }
         else{
             holder.itemView.tv_type_refund.text          = "Free Cancelation"
