@@ -67,7 +67,7 @@ class AccomodationResultFlightMapper {
 
                 model.id                = departureflightItem.id.toString()
                 model.isAvailable       = departureflightItem.isAvailable
-                model.isComply          = departureflightItem.isComply
+                model.isComply          = classView.isComply
                 model.isConnecting      = departureflightItem.isConnecting
                 model.isMultiClass      = departureflightItem.isMultiClass
                 model.isHolderFlight    = departureflightItem.isHolderFlight
@@ -193,7 +193,7 @@ class AccomodationResultFlightMapper {
 
                 model.id                = returnFlight.id.toString()
                 model.isAvailable       = returnFlight.isAvailable
-                model.isComply          = returnFlight.isComply
+                model.isComply          = classView.isComply
                 model.isConnecting      = returnFlight.isConnecting
                 model.isMultiClass      = returnFlight.isMultiClass
                 model.isHolderFlight    = returnFlight.isHolderFlight
@@ -300,7 +300,7 @@ class AccomodationResultFlightMapper {
 
                     model.id                = it.id.toString()
                     model.isAvailable       = it.isAvailable
-                    model.isComply          = it.isComply
+                    model.isComply          = classView.isComply
                     model.isConnecting      = it.isConnecting
                     model.isMultiClass      = it.isMultiClass
                     model.isHolderFlight    = it.isHolderFlight
@@ -324,7 +324,7 @@ class AccomodationResultFlightMapper {
 
                     if (it.isConnecting){
                         val transitFlight  = ArrayList<TransiteFlight>()
-                        it.connectingFlights?.forEachIndexed { index, transitFlightsEntity ->
+                        it.connectingFlights.forEachIndexed { _, transitFlightsEntity ->
                             val transit =  TransiteFlight()
                             transit.numberFlight = transitFlightsEntity.flightNumber.toString()
                             transit.originId     = transitFlightsEntity.origin.toString()

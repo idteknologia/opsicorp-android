@@ -125,6 +125,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 isShareQR = true
             }
         }
+        swipeRefreshDetail.setOnRefreshListener {
+            getSummary()
+        }
 
         if (intent.extras != null && intent.extras!!.containsKey(Constants.KEY_INTENT_NOTIF_ID_INT)) {
 
@@ -174,6 +177,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         showLoadingOpsicorp(true)
         GetDataGeneral(getBaseUrl()).getDataSummary(getToken(), tripId, object : CallbackSummary {
             override fun successLoad(summaryModel: SummaryModel) {
+                swipeRefreshDetail.isRefreshing = false
                 tripSummary = summaryModel
                 mapperlistParticipantAndApproval()
                 hideLoadingOpsicorp()

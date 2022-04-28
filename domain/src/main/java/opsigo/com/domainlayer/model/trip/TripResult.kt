@@ -37,7 +37,11 @@ data class Trip(
     @SerializedName("Routes")
     val Routes: MutableList<Route> = mutableListOf(),
     @SerializedName("IsCreatedSettlement")
-    val IsCreatedSettlement : Boolean = false
+    val IsCreatedSettlement : Boolean = false,
+    @SerializedName("IsApprover")
+    val IsApprover : Boolean = false,
+    @SerializedName("IsParticipant")
+    val IsParticipant : Boolean = false
 ) {
 
     fun nameCities(): String {

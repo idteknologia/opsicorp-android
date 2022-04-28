@@ -202,11 +202,11 @@ class ResultAccomodationAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
                 tv_transit.text        = "$transit ${context.getString(R.string.transit)}"
             }
 
-            if (!data.isComply){
+            if (data.isComply){
+                flightComply.invisible()
+            } else {
                 flightComply.visible()
                 flightComply.text      = context.getString(R.string.not_comply)
-            } else {
-                flightComply.invisible()
             }
 
            /* btnFLightDetail.setOnClickListener {

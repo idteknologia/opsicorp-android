@@ -16,7 +16,7 @@ class FlightInfoFragment : BaseFragment() {
     }
 
     val data = ArrayList<ModelListDepartureAndArivalAdapter>()
-    val adapter by lazy { InfoDepartureArrivalAdapter(context!!,data) }
+    val adapter by lazy { InfoDepartureArrivalAdapter(requireContext(),data) }
 
     override fun onMain(fragment: View, savedInstanceState: Bundle?) {
         initRecyclerView()

@@ -142,6 +142,8 @@ class HomeFragment : BaseFragment(), KoinComponent, HomeView, View.OnClickListen
         intent.putExtra(Constants.KEY_FROM, Constants.FROM_LIST_DASBOARD)
         intent.putExtra(Constants.KEY_INTENT_TRIPID, trip.Id)
         intent.putExtra(Constants.KEY_INTENT_TRIP_CODE, trip.Code)
+        intent.putExtra(Constants.KEY_IS_APPROVAL,trip.IsApprover)
+        intent.putExtra(Constants.KEY_IS_PARTICIPANT,trip.IsParticipant)
         startActivity(intent)
     }
 

@@ -410,11 +410,11 @@
 
 
                 <TextView
-                    android:layout_alignParentEnd="true"
                     android:id="@+id/tv_not_comply"
                     style="@style/RobotoBold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_marginTop="16dp"
                     android:text="@string/not_comply"
                     android:textColor="#d0021b"
