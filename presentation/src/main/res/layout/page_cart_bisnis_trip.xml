@@ -46,7 +46,7 @@
     </RelativeLayout>
 
     <include
-        android:id="@+id/empty_view"
+        android:id="@+id/emptyView"
         android:layout_marginTop="70dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

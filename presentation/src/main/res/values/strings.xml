@@ -1116,6 +1116,8 @@ Please add your trip item."
     <string name="canceled">Canceled</string>
     <string name="expired">Expired</string>
     <string name="pending">Pending</string>
+    <string name="bookingerror">BOOKING-ERROR</string>
+    <string name="onrequest">ON-Request</string>
     <string name="only_for_flights_and_hotels_max_2_ticket_in_a_day">Only for Flights and Hotels, max 2 Ticket in a day</string>
     <string name="notes_optional">Notes for your approval Manager</string>
     <string name="upload_evidence">Upload Evidence</string>
