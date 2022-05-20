@@ -41,6 +41,7 @@ import android.os.Bundle
 import android.view.View
 import android.os.Build
 import android.util.Log
+import com.cunoraz.gifview.library.GifView
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
 import opsigo.com.domainlayer.model.accomodation.flight.RoutesItemPertamina
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
@@ -88,6 +89,11 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
         page_list_detail_trip.visibility = View.GONE
         page_detail_personal_trip.visibility = View.GONE
         line_prize.visibility = View.GONE
+
+        val gifView = gif1 as GifView
+        gifView.visible()
+        gifView.gifResource = R.mipmap.black_loader
+        gifView.play()
     }
 
     private fun checkData() {

@@ -241,8 +241,8 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                 }
                 data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tvRefund.setText(R.string.pending)
-                    tvRefund.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
-                    icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_canceled))
+                    tvRefund.setTextColor(ContextCompat.getColor(context,R.color.blue_dark))
+                    icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_pending))
                 }
                 data.status == "Reserved" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tvRefund.setText(R.string.txt_reserved)
@@ -363,6 +363,18 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                     icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_reschedule))
                 }
+                data.status == "Booking Error" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.bookingerror)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.red_alert))
+                    tv_name_hotel.apply {
+                        paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                    }
+                }
+                data.status == "On Request" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
+                    tv_status_hotel.setText(R.string.onrequest)
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.blue_dark))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_onrequest))
+                }
                 data.status == "Ticketed" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tv_status_hotel.setText(R.string.ticketed)
                     tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
@@ -370,8 +382,8 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                 }
                 data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tv_status_hotel.setText(R.string.pending)
-                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.orange_price))
-                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_canceled))
+                    tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.blue_dark))
+                    icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_pending))
                 }
                 data.status == "Reserved" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tv_status_hotel.setText(R.string.txt_reserved)

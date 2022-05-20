@@ -53,17 +53,17 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
 
         initSetOnClick()
         initRecyclerView()
-        initCheckEmpty()
+
 
         btn_delet.visibility = View.GONE
     }
 
     private fun initCheckEmpty() {
         if (data.isEmpty()){
-            empty_view.visible()
+            emptyView.visible()
             rv_list_bisnis_trip.gone()
         } else {
-            empty_view.gone()
+            emptyView.gone()
             rv_list_bisnis_trip.visible()
         }
     }
@@ -90,6 +90,7 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
         data.clear()
         data.addAll(mData)
         adapter.setData(data)
+        initCheckEmpty()
     }
 
     fun setLoadingView(){
@@ -100,14 +101,6 @@ class PageListBisnisTrip : LinearLayout, View.OnClickListener,OnclickListenerRec
     fun hideLoadingView(){
         rv_list_bisnis_trip.visibility = View.VISIBLE
         loading_view.hide()
-    }
-
-    fun showEmptyCart(){
-        empty_view.visible()
-    }
-
-    fun hideEmptyCart(){
-        empty_view.gone()
     }
 
     interface Callback{

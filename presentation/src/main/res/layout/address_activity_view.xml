@@ -99,7 +99,6 @@
                         android:text=".opsicorp.com"
                         style="@style/RobotoRegular"
                         android:layout_width="match_parent"
-                        android:gravity="center"
                         android:textAlignment="textStart"
                         android:layout_height="wrap_content"/>
 
