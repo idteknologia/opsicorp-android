@@ -53,7 +53,10 @@ class FilterPriceActivity : BaseActivity(),
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     -1 -> {
-                        dataRating[position].selected = !dataRating[position].selected
+                        dataRating.forEachIndexed { index, startSelected ->
+                            startSelected.selected = index==position
+                        }
+//                        dataRating[position].selected = !dataRating[position].selected
                         adapterRating.notifyDataSetChanged()
                     }
                 }
@@ -183,6 +186,7 @@ class FilterPriceActivity : BaseActivity(),
                 mData.add(it.rating.toString())
             }
         }
+//        mData.add(dataRating[adapterFacility.checkedPosition].rating.toString())
         return mData
     }
 

@@ -1,6 +1,5 @@
 package com.opsicorp.hotel_feature.result
 
-import android.annotation.SuppressLint
 import java.util.*
 import android.os.Build
 import android.os.Bundle
@@ -10,13 +9,13 @@ import android.app.Activity
 import android.text.Editable
 import android.content.Intent
 import android.text.TextWatcher
-import androidx.core.content.ContextCompat
 import androidx.transition.Fade
 import java.text.SimpleDateFormat
 import org.koin.core.KoinComponent
 import kotlin.collections.ArrayList
 import com.opsicorp.hotel_feature.R
 import androidx.transition.Transition
+import android.annotation.SuppressLint
 import org.koin.core.parameter.parametersOf
 import com.mobile.travelaja.utility.Globals
 import androidx.transition.TransitionManager
@@ -68,6 +67,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     var maxPage           = 5
     var scrolPage         = 1
     var totalHotelResult  = 0
+    var page2             = false
 
     lateinit var dataTrip: SuccessCreateTripPlaneModel
 
@@ -451,7 +451,7 @@ class ResultSearchHotelActivity : BaseActivity(),
 
 
     private fun sortHighetRating() {
-        if(filterActif){
+        if(filterActif||page2){
             dataFilter.sortBy { it.listHotelModel.starRating.toDouble() }
             dataFilter.reverse()
         }
@@ -463,7 +463,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     private fun sortHighestPrice() {
-        if(filterActif){
+        if(filterActif||page2){
             dataFilter.sortBy { it.listHotelModel.price.toInt() }
             dataFilter.reverse()
         }
@@ -475,7 +475,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     }
 
     private fun sortLowestPrice() {
-        if(filterActif){
+        if(filterActif||page2){
             dataFilter.sortBy { it.listHotelModel.price.toInt() }
         }
         else {
@@ -516,7 +516,8 @@ class ResultSearchHotelActivity : BaseActivity(),
 
     fun getSearchPageHotel(page:Int){
         if (page==2) {
-            dataFilter.addAll(data)
+            page2 = true
+            if (!Globals.isPertamina(this)) dataFilter.addAll(data)
             adapter.setDataList(dataFilter,this)
         }
         addDataLoading(true)
