@@ -282,7 +282,7 @@ class DataDummyAccomodation {
         val names = ArrayList<String>()
         names.add("Early Morning")
         names.add("Morning")
-        names.add("Morning")
+        names.add("Evening")
         names.add("Night")
 
         val times = ArrayList<String>()

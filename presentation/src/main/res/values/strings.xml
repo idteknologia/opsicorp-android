@@ -1022,8 +1022,8 @@ Please add your trip item."
     <string name="room_night">Room / Night</string>
     <string name="_1_transit">1 Transit</string>
     <string name="_2_transit">2+ Transit</string>
-    <string name="didn_apos_t_find_the_train">Didn\'t find the train ?</string>
-    <string name="if_you_don_apos_t_find_any_train_match">If you don\'t find any train match with your budget or travel policy. You can select not comply list of train, with specific notes.</string>
+    <string name="didn_apos_t_find_the_train">Didn\'t find the result ?</string>
+    <string name="if_you_don_apos_t_find_any_train_match">If you don\'t find any flight/train match with your budget or travel policy. You can select not comply list of flight/train, with specific notes.</string>
     <string name="all_tickets_sold_out">All tickets sold out ?</string>
     <string name="no_worries_let_apos_s_try_other_transportation_options">No Worries, let\'s try other transportation options!</string>
     <string name="all_participant_selected_will_be_approved_other_than_that_still_waiting_for_the_first_approver">All participant selected will be approved, other than that still waiting for The first Approver.</string>
