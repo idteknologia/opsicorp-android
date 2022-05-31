@@ -572,7 +572,7 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     override fun onSort() {
-        if (data.isNotEmpty()){
+        if (data.isNotEmpty()&&!isLoading){
             FlightShortByDialog(this).create(current_sort, this)
         }
     }

@@ -48,7 +48,10 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
     var dataFilter = ArrayList<AccomodationResultModel>()
 
     override fun OnMain() {
-        dataFilter = intent?.getParcelableArrayListExtra<AccomodationResultModel>(Constants.REQUEST_FLIGHT_FILTER)!!
+        dataFilter = intent?.getParcelableArrayListExtra(Constants.REQUEST_FLIGHT_FILTER)!!
+
+        println("--------------------")
+        println(dataFilter.size)
 
         initToolbar()
         initRangeBar()
@@ -262,54 +265,69 @@ class FilterFlightActivity : BaseActivity(), ButtonDefaultOpsicorp.OnclickButton
 
     fun filterData(){
         filterThemphorary.clear()
+        filterThemphorary.addAll(dataFilter)
         if (!dataArrival.filter { it.isSelected }.isNullOrEmpty()){
+            val filterArrival = ArrayList<AccomodationResultModel>()
             dataArrival.filter { it.isSelected }.forEachIndexed { index, filterFlightModel ->
-                dataFilter.forEach {
+                filterThemphorary.forEach {
                     val timeArrival = DateConverter().stringToDate("yyyy-MM-dd HH:mm",it.listFlightModel.arrivalDate)
                     val afterTime   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[0]}")
-                    val beforeArrival   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[1]}")
+                    val beforeArrival  = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[1]}")
                     if ((timeArrival.after(afterTime)||timeArrival==afterTime)&&(timeArrival.before(beforeArrival)||timeArrival==beforeArrival)){
-                        filterThemphorary.add(it)
+                        filterArrival.add(it)
                     }
                 }
             }
+            filterThemphorary.clear()
+            filterThemphorary.addAll(filterArrival)
         }
 
         if (!dataDeparture.filter { it.isSelected }.isNullOrEmpty()){
+            val filterDeparture = ArrayList<AccomodationResultModel>()
             dataDeparture.filter { it.isSelected }.forEachIndexed { index, filterFlightModel ->
-                dataFilter.forEach {
-                    val timeArrival = DateConverter().stringToDate("yyyy-MM-dd HH:mm",it.listFlightModel.arrivalDate)
-                    val afterTime   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[0]}")
-                    val beforeArrival   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.arriveDate} ${filterFlightModel.time.trim().split("-")[1]}")
+                filterThemphorary.forEach {
+                    val timeArrival = DateConverter().stringToDate("yyyy-MM-dd HH:mm",it.listFlightModel.departureDate)
+                    val afterTime   = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.departDate} ${filterFlightModel.time.trim().split("-")[0]}")
+                    val beforeArrival  = DateConverter().stringToDate("yyyy-MM-dd HH:mm","${it.listFlightModel.departDate} ${filterFlightModel.time.trim().split("-")[1]}")
                     if ((timeArrival.after(afterTime)||timeArrival==afterTime)&&(timeArrival.before(beforeArrival)||timeArrival==beforeArrival)){
-                        filterThemphorary.add(it)
+                        filterDeparture.add(it)
                     }
                 }
             }
+            filterThemphorary.clear()
+            filterThemphorary.addAll(filterDeparture)
         }
 
         if (!dataCabin.filter { it.isSelected }.isNullOrEmpty()){
+            val filterCabin = ArrayList<AccomodationResultModel>()
             dataCabin.filter { it.isSelected }. forEachIndexed { index, className ->
-                dataFilter.forEach {
+                filterThemphorary.forEach {
                     if (className.name.toLowerCase().contains(it.listFlightModel.nameClass.toLowerCase())){
-                        filterThemphorary.add(it)
+                        filterCabin.add(it)
                     }
                 }
             }
+            filterThemphorary.clear()
+            filterThemphorary.addAll(filterCabin)
         }
 
         if (filterTransitSelected!=-1){
-            filterThemphorary.addAll(dataFilter.filter { it.listFlightModel.totalTransit.equals(filterTransitSelected) })
+            val filterTransit = filterThemphorary.filter { it.listFlightModel.totalTransit.equals(filterTransitSelected) }
+            filterThemphorary.clear()
+            filterThemphorary.addAll(filterTransit)
         }
 
         if (!dataPrefarance.filter { it.checked }.isNullOrEmpty()){
+            val filterAirline = ArrayList<AccomodationResultModel>()
             dataPrefarance.filter { it.checked }.forEachIndexed { index, accomodationPreferanceModel ->
-                dataFilter.forEach {
+                filterThemphorary.forEach {
                     if (accomodationPreferanceModel.name.toLowerCase().contains(it.listFlightModel.titleAirline.toLowerCase())){
-                        filterThemphorary.add(it)
+                        filterAirline.add(it)
                     }
                 }
             }
+            filterThemphorary.clear()
+            filterThemphorary.addAll(filterAirline)
         }
 
         for (i in 0 until filterThemphorary.size) {

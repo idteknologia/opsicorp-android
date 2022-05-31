@@ -643,6 +643,7 @@ class FlightFragmentNew : BaseFragment(),
                 mFlightMulti.child = totalChild
                 mFlightMulti.infant = totalInfant
                 mFlightMulti.classFlightCode = "1"
+                Constants.isAllreadyFilterFlight = false
                 Globals.DATA_ORDER_FLIGHT = Serializer.serialize(mFlightMulti, OrderAccomodationModel::class.java)
                 val nameActivity = BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity"
 //                gotoActivityModule(requireContext(), BASE_PACKAGE_MODULE_MULTI_CITY + "FlightMultiCityListActivity")
@@ -655,6 +656,7 @@ class FlightFragmentNew : BaseFragment(),
             Constants.ALREADY_SEARCH_FLIGHT = false
             Constants.multitrip             = false
             Globals.DATA_LIST_FLIGHT = ""
+            Constants.isAllreadyFilterFlight = false
             Constants.isBisnisTrip = !dataTripPlan.tripCode.contains("PT")
             val nameActivity = BASE_PACKAGE_MODULE + "ResultSearchFlightActivity"
             installModule("feature_flight",nameActivity)

@@ -418,6 +418,7 @@ object Constants {
     val ON_DIRECT              = 0
     val ON_ONE_TRANSIT         = 1
     val ON_TWO_TRANSIT         = 2
+    val TYPE_TRANSIT           = ArrayList<Int>()
 
     var dataClassFlight      = ArrayList<AccomodationPreferanceModel>()
 

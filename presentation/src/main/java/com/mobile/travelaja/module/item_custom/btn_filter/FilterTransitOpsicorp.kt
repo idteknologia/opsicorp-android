@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.mobile.travelaja.R
 import kotlinx.android.synthetic.main.layout_filter_transit.view.*
 
@@ -85,12 +86,14 @@ class FilterTransitOpsicorp : LinearLayout, View.OnClickListener {
     private fun changeViewButton(i: Int) {
         lines.forEachIndexed { index, linearLayout ->
             if(index==i){
-                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_transit_selected)
-                textviews.get(index).setTextColor(resources.getColor(R.color.colorWhite))
-            }
-            else{
-                linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter)
-                textviews.get(index).setTextColor(resources.getColor(R.color.colorTextHint))
+                if (linearLayout.background.constantState==ContextCompat.getDrawable(context,R.drawable.rounded_button_transit_selected)?.constantState){
+                    linearLayout.background = ContextCompat.getDrawable(context,R.drawable.rounded_button_filter)
+                    textviews.get(index).setTextColor(resources.getColor(R.color.colorTextHint))
+                }
+                else {
+                    linearLayout.background = ContextCompat.getDrawable(context,R.drawable.rounded_button_transit_selected)
+                    textviews.get(index).setTextColor(resources.getColor(R.color.colorWhite))
+                }
             }
         }
     }
@@ -100,6 +103,16 @@ class FilterTransitOpsicorp : LinearLayout, View.OnClickListener {
             linearLayout.background = resources.getDrawable(R.drawable.rounded_button_filter)
             textviews.get(index).setTextColor(resources.getColor(R.color.colorTextHint))
         }
+    }
+
+    fun getIsActivatedButton():ArrayList<Int>{
+        val dataActivited = ArrayList<Int>()
+        lines.forEachIndexed { index, linearLayout ->
+            if (linearLayout.background.constantState==ContextCompat.getDrawable(context,R.drawable.rounded_button_transit_selected)?.constantState){
+                dataActivited.add(index)
+            }
+        }
+        return dataActivited
     }
 
 }

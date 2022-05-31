@@ -21,101 +21,30 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
+                android:visibility="gone"
                 android:background="@android:color/white"
                 android:paddingEnd="@dimen/margin_default"
                 android:layout_width="match_parent"
                 android:layout_height="43dp"
                 android:paddingStart="@dimen/margin_default">
+
                 <TextView
-                    android:layout_centerVertical="true"
                     style="@style/RobotoBold"
-                    android:text="@string/transit"
-                    android:textSize="13sp"
-                    android:textColor="#24253d"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="@string/transit"
+                    android:textColor="#24253d"
+                    android:textSize="13sp" />
             </RelativeLayout>
 
             <com.mobile.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_transit">
 
             </com.mobile.travelaja.module.item_custom.btn_filter.FilterTransitOpsicorp>
-
-            <!--<LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="55dp">
-                <RelativeLayout
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:layout_centerHorizontal="true"
-                        android:emplaoyId="@+emplaoyId/btn_filter"
-                        android:background="@drawable/rounded_button_filter"
-                        android:layout_width="91dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:emplaoyId="@+emplaoyId/tv_filter"
-                            android:textSize="12sp"
-                            android:gravity="center"
-                            android:text="Direct"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:emplaoyId="@+emplaoyId/btn_sort"
-                        android:background="@drawable/rounded_button_filter"
-                        android:layout_centerHorizontal="true"
-                        android:layout_width="91dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:emplaoyId="@+emplaoyId/tv_sort"
-                            android:textSize="12sp"
-                            android:gravity="center"
-                            android:text="1 Transit"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:background="#f6f8f8"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:emplaoyId="@+emplaoyId/btn_change_date"
-                        android:layout_centerHorizontal="true"
-                        android:background="@drawable/rounded_button_filter"
-                        android:layout_marginRight="12dp"
-                        android:layout_width="91dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:emplaoyId="@+emplaoyId/tv_change_date"
-                            android:textSize="12sp"
-                            android:gravity="center"
-                            android:text="2+ Transit"
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp" />
-                    </LinearLayout>
-                </RelativeLayout>
-            </LinearLayout>-->
-
 
             <RelativeLayout
                 android:id="@+id/rlPricePax"

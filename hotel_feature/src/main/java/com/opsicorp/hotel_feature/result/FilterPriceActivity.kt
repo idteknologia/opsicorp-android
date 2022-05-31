@@ -2,19 +2,18 @@ package com.opsicorp.hotel_feature.result
 
 import android.content.Intent
 import com.opsicorp.hotel_feature.R
-import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
-
-import com.mobile.travelaja.utility.NumberTextWatcher
+import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Constants
+import com.mobile.travelaja.utility.NumberTextWatcher
 import kotlinx.android.synthetic.main.activity_filter_price.*
 import com.opsicorp.hotel_feature.adapter.FilterRatingAdapter
 import com.opsicorp.hotel_feature.adapter.FilterFacilityAdapter
 import com.mobile.travelaja.utility.OnclickListenerRecyclerView
+import opsigo.com.domainlayer.model.accomodation.hotel.StartSelected
 import opsigo.com.domainlayer.model.accomodation.hotel.FacilityHotelModel
 import com.mobile.travelaja.module.item_custom.toolbar_view.ToolbarOpsicorp
 import com.mobile.travelaja.module.item_custom.button_default.ButtonDefaultOpsicorp
-import opsigo.com.domainlayer.model.accomodation.hotel.StartSelected
 
 class FilterPriceActivity : BaseActivity(),
         ButtonDefaultOpsicorp.OnclickButtonListener,
