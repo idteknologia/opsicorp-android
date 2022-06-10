@@ -85,11 +85,7 @@ class ResultSearchFlightActivity : BaseActivity(),
 
     private fun initItemViews() {
         try {
-            if (Globals.isPertamina(this)){
-                filter.goneDateButton()
-            } else {
-                filter.showDateButton()
-            }
+            filter.goneDateButton()
 
             if (Constants.multitrip){
                 positionRoutes = intent?.getBundleExtra(Constants.KEY_BUNDLE)?.getInt(Constants.positionFlightMulticity,0)!!
@@ -503,9 +499,8 @@ class ResultSearchFlightActivity : BaseActivity(),
     }
 
     private fun filterByEarliestDeparture(){
-        val dateFormatter: DateFormat = SimpleDateFormat("hh:mm")
         dataFilter.clear()
-        dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && it.listFlightModel.isComply }.sortedBy { dateFormatter.parse(it.listFlightModel.departTime) })
+        dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && it.listFlightModel.isComply}.sortedBy { it.listFlightModel.departTime })
         adapter.notifyDataSetChanged()
         /*dataFilter.clear()
         dataFilter.addAll(data.filter { it.listFlightModel.numberSeat.toInt()>0 && it.listFlightModel.isComply}.sortedBy { it.listFlightModel.dateDeparture })

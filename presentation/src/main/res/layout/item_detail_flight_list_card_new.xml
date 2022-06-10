@@ -117,25 +117,28 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <LinearLayout
-                    android:layout_toLeftOf="@+id/img_airline"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_toLeftOf="@+id/img_airline"
                     android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tv_airline_name"
+                        style="@style/RobotoBold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#24253d"
                         android:text="Garuda Indonesia"
-                        style="@style/RobotoBold"/>
+                        android:textColor="#24253d"
+                        android:textSize="12sp" />
 
                     <LinearLayout
-                        android:layout_gravity="center|center_vertical"
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_class_flight_cart"
@@ -147,13 +150,13 @@
                             android:textSize="10sp" />
 
                         <ImageView
-                            android:layout_marginTop="2dp"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="5dp"
-                            android:layout_gravity="center"
-                            android:src="@drawable/rounded_flight"
                             android:layout_width="4dp"
-                            android:layout_height="4dp"/>
+                            android:layout_height="4dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/rounded_flight" />
 
                         <TextView
                             android:id="@+id/tv_subclass_cart"
@@ -167,17 +170,15 @@
                     </LinearLayout>
 
 
-
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/img_airline"
-                    android:adjustViewBounds="true"
-                    android:layout_centerVertical="true"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/sriwijaya"/>
+                    android:layout_alignParentEnd="true"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/sriwijaya" />
             </RelativeLayout>
 
             <RelativeLayout

@@ -99,34 +99,38 @@
                     android:text="@string/title"/>
 
                 <LinearLayout
+                    android:id="@+id/line_btn_mr"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
                     android:background="@color/colorPrimary">
 
                     <TextView
-                        android:layout_gravity="center"
+                        android:id="@+id/tv_btn_mr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#ffffff"
+                        android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/text_mstr" />
+                        android:text="Mr."
+                        android:textColor="#ffffff"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_marginStart="10dp"
+                    android:id="@+id/line_btn_mrs"
                     android:layout_width="50dp"
                     android:layout_height="30dp"
-                    android:background="#f5f5f5">
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/colorBackgroundSelected">
 
                     <TextView
-                        android:layout_gravity="center"
+                        android:id="@+id/tv_btn_ms"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="12sp"
-                        android:textColor="#24253d"
+                        android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/text_ms" />
+                        android:text="Ms."
+                        android:textColor="#24253d"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -154,12 +158,12 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <EditText
-                            android:focusable="false"
+                            android:id="@+id/etInfant"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
                             android:textColor="#24253d"
-                            android:text=""
+                            tools:text="Vody Andrian"
                             android:background="@color/transparent"/>
 
                         <LinearLayout
@@ -199,6 +203,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <LinearLayout
+                        android:id="@+id/lineDateBirth"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -210,6 +215,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tvDateBirth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -236,6 +242,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/lineMonthBirth"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="8dp"
@@ -249,6 +256,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tvMonthBirth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -275,6 +283,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/lineYearBirth"
                         android:layout_marginTop="8dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -286,6 +295,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/tvYearBirth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="16sp"
@@ -312,6 +322,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"

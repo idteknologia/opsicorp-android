@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 class InfantIdModel (
-    val id    :String = "",
-    val title :String = "",
-    val name  :String = "",
-    val birtday :String = ""
+    var id    :String = "",
+    var title :String = "",
+    var name  :String = "",
+    var birtday :String = ""
 ):Parcelable

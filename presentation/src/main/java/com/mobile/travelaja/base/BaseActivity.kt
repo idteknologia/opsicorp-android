@@ -172,9 +172,9 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
 
     fun closeApplication() {
         AlertDialog.Builder(this)
-                .setMessage("Apa Anda yakin ingin menutup aplikasi?")
+                .setMessage("Are you sure want exit the app?")
                 .setCancelable(false)
-                .setPositiveButton("IYA") { dialog, id ->
+                .setPositiveButton("Yes") { dialog, id ->
                     val exit = Intent(Intent.ACTION_MAIN)
 
                     exit.addCategory(Intent.CATEGORY_HOME)
@@ -183,24 +183,7 @@ abstract class BaseActivity : AppCompatActivity(), KoinComponent, AppLocaleChang
 
                     startActivity(exit)
                 }
-                .setNegativeButton("Tidak", null)
-                .show()
-    }
-
-    fun closeApplication(message: String) {
-        AlertDialog.Builder(this)
-                .setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("IYA") { dialog, id ->
-                    val exit = Intent(Intent.ACTION_MAIN)
-
-                    exit.addCategory(Intent.CATEGORY_HOME)
-
-                    exit.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-
-                    startActivity(exit)
-                }
-                .setNegativeButton("Tidak", null)
+                .setNegativeButton("No", null)
                 .show()
     }
 

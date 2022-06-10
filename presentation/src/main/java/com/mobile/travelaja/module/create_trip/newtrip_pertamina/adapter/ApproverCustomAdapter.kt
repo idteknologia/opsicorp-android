@@ -30,10 +30,18 @@ class ApproverCustomAdapter (val context: Context): androidx.recyclerview.widget
         val data = items.get(position)
 
         holder.itemView.btn_next.gone()
-        holder.itemView.tv_jobtitle.text = data.positionName
+        if (data.positionName == "null"){
+            holder.itemView.tv_jobtitle.text = "-"
+        } else {
+            holder.itemView.tv_jobtitle.text = data.positionName
+        }
         holder.itemView.tv_name.text = data.name
-        holder.itemView.tv_budget_name.text = data.positionId
-        if (data.isPjs.equals(true)){
+        if (data.positionId == "null"){
+            holder.itemView.tv_budget_name.text = "-"
+        } else {
+            holder.itemView.tv_budget_name.text = data.positionId
+        }
+        if (data.isPjs){
             holder.itemView.tv_status.text = "PJS"
             holder.itemView.tv_status.setTextColor(Color.parseColor("#939396"))
         } else {

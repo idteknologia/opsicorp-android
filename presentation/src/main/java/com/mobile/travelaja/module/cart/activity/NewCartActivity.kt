@@ -581,7 +581,7 @@ class NewCartActivity : BaseActivity(), View.OnClickListener,
                 hideWarningWaiting()
             }
 
-            itemsTrip.filter { it.status == "Booking Error" }.isNotEmpty() -> {
+            itemsTrip.filter { it.status == "BookingError" }.isNotEmpty() -> {
                 btn_submit_trip_plant.background = resources.getDrawable(R.drawable.rounded_button_gray)
                 hideWarningWaiting()
             }

@@ -79,7 +79,12 @@ class ParticipantAdapter(val context: Context) : androidx.recyclerview.widget.Re
 
 
         fun bind(data: ParticipantModel, position: Int) {
-            tv_job_title.text = data.jobtitle
+            if (data.jobtitle == "null"){
+                tv_job_title.text = "-"
+            } else {
+                tv_job_title.text = data.jobtitle
+            }
+
             tv_status.text = data.status
             tv_budget_name.text = Globals.getProfile(context).costCenter + " - " + Globals.getProfile(context).costCenterDefaultText
             tv_name.text = data.name

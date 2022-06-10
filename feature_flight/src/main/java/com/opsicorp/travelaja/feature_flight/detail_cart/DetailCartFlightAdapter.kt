@@ -58,7 +58,7 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_origin.text = data.cityCodeDeparture
         holder.itemView.tv_station_origin.text = data.airportDeparture
 
-        if (data.terminal.isNullOrEmpty()||"null".equals(data.terminal)){
+        if (data.terminal.isEmpty()|| "null" == data.terminal){
             holder.itemView.tv_terminal.text = context.getString(R.string.text_terminal)
         }else{
             holder.itemView.tv_terminal.text = context.getString(R.string.text_terminal)+data.terminal
@@ -71,7 +71,12 @@ class DetailCartFlightAdapter (val context: Context, private var items: ArrayLis
         holder.itemView.tv_depart.text = data.cityCodeArrival
         holder.itemView.tv_station_destination.text = data.airportArrival
         holder.itemView.tv_total_passager.text = "${context.getString(R.string.text_adult_times)} ${data.totalPassenger}"
-        holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble(), false)
+        if (items.size == 2){
+            holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble()/2, false)
+        } else {
+            holder.itemView.tv_total_prize.text = StringUtils().setCurrency("IDR", data.price.toDouble(), false)
+        }
+
 
     }
 

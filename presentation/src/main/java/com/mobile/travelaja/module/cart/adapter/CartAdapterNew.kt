@@ -365,7 +365,7 @@ class CartAdapterNew(val context: Context): RecyclerView.Adapter<RecyclerView.Vi
                 Picasso.get()
                         .load(data.imageFlight)
                         .fit()
-                        .centerCrop()
+                        .centerInside()
                         .into(itemView.img_airline)
             }
 

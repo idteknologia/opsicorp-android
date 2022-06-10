@@ -13,11 +13,15 @@ import kotlinx.android.synthetic.main.item_booking_adapter_infant.view.*
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.model.booking_contact.BookingContactAdapterModel
 import opsigo.com.datalayer.datanetwork.dummy.accomodation.DataListOrderAccomodation
+import java.util.*
+import kotlin.collections.ArrayList
 
 class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     lateinit var onclick: OnclickListenerRecyclerView
     lateinit var items: ArrayList<BookingContactAdapterModel>
+
+    var getMonth = 1
 
     override fun getItemCount(): Int {
         return items.size
@@ -223,6 +227,64 @@ class BookingContactFlightAdapter(val context: Context) : androidx.recyclerview.
                 itemView.line_vertical_infant.visibility = View.GONE
             } else {
                 itemView.line_vertical_infant.visibility = View.VISIBLE
+            }
+
+            data.infantID.name = itemView.etInfant.text.toString()
+
+            itemView.tv_btn_mr.setOnClickListener {
+                data.infantID.title = "Mr"
+                itemView.line_btn_mr.background = ContextCompat.getDrawable(context,R.color.colorPrimary)
+                itemView.tv_btn_mr.setTextColor(ContextCompat.getColor(context,R.color.white))
+                itemView.line_btn_mrs.background = ContextCompat.getDrawable(context,R.color.colorBackgroundSelected)
+                itemView.tv_btn_ms.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
+                notifyDataSetChanged()
+            }
+            itemView.tv_btn_ms.setOnClickListener {
+                data.infantID.title = "Ms"
+                itemView.line_btn_mr.background = ContextCompat.getDrawable(context,R.color.colorBackgroundSelected)
+                itemView.tv_btn_mr.setTextColor(ContextCompat.getColor(context,R.color.colorTextHint))
+                itemView.line_btn_mrs.background = ContextCompat.getDrawable(context,R.color.colorPrimary)
+                itemView.tv_btn_ms.setTextColor(ContextCompat.getColor(context,R.color.white))
+                notifyDataSetChanged()
+            }
+
+            val cal   = Calendar.getInstance()
+            val year  = cal.get(Calendar.YEAR)
+            val month = cal.get(Calendar.MONTH)
+            val day   = cal.get(Calendar.DAY_OF_MONTH)
+
+            itemView.lineDateBirth.setOnClickListener {
+                Globals.getCalendarSpinner(context,year,month,day
+                ) { p0, p1, p2, p3 ->
+                    itemView.tvDateBirth.text = p3.toString()
+                    itemView.tvMonthBirth.text = FormatingMonthIndonesian().formatMonth(p2)
+                    getMonth = p2
+                    itemView.tvYearBirth.text = p1.toString()
+                }
+                val birthdate     = "${itemView.tvYearBirth.text}-${getMonth+1}-${itemView.tvDateBirth.text}"
+                data.infantID.birtday = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+            }
+            itemView.lineMonthBirth.setOnClickListener {
+                Globals.getCalendarSpinner(context,year,month,day
+                ) { p0, p1, p2, p3 ->
+                    itemView.tvDateBirth.text = p3.toString()
+                    itemView.tvMonthBirth.text = FormatingMonthIndonesian().formatMonth(p2)
+                    getMonth = p2
+                    itemView.tvYearBirth.text = p1.toString()
+                }
+                val birthdate     = "${itemView.tvYearBirth.text}-${getMonth+1}-${itemView.tvDateBirth.text}"
+                data.infantID.birtday = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+            }
+            itemView.lineYearBirth.setOnClickListener {
+                Globals.getCalendarSpinner(context,year,month,day
+                ) { p0, p1, p2, p3 ->
+                    itemView.tvDateBirth.text = p3.toString()
+                    itemView.tvMonthBirth.text = FormatingMonthIndonesian().formatMonth(p2)
+                    getMonth = p2
+                    itemView.tvYearBirth.text = p1.toString()
+                }
+                val birthdate     = "${itemView.tvYearBirth.text}-${getMonth+1}-${itemView.tvDateBirth.text}"
+                data.infantID.birtday = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
             }
         }
 

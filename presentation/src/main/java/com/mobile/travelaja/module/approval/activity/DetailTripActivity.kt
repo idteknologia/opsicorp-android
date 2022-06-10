@@ -91,10 +91,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
     val dataParticipant = ArrayList<ParticipantModel>()
     val dataApproval = ArrayList<ParticipantModelDomain>()
-    val dataApprover = ArrayList<TravelRequestApprovalModel>()
     val adapterParticpant by lazy { ParticipantAdapter(this) }
     val adapterApproval by lazy { ApproverCustomAdapter(this) }
-    val adapterApprover by lazy { ApproverAdapter(this) }
     val adapterItemOrder by lazy { SummaryAdapter(this) }
     var dataAttachment = ArrayList<UploadModel>()
     val adapter by inject<AttachmentAdapter> { parametersOf(dataAttachment) }
@@ -234,47 +232,13 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         rv_approval.adapter = adapterApproval
 
+        dataApproval.clear()
         dataApproval.addAll(tripSummary.tripParticipantModels.first().dataApproval)
         val totalApprover = dataApproval.size
         tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
         adapterApproval.setData(dataApproval)
 
         if (dataApproval.isEmpty()) {
-            tv_list_approval.gone()
-            rv_approval.gone()
-        } else {
-            tv_list_approval.visible()
-            rv_approval.visible()
-        }
-    }
-
-    fun initRecyclerViewApprover() {
-        tv_list_approval.visibility = View.VISIBLE
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        rv_approval.layoutManager = layoutManager
-        rv_approval.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
-        rv_approval.adapter = adapterApprover
-
-        if (!tripSummary.isDomestic == true) {
-            dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
-                it.isDomestic
-            })
-        } else {
-            dataApprover.addAll(Globals.getProfile(this).approval.travelRequestApproval.filter {
-                !it.isDomestic
-            })
-
-        }
-        val totalApprover = dataApprover.size
-
-        tv_list_approval.visible()
-        tv_notice_title.gone()
-        rv_approval.visible()
-        tv_list_approval.text = "${getString(R.string.list_approver)} (${totalApprover})"
-        adapterApprover.setData(dataApprover)
-
-        if (dataApprover.isEmpty()) {
             tv_list_approval.gone()
             rv_approval.gone()
         } else {
@@ -1181,10 +1145,10 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         builder.setMessage(message)
         builder.setPositiveButton("Ok") { dialog, which ->
             getSummary()
-            val tripPlanId = tripSummary.tripId
+            /*val tripPlanId = tripSummary.tripId
             val bundle = Bundle()
             bundle.putString(Constants.TRIP_PLAN_ID, tripPlanId)
-            gotoActivityWithBundle(PaymentActivity::class.java, bundle)
+            gotoActivityWithBundle(PaymentActivity::class.java, bundle)*/
         }
         builder.create().show()
     }

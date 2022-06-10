@@ -71,6 +71,10 @@ class AddressActivity : BaseActivity(), LoginView {
         }
     }
 
+    override fun onBackPressed() {
+        closeApplication()
+    }
+
     override fun onResume() {
         super.onResume()
         hideStatusBar()

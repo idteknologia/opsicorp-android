@@ -88,6 +88,7 @@
 <!--    <color name="colorError">#ffcc0000</color>-->
 <!--    <color name="colorLineGray">#CABBBBBB</color>-->
     <color name="colorMaterialGrey">#bdbdbd</color>
+    <color name="colorBackgroundSelected">#f5f5f5</color>
 
 <!--    <color name="red_alert">#BB000E</color>-->
 
@@ -117,7 +118,7 @@
 
 <!--    <color name="colorGrayRoundWhite">#f5f5f5</color>-->
 <!--    <color name="colorGrayTextButtonFlight">#cc939396</color>-->
-<!--    <color name="colorTextHint">#24253d</color>-->
+    <color name="colorTextHint">#24253d</color>
 
 <!--    <color name="colorRedApproval">#bf171f</color>-->
 <!--    <color name="colorOrangeApproval">#ffbe47</color>-->
