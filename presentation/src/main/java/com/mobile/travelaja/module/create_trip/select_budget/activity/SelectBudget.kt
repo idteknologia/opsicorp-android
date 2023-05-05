@@ -227,7 +227,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
         dataRequest.origin          = Globals.getConfigCompany(this).defaultOrigin
         dataRequest.type            = Globals.getConfigCompany(this).travelingPurposeFormType
         dataRequest.travelAgentAccount = Globals.getConfigCompany(this).defaultTravelAgent
-        dataRequest.destination     = data.idCountry
+        dataRequest.destination     = data.nameDestination
         dataRequest.purpose         = data.namePusrpose
 
         dataRequest.tripAttachments = ArrayList()

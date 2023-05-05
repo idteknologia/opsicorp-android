@@ -397,7 +397,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         model.origin           = dataTrip.originId
         model.checkInDate      = checkIn.split(" ")[0]
         model.checkOutDate     = dateCheckoutCalculation(checkIn.split(" ")[0])
-        model.countGuest       = 1
+        model.countGuest       = totalGuest
         model.purpose          = dataTrip.purpose
         model.travelAgent      = Globals.getConfigCompany(this).defaultTravelAgent
         model.destination      = dataTrip.destinationId

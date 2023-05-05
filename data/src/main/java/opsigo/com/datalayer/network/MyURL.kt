@@ -4,7 +4,7 @@ object MyURL {
     val URL_TRAVELAJA         = "https://basicqa.opsicorp.com/" //"https://travelaja.opsicorp.com/"
     const val LOGIN           = "token"
     const val PROFILE         = "api/User/Profile"
-    const val UPDATE_PROFILE  = "api/User/UpdateProfile"
+    const val UPDATE_PROFILE  = "apiv2/User/UpdateProfile"
     const val CONFIG          = "api/Config"
     const val UPCOMING_FLIGHT = "api/User/FlightBooking?showAll=true"
     const val AIRLINE_PREF    = "api/Lookup/GetAirlineListBasedLogin"
@@ -13,7 +13,7 @@ object MyURL {
     const val LIST_APPROVE    = "api/TripPlan/List"
     const val LIST_CART       = "api/TripPlan/Cart"
 
-    const val SET_DEVICE_ID    = "api/User/SetPlayerId"
+    const val SET_DEVICE_ID    = "apiv2/User/SetPlayerId"
     const val REMOVE_DEVICE_ID = "api/User/RemovePlayerId"
 
     //payment gateway

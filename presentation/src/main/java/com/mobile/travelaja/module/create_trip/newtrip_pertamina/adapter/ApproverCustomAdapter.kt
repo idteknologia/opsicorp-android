@@ -41,13 +41,7 @@ class ApproverCustomAdapter (val context: Context): androidx.recyclerview.widget
         } else {
             holder.itemView.tv_budget_name.text = data.positionId
         }
-        if (data.isPjs){
-            holder.itemView.tv_status.text = "PJS"
-            holder.itemView.tv_status.setTextColor(Color.parseColor("#939396"))
-        } else {
-            holder.itemView.tv_status.text = "NON-PJS"
-            holder.itemView.tv_status.setTextColor(Color.parseColor("#939396"))
-        }
+        holder.itemView.tv_status.text = ""
 
     }
 

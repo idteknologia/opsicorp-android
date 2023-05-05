@@ -1233,7 +1233,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 bundle.putInt(TYPE_ACCOMODATION, Constants.KEY_ACCOMODATION)
                 gotoActivityWithBundle(AccomodationActivity::class.java, bundle)
             } else {
-                showAlert("Sorry", "This Trip Plant return date is expired")
+                showAlert("Sorry", "This Trip Plan return date is expired")
             }
         }
     }

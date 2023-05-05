@@ -69,9 +69,9 @@ class HotelFragment : BaseFragment(),
     }
 
     private fun getRouteDefault() {
-        dataSelectCity.cityName     = "Surabaya"
+        dataSelectCity.cityName     = data.destinationName
         dataSelectCountry.id        = "ID"
-        dataSelectCity.idCity       = "A9oThaCBPU27Sez5ghOkzA"
+        dataSelectCity.idCity       = ""
         setDataCityDefault()
         hideLoadingCity()
     }
@@ -130,7 +130,7 @@ class HotelFragment : BaseFragment(),
     private fun checkTypeOrder() {
         if (Constants.isBisnisTrip){
             line_nearby.visibility   = View.VISIBLE
-            lay_passanger.visibility = View.GONE
+            lay_passanger.visibility = View.VISIBLE
         }
         else{
             line_nearby.visibility   = View.GONE

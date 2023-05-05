@@ -18,7 +18,7 @@ class SummaryEntityMapper() {
         summary.businessTripType  = if (from.businessTripType==null) "" else from.businessTripType.toString()
         summary.origin          = if (from.origin==null) "" else from.origin
         summary.originName      = if (from.originName==null) "" else from.originName
-        summary.destination     = if (from.destination==null) "" else from.destination
+        summary.destination     = if (from.destinationName==null) "" else from.destinationName
         summary.destinationName = if (from.destinationView==null) "" else from.destinationView
         summary.startDate       = from.startDate.toString()
         summary.budgetId        = from.budgetId.toString()

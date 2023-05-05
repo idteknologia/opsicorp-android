@@ -194,11 +194,11 @@ class FlightFragmentNew : BaseFragment(),
                 tv_from.text = "$originName (${idOrigin})"
 
                 //setDefaultDestination
-                idDestination = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_destinationn.toLowerCase()) }?.id.toString()
-                destinationName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_destinationn.toLowerCase()) }?.name.toString()
+                idDestination = dataTripPlan.destinationId
+                destinationName = dataTripPlan.destinationName
                 tv_to.text = "$destinationName (${idDestination})"
             }
-            else {
+            else if (!config.isPersonalTrip) {
                 // setDefaultorigin
                 idOrigin = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.originId.toLowerCase()) }?.id.toString()
                 originName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(dataTripPlan.originName.toLowerCase()) }?.name.toString()
