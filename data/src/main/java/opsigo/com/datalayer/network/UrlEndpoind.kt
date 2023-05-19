@@ -5,7 +5,6 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 import okhttp3.MultipartBody
-import opsigo.com.domainlayer.callback.CallbackApprovAll
 import retrofit2.http.POST
 
 interface UrlEndpoind {
@@ -319,7 +318,7 @@ interface UrlEndpoind {
     fun getBookingHotel(@Header("Authorization") token:String,
                         @Body body: HashMap<Any, Any>):Call<ResponseBody>
 
-    @POST(MyURL.SINCRONIZE_HOTEL)
+    @POST(MyURL.SYNCHRONIZE_HOTEL)
     fun getSyncHotel(@Header("Authorization") token:String,
                      @Body body: HashMap<Any, Any>):Call<ResponseBody>
 

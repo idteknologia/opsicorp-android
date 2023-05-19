@@ -218,9 +218,9 @@ dependencies {
     api presentationDependencies.ucorp
     api presentationDependencies.barcode
 
-    implementation 'com.google.android.gms:play-services-maps:16.1.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.0'
-    api 'com.google.android.play:core:1.10.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:20.5.0'
+    api 'com.google.android.play:core:1.10.3'
 
 //    showcase
     implementation 'com.github.deano2390:MaterialShowcaseView:1.3.4'

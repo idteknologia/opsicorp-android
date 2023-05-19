@@ -65,7 +65,7 @@ object MyURL {
     const val CANCELLATION_POLICY  = "apiv1/GetAllCancellationPolicy"
     const val DETAIL_HOTEL         = "apiv1/HotelDetail"
     const val BOOKING_HOTEL        = "apiv1/BookHotel"
-    const val SINCRONIZE_HOTEL     = "apiv1/SynchronizeHotel"
+    const val SYNCHRONIZE_HOTEL     = "apiv1/SynchronizeHotel"
     const val REMOVE_HOTEL         = "apiv1/RemoveHotel"
     const val REMARK_HOTEL         = "apiv1/UpdateHotelRemarks"
     const val GET_COUNTRY_BY_ROUTE_PERTAMINA = "apiv1/GetDestinationHotelFromRoutes"

@@ -1,6 +1,7 @@
 package opsigo.com.domainlayer.model.create_trip_plane.save_as_draft
 
 import opsigo.com.domainlayer.model.accomodation.flight.RouteMultiCityModel
+import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import opsigo.com.domainlayer.model.summary.TripAttachmentItemModel
 
 class SuccessCreateTripPlaneModel {
@@ -37,4 +38,5 @@ class SuccessCreateTripPlaneModel {
 
     var route        = ArrayList<RouteMultiCityModel>()
     var attachment   = ArrayList<TripAttachmentItemModel>()
+    val airport      = ArrayList<NearbyAirportModel>()
 }

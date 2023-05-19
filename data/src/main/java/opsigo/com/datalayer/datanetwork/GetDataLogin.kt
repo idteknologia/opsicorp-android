@@ -1,5 +1,6 @@
 package opsigo.com.datalayer.datanetwork
 
+import android.content.ContentValues.TAG
 import retrofit2.Call
 import android.util.Log
 import retrofit2.Callback
@@ -31,6 +32,7 @@ class GetDataLogin(baseUrl:String) : BaseGetData(), LoginRepository {
             override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
                 callbackLogin.failedGetData(t.message!!) //error here
                 //when /NetworkSecurityConfig: No Network Security Config specified, using platform default
+                Log.e(TAG, "onFailure: $t", )
             }
 
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {

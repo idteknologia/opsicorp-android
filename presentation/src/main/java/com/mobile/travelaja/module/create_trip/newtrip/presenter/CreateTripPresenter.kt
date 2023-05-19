@@ -67,9 +67,10 @@ class CreateTripPresenter(val context: Context, val view: CreateTripView) :KoinC
         val endDateView   = Globals.getDateAfterNow(6,"dd MMM yyyy")//FormatingMonthIndonesian().format(Globals.getDateAfterNow(6))
         val startDate     = DateConverter().getAfterDay("yyyy-MM-dd",2)
         val endDate       = DateConverter().getAfterDay("yyyy-MM-dd",6)
+        val origin        = Constants.DATA_CITY.filter { it.name.toLowerCase().contains("jakarta") }.first()
         val city          = Constants.DATA_CITY.filter { it.name.toLowerCase().contains("bandung") }.first() //"SURABAYA (SUB)"
 
-        view.setDataAutomatically(startDateView,endDateView,city.name,city.id,startDate,endDate)
+        view.setDataAutomatically(startDateView,endDateView,city.name,city.id,startDate,endDate,origin.name)
 //        view.setDataAutomatically2(startDateView,endDateView,startDate,endDate)
     }
 

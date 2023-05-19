@@ -8,6 +8,7 @@ import com.mobile.travelaja.module.signin.select_nationality.view.SelectNational
 import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.utility.Globals.setLog
 import opsigo.com.datalayer.mapper.Serializer
+import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
@@ -47,10 +48,12 @@ class SelectedNationalityPresenter :KoinComponent {
                 when (views){
                     -1 -> {
                         if (filterActivated){
-                            view.callbackFromThisActivity(temp.get(position).name,temp[position].id)
+                            view.callbackFromThisActivity(temp.get(position).name,temp.get(position).country,temp[position].id,temp[position].countryCode)
                         }
                         else {
-                            view.callbackFromThisActivity(data.get(position).name,data[position].id)
+                            if (data.isNotEmpty()){
+                                view.callbackFromThisActivity(data.get(position).name,data.get(position).name,data[position].id,data[position].countryCode)
+                            }
                         }
                     }
                 }
@@ -69,15 +72,27 @@ class SelectedNationalityPresenter :KoinComponent {
         adapter.setData(data)
     }
 
+    fun getDataNationalityOrigin(){
+        data.clear()
+        Constants.DATA_CITY.filter { it.name.contains("Jakarta") }.forEach {
+            val model = SelectNationalModel()
+            model.name = it.name
+            model.id   = it.id
+            data.add(model)
+        }
+        adapter.setData(data)
+    }
+
     fun filterDataAdapter(string: String) {
         val temp = ArrayList<SelectNationalModel>()
         for (n in 0..data.size-1) {
             val d = data.get(n)
-            if (d.name.toLowerCase().contains(string.toLowerCase())) {
+            if (d.name.toLowerCase().contains(string.toLowerCase())||d.country.lowercase().contains(string.lowercase())) {
                 val mData = SelectNationalModel()
                 mData.name = d.name
                 mData.country = d.country
                 mData.id   = d.id
+                mData.countryCode = d.countryCode
                 temp.add(mData)
             }
         }
@@ -129,6 +144,19 @@ class SelectedNationalityPresenter :KoinComponent {
             setLog(Serializer.serialize(it))
         }
         data.addAll(Constants.DATA_CITY)
+        val dataFilter = ArrayList<SelectNationalModel>()
+        listCity.forEachIndexed { index, c ->
+            dataFilter.addAll(data.filter { it.name.toLowerCase().equals(c.toLowerCase()) })
+        }
+        data.clear()
+        data.addAll(dataFilter)
+        adapter.setData(data)
+    }
+
+    fun getDataAirports(listCity:ArrayList<String>) {
+        data.clear()
+
+        data.addAll(DataTemporary.dataAirport)
         val dataFilter = ArrayList<SelectNationalModel>()
         listCity.forEachIndexed { index, c ->
             dataFilter.addAll(data.filter { it.name.toLowerCase().equals(c.toLowerCase()) })

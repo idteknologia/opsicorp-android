@@ -379,7 +379,15 @@ class CreateTripPertaminaActivity : BaseActivityBinding<ActivityNewCreatetrippla
         /*hideLoadingOpsicorp()*/
     }
 
-    override fun setDataAutomatically(dataNow: String, dataNow1: String, city: String, idCity: String, mStartDate: String, mEndDate: String) {
+    override fun setDataAutomatically(
+        dataNow: String,
+        dataNow1: String,
+        city: String,
+        idCity: String,
+        mStartDate: String,
+        mEndDate: String,
+        origin: String
+    ) {
 
     }
 

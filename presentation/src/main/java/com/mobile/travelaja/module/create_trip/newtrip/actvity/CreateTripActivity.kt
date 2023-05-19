@@ -45,6 +45,7 @@ class CreateTripActivity : BaseActivity(),
     val presenter by inject<CreateTripPresenter> { parametersOf(this) }
     var dialogCamera         = DialogCamera()
     var SELECT_CODE_PURPOSE  = 98
+    var SELECT_CODE_ORIGIN = 77
     var SELECT_CODE_COUNTRY  = 78
     var READ_REQUEST_CODE    = 67
     var m_startdate          = ""
@@ -114,6 +115,12 @@ class CreateTripActivity : BaseActivity(),
                 }
             }
 
+            SELECT_CODE_ORIGIN -> {
+                if (resultCode==Activity.RESULT_OK){
+                    et_city_from.text = data?.getStringExtra("nameCountry")
+                }
+            }
+
             SELECT_CODE_COUNTRY -> {
                 if (resultCode==Activity.RESULT_OK){
                     et_city_to.text = data?.getStringExtra("nameCountry")
@@ -135,6 +142,14 @@ class CreateTripActivity : BaseActivity(),
         bundle.putString("invisibleSearch","yes")
         bundle.putString("titleHeader","What is your purpose")
         gotoActivityResultWithBundle(DialogPurpose::class.java,bundle,SELECT_CODE_PURPOSE)
+    }
+
+    fun selectOrigin(view: View){
+        val bundle = Bundle()
+        bundle.putString("emplaoyId","country2")
+        bundle.putString("invisibleSearch","yes")
+        bundle.putString("titleHeader","Select Origin")
+        gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,SELECT_CODE_ORIGIN)
     }
 
     fun selectCountry(view: View){
@@ -216,10 +231,11 @@ class CreateTripActivity : BaseActivity(),
         hideLoadingOpsicorp()
     }
 
-    override fun setDataAutomatically(tvFrom: String,etEnd:String,etCity:String,idCity:String,mStartDate:String,mEndDate:String) {
+    override fun setDataAutomatically(tvFrom: String,etEnd:String,etCity:String,idCity:String,mStartDate:String,mEndDate:String,origin:String) {
         tv_from.text        = tvFrom
         et_end_date.text    = etEnd
         et_city_to.text     = etCity
+        et_city_from.text   = origin
         idCountry           = idCity
         m_startdate         = mStartDate
         m_endate            = mEndDate

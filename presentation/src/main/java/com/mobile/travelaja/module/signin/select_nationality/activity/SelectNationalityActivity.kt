@@ -102,11 +102,13 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         if(intent?.getBundleExtra("data")!=null){
             if("country".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 presenter.getDataNationality()
+            }else if("country2".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
+                presenter.getDataNationalityOrigin()
             }
             else if("city".equals(intent?.getBundleExtra("data")?.getString(Constants.SELECT_RESULT))){
                 try {
                     if (intent.getBundleExtra("data")?.getStringArrayList("listCity")?.isNotEmpty()!!){
-                        presenter.getDataCity(intent.getBundleExtra("data")?.getStringArrayList("listCity")!!)
+                        presenter.getDataAirports(intent.getBundleExtra("data")?.getStringArrayList("listCity")!!)
                     }
                     else {
                         presenter.getDataCity()
@@ -145,9 +147,11 @@ class SelectNationalityActivity : BaseActivity(),SelectNationalityView , AppLoca
         }
     }
 
-    override fun callbackFromThisActivity(name: String,code:String) {
+    override fun callbackFromThisActivity(name: String,country: String,code:String,countryCode: String) {
         val intent = Intent()
         intent?.putExtra("nameCountry",name)
+        intent?.putExtra("countryName",country)
+        intent?.putExtra("countryCode",countryCode)
         intent?.putExtra("idCountry",code)
         intent?.putExtra("language",language)
         if (hasSelected){

@@ -61,7 +61,7 @@ dependencies {
 
 
     implementation dataDependencies.guava
-    implementation dataDependencies.retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation dataDependencies.converterGson
     implementation dataDependencies.okhttpLogging
     annotationProcessor dataDependencies.annotationProcessor

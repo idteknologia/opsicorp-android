@@ -872,7 +872,7 @@ Please add your trip item."
     <string name="children">Children</string>
     <string name="adults">Adults</string>
     <string name="infants">Infants</string>
-    <string name="select_city">Select city</string>
+    <string name="select_city">Select your destination city</string>
     <string name="search_train">Search Train</string>
     <string name="car_and_bus"><![CDATA[Car & Bus]]></string>
     <string name="your_trip_items_detail">Your Trip Items Detail</string>
@@ -1250,5 +1250,6 @@ Please add your trip item."
     <string name="help_settings"><![CDATA[Help & Settings]]></string>
     <string name="terms_and_conditions">Terms and Conditions</string>
     <string name="opsicorp_2020">© OPSICORP 2020</string>
+    <string name="origin">Origin</string>
 </resources>
 

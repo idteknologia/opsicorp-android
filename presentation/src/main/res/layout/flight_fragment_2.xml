@@ -393,7 +393,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:id="@+id/tvPassengerClass"
@@ -402,7 +402,7 @@
                         android:layout_marginStart="14dp"
                         android:layout_marginLeft="14dp"
                         android:layout_marginTop="20dp"
-                        android:text="@string/passengers_class"
+                        android:text="Flight Class"
                         android:textColor="#24253d"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -416,7 +416,8 @@
                         android:weightSum="1"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"

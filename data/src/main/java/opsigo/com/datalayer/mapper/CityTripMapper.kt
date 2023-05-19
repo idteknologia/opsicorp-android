@@ -11,6 +11,7 @@ class CityTripMapper {
             model.name = jsonArray.getJSONObject(i).getString("Name")
             model.id   = jsonArray.getJSONObject(i).getString("Code")
             model.country = jsonArray.getJSONObject(i).getString("CountryName")
+            model.countryCode = jsonArray.getJSONObject(i).getString("CountryCode")
             data.add(model)
         }
         return data

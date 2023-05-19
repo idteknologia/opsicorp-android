@@ -69,8 +69,8 @@ class HotelFragment : BaseFragment(),
     }
 
     private fun getRouteDefault() {
-        dataSelectCity.cityName     = data.destinationName
-        dataSelectCountry.id        = "ID"
+        dataSelectCity.cityName     = ""
+        dataSelectCountry.id        = ""
         dataSelectCity.idCity       = ""
         setDataCityDefault()
         hideLoadingCity()

@@ -465,7 +465,52 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
 
+                <RelativeLayout
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="@dimen/margin_default"
+                    android:layout_marginLeft="@dimen/margin_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <LinearLayout
+                        android:id="@+id/layOrigin"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp">
+
+                        <TextView
+                            android:onClick="selectOrigin"
+                            android:text="@string/origin"
+                            android:textSize="14sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+
+                        <TextView
+                            android:textColorHint="#24253d"
+                            android:textColor="#24253d"
+                            android:onClick="selectOrigin"
+                            android:id="@+id/et_city_from"
+                            android:paddingTop="8dp"
+                            android:paddingBottom="9dp"
+                            android:textAlignment="viewStart"
+                            android:gravity="center"
+                            android:textSize="@dimen/font_edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:ignore="RtlCompat" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_below="@+id/layOrigin"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorLineEdittext"/>
+
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_marginTop="20dp"

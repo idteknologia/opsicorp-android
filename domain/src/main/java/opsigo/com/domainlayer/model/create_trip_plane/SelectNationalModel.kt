@@ -4,6 +4,7 @@ class SelectNationalModel {
     var name = ""
     var id   = ""
     var country = ""
+    var countryCode = ""
     var callCode = ""
     var latitude = ""
     var longitude = ""

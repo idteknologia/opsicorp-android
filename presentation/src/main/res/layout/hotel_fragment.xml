@@ -164,8 +164,8 @@
                                 <TextView
                                     android:textColor="@color/colorTextHint"
                                     android:textColorHint="@color/colorTextHint"
-                                    android:hint=""
-                                    android:text="cabkacad"
+                                    android:hint="Select Your Destination City"
+                                    android:text=""
                                     android:id="@+id/tv_city"
                                     android:paddingTop="8dp"
                                     android:paddingBottom="9dp"

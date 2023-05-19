@@ -7,6 +7,7 @@ import android.app.DownloadManager
 import android.app.NotificationManager
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -64,10 +65,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import com.airbnb.lottie.network.NetworkFetcher.fetch
+import com.mobile.travelaja.module.create_trip.newtrip.actvity.DataTemporary
 import com.tonyodev.fetch2.*
 
 import com.tonyodev.fetch2.Fetch.Impl.getInstance
 import opsigo.com.datalayer.datanetwork.*
+import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.signin.CountryModel
 import java.io.File
@@ -87,6 +90,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
     var tripId = ""
     var tripSummary = SummaryModel()
     val dataItems = ArrayList<SummaryModelItems>()
+    var airportData = ArrayList<NearbyAirportModel>()
     var isUpdateSummary = false
 
     val dataParticipant = ArrayList<ParticipantModel>()
@@ -142,8 +146,28 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             getSummary()
         }
 
-        getDataCity(getToken())
+        /*getDataCity(getToken())*/
+        getDataAirport()
+    }
 
+    private fun getDataAirport() {
+        airportData.clear()
+        GetDataTripPlane(getBaseUrl()).getDataAiport(getToken(),object :CallbackDataAirport{
+            override fun success(data: ArrayList<NearbyAirportModel>) {
+                airportData.addAll(data)
+                DataTemporary.dataAirport.clear()
+                data.forEachIndexed { index, airportModel ->
+                    val mData = SelectNationalModel()
+                    mData.name = airportModel.nameAirport
+                    mData.id   = airportModel.cityCode
+                    DataTemporary.dataAirport.add(mData)
+                }
+            }
+
+            override fun failed(message: String) {
+                showAllert("Sorry",message)
+            }
+        })
     }
 
     fun getDataCity(token: String) {
@@ -529,7 +553,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
 
         val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT, false)
 
-        if (tripSummary.statusView == "Completely Rejected" || tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Canceled") {
+        if (tripSummary.statusView == "Completely Rejected" || tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Canceled" || tripSummary.statusView == "Waiting For Approval") {
             line_add_trip_item.gone()
             line_btn_change.gone()
         } else if (!debug) {
@@ -1207,6 +1231,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                 model.destinationId = tripSummary.destination
             }
             model.route = mappingRoutes(tripSummary.routes)
+            model.airport.addAll(airportData)
             model.startDate = tripSummary.startDate
             model.endDate = tripSummary.returnDate
             model.attachment.addAll(addAttacthment())
@@ -1226,6 +1251,7 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             model.golper = tripSummary.golper
 
             Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(model)
+            Log.e(TAG, "gotoAddItem: ${Constants.DATA_SUCCESS_CREATE_TRIP}", )
 
             val dateFormatter = SimpleDateFormat("yyyy-MM-dd hh:mm")
             if (Date().before(dateFormatter.parse(tripSummary.returnDate))) {

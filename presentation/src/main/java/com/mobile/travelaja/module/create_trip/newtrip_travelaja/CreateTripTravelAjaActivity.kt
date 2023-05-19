@@ -270,17 +270,22 @@ class CreateTripTravelAjaActivity : BaseActivityBinding<ActivityNewCreatetripTra
         hideLoadingOpsicorp()
     }
 
-    override fun setDataAutomatically(tvFrom: String, etEnd: String, city: String, idCity: String, mStartDate: String, mEndDate: String) {
-        viewBinding.tvFrom.text = tvFrom
-        viewBinding.etEndDate.text = etEnd
+    override fun setDataAutomatically(
+        dataNow: String,
+        dataNow1: String,
+        city: String,
+        idCity: String,
+        mStartDate: String,
+        mEndDate: String,
+        origin: String
+    ) {
+        viewBinding.tvFrom.text = dataNow
+        viewBinding.etEndDate.text = dataNow1
         idCountry           = idCity
         m_startdate         = mStartDate
         m_endate            = mEndDate
     }
 
-    /*override fun setDataAutomatically2(dataNow: String, dataNow1: String, mStartDate: String, mEndDate: String) {
-
-    }*/
 
     override fun SuccessCreateTrip() {
         gotoSuccessTrip()

@@ -1,6 +1,7 @@
 package com.mobile.travelaja.module.signin.detail_profile.activity
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ import com.mobile.travelaja.module.home.activity.HomeActivity
 import com.mobile.travelaja.module.signin.detail_profile.presenter.CompletedDataProfilePresenter
 import com.mobile.travelaja.module.signin.select.activity.LookUpActivity
 import com.mobile.travelaja.module.signin.select_nationality.activity.SelectNationalityActivity
+import com.mobile.travelaja.utility.Constants
 //import com.opsigo.opsicorp.module.login.select_nationality.activity.SelectNationalityActivity
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.StringUtils
@@ -25,6 +27,7 @@ import opsigo.com.datalayer.datanetwork.GetDataGeneral
 import opsigo.com.datalayer.mapper.Serializer
 import opsigo.com.domainlayer.callback.CallbackSetProfile
 import opsigo.com.domainlayer.model.signin.ProfileModel
+import org.json.JSONArray
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
 import java.util.*
@@ -66,9 +69,9 @@ class CompletedDataProfileActivity: BaseActivity() {
     private fun setOnclickListener() {
         tv_nationality.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString("emplaoyId","country")
-            bundle.putString("titleHeader","Nationality")
-            gotoActivityResultWithBundle(LookUpActivity::class.java,bundle,RESULT_CODE_NATIONALITY)
+            bundle.putString("emplaoyId","city")
+            bundle.putString("titleHeader","Select City")
+            gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,RESULT_CODE_NATIONALITY)
             //gotoActivityResultWithBundle(SelectNationalityActivity::class.java,bundle,RESULT_CODE_NATIONALITY)
         }
 
@@ -137,9 +140,9 @@ class CompletedDataProfileActivity: BaseActivity() {
             RESULT_CODE_NATIONALITY ->{
                 if (resultCode==Activity.RESULT_OK){
                     //tv_nationality_code.text = data?.getStringExtra("idCountry")
-                    temp_country_code = data?.getStringExtra("idCountry").toString()
-                    tv_nationality.text     = data?.getStringExtra("nameCountry")
-                    temp_country_name       = data?.getStringExtra("nameCountry").toString()
+                    temp_country_code = data?.getStringExtra("countryCode").toString()
+                    tv_nationality.text     = data?.getStringExtra("countryName")
+                    temp_country_name       = data?.getStringExtra("countryName").toString()
                 }
             }
 

@@ -5,6 +5,7 @@ import android.os.Bundle
 import java.util.HashSet
 import org.json.JSONArray
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.view.ViewGroup
 import com.mobile.travelaja.R
@@ -16,6 +17,7 @@ import com.mobile.travelaja.utility.*
 import com.mobile.travelaja.base.BaseFragment
 import opsigo.com.datalayer.mapper.Serializer
 import android.graphics.drawable.BitmapDrawable
+import android.util.Log
 import com.mobile.travelaja.base.InitApplications
 import com.opsicorp.sliderdatepicker.utils.Constant
 import opsigo.com.domainlayer.callback.CallbackString
@@ -108,9 +110,9 @@ class FlightFragmentNew : BaseFragment(),
         )
         Globals.typeAccomodation = "Flight"
 
-        if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.UDARA) }.size==1){
+        /*if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.UDARA) }.size==1){
             top_button.visibility = View.GONE
-        }
+        }*/
 
         if (dataTripPlan.route.isNotEmpty()&&dataTripPlan.route.filter { it.transportationType.equals(Constants.NON_UDARA) }.size==dataTripPlan.route.size){
             line_not_availble_flight.visibility = View.VISIBLE
@@ -189,13 +191,13 @@ class FlightFragmentNew : BaseFragment(),
                 tv_to.text = "$destinationName (${idDestination})"
             } else if (config.isPersonalTrip){
                 // setDefaultorigin
-                idOrigin = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_origin.toLowerCase()) }?.id.toString()
-                originName = Constants.DATA_CITY.find { it.name.toLowerCase().equals(def_origin.toLowerCase()) }?.name.toString()
+                idOrigin = dataTripPlan.airport.find { it.cityName == dataTripPlan.originName }?.cityCode.toString()
+                originName = dataTripPlan.airport.find { it.cityName == dataTripPlan.originName }?.nameAirport.toString()
                 tv_from.text = "$originName (${idOrigin})"
 
                 //setDefaultDestination
-                idDestination = dataTripPlan.destinationId
-                destinationName = dataTripPlan.destinationName
+                idDestination = dataTripPlan.airport.find { it.cityName == dataTripPlan.destinationName }?.cityCode.toString()
+                destinationName = dataTripPlan.airport.find { it.cityName == dataTripPlan.destinationName }?.nameAirport.toString()
                 tv_to.text = "$destinationName (${idDestination})"
             }
             else if (!config.isPersonalTrip) {
@@ -805,18 +807,18 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun openCityTo(position: Int) {
-        val listCity = ArrayList<String>()
+        val listAirport = ArrayList<String>()
 
-        dataTripPlan.route.forEach {
-            listCity.add(it.originName)
-            listCity.add(it.destinationName)
+        dataTripPlan.airport.filter { it.cityName == "Jakarta" || it.cityName == "Jakarta Halim" || it.cityName == dataTripPlan.destinationName}.forEach {
+            listAirport.add(it.nameAirport)
+            listAirport.add(it.cityCode)
         }
         /*
         * remove duplicate items
         * */
-        val set: Set<String> = HashSet(listCity)
-        listCity.clear()
-        listCity.addAll(set)
+        val set: Set<String> = HashSet(listAirport)
+        listAirport.clear()
+        listAirport.addAll(set)
 
         val bundle = Bundle()
         currentPosition = position
@@ -824,7 +826,9 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
-        bundle.putStringArrayList("listCity",listCity)
+        bundle.putStringArrayList("listCity",listAirport)
+        Log.e(TAG, "openCityFrom: $listAirport", )
+
         if (position==-1){
             gotoActivityResultWithBundle(
                 SelectNationalityActivity::class.java,
@@ -842,18 +846,18 @@ class FlightFragmentNew : BaseFragment(),
     }
 
     private fun openCityFrom(position: Int) {
-        val listCity = ArrayList<String>()
+        val listAirport = ArrayList<String>()
 
-        dataTripPlan.route.forEach {
-            listCity.add(it.originName)
-            listCity.add(it.destinationName)
+        dataTripPlan.airport.filter { it.cityName == "Jakarta" || it.cityName == "Jakarta Halim" || it.cityName == dataTripPlan.destinationName}.forEach {
+            listAirport.add(it.nameAirport)
+            listAirport.add(it.cityCode)
         }
         /*
         * remove duplicate items
         * */
-        val set: Set<String> = HashSet(listCity)
-        listCity.clear()
-        listCity.addAll(set)
+        val set: Set<String> = HashSet(listAirport)
+        listAirport.clear()
+        listAirport.addAll(set)
 
         val bundle = Bundle()
         currentPosition = position
@@ -861,7 +865,8 @@ class FlightFragmentNew : BaseFragment(),
         bundle.putString("invisibleSearch", "yes")
         bundle.putString("searchHint", "Enter city or airport name")
         bundle.putString("titleHeader", "Select City or Airport")
-        bundle.putStringArrayList("listCity",listCity)
+        bundle.putStringArrayList("listCity",listAirport)
+        Log.e(TAG, "openCityFrom: $listAirport", )
 
         if (position==-1){
             gotoActivityResultWithBundle(

@@ -11,5 +11,6 @@ object DataTemporary {
     var dataCity  = ArrayList<SelectNationalModel>()
     var dataSelectBudget = ArrayList<SelectNationalModel>()
     var dataCostCenter   = ArrayList<SelectNationalModel>()
+    var dataAirport      = ArrayList<SelectNationalModel>()
     var dataCountry = ArrayList<CountryModel>()
 }

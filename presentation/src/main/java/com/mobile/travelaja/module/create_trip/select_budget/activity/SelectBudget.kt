@@ -30,6 +30,8 @@ import opsigo.com.domainlayer.model.CostCenterModel
 import opsigo.com.domainlayer.model.create_trip_plane.SelectNationalModel
 import opsigo.com.domainlayer.model.create_trip_plane.save_as_draft.SuccessCreateTripPlaneModel
 import kotlinx.android.synthetic.main.select_budget_first.*
+import opsigo.com.domainlayer.callback.CallbackDataAirport
+import opsigo.com.domainlayer.model.accomodation.hotel.NearbyAirportModel
 import org.koin.core.KoinComponent
 import java.util.*
 import kotlin.collections.ArrayList
@@ -49,11 +51,14 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
     var costCenterIsEmpty = true
     var codeSelectBudget = ""
     lateinit var data: DataBisnisTripModel
+
+    var airportData = ArrayList<NearbyAirportModel>()
     var idBudget = ""
     var idCostCenter = ""
 
     override fun OnMain() {
 
+        getDataAirport()
         getDataFromIntent()
         btn_next.callbackOnclickButton(this)
         btn_next.setTextButton(resources.getString(R.string.manage_transport))
@@ -63,6 +68,26 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
         toolbarView.hidenBtnCart()
 
         changeButtonNextGrayColor()
+    }
+
+    private fun getDataAirport() {
+        airportData.clear()
+        GetDataTripPlane(getBaseUrl()).getDataAiport(getToken(),object : CallbackDataAirport {
+            override fun success(data: ArrayList<NearbyAirportModel>) {
+                airportData.addAll(data)
+                DataTemporary.dataAirport.clear()
+                data.forEachIndexed { index, airportModel ->
+                    val mData = SelectNationalModel()
+                    mData.name = airportModel.nameAirport
+                    mData.id   = airportModel.cityCode
+                    DataTemporary.dataAirport.add(mData)
+                }
+            }
+
+            override fun failed(message: String) {
+                showAllert("Sorry",message)
+            }
+        })
     }
 
     private fun getDataSelectCostCenter() {
@@ -196,6 +221,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
                 data.buggetId   = idBudget
                 data.destinationName = this@SelectBudget.data.nameDestination
                 data.originName      = Globals.getConfigCompany(this@SelectBudget).defaultOrigin
+                data.airport.addAll(airportData)
                 Constants.DATA_SUCCESS_CREATE_TRIP = Serializer.serialize(data)
                 gotoActivityWithBundle(SucessCreateTripPlaneActivity::class.java,bundle)
             }
