@@ -111,11 +111,12 @@
                 <TextView
                     android:id="@+id/tv_departure"
                     style="@style/RobotoBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    tools:text="Jakarta (CGK)"
+                    tools:text="Husein Sastranegara International Airport \n (BDO)"
                     android:textColor="#939396"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textAlignment="textStart"/>
 
 
             </LinearLayout>
@@ -182,11 +183,12 @@
                 <TextView
                     android:id="@+id/tv_arrival"
                     style="@style/RobotoBold"
-                    android:layout_width="wrap_content"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    tools:text="Jakarta (CGK)"
+                    tools:text="Husein Sastranegara International Airport \n (BDO)"
                     android:textColor="#939396"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:textAlignment="textEnd"/>
 
 
             </LinearLayout>

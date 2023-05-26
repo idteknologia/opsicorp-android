@@ -276,9 +276,9 @@
                             android:gravity="center"
                             android:paddingStart="25sp"
                             android:paddingEnd="17sp"
-                            tools:text="Marketing"
                             android:textColor="@color/white"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:text="Marketing" />
 
                         <RelativeLayout
                             android:id="@+id/line_img_approvar"
@@ -430,7 +430,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tvEstFlightTitle"
@@ -478,7 +479,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -525,7 +527,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -573,7 +576,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -622,7 +626,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -670,7 +675,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -718,7 +724,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -765,7 +772,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -812,7 +820,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -860,7 +869,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"
@@ -907,7 +917,8 @@
                     android:layout_marginRight="@dimen/margin_default"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="130dp"

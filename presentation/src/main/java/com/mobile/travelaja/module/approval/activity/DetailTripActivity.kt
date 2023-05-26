@@ -549,16 +549,18 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         tv_start_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.startDate)
         tv_end_date.text = DateConverter().setDateFormatDayEEEddMMM(tripSummary.returnDate)
 
-        tv_notes.text = tripSummary.remark
+        if (tripSummary.remark == "null"){
+            tv_notes.text = ""
+        } else {
+            tv_notes.text = tripSummary.remark
+        }
 
         val debug = intent.getBooleanExtra(Constants.KEY_IS_PARTICIPANT, false)
 
         if (tripSummary.statusView == "Completely Rejected" || tripSummary.statusView == "Trip Completed" || tripSummary.statusView == "Canceled" || tripSummary.statusView == "Waiting For Approval") {
             line_add_trip_item.gone()
-            line_btn_change.gone()
         } else if (!debug) {
             line_add_trip_item.gone()
-            line_btn_change.gone()
         }  else if (tripSummary.statusView == "Completely Approved" && tripSummary.nonCbt) {
             line_add_trip_item.gone()
         } else if (!Globals.isPertamina(this)){
@@ -566,7 +568,6 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
         }
         else {
             line_add_trip_item.visible()
-            line_btn_change.visible()
         }
 
         try {
@@ -771,6 +772,9 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
                     }
                     Constants.DETAIL_TICKET_HOTEL -> {
                         gotoEticket(position,1)
+                    }
+                    Constants.DETAIL_TICKET_TRAIN -> {
+                        gotoEticket(position,2)
                     }
                 }
             }

@@ -74,7 +74,7 @@ class SelectedNationalityPresenter :KoinComponent {
 
     fun getDataNationalityOrigin(){
         data.clear()
-        Constants.DATA_CITY.filter { it.name.contains("Jakarta") }.forEach {
+        Constants.DATA_CITY.filter { it.name == "Jakarta" }.forEach {
             val model = SelectNationalModel()
             model.name = it.name
             model.id   = it.id

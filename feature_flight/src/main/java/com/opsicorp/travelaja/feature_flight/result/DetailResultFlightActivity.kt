@@ -244,12 +244,12 @@ class DetailResultFlightActivity : BaseActivity(), ToolbarOpsicorp.OnclickButton
             tv_date_arrival.text    = DateConverter().setDateFormat4(dataFlight.arrivalDate)
 
             if (Globals.ALL_READY_SELECT_DEPARTING){
-                tv_departure.text        = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
-                tv_arrival.text          = dataOrder.originName + " (" + dataOrder.idOrigin + ")"
+                tv_departure.text        = dataOrder.destinationName + "\n (" + dataOrder.idDestination + ")"
+                tv_arrival.text          = dataOrder.originName + "\n (" + dataOrder.idOrigin + ")"
             }
             else{
-                tv_departure.text        = dataOrder.originName + " (" + dataOrder.idOrigin + ")"
-                tv_arrival.text          = dataOrder.destinationName + " (" + dataOrder.idDestination + ")"
+                tv_departure.text        = dataOrder.originName + "\n (" + dataOrder.idOrigin + ")"
+                tv_arrival.text          = dataOrder.destinationName + "\n (" + dataOrder.idDestination + ")"
             }
 
             Picasso.get()

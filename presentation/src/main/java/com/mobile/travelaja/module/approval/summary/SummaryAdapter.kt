@@ -130,14 +130,15 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_train        :TextView = itemView.findViewById(R.id.tv_train)
         var tv_destination  :TextView = itemView.findViewById(R.id.tv_destination)
         var tv_pnr_code     :TextView = itemView.findViewById(R.id.tv_pnr_code)
-        var tv_status       :TextView = itemView.findViewById(R.id.tv_status)
+        var tv_status       :TextView = itemView.findViewById(R.id.tv_refund)
         var tv_number_sheet :TextView = itemView.findViewById(R.id.tv_number)
         var tv_date_arrival :TextView = itemView.findViewById(R.id.tv_date_arrival)
         var time_departure  :TextView = itemView.findViewById(R.id.time_departure)
         var time_arrival    :TextView = itemView.findViewById(R.id.time_arrival)
         var tv_price        :TextView = itemView.findViewById(R.id.tv_price)
         var img_train       :ImageView= itemView.findViewById(R.id.img_train)
-        var btnOption       :ImageView= itemView.findViewById(R.id.btn_option_train)
+        /*var btnOption       :ImageView= itemView.findViewById(R.id.btn_option_train)*/
+        var icRefund        :ImageView = itemView.findViewById(R.id.ivStatusTrip)
         var btnDetailTicket :ImageView= itemView.findViewById(R.id.img_chevron)
 
         fun bind(data: ItemTrainModel, position: Int) {
@@ -159,12 +160,18 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     .into(img_train)
             }
 
+            if (data.status == "Ticketed"){
+                tv_status.setText(R.string.ticketed)
+                tv_status.setTextColor(ContextCompat.getColor(context,R.color.green_price))
+                icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+            }
+
             btnDetailTicket.setOnClickListener {
                 onclick.onClick(Constants.DETAIL_TICKET_TRAIN ,position)
             }
 
 
-            btnOption.setOnClickListener {
+            /*btnOption.setOnClickListener {
                 showDialogOption(position,btnOption)
             }
 
@@ -173,7 +180,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
             }
             else{
                 btnOption.visibility = View.GONE
-            }
+            }*/
         }
     }
 

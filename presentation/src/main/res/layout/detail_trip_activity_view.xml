@@ -409,7 +409,8 @@
                     android:layout_marginTop="9dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/RobotoBold"
@@ -658,7 +659,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:onClick="changeTripListener"
                     android:id="@+id/line_btn_change"
                     android:background="@drawable/rounded_button_corner_yellow"

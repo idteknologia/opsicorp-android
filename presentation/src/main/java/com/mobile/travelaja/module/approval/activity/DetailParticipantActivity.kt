@@ -317,9 +317,17 @@ class DetailParticipantActivity : BaseActivity()
             tvAllowanceLine.visible()
         }
 
-        tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName
+        if (tripSummary.tripParticipantItem.first().positionName.isNotEmpty()){
+            tv_jobtitle.text = tripSummary.tripParticipantItem.first().positionName
+        } else {
+            tv_jobtitle.text = "-"
+        }
         tv_name.text     = "${tripSummary.contact.firstName} ${tripSummary.contact.lastName}"
-        tv_cost_center.text   = "${tripSummary.tripParticipantItem.first().costCenterCode} - ${tripSummary.tripParticipantItem.first().costCenterName}"
+        if (tripSummary.tripParticipantItem.first().costCenterName.isNotEmpty()){
+            tv_cost_center.text   = "${tripSummary.tripParticipantItem.first().costCenterCode} - ${tripSummary.tripParticipantItem.first().costCenterName}"
+        } else {
+            tv_cost_center.text   = "-"
+        }
         tv_budget_name.text   = tripSummary.tripParticipantItem.first().email
         tv_cost_center_price.text = Globals.formatAmount(tripSummary.totalAllowance)
         tv_est_flight.text = Globals.formatAmount(tripSummary.tripParticipantItem.first().estFlight.toString())
