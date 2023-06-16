@@ -33,6 +33,7 @@ import java.lang.Exception
 import android.os.Bundle
 import android.view.View
 import android.os.Build
+import android.widget.Toast
 
 class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
         ButtonDefaultOpsicorp.OnclickButtonListener,
@@ -297,17 +298,21 @@ class BookingContactTrain : BaseActivity(),OnclickListenerRecyclerView,
             showAllert(getString(R.string.sorry),getString(R.string.booking_contact_not_empty))
         }
         else {
-            showLoadingOpsicorp(true)
-            GetDataAccomodation(getBaseUrl()).getReservationTrain(Globals.getToken(),getDataTrain(),object : CallbackReservationTrain {
-                override fun successLoad(data: ReservationTrainModel) {
-                    gotoNewCart(data.idTrip)
-                }
+            if (dataContacts.first().idcard.idCart.length < 16){
+                Toast.makeText(this, "Your ID card number must have 16 digits", Toast.LENGTH_SHORT).show()
+            } else if (dataContacts.first().idcard.idCart.length == 16){
+                showLoadingOpsicorp(true)
+                GetDataAccomodation(getBaseUrl()).getReservationTrain(Globals.getToken(),getDataTrain(),object : CallbackReservationTrain {
+                    override fun successLoad(data: ReservationTrainModel) {
+                        gotoNewCart(data.idTrip)
+                    }
 
-                override fun failedLoad(message: String) {
-                    showAllert(getString(R.string.sorry),message)
-                    hideLoadingOpsicorp()
-                }
-            })
+                    override fun failedLoad(message: String) {
+                        showAllert(getString(R.string.sorry),message)
+                        hideLoadingOpsicorp()
+                    }
+                })
+            }
         }
 
     }

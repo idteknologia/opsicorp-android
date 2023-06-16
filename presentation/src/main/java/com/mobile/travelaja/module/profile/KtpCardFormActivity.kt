@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.DatePicker
 import android.widget.LinearLayout
 import android.app.DatePickerDialog
+import android.widget.Toast
 import kotlin.collections.ArrayList
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
@@ -125,16 +126,20 @@ class KtpCardFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicorp
     fun saveListener(view: View){
         if (Globals.validatiEdittext(getField())){
             val model = IdCartModel()
-            model.idCart      = et_no_id.text.toString()
-            model.email       = et_email.text.toString()
-            model.fullname    = et_fullname.text.toString()
-            model.mobilePhone = "${et_no_hp.text}"
-            model.title       = titlePassenger
-            val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
-            model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
-            val intent = Intent()
-            intent.putExtra(Constants.RESULT_EDIT_KTP,Serializer.serialize(model))
-            Globals.finishResultOk(this,intent)
+            if (et_no_id.text.length < 16){
+                Toast.makeText(this, "Number ID card must have 16 digits", Toast.LENGTH_SHORT).show()
+            } else if (et_no_id.text.length == 16) {
+                model.idCart      = et_no_id.text.toString()
+                model.email       = et_email.text.toString()
+                model.fullname    = et_fullname.text.toString()
+                model.mobilePhone = "${et_no_hp.text}"
+                model.title       = titlePassenger
+                val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
+                model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+                val intent = Intent()
+                intent.putExtra(Constants.RESULT_EDIT_KTP,Serializer.serialize(model))
+                Globals.finishResultOk(this,intent)
+            }
         }
         else {
             showAllert(getString(R.string.sorry),getString(R.string.warning_canot_be_empty))

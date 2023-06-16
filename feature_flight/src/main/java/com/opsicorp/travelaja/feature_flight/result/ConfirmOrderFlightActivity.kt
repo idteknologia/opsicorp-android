@@ -94,7 +94,7 @@ class ConfirmOrderFlightActivity : BaseActivity(),
         data.adult  = 1
         data.child = 0
         data.infant = 0
-        data.travelAgent = "apidev"
+        data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         if (Constants.multitrip){
             dataOrder = Serializer.deserialize(Globals.DATA_ORDER_FLIGHT, OrderAccomodationModel::class.java)
             data.provider = dataOrder.routes.first().flightResult.airline

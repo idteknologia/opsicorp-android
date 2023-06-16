@@ -164,6 +164,9 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                 tv_status.setText(R.string.ticketed)
                 tv_status.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                 icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+                btnDetailTicket.visible()
+            } else {
+                icRefund.gone()
             }
 
             btnDetailTicket.setOnClickListener {
@@ -197,7 +200,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
         var tv_price        :TextView = itemView.findViewById(R.id.tv_price)
         var img_flight      :ImageView= itemView.findViewById(R.id.img_flight)
         var btnOptionFlight :ImageView= itemView.findViewById(R.id.btn_option_flight)
-        var btnDetailTicket :ImageView= itemView.findViewById(R.id.img_chevron)
+        var btnDetailTicket :LinearLayout= itemView.findViewById(R.id.layArrow)
         var tvRefund        :TextView = itemView.findViewById(R.id.tv_refund)
         var icRefund        :ImageView = itemView.findViewById(R.id.ivStatusTrip)
 
@@ -245,6 +248,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     tvRefund.setText(R.string.ticketed)
                     tvRefund.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                     icRefund.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+                    btnDetailTicket.visible()
                 }
                 data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tvRefund.setText(R.string.pending)
@@ -386,6 +390,7 @@ class SummaryAdapter (val context: Context): androidx.recyclerview.widget.Recycl
                     tv_status_hotel.setText(R.string.ticketed)
                     tv_status_hotel.setTextColor(ContextCompat.getColor(context,R.color.green_price))
                     icStatusTrip.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_ticketed))
+                    btnTicketViewHotel.visible()
                 }
                 data.status == "Pending" && !data.isRefund  && !data.isReschedule && !data.isRefunded -> {
                     tv_status_hotel.setText(R.string.pending)

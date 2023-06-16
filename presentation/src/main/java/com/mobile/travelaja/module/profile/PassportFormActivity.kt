@@ -10,6 +10,7 @@ import android.widget.DatePicker
 import android.widget.LinearLayout
 import kotlin.collections.ArrayList
 import android.app.DatePickerDialog
+import android.widget.Toast
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
 import com.mobile.travelaja.utility.Constants
@@ -153,18 +154,22 @@ class PassportFormActivity : BaseActivity(),View.OnClickListener, ToolbarOpsicor
     fun saveListener(view: View){
         if (Globals.validatiEdittext(getDataField())){
             val pasport = PassportModel()
-            pasport.passporNumber = et_passpor_number.text.toString()
-            pasport.email         = et_email.text.toString()
-            pasport.mobilePhone   = et_mobile_phone.text.toString()
-            pasport.id            = ""
-            pasport.title         = title
-            pasport.fullname      = tv_fullname_pasport.text.toString()
-            pasport.expiredDate   = "${tv_year_expired.text}-${tv_month_birtdate.text}-${tv_day_expired.text}"
-            val birthdate         = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
-            pasport.birtDate      = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
-            val intent = Intent()
-            intent?.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
-            Globals.finishResultOk(this,intent)
+            if (et_passpor_number.text.length < 16){
+                Toast.makeText(this, "Passport number must have 16 digits", Toast.LENGTH_SHORT).show()
+            } else if (et_passpor_number.text.length == 16) {
+                pasport.passporNumber = et_passpor_number.text.toString()
+                pasport.email         = et_email.text.toString()
+                pasport.mobilePhone   = et_mobile_phone.text.toString()
+                pasport.id            = ""
+                pasport.title         = title
+                pasport.fullname      = tv_fullname_pasport.text.toString()
+                pasport.expiredDate   = "${tv_year_expired.text}-${tv_month_birtdate.text}-${tv_day_expired.text}"
+                val birthdate         = "${tv_year_birtdate.text}-${month+1}-${tv_day_birtdate.text}"
+                pasport.birtDate      = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+                val intent = Intent()
+                intent?.putExtra(Constants.RESULT_EDIT_PASPORT, Serializer.serialize(pasport))
+                Globals.finishResultOk(this,intent)
+            }
         }
         else{
             showAllert(getString(R.string.sorry),getString(R.string.warning_canot_be_empty))

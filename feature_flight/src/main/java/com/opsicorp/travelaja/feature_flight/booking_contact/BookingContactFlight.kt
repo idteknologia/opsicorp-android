@@ -40,6 +40,7 @@ import android.app.Activity
 import java.lang.Exception
 import android.view.View
 import android.os.Bundle
+import android.widget.Toast
 import com.opsicorp.travelaja.feature_flight.adapter.TotalPriceAdapter
 import opsigo.com.domainlayer.model.accomodation.flight.ResultListFlightModel
 
@@ -385,7 +386,9 @@ class BookingContactFlight : BaseActivity(),
                     }
                 }
             }
-            else {
+            else if (dataListFlight.dataFlight.first().passenger.first().idcard.idCart.length < 16){
+                Toast.makeText(this, "Your ID card number must have 16 digits", Toast.LENGTH_SHORT).show()
+            } else if (dataListFlight.dataFlight.first().passenger.first().idcard.idCart.length == 16) {
                 getReservased()
             }
         }

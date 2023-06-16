@@ -291,7 +291,8 @@
             android:id="@+id/layArrow"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <TextView
                 style="@style/TextLato_Normal"
@@ -302,7 +303,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:textColor="#b2bbc6"
-                android:text="@string/details_information"
+                android:text="@string/see_e_ticket"
                 />
 
             <ImageView

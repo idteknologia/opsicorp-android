@@ -12,6 +12,7 @@ import android.view.Gravity.CENTER
 import android.widget.LinearLayout
 import kotlin.collections.ArrayList
 import android.app.DatePickerDialog
+import android.widget.Toast
 import com.mobile.travelaja.base.BaseActivity
 import com.mobile.travelaja.utility.Globals
 import opsigo.com.datalayer.mapper.Serializer
@@ -117,17 +118,21 @@ class SimFormContactActivity : BaseActivity(),View.OnClickListener, ToolbarOpsic
     fun saveListener(view: View){
         if (Globals.validatiEdittext(getFields())){
             val model = SimModel()
-            model.idSim       = et_number_driver_license.text.toString()
-            model.title       = titlePassenger
-            model.name        = et_name_driver_license.text.toString()
-            model.email       = et_email.text.toString()
-            model.mobilePhone = et_mobile_phone.text.toString()
-            val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_month_birtdate.text}"
-            model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
+            if (et_number_driver_license.text.length < 16){
+                Toast.makeText(this, "License number must have 16 digits", Toast.LENGTH_SHORT).show()
+            } else if (et_number_driver_license.text.length == 16) {
+                model.idSim       = et_number_driver_license.text.toString()
+                model.title       = titlePassenger
+                model.name        = et_name_driver_license.text.toString()
+                model.email       = et_email.text.toString()
+                model.mobilePhone = et_mobile_phone.text.toString()
+                val birthdate     = "${tv_year_birtdate.text}-${month+1}-${tv_month_birtdate.text}"
+                model.birthDate   = DateConverter().getDate(birthdate,"yyyy-MM-dd","yyyy-MM-dd")
 
-            val intent = Intent()
-            intent.putExtra(Constants.RESULT_EDIT_SIM, Serializer.serialize(model))
-            Globals.finishResultOk(this,intent)
+                val intent = Intent()
+                intent.putExtra(Constants.RESULT_EDIT_SIM, Serializer.serialize(model))
+                Globals.finishResultOk(this,intent)
+            }
         }
         else {
             showAllert(getString(R.string.sorry),getString(R.string.warning_canot_be_empty))

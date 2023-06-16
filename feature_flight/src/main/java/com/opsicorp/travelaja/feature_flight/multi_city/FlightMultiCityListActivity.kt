@@ -204,9 +204,10 @@ class FlightMultiCityListActivity : BaseActivity(),
     }
 
     private fun getSsr(dataFlight: ResultListFlightModel) {
+        hideLoadingOpsicorp()
         GetDataAccomodation(getBaseUrl()).getSsrFlight(getToken(),dataSrrRequest(dataFlight),object : CallbackGetSsr {
             override fun success(data: SsrModel) {
-                hideLoadingOpsicorp()
+
                 saveDataSsr(dataFlight,data,true)
             }
 
@@ -328,7 +329,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         data.child = 0
         data.infant = 0
         data.companyCode = dataProfile.companyCode
-        data.travelAgent = "apidev"
+        data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.provider = dataFlight.airline
         data.segments = getDataSegmentFareRules(dataFlight)
         return Globals.classToHashMap(data, FareRulesRequest::class.java)
@@ -353,7 +354,7 @@ class FlightMultiCityListActivity : BaseActivity(),
         data.adult = 1
         data.child = 0
         data.infant = 0
-        data.travelAgent = "apidev"
+        data.travelAgent = Globals.getConfigCompany(this).defaultTravelAgent
         data.segmentList = getDataSegmentSsr(dataFlight)
         /*val data = Serializer.deserialize(temporary, SsrRequest::class.java)*/
         return Globals.classToHashMap(data, SsrRequest::class.java)
