@@ -563,6 +563,8 @@ class DetailTripActivity : BaseActivity(), View.OnClickListener, ToolbarOpsicorp
             line_add_trip_item.gone()
         }  else if (tripSummary.statusView == "Completely Approved" && tripSummary.nonCbt) {
             line_add_trip_item.gone()
+        }  else if (tripSummary.statusView == "Draft" && Globals.getConfigCompany(this).isBookAfterApprove) {
+            line_add_trip_item.gone()
         } else if (!Globals.isPertamina(this)){
             line_btn_change.gone()
         }

@@ -13,6 +13,8 @@ class FilterRatingAdapter (context: Context, private var items: ArrayList<StartS
 
     lateinit var onclick: OnclickListenerRecyclerView
     val context = context
+    private var isRadioButtonChecked = false
+    var check = -1
 
     override fun getItemCount(): Int {
         return items.size
@@ -31,7 +33,7 @@ class FilterRatingAdapter (context: Context, private var items: ArrayList<StartS
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val data = items.get(position)
+        val data = items[position]
         when(data.rating){
             1 ->{
                 holder.itemView.star_1.visibility = View.VISIBLE
@@ -70,9 +72,13 @@ class FilterRatingAdapter (context: Context, private var items: ArrayList<StartS
             }
         }
 
-        holder.itemView.cb_rating.isChecked = data.selected
+        /*holder.itemView.radio_rating.isChecked = data.selected*/
+        holder.itemView.radio_rating.isChecked = position == check
 
-        holder.itemView.setOnClickListener {
+
+        holder.itemView.radio_rating.setOnClickListener {
+            check = position
+            notifyDataSetChanged()
             onclick.onClick(-1,position)
         }
     }

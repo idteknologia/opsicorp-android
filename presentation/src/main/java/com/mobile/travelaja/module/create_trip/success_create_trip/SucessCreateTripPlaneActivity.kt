@@ -47,12 +47,20 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun setTypeTravelRequest() {
-        if (Globals.isPertamina(this)) {
+        /*if (Globals.isPertamina(this)) {
             button_pertamina.visible()
             button_except_pertamina.gone()
             setDataPertamina()
         } else {
             setData()
+            button_pertamina.gone()
+            button_except_pertamina.visible()
+        }*/
+        setData()
+        if (Globals.getConfigCompany(this).isBookAfterApprove){
+            button_pertamina.visible()
+            button_except_pertamina.gone()
+        } else {
             button_pertamina.gone()
             button_except_pertamina.visible()
         }
@@ -144,7 +152,12 @@ class SucessCreateTripPlaneActivity : BaseActivity(), View.OnClickListener {
         tv_created_date2.text = "${data.createDateView}"
         //tv_expired_date.text = "1 days left to expired"
         tv_expired_date.visibility = View.GONE //don't need expire for draft
-        tvCongrats.text = "Your trip plan has been created, add your trip item."
+        if (Globals.getConfigCompany(this).isBookAfterApprove){
+            tvCongrats.text = "Your trip plan has been created, \n Please wait for approval to add your trip."
+        } else {
+            tvCongrats.text = "Your trip plan has been created, \n You can add your trip item."
+        }
+
         tv_activity_type.gone()
         tv_activity_type_text.gone()
         if (data.destinationName.isNullOrEmpty()) {

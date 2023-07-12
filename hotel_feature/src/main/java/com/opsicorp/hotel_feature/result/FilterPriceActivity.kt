@@ -21,6 +21,7 @@ class FilterPriceActivity : BaseActivity(),
 
     var minPrice = 0
     var maxPrice = 0
+    var rating = ""
 
     val dataFacility    = ArrayList<FacilityHotelModel>()
     val dataRating      = ArrayList<StartSelected>()
@@ -52,9 +53,10 @@ class FilterPriceActivity : BaseActivity(),
             override fun onClick(views: Int, position: Int) {
                 when(views){
                     -1 -> {
-                        dataRating.forEachIndexed { index, startSelected ->
+                        /*dataRating.forEachIndexed { index, startSelected ->
                             startSelected.selected = index==position
-                        }
+                        }*/
+                        rating = dataRating[position].rating.toString()
 //                        dataRating[position].selected = !dataRating[position].selected
                         adapterRating.notifyDataSetChanged()
                     }
@@ -167,15 +169,17 @@ class FilterPriceActivity : BaseActivity(),
     private fun setDataIntent() {
         val selected = Intent()
         selected.putExtra(Constants.RESULT_FACILITY,facilityCode())
-        selected.putExtra(Constants.RESULT_STAR,starSelected())
+        /*selected.putExtra(Constants.RESULT_STAR,starSelected())*/
+        selected.putExtra(Constants.RESULT_STAR,rating)
         selected.putExtra(Constants.MIN_PRICE,minPrice)
         selected.putExtra(Constants.MAX_PRICE,maxPrice)
+        setLog("$minPrice - $maxPrice - $rating")
         Globals.finishResultOk(this,selected)
     }
 
     private fun parsingDataMinMax() {
         minPrice = if (et_min.text.toString().isNotEmpty()) et_min.text.toString().replace(",","").replace(".","").toInt() else 0
-        maxPrice = if (et_max.text.toString().isNotEmpty()) et_max.text.toString().replace(",","").replace(",","").toInt() else 0
+        maxPrice = if (et_max.text.toString().isNotEmpty()) et_max.text.toString().replace(",","").replace(".","").toInt() else 0
     }
 
     private fun starSelected(): ArrayList<String> {

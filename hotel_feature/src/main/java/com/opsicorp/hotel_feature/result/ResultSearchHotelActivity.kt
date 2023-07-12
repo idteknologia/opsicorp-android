@@ -59,6 +59,7 @@ class ResultSearchHotelActivity : BaseActivity(),
     var dataFilter        = ArrayList<AccomodationResultModel>()
     val dataArea          = ArrayList<String>()
     var star              = ArrayList<String>()
+    var starFilter        = ""
     var minPrice          = 0
     var maxPrice          = 0
     var facilitys         = ArrayList<String>()
@@ -97,9 +98,9 @@ class ResultSearchHotelActivity : BaseActivity(),
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                filterActif = p0.toString().length>0
+                filterActif = p0.toString().isNotEmpty()
                 try {
-                    if (p0.toString().length>0){
+                    if (p0.toString().isNotEmpty()){
                         dataFilter.clear()
                         dataFilter.addAll(data.filter { it.listHotelModel.nameHotel.lowercase().contains(p0.toString().lowercase()) })
                         adapter.setDataList(dataFilter,this@ResultSearchHotelActivity)
@@ -212,20 +213,22 @@ class ResultSearchHotelActivity : BaseActivity(),
         adapter.setOnclickListenerWithAnimation(this)
         adapter.setDataList(data,this)
 
-        rv_result_hotel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                if (!recyclerView.canScrollVertically(1)) {
-                    if (!loadingSearch){
-                        if (scrolPage<maxPage){
-                            scrolPage = scrolPage+1
-                            getSearchPageHotel(scrolPage)
+        if (!filterActif){
+            rv_result_hotel.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    if (!recyclerView.canScrollVertically(1)) {
+                        if (!loadingSearch){
+                            if (scrolPage<maxPage){
+                                scrolPage = scrolPage+1
+                                getSearchPageHotel(scrolPage)
+                            }
                         }
-                    }
 
+                    }
                 }
-            }
-        })
+            })
+        }
 
         getDataHotel()
     }
@@ -311,8 +314,9 @@ class ResultSearchHotelActivity : BaseActivity(),
                     minPrice  = data?.getIntExtra(Constants.MIN_PRICE,0)!!
                     maxPrice  = data?.getIntExtra(Constants.MAX_PRICE,0)
                     facilitys = data?.getStringArrayListExtra(Constants.RESULT_FACILITY)!!
-                    star      = data.getStringArrayListExtra(Constants.RESULT_STAR)!!
+                    starFilter      = data?.getStringExtra(Constants.RESULT_STAR)!!
                     area      = ""
+                    setLog("$star")
                     getSearchByFilter()
                 }
             }
@@ -563,7 +567,7 @@ class ResultSearchHotelActivity : BaseActivity(),
         val data = PageHotelRequest()
         data.page       = page
         data.hotelName  = ""
-        data.star       = if (star.isNotEmpty()) star.first() else ""
+        data.star       = starFilter.ifEmpty { "" }
         data.minPrice   = if (minPrice==0) null else minPrice
         data.maxPrice   = if (maxPrice==0) null else maxPrice
         data.area       = area

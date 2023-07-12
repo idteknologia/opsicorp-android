@@ -10,14 +10,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <CheckBox
+        <RadioButton
             android:layout_gravity="center"
-            android:id="@+id/cb_rating"
-            android:layout_marginLeft="@dimen/margin_default"
+            android:id="@+id/radio_rating"
+            android:layout_marginStart="@dimen/margin_default"
             android:buttonTint="@color/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-        </CheckBox>
+        </RadioButton>
 
         <LinearLayout
             android:layout_gravity="center"

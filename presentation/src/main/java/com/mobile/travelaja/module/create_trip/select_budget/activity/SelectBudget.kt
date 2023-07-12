@@ -247,6 +247,7 @@ class SelectBudget : BaseActivity(),KoinComponent,ToolbarOpsicorp.OnclickButtonL
 
     private fun dataRequest(): HashMap<String, Any> {
         val dataRequest             = SaveAsDraftRequest()
+        dataRequest.isBookAfterApprove = Globals.getConfigCompany(this).isBookAfterApprove
         dataRequest.startDate       = data.startDate
         dataRequest.returnDate      = data.endDate
         dataRequest.remark          = data.notes

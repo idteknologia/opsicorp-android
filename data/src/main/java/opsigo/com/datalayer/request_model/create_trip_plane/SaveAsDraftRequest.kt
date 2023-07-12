@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName
 @Generated("com.robohorse.robopojogenerator")
 data class SaveAsDraftRequest(
 
+	@field:SerializedName("IsBookAfterApprove")
+	var  isBookAfterApprove: Boolean = false,
+
 		@field:SerializedName("StartDate")
 	var  startDate: String = "",
 
